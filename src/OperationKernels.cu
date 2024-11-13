@@ -2,7 +2,7 @@
 // Created by Administrator on 24-11-11.
 //
 
-#include "OperationKernels.cuh"
+#include "DL-Framework/OperationKernels.cuh"
 
 __global__ void add_kernel(const float *a, const float *b, float *c, unsigned long long n) {
     unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;

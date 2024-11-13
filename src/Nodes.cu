@@ -2,7 +2,7 @@
 // Created by Administrator on 24-11-11.
 //
 
-#include "Nodes.cuh"
+#include "DL-Framework/Nodes.cuh"
 
 namespace DL {
 } // DL

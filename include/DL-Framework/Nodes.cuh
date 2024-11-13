@@ -5,6 +5,8 @@
 #ifndef NODES_CUH
 #define NODES_CUH
 
+#include "Tensor.cuh"
+
 namespace DL {
 
 class Nodes {
