@@ -49,3 +49,24 @@ __global__ void GEMM_kernel(const float* A, const float* B, float* C, const unsi
     if(row < M && col < N)
         C[row*N + col] = sum;
 }
+
+__global__ void Transpose_kernel(const float* d_A, float* d_B, const unsigned int rows, const unsigned int cols)
+{
+
+    __shared__ float tile[TILE_SIZE][TILE_SIZE];
+
+    unsigned int row = blockIdx.y * TILE_SIZE + threadIdx.y;
+    unsigned int col = blockIdx.x * TILE_SIZE + threadIdx.x;
+
+    if (row < rows && col < cols)
+        tile[threadIdx.y][threadIdx.x] = d_A[row * cols + col];
+    else
+        tile[threadIdx.y][threadIdx.x] = 0.0f; // 填充越界部分为0
+
+    __syncthreads();
+
+    row = blockIdx.x * TILE_SIZE + threadIdx.y;
+    col = blockIdx.y * TILE_SIZE + threadIdx.x;
+    if (row < cols && col < rows)
+        d_B[row * rows + col] = tile[threadIdx.x][threadIdx.y];
+}
