@@ -14,4 +14,6 @@ __global__ void sub_kernel(const float *a, const float *b, float *c, unsigned lo
 
 __global__ void GEMM_kernel(const float* A, const float* B, float* C, const unsigned long long M, const unsigned long long N, const unsigned long long K);
 
+__global__ void Transpose_kernel(const float* d_A, float* d_B, const unsigned int rows, const unsigned int cols);
+
 #endif //OPERATIONKERNELS_CUH

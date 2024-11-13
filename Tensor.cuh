@@ -21,6 +21,8 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Tensor& tensor);
 
+    friend std::istream& operator>>(std::istream& is, Tensor& tensor);
+
     Tensor() : _size(0), _shape({0, 0}), _data(nullptr), _grad(nullptr), _requires_grad(false) {}
 
     explicit Tensor(const shape_type &shape, const bool requires_grad = false) : _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
@@ -60,6 +62,30 @@ public:
             cudaMalloc((float**)&_grad, _size * sizeof(float));
         } else {
             _grad = nullptr;
+        }
+    }
+
+    template<typename Iterator>
+    Tensor(const shape_type shape, Iterator first, Iterator last, const bool requires_grad = false) : _size(std::distance(first, last)), _shape(shape), _requires_grad(requires_grad) {
+        if (shape[0]*shape[1] != _size) {
+            throw std::invalid_argument("The size of the data does not match the shape.");
+        }
+        cudaMalloc((float**)&_data, _size * sizeof(float));
+        cudaMemcpy(_data, first, _size * sizeof(float), cudaMemcpyDeviceToDevice);
+        if (_requires_grad) {
+            cudaMalloc((float**)&_grad, _size * sizeof(float));
+        }
+    }
+
+    template<typename Iterator>
+    Tensor(const std::initializer_list<int> &shape, Iterator first, Iterator last, const bool requires_grad = false) : _size(std::distance(first, last)), _shape(shape), _requires_grad(requires_grad) {
+        if (_shape[0]*_shape[1] != _size) {
+            throw std::invalid_argument("The size of the data does not match the shape.");
+        }
+        cudaMalloc((float**)&_data, _size * sizeof(float));
+        cudaMemcpy(_data, first, _size * sizeof(float), cudaMemcpyDeviceToDevice);
+        if (_requires_grad) {
+            cudaMalloc((float**)&_grad, _size * sizeof(float));
         }
     }
 
@@ -124,7 +150,9 @@ public:
     }
 
     bool requires_grad() const noexcept { return _requires_grad; }
+
     shape_type shape() const noexcept { return _shape; }
+
     size_type size() const noexcept { return _size; }
 
     void set_requires_grad(const bool requires_grad) noexcept {
@@ -159,7 +187,7 @@ public:
         free(data);
     }
 
-    void set_data(const float* data, const shape_type &shape) {
+    void copy_data(const float* data, const shape_type &shape) {
         cudaFree(_data);
         if (_requires_grad) {
             cudaFree(_grad);
@@ -221,6 +249,59 @@ public:
         GEMM_kernel<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1], _shape[1]);
         return result;
     }
+
+    void reshape(const shape_type &shape) {
+        float* temp = (float*)malloc(_size * sizeof(float));
+        cudaMemcpy(temp, _data, _size * sizeof(float), cudaMemcpyDeviceToHost);
+        cudaFree(_data);
+        float* temp_grad = nullptr;
+        if (_requires_grad) {
+            temp_grad = (float*)malloc(_size * sizeof(float));
+            cudaMemcpy(temp_grad, _grad, _size * sizeof(float), cudaMemcpyDeviceToHost);
+            cudaFree(_grad);
+        }
+        size_type size = _size;
+        _size = shape[0] * shape[1];
+        _shape = shape;
+        cudaMalloc((float**)&_data, _size * sizeof(float));
+        cudaMemset(_data, 0, _size * sizeof(float));
+        cudaMemcpy(_data, temp, size * sizeof(float), cudaMemcpyHostToDevice);
+        free(temp);
+        if (_requires_grad) {
+            cudaMalloc((float**)&_grad, _size * sizeof(float));
+            cudaMemset(_grad, 0, _size * sizeof(float));
+            cudaMemcpy(_grad, temp_grad, size * sizeof(float), cudaMemcpyHostToDevice);
+            free(temp_grad);
+        }
+    }
+
+    void reshape(const std::initializer_list<int> &shape) {
+        reshape(shape_type(shape));
+    }
+
+    void transpose() {
+        float* temp;
+        cudaMalloc((float**)&temp, _size * sizeof(float));
+        cudaMemcpy(temp, _data, _size * sizeof(float), cudaMemcpyDeviceToDevice);
+        dim3 block(TILE_SIZE, TILE_SIZE);
+        dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
+        Transpose_kernel<<<grid, block>>>(temp, _data, _shape[0], _shape[1]);
+        reshape({_shape[1], _shape[0]});
+        cudaFree(temp);
+    }
+
+    void set_data(const shape_type &position, const value_type value) const {
+        value_type* data = (value_type*)malloc(_size * sizeof(value_type));
+        cudaMemcpy(data, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+        data[position[0] * _shape[1] + position[1]] = value;
+        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
+        free(data);
+    }
+
+    void set_data(const std::initializer_list<int>& position, const value_type value) const {
+        set_data(shape_type(position), value);
+    }
+
 
 
 private:

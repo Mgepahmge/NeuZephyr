@@ -21,4 +21,14 @@ namespace DL {
         free(data);
         return os;
     }
+
+    std::istream& operator>>(std::istream& is, Tensor& tensor) {
+        float* data = (float*)malloc(tensor._size*sizeof(float));
+        for (int i = 0; i < tensor._size; ++i) {
+            is >> data[i];
+        }
+        cudaMemcpy(tensor._data, data, tensor._size*sizeof(float), cudaMemcpyHostToDevice);
+        free(data);
+        return is;
+    }
 } // DL
