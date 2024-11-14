@@ -28,6 +28,24 @@ namespace NeuZephyr::data {
         return is;
     }
 
+    Tensor operator*(const Tensor::value_type lhs, const Tensor& rhs) {
+        Tensor result(rhs._shape, rhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(rhs._size + block.x - 1 / block.x );
+        Operator::ScalarMul_kernel<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
+        return result;
+    }
+
+    Tensor operator*(const Tensor& lhs, const Tensor::value_type rhs) {
+        Tensor result(lhs._shape, lhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(lhs._size + block.x - 1 / block.x );
+        Operator::ScalarMul_kernel<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        return result;
+    }
+
+
+
     // Constructors
     Tensor::Tensor() : _size(0), _shape({0, 0}), _data(nullptr), _grad(nullptr), _requires_grad(false) {}
 
@@ -214,6 +232,16 @@ namespace NeuZephyr::data {
         free(data);
     }
 
+    void Tensor::fill_grad(const value_type value) const {
+        auto* grad = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
+        for (size_type i = 0; i < _size; ++i) {
+            grad[i] = value;
+        }
+        cudaMemcpy(_grad, grad, _size * sizeof(value_type), cudaMemcpyHostToDevice);
+        free(grad);
+    }
+
+
     // Arithmetic operators
     Tensor Tensor::operator+(const Tensor& other) const {
         if (_shape != other._shape) {
@@ -243,7 +271,7 @@ namespace NeuZephyr::data {
         }
         Tensor result({_shape[0], other._shape[1]}, _requires_grad);
         dim3 block(TILE_SIZE, TILE_SIZE);
-        dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
+        dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
         Operator::GEMM_kernel<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1], _shape[1]);
         return result;
     }
@@ -302,5 +330,25 @@ namespace NeuZephyr::data {
 
     Tensor::value_type *Tensor::data() const noexcept {
         return _data;
+    }
+
+    Tensor::value_type *Tensor::grad() const noexcept {
+        return _grad;
+    }
+
+    std::ostream& Tensor::print_grad(std::ostream& os) const {
+        auto* data = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
+        cudaMemcpy(data, _grad, _size*sizeof(value_type), cudaMemcpyDeviceToHost);
+        std::ostream_iterator<value_type> output_iterator(os, " ");
+        for (int i = 0; i < _shape[0]; ++i) {
+            const auto it = data + i * _shape[1];
+            const auto it_end = it + _shape[1];
+            os << "[";
+            std::copy(it, it_end, output_iterator);
+            os << "]";
+            os << std::endl;
+        }
+        free(data);
+        return os;
     }
 }

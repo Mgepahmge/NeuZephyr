@@ -19,7 +19,8 @@ namespace NeuZephyr::data {
 
         friend DL_API std::ostream& operator<<(std::ostream& os, const Tensor& tensor);
         friend DL_API std::istream& operator>>(std::istream& is, const Tensor& tensor);
-
+        friend DL_API Tensor operator*(value_type lhs, const Tensor& rhs);
+        friend DL_API Tensor operator*(const Tensor& lhs, value_type rhs);
         // Constructors
         Tensor();
         explicit Tensor(const shape_type &shape, const bool requires_grad = false);
@@ -73,6 +74,7 @@ namespace NeuZephyr::data {
         void randomize(unsigned long long seed = 0) const;
         void clear() const;
         void fill(const value_type value) const;
+        void fill_grad(const value_type value) const;
 
         // Operators
         Tensor operator+(const Tensor& other) const;
@@ -85,6 +87,9 @@ namespace NeuZephyr::data {
         void set_data(const shape_type &position, const value_type value) const;
         void set_data(const std::initializer_list<int>& position, const value_type value) const;
         value_type* data() const noexcept;
+        value_type* grad() const noexcept;
+        std::ostream& print_grad(std::ostream& os) const;
+
 
 
     private:

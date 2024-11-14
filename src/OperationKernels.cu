@@ -71,5 +71,12 @@ namespace NeuZephyr::Operator {
         if (row < cols && col < rows)
             d_B[row * rows + col] = tile[threadIdx.x][threadIdx.y];
     }
+
+    __global__ void ScalarMul_kernel (float* out, const float* in, const float num, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] * num;
+        }
+    }
 }
 
