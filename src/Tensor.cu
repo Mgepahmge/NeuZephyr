@@ -1,9 +1,9 @@
-#include "DL-Framework/Tensor.cuh"
+#include "NeuZephyr/Tensor.cuh"
 
-namespace DL {
+namespace NeuZephyr::data {
     // Stream operators
     std::ostream& operator<<(std::ostream& os, const Tensor& tensor) {
-        Tensor::value_type* data = (Tensor::value_type*)malloc(tensor._size*sizeof(Tensor::value_type));
+        auto* data = static_cast<Tensor::value_type *>(malloc(tensor._size * sizeof(Tensor::value_type)));
         cudaMemcpy(data, tensor._data, tensor._size*sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
         std::ostream_iterator<Tensor::value_type> output_iterator(os, " ");
         for (int i = 0; i < tensor._shape[0]; ++i) {
@@ -18,8 +18,8 @@ namespace DL {
         return os;
     }
 
-    std::istream& operator>>(std::istream& is, Tensor& tensor) {
-        Tensor::value_type* data = (Tensor::value_type*)malloc(tensor._size*sizeof(Tensor::value_type));
+    std::istream& operator>>(std::istream& is, const Tensor& tensor) {
+        auto* data = static_cast<Tensor::value_type *>(malloc(tensor._size * sizeof(Tensor::value_type)));
         for (int i = 0; i < tensor._size; ++i) {
             is >> data[i];
         }
@@ -31,7 +31,7 @@ namespace DL {
     // Constructors
     Tensor::Tensor() : _size(0), _shape({0, 0}), _data(nullptr), _grad(nullptr), _requires_grad(false) {}
 
-    Tensor::Tensor(const shape_type &shape, const bool requires_grad)
+    Tensor::Tensor(const shape_type &shape, const bool requires_grad) // NOLINT(*-pro-type-member-init)
         : _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
         cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
         if (_requires_grad) {
@@ -148,7 +148,7 @@ namespace DL {
     // Setter methods
     void Tensor::set_requires_grad(const bool requires_grad) noexcept {
         if (requires_grad && _grad == nullptr) {
-            cudaMalloc((value_type**)_grad, _size * sizeof(value_type));
+            cudaMalloc(reinterpret_cast<value_type **>(_grad), _size * sizeof(value_type));
         }
         if (!requires_grad && _grad != nullptr) {
             cudaFree(_grad);
@@ -165,8 +165,8 @@ namespace DL {
     }
 
     void Tensor::print() const noexcept {
-        std::ostream_iterator<value_type> output_iterator(std::cout, " ");
-        value_type* data = (value_type*)malloc(_size * sizeof(value_type));
+        const std::ostream_iterator<value_type> output_iterator(std::cout, " ");
+        auto* data = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
         cudaMemcpy(data, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
         for (size_type i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
@@ -206,7 +206,12 @@ namespace DL {
     }
 
     void Tensor::fill(const value_type value) const {
-        cudaMemset(_data, value, _size * sizeof(value_type));
+        auto* data = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
+        for (size_type i = 0; i < _size; ++i) {
+            data[i] = value;
+        }
+        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
+        free(data);
     }
 
     // Arithmetic operators
@@ -217,7 +222,7 @@ namespace DL {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        add_kernel<<<grid, block>>>(_data, other._data, result._data, _size);
+        Operator::add_kernel<<<grid, block>>>(_data, other._data, result._data, _size);
         return result;
     }
 
@@ -228,7 +233,7 @@ namespace DL {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        sub_kernel<<<grid, block>>>(_data, other._data, result._data, _size);
+        Operator::sub_kernel<<<grid, block>>>(_data, other._data, result._data, _size);
         return result;
     }
 
@@ -239,21 +244,21 @@ namespace DL {
         Tensor result({_shape[0], other._shape[1]}, _requires_grad);
         dim3 block(TILE_SIZE, TILE_SIZE);
         dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
-        GEMM_kernel<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1], _shape[1]);
+        Operator::GEMM_kernel<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1], _shape[1]);
         return result;
     }
 
     void Tensor::reshape(const shape_type &shape) {
-        value_type* temp = (value_type*)malloc(_size * sizeof(value_type));
+        auto* temp = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
         cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
         cudaFree(_data);
         value_type* temp_grad = nullptr;
         if (_requires_grad) {
-            temp_grad = (value_type*)malloc(_size * sizeof(value_type));
+            temp_grad = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
             cudaMemcpy(temp_grad, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
             cudaFree(_grad);
         }
-        size_type size = _size;
+        const size_type size = _size;
         _size = shape[0] * shape[1];
         _shape = shape;
         cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
@@ -278,13 +283,13 @@ namespace DL {
         cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
         dim3 block(TILE_SIZE, TILE_SIZE);
         dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
-        Transpose_kernel<<<grid, block>>>(temp, _data, _shape[0], _shape[1]);
+        Operator::Transpose_kernel<<<grid, block>>>(temp, _data, _shape[0], _shape[1]);
         reshape({_shape[1], _shape[0]});
         cudaFree(temp);
     }
 
     void Tensor::set_data(const shape_type &position, const value_type value) const {
-        value_type* data = (value_type*)malloc(_size * sizeof(value_type));
+        auto* data = static_cast<value_type *>(malloc(_size * sizeof(value_type)));
         cudaMemcpy(data, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
         data[position[0] * _shape[1] + position[1]] = value;
         cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
@@ -294,4 +299,8 @@ namespace DL {
     void Tensor::set_data(const std::initializer_list<int>& position, const value_type value) const {
         set_data(shape_type(position), value);
     }
-} //DL
+
+    Tensor::value_type *Tensor::data() const noexcept {
+        return _data;
+    }
+}

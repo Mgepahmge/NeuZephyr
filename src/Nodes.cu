@@ -2,7 +2,8 @@
 // Created by Administrator on 24-11-11.
 //
 
-#include "DL-Framework/Nodes.cuh"
+#include "NeuZephyr/Nodes.cuh"
 
-namespace DL {
-} // DL
+namespace NeuZephyr::Nodes {
+
+}

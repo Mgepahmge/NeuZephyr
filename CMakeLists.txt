@@ -13,16 +13,16 @@ link_directories(${CUDA_TOOLKIT_ROOT_DIR}/lib/x64)
 
 # 设置库的源文件
 file(GLOB_RECURSE LIB_SOURCES "src/*.cu")
-file(GLOB_RECURSE LIB_HEADERS "include/DL-Framework/*.cuh")
+file(GLOB_RECURSE LIB_HEADERS "include/NeuZephyr/*.cuh")
 
 # 创建库目标
-add_library(dl_framework SHARED
+add_library(NeuZephyr SHARED
         ${LIB_SOURCES}
         ${LIB_HEADERS}
 )
 
 # 设置库的包含目录
-target_include_directories(dl_framework
+target_include_directories(NeuZephyr
         PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
@@ -32,21 +32,29 @@ target_include_directories(dl_framework
 )
 
 # 设置库的属性
-set_target_properties(dl_framework PROPERTIES
+set_target_properties(NeuZephyr PROPERTIES
         CUDA_SEPARABLE_COMPILATION ON
         POSITION_INDEPENDENT_CODE ON
         LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
 )
 
-target_compile_definitions(dl_framework
-        PRIVATE DL_FRAMEWORK_EXPORTS
-        PUBLIC DL_FRAMEWORK_DLL
+target_compile_definitions(NeuZephyr
+        PRIVATE NeuZephyr_EXPORTS
+        PUBLIC NeuZephyr_DLL
 )
 
-# 链接CUDA库到dl_framework
-target_link_libraries(dl_framework
+# 链接CUDA库到NeuZephyr
+target_link_libraries(NeuZephyr
         curand
 )
+
+# 拷贝 DLL 文件到可执行文件输出目录
+add_custom_command(TARGET NeuZephyr POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_BINARY_DIR}/NeuZephyr.dll
+        ${CMAKE_BINARY_DIR}/bin/NeuZephyr.dll
+)
+
 
 # 创建测试可执行文件
 add_executable(dl_test test/main.cu)
@@ -60,7 +68,7 @@ target_include_directories(dl_test
 
 # 链接测试程序与库
 target_link_libraries(dl_test
-        dl_framework
+        NeuZephyr
         curand
 )
 
@@ -71,12 +79,12 @@ set_target_properties(dl_test PROPERTIES
 )
 
 # 安装规则
-install(TARGETS dl_framework
+install(TARGETS NeuZephyr
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
         RUNTIME DESTINATION bin
 )
 
-install(DIRECTORY include/DL-Framework
+install(DIRECTORY include/NeuZephyr
         DESTINATION include
 )
