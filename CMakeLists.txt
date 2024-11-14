@@ -39,8 +39,8 @@ set_target_properties(NeuZephyr PROPERTIES
 )
 
 target_compile_definitions(NeuZephyr
-        PRIVATE NeuZephyr_EXPORTS
-        PUBLIC NeuZephyr_DLL
+        PRIVATE NEUZEPHYR_EXPORTS
+        PUBLIC NEUZEPHYR_DLL
 )
 
 # 链接CUDA库到NeuZephyr
