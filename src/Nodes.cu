@@ -51,10 +51,10 @@ namespace NeuZephyr::Nodes {
 
     void AddNode::backward() {
         if (inputs[0]->output->requires_grad()) {
-            cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::size_type), cudaMemcpyDeviceToDevice);
+            cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
         }
         if (inputs[1]->output->requires_grad()) {
-            cudaMemcpy(inputs[1]->output->grad(), output->grad(), output->size() * sizeof(Tensor::size_type), cudaMemcpyDeviceToDevice);
+            cudaMemcpy(inputs[1]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
         }
     }
 
@@ -132,6 +132,119 @@ namespace NeuZephyr::Nodes {
             ScalarMul_kernel<<<grid, block>>>(inputs[0]->output->grad(), output->grad(), scalar, output->size());
         }
     }
+
+    ScalarDivNode::ScalarDivNode(Node* input, const Tensor::value_type scalar) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->scalar = scalar;
+    }
+
+    void ScalarDivNode::forward() {
+        dim3 block(256);
+        dim3 grid(output->size() + block.x - 1 / block.x);
+        ScalarDiv_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
+    }
+
+    void ScalarDivNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid(output->size() + block.x - 1 / block.x);
+            ScalarDiv_kernel<<<grid, block>>>(inputs[0]->output->grad(), output->grad(), scalar, output->size());
+        }
+    }
+
+    ScalarAddNode::ScalarAddNode(Node* input, const Tensor::value_type scalar) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->scalar = scalar;
+    }
+
+    void ScalarAddNode::forward() {
+        dim3 block(256);
+        dim3 grid(output->size() + block.x - 1 / block.x);
+        ScalarAdd_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
+    }
+
+    void ScalarAddNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
+        }
+    }
+
+    ScalarSubNode::ScalarSubNode(Node* input, const Tensor::value_type scalar) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->scalar = -scalar;
+    }
+
+    void ScalarSubNode::forward() {
+        dim3 block(256);
+        dim3 grid(output->size() + block.x - 1 / block.x);
+        ScalarAdd_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
+    }
+
+    void ScalarSubNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
+        }
+    }
+
+    SubNode::SubNode(Node *input_left, Node *input_right) {
+        if (input_left->output->shape() != input_right->output->shape()) {
+            throw std::invalid_argument("Shape of left and right input must be the same.");
+        }
+        inputs.push_back(input_left);
+        inputs.push_back(input_right);
+        bool requires_grad = input_left->output->requires_grad() || input_right->output->requires_grad();
+        output = std::make_shared<Tensor>(input_left->output->shape(), requires_grad);
+    }
+
+    void SubNode::forward() {
+        dim3 block(256);
+        dim3 grid(output->size() + block.x - 1 / block.x);
+        sub_kernel<<<grid, block>>>(inputs[0]->output->data(), inputs[1]->output->data(), output->data(), output->size());
+    }
+
+    void SubNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
+        }
+        if (inputs[1]->output->requires_grad()) {
+            Tensor::value_type* n_grad;
+            cudaMalloc(&n_grad, output->size() * sizeof(Tensor::value_type));
+            dim3 block(256);
+            dim3 grid(output->size() + block.x - 1 / block.x);
+            Negation_kernel<<<grid, block>>>(n_grad, output->grad(), output->size());
+            cudaMemcpy(inputs[1]->output->grad(), n_grad, output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
+            cudaFree(n_grad);
+        }
+    }
+
+    ReLUNode::ReLUNode(Node *input) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+    }
+
+    void ReLUNode::forward() {
+        dim3 block(256);
+        dim3 grid(output->size() + block.x - 1 / block.x);
+        ReLU_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+    }
+
+    void ReLUNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid(output->size() + block.x - 1 / block.x);
+            ReLUBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(), output->size());
+        }
+    }
+
+
+
 
 
 }

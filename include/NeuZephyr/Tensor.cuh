@@ -21,6 +21,13 @@ namespace NeuZephyr::data {
         friend DL_API std::istream& operator>>(std::istream& is, const Tensor& tensor);
         friend DL_API Tensor operator*(value_type lhs, const Tensor& rhs);
         friend DL_API Tensor operator*(const Tensor& lhs, value_type rhs);
+        friend DL_API Tensor operator/(const Tensor& lhs, value_type rhs);
+        friend DL_API Tensor operator+(const Tensor& lhs, value_type rhs);
+        friend DL_API Tensor operator+(value_type lhs, const Tensor& rhs);
+        friend DL_API Tensor operator-(const Tensor& lhs, value_type rhs);
+        friend DL_API Tensor operator-(value_type lhs, const Tensor& rhs);
+        friend DL_API Tensor ReLU(const Tensor& tensor);
+
         // Constructors
         Tensor();
         explicit Tensor(const shape_type &shape, const bool requires_grad = false);
@@ -89,6 +96,8 @@ namespace NeuZephyr::data {
         value_type* data() const noexcept;
         value_type* grad() const noexcept;
         std::ostream& print_grad(std::ostream& os) const;
+        Tensor operator-() const;
+        void Recip() const;
 
 
 

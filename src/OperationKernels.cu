@@ -78,5 +78,51 @@ namespace NeuZephyr::Operator {
             out[idx] = in[idx] * num;
         }
     }
+
+    __global__ void ScalarDiv_kernel (float* out, const float* in, const float num, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] / num;
+        }
+    }
+
+    __global__ void ScalarAdd_kernel (float* out, const float* in, const float num, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] + num;
+        }
+    }
+
+    __global__ void Negation_kernel(float* out, const float* in, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = -in[idx];
+        }
+    }
+
+    __global__ void Recip_kernel(float* out, const float* in, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            if (in[idx] == 0) {
+                out[idx] = 0.0f;
+            } else {
+                out[idx] = 1.0f / in[idx];
+            }
+        }
+    }
+
+    __global__ void ReLU_kernel(float* out, const float* in, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] > 0 ? in[idx] : 0;
+        }
+    }
+
+    __global__ void ReLUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = A[idx] > 0 ? B_grad[idx] : 0;
+        }
+    }
 }
 

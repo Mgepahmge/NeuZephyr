@@ -64,6 +64,49 @@ namespace NeuZephyr::Nodes {
         void forward() override;
         void backward() override;
     };
+
+    class DL_API ScalarDivNode: public Node {
+        Tensor::value_type scalar;
+    public:
+        ScalarDivNode(Node* input, Tensor::value_type scalar);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API ScalarAddNode: public Node {
+        Tensor::value_type scalar;
+    public:
+        ScalarAddNode(Node* input, Tensor::value_type scalar);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API ScalarSubNode: public Node {
+        Tensor::value_type scalar;
+    public:
+        ScalarSubNode(Node* input, Tensor::value_type scalar);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API SubNode: public Node {
+    public:
+        SubNode(Node* input_left, Node* input_right);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API ReLUNode: public Node {
+    public:
+        explicit ReLUNode(Node* input);
+
+        void forward() override;
+        void backward() override;
+    };
 }
 
 #endif //NODES_CUH

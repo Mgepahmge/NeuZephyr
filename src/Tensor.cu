@@ -44,6 +44,54 @@ namespace NeuZephyr::data {
         return result;
     }
 
+    Tensor operator/(const Tensor& lhs, const Tensor::value_type rhs) {
+        Tensor result(lhs._shape, lhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(lhs._size + block.x - 1 / block.x );
+        Operator::ScalarDiv_kernel<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        return result;
+    };
+
+    Tensor operator+(const Tensor& lhs, const Tensor::value_type rhs) {
+        Tensor result(lhs._shape, lhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(lhs._size + block.x - 1 / block.x );
+        Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        return result;
+    };
+
+    Tensor operator+(const Tensor::value_type lhs, const Tensor& rhs) {
+        Tensor result(rhs._shape, rhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(rhs._size + block.x - 1 / block.x );
+        Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
+        return result;
+    };
+
+    Tensor operator-(const Tensor& lhs, const Tensor::value_type rhs) {
+        Tensor result(lhs._shape, lhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(lhs._size + block.x - 1 / block.x );
+        Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, lhs._data, -rhs, lhs._size);
+        return result;
+    };
+
+    Tensor operator-(const Tensor::value_type lhs, const Tensor& rhs) {
+        Tensor result(rhs._shape, rhs._requires_grad);
+        dim3 block(256);
+        dim3 grid(rhs._size + block.x - 1 / block.x );
+        Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, rhs._data, -lhs, rhs._size);
+        return result;
+    };
+
+    Tensor ReLU(const Tensor& tensor) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid(tensor._size + block.x - 1 / block.x );
+        Operator::ReLU_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        return result;
+    }
+
 
 
     // Constructors
@@ -205,7 +253,7 @@ namespace NeuZephyr::data {
         _size = shape[0] * shape[1];
         _shape = shape;
         cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
-        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
+        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
         if (_requires_grad) {
             cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
             cudaMemset(_grad, 0, _size * sizeof(value_type));
@@ -351,4 +399,26 @@ namespace NeuZephyr::data {
         free(data);
         return os;
     }
+
+    Tensor Tensor::operator-() const {
+        Tensor result(_shape, _requires_grad);
+        dim3 block(256);
+        dim3 grid((_size + block.x - 1) / block.x);
+        Operator::Negation_kernel<<<grid, block>>>(result._data, _data, _size);
+        return result;
+    }
+
+    void Tensor::Recip() const {
+        value_type* data;
+        cudaMalloc(reinterpret_cast<value_type **>(&data), _size * sizeof(value_type));
+        dim3 block(256);
+        dim3 grid((_size + block.x - 1) / block.x);
+        Operator::Recip_kernel<<<grid, block>>>(data, _data, _size);
+        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
+        cudaFree(data);
+    }
+
+
+
+
 }

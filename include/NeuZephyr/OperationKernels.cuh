@@ -17,7 +17,19 @@ namespace NeuZephyr::Operator {
 
     __global__ void Transpose_kernel(const float* d_A, float* d_B, const unsigned int rows, const unsigned int cols);
 
-    __global__ void ScalarMul_kernel (float* out, const float* in, const float num, unsigned long long n);
+    __global__ void ScalarMul_kernel(float* out, const float* in, const float num, unsigned long long n);
+
+    __global__ void ScalarDiv_kernel(float* out, const float* in, const float num, unsigned long long n);
+
+    __global__ void ScalarAdd_kernel(float* out, const float* in, const float num, unsigned long long n);
+
+    __global__ void Negation_kernel(float* out, const float* in, unsigned long long n);
+
+    __global__ void Recip_kernel(float* out, const float* in, unsigned long long n);
+
+    __global__ void ReLU_kernel(float* out, const float* in, unsigned long long n);
+
+    __global__ void ReLUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n);
 }
 
 #endif //OPERATIONKERNELS_CUH
