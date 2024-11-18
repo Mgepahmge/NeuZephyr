@@ -124,5 +124,192 @@ namespace NeuZephyr::Operator {
             A_grad[idx] = A[idx] > 0 ? B_grad[idx] : 0;
         }
     }
+
+    __global__ void Sigmoid_kernel(float* out, const float* in, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = 1.0f / (1.0f + __expf(-in[idx]));
+        }
+    }
+
+    __global__ void SigmoidBackward_kernel(float* A_grad, const float* B, const float* B_grad, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = B[idx] * (1.0f - B[idx]) * B_grad[idx];
+        }
+    }
+
+    __global__ void Tanh_kernel(float* out, const float* in, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = __tanf(in[idx]);
+        }
+    }
+
+    __global__ void TanhBackward_kernel(float* A_grad, const float* B, const float* B_grad, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = (1.0f - B[idx] * B[idx]) * B_grad[idx];
+        }
+    }
+
+    __global__ void LeakyReLU_kernel(float* out, const float* in, unsigned long long n, float alpha) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] > 0 ? in[idx] : alpha * in[idx];
+        }
+    }
+
+    __global__ void LeakyReLUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = A[idx] > 0 ? B_grad[idx] : alpha * B_grad[idx];
+        }
+    }
+
+    __global__ void Swish_kernel(float* out, const float* in, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] / (1.0f + __expf(-in[idx]));
+        }
+    }
+
+    __global__ void SwishBackward_kernel(float* A_grad, const float* A, const float* B, const float* B_grad, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = 1.0f / (1.0f + __expf(-A[idx])) + B[idx] * (1.0f - B[idx]) * B_grad[idx];
+        }
+    }
+
+    __global__ void ELU_kernel(float* out, const float* in, unsigned long long n, float alpha) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] > 0 ? in[idx] : alpha * (__expf(in[idx]) - 1);
+        }
+    }
+
+    __global__ void ELUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = A[idx] > 0 ? B_grad[idx] : alpha * __expf(A[idx]) * B_grad[idx];
+        }
+    }
+
+    __global__ void HardSigmoid_kernel(float* out, const float* in, unsigned long long n, float alpha, float beta) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] * alpha + beta;
+            out[idx] = out[idx] > 1.0f ? 1.0f : (out[idx] < 0.0f ? 0.0f : out[idx]);
+        }
+    }
+
+    __global__ void HardSigmoidBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha, float beta) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            float x = A[idx] * alpha + beta;
+            if (x > 0.0f && x < 1.0f) {
+                A_grad[idx] = B_grad[idx] * alpha;
+            } else {
+                A_grad[idx] = 0.0f;
+            }
+        }
+    }
+
+    __inline__ __device__ float LiteHardSigmoid(float x, float alpha, float beta) {
+        float a = x * alpha + beta;
+        return a > 1.0f ? 1.0f : (a < 0.0f ? 0.0f : a);
+    }
+
+    __global__ void HardSwish_kernel(float* out, const float* in, unsigned long long n, float alpha, float beta) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in[idx] * LiteHardSigmoid(in[idx], alpha, beta);
+        }
+    }
+
+    __global__ void HardSwishBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha, float beta) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            A_grad[idx] = LiteHardSigmoid(A[idx], alpha, beta) + B_grad[idx] * A[idx] * alpha * (1 - LiteHardSigmoid(A[idx], alpha, beta));
+        }
+    }
+
+    __global__ void ExpSum_kernel(float* out, const float* g_data, unsigned long long n) {
+        extern __shared__ float sdata[];
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        const unsigned long long tid = threadIdx.x;
+
+        // copy data
+        if (idx < n) {
+            sdata[tid] = __expf(g_data[idx]);
+        } else {
+            sdata[tid] = 0;
+        }
+        __syncthreads();
+
+        // loop unroll
+        if (blockDim.x >= 1024 && tid < 512) {
+            sdata[tid] += sdata[tid + 512];
+        }
+
+        __syncthreads();
+
+        if (blockDim.x >= 512 && tid < 256) {
+            sdata[tid] += sdata[tid + 256];
+        }
+
+        __syncthreads();
+
+        if (blockDim.x >= 256 && tid < 128) {
+            sdata[tid] += sdata[tid + 128];
+        }
+
+        __syncthreads();
+
+        if (blockDim.x >= 128 && tid < 64) {
+            sdata[tid] += sdata[tid + 64];
+        }
+
+        __syncthreads();
+
+        // warp unroll
+        if (tid < 32) {
+            volatile float* vdata = sdata;
+            vdata[tid] += vdata[tid + 32];
+            vdata[tid] += vdata[tid + 16];
+            vdata[tid] += vdata[tid + 8];
+            vdata[tid] += vdata[tid + 4];
+            vdata[tid] += vdata[tid + 2];
+            vdata[tid] += vdata[tid + 1];
+        }
+
+        __syncthreads();
+
+        // write data back to global memory
+        if (tid == 0) {
+            out[blockIdx.x] = sdata[0];
+        }
+    }
+
+    __global__ void Softmax_kernel(float* out, const float* in, float exp_sum_of_input, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = __expf(in[idx]) / exp_sum_of_input;
+        }
+    }
+
+    __global__ void BuildSoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n) {
+        unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        unsigned long long idy = blockIdx.y * blockDim.y + threadIdx.y;
+        if (idx >= n || idy >= n) {
+            return;
+        }
+        unsigned long long id = idx * n + idy;
+        if (idy == idx) {
+            out[id] = in[idx] * (1 - in[idx]);
+        } else {
+            out[id] = -in[idx] * in[idy];
+        }
+    }
 }
 

@@ -148,6 +148,25 @@ namespace NeuZephyr::data {
         return result;
     }
 
+    Tensor Softmax(const Tensor &tensor) {
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        float* result_d;
+        float* result_h;
+        float sum = 0;
+        cudaMalloc(&result_d, grid.x * sizeof(Tensor::value_type));
+        result_h = (float*)malloc(grid.x * sizeof(Tensor::value_type));
+        Operator::ExpSum_kernel<<<grid, block, block.x * sizeof(float)>>>(result_d, tensor._data, tensor._size);
+        cudaMemcpy(result_h, result_d, grid.x * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
+        for (int i = 0; i < grid.x; i++) {
+            sum += result_h[i];
+        }
+        free(result_h);
+        cudaFree(result_d);
+        Operator::Softmax_kernel<<<grid, block>>>(tensor._data, tensor._data, sum, tensor._size);
+        return tensor;
+    }
+
 
     // Constructors
     Tensor::Tensor() : _size(0), _shape({0, 0}), _data(nullptr), _grad(nullptr), _requires_grad(false) {}

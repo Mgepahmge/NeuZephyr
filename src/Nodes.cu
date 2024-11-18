@@ -410,9 +410,18 @@ namespace NeuZephyr::Nodes {
     }
 
     void SoftmaxNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        Softmax_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), sum, output->size());
     }
 
     void SoftmaxNode::backward() {
-
+        Tensor jacobian(std::vector<int>({output->shape()[0], output->shape()[0]}), false);
+        dim3 block(16, 16);
+        dim3 grid((output->shape()[0] + block.x - 1) / block.x, (output->shape()[0] + block.y - 1) / block.y);
+        BuildSoftmaxJacobian_kernel<<<grid, block>>>(jacobian.data(), output->data(), output->size());
+        dim3 block2(TILE_SIZE, TILE_SIZE);
+        dim3 gird2((output->shape()[1] + TILE_SIZE - 1) / TILE_SIZE, (jacobian.shape()[0] + TILE_SIZE - 1) / TILE_SIZE);
+        GEMM_kernel<<<gird2, block2>>>(jacobian.data(), output->grad(), jacobian.data(), jacobian.shape()[0], output->shape()[1], jacobian.shape()[1]);
     }
 }

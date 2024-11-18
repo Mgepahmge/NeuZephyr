@@ -27,6 +27,14 @@ namespace NeuZephyr::data {
         friend DL_API Tensor operator-(const Tensor& lhs, value_type rhs);
         friend DL_API Tensor operator-(value_type lhs, const Tensor& rhs);
         friend DL_API Tensor ReLU(const Tensor& tensor);
+        friend DL_API Tensor Sigmoid(const Tensor& tensor);
+        friend DL_API Tensor Tanh(const Tensor& tensor);
+        friend DL_API Tensor LeakyReLU(const Tensor& tensor, float alpha = 0.01f);
+        friend DL_API Tensor Swish(const Tensor& tensor);
+        friend DL_API Tensor ELU(const Tensor& tensor, float alpha = 1.0f);
+        friend DL_API Tensor HardSigmoid(const Tensor& tensor, float alpha = 0.2f, float beta = 0.5f);
+        friend DL_API Tensor HardSwish(const Tensor& tensor, float alpha = 0.2f, float beta = 0.5f);
+        friend DL_API Tensor Softmax(const Tensor& tensor);
 
         // Constructors
         Tensor();

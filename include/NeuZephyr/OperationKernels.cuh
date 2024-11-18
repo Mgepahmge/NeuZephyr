@@ -30,6 +30,42 @@ namespace NeuZephyr::Operator {
     __global__ void ReLU_kernel(float* out, const float* in, unsigned long long n);
 
     __global__ void ReLUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n);
+
+    __global__ void Sigmoid_kernel(float* out, const float* in, unsigned long long n);
+
+    __global__ void SigmoidBackward_kernel(float* A_grad, const float* B, const float* B_grad, unsigned long long n);
+
+    __global__ void Tanh_kernel(float* out, const float* in, unsigned long long n);
+
+    __global__ void TanhBackward_kernel(float* A_grad, const float* B, const float* B_grad, unsigned long long n);
+
+    __global__ void LeakyReLU_kernel(float* out, const float* in, unsigned long long n, float alpha = 0.01f);
+
+    __global__ void LeakyReLUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha = 0.01f);
+
+    __global__ void Swish_kernel(float* out, const float* in, unsigned long long n);
+
+    __global__ void SwishBackward_kernel(float* A_grad, const float* A, const float* B, const float* B_grad, unsigned long long n);
+
+    __global__ void ELU_kernel(float* out, const float* in, unsigned long long n, float alpha = 1.0f);
+
+    __global__ void ELUBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha = 1.0f);
+
+    __global__ void HardSigmoid_kernel(float* out, const float* in, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
+
+    __global__ void HardSigmoidBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
+
+    __global__ void HardSwish_kernel(float* out, const float* in, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
+
+    __global__ void HardSwishBackward_kernel(float* A_grad, const float* A, const float* B_grad, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
+
+    __global__ void ExpSum_kernel(float* out, const float* g_data, unsigned long long n);
+
+    __global__ void Softmax_kernel(float* out, const float* in, float exp_sum_of_input, unsigned long long n);
+
+    __global__ void BuildSoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n);
+
+
 }
 
 #endif //OPERATIONKERNELS_CUH

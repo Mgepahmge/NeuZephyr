@@ -107,6 +107,77 @@ namespace NeuZephyr::Nodes {
         void forward() override;
         void backward() override;
     };
+
+    class DL_API SigmoidNode: public Node {
+    public:
+        explicit SigmoidNode(Node* input);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API TanhNode: public Node {
+    public:
+        explicit TanhNode(Node* input);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API LeakyReLUNode: public Node {
+        Tensor::value_type alpha;
+    public:
+        explicit LeakyReLUNode(Node* input, Tensor::value_type alpha = 0.01f);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API SwishNode: public Node {
+    public:
+        explicit SwishNode(Node* input);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API ELUNode: public Node {
+        Tensor::value_type alpha;
+    public:
+        explicit ELUNode(Node* input, Tensor::value_type alpha = 1.0f);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API HardSigmoidNode: public Node {
+        Tensor::value_type alpha;
+        Tensor::value_type beta;
+    public:
+        explicit HardSigmoidNode(Node* input, Tensor::value_type alpha = 0.2f, Tensor::value_type beta = 0.5f);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API HardSwishNode: public Node {
+        Tensor::value_type alpha;
+        Tensor::value_type beta;
+    public:
+        explicit HardSwishNode(Node* input, Tensor::value_type alpha = 1.0f, Tensor::value_type beta = 0.5f);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API SoftmaxNode: public Node {
+        Tensor::value_type sum;
+    public:
+        explicit SoftmaxNode(Node* input);
+
+        void forward() override;
+        void backward() override;
+    };
 }
 
 #endif //NODES_CUH
