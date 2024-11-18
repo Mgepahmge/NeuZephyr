@@ -31,7 +31,7 @@ namespace NeuZephyr::data {
     Tensor operator*(const Tensor::value_type lhs, const Tensor& rhs) {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
-        dim3 grid(rhs._size + block.x - 1 / block.x );
+        dim3 grid((rhs._size + block.x - 1) / block.x );
         Operator::ScalarMul_kernel<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
         return result;
     }
@@ -39,7 +39,7 @@ namespace NeuZephyr::data {
     Tensor operator*(const Tensor& lhs, const Tensor::value_type rhs) {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
-        dim3 grid(lhs._size + block.x - 1 / block.x );
+        dim3 grid((lhs._size + block.x - 1) / block.x );
         Operator::ScalarMul_kernel<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
         return result;
     }
@@ -47,7 +47,7 @@ namespace NeuZephyr::data {
     Tensor operator/(const Tensor& lhs, const Tensor::value_type rhs) {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
-        dim3 grid(lhs._size + block.x - 1 / block.x );
+        dim3 grid((lhs._size + block.x - 1) / block.x );
         Operator::ScalarDiv_kernel<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
         return result;
     };
@@ -55,7 +55,7 @@ namespace NeuZephyr::data {
     Tensor operator+(const Tensor& lhs, const Tensor::value_type rhs) {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
-        dim3 grid(lhs._size + block.x - 1 / block.x );
+        dim3 grid((lhs._size + block.x - 1) / block.x );
         Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
         return result;
     };
@@ -63,7 +63,7 @@ namespace NeuZephyr::data {
     Tensor operator+(const Tensor::value_type lhs, const Tensor& rhs) {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
-        dim3 grid(rhs._size + block.x - 1 / block.x );
+        dim3 grid((rhs._size + block.x - 1) / block.x );
         Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
         return result;
     };
@@ -71,7 +71,7 @@ namespace NeuZephyr::data {
     Tensor operator-(const Tensor& lhs, const Tensor::value_type rhs) {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
-        dim3 grid(lhs._size + block.x - 1 / block.x );
+        dim3 grid((lhs._size + block.x - 1) / block.x );
         Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, lhs._data, -rhs, lhs._size);
         return result;
     };
@@ -79,7 +79,7 @@ namespace NeuZephyr::data {
     Tensor operator-(const Tensor::value_type lhs, const Tensor& rhs) {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
-        dim3 grid(rhs._size + block.x - 1 / block.x );
+        dim3 grid((rhs._size + block.x - 1) / block.x );
         Operator::ScalarAdd_kernel<<<grid, block>>>(result._data, rhs._data, -lhs, rhs._size);
         return result;
     };
@@ -87,11 +87,66 @@ namespace NeuZephyr::data {
     Tensor ReLU(const Tensor& tensor) {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
-        dim3 grid(tensor._size + block.x - 1 / block.x );
+        dim3 grid((tensor._size + block.x - 1) / block.x );
         Operator::ReLU_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size);
         return result;
     }
 
+    Tensor Sigmoid(const Tensor &tensor) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::Sigmoid_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        return result;
+    }
+
+    Tensor Tanh(const Tensor &tensor) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::Tanh_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        return result;
+    }
+
+    Tensor LeakyReLU(const Tensor &tensor, float alpha) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::LeakyReLU_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
+        return result;
+    }
+
+    Tensor Swish(const Tensor &tensor) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::Swish_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        return result;
+    }
+
+    Tensor ELU(const Tensor &tensor, float alpha) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::ELU_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
+        return result;
+    }
+
+    Tensor HardSigmoid(const Tensor &tensor, float alpha, float beta) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::HardSigmoid_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
+        return result;
+    }
+
+    Tensor HardSwish(const Tensor &tensor, float alpha, float beta) {
+        Tensor result(tensor._shape, tensor._requires_grad);
+        dim3 block(256);
+        dim3 grid((tensor._size + block.x - 1) / block.x );
+        Operator::HardSwish_kernel<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
+        return result;
+    }
 
 
     // Constructors

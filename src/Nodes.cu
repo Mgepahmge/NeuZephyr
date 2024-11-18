@@ -45,7 +45,7 @@ namespace NeuZephyr::Nodes {
 
     void AddNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         add_kernel<<<grid, block>>>(inputs[0]->output->data(), inputs[1]->output->data(), output->data(), output->size());
     }
 
@@ -71,7 +71,7 @@ namespace NeuZephyr::Nodes {
 
     void MatMulNode::forward() {
         dim3 block(TILE_SIZE, TILE_SIZE);
-        dim3 grid(inputs[1]->output->shape()[1] + block.x - 1 / block.x, inputs[0]->output->shape()[0] + block.y - 1 / block.y);
+        dim3 grid((inputs[1]->output->shape()[1] + block.x - 1) / block.x, (inputs[0]->output->shape()[0] + block.y - 1) / block.y);
         // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
         GEMM_kernel<<<grid, block>>>(inputs[0]->output->data(),
             inputs[1]->output->data(),
@@ -87,7 +87,7 @@ namespace NeuZephyr::Nodes {
             Tensor B_T(*inputs[1]->output); // B
             B_T.transpose(); // B^T
             dim3 block(TILE_SIZE, TILE_SIZE);
-            dim3 grid(B_T.shape()[1] + block.x - 1 / block.x, output->shape()[0] + block.y - 1 / block.y);
+            dim3 grid((B_T.shape()[1] + block.x - 1) / block.x, (output->shape()[0] + block.y - 1) / block.y);
             // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
             GEMM_kernel<<<grid, block>>>(output->grad(),
                 B_T.data(),
@@ -101,7 +101,7 @@ namespace NeuZephyr::Nodes {
             Tensor A_T(*inputs[0]->output); // A
             A_T.transpose(); // A^T
             dim3 block(TILE_SIZE, TILE_SIZE);
-            dim3 grid(output->shape()[1] + block.x - 1 / block.x, A_T.shape()[0] + block.y - 1 / block.y);
+            dim3 grid((output->shape()[1] + block.x - 1) / block.x, (A_T.shape()[0] + block.y - 1) / block.y);
             // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
             GEMM_kernel<<<grid, block>>>(A_T.data(),
                 output->grad(),
@@ -121,14 +121,14 @@ namespace NeuZephyr::Nodes {
 
     void ScalarMulNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         ScalarMul_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
     }
 
     void ScalarMulNode::backward() {
         if (inputs[0]->output->requires_grad()) {
             dim3 block(256);
-            dim3 grid(output->size() + block.x - 1 / block.x);
+            dim3 grid((output->size() + block.x - 1) / block.x);
             ScalarMul_kernel<<<grid, block>>>(inputs[0]->output->grad(), output->grad(), scalar, output->size());
         }
     }
@@ -142,14 +142,14 @@ namespace NeuZephyr::Nodes {
 
     void ScalarDivNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         ScalarDiv_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
     }
 
     void ScalarDivNode::backward() {
         if (inputs[0]->output->requires_grad()) {
             dim3 block(256);
-            dim3 grid(output->size() + block.x - 1 / block.x);
+            dim3 grid((output->size() + block.x - 1) / block.x);
             ScalarDiv_kernel<<<grid, block>>>(inputs[0]->output->grad(), output->grad(), scalar, output->size());
         }
     }
@@ -163,7 +163,7 @@ namespace NeuZephyr::Nodes {
 
     void ScalarAddNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         ScalarAdd_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
     }
 
@@ -182,7 +182,7 @@ namespace NeuZephyr::Nodes {
 
     void ScalarSubNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         ScalarAdd_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(),  scalar, output->size());
     }
 
@@ -204,7 +204,7 @@ namespace NeuZephyr::Nodes {
 
     void SubNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         sub_kernel<<<grid, block>>>(inputs[0]->output->data(), inputs[1]->output->data(), output->data(), output->size());
     }
 
@@ -216,7 +216,7 @@ namespace NeuZephyr::Nodes {
             Tensor::value_type* n_grad;
             cudaMalloc(&n_grad, output->size() * sizeof(Tensor::value_type));
             dim3 block(256);
-            dim3 grid(output->size() + block.x - 1 / block.x);
+            dim3 grid((output->size() + block.x - 1) / block.x);
             Negation_kernel<<<grid, block>>>(n_grad, output->grad(), output->size());
             cudaMemcpy(inputs[1]->output->grad(), n_grad, output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToDevice);
             cudaFree(n_grad);
@@ -231,20 +231,188 @@ namespace NeuZephyr::Nodes {
 
     void ReLUNode::forward() {
         dim3 block(256);
-        dim3 grid(output->size() + block.x - 1 / block.x);
+        dim3 grid((output->size() + block.x - 1) / block.x);
         ReLU_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
     }
 
     void ReLUNode::backward() {
         if (inputs[0]->output->requires_grad()) {
             dim3 block(256);
-            dim3 grid(output->size() + block.x - 1 / block.x);
+            dim3 grid((output->size() + block.x - 1) / block.x);
             ReLUBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(), output->size());
         }
     }
 
+    SigmoidNode::SigmoidNode(Node *input) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+    }
 
+    void SigmoidNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        Sigmoid_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+    }
 
+    void SigmoidNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            SigmoidBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), output->data(), output->grad(), output->size());
+        }
+    }
 
+    TanhNode::TanhNode(Node *input) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+    }
 
+    void TanhNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        Tanh_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+    }
+
+    void TanhNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            TanhBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), output->data(), output->grad(), output->size());
+        }
+    }
+
+    LeakyReLUNode::LeakyReLUNode(Node *input, Tensor::value_type alpha) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->alpha = alpha;
+    }
+
+    void LeakyReLUNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        LeakyReLU_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha);
+    }
+
+    void LeakyReLUNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            LeakyReLUBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(), output->size(), alpha);
+        }
+    }
+
+    SwishNode::SwishNode(Node *input) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+    }
+
+    void SwishNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        Swish_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+    }
+
+    void SwishNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            SwishBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->data(), output->grad(), output->size());
+        }
+    }
+
+    ELUNode::ELUNode(Node *input, Tensor::value_type alpha) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->alpha = alpha;
+    }
+
+    void ELUNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        ELU_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha);
+    }
+
+    void ELUNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            ELUBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(), output->size(), alpha);
+        }
+    }
+
+    HardSigmoidNode::HardSigmoidNode(Node *input, Tensor::value_type alpha, Tensor::value_type beta) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->alpha = alpha;
+        this->beta = beta;
+    }
+
+    void HardSigmoidNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        HardSigmoid_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha, beta);
+    }
+
+    void HardSigmoidNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            HardSigmoidBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(), output->size(), alpha, beta);
+        }
+    }
+
+    HardSwishNode::HardSwishNode(Node *input, Tensor::value_type alpha, Tensor::value_type beta) {
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        this->alpha = alpha;
+        this->beta = beta;
+    }
+
+    void HardSwishNode::forward() {
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        HardSwish_kernel<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha, beta);
+    }
+
+    void HardSwishNode::backward() {
+        if (inputs[0]->output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            HardSwishBackward_kernel<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(), output->size(), alpha, beta);
+        }
+    }
+
+    SoftmaxNode::SoftmaxNode(Node *input) {
+        sum = 0;
+        inputs.push_back(input);
+        bool requires_grad = input->output->requires_grad();
+        output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        float* result;
+        float* result_host;
+        cudaMalloc((float**)&result, grid.x * sizeof(float));
+        result_host = (float*)malloc(grid.x * sizeof(float));
+        ExpSum_kernel<<<grid, block, block.x*sizeof(float)>>>(result, inputs[0]->output->data(), output->size());
+        cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+        for (int i = 0; i < grid.x; i++) {
+            sum += result_host[i];
+        }
+        cudaFree(result);
+        free(result_host);
+    }
+
+    void SoftmaxNode::forward() {
+    }
+
+    void SoftmaxNode::backward() {
+
+    }
 }
