@@ -202,11 +202,11 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    void ComputeGraph::fill(const std::string &name, const float val) {
+    void ComputeGraph::fill(const std::string &name, const Tensor::value_type val) {
         node_roster[name]->output->fill(val);
     }
 
-    void ComputeGraph::fill(const Node *node, const float val) {
+    void ComputeGraph::fill(const Node *node, const Tensor::value_type val) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
             node->output->fill(val);
         } else {
@@ -214,17 +214,17 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    void ComputeGraph::fill_all(float val) const {
+    void ComputeGraph::fill_all(Tensor::value_type val) const {
         for (Node* node : input_nodes) {
             node->output->fill(val);
         }
     }
 
-    void ComputeGraph::set_input(const std::string &name, const float *data) {
+    void ComputeGraph::set_input(const std::string &name, const Tensor::value_type *data) {
         node_roster[name]->output->copy_data(data, node_roster[name]->output->shape());
     }
 
-    void ComputeGraph::set_input(const Node *node, const float *data) {
+    void ComputeGraph::set_input(const Node *node, const Tensor::value_type *data) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
             node->output->copy_data(data, node->output->shape());
         } else {
@@ -232,13 +232,13 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    float* ComputeGraph::get_output() const {
+    Tensor::value_type* ComputeGraph::get_output() const {
         return output_nodes[0]->output->data();
     }
 
-    float* ComputeGraph::get_output_host() const {
-        auto* data = static_cast<float *>(malloc(output_nodes[0]->output->size() * sizeof(float)));
-        cudaMemcpy(data, output_nodes[0]->output->data(), output_nodes[0]->output->size() * sizeof(float), cudaMemcpyDeviceToHost);
+    Tensor::value_type* ComputeGraph::get_output_host() const {
+        auto* data = static_cast<Tensor::value_type *>(malloc(output_nodes[0]->output->size() * sizeof(Tensor::value_type)));
+        cudaMemcpy(data, output_nodes[0]->output->data(), output_nodes[0]->output->size() * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
         return data;
     }
 
