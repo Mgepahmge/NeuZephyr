@@ -151,5 +151,32 @@ namespace NeuZephyr::Graph {
         }
         return node;
     }
+
+    void ComputeGraph::forward() {
+        if (sorted_nodes.empty()) {
+            topological_sort();
+        }
+        for (Node* node : sorted_nodes) {
+            node->forward();
+        }
+    }
+
+    void ComputeGraph::backward() {
+        if (sorted_nodes.empty()) {
+            topological_sort();
+        }
+        if (output_nodes.size() == 1) {
+            for (auto it = sorted_nodes.rbegin(); it != sorted_nodes.rend(); ++it) {
+                (*it)->backward();
+            }
+        } else {
+            if (output_nodes.empty()) {
+                throw std::runtime_error("No output node");
+            } else {
+                throw std::runtime_error("Multiple output nodes");
+            }
+        }
+    }
+
 } // Graph
 // NeuZephyr

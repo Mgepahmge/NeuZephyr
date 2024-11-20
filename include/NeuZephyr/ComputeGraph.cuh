@@ -53,6 +53,8 @@ namespace NeuZephyr::Graph {
             return node;
         }
         OutputNode* add_output(OutputNode* node, const std::string& name = "default");
+        void forward();
+        void backward();
     };
 
 }
