@@ -84,6 +84,10 @@ namespace NeuZephyr::Operator {
     __global__ void BCEBackward_kernel(float* out, const float* predict, const float* real, unsigned long long n);
 
     __global__ void Momentum_kernel(float* output, const float* grad, const float* velocity, float beta, unsigned long long n);
+
+    __global__ void SquaredSum_kernel(float* output, const float* input, unsigned long long n);
+
+    __global__ void Ada_kernel(float* data, const float* grad, const float G, const float lr, const float theta, unsigned long long n);
 }
 
 #endif //OPERATIONKERNELS_CUH

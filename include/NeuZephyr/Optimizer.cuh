@@ -6,17 +6,19 @@
 #define OPTIMIZER_CUH
 #include <unordered_map>
 
-#include "Tensor.cuh"
-#include "OperationKernels.cuh"
 #include "Nodes.cuh"
+#include "OperationKernels.cuh"
+#include "Tensor.cuh"
 
 namespace NeuZephyr::Optimizers {
     using namespace data;
     using namespace Operator;
     using namespace Nodes;
+
     class DL_API Optimizer {
     protected:
         Tensor::value_type learning_rate;
+
     public:
         explicit Optimizer() = default;
 
@@ -34,13 +36,19 @@ namespace NeuZephyr::Optimizers {
     class DL_API Momentum : public Optimizer {
         std::pmr::unordered_map<Node*, Tensor> velocity;
         Tensor::value_type beta;
+
     public:
         explicit Momentum(Tensor::value_type learning_rate, Tensor::value_type beta);
         void step(Node* input) override;
     };
 
+    class DL_API Ada : public Optimizer {
+        std::unordered_map<Node*, Tensor::value_type> G;
+        Tensor::value_type theta = 1e-8;
+    public:
+        explicit Ada(Tensor::value_type learning_rate);
+        void step(Node* input) override;
+    };
+} // namespace NeuZephyr::Optimizers
 
-
-} // Optimizers
-
-#endif //OPTIMIZER_CUH
+#endif // OPTIMIZER_CUH
