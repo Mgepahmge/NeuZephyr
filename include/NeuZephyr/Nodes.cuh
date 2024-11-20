@@ -33,11 +33,13 @@ namespace NeuZephyr::Nodes {
     };
 
     class DL_API OutputNode: public Node {
+        Tensor::value_type loss;
     public:
         explicit OutputNode(Node* input);
 
         void forward() override;
         void backward() override;
+        Tensor::value_type get_loss() const;
     };
 
     class DL_API AddNode: public Node {

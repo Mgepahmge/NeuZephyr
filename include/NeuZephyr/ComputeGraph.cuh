@@ -20,7 +20,7 @@ namespace NeuZephyr::Graph {
     class DL_API ComputeGraph {
         std::vector<Node*> nodes;
         std::vector<Node*> input_nodes;
-        std::vector<Node*> output_nodes;
+        std::vector<OutputNode*> output_nodes;
         std::vector<Node*> sorted_nodes;
 
         std::unordered_map<Node*, int> in_degree;
@@ -68,7 +68,8 @@ namespace NeuZephyr::Graph {
         void set_input(const Node* node, const Tensor::value_type* data);
         Tensor::value_type* get_output() const;
         Tensor::value_type* get_output_host() const;
-        Node* get_output_node() const;
+        OutputNode* get_output_node() const;
+        Tensor::value_type get_loss() const;
         void update(Optimizer* optimizer) const;
     };
 

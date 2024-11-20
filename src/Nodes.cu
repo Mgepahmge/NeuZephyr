@@ -22,6 +22,7 @@ namespace NeuZephyr::Nodes {
     void InputNode::backward() {}
 
     OutputNode::OutputNode(Node *input) {
+        loss = 0;
         inputs.push_back(input);
         output = inputs[0]->output;
     }
@@ -31,6 +32,10 @@ namespace NeuZephyr::Nodes {
         if (inputs[0]->output->requires_grad()) {
             inputs[0]->output->fill_grad(1);
         }
+    }
+
+    Tensor::value_type OutputNode::get_loss() const {
+        return loss;
     }
 
     AddNode::AddNode(Node* input_left, Node* input_right) {

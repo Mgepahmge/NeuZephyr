@@ -242,8 +242,12 @@ namespace NeuZephyr::Graph {
         return data;
     }
 
-    Node * ComputeGraph::get_output_node() const {
+    OutputNode* ComputeGraph::get_output_node() const {
         return output_nodes[0];
+    }
+
+    Tensor::value_type ComputeGraph::get_loss() const {
+        return output_nodes[0]->get_loss();
     }
 
     void ComputeGraph::update(Optimizer *optimizer) const {
