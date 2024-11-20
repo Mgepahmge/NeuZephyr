@@ -23,12 +23,14 @@ namespace NeuZephyr::Graph {
             os << "\n";
             os << "Data:\n";
             os << *node->output;
+            os << "\n";
             if (node->output->requires_grad()) {
                 os << "Grad:\n";
                 node->output->print_grad(os);
                 os << "\n";
             }
         }
+        os << "loss: " << output_nodes[0]->get_loss() << "\n";
         return os;
     }
 
