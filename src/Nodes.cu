@@ -23,9 +23,9 @@ namespace NeuZephyr::Nodes {
 
     OutputNode::OutputNode(Node *input) {
         inputs.push_back(input);
+        output = inputs[0]->output;
     }
     void OutputNode::forward() {
-        output = inputs[0]->output;
     }
     void OutputNode::backward() {
         if (inputs[0]->output->requires_grad()) {
