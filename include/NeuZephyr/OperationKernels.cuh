@@ -69,6 +69,8 @@ namespace NeuZephyr::Operator {
 
     __global__ void MSEBackward_kernel(float* out, const float* predict, const float* real, unsigned long long n);
 
+    __global__ void SGD_kernel(float* data, const float* grad, const float lr, unsigned long long n);
+
 
 }
 

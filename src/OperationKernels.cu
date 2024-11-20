@@ -362,5 +362,12 @@ namespace NeuZephyr::Operator {
             out[idx] = 2*(predict[idx] - real[idx]) / (float)n;
         }
     }
+
+    __global__ void SGD_kernel(float* data, const float* grad, const float lr, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            data[idx] -= lr * grad[idx];
+        }
+    }
 }
 

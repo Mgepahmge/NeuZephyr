@@ -12,13 +12,21 @@ namespace NeuZephyr::Optimizers {
     using namespace data;
     using namespace Operator;
     using namespace Nodes;
-class Optimizer {
+class DL_API Optimizer {
+protected:
+    Tensor::value_type learning_rate;
 public:
-    explicit Optimizer();
+    explicit Optimizer() = default;
 
     virtual ~Optimizer() = default;
 
     virtual void step(Node* input) = 0;
+};
+
+class DL_API SGD : public Optimizer {
+public:
+    explicit SGD(Tensor::value_type learning_rate);
+    void step(Node* input) override;
 };
 
 } // Optimizers
