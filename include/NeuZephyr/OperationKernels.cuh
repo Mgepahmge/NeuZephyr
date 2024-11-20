@@ -63,7 +63,7 @@ namespace NeuZephyr::Operator {
 
     __global__ void Softmax_kernel(float* out, const float* in, float exp_sum_of_input, unsigned long long n);
 
-    __global__ void BuildSoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n);
+    __global__ void SoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n);
 
 
 }
