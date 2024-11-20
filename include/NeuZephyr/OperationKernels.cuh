@@ -65,6 +65,10 @@ namespace NeuZephyr::Operator {
 
     __global__ void SoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n);
 
+    __global__ void MSE_kernel(float* out, const float* predict, const float* real, unsigned long long n);
+
+    __global__ void MSEBackward_kernel(float* out, const float* predict, const float* real, unsigned long long n);
+
 
 }
 

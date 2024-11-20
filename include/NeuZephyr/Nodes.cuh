@@ -33,6 +33,7 @@ namespace NeuZephyr::Nodes {
     };
 
     class DL_API OutputNode: public Node {
+    protected:
         Tensor::value_type loss;
     public:
         explicit OutputNode(Node* input);
@@ -176,6 +177,14 @@ namespace NeuZephyr::Nodes {
         Tensor::value_type sum;
     public:
         explicit SoftmaxNode(Node* input);
+
+        void forward() override;
+        void backward() override;
+    };
+
+    class DL_API MeanSquaredErrorNode: public OutputNode {
+    public:
+        explicit MeanSquaredErrorNode(Node* input1, Node* input2);
 
         void forward() override;
         void backward() override;
