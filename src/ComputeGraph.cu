@@ -178,5 +178,80 @@ namespace NeuZephyr::Graph {
         }
     }
 
+    void ComputeGraph::zero_grad() const {
+        for (Node* node : nodes) {
+            node->output->zero_grad();
+        }
+    }
+
+    void ComputeGraph::randomize(const std::string &name) {
+        node_roster[name]->output->randomize();
+    }
+
+    void ComputeGraph::randomize(const Node *node) {
+        if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
+            node->output->randomize();
+        } else {
+            throw std::runtime_error("Node not in graph");
+        }
+    }
+
+    void ComputeGraph::randomize_all() const {
+        for (Node* node : input_nodes) {
+            node->output->randomize();
+        }
+    }
+
+    void ComputeGraph::fill(const std::string &name, const float val) {
+        node_roster[name]->output->fill(val);
+    }
+
+    void ComputeGraph::fill(const Node *node, const float val) {
+        if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
+            node->output->fill(val);
+        } else {
+            throw std::runtime_error("Node not in graph");
+        }
+    }
+
+    void ComputeGraph::fill_all(float val) const {
+        for (Node* node : input_nodes) {
+            node->output->fill(val);
+        }
+    }
+
+    void ComputeGraph::set_input(const std::string &name, const float *data) {
+        node_roster[name]->output->copy_data(data, node_roster[name]->output->shape());
+    }
+
+    void ComputeGraph::set_input(const Node *node, const float *data) {
+        if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
+            node->output->copy_data(data, node->output->shape());
+        } else {
+            throw std::runtime_error("Node not in graph");
+        }
+    }
+
+    float* ComputeGraph::get_output() const {
+        return output_nodes[0]->output->data();
+    }
+
+    float* ComputeGraph::get_output_host() const {
+        auto* data = static_cast<float *>(malloc(output_nodes[0]->output->size() * sizeof(float)));
+        cudaMemcpy(data, output_nodes[0]->output->data(), output_nodes[0]->output->size() * sizeof(float), cudaMemcpyDeviceToHost);
+        return data;
+    }
+
+    Node * ComputeGraph::get_output_node() const {
+        return output_nodes[0];
+    }
+
+    void ComputeGraph::update(Optimizer *optimizer) const {
+        for (Node* node : nodes) {
+            if (node->output->requires_grad()) {
+                optimizer->step(node);
+            }
+        }
+    }
 } // Graph
 // NeuZephyr

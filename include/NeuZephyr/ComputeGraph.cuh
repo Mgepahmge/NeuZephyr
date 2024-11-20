@@ -9,11 +9,13 @@
 #include <unordered_map>
 #include <string>
 #include <queue>
+#include "Optimizer.cuh"
 
 namespace NeuZephyr::Graph {
     using namespace Nodes;
     using namespace data;
     using namespace Operator;
+    using namespace Optimizers;
 
     class DL_API ComputeGraph {
         std::vector<Node*> nodes;
@@ -55,6 +57,19 @@ namespace NeuZephyr::Graph {
         OutputNode* add_output(OutputNode* node, const std::string& name = "default");
         void forward();
         void backward();
+        void zero_grad() const;
+        void randomize(const std::string& name);
+        void randomize(const Node* node);
+        void randomize_all() const;
+        void fill(const std::string& name, float val);
+        void fill(const Node* node, float val);
+        void fill_all(float val) const;
+        void set_input(const std::string& name, const float* data);
+        void set_input(const Node* node, const float* data);
+        float* get_output() const;
+        float* get_output_host() const;
+        Node* get_output_node() const;
+        void update(Optimizer* optimizer) const;
     };
 
 }
