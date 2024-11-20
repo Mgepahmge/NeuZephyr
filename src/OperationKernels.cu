@@ -369,5 +369,57 @@ namespace NeuZephyr::Operator {
             data[idx] -= lr * grad[idx];
         }
     }
+
+    __global__ void BCE_kernel(float* out, const float* predict, const float* real, unsigned long long n) {
+        extern __shared__ float smem[];
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        const unsigned long long tid = threadIdx.x;
+        if (idx < n) {
+            smem[tid] = (-real[idx] * __logf(predict[idx]) - (1 - real[idx]) * __logf(1 - predict[idx])) / (float)n;
+        } else {
+            smem[tid] = 0;
+        }
+        __syncthreads();
+        // loop unroll
+        if (blockDim.x >= 1024 && tid < 512) {
+            smem[tid] += smem[tid + 512];
+        }
+        __syncthreads();
+        if (blockDim.x >= 512 && tid < 256) {
+            smem[tid] += smem[tid + 256];
+        }
+        __syncthreads();
+        if (blockDim.x >= 256 && tid < 128) {
+            smem[tid] += smem[tid + 128];
+        }
+        __syncthreads();
+        if (blockDim.x >= 128 && tid < 64) {
+            smem[tid] += smem[tid + 64];
+        }
+        __syncthreads();
+
+        // warp unroll
+        if (tid < 32) {
+            volatile float* vdata = smem;
+            vdata[tid] += vdata[tid + 32];
+            vdata[tid] += vdata[tid + 16];
+            vdata[tid] += vdata[tid + 8];
+            vdata[tid] += vdata[tid + 4];
+            vdata[tid] += vdata[tid + 2];
+            vdata[tid] += vdata[tid + 1];
+        }
+        __syncthreads();
+        // write data back to global memory
+        if (tid == 0) {
+            out[blockIdx.x] = smem[0];
+        }
+    }
+
+    __global__ void BCEBackward_kernel(float* out, const float* predict, const float* real, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = ((predict[idx] - real[idx]) / (predict[idx] * (1 - predict[idx]))) / (float)n;
+        }
+    }
 }
 

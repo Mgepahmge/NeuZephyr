@@ -461,4 +461,36 @@ namespace NeuZephyr::Nodes {
             MSEBackward_kernel<<<grid, block>>>(output->grad(), inputs[0]->output->data(), inputs[1]->output->data(), output->size());
         }
     }
+
+    BinaryCrossEntropyNode::BinaryCrossEntropyNode(Node *input1, Node *input2) : OutputNode(input1) {
+        if (input1->output->shape() != input2->output->shape()) {
+            throw std::invalid_argument("input1 and input2 should have the same shape");
+        }
+        inputs.push_back(input2);
+    }
+
+    void BinaryCrossEntropyNode::forward() {
+        OutputNode::forward();
+        dim3 block(256);
+        dim3 grid((output->size() + block.x - 1) / block.x);
+        float* result;
+        float* result_host;
+        result_host = static_cast<float *>(malloc(grid.x * sizeof(float)));
+        cudaMalloc(&result, grid.x * sizeof(float));
+        BCE_kernel<<<grid, block, block.x*sizeof(float)>>>(result, inputs[0]->output->data(), inputs[1]->output->data(), output->size());
+        cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+        for (int i = 0; i < grid.x; i++) {
+            loss += result_host[i];
+        }
+        cudaFree(result);
+        free(result_host);
+    }
+
+    void BinaryCrossEntropyNode::backward() {
+        if (output->requires_grad()) {
+            dim3 block(256);
+            dim3 grid((output->size() + block.x - 1) / block.x);
+            BCEBackward_kernel<<<grid, block>>>(output->grad(), inputs[0]->output->data(), inputs[1]->output->data(), output->size());
+        }
+    }
 }

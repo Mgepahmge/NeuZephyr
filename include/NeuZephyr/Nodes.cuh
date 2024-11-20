@@ -189,6 +189,14 @@ namespace NeuZephyr::Nodes {
         void forward() override;
         void backward() override;
     };
+
+    class DL_API BinaryCrossEntropyNode: public OutputNode {
+    public:
+        explicit BinaryCrossEntropyNode(Node* input1, Node* input2);
+
+        void forward() override;
+        void backward() override;
+    };
 }
 
 #endif //NODES_CUH
