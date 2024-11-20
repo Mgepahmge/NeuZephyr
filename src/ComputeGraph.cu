@@ -5,12 +5,6 @@
 #include "NeuZephyr/ComputeGraph.cuh"
 
 namespace NeuZephyr::Graph {
-    ComputeGraph::~ComputeGraph() {
-        for (auto node : nodes) {
-            delete node;
-        }
-    }
-
     std::ostream & ComputeGraph::print(std::ostream &os) {
         if (sorted_nodes.empty()) {
             throw std::runtime_error("Graph is not sorted");
@@ -118,6 +112,36 @@ namespace NeuZephyr::Graph {
         input_nodes.push_back(node);
         if (name == "default") {
             const std::string node_name = "input_" + std::to_string(nodes_ref);
+            node_roster[node_name] = node;
+            node_roster_reverse[node] = node_name;
+            nodes_ref++;
+        } else {
+            node_roster[name] = node;
+            node_roster_reverse[node] = name;
+        }
+        return node;
+    }
+
+    InputNode * ComputeGraph::add_input(InputNode *input, const std::string &name) {
+        nodes.push_back(input);
+        input_nodes.push_back(input);
+        if (name == "default") {
+            const std::string node_name = "input_" + std::to_string(nodes_ref);
+            node_roster[node_name] = input;
+            node_roster_reverse[input] = node_name;
+            nodes_ref++;
+        } else {
+            node_roster[name] = input;
+            node_roster_reverse[input] = name;
+        }
+        return input;
+    }
+
+    OutputNode * ComputeGraph::add_output(OutputNode *node, const std::string &name) {
+        nodes.push_back(node);
+        output_nodes.push_back(node);
+        if (name == "default") {
+            const std::string node_name = "output_" + std::to_string(nodes_ref);
             node_roster[node_name] = node;
             node_roster_reverse[node] = node_name;
             nodes_ref++;
