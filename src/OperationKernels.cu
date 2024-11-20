@@ -298,7 +298,7 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void BuildSoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n) {
+    __global__ void SoftmaxJacobian_kernel(float* out, const float* in, unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         unsigned long long idy = blockIdx.y * blockDim.y + threadIdx.y;
         if (idx >= n || idy >= n) {
