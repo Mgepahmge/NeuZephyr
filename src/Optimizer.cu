@@ -69,4 +69,29 @@ namespace NeuZephyr::Optimizers {
         RMSprop_kernel<<<grid, block>>>(input->output->data(), v[input].data(), input->output->grad(), learning_rate,
                                          decay_rate, epsilon, input->output->size());
     }
+
+    Adam::Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {
+        this->learning_rate = learning_rate;
+        this->beta1 = beta1;
+        this->beta2 = beta2;
+        this->it = 0;
+    }
+
+    void Adam::step(Node* input) {
+        it++;
+        if (m.find(input) == m.end()) {
+            Tensor m_(input->output->shape(), false);
+            m_.fill(0);
+            m[input] = m_;
+        }
+        if (v.find(input) == v.end()) {
+            Tensor v_(input->output->shape(), false);
+            v_.fill(0);
+            v[input] = v_;
+        }
+        dim3 block(256);
+        dim3 grid((input->output->size() + block.x - 1) / block.x);
+        Adam_kernel<<<grid, block>>>(input->output->data(), m[input].data(), v[input].data(), input->output->grad(),
+                                     learning_rate, beta1, beta2, epsilon, it, input->output->size());
+    }
 } // Optimizers

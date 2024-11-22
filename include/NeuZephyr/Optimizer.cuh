@@ -58,6 +58,18 @@ namespace NeuZephyr::Optimizers {
         explicit RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate);
         void step(Node* input) override;
     };
+
+    class DL_API Adam : public  Optimizer {
+        std::unordered_map<Node*, Tensor> m;
+        std::unordered_map<Node*, Tensor> v;
+        Tensor::value_type beta1;
+        Tensor::value_type beta2;
+        int it;
+        Tensor::value_type epsilon = 1e-6;
+    public:
+        explicit Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2);
+        void step(Node* input) override;
+    };
 } // namespace NeuZephyr::Optimizers
 
 #endif // OPTIMIZER_CUH

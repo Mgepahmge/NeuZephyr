@@ -219,8 +219,8 @@ namespace NeuZephyr::Operator {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0
-                              ? B_grad[idx]
-                              : alpha * __expf(A[idx]) * B_grad[idx];
+                ? B_grad[idx]
+                : alpha * __expf(A[idx]) * B_grad[idx];
         }
     }
 
@@ -488,7 +488,8 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, const float lr, const float eps, unsigned long long n) {
+    __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, const float lr, const float eps,
+                                   unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -498,7 +499,8 @@ namespace NeuZephyr::Operator {
         G[idx] = temp;
     }
 
-    __global__ void RMSprop_kernel(float* data, float* v, const float* grad, const float lr, const float beta, const float eps, unsigned long long n) {
+    __global__ void RMSprop_kernel(float* data, float* v, const float* grad, const float lr, const float beta,
+                                   const float eps, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -506,5 +508,20 @@ namespace NeuZephyr::Operator {
         const float temp = v[idx] * beta + grad[idx] * grad[idx] * (1 - beta);
         data[idx] -= lr * grad[idx] / (sqrtf(temp) + eps);
         v[idx] = temp;
+    }
+
+    __global__ void Adam_kernel(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
+                                const float beta2, const float eps, const int t, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= n) {
+            return;
+        }
+        const float m_temp = m[idx] * beta1 + grad[idx] * (1 - beta1);
+        const float v_temp = v[idx] * beta2 + grad[idx] * grad[idx] * (1 - beta2);
+        const float m_modified = m_temp / (1 - __powf(beta1, (float)t));
+        const float v_modified = v_temp / (1 - __powf(beta2, (float)t));
+        data[idx] -= lr * m_modified / (sqrtf(v_modified) + eps);
+        m[idx] = m_temp;
+        v[idx] = v_temp;
     }
 }
