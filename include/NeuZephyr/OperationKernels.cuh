@@ -97,6 +97,12 @@ namespace NeuZephyr::Operator {
     __global__ void NAdam_kernel(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
                                  const float beta1, const float beta2, const float eps, const int t,
                                  unsigned long long n);
+
+    __global__ void AdaDelta_kernel(float* data, float* acc_delta, float* acc_grad, const float* grad,
+                                    const float rho, const float eps,
+                                    unsigned long long n);
+
+
 }
 
 #endif //OPERATIONKERNELS_CUH

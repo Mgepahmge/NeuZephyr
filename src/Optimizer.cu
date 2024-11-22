@@ -125,4 +125,26 @@ namespace NeuZephyr::Optimizers {
                                       input->output->grad(), learning_rate, beta1, beta2, epsilon, it,
                                       input->output->size());
     }
+
+    AdaDelta::AdaDelta(Tensor::value_type rho) {
+        this->learning_rate = rho;
+    }
+
+    void AdaDelta::step(Node* input) {
+        if (acc_delta.find(input) == acc_delta.end()) {
+            Tensor delta_acc_(input->output->shape(), false);
+            delta_acc_.fill(0);
+            acc_delta[input] = delta_acc_;
+        }
+        if (acc_grad.find(input) == acc_grad.end()) {
+            Tensor delta_acc_grad_(input->output->shape(), false);
+            delta_acc_grad_.fill(0);
+            acc_grad[input] = delta_acc_grad_;
+        }
+        dim3 block(256);
+        dim3 grid((input->output->size() + block.x - 1) / block.x);
+        AdaDelta_kernel<<<grid, block>>>(input->output->data(), acc_delta[input].data(), acc_grad[input].data(),
+                                         input->output->grad(), learning_rate, epsilon,
+                                         input->output->size());
+    }
 } // Optimizers

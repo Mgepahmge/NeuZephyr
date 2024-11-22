@@ -83,6 +83,15 @@ namespace NeuZephyr::Optimizers {
         explicit NAdam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2);
         void step(Node* input) override;
     };
+
+    class DL_API AdaDelta : public  Optimizer {
+        std::unordered_map<Node*, Tensor> acc_delta;
+        std::unordered_map<Node*, Tensor> acc_grad;
+        Tensor::value_type epsilon = 1e-6;
+    public:
+        explicit AdaDelta(Tensor::value_type rho);
+        void step(Node* input) override;
+    };
 } // namespace NeuZephyr::Optimizers
 
 #endif // OPTIMIZER_CUH

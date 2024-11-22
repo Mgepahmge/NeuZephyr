@@ -537,9 +537,24 @@ namespace NeuZephyr::Operator {
         const float m_temp_modified = m_temp / (1 - __powf(beta1, (float)t));
         const float v_modified = v_temp / (1 - __powf(beta2, (float)t));
         const float m_modified_minus_1 = m_modified[idx] * beta1 + grad[idx] * (1 - beta1);
-        data[idx] -= lr*m_modified_minus_1 / (sqrtf(v_modified) + eps);
+        data[idx] -= lr * m_modified_minus_1 / (sqrtf(v_modified) + eps);
         m[idx] = m_temp;
         m_modified[idx] = m_temp_modified;
         v[idx] = v_temp;
+    }
+
+    __global__ void AdaDelta_kernel(float* data, float* acc_delta, float* acc_grad, const float* grad,
+                                    const float rho, const float eps,
+                                    unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= n) {
+            return;
+        }
+        const float delta_acc_grad_temp = acc_grad[idx] * rho + grad[idx] * grad[idx] * (1 - rho);
+        const float delta_theta = - grad[idx] * sqrtf(acc_delta[idx] + eps) / sqrtf(delta_acc_grad_temp + eps);
+        data[idx] += delta_theta;
+        const float delta_acc_temp = acc_delta[idx] * rho + delta_theta * delta_theta * (1 - rho);
+        acc_delta[idx] = delta_acc_temp;
+        acc_grad[idx] = delta_acc_grad_temp;
     }
 }
