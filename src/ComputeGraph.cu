@@ -4,6 +4,8 @@
 
 #include "NeuZephyr/ComputeGraph.cuh"
 
+#include <filesystem>
+
 namespace NeuZephyr::Graph {
     std::ostream & ComputeGraph::print(std::ostream &os) {
         if (sorted_nodes.empty()) {
@@ -260,6 +262,53 @@ namespace NeuZephyr::Graph {
                 optimizer->step(node);
             }
         }
+    }
+
+    void ComputeGraph::save(const std::string& path) {
+        if (path.empty()) {
+            throw std::runtime_error("Path cannot be empty");
+        }
+        if (sorted_nodes.empty()) {
+            throw std::runtime_error("Graph not sorted");
+        }
+        std::ofstream out(path);
+        for (Node* node : sorted_nodes) {
+            out << node->type << std::endl;
+            out << "name: " << node_roster_reverse[node] << std::endl;
+            out << "pre:" << std::endl;
+            for (Node* input : node->inputs) {
+                out << std::to_string(std::distance(sorted_nodes.begin(), std::find(sorted_nodes.begin(), sorted_nodes.end(), input)));
+                out << " ";
+            }
+            out << std::endl;
+            out << "post:" << std::endl;
+            for (Node* next : adj_list[node]) {
+                out << std::to_string(std::distance(sorted_nodes.begin(), std::find(sorted_nodes.begin(), sorted_nodes.end(), next)));
+                out << " ";
+            }
+            out << std::endl;
+            out << "shape: " << std::endl;
+            out << node->output->shape()[0] << " " << node->output->shape()[1] << std::endl;
+            out << "data: " << std::endl;
+            auto* data = static_cast<float*>(malloc(node->output->size() * sizeof(float)));
+            cudaMemcpy(data, node->output->data(), node->output->size() * sizeof(float), cudaMemcpyDeviceToHost);
+            for (int i = 0; i < node->output->size(); i++) {
+                out << data[i] << " ";
+            }
+            out << std::endl;
+            out << "requires_grad: " << node->output->requires_grad() << std::endl;
+            if (node->output->requires_grad()) {
+                out << "grad: " << std::endl;
+                cudaMemcpy(data, node->output->grad(), node->output->size() * sizeof(float), cudaMemcpyDeviceToHost);
+                for (int i = 0; i < node->output->size(); i++) {
+                    out << data[i] << " ";
+                }
+                out << std::endl;
+            }
+            out << "end" << std::endl;
+            free(data);
+        }
+        out.close();
     }
 } // Graph
 // NeuZephyr

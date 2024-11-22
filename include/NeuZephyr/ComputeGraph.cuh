@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <string>
 #include <queue>
+#include <fstream>
 #include "Optimizer.cuh"
 
 namespace NeuZephyr::Graph {
@@ -71,6 +72,7 @@ namespace NeuZephyr::Graph {
         OutputNode* get_output_node() const;
         Tensor::value_type get_loss() const;
         void update(Optimizer* optimizer) const;
+        void save(const std::string& path);
     };
 
 }
