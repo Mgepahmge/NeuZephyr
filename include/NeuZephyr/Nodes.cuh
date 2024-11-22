@@ -16,7 +16,7 @@ namespace NeuZephyr::Nodes {
         virtual ~Node() = default;
         std::vector<Node*> inputs;
         std::shared_ptr<Tensor> output;
-        const std::string type = "Basic";
+        std::string type = "Basic";
         virtual void forward() = 0;
         virtual void backward() = 0;
     };
@@ -31,7 +31,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Input";
     };
 
     class DL_API OutputNode: public Node {
@@ -43,7 +42,6 @@ namespace NeuZephyr::Nodes {
         void forward() override;
         void backward() override;
         Tensor::value_type get_loss() const;
-        const std::string type = "Output";
     };
 
     class DL_API AddNode: public Node {
@@ -52,7 +50,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Add";
     };
 
     class DL_API MatMulNode: public Node {
@@ -61,7 +58,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "MatMul";
     };
 
     class DL_API ScalarMulNode: public Node {
@@ -71,7 +67,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "ScalarMul";
     };
 
     class DL_API ScalarDivNode: public Node {
@@ -81,7 +76,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "ScalarDiv";
     };
 
     class DL_API ScalarAddNode: public Node {
@@ -91,7 +85,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "ScalarAdd";
     };
 
     class DL_API ScalarSubNode: public Node {
@@ -101,7 +94,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "ScalarSub";
     };
 
     class DL_API SubNode: public Node {
@@ -110,7 +102,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Sub";
     };
 
     class DL_API ReLUNode: public Node {
@@ -119,7 +110,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "ReLU";
     };
 
     class DL_API SigmoidNode: public Node {
@@ -128,7 +118,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Sigmoid";
     };
 
     class DL_API TanhNode: public Node {
@@ -137,7 +126,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Tanh";
     };
 
     class DL_API LeakyReLUNode: public Node {
@@ -147,7 +135,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "LeakyReLU";
     };
 
     class DL_API SwishNode: public Node {
@@ -156,7 +143,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Swish";
     };
 
     class DL_API ELUNode: public Node {
@@ -166,7 +152,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "ELU";
     };
 
     class DL_API HardSigmoidNode: public Node {
@@ -177,7 +162,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "HardSigmoid";
     };
 
     class DL_API HardSwishNode: public Node {
@@ -188,7 +172,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "HardSwish";
     };
 
     class DL_API SoftmaxNode: public Node {
@@ -198,7 +181,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "Softmax";
     };
 
     class DL_API MeanSquaredErrorNode: public OutputNode {
@@ -207,7 +189,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "MeanSquaredError";
     };
 
     class DL_API BinaryCrossEntropyNode: public OutputNode {
@@ -216,7 +197,6 @@ namespace NeuZephyr::Nodes {
 
         void forward() override;
         void backward() override;
-        const std::string type = "BinaryCrossEntropy";
     };
 }
 

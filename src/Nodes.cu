@@ -8,14 +8,17 @@ namespace NeuZephyr::Nodes {
 
     InputNode::InputNode(const Tensor::shape_type &shape, bool requires_grad) {
         output = std::make_shared<Tensor>(shape, requires_grad);
+        type = "Input";
     }
 
     InputNode::InputNode(const Tensor& tensor) {
         output = std::make_shared<Tensor>(tensor);
+        type = "Input";
     }
 
     InputNode::InputNode(const std::initializer_list<int>& shape, bool requires_grad) {
         output = std::make_shared<Tensor>(shape, requires_grad);
+        type = "Input";
     }
 
     void InputNode::forward() {}
@@ -24,6 +27,7 @@ namespace NeuZephyr::Nodes {
     OutputNode::OutputNode(Node *input) {
         loss = 0;
         inputs.push_back(input);
+        type = "Output";
     }
     void OutputNode::forward() {
         output = inputs[0]->output;
@@ -46,6 +50,7 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input_right);
         bool requires_grad = input_left->output->requires_grad() || input_right->output->requires_grad();
         output = std::make_shared<Tensor>(input_left->output->shape(), requires_grad);
+        type = "Add";
     }
 
     void AddNode::forward() {
@@ -72,6 +77,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input_left->output->requires_grad() || input_right->output->requires_grad();
         Tensor::shape_type shape = {input_left->output->shape()[0], input_right->output->shape()[1]};
         output = std::make_shared<Tensor>(shape, requires_grad);
+        type = "MatMul";
     }
 
     void MatMulNode::forward() {
@@ -122,6 +128,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = scalar;
+        type = "ScalarMul";
     }
 
     void ScalarMulNode::forward() {
@@ -143,6 +150,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = scalar;
+        type = "ScalarDiv";
     }
 
     void ScalarDivNode::forward() {
@@ -164,6 +172,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = scalar;
+        type = "ScalarAdd";
     }
 
     void ScalarAddNode::forward() {
@@ -183,6 +192,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = -scalar;
+        type = "ScalarSub";
     }
 
     void ScalarSubNode::forward() {
@@ -205,6 +215,7 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input_right);
         bool requires_grad = input_left->output->requires_grad() || input_right->output->requires_grad();
         output = std::make_shared<Tensor>(input_left->output->shape(), requires_grad);
+        type = "Sub";
     }
 
     void SubNode::forward() {
@@ -232,6 +243,7 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input);
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        type = "ReLU";
     }
 
     void ReLUNode::forward() {
@@ -252,6 +264,7 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input);
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        type = "Sigmoid";
     }
 
     void SigmoidNode::forward() {
@@ -272,6 +285,7 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input);
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        type = "Tanh";
     }
 
     void TanhNode::forward() {
@@ -293,6 +307,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->alpha = alpha;
+        type = "LeakyReLU";
     }
 
     void LeakyReLUNode::forward() {
@@ -313,6 +328,7 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input);
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        type = "Swish";
     }
 
     void SwishNode::forward() {
@@ -334,6 +350,7 @@ namespace NeuZephyr::Nodes {
         bool requires_grad = input->output->requires_grad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->alpha = alpha;
+        type = "ELU";
     }
 
     void ELUNode::forward() {
@@ -356,6 +373,7 @@ namespace NeuZephyr::Nodes {
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->alpha = alpha;
         this->beta = beta;
+        type = "HardSigmoid";
     }
 
     void HardSigmoidNode::forward() {
@@ -378,6 +396,7 @@ namespace NeuZephyr::Nodes {
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->alpha = alpha;
         this->beta = beta;
+        type = "HardSwish";
     }
 
     void HardSwishNode::forward() {
@@ -412,6 +431,7 @@ namespace NeuZephyr::Nodes {
         }
         cudaFree(result);
         free(result_host);
+        type = "Softmax";
     }
 
     void SoftmaxNode::forward() {
@@ -435,6 +455,7 @@ namespace NeuZephyr::Nodes {
             throw std::invalid_argument("input1 and input2 should have the same shape");
         }
         inputs.push_back(input2);
+        type = "MeanSquaredError";
     }
 
     void MeanSquaredErrorNode::forward() {
@@ -467,6 +488,7 @@ namespace NeuZephyr::Nodes {
             throw std::invalid_argument("input1 and input2 should have the same shape");
         }
         inputs.push_back(input2);
+        type = "BinaryCrossEntropy";
     }
 
     void BinaryCrossEntropyNode::forward() {
