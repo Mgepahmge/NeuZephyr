@@ -86,6 +86,8 @@ namespace NeuZephyr::Operator {
     __global__ void Momentum_kernel(float* output, const float* grad, const float* velocity, float beta, unsigned long long n);
 
     __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, float lr, float eps, unsigned long long n);
+
+    __global__ void RMSprop_kernel(float* data, float* v, const float* grad, const float lr, const float beta, const float eps, unsigned long long n);
 }
 
 #endif //OPERATIONKERNELS_CUH

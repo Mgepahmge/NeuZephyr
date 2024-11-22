@@ -43,13 +43,30 @@ namespace NeuZephyr::Optimizers {
     }
 
     void AdaGrad::step(Node* input) {
-        if (G.find(input) == G.end()) {
+        if (gss.find(input) == gss.end()) {
             Tensor g(input->output->shape(), false);
             g.fill(0);
-            G[input] = g;
+            gss[input] = g;
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        AdaGrad_kernel<<<grid, block>>>(input->output->data(),  G[input].data(), input->output->grad(),learning_rate, epsilon, input->output->size());
+        AdaGrad_kernel<<<grid, block>>>(input->output->data(),  gss[input].data(), input->output->grad(),learning_rate, epsilon, input->output->size());
+    }
+
+    RMSprop::RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate) {
+        this->learning_rate = learning_rate;
+        this->decay_rate = decay_rate;
+    }
+
+    void RMSprop::step(Node* input) {
+        if (v.find(input) == v.end()) {
+            Tensor v_(input->output->shape(), false);
+            v_.fill(0);
+            v[input] = v_;
+        }
+        dim3 block(256);
+        dim3 grid((input->output->size() + block.x - 1) / block.x);
+        RMSprop_kernel<<<grid, block>>>(input->output->data(), v[input].data(), input->output->grad(), learning_rate,
+                                         decay_rate, epsilon, input->output->size());
     }
 } // Optimizers

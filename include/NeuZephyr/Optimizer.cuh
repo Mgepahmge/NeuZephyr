@@ -43,10 +43,19 @@ namespace NeuZephyr::Optimizers {
     };
 
     class DL_API AdaGrad : public  Optimizer {
-        std::unordered_map<Node*, Tensor> G;
+        std::unordered_map<Node*, Tensor> gss;
         Tensor::value_type epsilon = 1e-6;
     public:
         explicit AdaGrad(Tensor::value_type learning_rate);
+        void step(Node* input) override;
+    };
+
+    class DL_API RMSprop : public  Optimizer {
+        std::unordered_map<Node*, Tensor> v;
+        Tensor::value_type decay_rate;
+        Tensor::value_type epsilon = 1e-6;
+    public:
+        explicit RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate);
         void step(Node* input) override;
     };
 } // namespace NeuZephyr::Optimizers

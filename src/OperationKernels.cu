@@ -488,7 +488,7 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, float lr, float eps, unsigned long long n) {
+    __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, const float lr, const float eps, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -496,5 +496,15 @@ namespace NeuZephyr::Operator {
         const float temp = G[idx] + grad[idx] * grad[idx];
         data[idx] -= lr * grad[idx] / (sqrtf(temp) + eps);
         G[idx] = temp;
+    }
+
+    __global__ void RMSprop_kernel(float* data, float* v, const float* grad, const float lr, const float beta, const float eps, unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= n) {
+            return;
+        }
+        const float temp = v[idx] * beta + grad[idx] * grad[idx] * (1 - beta);
+        data[idx] -= lr * grad[idx] / (sqrtf(temp) + eps);
+        v[idx] = temp;
     }
 }
