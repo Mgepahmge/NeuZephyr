@@ -524,4 +524,22 @@ namespace NeuZephyr::Operator {
         m[idx] = m_temp;
         v[idx] = v_temp;
     }
+
+    __global__ void NAdam_kernel(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
+                                 const float beta1, const float beta2, const float eps, const int t,
+                                 unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= n) {
+            return;
+        }
+        const float m_temp = m[idx] * beta1 + grad[idx] * (1 - beta1);
+        const float v_temp = v[idx] * beta2 + grad[idx] * grad[idx] * (1 - beta2);
+        const float m_temp_modified = m_temp / (1 - __powf(beta1, (float)t));
+        const float v_modified = v_temp / (1 - __powf(beta2, (float)t));
+        const float m_modified_minus_1 = m_modified[idx] * beta1 + grad[idx] * (1 - beta1);
+        data[idx] -= lr*m_modified_minus_1 / (sqrtf(v_modified) + eps);
+        m[idx] = m_temp;
+        m_modified[idx] = m_temp_modified;
+        v[idx] = v_temp;
+    }
 }
