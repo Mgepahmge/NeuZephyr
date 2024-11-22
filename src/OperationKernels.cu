@@ -488,53 +488,13 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void SquaredSum_kernel(float* output, const float* input, unsigned long long n) {
-        extern __shared__ float s_data[];
+    __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, float lr, float eps, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
-        const unsigned long long tid = threadIdx.x;
-        if (idx < n) {
-            s_data[tid] = input[idx] * input[idx];
-        } else {
-            s_data[tid] = 0;
+        if (idx >= n) {
+            return;
         }
-        __syncthreads();
-        // loop unroll
-        if (blockDim.x >= 1024 && tid < 512) {
-            s_data[tid] += s_data[tid + 512];
-        }
-        __syncthreads();
-        if (blockDim.x >= 512 && tid < 256) {
-            s_data[tid] += s_data[tid + 256];
-        }
-        __syncthreads();
-        if (blockDim.x >= 256 && tid < 128) {
-            s_data[tid] += s_data[tid + 128];
-        }
-        __syncthreads();
-        if (blockDim.x >= 128 && tid < 64) {
-            s_data[tid] += s_data[tid + 64];
-        }
-        __syncthreads();
-        if (tid < 32) {
-            volatile float* vdata = s_data;
-            vdata[tid] += vdata[tid + 32];
-            vdata[tid] += vdata[tid + 16];
-            vdata[tid] += vdata[tid + 8];
-            vdata[tid] += vdata[tid + 4];
-            vdata[tid] += vdata[tid + 2];
-            vdata[tid] += vdata[tid + 1];
-        }
-        __syncthreads();
-        if (tid == 0) {
-            output[blockIdx.x] = s_data[0];
-        }
-    }
-
-    __global__ void Ada_kernel(float* data, const float* grad, const float G, const float lr, const float theta, unsigned long long n) {
-        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
-        if (idx < n) {
-            const float current_lr = lr / sqrtf(G + theta);
-            data[idx] -= current_lr * grad[idx];
-        }
+        const float temp = G[idx] + grad[idx] * grad[idx];
+        data[idx] -= lr * grad[idx] / (sqrtf(temp) + eps);
+        G[idx] = temp;
     }
 }

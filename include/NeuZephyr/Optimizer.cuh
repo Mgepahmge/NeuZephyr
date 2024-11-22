@@ -42,11 +42,11 @@ namespace NeuZephyr::Optimizers {
         void step(Node* input) override;
     };
 
-    class DL_API Ada : public Optimizer {
-        std::unordered_map<Node*, Tensor::value_type> G;
-        Tensor::value_type theta = 1e-8;
+    class DL_API AdaGrad : public  Optimizer {
+        std::unordered_map<Node*, Tensor> G;
+        Tensor::value_type epsilon = 1e-6;
     public:
-        explicit Ada(Tensor::value_type learning_rate);
+        explicit AdaGrad(Tensor::value_type learning_rate);
         void step(Node* input) override;
     };
 } // namespace NeuZephyr::Optimizers
