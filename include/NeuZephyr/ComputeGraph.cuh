@@ -44,7 +44,7 @@ namespace NeuZephyr::Graph {
         NodeType* add_node(NodeType* node, const std::string& name = "default") {
             nodes.push_back(node);
             if (name == "default") {
-            const std::string node_name = "node_" + std::to_string(nodes_ref);
+            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
             node_roster[node_name] = node;
             node_roster_reverse[node] = node_name;
             nodes_ref++;

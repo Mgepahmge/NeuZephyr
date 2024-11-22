@@ -83,7 +83,7 @@ namespace NeuZephyr::Graph {
         nodes.push_back(node);
         input_nodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = "input_" + std::to_string(nodes_ref);
+            const std::string node_name = node->type + "_" +  std::to_string(nodes_ref);
             node_roster[node_name] = node;
             node_roster_reverse[node] = node_name;
             nodes_ref++;
@@ -99,7 +99,7 @@ namespace NeuZephyr::Graph {
         nodes.push_back(node);
         input_nodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = "input_" + std::to_string(nodes_ref);
+            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
             node_roster[node_name] = node;
             node_roster_reverse[node] = node_name;
             nodes_ref++;
@@ -115,7 +115,7 @@ namespace NeuZephyr::Graph {
         nodes.push_back(node);
         input_nodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = "input_" + std::to_string(nodes_ref);
+            const std::string node_name = node->type + "_" +  std::to_string(nodes_ref);
             node_roster[node_name] = node;
             node_roster_reverse[node] = node_name;
             nodes_ref++;
@@ -130,7 +130,7 @@ namespace NeuZephyr::Graph {
         nodes.push_back(input);
         input_nodes.push_back(input);
         if (name == "default") {
-            const std::string node_name = "input_" + std::to_string(nodes_ref);
+            const std::string node_name = input->type + "_" + std::to_string(nodes_ref);
             node_roster[node_name] = input;
             node_roster_reverse[input] = node_name;
             nodes_ref++;
@@ -145,7 +145,7 @@ namespace NeuZephyr::Graph {
         nodes.push_back(node);
         output_nodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = "output_" + std::to_string(nodes_ref);
+            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
             node_roster[node_name] = node;
             node_roster_reverse[node] = node_name;
             nodes_ref++;
