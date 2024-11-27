@@ -11,27 +11,28 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Set up CUDA environment
-        run: |
-          setx CUDA_PATH "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8"
-          setx PATH "%CUDA_PATH%\bin;%PATH%"
-          nvcc --version
+    - name: Install CUDA
+      run: |
+        choco install cuda --version=11.8 -y
+        setx CUDA_PATH "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8"
+        setx PATH "%CUDA_PATH%\bin;%PATH%"
+        nvcc --version
 
-      - name: Install dependencies
-        run: |
-          choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
-          cmake --version
+    - name: Install dependencies
+      run: |
+        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
+        cmake --version
 
-      - name: Configure and Build
-        run: |
-          mkdir build
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -T host=x64
-          cmake --build . --config Release
+    - name: Configure and Build
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -T host=x64
+        cmake --build . --config Release
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cuda-library
-          path: build/Release/NeuZephyr.dll
+    - uses: actions/upload-artifact@v3
+      with:
+        name: cuda-library
+        path: build/Release/NeuZephyr.dll
