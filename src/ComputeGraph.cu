@@ -40,6 +40,139 @@ namespace NeuZephyr::Graph {
         return graph.print(os);
     }
 
+    void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
+                    const std::vector<int>& shape, const float* data, const bool requires_grad, const float* grad) {
+        if (type == "Input") {
+    auto* inputNode = new InputNode(shape, requires_grad);
+    inputNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        inputNode->output->copy_grad(grad);
+    }
+    graph->add_node(inputNode, name);
+    graph->sorted_nodes.push_back(inputNode);
+    graph->input_nodes.push_back(inputNode);
+} else if (type == "Output") {
+    auto* outputNode = new OutputNode(graph->sorted_nodes[pre[0]]);
+    outputNode->forward();
+    graph->add_node(outputNode, name);
+    graph->output_nodes.push_back(outputNode);
+    graph->sorted_nodes.push_back(outputNode);
+} else if (type == "Add") {
+    auto* addNode = new AddNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
+    addNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        addNode->output->copy_grad(grad);
+    }
+    graph->add_node(addNode, name);
+    graph->sorted_nodes.push_back(addNode);
+} else if (type == "MatMul") {
+    auto* matmulNode = new MatMulNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
+    matmulNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        matmulNode->output->copy_grad(grad);
+    }
+    graph->add_node(matmulNode, name);
+    graph->sorted_nodes.push_back(matmulNode);
+} else if (type == "ScalarMul" || type == "ScalarDiv" || type == "ScalarAdd" || type == "ScalarSub") {
+    throw std::runtime_error("Scalar operations not supported");
+} else if (type == "Sub") {
+    auto* subNode = new SubNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
+    subNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        subNode->output->copy_grad(grad);
+    }
+    graph->add_node(subNode, name);
+    graph->sorted_nodes.push_back(subNode);
+} else if (type == "ReLU") {
+    auto* reluNode = new ReLUNode(graph->sorted_nodes[pre[0]]);
+    reluNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        reluNode->output->copy_grad(grad);
+    }
+    graph->add_node(reluNode, name);
+    graph->sorted_nodes.push_back(reluNode);
+} else if (type == "Sigmoid") {
+    auto* sigmoidNode = new SigmoidNode(graph->sorted_nodes[pre[0]]);
+    sigmoidNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        sigmoidNode->output->copy_grad(grad);
+    }
+    graph->add_node(sigmoidNode, name);
+    graph->sorted_nodes.push_back(sigmoidNode);
+} else if (type == "Tanh") {
+    auto* tanhNode = new TanhNode(graph->sorted_nodes[pre[0]]);
+    tanhNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        tanhNode->output->copy_grad(grad);
+    }
+    graph->add_node(tanhNode, name);
+    graph->sorted_nodes.push_back(tanhNode);
+} else if (type == "LeakyReLU") {
+    auto* leakyreluNode = new LeakyReLUNode(graph->sorted_nodes[pre[0]]);
+    leakyreluNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        leakyreluNode->output->copy_grad(grad);
+    }
+    graph->add_node(leakyreluNode, name);
+    graph->sorted_nodes.push_back(leakyreluNode);
+} else if (type == "Swish") {
+    auto* swishNode = new SwishNode(graph->sorted_nodes[pre[0]]);
+    swishNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        swishNode->output->copy_grad(grad);
+    }
+    graph->add_node(swishNode, name);
+    graph->sorted_nodes.push_back(swishNode);
+} else if (type == "ELU") {
+    auto* eluNode = new ELUNode(graph->sorted_nodes[pre[0]]);
+    eluNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        eluNode->output->copy_grad(grad);
+    }
+    graph->add_node(eluNode);
+    graph->sorted_nodes.push_back(eluNode);
+} else if (type == "HardSigmoid") {
+    auto* hardsigmoidNode = new HardSigmoidNode(graph->sorted_nodes[pre[0]]);
+    hardsigmoidNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        hardsigmoidNode->output->copy_grad(grad);
+    }
+    graph->add_node(hardsigmoidNode, name);
+    graph->sorted_nodes.push_back(hardsigmoidNode);
+} else if (type == "HardSwish") {
+    auto* hardswishNode = new HardSwishNode(graph->sorted_nodes[pre[0]]);
+    hardswishNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        hardswishNode->output->copy_grad(grad);
+    }
+    graph->add_node(hardswishNode, name);
+    graph->sorted_nodes.push_back(hardswishNode);
+} else if (type == "Softmax") {
+    auto* softmaxNode = new SoftmaxNode(graph->sorted_nodes[pre[0]]);
+    softmaxNode->output->copy_data(data, shape);
+    if (requires_grad) {
+        softmaxNode->output->copy_grad(grad);
+    }
+    graph->add_node(softmaxNode, name);
+    graph->sorted_nodes.push_back(softmaxNode);
+} else if (type == "MeanSquaredError") {
+    auto* mseNode = new MeanSquaredErrorNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
+    mseNode->forward();
+    graph->add_node(mseNode, name);
+    graph->sorted_nodes.push_back(mseNode);
+    graph->output_nodes.push_back(mseNode);
+} else if (type == "BinaryCrossEntropy") {
+    auto* bceNode = new BinaryCrossEntropyNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
+    bceNode->forward();
+    graph->add_node(bceNode, name);
+    graph->sorted_nodes.push_back(bceNode);
+    graph->output_nodes.push_back(bceNode);
+} else {
+    throw std::runtime_error("Unknown node type");
+}
+
+    }
+
     void ComputeGraph::topological_sort() {
         sorted_nodes.clear();
         in_degree.clear();
@@ -304,7 +437,7 @@ namespace NeuZephyr::Graph {
             for (size_t j = 0; j < node->inputs.size(); ++j) {
                 auto input = node->inputs[j];
                 auto index = std::distance(sorted_nodes.begin(),
-                                          std::find(sorted_nodes.begin(), sorted_nodes.end(), input));
+                                           std::find(sorted_nodes.begin(), sorted_nodes.end(), input));
                 out << index;
                 if (j < node->inputs.size() - 1) {
                     out << ", ";
@@ -315,7 +448,7 @@ namespace NeuZephyr::Graph {
             for (size_t j = 0; j < adj_list[node].size(); ++j) {
                 auto next = adj_list[node][j];
                 auto index = std::distance(sorted_nodes.begin(),
-                                          std::find(sorted_nodes.begin(), sorted_nodes.end(), next));
+                                           std::find(sorted_nodes.begin(), sorted_nodes.end(), next));
                 out << index;
                 if (j < adj_list[node].size() - 1) {
                     out << ", ";
@@ -362,6 +495,175 @@ namespace NeuZephyr::Graph {
         }
         out << "]\n";
         out.close();
+    }
+
+    void ComputeGraph::load(const std::string& path) {
+        if (path.empty()) {
+            throw std::runtime_error("Path cannot be empty");
+        }
+        if (!nodes.empty()) {
+            throw std::runtime_error("Graph already loaded");
+        }
+        std::ifstream in(path);
+        if (!in.is_open()) {
+            throw std::runtime_error("Failed to open file for reading");
+        }
+        int i = 0;
+        std::string line;
+        std::string type;
+        std::string name;
+        std::vector<int> pre;
+        std::vector<int> post;
+        std::vector<int> shape;
+        float* data = nullptr;
+        bool requires_grad = false;
+        float* grad = nullptr;
+        bool reading_node = false;
+        while (std::getline(in, line)) {
+            if (line.empty()) {
+                continue;
+            }
+            if (line == "[" && !reading_node) {
+                continue;
+            }
+            if (line == "]" && !reading_node) {
+                break;
+            }
+            if (line.find('{') != std::string::npos && !reading_node) {
+                reading_node = true;
+                continue;
+            }
+            if (line.find("\"type\": ") != std::string::npos && reading_node) {
+                std::string pattern = "\"type\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('\"', startPos);
+                const size_t secondQuote = line.find('\"', firstQuote + 1);
+                type = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                continue;
+            }
+            if (line.find("\"name\": ") != std::string::npos && reading_node) {
+                std::string pattern = "\"name\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('\"', startPos);
+                const size_t secondQuote = line.find('\"', firstQuote + 1);
+                name = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                continue;
+            }
+            if (line.find("\"pre\": ") != std::string::npos && reading_node) {
+                pre.clear();
+                std::string pattern = "\"pre\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('[', startPos);
+                const size_t secondQuote = line.find(']', firstQuote + 1);
+                std::string pre_str = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                std::stringstream ss(pre_str);
+                int val;
+                while (ss >> val) {
+                    pre.push_back(val);
+                    if (ss.peek() == ',') {
+                        ss.ignore();
+                    }
+                }
+                continue;
+            }
+            if (line.find("\"post\": ") != std::string::npos && reading_node) {
+                post.clear();
+                std::string pattern = "\"post\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('[', startPos);
+                const size_t secondQuote = line.find(']', firstQuote + 1);
+                std::string post_str = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                std::stringstream ss(post_str);
+                int val;
+                while (ss >> val) {
+                    post.push_back(val);
+                    if (ss.peek() == ',') {
+                        ss.ignore();
+                    }
+                }
+                continue;
+            }
+            if (line.find("\"shape\": ") != std::string::npos && reading_node) {
+                shape.clear();
+                std::string pattern = "\"shape\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('[', startPos);
+                const size_t secondQuote = line.find(']', firstQuote + 1);
+                std::string shape_str = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                std::stringstream ss(shape_str);
+                int val;
+                while (ss >> val) {
+                    shape.push_back(val);
+                    if (ss.peek() == ',') {
+                        ss.ignore();
+                    }
+                }
+                continue;
+            }
+            if (line.find("\"data\": ") != std::string::npos && reading_node) {
+                data = static_cast<float*>(malloc(sizeof(float) * shape[0] * shape[1]));
+                std::string pattern = "\"data\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('[', startPos);
+                const size_t secondQuote = line.find(']', firstQuote + 1);
+                std::string data_str = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                std::stringstream ss(data_str);
+                float val;
+                i = 0;
+                while (ss >> val) {
+                    data[i++] = val;
+                    if (ss.peek() == ',') {
+                        ss.ignore();
+                    }
+                }
+                continue;
+            }
+            if (line.find("\"requires_grad\": ") != std::string::npos && reading_node) {
+                std::string pattern = "\"requires_grad\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                if (line.substr(startPos, 4) == "true") {
+                    requires_grad = true;
+                } else {
+                    requires_grad = false;
+                }
+                continue;
+            }
+            if (line.find("\"grad\": ") != std::string::npos && reading_node && requires_grad) {
+                grad = static_cast<float*>(malloc(sizeof(float) * shape[0] * shape[1]));
+                std::string pattern = "\"grad\": ";
+                size_t startPos = line.find(pattern);
+                startPos += pattern.length();
+                const size_t firstQuote = line.find('[', startPos);
+                const size_t secondQuote = line.find(']', firstQuote + 1);
+                std::string grad_str = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                std::stringstream ss(grad_str);
+                float val;
+                i = 0;
+                while (ss >> val) {
+                    grad[i++] = val;
+                    if (ss.peek() == ',') {
+                        ss.ignore();
+                    }
+                }
+                continue;
+            }
+            if (line.find('}') != std::string::npos && reading_node) {
+                reading_node = false;
+                CreateNode(this, type, name, pre, shape, data, requires_grad, grad);
+                free(data);
+                if (requires_grad) {
+                    free(grad);
+                }
+                continue;
+            }
+        }
     }
 } // Graph
 // NeuZephyr

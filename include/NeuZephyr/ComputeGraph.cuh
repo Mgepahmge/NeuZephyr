@@ -10,6 +10,7 @@
 #include <string>
 #include <queue>
 #include <fstream>
+#include <sstream>
 #include "Optimizer.cuh"
 
 namespace NeuZephyr::Graph {
@@ -17,6 +18,11 @@ namespace NeuZephyr::Graph {
     using namespace data;
     using namespace Operator;
     using namespace Optimizers;
+
+    template <typename T, typename... Args>
+    std::unique_ptr<T> createInstance(Args&&... args) {
+        return std::make_unique<T>(std::forward<Args>(args)...);
+    }
 
     class DL_API ComputeGraph {
         std::vector<Node*> nodes;
@@ -35,26 +41,33 @@ namespace NeuZephyr::Graph {
         ~ComputeGraph() = default;
         std::ostream& print(std::ostream& os);
         friend DL_API std::ostream& operator<<(std::ostream& os, ComputeGraph& graph);
+        friend DL_API void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
+                    const std::vector<int>& shape, const float* data, bool requires_grad, const float* grad);
         void topological_sort();
 
-        InputNode* add_input(const Tensor::shape_type &shape, bool requires_grad = false, const std::string& name = "default");
+        InputNode* add_input(const Tensor::shape_type& shape, bool requires_grad = false,
+                             const std::string& name = "default");
         InputNode* add_input(const Tensor& tensor, const std::string& name = "default");
-        InputNode* add_input(const std::initializer_list<int>& shape, bool requires_grad = false, const std::string& name = "default");
+        InputNode* add_input(const std::initializer_list<int>& shape, bool requires_grad = false,
+                             const std::string& name = "default");
         InputNode* add_input(InputNode* input, const std::string& name);
-        template<typename NodeType>
+
+        template <typename NodeType>
         NodeType* add_node(NodeType* node, const std::string& name = "default") {
             nodes.push_back(node);
             if (name == "default") {
-            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
-            node_roster[node_name] = node;
-            node_roster_reverse[node] = node_name;
-            nodes_ref++;
-            } else {
-            node_roster[name] = node;
-            node_roster_reverse[node] = name;
+                const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
+                node_roster[node_name] = node;
+                node_roster_reverse[node] = node_name;
+                nodes_ref++;
+            }
+            else {
+                node_roster[name] = node;
+                node_roster_reverse[node] = name;
             }
             return node;
         }
+
         OutputNode* add_output(OutputNode* node, const std::string& name = "default");
         void forward();
         void backward();
@@ -73,6 +86,7 @@ namespace NeuZephyr::Graph {
         Tensor::value_type get_loss() const;
         void update(Optimizer* optimizer) const;
         void save(const std::string& path);
+        void load(const std::string& path);
     };
 
 }

@@ -129,6 +129,7 @@ namespace NeuZephyr::Nodes {
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = scalar;
         type = "ScalarMul";
+        WARN("Scalar operations do not yet support saving to files. If you want to save your model, consider using matrix operations instead.");
     }
 
     void ScalarMulNode::forward() {
@@ -151,6 +152,7 @@ namespace NeuZephyr::Nodes {
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = scalar;
         type = "ScalarDiv";
+        WARN("Scalar operations do not yet support saving to files. If you want to save your model, consider using matrix operations instead.");
     }
 
     void ScalarDivNode::forward() {
@@ -173,6 +175,7 @@ namespace NeuZephyr::Nodes {
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = scalar;
         type = "ScalarAdd";
+        WARN("Scalar operations do not yet support saving to files. If you want to save your model, consider using matrix operations instead.");
     }
 
     void ScalarAddNode::forward() {
@@ -193,6 +196,7 @@ namespace NeuZephyr::Nodes {
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
         this->scalar = -scalar;
         type = "ScalarSub";
+        WARN("Scalar operations do not yet support saving to files. If you want to save your model, consider using matrix operations instead.");
     }
 
     void ScalarSubNode::forward() {

@@ -6,6 +6,7 @@
 #define OPERATIONKERNELS_CUH
 
 #include "stdio.h"
+#include "utils.cuh"
 #define TILE_SIZE 32
 
 namespace NeuZephyr::Operator {
