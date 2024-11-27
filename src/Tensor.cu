@@ -334,6 +334,13 @@ namespace NeuZephyr::data {
         }
     }
 
+    void Tensor::copy_grad(const value_type* grad) const {
+        if (!_requires_grad) {
+            throw std::runtime_error("Tensor does not require gradients");
+        }
+        cudaMemcpy(_grad, grad, _size * sizeof(value_type), cudaMemcpyHostToDevice);
+    }
+
     void Tensor::randomize(unsigned long long seed) const {
         curandGenerator_t gen;
         curandCreateGenerator(&gen, CURAND_RNG_PSEUDO_DEFAULT);
