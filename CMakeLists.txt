@@ -8,13 +8,22 @@ set(CMAKE_CUDA_STANDARD 17)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set compiler flags
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -allow-unsupported-compiler")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+# Platform-specific settings
+if(MSVC)
+    # MSVC-specific compiler flags
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -allow-unsupported-compiler")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /openmp")
+else()
+    # GCC/Clang-specific compiler flags
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --compiler-options -fPIC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+endif()
 
+# Source files
 file(GLOB_RECURSE LIB_SOURCES "src/*.cu")
 file(GLOB_RECURSE LIB_HEADERS "include/NeuZephyr/*.cuh")
 
+# Library
 add_library(NeuZephyr SHARED
         ${LIB_SOURCES}
         ${LIB_HEADERS}
@@ -46,6 +55,7 @@ target_compile_definitions(NeuZephyr
         PUBLIC NEUZEPHYR_DLL
 )
 
+# Install library
 install(TARGETS NeuZephyr
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
@@ -56,4 +66,5 @@ install(DIRECTORY include/NeuZephyr
         DESTINATION include
 )
 
+# Add test directory
 add_subdirectory(test)

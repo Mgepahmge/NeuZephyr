@@ -7,31 +7,47 @@ on:
     branches: [main]
 
 jobs:
+
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+
+    container:
+      image: nvidia/cuda:11.8.0-devel-ubuntu22.04
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up CUDA environment
-        run: |
-          setx CUDA_PATH "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8"
-          setx PATH "%CUDA_PATH%\bin;%PATH%"
-          nvcc --version
-
       - name: Install dependencies
         run: |
-          choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
-          cmake --version
+          apt-get update && apt-get install -y \
+            build-essential \
+            cmake \
+            git \
+            wget
 
-      - name: Configure and Build
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: '3.30.5'
+
+
+      - name: Configure CUDA
         run: |
-          mkdir build
+          echo "CUDA_PATH=/usr/local/cuda" >> $GITHUB_ENV
+          echo "/usr/local/cuda/bin" >> $GITHUB_PATH
+
+      - name: Build CUDA Project
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          make -j$(nproc)
+
+      - name: Run Tests
+        run: |
           cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -T host=x64
-          cmake --build . --config Release
+          ctest --output-on-failure
 
       - uses: actions/upload-artifact@v3
         with:
           name: cuda-library
-          path: build/Release/NeuZephyr.dll
+          path: build/lib/libNeuZephyr.so

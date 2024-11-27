@@ -13,15 +13,21 @@ target_link_libraries(dl_test
         curand
 )
 
+if(WIN32)
+    add_custom_command(
+            TARGET dl_test
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_BINARY_DIR}/NeuZephyr.dll
+            ${CMAKE_BINARY_DIR}/bin/NeuZephyr.dll
+    )
+elseif(UNIX)
+    set_target_properties(dl_test PROPERTIES
+            BUILD_RPATH ${CMAKE_BINARY_DIR}/lib
+    )
+endif()
+
 set_target_properties(dl_test PROPERTIES
         CUDA_SEPARABLE_COMPILATION ON
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-)
-
-add_custom_command(
-        TARGET dl_test
-        PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-        ${CMAKE_BINARY_DIR}/NeuZephyr.dll
-        ${CMAKE_BINARY_DIR}/bin/NeuZephyr.dll
 )
