@@ -86,6 +86,7 @@ namespace NeuZephyr::data {
         void zero_grad() const noexcept;
         void print() const noexcept;
         void copy_data(const value_type* data, const shape_type &shape);
+        void copy_grad(const value_type* grad) const;
         void randomize(unsigned long long seed = 0) const;
         void clear() const;
         void fill(const value_type value) const;
