@@ -30,11 +30,9 @@ jobs:
         with:
           cmake-version: '3.30.5'
 
-
-      - name: Configure CUDA
-        run: |
-          echo "CUDA_PATH=/usr/local/cuda" >> $GITHUB_ENV
-          echo "/usr/local/cuda/bin" >> $GITHUB_PATH
+      - name: cuda-toolkit
+        uses: Jimver/cuda-toolkit@v0.2.19
+          
 
       - name: Build CUDA Project
         run: |
