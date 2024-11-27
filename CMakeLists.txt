@@ -41,31 +41,6 @@ target_link_libraries(NeuZephyr
         curand
 )
 
-add_custom_command(TARGET NeuZephyr POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-        ${CMAKE_BINARY_DIR}/NeuZephyr.dll
-        ${CMAKE_BINARY_DIR}/bin/NeuZephyr.dll
-)
-
-
-add_executable(dl_test test/main.cu)
-
-target_include_directories(dl_test
-        PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${CUDA_TOOLKIT_ROOT_DIR}/include
-)
-
-target_link_libraries(dl_test
-        NeuZephyr
-        curand
-)
-
-set_target_properties(dl_test PROPERTIES
-        CUDA_SEPARABLE_COMPILATION ON
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-)
-
 install(TARGETS NeuZephyr
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
@@ -75,3 +50,5 @@ install(TARGETS NeuZephyr
 install(DIRECTORY include/NeuZephyr
         DESTINATION include
 )
+
+add_subdirectory(test)
