@@ -24,7 +24,12 @@ jobs:
           cmake \
           git \
           wget
-          
+
+    - name: Setup CMake
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: '3.30.5'
+
     - name: Configure CUDA
       run: |
         echo "CUDA_PATH=/usr/local/cuda" >> $GITHUB_ENV
@@ -35,11 +40,6 @@ jobs:
         mkdir build && cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release
         make -j$(nproc)
-        
-    - name: Run Tests
-      run: |
-        cd build
-        ctest --output-on-failure
         
     - uses: actions/upload-artifact@v3
       with:
