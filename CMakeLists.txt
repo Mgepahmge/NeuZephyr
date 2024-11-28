@@ -1,17 +1,29 @@
-cmake_minimum_required(VERSION 3.29)
-project(Simple_DL_Framework CUDA)
+cmake_minimum_required(VERSION 3.18)
+project(Simple_DL_Framework LANGUAGES CUDA CXX)
+
+# Find CUDA
+find_package(CUDA REQUIRED)
 
 set(CMAKE_CUDA_STANDARD 17)
-set(CMAKE_CUDA_COMPILER "$ENV{CUDA_PATH}/bin/nvcc.exe")
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -allow-unsupported-compiler")
-set(CUDA_TOOLKIT_ROOT_DIR "$ENV{CUDA_PATH}")
-set(CMAKE_CXX_FLAGS "-fopenmp")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-link_directories(${CUDA_TOOLKIT_ROOT_DIR}/lib/x64)
+# Platform-specific settings
+if(MSVC)
+    # MSVC-specific compiler flags
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -allow-unsupported-compiler")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /openmp")
+else()
+    # GCC/Clang-specific compiler flags
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --compiler-options -fPIC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+endif()
 
+# Source files
 file(GLOB_RECURSE LIB_SOURCES "src/*.cu")
 file(GLOB_RECURSE LIB_HEADERS "include/NeuZephyr/*.cuh")
 
+# Library
 add_library(NeuZephyr SHARED
         ${LIB_SOURCES}
         ${LIB_HEADERS}
@@ -22,8 +34,14 @@ target_include_directories(NeuZephyr
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
         PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${CUDA_TOOLKIT_ROOT_DIR}/include
+        ${CUDA_INCLUDE_DIRS}
+)
+
+target_link_libraries(NeuZephyr
+        PUBLIC
+        ${CUDA_LIBRARIES}
+        ${CUDA_CUDART_LIBRARY}
+        curand
 )
 
 set_target_properties(NeuZephyr PROPERTIES
@@ -37,10 +55,7 @@ target_compile_definitions(NeuZephyr
         PUBLIC NEUZEPHYR_DLL
 )
 
-target_link_libraries(NeuZephyr
-        curand
-)
-
+# Install library
 install(TARGETS NeuZephyr
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
@@ -51,4 +66,5 @@ install(DIRECTORY include/NeuZephyr
         DESTINATION include
 )
 
+# Add test directory
 add_subdirectory(test)
