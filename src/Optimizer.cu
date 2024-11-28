@@ -12,7 +12,8 @@ namespace NeuZephyr::Optimizers {
     void SGD::step(Node* input) {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        SGD_kernel<<<grid, block>>>(input->output->data(), input->output->grad(), learning_rate, input->output->size());
+        StochasticGradientDescent<<<grid, block>>>(input->output->data(), input->output->grad(), learning_rate,
+                                                   input->output->size());
     }
 
     Momentum::Momentum(Tensor::value_type learning_rate, Tensor::value_type beta) {
@@ -30,11 +31,11 @@ namespace NeuZephyr::Optimizers {
         cudaMalloc(&temp, input->output->size() * sizeof(float));
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Momentum_kernel<<<grid, block>>>(temp, input->output->grad(), velocity[input].data(), beta,
-                                         input->output->size());
+        Kernels::Momentum<<<grid, block>>>(temp, input->output->grad(), velocity[input].data(), beta,
+                                           input->output->size());
         cudaMemcpy(velocity[input].data(), temp, input->output->size() * sizeof(float), cudaMemcpyDeviceToDevice);
-        SGD_kernel<<<grid, block>>>(input->output->data(), velocity[input].data(), learning_rate,
-                                    input->output->size());
+        StochasticGradientDescent<<<grid, block>>>(input->output->data(), velocity[input].data(), learning_rate,
+                                                   input->output->size());
         cudaFree(temp);
     }
 
@@ -50,7 +51,8 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        AdaGrad_kernel<<<grid, block>>>(input->output->data(),  gss[input].data(), input->output->grad(),learning_rate, epsilon, input->output->size());
+        Kernels::AdaGrad<<<grid, block>>>(input->output->data(), gss[input].data(), input->output->grad(),
+                                          learning_rate, epsilon, input->output->size());
     }
 
     RMSprop::RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate) {
@@ -66,8 +68,8 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        RMSprop_kernel<<<grid, block>>>(input->output->data(), v[input].data(), input->output->grad(), learning_rate,
-                                         decay_rate, epsilon, input->output->size());
+        Kernels::RMSprop<<<grid, block>>>(input->output->data(), v[input].data(), input->output->grad(), learning_rate,
+                                          decay_rate, epsilon, input->output->size());
     }
 
     Adam::Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {
@@ -91,8 +93,8 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Adam_kernel<<<grid, block>>>(input->output->data(), m[input].data(), v[input].data(), input->output->grad(),
-                                     learning_rate, beta1, beta2, epsilon, it, input->output->size());
+        Kernels::Adam<<<grid, block>>>(input->output->data(), m[input].data(), v[input].data(), input->output->grad(),
+                                       learning_rate, beta1, beta2, epsilon, it, input->output->size());
     }
 
     NAdam::NAdam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {
@@ -121,9 +123,10 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        NAdam_kernel<<<grid, block>>>(input->output->data(), m[input].data(), m_modified[input].data(), v[input].data(),
-                                      input->output->grad(), learning_rate, beta1, beta2, epsilon, it,
-                                      input->output->size());
+        Kernels::NAdam<<<grid, block>>>(input->output->data(), m[input].data(), m_modified[input].data(),
+                                        v[input].data(),
+                                        input->output->grad(), learning_rate, beta1, beta2, epsilon, it,
+                                        input->output->size());
     }
 
     AdaDelta::AdaDelta(Tensor::value_type rho) {
@@ -143,8 +146,8 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        AdaDelta_kernel<<<grid, block>>>(input->output->data(), acc_delta[input].data(), acc_grad[input].data(),
-                                         input->output->grad(), learning_rate, epsilon,
-                                         input->output->size());
+        Kernels::AdaDelta<<<grid, block>>>(input->output->data(), acc_delta[input].data(), acc_grad[input].data(),
+                                           input->output->grad(), learning_rate, epsilon,
+                                           input->output->size());
     }
 } // Optimizers

@@ -4,27 +4,27 @@
 
 #include "NeuZephyr/OperationKernels.cuh"
 
-namespace NeuZephyr::Operator {
-    __global__ void add_kernel(const float* a, const float* b, float* c,
-                               unsigned long long n) {
+namespace NeuZephyr::Kernels {
+    __global__ void MatrixAdd(const float* a, const float* b, float* c,
+                              unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             c[idx] = a[idx] + b[idx];
         }
     }
 
-    __global__ void sub_kernel(const float* a, const float* b, float* c,
-                               unsigned long long n) {
+    __global__ void MatrixSub(const float* a, const float* b, float* c,
+                              unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             c[idx] = a[idx] - b[idx];
         }
     }
 
-    __global__ void GEMM_kernel(const float* A, const float* B, float* C,
-                                const unsigned long long M,
-                                const unsigned long long N,
-                                const unsigned long long K) {
+    __global__ void GeneralMatrixMul(const float* A, const float* B, float* C,
+                                     const unsigned long long M,
+                                     const unsigned long long N,
+                                     const unsigned long long K) {
         __shared__ float As[TILE_SIZE][TILE_SIZE];
         __shared__ float Bs[TILE_SIZE][TILE_SIZE];
 
@@ -56,9 +56,9 @@ namespace NeuZephyr::Operator {
             C[row * N + col] = sum;
     }
 
-    __global__ void Transpose_kernel(const float* d_A, float* d_B,
-                                     const unsigned int rows,
-                                     const unsigned int cols) {
+    __global__ void Transpose(const float* d_A, float* d_B,
+                              const unsigned int rows,
+                              const unsigned int cols) {
         __shared__ float tile[TILE_SIZE][TILE_SIZE];
 
         unsigned int row = blockIdx.y * TILE_SIZE + threadIdx.y;
@@ -77,32 +77,32 @@ namespace NeuZephyr::Operator {
             d_B[row * rows + col] = tile[threadIdx.x][threadIdx.y];
     }
 
-    __global__ void ScalarMul_kernel(float* out, const float* in, const float num,
-                                     unsigned long long n) {
+    __global__ void ScalarMul(float* out, const float* in, const float num,
+                              unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] * num;
         }
     }
 
-    __global__ void ScalarDiv_kernel(float* out, const float* in, const float num,
-                                     unsigned long long n) {
+    __global__ void ScalarDiv(float* out, const float* in, const float num,
+                              unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] / num;
         }
     }
 
-    __global__ void ScalarAdd_kernel(float* out, const float* in, const float num,
-                                     unsigned long long n) {
+    __global__ void ScalarAdd(float* out, const float* in, const float num,
+                              unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] + num;
         }
     }
 
-    __global__ void Negation_kernel(float* out, const float* in,
-                                    unsigned long long n) {
+    __global__ void Negation(float* out, const float* in,
+                             unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = -in[idx];
@@ -110,7 +110,7 @@ namespace NeuZephyr::Operator {
     }
 
     __global__ void
-    Recip_kernel(float* out, const float* in, unsigned long long n) {
+    Recip(float* out, const float* in, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             if (in[idx] == 0) {
@@ -122,65 +122,65 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void ReLU_kernel(float* out, const float* in, unsigned long long n) {
+    __global__ void RectifiedLinearUnit(float* out, const float* in, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] > 0 ? in[idx] : 0;
         }
     }
 
-    __global__ void ReLUBackward_kernel(float* A_grad, const float* A,
-                                        const float* B_grad, unsigned long long n) {
+    __global__ void ReLUBackward(float* A_grad, const float* A,
+                                 const float* B_grad, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0 ? B_grad[idx] : 0;
         }
     }
 
-    __global__ void Sigmoid_kernel(float* out, const float* in,
-                                   unsigned long long n) {
+    __global__ void Sigmoid(float* out, const float* in,
+                            unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = 1.0f / (1.0f + __expf(-in[idx]));
         }
     }
 
-    __global__ void SigmoidBackward_kernel(float* A_grad, const float* B,
-                                           const float* B_grad,
-                                           unsigned long long n) {
+    __global__ void SigmoidBackward(float* A_grad, const float* B,
+                                    const float* B_grad,
+                                    unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = B[idx] * (1.0f - B[idx]) * B_grad[idx];
         }
     }
 
-    __global__ void Tanh_kernel(float* out, const float* in, unsigned long long n) {
+    __global__ void Tanh(float* out, const float* in, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = __tanf(in[idx]);
         }
     }
 
-    __global__ void TanhBackward_kernel(float* A_grad, const float* B,
-                                        const float* B_grad, unsigned long long n) {
+    __global__ void TanhBackward(float* A_grad, const float* B,
+                                 const float* B_grad, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = (1.0f - B[idx] * B[idx]) * B_grad[idx];
         }
     }
 
-    __global__ void LeakyReLU_kernel(float* out, const float* in,
-                                     unsigned long long n, float alpha) {
+    __global__ void LeakyReLU(float* out, const float* in,
+                              unsigned long long n, float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] > 0 ? in[idx] : alpha * in[idx];
         }
     }
 
-    __global__ void LeakyReLUBackward_kernel(float* A_grad, const float* A,
-                                             const float* B_grad,
-                                             unsigned long long n,
-                                             float alpha) {
+    __global__ void LeakyReLUBackward(float* A_grad, const float* A,
+                                      const float* B_grad,
+                                      unsigned long long n,
+                                      float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0 ? B_grad[idx] : alpha * B_grad[idx];
@@ -188,16 +188,16 @@ namespace NeuZephyr::Operator {
     }
 
     __global__ void
-    Swish_kernel(float* out, const float* in, unsigned long long n) {
+    Swish(float* out, const float* in, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] / (1.0f + __expf(-in[idx]));
         }
     }
 
-    __global__ void SwishBackward_kernel(float* A_grad, const float* A,
-                                         const float* B, const float* B_grad,
-                                         unsigned long long n) {
+    __global__ void SwishBackward(float* A_grad, const float* A,
+                                  const float* B, const float* B_grad,
+                                  unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = 1.0f / (1.0f + __expf(-A[idx])) + B[idx] * (1.0f - B[idx]) *
@@ -205,17 +205,17 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void ELU_kernel(float* out, const float* in, unsigned long long n,
-                               float alpha) {
+    __global__ void ExponentialLinearUnit(float* out, const float* in, unsigned long long n,
+                                          float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] > 0 ? in[idx] : alpha * (__expf(in[idx]) - 1);
         }
     }
 
-    __global__ void ELUBackward_kernel(float* A_grad, const float* A,
-                                       const float* B_grad, unsigned long long n,
-                                       float alpha) {
+    __global__ void ELUBackward(float* A_grad, const float* A,
+                                const float* B_grad, unsigned long long n,
+                                float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0
@@ -224,9 +224,9 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void HardSigmoid_kernel(float* out, const float* in,
-                                       unsigned long long n, float alpha,
-                                       float beta) {
+    __global__ void HardSigmoid(float* out, const float* in,
+                                unsigned long long n, float alpha,
+                                float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] * alpha + beta;
@@ -234,10 +234,10 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void HardSigmoidBackward_kernel(float* A_grad, const float* A,
-                                               const float* B_grad,
-                                               unsigned long long n,
-                                               float alpha, float beta) {
+    __global__ void HardSigmoidBackward(float* A_grad, const float* A,
+                                        const float* B_grad,
+                                        unsigned long long n,
+                                        float alpha, float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             float x = A[idx] * alpha + beta;
@@ -255,19 +255,19 @@ namespace NeuZephyr::Operator {
         return a > 1.0f ? 1.0f : (a < 0.0f ? 0.0f : a);
     }
 
-    __global__ void HardSwish_kernel(float* out, const float* in,
-                                     unsigned long long n, float alpha,
-                                     float beta) {
+    __global__ void HardSwish(float* out, const float* in,
+                              unsigned long long n, float alpha,
+                              float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] * LiteHardSigmoid(in[idx], alpha, beta);
         }
     }
 
-    __global__ void HardSwishBackward_kernel(float* A_grad, const float* A,
-                                             const float* B_grad,
-                                             unsigned long long n,
-                                             float alpha, float beta) {
+    __global__ void HardSwishBackward(float* A_grad, const float* A,
+                                      const float* B_grad,
+                                      unsigned long long n,
+                                      float alpha, float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = LiteHardSigmoid(A[idx], alpha, beta) + B_grad[idx] * A[idx] *
@@ -276,8 +276,8 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void ExpSum_kernel(float* out, const float* g_data,
-                                  unsigned long long n) {
+    __global__ void SummationExp(float* out, const float* g_data,
+                                 unsigned long long n) {
         extern __shared__ float sdata[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -335,16 +335,16 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void Softmax_kernel(float* out, const float* in,
-                                   float exp_sum_of_input, unsigned long long n) {
+    __global__ void Softmax(float* out, const float* in,
+                            float exp_sum_of_input, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = __expf(in[idx]) / exp_sum_of_input;
         }
     }
 
-    __global__ void SoftmaxJacobian_kernel(float* out, const float* in,
-                                           unsigned long long n) {
+    __global__ void SoftmaxJacobian(float* out, const float* in,
+                                    unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         unsigned long long idy = blockIdx.y * blockDim.y + threadIdx.y;
         if (idx >= n || idy >= n) {
@@ -359,8 +359,8 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void MSE_kernel(float* out, const float* predict, const float* real,
-                               unsigned long long n) {
+    __global__ void MeanSquaredError(float* out, const float* predict, const float* real,
+                                     unsigned long long n) {
         extern __shared__ float smem[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -406,24 +406,24 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void MSEBackward_kernel(float* out, const float* predict,
-                                       const float* real, unsigned long long n) {
+    __global__ void MSEBackward(float* out, const float* predict,
+                                const float* real, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = 2 * (predict[idx] - real[idx]) / (float)n;
         }
     }
 
-    __global__ void SGD_kernel(float* data, const float* grad, const float lr,
-                               unsigned long long n) {
+    __global__ void StochasticGradientDescent(float* data, const float* grad, const float lr,
+                                              unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             data[idx] -= lr * grad[idx];
         }
     }
 
-    __global__ void BCE_kernel(float* out, const float* predict, const float* real,
-                               unsigned long long n) {
+    __global__ void BinaryCrossEntropy(float* out, const float* predict, const float* real,
+                                       unsigned long long n) {
         extern __shared__ float smem[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -470,8 +470,8 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void BCEBackward_kernel(float* out, const float* predict,
-                                       const float* real, unsigned long long n) {
+    __global__ void BCEBackward(float* out, const float* predict,
+                                const float* real, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = ((predict[idx] - real[idx]) / (
@@ -479,17 +479,17 @@ namespace NeuZephyr::Operator {
         }
     }
 
-    __global__ void Momentum_kernel(float* output, const float* grad,
-                                    const float* velocity, float beta,
-                                    unsigned long long n) {
+    __global__ void Momentum(float* output, const float* grad,
+                             const float* velocity, float beta,
+                             unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             output[idx] = velocity[idx] * beta + grad[idx] * (1 - beta);
         }
     }
 
-    __global__ void AdaGrad_kernel(float* data, float* G, const float* grad, const float lr, const float eps,
-                                   unsigned long long n) {
+    __global__ void AdaGrad(float* data, float* G, const float* grad, const float lr, const float eps,
+                            unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -499,8 +499,8 @@ namespace NeuZephyr::Operator {
         G[idx] = temp;
     }
 
-    __global__ void RMSprop_kernel(float* data, float* v, const float* grad, const float lr, const float beta,
-                                   const float eps, unsigned long long n) {
+    __global__ void RMSprop(float* data, float* v, const float* grad, const float lr, const float beta,
+                            const float eps, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -510,8 +510,8 @@ namespace NeuZephyr::Operator {
         v[idx] = temp;
     }
 
-    __global__ void Adam_kernel(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
-                                const float beta2, const float eps, const int t, unsigned long long n) {
+    __global__ void Adam(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
+                         const float beta2, const float eps, const int t, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -525,9 +525,9 @@ namespace NeuZephyr::Operator {
         v[idx] = v_temp;
     }
 
-    __global__ void NAdam_kernel(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
-                                 const float beta1, const float beta2, const float eps, const int t,
-                                 unsigned long long n) {
+    __global__ void NAdam(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
+                          const float beta1, const float beta2, const float eps, const int t,
+                          unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -543,15 +543,15 @@ namespace NeuZephyr::Operator {
         v[idx] = v_temp;
     }
 
-    __global__ void AdaDelta_kernel(float* data, float* acc_delta, float* acc_grad, const float* grad,
-                                    const float rho, const float eps,
-                                    unsigned long long n) {
+    __global__ void AdaDelta(float* data, float* acc_delta, float* acc_grad, const float* grad,
+                             const float rho, const float eps,
+                             unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
         }
         const float delta_acc_grad_temp = acc_grad[idx] * rho + grad[idx] * grad[idx] * (1 - rho);
-        const float delta_theta = - grad[idx] * sqrtf(acc_delta[idx] + eps) / sqrtf(delta_acc_grad_temp + eps);
+        const float delta_theta = -grad[idx] * sqrtf(acc_delta[idx] + eps) / sqrtf(delta_acc_grad_temp + eps);
         data[idx] += delta_theta;
         const float delta_acc_temp = acc_delta[idx] * rho + delta_theta * delta_theta * (1 - rho);
         acc_delta[idx] = delta_acc_temp;

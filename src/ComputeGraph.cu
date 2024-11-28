@@ -8,31 +8,31 @@
 
 namespace NeuZephyr::Graph {
     std::ostream& ComputeGraph::print(std::ostream& os) {
-        if (sorted_nodes.empty()) {
+        if (sortedNodes.empty()) {
             throw std::runtime_error("Graph is not sorted");
         }
-        for (Node* node : sorted_nodes) {
-            os << "Node:" << node_roster_reverse[node] << "\n";
+        for (Node* node : sortedNodes) {
+            os << "Node:" << nodeRosterReverse[node] << "\n";
             os << "Pre:";
             for (Node* pre : node->inputs) {
-                os << " " << node_roster_reverse[pre];
+                os << " " << nodeRosterReverse[pre];
             }
             os << " || ";
             os << "Next:";
-            for (Node* next : adj_list[node]) {
-                os << " " << node_roster_reverse[next];
+            for (Node* next : adjList[node]) {
+                os << " " << nodeRosterReverse[next];
             }
             os << "\n";
             os << "Data:\n";
             os << *node->output;
             os << "\n";
-            if (node->output->requires_grad()) {
+            if (node->output->requiresGrad()) {
                 os << "Grad:\n";
-                node->output->print_grad(os);
+                node->output->printGrad(os);
                 os << "\n";
             }
         }
-        os << "loss: " << output_nodes[0]->get_loss() << "\n";
+        os << "loss: " << outputNodes[0]->get_loss() << "\n";
         return os;
     }
 
@@ -43,155 +43,172 @@ namespace NeuZephyr::Graph {
     void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
                     const std::vector<int>& shape, const float* data, const bool requires_grad, const float* grad) {
         if (type == "Input") {
-    auto* inputNode = new InputNode(shape, requires_grad);
-    inputNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        inputNode->output->copy_grad(grad);
-    }
-    graph->add_node(inputNode, name);
-    graph->sorted_nodes.push_back(inputNode);
-    graph->input_nodes.push_back(inputNode);
-} else if (type == "Output") {
-    auto* outputNode = new OutputNode(graph->sorted_nodes[pre[0]]);
-    outputNode->forward();
-    graph->add_node(outputNode, name);
-    graph->output_nodes.push_back(outputNode);
-    graph->sorted_nodes.push_back(outputNode);
-} else if (type == "Add") {
-    auto* addNode = new AddNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
-    addNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        addNode->output->copy_grad(grad);
-    }
-    graph->add_node(addNode, name);
-    graph->sorted_nodes.push_back(addNode);
-} else if (type == "MatMul") {
-    auto* matmulNode = new MatMulNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
-    matmulNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        matmulNode->output->copy_grad(grad);
-    }
-    graph->add_node(matmulNode, name);
-    graph->sorted_nodes.push_back(matmulNode);
-} else if (type == "ScalarMul" || type == "ScalarDiv" || type == "ScalarAdd" || type == "ScalarSub") {
-    throw std::runtime_error("Scalar operations not supported");
-} else if (type == "Sub") {
-    auto* subNode = new SubNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
-    subNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        subNode->output->copy_grad(grad);
-    }
-    graph->add_node(subNode, name);
-    graph->sorted_nodes.push_back(subNode);
-} else if (type == "ReLU") {
-    auto* reluNode = new ReLUNode(graph->sorted_nodes[pre[0]]);
-    reluNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        reluNode->output->copy_grad(grad);
-    }
-    graph->add_node(reluNode, name);
-    graph->sorted_nodes.push_back(reluNode);
-} else if (type == "Sigmoid") {
-    auto* sigmoidNode = new SigmoidNode(graph->sorted_nodes[pre[0]]);
-    sigmoidNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        sigmoidNode->output->copy_grad(grad);
-    }
-    graph->add_node(sigmoidNode, name);
-    graph->sorted_nodes.push_back(sigmoidNode);
-} else if (type == "Tanh") {
-    auto* tanhNode = new TanhNode(graph->sorted_nodes[pre[0]]);
-    tanhNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        tanhNode->output->copy_grad(grad);
-    }
-    graph->add_node(tanhNode, name);
-    graph->sorted_nodes.push_back(tanhNode);
-} else if (type == "LeakyReLU") {
-    auto* leakyreluNode = new LeakyReLUNode(graph->sorted_nodes[pre[0]]);
-    leakyreluNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        leakyreluNode->output->copy_grad(grad);
-    }
-    graph->add_node(leakyreluNode, name);
-    graph->sorted_nodes.push_back(leakyreluNode);
-} else if (type == "Swish") {
-    auto* swishNode = new SwishNode(graph->sorted_nodes[pre[0]]);
-    swishNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        swishNode->output->copy_grad(grad);
-    }
-    graph->add_node(swishNode, name);
-    graph->sorted_nodes.push_back(swishNode);
-} else if (type == "ELU") {
-    auto* eluNode = new ELUNode(graph->sorted_nodes[pre[0]]);
-    eluNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        eluNode->output->copy_grad(grad);
-    }
-    graph->add_node(eluNode);
-    graph->sorted_nodes.push_back(eluNode);
-} else if (type == "HardSigmoid") {
-    auto* hardsigmoidNode = new HardSigmoidNode(graph->sorted_nodes[pre[0]]);
-    hardsigmoidNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        hardsigmoidNode->output->copy_grad(grad);
-    }
-    graph->add_node(hardsigmoidNode, name);
-    graph->sorted_nodes.push_back(hardsigmoidNode);
-} else if (type == "HardSwish") {
-    auto* hardswishNode = new HardSwishNode(graph->sorted_nodes[pre[0]]);
-    hardswishNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        hardswishNode->output->copy_grad(grad);
-    }
-    graph->add_node(hardswishNode, name);
-    graph->sorted_nodes.push_back(hardswishNode);
-} else if (type == "Softmax") {
-    auto* softmaxNode = new SoftmaxNode(graph->sorted_nodes[pre[0]]);
-    softmaxNode->output->copy_data(data, shape);
-    if (requires_grad) {
-        softmaxNode->output->copy_grad(grad);
-    }
-    graph->add_node(softmaxNode, name);
-    graph->sorted_nodes.push_back(softmaxNode);
-} else if (type == "MeanSquaredError") {
-    auto* mseNode = new MeanSquaredErrorNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
-    mseNode->forward();
-    graph->add_node(mseNode, name);
-    graph->sorted_nodes.push_back(mseNode);
-    graph->output_nodes.push_back(mseNode);
-} else if (type == "BinaryCrossEntropy") {
-    auto* bceNode = new BinaryCrossEntropyNode(graph->sorted_nodes[pre[0]], graph->sorted_nodes[pre[1]]);
-    bceNode->forward();
-    graph->add_node(bceNode, name);
-    graph->sorted_nodes.push_back(bceNode);
-    graph->output_nodes.push_back(bceNode);
-} else {
-    throw std::runtime_error("Unknown node type");
-}
+            auto* inputNode = new InputNode(shape, requires_grad);
+            inputNode->output->copyData(data, shape);
+            if (requires_grad) {
+                inputNode->output->copyGrad(grad);
+            }
+            graph->addNode(inputNode, name);
+            graph->sortedNodes.push_back(inputNode);
+            graph->inputNodes.push_back(inputNode);
+        }
+        else if (type == "Output") {
+            auto* outputNode = new OutputNode(graph->sortedNodes[pre[0]]);
+            outputNode->forward();
+            graph->addNode(outputNode, name);
+            graph->outputNodes.push_back(outputNode);
+            graph->sortedNodes.push_back(outputNode);
+        }
+        else if (type == "Add") {
+            auto* addNode = new AddNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
+            addNode->output->copyData(data, shape);
+            if (requires_grad) {
+                addNode->output->copyGrad(grad);
+            }
+            graph->addNode(addNode, name);
+            graph->sortedNodes.push_back(addNode);
+        }
+        else if (type == "MatMul") {
+            auto* matmulNode = new MatMulNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
+            matmulNode->output->copyData(data, shape);
+            if (requires_grad) {
+                matmulNode->output->copyGrad(grad);
+            }
+            graph->addNode(matmulNode, name);
+            graph->sortedNodes.push_back(matmulNode);
+        }
+        else if (type == "ScalarMul" || type == "ScalarDiv" || type == "ScalarAdd" || type == "ScalarSub") {
+            throw std::runtime_error("Scalar operations not supported");
+        }
+        else if (type == "Sub") {
+            auto* subNode = new SubNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
+            subNode->output->copyData(data, shape);
+            if (requires_grad) {
+                subNode->output->copyGrad(grad);
+            }
+            graph->addNode(subNode, name);
+            graph->sortedNodes.push_back(subNode);
+        }
+        else if (type == "ReLU") {
+            auto* reluNode = new ReLUNode(graph->sortedNodes[pre[0]]);
+            reluNode->output->copyData(data, shape);
+            if (requires_grad) {
+                reluNode->output->copyGrad(grad);
+            }
+            graph->addNode(reluNode, name);
+            graph->sortedNodes.push_back(reluNode);
+        }
+        else if (type == "Sigmoid") {
+            auto* sigmoidNode = new SigmoidNode(graph->sortedNodes[pre[0]]);
+            sigmoidNode->output->copyData(data, shape);
+            if (requires_grad) {
+                sigmoidNode->output->copyGrad(grad);
+            }
+            graph->addNode(sigmoidNode, name);
+            graph->sortedNodes.push_back(sigmoidNode);
+        }
+        else if (type == "Tanh") {
+            auto* tanhNode = new TanhNode(graph->sortedNodes[pre[0]]);
+            tanhNode->output->copyData(data, shape);
+            if (requires_grad) {
+                tanhNode->output->copyGrad(grad);
+            }
+            graph->addNode(tanhNode, name);
+            graph->sortedNodes.push_back(tanhNode);
+        }
+        else if (type == "LeakyReLU") {
+            auto* leakyreluNode = new LeakyReLUNode(graph->sortedNodes[pre[0]]);
+            leakyreluNode->output->copyData(data, shape);
+            if (requires_grad) {
+                leakyreluNode->output->copyGrad(grad);
+            }
+            graph->addNode(leakyreluNode, name);
+            graph->sortedNodes.push_back(leakyreluNode);
+        }
+        else if (type == "Swish") {
+            auto* swishNode = new SwishNode(graph->sortedNodes[pre[0]]);
+            swishNode->output->copyData(data, shape);
+            if (requires_grad) {
+                swishNode->output->copyGrad(grad);
+            }
+            graph->addNode(swishNode, name);
+            graph->sortedNodes.push_back(swishNode);
+        }
+        else if (type == "ELU") {
+            auto* eluNode = new ELUNode(graph->sortedNodes[pre[0]]);
+            eluNode->output->copyData(data, shape);
+            if (requires_grad) {
+                eluNode->output->copyGrad(grad);
+            }
+            graph->addNode(eluNode);
+            graph->sortedNodes.push_back(eluNode);
+        }
+        else if (type == "HardSigmoid") {
+            auto* hardsigmoidNode = new HardSigmoidNode(graph->sortedNodes[pre[0]]);
+            hardsigmoidNode->output->copyData(data, shape);
+            if (requires_grad) {
+                hardsigmoidNode->output->copyGrad(grad);
+            }
+            graph->addNode(hardsigmoidNode, name);
+            graph->sortedNodes.push_back(hardsigmoidNode);
+        }
+        else if (type == "HardSwish") {
+            auto* hardswishNode = new HardSwishNode(graph->sortedNodes[pre[0]]);
+            hardswishNode->output->copyData(data, shape);
+            if (requires_grad) {
+                hardswishNode->output->copyGrad(grad);
+            }
+            graph->addNode(hardswishNode, name);
+            graph->sortedNodes.push_back(hardswishNode);
+        }
+        else if (type == "Softmax") {
+            auto* softmaxNode = new SoftmaxNode(graph->sortedNodes[pre[0]]);
+            softmaxNode->output->copyData(data, shape);
+            if (requires_grad) {
+                softmaxNode->output->copyGrad(grad);
+            }
+            graph->addNode(softmaxNode, name);
+            graph->sortedNodes.push_back(softmaxNode);
+        }
+        else if (type == "MeanSquaredError") {
+            auto* mseNode = new MeanSquaredErrorNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
+            mseNode->forward();
+            graph->addNode(mseNode, name);
+            graph->sortedNodes.push_back(mseNode);
+            graph->outputNodes.push_back(mseNode);
+        }
+        else if (type == "BinaryCrossEntropy") {
+            auto* bceNode = new BinaryCrossEntropyNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
+            bceNode->forward();
+            graph->addNode(bceNode, name);
+            graph->sortedNodes.push_back(bceNode);
+            graph->outputNodes.push_back(bceNode);
+        }
+        else {
+            throw std::runtime_error("Unknown node type");
+        }
 
     }
 
-    void ComputeGraph::topological_sort() {
-        sorted_nodes.clear();
-        in_degree.clear();
-        adj_list.clear();
+    void ComputeGraph::topologicalSort() {
+        sortedNodes.clear();
+        inDegree.clear();
+        adjList.clear();
 
         for (Node* node : nodes) {
-            if (in_degree.find(node) == in_degree.end()) {
-                in_degree[node] = 0;
+            if (inDegree.find(node) == inDegree.end()) {
+                inDegree[node] = 0;
             }
 
             for (Node* input : node->inputs) {
-                adj_list[input].push_back(node);
-                in_degree[node]++;
+                adjList[input].push_back(node);
+                inDegree[node]++;
             }
         }
 
         std::queue<Node*> q;
         for (Node* node : nodes) {
-            if (in_degree[node] == 0) {
+            if (inDegree[node] == 0) {
                 q.push(node);
             }
         }
@@ -199,124 +216,124 @@ namespace NeuZephyr::Graph {
         while (!q.empty()) {
             Node* node = q.front();
             q.pop();
-            sorted_nodes.push_back(node);
-            for (Node* next : adj_list[node]) {
-                in_degree[next]--;
-                if (in_degree[next] == 0) {
+            sortedNodes.push_back(node);
+            for (Node* next : adjList[node]) {
+                inDegree[next]--;
+                if (inDegree[next] == 0) {
                     q.push(next);
                 }
             }
         }
 
-        if (sorted_nodes.size() != nodes.size()) {
+        if (sortedNodes.size() != nodes.size()) {
             throw std::runtime_error("Graph has cycle");
         }
     }
 
-    InputNode* ComputeGraph::add_input(const Tensor::shape_type& shape, bool requires_grad, const std::string& name) {
+    InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape, bool requires_grad, const std::string& name) {
         auto node = new InputNode(shape, requires_grad);
         nodes.push_back(node);
-        input_nodes.push_back(node);
+        inputNodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
-            node_roster[node_name] = node;
-            node_roster_reverse[node] = node_name;
-            nodes_ref++;
+            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = node;
+            nodeRosterReverse[node] = node_name;
+            nodesRef++;
         }
         else {
-            node_roster[name] = node;
-            node_roster_reverse[node] = name;
+            nodeRoster[name] = node;
+            nodeRosterReverse[node] = name;
         }
         return node;
     }
 
-    InputNode* ComputeGraph::add_input(const Tensor& tensor, const std::string& name) {
+    InputNode* ComputeGraph::addInput(const Tensor& tensor, const std::string& name) {
         auto node = new InputNode(tensor);
         nodes.push_back(node);
-        input_nodes.push_back(node);
+        inputNodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
-            node_roster[node_name] = node;
-            node_roster_reverse[node] = node_name;
-            nodes_ref++;
+            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = node;
+            nodeRosterReverse[node] = node_name;
+            nodesRef++;
         }
         else {
-            node_roster[name] = node;
-            node_roster_reverse[node] = name;
+            nodeRoster[name] = node;
+            nodeRosterReverse[node] = name;
         }
         return node;
     }
 
-    InputNode* ComputeGraph::add_input(const std::initializer_list<int>& shape, bool requires_grad,
-                                       const std::string& name) {
+    InputNode* ComputeGraph::addInput(const std::initializer_list<int>& shape, bool requires_grad,
+                                      const std::string& name) {
         auto node = new InputNode(shape, requires_grad);
         nodes.push_back(node);
-        input_nodes.push_back(node);
+        inputNodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
-            node_roster[node_name] = node;
-            node_roster_reverse[node] = node_name;
-            nodes_ref++;
+            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = node;
+            nodeRosterReverse[node] = node_name;
+            nodesRef++;
         }
         else {
-            node_roster[name] = node;
-            node_roster_reverse[node] = name;
+            nodeRoster[name] = node;
+            nodeRosterReverse[node] = name;
         }
         return node;
     }
 
-    InputNode* ComputeGraph::add_input(InputNode* input, const std::string& name) {
+    InputNode* ComputeGraph::addInput(InputNode* input, const std::string& name) {
         nodes.push_back(input);
-        input_nodes.push_back(input);
+        inputNodes.push_back(input);
         if (name == "default") {
-            const std::string node_name = input->type + "_" + std::to_string(nodes_ref);
-            node_roster[node_name] = input;
-            node_roster_reverse[input] = node_name;
-            nodes_ref++;
+            const std::string node_name = input->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = input;
+            nodeRosterReverse[input] = node_name;
+            nodesRef++;
         }
         else {
-            node_roster[name] = input;
-            node_roster_reverse[input] = name;
+            nodeRoster[name] = input;
+            nodeRosterReverse[input] = name;
         }
         return input;
     }
 
-    OutputNode* ComputeGraph::add_output(OutputNode* node, const std::string& name) {
+    OutputNode* ComputeGraph::addOutput(OutputNode* node, const std::string& name) {
         nodes.push_back(node);
-        output_nodes.push_back(node);
+        outputNodes.push_back(node);
         if (name == "default") {
-            const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
-            node_roster[node_name] = node;
-            node_roster_reverse[node] = node_name;
-            nodes_ref++;
+            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = node;
+            nodeRosterReverse[node] = node_name;
+            nodesRef++;
         }
         else {
-            node_roster[name] = node;
-            node_roster_reverse[node] = name;
+            nodeRoster[name] = node;
+            nodeRosterReverse[node] = name;
         }
         return node;
     }
 
     void ComputeGraph::forward() {
-        if (sorted_nodes.empty()) {
-            topological_sort();
+        if (sortedNodes.empty()) {
+            topologicalSort();
         }
-        for (Node* node : sorted_nodes) {
+        for (Node* node : sortedNodes) {
             node->forward();
         }
     }
 
     void ComputeGraph::backward() {
-        if (sorted_nodes.empty()) {
-            topological_sort();
+        if (sortedNodes.empty()) {
+            topologicalSort();
         }
-        if (output_nodes.size() == 1) {
-            for (auto it = sorted_nodes.rbegin(); it != sorted_nodes.rend(); ++it) {
+        if (outputNodes.size() == 1) {
+            for (auto it = sortedNodes.rbegin(); it != sortedNodes.rend(); ++it) {
                 (*it)->backward();
             }
         }
         else {
-            if (output_nodes.empty()) {
+            if (outputNodes.empty()) {
                 throw std::runtime_error("No output node");
             }
             else {
@@ -325,14 +342,14 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    void ComputeGraph::zero_grad() const {
+    void ComputeGraph::zeroGrad() const {
         for (Node* node : nodes) {
-            node->output->zero_grad();
+            node->output->zeroGrad();
         }
     }
 
     void ComputeGraph::randomize(const std::string& name) {
-        node_roster[name]->output->randomize();
+        nodeRoster[name]->output->randomize();
     }
 
     void ComputeGraph::randomize(const Node* node) {
@@ -344,14 +361,14 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    void ComputeGraph::randomize_all() const {
-        for (Node* node : input_nodes) {
+    void ComputeGraph::randomizeAll() const {
+        for (Node* node : inputNodes) {
             node->output->randomize();
         }
     }
 
     void ComputeGraph::fill(const std::string& name, const Tensor::value_type val) {
-        node_roster[name]->output->fill(val);
+        nodeRoster[name]->output->fill(val);
     }
 
     void ComputeGraph::fill(const Node* node, const Tensor::value_type val) {
@@ -363,48 +380,48 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    void ComputeGraph::fill_all(Tensor::value_type val) const {
-        for (Node* node : input_nodes) {
+    void ComputeGraph::fillAll(Tensor::value_type val) const {
+        for (Node* node : inputNodes) {
             node->output->fill(val);
         }
     }
 
-    void ComputeGraph::set_input(const std::string& name, const Tensor::value_type* data) {
-        node_roster[name]->output->copy_data(data, node_roster[name]->output->shape());
+    void ComputeGraph::setInput(const std::string& name, const Tensor::value_type* data) {
+        nodeRoster[name]->output->copyData(data, nodeRoster[name]->output->shape());
     }
 
-    void ComputeGraph::set_input(const Node* node, const Tensor::value_type* data) {
+    void ComputeGraph::setInput(const Node* node, const Tensor::value_type* data) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
-            node->output->copy_data(data, node->output->shape());
+            node->output->copyData(data, node->output->shape());
         }
         else {
             throw std::runtime_error("Node not in graph");
         }
     }
 
-    Tensor::value_type* ComputeGraph::get_output() const {
-        return output_nodes[0]->output->data();
+    Tensor::value_type* ComputeGraph::getOutput() const {
+        return outputNodes[0]->output->data();
     }
 
-    Tensor::value_type* ComputeGraph::get_output_host() const {
+    Tensor::value_type* ComputeGraph::getOutputHost() const {
         auto* data = static_cast<Tensor::value_type*>(malloc(
-            output_nodes[0]->output->size() * sizeof(Tensor::value_type)));
-        cudaMemcpy(data, output_nodes[0]->output->data(), output_nodes[0]->output->size() * sizeof(Tensor::value_type),
+            outputNodes[0]->output->size() * sizeof(Tensor::value_type)));
+        cudaMemcpy(data, outputNodes[0]->output->data(), outputNodes[0]->output->size() * sizeof(Tensor::value_type),
                    cudaMemcpyDeviceToHost);
         return data;
     }
 
-    OutputNode* ComputeGraph::get_output_node() const {
-        return output_nodes[0];
+    OutputNode* ComputeGraph::getOutputNode() const {
+        return outputNodes[0];
     }
 
-    Tensor::value_type ComputeGraph::get_loss() const {
-        return output_nodes[0]->get_loss();
+    Tensor::value_type ComputeGraph::getLoss() const {
+        return outputNodes[0]->get_loss();
     }
 
     void ComputeGraph::update(Optimizer* optimizer) const {
         for (Node* node : nodes) {
-            if (node->output->requires_grad()) {
+            if (node->output->requiresGrad()) {
                 optimizer->step(node);
             }
         }
@@ -414,7 +431,7 @@ namespace NeuZephyr::Graph {
         if (path.empty()) {
             throw std::runtime_error("Path cannot be empty");
         }
-        if (sorted_nodes.empty()) {
+        if (sortedNodes.empty()) {
             throw std::runtime_error("Graph not sorted");
         }
 
@@ -425,19 +442,19 @@ namespace NeuZephyr::Graph {
 
         out << "[\n"; // Start the JSON array
 
-        for (size_t i = 0; i < sorted_nodes.size(); ++i) {
-            Node* node = sorted_nodes[i];
+        for (size_t i = 0; i < sortedNodes.size(); ++i) {
+            Node* node = sortedNodes[i];
 
             out << "  {\n"; // Start a node object
             out << R"(    "type": ")" << node->type << "\",\n";
-            out << R"(    "name": ")" << node_roster_reverse[node] << "\",\n";
+            out << R"(    "name": ")" << nodeRosterReverse[node] << "\",\n";
 
             // Pre nodes (inputs)
             out << "    \"pre\": [";
             for (size_t j = 0; j < node->inputs.size(); ++j) {
                 auto input = node->inputs[j];
-                auto index = std::distance(sorted_nodes.begin(),
-                                           std::find(sorted_nodes.begin(), sorted_nodes.end(), input));
+                auto index = std::distance(sortedNodes.begin(),
+                                           std::find(sortedNodes.begin(), sortedNodes.end(), input));
                 out << index;
                 if (j < node->inputs.size() - 1) {
                     out << ", ";
@@ -445,12 +462,12 @@ namespace NeuZephyr::Graph {
             }
             out << "],\n";
             out << "    \"post\": [";
-            for (size_t j = 0; j < adj_list[node].size(); ++j) {
-                auto next = adj_list[node][j];
-                auto index = std::distance(sorted_nodes.begin(),
-                                           std::find(sorted_nodes.begin(), sorted_nodes.end(), next));
+            for (size_t j = 0; j < adjList[node].size(); ++j) {
+                auto next = adjList[node][j];
+                auto index = std::distance(sortedNodes.begin(),
+                                           std::find(sortedNodes.begin(), sortedNodes.end(), next));
                 out << index;
-                if (j < adj_list[node].size() - 1) {
+                if (j < adjList[node].size() - 1) {
                     out << ", ";
                 }
             }
@@ -469,8 +486,8 @@ namespace NeuZephyr::Graph {
             }
             out << "],\n";
             delete[] data;
-            out << "    \"requires_grad\": " << (node->output->requires_grad() ? "true" : "false") << ",\n";
-            if (node->output->requires_grad()) {
+            out << "    \"requires_grad\": " << (node->output->requiresGrad() ? "true" : "false") << ",\n";
+            if (node->output->requiresGrad()) {
                 out << "    \"grad\": [";
                 auto* grad_data = new float[node->output->size()];
                 cudaMemcpy(grad_data, node->output->grad(), node->output->size() * sizeof(float),
@@ -488,7 +505,7 @@ namespace NeuZephyr::Graph {
                 out << "    \"grad\": []\n";
             }
             out << "  }";
-            if (i < sorted_nodes.size() - 1) {
+            if (i < sortedNodes.size() - 1) {
                 out << ",";
             }
             out << "\n";
@@ -630,7 +647,8 @@ namespace NeuZephyr::Graph {
                 startPos += pattern.length();
                 if (line.substr(startPos, 4) == "true") {
                     requires_grad = true;
-                } else {
+                }
+                else {
                     requires_grad = false;
                 }
                 continue;

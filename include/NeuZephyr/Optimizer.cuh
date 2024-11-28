@@ -11,8 +11,7 @@
 #include "Tensor.cuh"
 
 namespace NeuZephyr::Optimizers {
-    using namespace data;
-    using namespace Operator;
+    using namespace Data;
     using namespace Nodes;
 
     class DL_API Optimizer {
@@ -42,36 +41,39 @@ namespace NeuZephyr::Optimizers {
         void step(Node* input) override;
     };
 
-    class DL_API AdaGrad : public  Optimizer {
+    class DL_API AdaGrad : public Optimizer {
         std::unordered_map<Node*, Tensor> gss;
         Tensor::value_type epsilon = 1e-6;
+
     public:
         explicit AdaGrad(Tensor::value_type learning_rate);
         void step(Node* input) override;
     };
 
-    class DL_API RMSprop : public  Optimizer {
+    class DL_API RMSprop : public Optimizer {
         std::unordered_map<Node*, Tensor> v;
         Tensor::value_type decay_rate;
         Tensor::value_type epsilon = 1e-6;
+
     public:
         explicit RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate);
         void step(Node* input) override;
     };
 
-    class DL_API Adam : public  Optimizer {
+    class DL_API Adam : public Optimizer {
         std::unordered_map<Node*, Tensor> m;
         std::unordered_map<Node*, Tensor> v;
         Tensor::value_type beta1;
         Tensor::value_type beta2;
         int it;
         Tensor::value_type epsilon = 1e-6;
+
     public:
         explicit Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2);
         void step(Node* input) override;
     };
 
-    class DL_API NAdam : public  Optimizer {
+    class DL_API NAdam : public Optimizer {
         std::unordered_map<Node*, Tensor> m;
         std::unordered_map<Node*, Tensor> m_modified;
         std::unordered_map<Node*, Tensor> v;
@@ -79,15 +81,17 @@ namespace NeuZephyr::Optimizers {
         Tensor::value_type beta2;
         int it;
         Tensor::value_type epsilon = 1e-6;
+
     public:
         explicit NAdam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2);
         void step(Node* input) override;
     };
 
-    class DL_API AdaDelta : public  Optimizer {
+    class DL_API AdaDelta : public Optimizer {
         std::unordered_map<Node*, Tensor> acc_delta;
         std::unordered_map<Node*, Tensor> acc_grad;
         Tensor::value_type epsilon = 1e-6;
+
     public:
         explicit AdaDelta(Tensor::value_type rho);
         void step(Node* input) override;

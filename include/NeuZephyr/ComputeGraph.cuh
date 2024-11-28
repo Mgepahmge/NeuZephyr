@@ -15,8 +15,8 @@
 
 namespace NeuZephyr::Graph {
     using namespace Nodes;
-    using namespace data;
-    using namespace Operator;
+    using namespace Data;
+    using namespace Kernels;
     using namespace Optimizers;
 
     template <typename T, typename... Args>
@@ -26,64 +26,66 @@ namespace NeuZephyr::Graph {
 
     class DL_API ComputeGraph {
         std::vector<Node*> nodes;
-        std::vector<Node*> input_nodes;
-        std::vector<OutputNode*> output_nodes;
-        std::vector<Node*> sorted_nodes;
+        std::vector<Node*> inputNodes;
+        std::vector<OutputNode*> outputNodes;
+        std::vector<Node*> sortedNodes;
 
-        std::unordered_map<Node*, int> in_degree;
-        std::unordered_map<Node*, std::vector<Node*>> adj_list;
-        std::unordered_map<std::string, Node*> node_roster;
-        std::unordered_map<Node*, std::string> node_roster_reverse;
-        int nodes_ref = 0;
+        std::unordered_map<Node*, int> inDegree;
+        std::unordered_map<Node*, std::vector<Node*>> adjList;
+        std::unordered_map<std::string, Node*> nodeRoster;
+        std::unordered_map<Node*, std::string> nodeRosterReverse;
+        int nodesRef = 0;
 
     public:
         ComputeGraph() = default;
         ~ComputeGraph() = default;
         std::ostream& print(std::ostream& os);
         friend DL_API std::ostream& operator<<(std::ostream& os, ComputeGraph& graph);
-        friend DL_API void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
-                    const std::vector<int>& shape, const float* data, bool requires_grad, const float* grad);
-        void topological_sort();
+        friend DL_API void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name,
+                                      std::vector<int> pre,
+                                      const std::vector<int>& shape, const float* data, bool requires_grad,
+                                      const float* grad);
+        void topologicalSort();
 
-        InputNode* add_input(const Tensor::shape_type& shape, bool requires_grad = false,
-                             const std::string& name = "default");
-        InputNode* add_input(const Tensor& tensor, const std::string& name = "default");
-        InputNode* add_input(const std::initializer_list<int>& shape, bool requires_grad = false,
-                             const std::string& name = "default");
-        InputNode* add_input(InputNode* input, const std::string& name);
+        InputNode* addInput(const Tensor::shape_type& shape, bool requires_grad = false,
+                            const std::string& name = "default");
+        InputNode* addInput(const Tensor& tensor, const std::string& name = "default");
+        InputNode* addInput(const std::initializer_list<int>& shape, bool requires_grad = false,
+                            const std::string& name = "default");
+        InputNode* addInput(InputNode* input, const std::string& name);
 
         template <typename NodeType>
-        NodeType* add_node(NodeType* node, const std::string& name = "default") {
+        NodeType* addNode(NodeType* node, const std::string& name = "default") {
             nodes.push_back(node);
             if (name == "default") {
-                const std::string node_name = node->type + "_" + std::to_string(nodes_ref);
-                node_roster[node_name] = node;
-                node_roster_reverse[node] = node_name;
-                nodes_ref++;
+                const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+                nodeRoster[node_name] = node;
+                nodeRosterReverse[node] = node_name;
+                nodesRef++;
             }
             else {
-                node_roster[name] = node;
-                node_roster_reverse[node] = name;
+                nodeRoster[name] = node;
+                nodeRosterReverse[node] = name;
             }
             return node;
         }
 
-        OutputNode* add_output(OutputNode* node, const std::string& name = "default");
+        OutputNode* addOutput(OutputNode* node, const std::string& name = "default");
         void forward();
         void backward();
-        void zero_grad() const;
+        void zeroGrad() const;
         void randomize(const std::string& name);
         void randomize(const Node* node);
-        void randomize_all() const;
+        void randomizeAll() const;
         void fill(const std::string& name, Tensor::value_type val);
         void fill(const Node* node, Tensor::value_type val);
-        void fill_all(Tensor::value_type val) const;
-        void set_input(const std::string& name, const Tensor::value_type* data);
-        void set_input(const Node* node, const Tensor::value_type* data);
-        Tensor::value_type* get_output() const;
-        Tensor::value_type* get_output_host() const;
-        OutputNode* get_output_node() const;
-        Tensor::value_type get_loss() const;
+        void fillAll(Tensor::value_type val) const;
+        void setInput(const std::string& name, const Tensor::value_type* data);
+        void setInput(const Node* node, const Tensor::value_type* data);
+        Tensor::value_type* getOutput() const;
+        Tensor::value_type* getOutputHost() const;
+        OutputNode* getOutputNode() const;
+        Tensor::value_type getLoss() const;
         void update(Optimizer* optimizer) const;
         void save(const std::string& path);
         void load(const std::string& path);

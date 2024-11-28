@@ -13,5 +13,4 @@
 << std::endl)
 
 
-
 #endif //UTILS_CUH
