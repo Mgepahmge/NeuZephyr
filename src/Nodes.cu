@@ -43,7 +43,7 @@ namespace NeuZephyr::Nodes {
         }
     }
 
-    Tensor::value_type OutputNode::get_loss() const {
+    Tensor::value_type OutputNode::getLoss() const {
         return loss;
     }
 
@@ -157,6 +157,9 @@ namespace NeuZephyr::Nodes {
     }
 
     ScalarDivNode::ScalarDivNode(Node* input, const Tensor::value_type scalar) {
+        if (scalar == 0) {
+            throw std::invalid_argument("scalar cannot be zero");
+        }
         inputs.push_back(input);
         bool requires_grad = input->output->requiresGrad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
@@ -446,6 +449,10 @@ namespace NeuZephyr::Nodes {
         inputs.push_back(input);
         bool requires_grad = input->output->requiresGrad();
         output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
+        type = "Softmax";
+    }
+
+    void SoftmaxNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
         float* result;
@@ -459,13 +466,9 @@ namespace NeuZephyr::Nodes {
         }
         cudaFree(result);
         free(result_host);
-        type = "Softmax";
-    }
-
-    void SoftmaxNode::forward() {
-        dim3 block(256);
-        dim3 grid((output->size() + block.x - 1) / block.x);
-        Softmax<<<grid, block>>>(output->data(), inputs[0]->output->data(), sum, output->size());
+        dim3 block2(256);
+        dim3 grid2((output->size() + block.x - 1) / block.x);
+        Softmax<<<grid2, block2>>>(output->data(), inputs[0]->output->data(), sum, output->size());
     }
 
     void SoftmaxNode::backward() {
@@ -538,6 +541,7 @@ namespace NeuZephyr::Nodes {
         for (int i = 0; i < grid.x; i++) {
             loss += result_host[i];
         }
+        std::cout << "TEST" << std::endl;
         cudaFree(result);
         free(result_host);
     }
