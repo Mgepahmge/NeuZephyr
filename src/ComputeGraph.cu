@@ -32,7 +32,7 @@ namespace NeuZephyr::Graph {
                 os << "\n";
             }
         }
-        os << "loss: " << outputNodes[0]->get_loss() << "\n";
+        os << "loss: " << outputNodes[0]->getLoss() << "\n";
         return os;
     }
 
@@ -416,7 +416,7 @@ namespace NeuZephyr::Graph {
     }
 
     Tensor::value_type ComputeGraph::getLoss() const {
-        return outputNodes[0]->get_loss();
+        return outputNodes[0]->getLoss();
     }
 
     void ComputeGraph::update(Optimizer* optimizer) const {
@@ -682,6 +682,10 @@ namespace NeuZephyr::Graph {
                 continue;
             }
         }
+    }
+
+    Node* ComputeGraph::operator[](const std::string& name) {
+        return nodeRoster[name];
     }
 } // Graph
 // NeuZephyr

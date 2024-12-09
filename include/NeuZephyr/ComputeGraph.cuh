@@ -18,6 +18,9 @@ namespace NeuZephyr::Graph {
     using namespace Data;
     using namespace Kernels;
     using namespace Optimizers;
+    using namespace Nodes::Standard;
+    using namespace Nodes::Computation;
+    using namespace Nodes::Loss;
 
     template <typename T, typename... Args>
     std::unique_ptr<T> createInstance(Args&&... args) {
@@ -89,6 +92,7 @@ namespace NeuZephyr::Graph {
         void update(Optimizer* optimizer) const;
         void save(const std::string& path);
         void load(const std::string& path);
+        Node* operator[](const std::string& name);
     };
 
 }
