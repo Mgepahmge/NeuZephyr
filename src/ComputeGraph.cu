@@ -352,7 +352,7 @@ namespace NeuZephyr::Graph {
         nodeRoster[name]->output->randomize();
     }
 
-    void ComputeGraph::randomize(const Node* node) {
+    void ComputeGraph::randomize(const Node* node, unsigned long long seed) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
             node->output->randomize();
         }
@@ -362,8 +362,10 @@ namespace NeuZephyr::Graph {
     }
 
     void ComputeGraph::randomizeAll() const {
+        unsigned long long seed = std::chrono::system_clock::now().time_since_epoch().count();
         for (Node* node : inputNodes) {
             node->output->randomize();
+            seed++;
         }
     }
 

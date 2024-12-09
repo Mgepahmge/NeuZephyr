@@ -78,7 +78,7 @@ namespace NeuZephyr::Graph {
         void backward();
         void zeroGrad() const;
         void randomize(const std::string& name);
-        void randomize(const Node* node);
+        void randomize(const Node* node, unsigned long long seed = 0);
         void randomizeAll() const;
         void fill(const std::string& name, Tensor::value_type val);
         void fill(const Node* node, Tensor::value_type val);
