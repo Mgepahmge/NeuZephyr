@@ -93,6 +93,108 @@ namespace NeuZephyr::Graph {
         void save(const std::string& path);
         void load(const std::string& path);
         Node* operator[](const std::string& name);
+        template <typename... Args>
+        Node* addNode(const std::string& type, const std::string& input1, const std::string& input2, const std::string name = "default", Args... args) {
+            if (type == "Input") {
+                WARN("Input node cannot be added by addNode(...)");
+                return nullptr;
+            }
+            if (type == "Output") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addOutput(new OutputNode(nodeRoster[input1]), name);
+            }
+            if (type == "Add") {
+                if (nodeRoster.find(input1) == nodeRoster.end() || nodeRoster.find(input2) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new AddNode(nodeRoster[input1], nodeRoster[input2]), name);
+            }
+            if (type == "MatMul") {
+                if (nodeRoster.find(input1) == nodeRoster.end() || nodeRoster.find(input2) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new MatMulNode(nodeRoster[input1], nodeRoster[input2]), name);
+            }
+            if (type == "Sub") {
+                if (nodeRoster.find(input1) == nodeRoster.end() || nodeRoster.find(input2) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new SubNode(nodeRoster[input1], nodeRoster[input2]), name);
+            }
+            if (type == "ReLU") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new ReLUNode(nodeRoster[input1]), name);
+            }
+            if (type == "Sigmoid") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new SigmoidNode(nodeRoster[input1]), name);
+            }
+            if (type == "Tanh") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new TanhNode(nodeRoster[input1]), name);
+            }
+            if (type == "LeakyReLU") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new LeakyReLUNode(nodeRoster[input1], args...), name);
+            }
+            if (type == "Swish") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new SwishNode(nodeRoster[input1]), name);
+            }
+            if (type == "ELU") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new ELUNode(nodeRoster[input1], args...), name);
+            }
+            if (type == "HardSigmoid") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new HardSigmoidNode(nodeRoster[input1], args...), name);
+            }
+            if (type == "HardSwish") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new HardSwishNode(nodeRoster[input1], args...), name);
+            }
+            if (type == "Softmax") {
+                if (nodeRoster.find(input1) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new SoftmaxNode(nodeRoster[input1]), name);
+            }
+            if (type == "MeanSquaredError") {
+                if (nodeRoster.find(input1) == nodeRoster.end() || nodeRoster.find(input2) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new MeanSquaredErrorNode(nodeRoster[input1], nodeRoster[input2]), name);
+            }
+            if (type == "BinaryCrossEntropy") {
+                if (nodeRoster.find(input1) == nodeRoster.end() || nodeRoster.find(input2) == nodeRoster.end()) {
+                    throw std::runtime_error("Input node not found");
+                }
+                return addNode(new BinaryCrossEntropyNode(nodeRoster[input1], nodeRoster[input2]), name);
+            }
+            if (type == "ScalarAdd" || type == "ScalarSub" || type == "ScalarMul" || type == "ScalarDiv") {
+                WARN("Scalar nodes cannot be added by addNode(...)");
+                return nullptr;
+            }
+            throw std::runtime_error("Node type not found");
+        }
     };
 
 }
