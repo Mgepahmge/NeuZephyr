@@ -8,8 +8,8 @@
 
 namespace NeuZephyr::Graph {
     std::ostream& ComputeGraph::print(std::ostream& os) {
-        if (sortedNodes.empty()) {
-            throw std::runtime_error("Graph is not sorted");
+        if (!isSorted()) {
+            topologicalSort();
         }
         for (Node* node : sortedNodes) {
             os << "Node:" << nodeRosterReverse[node] << "\n";
@@ -36,10 +36,77 @@ namespace NeuZephyr::Graph {
         return os;
     }
 
+    /**
+     * @brief Overloads the stream insertion operator to print the details of the computational graph.
+     *
+     * This function overloads the `<<` operator to provide an easy and intuitive way to print the details
+     * of a `ComputeGraph` object. It calls the `print` method of `ComputeGraph` to output the graph's nodes,
+     * their connections, data, gradients, and loss to the provided output stream.
+     *
+     * @param os The output stream to which the graph details will be printed (e.g., `std::cout`).
+     * @param graph The `ComputeGraph` object whose details will be printed.
+     * @return The output stream after printing the graph details, enabling method chaining.
+     *
+     * @see ComputeGraph::print() for more information about the internal printing process.
+     *
+     * @author
+     * Mgepahmge (https://github.com/Mgepahmge)
+     *
+     * @date
+     * 2024/12/09
+     */
     std::ostream& operator<<(std::ostream& os, ComputeGraph& graph) {
         return graph.print(os);
     }
 
+    /**
+     * @brief Creates and adds a node to the computational graph based on the specified type.
+     *
+     * This function is used to create various types of nodes in a computational graph based on the provided node
+     * type, and then adds the created node to the `ComputeGraph` object. The node is initialized with the specified
+     * shape, data, and gradient information if needed. It also ensures that the nodes are connected to their previous
+     * nodes as specified by the `pre` vector.
+     *
+     * @param graph The `ComputeGraph` object to which the new node will be added.
+     * @param type A string representing the type of node to be created. Supported types include "Input", "Output",
+     *             "Add", "MatMul", "Sub", "ReLU", "Sigmoid", "Tanh", "LeakyReLU", "Swish", "ELU", "HardSigmoid",
+     *             "HardSwish", "Softmax", "MeanSquaredError", "BinaryCrossEntropy".
+     * @param name The name of the node to be added to the graph.
+     * @param pre A vector of integers specifying the indices of the previous nodes (input nodes) that this node
+     *            depends on. The number of elements in `pre` and the type of node may vary.
+     * @param shape A vector representing the shape of the node's output tensor.
+     * @param data A pointer to the data to initialize the node's output tensor.
+     * @param requires_grad A boolean flag indicating whether the node requires gradients for backpropagation.
+     * @param grad A pointer to the gradient data for the node's output tensor if `requires_grad` is true.
+     *
+     * @throws std::runtime_error If an unsupported node type is provided or if there is a mismatch in node dependencies.
+     *
+     * @note
+     * - The `CreateNode` function automatically handles the creation of nodes, their connection to previous nodes, and
+     *   the addition of the new node to the graph.
+     * - The `pre` vector is used to specify which nodes are required as inputs for the current node, and it may
+     *   differ in size based on the node type.
+     * - Some node types, such as "ScalarMul", "ScalarDiv", "ScalarAdd", and "ScalarSub", are not supported and
+     *   will throw a runtime error.
+     *
+     * ### Usage Example:
+     * ```cpp
+     * ComputeGraph graph;
+     * std::vector<int> pre = {0, 1};  // Specify the input nodes for the current node
+     * std::vector<int> shape = {3, 3};  // Specify the shape of the output tensor
+     * float data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f};  // Example data
+     * CreateNode(&graph, "Add", "add_node", pre, shape, data, true, nullptr);  // Create an "Add" node
+     * ```
+     *
+     * @see ComputeGraph for more details on graph structure and node management.
+     * @see Nodes::Node for information on individual node types and their operations.
+     *
+     * @author
+     * Mgepahmge (https://github.com/Mgepahmge)
+     *
+     * @date
+     * 2024/12/09
+     */
     void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
                     const std::vector<int>& shape, const float* data, const bool requires_grad, const float* grad) {
         if (type == "Input") {
@@ -230,6 +297,10 @@ namespace NeuZephyr::Graph {
         }
     }
 
+    bool ComputeGraph::isSorted() const {
+        return sortedNodes.size() == nodes.size();
+    }
+
     InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape, bool requires_grad, const std::string& name) {
         auto node = new InputNode(shape, requires_grad);
         nodes.push_back(node);
@@ -315,7 +386,7 @@ namespace NeuZephyr::Graph {
     }
 
     void ComputeGraph::forward() {
-        if (sortedNodes.empty()) {
+        if (!isSorted()) {
             topologicalSort();
         }
         for (Node* node : sortedNodes) {
@@ -324,8 +395,8 @@ namespace NeuZephyr::Graph {
     }
 
     void ComputeGraph::backward() {
-        if (sortedNodes.empty()) {
-            topologicalSort();
+        if (!isSorted()) {
+            throw std::runtime_error("Graph is not sorted");
         }
         if (outputNodes.size() == 1) {
             for (auto it = sortedNodes.rbegin(); it != sortedNodes.rend(); ++it) {
@@ -348,13 +419,18 @@ namespace NeuZephyr::Graph {
         }
     }
 
-    void ComputeGraph::randomize(const std::string& name) {
-        nodeRoster[name]->output->randomize();
+    void ComputeGraph::randomize(const std::string& name, unsigned long long seed) {
+        if (nodeRoster.find(name) != nodeRoster.end()) {
+            nodeRoster[name]->output->randomize(seed);
+        }
+        else {
+            throw std::runtime_error("Node not in graph");
+        }
     }
 
     void ComputeGraph::randomize(const Node* node, unsigned long long seed) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
-            node->output->randomize();
+            node->output->randomize(seed);
         }
         else {
             throw std::runtime_error("Node not in graph");
@@ -370,7 +446,12 @@ namespace NeuZephyr::Graph {
     }
 
     void ComputeGraph::fill(const std::string& name, const Tensor::value_type val) {
-        nodeRoster[name]->output->fill(val);
+        if (nodeRoster.find(name) != nodeRoster.end()) {
+            nodeRoster[name]->output->fill(val);
+        }
+        else {
+            throw std::runtime_error("Node not in graph");
+        }
     }
 
     void ComputeGraph::fill(const Node* node, const Tensor::value_type val) {
@@ -389,7 +470,12 @@ namespace NeuZephyr::Graph {
     }
 
     void ComputeGraph::setInput(const std::string& name, const Tensor::value_type* data) {
-        nodeRoster[name]->output->copyData(data, nodeRoster[name]->output->shape());
+        if (nodeRoster.find(name) != nodeRoster.end()) {
+            nodeRoster[name]->output->copyData(data, nodeRoster[name]->output->shape());
+        }
+        else {
+            throw std::runtime_error("Node not in graph");
+        }
     }
 
     void ComputeGraph::setInput(const Node* node, const Tensor::value_type* data) {
@@ -402,10 +488,16 @@ namespace NeuZephyr::Graph {
     }
 
     Tensor::value_type* ComputeGraph::getOutput() const {
+        if (outputNodes.empty()) {
+            throw std::runtime_error("No output node");
+        }
         return outputNodes[0]->output->data();
     }
 
     Tensor::value_type* ComputeGraph::getOutputHost() const {
+        if (outputNodes.empty()) {
+            throw std::runtime_error("No output node");
+        }
         auto* data = static_cast<Tensor::value_type*>(malloc(
             outputNodes[0]->output->size() * sizeof(Tensor::value_type)));
         cudaMemcpy(data, outputNodes[0]->output->data(), outputNodes[0]->output->size() * sizeof(Tensor::value_type),
@@ -414,10 +506,16 @@ namespace NeuZephyr::Graph {
     }
 
     OutputNode* ComputeGraph::getOutputNode() const {
+        if (outputNodes.empty()) {
+            throw std::runtime_error("No output node");
+        }
         return outputNodes[0];
     }
 
     Tensor::value_type ComputeGraph::getLoss() const {
+        if (outputNodes.empty()) {
+            throw std::runtime_error("No output node");
+        }
         return outputNodes[0]->getLoss();
     }
 

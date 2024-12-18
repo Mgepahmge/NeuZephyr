@@ -5,49 +5,51 @@
 #include "NeuZephyr/Nodes.cuh"
 
 namespace NeuZephyr::Nodes {
+    namespace Standard {
+        InputNode::InputNode(const Tensor::shape_type& shape, bool requires_grad) {
+            output = std::make_shared<Tensor>(shape, requires_grad);
+            type = "Input";
+        }
 
-    InputNode::InputNode(const Tensor::shape_type& shape, bool requires_grad) {
-        output = std::make_shared<Tensor>(shape, requires_grad);
-        type = "Input";
-    }
+        InputNode::InputNode(const Tensor& tensor) {
+            output = std::make_shared<Tensor>(tensor);
+            type = "Input";
+        }
 
-    InputNode::InputNode(const Tensor& tensor) {
-        output = std::make_shared<Tensor>(tensor);
-        type = "Input";
-    }
+        InputNode::InputNode(const std::initializer_list<int>& shape, bool requires_grad) {
+            output = std::make_shared<Tensor>(shape, requires_grad);
+            type = "Input";
+        }
 
-    InputNode::InputNode(const std::initializer_list<int>& shape, bool requires_grad) {
-        output = std::make_shared<Tensor>(shape, requires_grad);
-        type = "Input";
-    }
+        void InputNode::forward() {
+        }
 
-    void InputNode::forward() {
-    }
+        void InputNode::backward() {
+        }
 
-    void InputNode::backward() {
-    }
+        OutputNode::OutputNode(Node* input) {
+            loss = 0;
+            inputs.push_back(input);
+            type = "Output";
+        }
 
-    OutputNode::OutputNode(Node* input) {
-        loss = 0;
-        inputs.push_back(input);
-        type = "Output";
-    }
+        void OutputNode::forward() {
+            output = inputs[0]->output;
+        }
 
-    void OutputNode::forward() {
-        output = inputs[0]->output;
-    }
+        void OutputNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                inputs[0]->output->fillGrad(1);
+            }
+        }
 
-    void OutputNode::backward() {
-        if (inputs[0]->output->requiresGrad()) {
-            inputs[0]->output->fillGrad(1);
+        Tensor::value_type OutputNode::getLoss() const {
+            return loss;
         }
     }
 
-    Tensor::value_type OutputNode::getLoss() const {
-        return loss;
-    }
-
-    AddNode::AddNode(Node* input_left, Node* input_right) {
+    namespace Computation {
+        AddNode::AddNode(Node* input_left, Node* input_right) {
         if (input_left->output->shape() != input_right->output->shape()) {
             throw std::invalid_argument("Shape of left and right input must be the same.");
         }
@@ -481,8 +483,10 @@ namespace NeuZephyr::Nodes {
         GeneralMatrixMul<<<gird2, block2>>>(jacobian.data(), output->grad(), inputs[0]->output->grad(),
                                             jacobian.shape()[0], output->shape()[1], jacobian.shape()[1]);
     }
+    }
 
-    MeanSquaredErrorNode::MeanSquaredErrorNode(Node* input1, Node* input2):
+    namespace Loss {
+        MeanSquaredErrorNode::MeanSquaredErrorNode(Node* input1, Node* input2):
         OutputNode(input1) {
         if (input1->output->shape() != input2->output->shape()) {
             throw std::invalid_argument("input1 and input2 should have the same shape");
@@ -554,4 +558,6 @@ namespace NeuZephyr::Nodes {
                                          output->size());
         }
     }
+    }
+
 }

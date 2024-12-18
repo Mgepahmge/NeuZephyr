@@ -4,6 +4,9 @@
 
 #include "NeuZephyr/Optimizer.cuh"
 
+#include <fstream>
+#include <string>
+
 namespace NeuZephyr::Optimizers {
     SGD::SGD(const Tensor::value_type learning_rate) {
         this->learning_rate = learning_rate;
