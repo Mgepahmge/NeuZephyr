@@ -23,7 +23,7 @@
  * These classes implement the `forward()` and `backward()` methods to perform specific operations and propagate
  * gradients during the training process of the neural network.
  *
- * This class is part of the `NeuZephyr::Nodes` namespace, and each derived class represents a specific computational layer
+ * This class is part of the `nz::nodes` namespace, and each derived class represents a specific computational layer
  * or operation used in deep learning models.
  *
  * @note
@@ -44,10 +44,10 @@
 #include "Tensor.cuh"
 
 /**
- * @namespace NeuZephyr::Nodes
+ * @namespace nz::nodes
  * @brief Contains classes and functionality for nodes in a neural network or computational graph.
  *
- * The `NeuZephyr::Nodes` namespace provides a collection of classes that represent various layers and operations
+ * The `nz::nodes` namespace provides a collection of classes that represent various layers and operations
  * in a neural network. Each node is an essential component of a computational graph, responsible for performing
  * specific computations during the forward and backward passes.
  *
@@ -74,9 +74,9 @@
  * @date
  * 2024/11/29
  */
-namespace NeuZephyr::Nodes {
-    using namespace Data;
-    using namespace Kernels;
+namespace nz::nodes {
+    using namespace data;
+    using namespace krnl;
 
     /**
      * @class Node
@@ -98,7 +98,7 @@ namespace NeuZephyr::Nodes {
      * - **Forward and Backward Passes**: The pure virtual functions `forward()` and `backward()` that must be implemented
      *   by derived classes to perform the forward and backward propagation steps of the neural network.
      *
-     * This class is part of the `NeuZephyr::Nodes` namespace, and is intended to be used as a base class for defining
+     * This class is part of the `nz::nodes` namespace, and is intended to be used as a base class for defining
      * custom layers or operations in a neural network.
      *
      * @note
@@ -178,10 +178,10 @@ namespace NeuZephyr::Nodes {
     };
 
     /**
-     * @namespace NeuZephyr::Nodes::Standard
+     * @namespace nz::nodes::io
      * @brief This namespace contains standard nodes used in computational graphs for neural networks.
      *
-     * The `NeuZephyr::Nodes::Standard` namespace includes the basic building blocks for a computational graph,
+     * The `nz::nodes::io` namespace includes the basic building blocks for a computational graph,
      * such as input nodes and output nodes. These nodes serve as the primary interface for data flow in neural networks.
      *
      * This namespace includes the following classes:
@@ -205,7 +205,7 @@ namespace NeuZephyr::Nodes {
      * @date
      * 2024/11/29
      */
-    namespace Standard {
+    namespace io {
         /**
         * @class InputNode
         * @brief Represents an input node in a computational graph.
@@ -224,7 +224,7 @@ namespace NeuZephyr::Nodes {
         * - **Shape and Gradient Support**: The shape of the input tensor and whether it requires gradients is configurable
         *   during initialization.
         *
-        * This class is part of the `NeuZephyr::Nodes` namespace and serves as a fundamental part of the computational graph,
+        * This class is part of the `nz::nodes` namespace and serves as a fundamental part of the computational graph,
         * providing input data to the network during the forward pass.
         *
         * @note
@@ -414,7 +414,7 @@ namespace NeuZephyr::Nodes {
          *   gradient propagation for the backward pass.
          * - **Loss Access**: The `getLoss()` method provides access to the loss value stored in the `loss` member.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace, and it is designed to be extended for implementing various
+         * This class is part of the `nz::nodes` namespace, and it is designed to be extended for implementing various
          * loss functions.
          *
          * @note
@@ -561,10 +561,10 @@ namespace NeuZephyr::Nodes {
     }
 
     /**
-     * @namespace NeuZephyr::Nodes::Computation
+     * @namespace nz::nodes::calc
      * @brief Contains classes and functionality for computation nodes in a neural network or computational graph.
      *
-     * The `NeuZephyr::Nodes::Computation` namespace provides a collection of classes that represent various
+     * The `nz::nodes::calc` namespace provides a collection of classes that represent various
      * computational operations within a neural network. These nodes perform essential mathematical operations
      * during the forward pass in a computational graph.
      *
@@ -590,7 +590,7 @@ namespace NeuZephyr::Nodes {
      * @date
      * 2024/11/29
      */
-    namespace Computation {
+    namespace calc {
         /**
          * @class AddNode
          * @brief Represents a node that performs element-wise addition between two input tensors.
@@ -609,7 +609,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Check**: The constructor checks that the shapes of the two input tensors are the same, as element-wise
          *   addition requires matching shapes.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is designed for use in a computational graph where
+         * This class is part of the `nz::nodes` namespace and is designed for use in a computational graph where
          * addition operations are needed.
          *
          * @note
@@ -750,7 +750,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Check**: The constructor ensures that the number of columns in the left input tensor matches the number
          *   of rows in the right input tensor, as required for matrix multiplication.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is used for matrix operations in a computational graph.
+         * This class is part of the `nz::nodes` namespace and is used for matrix operations in a computational graph.
          *
          * @note
          * - The left input tensor's number of columns must match the right input tensor's number of rows.
@@ -891,7 +891,7 @@ namespace NeuZephyr::Nodes {
          * - **Scalar Handling**: Handles scalar operations directly but issues a warning that scalar operations
          *   do not support saving to files, encouraging the use of matrix operations when persistence is required.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is used for scalar-tensor operations
+         * This class is part of the `nz::nodes` namespace and is used for scalar-tensor operations
          * in a computational graph.
          *
          * @note
@@ -1036,7 +1036,7 @@ namespace NeuZephyr::Nodes {
          * - **Gradient Management**: Tracks whether gradients are required for the operation based on the
          *   properties of the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is optimized for scalar-tensor division
+         * This class is part of the `nz::nodes` namespace and is optimized for scalar-tensor division
          * operations in computational graphs.
          *
          * @note
@@ -1187,7 +1187,7 @@ namespace NeuZephyr::Nodes {
          * - **Gradient Management**: Tracks whether gradients are required for the operation based on the
          *   properties of the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and facilitates scalar-tensor addition
+         * This class is part of the `nz::nodes` namespace and facilitates scalar-tensor addition
          * operations in computational graphs.
          *
          * @note
@@ -1328,7 +1328,7 @@ namespace NeuZephyr::Nodes {
          * - **Gradient Management**: Tracks whether gradients are required for the operation based on the
          *   properties of the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and facilitates scalar-tensor subtraction
+         * This class is part of the `nz::nodes` namespace and facilitates scalar-tensor subtraction
          * operations in computational graphs.
          *
          * @note
@@ -1474,7 +1474,7 @@ namespace NeuZephyr::Nodes {
          * - **Gradient Management**: Tracks whether gradients are required for either of the input tensors, and
          *   propagates gradients accordingly.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and facilitates tensor-to-tensor subtraction
+         * This class is part of the `nz::nodes` namespace and facilitates tensor-to-tensor subtraction
          * operations in computational graphs.
          *
          * @note
@@ -1619,7 +1619,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is typically used in constructing neural
+         * This class is part of the `nz::nodes` namespace and is typically used in constructing neural
          * network models to introduce non-linearity between layers.
          *
          * @note
@@ -1762,7 +1762,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is used to add non-linearity to models or
+         * This class is part of the `nz::nodes` namespace and is used to add non-linearity to models or
          * normalize outputs.
          *
          * @note
@@ -1904,7 +1904,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is commonly used to add non-linearity
+         * This class is part of the `nz::nodes` namespace and is commonly used to add non-linearity
          * to models or normalize outputs.
          *
          * @note
@@ -2043,7 +2043,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is commonly used in deep learning to mitigate
+         * This class is part of the `nz::nodes` namespace and is commonly used in deep learning to mitigate
          * the "dying ReLU" problem by allowing small gradients for negative inputs.
          *
          * @note
@@ -2194,7 +2194,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is commonly used in advanced deep learning
+         * This class is part of the `nz::nodes` namespace and is commonly used in advanced deep learning
          * models to enhance performance over traditional activation functions.
          *
          * @note
@@ -2337,7 +2337,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is often used to improve the learning dynamics
+         * This class is part of the `nz::nodes` namespace and is often used to improve the learning dynamics
          * in deep networks by reducing the vanishing gradient problem for negative inputs.
          *
          * @note
@@ -2493,7 +2493,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is used in models where efficiency is prioritized
+         * This class is part of the `nz::nodes` namespace and is used in models where efficiency is prioritized
          * over precise non-linearity.
          *
          * @note
@@ -2644,7 +2644,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Preservation**: The output tensor has the same shape as the input tensor.
          * - **Gradient Management**: Automatically tracks gradients if required by the input tensor.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is used in models to improve performance
+         * This class is part of the `nz::nodes` namespace and is used in models to improve performance
          * while maintaining computational efficiency.
          *
          * @note
@@ -3004,7 +3004,7 @@ namespace NeuZephyr::Nodes {
     }
 
     /**
-     * @namespace NeuZephyr::Nodes::Loss
+     * @namespace nz::nodes::loss
      * @brief Contains loss function nodes for computing various loss metrics in a machine learning model.
      *
      * The `Loss` namespace provides a collection of nodes that represent different loss functions used during the training
@@ -3029,7 +3029,7 @@ namespace NeuZephyr::Nodes {
      * @date
      * 2024/12/07
      */
-    namespace Loss {
+    namespace loss {
         /**
  * @class MeanSquaredErrorNode
  * @brief Represents the Mean Squared Error (MSE) loss function node in a computational graph.
@@ -3051,7 +3051,7 @@ namespace NeuZephyr::Nodes {
  * - **Shape Compatibility**: Ensures that both input tensors have the same shape. An exception is thrown if the shapes do not match.
  * - **Efficient Computation**: The forward and backward passes are optimized for parallel execution using CUDA.
  *
- * This class is part of the `NeuZephyr::Nodes` namespace and is useful in models where Mean Squared Error is the loss function.
+ * This class is part of the `nz::nodes` namespace and is useful in models where Mean Squared Error is the loss function.
  *
  * @note
  * - The `MeanSquaredErrorNode` requires two input nodes, both of which must have tensors of the same shape.
@@ -3085,7 +3085,7 @@ namespace NeuZephyr::Nodes {
  *
  * @date 2024/12/07
  */
-        class DL_API MeanSquaredErrorNode : public Standard::OutputNode {
+        class DL_API MeanSquaredErrorNode : public io::OutputNode {
         public:
             /**
              * @brief Constructor to initialize a `MeanSquaredErrorNode` for computing the Mean Squared Error (MSE) loss.
@@ -3204,7 +3204,7 @@ namespace NeuZephyr::Nodes {
          * - **Shape Compatibility**: Ensures that both input tensors have the same shape. An exception is thrown if the shapes do not match.
          * - **Efficient Computation**: The forward and backward passes are optimized for parallel execution using CUDA to handle large datasets efficiently.
          *
-         * This class is part of the `NeuZephyr::Nodes` namespace and is used in models for binary classification tasks.
+         * This class is part of the `nz::nodes` namespace and is used in models for binary classification tasks.
          *
          * @note
          * - The `BinaryCrossEntropyNode` requires two input nodes: the predicted probabilities (`input1`) and the true binary labels (`input2`).
@@ -3239,7 +3239,7 @@ namespace NeuZephyr::Nodes {
          *
          * @date 2024/12/07
          */
-        class DL_API BinaryCrossEntropyNode : public Standard::OutputNode {
+        class DL_API BinaryCrossEntropyNode : public io::OutputNode {
         public:
             /**
              * @brief Constructor to initialize a `BinaryCrossEntropyNode` for computing the Binary Cross-Entropy loss.

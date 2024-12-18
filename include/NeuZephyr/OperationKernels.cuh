@@ -7,7 +7,7 @@
  * neural network layers, activation functions, and optimization algorithms.
  *
  * @details
- * The kernel functions in this file are organized within the `NeuZephyr::Kernels` namespace
+ * The kernel functions in this file are organized within the `nz::krnl` namespace
  * and cover a wide range of computational tasks:
  *
  * - **Matrix Operations**: Basic matrix arithmetic like addition, subtraction, multiplication,
@@ -35,7 +35,7 @@
  * These low-level CUDA kernel functions are intended for internal library implementation
  * and framework extension. End-users building neural network models SHOULD NOT directly
  * call these kernels. They are meant to be used exclusively by library developers
- * contributing to the internal functionality of the NeuZephyr framework.
+ * contributing to the internal functionality of the nz framework.
  *
  * @author
  * Mgepahmge (https://github.com/Mgepahmge)
@@ -51,10 +51,10 @@
 #define TILE_SIZE 32
 
 /**
- * @namespace NeuZephyr::Kernels
+ * @namespace nz::krnl
  * @brief High-Performance CUDA Kernel Implementations for Tensor Computations
  *
- * @details The NeuZephyr::Kernels namespace provides an extensive collection of CUDA kernel
+ * @details The nz::krnl namespace provides an extensive collection of CUDA kernel
  * functions optimized for accelerated tensor operations and deep learning computations.
  *
  * @section kernel_categories Kernel Function Categories
@@ -117,7 +117,7 @@
  * @author Mgepahmge
  * @date 2024/12/07
  */
-namespace NeuZephyr::Kernels {
+namespace nz::krnl {
     /**
      * @brief Kernel function to perform matrix addition on GPU
      *

@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 
-namespace NeuZephyr::Optimizers {
+namespace nz::opt {
     SGD::SGD(const Tensor::value_type learning_rate) {
         this->learning_rate = learning_rate;
     }
@@ -34,7 +34,7 @@ namespace NeuZephyr::Optimizers {
         cudaMalloc(&temp, input->output->size() * sizeof(float));
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Kernels::Momentum<<<grid, block>>>(temp, input->output->grad(), velocity[input].data(), beta,
+        krnl::Momentum<<<grid, block>>>(temp, input->output->grad(), velocity[input].data(), beta,
                                            input->output->size());
         cudaMemcpy(velocity[input].data(), temp, input->output->size() * sizeof(float), cudaMemcpyDeviceToDevice);
         StochasticGradientDescent<<<grid, block>>>(input->output->data(), velocity[input].data(), learning_rate,
@@ -54,7 +54,7 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Kernels::AdaGrad<<<grid, block>>>(input->output->data(), gss[input].data(), input->output->grad(),
+        krnl::AdaGrad<<<grid, block>>>(input->output->data(), gss[input].data(), input->output->grad(),
                                           learning_rate, epsilon, input->output->size());
     }
 
@@ -71,7 +71,7 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Kernels::RMSprop<<<grid, block>>>(input->output->data(), v[input].data(), input->output->grad(), learning_rate,
+        krnl::RMSprop<<<grid, block>>>(input->output->data(), v[input].data(), input->output->grad(), learning_rate,
                                           decay_rate, epsilon, input->output->size());
     }
 
@@ -96,7 +96,7 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Kernels::Adam<<<grid, block>>>(input->output->data(), m[input].data(), v[input].data(), input->output->grad(),
+        krnl::Adam<<<grid, block>>>(input->output->data(), m[input].data(), v[input].data(), input->output->grad(),
                                        learning_rate, beta1, beta2, epsilon, it, input->output->size());
     }
 
@@ -126,7 +126,7 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Kernels::NAdam<<<grid, block>>>(input->output->data(), m[input].data(), m_modified[input].data(),
+        krnl::NAdam<<<grid, block>>>(input->output->data(), m[input].data(), m_modified[input].data(),
                                         v[input].data(),
                                         input->output->grad(), learning_rate, beta1, beta2, epsilon, it,
                                         input->output->size());
@@ -149,8 +149,8 @@ namespace NeuZephyr::Optimizers {
         }
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
-        Kernels::AdaDelta<<<grid, block>>>(input->output->data(), acc_delta[input].data(), acc_grad[input].data(),
+        krnl::AdaDelta<<<grid, block>>>(input->output->data(), acc_delta[input].data(), acc_grad[input].data(),
                                            input->output->grad(), learning_rate, epsilon,
                                            input->output->size());
     }
-} // Optimizers
+} // opt

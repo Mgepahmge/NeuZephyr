@@ -6,7 +6,7 @@
 
 #include <filesystem>
 
-namespace NeuZephyr::Graph {
+namespace nz::graph {
     std::ostream& ComputeGraph::print(std::ostream& os) {
         if (!isSorted()) {
             topologicalSort();
@@ -99,7 +99,7 @@ namespace NeuZephyr::Graph {
      * ```
      *
      * @see ComputeGraph for more details on graph structure and node management.
-     * @see Nodes::Node for information on individual node types and their operations.
+     * @see nodes::Node for information on individual node types and their operations.
      *
      * @author
      * Mgepahmge (https://github.com/Mgepahmge)
@@ -788,4 +788,4 @@ namespace NeuZephyr::Graph {
         return nodeRoster[name];
     }
 } // Graph
-// NeuZephyr
+// nz

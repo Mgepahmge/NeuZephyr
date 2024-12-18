@@ -4,7 +4,7 @@
 
 #include "NeuZephyr/OperationKernels.cuh"
 
-namespace NeuZephyr::Kernels {
+namespace nz::krnl {
     __global__ void MatrixAdd(const float* a, const float* b, float* c,
                               unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;

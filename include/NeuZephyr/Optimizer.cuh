@@ -18,7 +18,7 @@
  * - **NAdam (Nesterov-accelerated Adam)**: Enhances Adam with Nesterov momentum for improved convergence speed.
  * - **AdaDelta**: An extension of AdaGrad that maintains a running average of squared updates for consistent learning rates.
  *
- * These optimizers are part of the `NeuZephyr::Optimizers` namespace and are designed for
+ * These optimizers are part of the `nz::opt` namespace and are designed for
  * extensibility and high performance in deep learning workflows.
  *
  * @note
@@ -41,10 +41,10 @@
 #include "Nodes.cuh"
 
 /**
- * @namespace NeuZephyr::Optimizers
+ * @namespace nz::opt
  * @brief Contains optimization algorithms for training deep learning models.
  *
- * The `NeuZephyr::Optimizers` namespace includes a collection of optimization algorithms
+ * The `nz::opt` namespace includes a collection of optimization algorithms
  * designed to update model parameters during the training of deep learning models. These
  * optimizers aim to minimize the loss function by adjusting the learning rate dynamically
  * or incorporating momentum terms to improve convergence.
@@ -84,9 +84,9 @@
  * @date
  * 2024/12/07
  */
-namespace NeuZephyr::Optimizers {
-    using namespace Data;
-    using namespace Nodes;
+namespace nz::opt {
+    using namespace data;
+    using namespace nodes;
 
     /**
      * @class Optimizer
@@ -113,7 +113,7 @@ namespace NeuZephyr::Optimizers {
      * - The `learning_rate` is typically set during the initialization of an optimizer and
      *   is used to control the size of the updates applied to model parameters.
      *
-     * This class is part of the `NeuZephyr::Optimizers` namespace and provides a common
+     * This class is part of the `nz::opt` namespace and provides a common
      * structure for implementing various optimizers, facilitating extensibility and code reuse.
      *
      * @author
@@ -921,7 +921,7 @@ namespace NeuZephyr::Optimizers {
          * - The iteration counter is crucial for bias correction in the NAdam algorithm.
          *
          * @see NAdam::NAdam() Constructor for initializing optimizer parameters
-         * @see Kernels::NAdam CUDA kernel implementing the NAdam update rule
+         * @see krnl::NAdam CUDA kernel implementing the NAdam update rule
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1051,7 +1051,7 @@ namespace NeuZephyr::Optimizers {
          * - The algorithm adapts the learning rate based on the historical gradient information.
          *
          * @see AdaDelta::AdaDelta() Constructor for initializing optimizer parameters
-         * @see Kernels::AdaDelta CUDA kernel implementing the AdaDelta update rule
+         * @see krnl::AdaDelta CUDA kernel implementing the AdaDelta update rule
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)

@@ -20,7 +20,7 @@
  * - **Activation Functions**: Includes common activation functions such as ReLU, Sigmoid, Tanh,
  *   and advanced functions like Swish and HardSwish.
  *
- * This class is part of the `NeuZephyr::Data` namespace and is designed for extensibility and
+ * This class is part of the `nz::data` namespace and is designed for extensibility and
  * high performance in machine learning workflows.
  *
  * @note
@@ -44,10 +44,10 @@
 #include "dl_export.cuh"
 
 /**
- * @namespace NeuZephyr::Data
+ * @namespace nz::data
  * @brief Contains data structures and utilities for tensor operations in machine learning workflows.
  *
- * The `NeuZephyr::Data` namespace provides foundational classes and functions
+ * The `nz::data` namespace provides foundational classes and functions
  * for managing and manipulating tensors in GPU-based computations. It is designed
  * for use in deep learning frameworks and other numerical computing applications.
  *
@@ -58,7 +58,7 @@
  *   memory management, and activation functions.
  *
  * The namespace is intended to encapsulate all tensor-related functionality to ensure
- * modularity and maintainability in the larger NeuZephyr project.
+ * modularity and maintainability in the larger nz project.
  *
  * @note
  * The components in this namespace rely on CUDA for GPU-based operations. Ensure that
@@ -70,7 +70,7 @@
  * @date
  * 2024/11/29
  */
-namespace NeuZephyr::Data {
+namespace nz::data {
     /**
      * @class Tensor
      * @brief A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.
@@ -100,7 +100,7 @@ namespace NeuZephyr::Data {
      *
      * ### Usage Example:
      * ```cpp
-     * using namespace NeuZephyr::Data;
+     * using namespace nz::data;
      *
      * // Create a tensor that requires gradient with shape 2x3
      * Tensor tensor({2, 3}, true);

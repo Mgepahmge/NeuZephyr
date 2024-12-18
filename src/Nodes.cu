@@ -4,8 +4,8 @@
 
 #include "NeuZephyr/Nodes.cuh"
 
-namespace NeuZephyr::Nodes {
-    namespace Standard {
+namespace nz::nodes {
+    namespace io {
         InputNode::InputNode(const Tensor::shape_type& shape, bool requires_grad) {
             output = std::make_shared<Tensor>(shape, requires_grad);
             type = "Input";
@@ -48,7 +48,7 @@ namespace NeuZephyr::Nodes {
         }
     }
 
-    namespace Computation {
+    namespace calc {
         AddNode::AddNode(Node* input_left, Node* input_right) {
         if (input_left->output->shape() != input_right->output->shape()) {
             throw std::invalid_argument("Shape of left and right input must be the same.");
@@ -485,7 +485,7 @@ namespace NeuZephyr::Nodes {
     }
     }
 
-    namespace Loss {
+    namespace loss {
         MeanSquaredErrorNode::MeanSquaredErrorNode(Node* input1, Node* input2):
         OutputNode(input1) {
         if (input1->output->shape() != input2->output->shape()) {

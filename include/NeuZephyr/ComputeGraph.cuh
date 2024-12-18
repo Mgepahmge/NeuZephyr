@@ -67,10 +67,10 @@
 #include "Optimizer.cuh"
 
 /**
- * @namespace NeuZephyr::Graph
+ * @namespace nz::graph
  * @brief Contains classes and functions for managing and executing computation graphs in deep learning workflows.
  *
- * The `NeuZephyr::Graph` namespace provides essential tools for creating, managing, and executing computation graphs
+ * The `nz::graph` namespace provides essential tools for creating, managing, and executing computation graphs
  * in deep learning models. It facilitates the construction of neural networks, supports forward and backward propagation,
  * and allows for gradient computation and optimization steps. This namespace is integral to the workflow of deep learning
  * frameworks, ensuring efficient execution on GPU devices.
@@ -83,7 +83,7 @@
  * - **Forward and Backward Propagation**: Functions to propagate inputs through the network and compute gradients for model optimization.
  * - **Graph Persistence**: Methods to save and load the computation graph, preserving model state.
  *
- * The `NeuZephyr::Graph` namespace is designed with performance in mind, utilizing CUDA to accelerate computation on GPUs.
+ * The `nz::graph` namespace is designed with performance in mind, utilizing CUDA to accelerate computation on GPUs.
  *
  * @note
  * The components in this namespace rely on CUDA for GPU-based operations. Ensure that CUDA-compatible hardware and software are properly configured.
@@ -94,14 +94,14 @@
  * @date
  * 2024/11/29
  */
-namespace NeuZephyr::Graph {
-    using namespace Nodes;
-    using namespace Data;
-    using namespace Kernels;
-    using namespace Optimizers;
-    using namespace Nodes::Standard;
-    using namespace Nodes::Computation;
-    using namespace Nodes::Loss;
+namespace nz::graph {
+    using namespace nodes;
+    using namespace data;
+    using namespace krnl;
+    using namespace opt;
+    using namespace nodes::io;
+    using namespace nodes::calc;
+    using namespace nodes::loss;
 
     /**
      * @class ComputeGraph
@@ -135,24 +135,24 @@ namespace NeuZephyr::Graph {
      * ### Usage Example:
      * ```cpp
      * // Create Graph (Method 1)
-     * Graph::ComputeGraph graph;
+     * graph::ComputeGraph graph;
      *
      * auto* input1 = graph.addInput({3, 4}, false, "Input");  // Add input data
      * auto* input2 = graph.addInput({4, 3}, true, "Weight");
      * auto* input3 = graph.addInput({3, 3}, false, "Real");
      *
-     * Nodes::Computation::MatMulNode matmul(input1, input2); // Add Computation nodes
+     * nodes::calc::MatMulNode matmul(input1, input2); // Add Computation nodes
      * graph.addNode(&matmul, "MatMul");
-     * Nodes::Computation::ReLUNode relu(&matmul);
+     * nodes::calc::ReLUNode relu(&matmul);
      * graph.addNode(&relu, "ReLU");
      *
-     * Nodes::Loss::MeanSquaredErrorNode loss(&relu, input3); // Add loss function
+     * nodes::loss::MeanSquaredErrorNode loss(&relu, input3); // Add loss function
      * graph.addOutput(&loss, "Loss");
      *
      * graph.randomizeAll(); // init data
      *
      * // Create graph (Method 2)
-     * Graph::ComputeGraph graph;
+     * graph::ComputeGraph graph;
      *
      * graph.addInput({3, 4}, false, "Input");
      * graph.addInput({4, 3}, true, "Weight");
@@ -170,7 +170,7 @@ namespace NeuZephyr::Graph {
      * std::cout << graph << std::endl; // Print result
      *
      * // Update weights
-     * Optimizers::SGD optimizer(0.01); // Create optimizer
+     * opt::SGD optimizer(0.01); // Create optimizer
      * graph.update(&optimizer); // Update weights
      *
      * graph.forward();
@@ -180,11 +180,11 @@ namespace NeuZephyr::Graph {
      * graph.save("model.json");
      *
      * // Load model
-     * Graph::ComputeGraph graph;
+     * graph::ComputeGraph graph;
      * graph.load("model.json");
      * graph.forward();
      * graph.backward();
-     * Optimizers::Adam optimizer(0.01, 0.9, 0.99);
+     * opt::Adam optimizer(0.01, 0.9, 0.99);
      * graph.update(&optimizer);
      * graph.forward();
      * std::cout << graph << std::endl;
@@ -292,7 +292,7 @@ namespace NeuZephyr::Graph {
          * InputNode* input = graph.addInput({3, 3}, true, "input_node");
          * ```
          *
-         * @see Nodes::Standard::InputNode for the class definition of the input node.
+         * @see nodes::io::InputNode for the class definition of the input node.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -327,7 +327,7 @@ namespace NeuZephyr::Graph {
          * InputNode* input = graph.addInput(input_tensor, "input_node");
          * ```
          *
-         * @see Nodes::Standard::InputNode for the class definition of the input node.
+         * @see nodes::io::InputNode for the class definition of the input node.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -361,7 +361,7 @@ namespace NeuZephyr::Graph {
          * InputNode* input = graph.addInput({3, 3}, true, "input_node");
          * ```
          *
-         * @see Nodes::Standard::InputNode for more details on the input node class.
+         * @see nodes::io::InputNode for more details on the input node class.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -394,7 +394,7 @@ namespace NeuZephyr::Graph {
          * graph.addInput(input, "input_node");
          * ```
          *
-         * @see Nodes::Standard::InputNode for more details on the input node class.
+         * @see nodes::io::InputNode for more details on the input node class.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -432,7 +432,7 @@ namespace NeuZephyr::Graph {
          * graph.addNode(node, "Add");
          * ```
          *
-         * @see Nodes::Node for the base node class.
+         * @see nodes::Node for the base node class.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -491,8 +491,8 @@ namespace NeuZephyr::Graph {
          * }
          * ```
          *
-         * @see Nodes::Node for the base class of all node types.
-         * @see Nodes::Standard::OutputNode, Nodes::Computation::AddNode, Nodes::Computation::MatMulNode, etc., for the specific node classes that are created.
+         * @see nodes::Node for the base class of all node types.
+         * @see nodes::io::OutputNode, nodes::calc::AddNode, nodes::calc::MatMulNode, etc., for the specific node classes that are created.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -635,7 +635,7 @@ namespace NeuZephyr::Graph {
          * graph.addOutput(outputNode, "output");
          * ```
          *
-         * @see Nodes::Standard::OutputNode for the output node class.
+         * @see nodes::io::OutputNode for the output node class.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -936,7 +936,7 @@ namespace NeuZephyr::Graph {
          * ```
          *
          * @see Tensor::copyData() for the method that copies the data into the tensor.
-         * @see Data::Tensor for the class representing tensors and their associated operations.
+         * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -967,7 +967,7 @@ namespace NeuZephyr::Graph {
          * ```
          *
          * @see Tensor::copyData() for the method that copies the data into the tensor.
-         * @see Data::Tensor for the class representing tensors and their associated operations.
+         * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1041,8 +1041,8 @@ namespace NeuZephyr::Graph {
          * }
          * ```
          *
-         * @see Nodes::Standard::OutputNode for the output node class.
-         * @see Data::Tensor for the class representing tensors and their associated operations.
+         * @see nodes::io::OutputNode for the output node class.
+         * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1083,8 +1083,8 @@ namespace NeuZephyr::Graph {
          * }
          * ```
          *
-         * @see Nodes::Standard::OutputNode for the output node class.
-         * @see Data::Tensor for the class representing tensors and their associated operations.
+         * @see nodes::io::OutputNode for the output node class.
+         * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1116,7 +1116,7 @@ namespace NeuZephyr::Graph {
          * }
          * ```
          *
-         * @see Nodes::Standard::OutputNode for the output node class.
+         * @see nodes::io::OutputNode for the output node class.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1149,7 +1149,7 @@ namespace NeuZephyr::Graph {
          * }
          * ```
          *
-         * @see Nodes::Standard::OutputNode for the output node class.
+         * @see nodes::io::OutputNode for the output node class.
          * @see OutputNode::getLoss() for the method in the `OutputNode` class that computes the loss.
          *
          * @author
@@ -1344,9 +1344,9 @@ namespace NeuZephyr::Graph {
          * graph.update(optimizer);
          * ```
          *
-         * @see Optimizers::Optimizer for the interface of the optimizer class.
-         * @see Nodes::Node for the node class that holds the parameters and their gradients.
-         * @see Data::Tensor for the tensor class associated with the node's output.
+         * @see opt::Optimizer for the interface of the optimizer class.
+         * @see nodes::Node for the node class that holds the parameters and their gradients.
+         * @see data::Tensor for the tensor class associated with the node's output.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1387,8 +1387,8 @@ namespace NeuZephyr::Graph {
          *
          * @throws std::runtime_error If the path is empty, the graph is not sorted, or file writing fails.
          *
-         * @see Nodes::Node for the base class of all nodes.
-         * @see Data::Tensor for the class representing tensors and their associated operations.
+         * @see nodes::Node for the base class of all nodes.
+         * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)
@@ -1423,8 +1423,8 @@ namespace NeuZephyr::Graph {
          *
          * @throws std::runtime_error If the path is empty, the graph is already loaded, or file reading fails.
          *
-         * @see Nodes::Node for the base class of all nodes.
-         * @see Data::Tensor for the class representing tensors and their associated operations.
+         * @see nodes::Node for the base class of all nodes.
+         * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
          * Mgepahmge (https://github.com/Mgepahmge)

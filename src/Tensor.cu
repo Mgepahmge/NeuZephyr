@@ -1,6 +1,6 @@
 #include "NeuZephyr/Tensor.cuh"
 
-namespace NeuZephyr::Data {
+namespace nz::data {
     /**
      * @brief Overloads the `<<` operator to print the tensor's data to an output stream.
      *
@@ -118,7 +118,7 @@ namespace NeuZephyr::Data {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
         dim3 grid((rhs._size + block.x - 1) / block.x);
-        Kernels::ScalarMul<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
+        krnl::ScalarMul<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
         return result;
     }
 
@@ -156,7 +156,7 @@ namespace NeuZephyr::Data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        Kernels::ScalarMul<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        krnl::ScalarMul<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
         return result;
     }
 
@@ -194,7 +194,7 @@ namespace NeuZephyr::Data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        Kernels::ScalarDiv<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        krnl::ScalarDiv<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
         return result;
     }
 
@@ -231,7 +231,7 @@ namespace NeuZephyr::Data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        Kernels::ScalarAdd<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        krnl::ScalarAdd<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
         return result;
     }
 
@@ -268,7 +268,7 @@ namespace NeuZephyr::Data {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
         dim3 grid((rhs._size + block.x - 1) / block.x);
-        Kernels::ScalarAdd<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
+        krnl::ScalarAdd<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
         return result;
     }
 
@@ -306,7 +306,7 @@ namespace NeuZephyr::Data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        Kernels::ScalarAdd<<<grid, block>>>(result._data, lhs._data, -rhs, lhs._size);
+        krnl::ScalarAdd<<<grid, block>>>(result._data, lhs._data, -rhs, lhs._size);
         return result;
     }
 
@@ -345,7 +345,7 @@ namespace NeuZephyr::Data {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
         dim3 grid((rhs._size + block.x - 1) / block.x);
-        Kernels::ScalarAdd<<<grid, block>>>(result._data, rhs._data, -lhs, rhs._size);
+        krnl::ScalarAdd<<<grid, block>>>(result._data, rhs._data, -lhs, rhs._size);
         return result;
     }
 
@@ -380,7 +380,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::RectifiedLinearUnit<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::RectifiedLinearUnit<<<grid, block>>>(result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -415,7 +415,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::Sigmoid<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::Sigmoid<<<grid, block>>>(result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -450,7 +450,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::Tanh<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::Tanh<<<grid, block>>>(result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -485,7 +485,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::LeakyReLU<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
+        krnl::LeakyReLU<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
         return result;
     }
 
@@ -523,7 +523,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::Swish<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::Swish<<<grid, block>>>(result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -565,7 +565,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::ExponentialLinearUnit<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
+        krnl::ExponentialLinearUnit<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
         return result;
     }
 
@@ -610,7 +610,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::HardSigmoid<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
+        krnl::HardSigmoid<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
         return result;
     }
 
@@ -653,7 +653,7 @@ namespace NeuZephyr::Data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        Kernels::HardSwish<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
+        krnl::HardSwish<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
         return result;
     }
 
@@ -699,14 +699,14 @@ namespace NeuZephyr::Data {
         float sum = 0;
         cudaMalloc(&result_d, grid.x * sizeof(Tensor::value_type));
         result_h = (float*)malloc(grid.x * sizeof(Tensor::value_type));
-        Kernels::SummationExp<<<grid, block, block.x * sizeof(float)>>>(result_d, tensor._data, tensor._size);
+        krnl::SummationExp<<<grid, block, block.x * sizeof(float)>>>(result_d, tensor._data, tensor._size);
         cudaMemcpy(result_h, result_d, grid.x * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
             sum += result_h[i];
         }
         free(result_h);
         cudaFree(result_d);
-        Kernels::Softmax<<<grid, block>>>(tensor._data, tensor._data, sum, tensor._size);
+        krnl::Softmax<<<grid, block>>>(tensor._data, tensor._data, sum, tensor._size);
         return tensor;
     }
 
@@ -928,7 +928,7 @@ namespace NeuZephyr::Data {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        Kernels::MatrixAdd<<<grid, block>>>(_data, other._data, result._data, _size);
+        krnl::MatrixAdd<<<grid, block>>>(_data, other._data, result._data, _size);
         return result;
     }
 
@@ -939,7 +939,7 @@ namespace NeuZephyr::Data {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        Kernels::MatrixSub<<<grid, block>>>(_data, other._data, result._data, _size);
+        krnl::MatrixSub<<<grid, block>>>(_data, other._data, result._data, _size);
         return result;
     }
 
@@ -950,7 +950,7 @@ namespace NeuZephyr::Data {
         Tensor result({_shape[0], other._shape[1]}, _requires_grad);
         dim3 block(TILE_SIZE, TILE_SIZE);
         dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
-        Kernels::GeneralMatrixMul<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1],
+        krnl::GeneralMatrixMul<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1],
                                                    _shape[1]);
         return result;
     }
@@ -993,7 +993,7 @@ namespace NeuZephyr::Data {
         cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
         dim3 block(TILE_SIZE, TILE_SIZE);
         dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
-        Kernels::Transpose<<<grid, block>>>(temp, _data, _shape[0], _shape[1]);
+        krnl::Transpose<<<grid, block>>>(temp, _data, _shape[0], _shape[1]);
         reshape({_shape[1], _shape[0]});
         cudaFree(temp);
     }
@@ -1044,7 +1044,7 @@ namespace NeuZephyr::Data {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        Kernels::Negation<<<grid, block>>>(result._data, _data, _size);
+        krnl::Negation<<<grid, block>>>(result._data, _data, _size);
         return result;
     }
 
@@ -1053,7 +1053,7 @@ namespace NeuZephyr::Data {
         cudaMalloc(reinterpret_cast<value_type**>(&data), _size * sizeof(value_type));
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        Kernels::Recip<<<grid, block>>>(data, _data, _size);
+        krnl::Recip<<<grid, block>>>(data, _data, _size);
         cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
         cudaFree(data);
     }
