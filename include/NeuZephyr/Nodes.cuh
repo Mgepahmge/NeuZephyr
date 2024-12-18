@@ -678,7 +678,7 @@ namespace nz::nodes {
              * @brief Forward pass for the `AddNode` to perform element-wise addition.
              *
              * The `forward()` method performs the element-wise addition between the two input tensors and stores the result
-             * in the `output` tensor. It uses CUDA kernel `MatrixAdd` to carry out the addition operation efficiently on the GPU.
+             * in the `output` tensor. It uses CUDA kernel `MatrixAddKernel` to carry out the addition operation efficiently on the GPU.
              *
              * This method is called during the forward pass of the neural network, where it computes the sum of the two input tensors
              * and assigns the result to the `output` tensor. The shape of the `output` tensor will be the same as the shape of the

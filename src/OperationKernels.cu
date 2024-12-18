@@ -5,12 +5,16 @@
 #include "NeuZephyr/OperationKernels.cuh"
 
 namespace nz::krnl {
-    __global__ void MatrixAdd(const float* a, const float* b, float* c,
-                              unsigned long long n) {
-        unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+    __global__ void MatrixAddKernel(const float* a, const float* b, float* c,
+                              const unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             c[idx] = a[idx] + b[idx];
         }
+    }
+
+    void MatrixAdd(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c, const unsigned long long n) {
+        MatrixAddKernel<<<gridDim, blockDim>>>(a, b, c, n);
     }
 
     __global__ void MatrixSub(const float* a, const float* b, float* c,

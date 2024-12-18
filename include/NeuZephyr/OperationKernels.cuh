@@ -126,12 +126,14 @@ namespace nz::krnl {
      * of large datasets. It takes two input arrays of floats and stores their sum
      * in a third array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param a Pointer to the first input matrix elements stored as a one-dimensional array
      * @param b Pointer to the second input matrix elements stored as a one-dimensional array
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
      */
-    __global__ void MatrixAdd(const float* a, const float* b, float* c, unsigned long long n);
+    void MatrixAdd(dim3 gridDim, dim3 blockDim, const float* a, const float* b, float* c, const unsigned long long n);
 
     /**
      * @brief Kernel function to perform matrix subtraction on GPU

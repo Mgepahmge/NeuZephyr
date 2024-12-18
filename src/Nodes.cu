@@ -61,9 +61,9 @@ namespace nz::nodes {
     }
 
     void AddNode::forward() {
-        dim3 block(256);
-        dim3 grid((output->size() + block.x - 1) / block.x);
-        MatrixAdd<<<grid, block>>>(inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
+        const dim3 block(256);
+        const dim3 grid((output->size() + block.x - 1) / block.x);
+        MatrixAdd(grid, block, inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
                                    output->size());
     }
 

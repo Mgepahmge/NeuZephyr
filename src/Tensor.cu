@@ -926,9 +926,9 @@ namespace nz::data {
             throw std::invalid_argument("Tensor shapes do not match");
         }
         Tensor result(_shape, _requires_grad);
-        dim3 block(256);
-        dim3 grid((_size + block.x - 1) / block.x);
-        krnl::MatrixAdd<<<grid, block>>>(_data, other._data, result._data, _size);
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);
         return result;
     }
 

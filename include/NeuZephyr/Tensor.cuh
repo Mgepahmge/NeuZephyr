@@ -773,7 +773,7 @@ namespace nz::data {
          *
          * This function checks if the shapes of the two tensors match. If they do not, it throws
          * an `std::invalid_argument` exception. The function then creates a new tensor to hold the result
-         * of the addition and uses a CUDA kernel (`MatrixAdd`) to compute the sum of the tensors' elements
+         * of the addition and uses a CUDA kernel (`MatrixAddKernel`) to compute the sum of the tensors' elements
          * in parallel on the GPU.
          *
          * @throws std::invalid_argument If the shapes of the two tensors do not match.
