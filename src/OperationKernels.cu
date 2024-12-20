@@ -482,7 +482,7 @@ namespace nz::krnl {
     }
 
     __global__ void SoftmaxJacobianKernel(float* out, const float* in,
-                                    const unsigned long long n) {
+                                          const unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         unsigned long long idy = blockIdx.y * blockDim.y + threadIdx.y;
         if (idx >= n || idy >= n) {
@@ -502,8 +502,8 @@ namespace nz::krnl {
         SoftmaxJacobianKernel<<<gridDim, blockDim>>>(out, in, n);
     }
 
-    __global__ void MeanSquaredError(float* out, const float* predict, const float* real,
-                                     unsigned long long n) {
+    __global__ void MeanSquaredErrorKernel(float* out, const float* predict, const float* real,
+                                           const unsigned long long n) {
         extern __shared__ float smem[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -548,24 +548,34 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void MSEBackward(float* out, const float* predict,
-                                const float* real, unsigned long long n) {
+    void MeanSquaredError(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
+                          const float* predict, const float* real, const unsigned long long n) {
+        MeanSquaredErrorKernel<<<gridDim, blockDim, sharedMemSize>>>(out, predict, real, n);
+    }
+
+    __global__ void MSEBackwardKernel(float* out, const float* predict,
+                                const float* real, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = 2 * (predict[idx] - real[idx]) / (float)n;
         }
     }
 
+    void MSEBackward(const dim3 gridDim, const dim3 blockDim, float* out, const float* predict,
+                     const float* real, const unsigned long long n) {
+        MSEBackwardKernel<<<gridDim, blockDim>>>(out, predict, real, n);
+    }
+
     __global__ void StochasticGradientDescent(float* data, const float* grad, const float lr,
-                                              unsigned long long n) {
+                                              const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             data[idx] -= lr * grad[idx];
         }
     }
 
-    __global__ void BinaryCrossEntropy(float* out, const float* predict, const float* real,
-                                       unsigned long long n) {
+    __global__ void BinaryCrossEntropyKernel(float* out, const float* predict, const float* real,
+                                       const unsigned long long n) {
         extern __shared__ float smem[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -612,13 +622,23 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void BCEBackward(float* out, const float* predict,
+    void BinaryCrossEntropy(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
+                             const float* predict, const float* real, const unsigned long long n) {
+        BinaryCrossEntropyKernel<<<gridDim, blockDim, sharedMemSize>>>(out, predict, real, n);
+    }
+
+    __global__ void BCEBackwardKernel(float* out, const float* predict,
                                 const float* real, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = ((predict[idx] - real[idx]) / (
                 predict[idx] * (1 - predict[idx]))) / (float)n;
         }
+    }
+
+    void BCEBackward(const dim3 gridDim, const dim3 blockDim, float* out, const float* predict,
+                     const float* real, const unsigned long long n) {
+        BCEBackwardKernel<<<gridDim, blockDim>>>(out, predict, real, n);
     }
 
     __global__ void Momentum(float* output, const float* grad,

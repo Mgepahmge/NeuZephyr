@@ -507,13 +507,13 @@ namespace nz::nodes {
 
     void MeanSquaredErrorNode::forward() {
         OutputNode::forward();
-        dim3 block(256);
-        dim3 grid((output->size() + block.x - 1) / block.x);
+        const dim3 block(256);
+        const dim3 grid((output->size() + block.x - 1) / block.x);
         float* result;
         float* result_host;
         result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
         cudaMalloc(&result, grid.x * sizeof(float));
-        MeanSquaredError<<<grid, block, block.x * sizeof(float)>>>(result, inputs[0]->output->data(),
+        MeanSquaredError(grid, block, block.x * sizeof(float), result, inputs[0]->output->data(),
                                                                    inputs[1]->output->data(), output->size());
         cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
@@ -525,9 +525,9 @@ namespace nz::nodes {
 
     void MeanSquaredErrorNode::backward() {
         if (output->requiresGrad()) {
-            dim3 block(256);
-            dim3 grid((output->size() + block.x - 1) / block.x);
-            MSEBackward<<<grid, block>>>(output->grad(), inputs[0]->output->data(), inputs[1]->output->data(),
+            const dim3 block(256);
+            const dim3 grid((output->size() + block.x - 1) / block.x);
+            MSEBackward(grid, block, output->grad(), inputs[0]->output->data(), inputs[1]->output->data(),
                                          output->size());
         }
     }
@@ -549,7 +549,7 @@ namespace nz::nodes {
         float* result_host;
         result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
         cudaMalloc(&result, grid.x * sizeof(float));
-        BinaryCrossEntropy<<<grid, block, block.x * sizeof(float)>>>(result, inputs[0]->output->data(),
+        BinaryCrossEntropy(grid, block, block.x * sizeof(float), result, inputs[0]->output->data(),
                                                                      inputs[1]->output->data(), output->size());
         cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
@@ -564,7 +564,7 @@ namespace nz::nodes {
         if (output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            BCEBackward<<<grid, block>>>(output->grad(), inputs[0]->output->data(), inputs[1]->output->data(),
+            BCEBackward(grid, block, output->grad(), inputs[0]->output->data(), inputs[1]->output->data(),
                                          output->size());
         }
     }

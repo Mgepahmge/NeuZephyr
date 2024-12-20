@@ -572,12 +572,16 @@ namespace nz::krnl {
      * This function computes the Mean Squared Error loss between the predicted and real values
      * for each element in the input arrays and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param sharedMemSize The size of the shared memory buffer used by the kernel
      * @param out Pointer to the output array where the MSE result will be stored
      * @param predict Pointer to the predicted values
      * @param real Pointer to the real values
      * @param n The number of elements in the input arrays
      */
-    __global__ void MeanSquaredError(float* out, const float* predict, const float* real, unsigned long long n);
+    void MeanSquaredError(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
+                          const float* predict, const float* real, const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation
@@ -585,12 +589,15 @@ namespace nz::krnl {
      * This function computes the gradient of the Mean Squared Error loss between the predicted and real values
      * for each element in the input arrays and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the MSE gradient will be stored
      * @param predict Pointer to the predicted values
      * @param real Pointer to the real values
      * @param n The number of elements in the input arrays
      */
-    __global__ void MSEBackward(float* out, const float* predict, const float* real, unsigned long long n);
+    void MSEBackward(const dim3 gridDim, const dim3 blockDim, float* out, const float* predict,
+                     const float* real, const unsigned long long n);
 
     /**
      * @brief Kernel function to perform Stochastic Gradient Descent (SGD) optimization
@@ -611,12 +618,16 @@ namespace nz::krnl {
      * This function computes the Binary Cross Entropy loss between the predicted and real values
      * for each element in the input arrays and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param sharedMemSize The size of the shared memory buffer used by the kernel
      * @param out Pointer to the output array where the BCE result will be stored
      * @param predict Pointer to the predicted values
      * @param real Pointer to the real values
      * @param n The number of elements in the input arrays
      */
-    __global__ void BinaryCrossEntropy(float* out, const float* predict, const float* real, unsigned long long n);
+    void BinaryCrossEntropy(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
+                            const float* predict, const float* real, const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of Binary Cross Entropy (BCE) loss for backpropagation
@@ -624,12 +635,15 @@ namespace nz::krnl {
      * This function computes the gradient of the Binary Cross Entropy loss between the predicted and real values
      * for each element in the input arrays and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the BCE gradient will be stored
      * @param predict Pointer to the predicted values
      * @param real Pointer to the real values
      * @param n The number of elements in the input arrays
      */
-    __global__ void BCEBackward(float* out, const float* predict, const float* real, unsigned long long n);
+    void BCEBackward(const dim3 gridDim, const dim3 blockDim, float* out, const float* predict,
+                     const float* real, const unsigned long long n);
 
     /**
      * @brief Kernel function to apply Momentum optimization
