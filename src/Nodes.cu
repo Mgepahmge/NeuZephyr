@@ -5,6 +5,11 @@
 #include "NeuZephyr/Nodes.cuh"
 
 namespace nz::nodes {
+    void Node::print(std::ostream& os) const {
+        os << "Type: " << type << std::endl;
+        os << *output << std::flush;
+    }
+
     namespace io {
         InputNode::InputNode(const Tensor::shape_type& shape, bool requires_grad) {
             output = std::make_shared<Tensor>(shape, requires_grad);
@@ -45,6 +50,11 @@ namespace nz::nodes {
 
         Tensor::value_type OutputNode::getLoss() const {
             return loss;
+        }
+
+        void OutputNode::print(std::ostream& os) const {
+            Node::print(os);
+            os << "Loss: " << loss << std::endl;
         }
     }
 
@@ -559,5 +569,4 @@ namespace nz::nodes {
         }
     }
     }
-
 }

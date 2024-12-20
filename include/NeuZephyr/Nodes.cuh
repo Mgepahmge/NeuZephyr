@@ -175,7 +175,83 @@ namespace nz::nodes {
          * 2024/11/29
          */
         virtual void backward() = 0;
+
+        /**
+         * @brief Prints the type, data, and gradient of the node.
+         *
+         * The `print()` method outputs the information about the node, including its type, the tensor data stored in the node's
+         * output, and the corresponding gradient. This is useful for debugging and inspecting the state of nodes in a
+         * computational graph or during training, allowing for easy visualization of the node's content and gradients.
+         *
+         * The method outputs the following details:
+         * - **Type**: The type of the node (e.g., the operation it represents, such as "MatrixMul", "ReLU", etc.).
+         * - **Data**: The tensor data stored in the node's `output` tensor.
+         * - **Gradient**: If the node has a computed gradient, it is also displayed, providing insights into the gradient values
+         *   that are being backpropagated through the network during training.
+         *
+         * This method is primarily used for debugging and monitoring the state of tensors and gradients, making it easier
+         * to inspect how the data and gradients flow through the network.
+         *
+         * @note
+         * - The `output` tensor should contain both the data and the gradient information, and both are printed when this
+         *   method is called.
+         * - This method is typically used during development or debugging phases and should not be used in performance-critical
+         *   code as it involves printing potentially large amounts of data.
+         *
+         * @param os The output stream (e.g., `std::cout`) to which the node's information will be printed.
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date
+         * 2024/11/29
+         */
+        virtual void print(std::ostream& os) const;
     };
+
+    /**
+     * @brief Overloads the `<<` operator to print information about a node.
+     *
+     * The `operator<<` is overloaded to provide a convenient way to print detailed information about a node, including its
+     * type, data, gradient, and loss (if applicable). This operator calls the `print()` method of the node, which handles
+     * the actual formatting and output of the node's information.
+     *
+     * The operator outputs the following details:
+     * - **Type**: The type of the node (e.g., the operation it represents, such as "MatrixMul", "ReLU", etc.).
+     * - **Data**: The tensor data stored in the node's `output` tensor.
+     * - **Gradient**: If the node has a computed gradient, it is displayed, providing insights into the gradient values
+     *   being backpropagated during training.
+     * - **Loss**: The loss value associated with the node (if applicable), which can be used to monitor the error or
+     *   discrepancy in the node during the forward-backward pass.
+     *
+     * This operator is primarily used for debugging, logging, and inspecting the state of the node, including its tensor data,
+     * gradients, and any associated loss. By using the `<<` operator, you can easily print the node's information directly to
+     * standard output or any other output stream.
+     *
+     * @note
+     * - The `print()` method must be implemented by the node's class (or any class derived from it). This method should handle
+     *   printing the type, data, gradient, and loss for that specific class.
+     * - This operator is designed to be used with any class that has a `print()` method, making it a flexible and reusable
+     *   solution for logging and debugging.
+     *
+     * @param os The output stream (e.g., `std::cout`) to which the node's information will be printed.
+     * @param node The node object to be printed. It is passed as a const reference to ensure it is not modified.
+     *
+     * @return The output stream (`os`), allowing the operator to be used in chain expressions like `std::cout << node1 << node2;`.
+     *
+     * @author
+     * Mgepahmge (https://github.com/Mgepahmge)
+     *
+     * @date
+     * 2024/11/29
+     */
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<Node, T>, std::ostream&>
+    operator<<(std::ostream& os, const T& node)
+    {
+        node.print(os);
+        return os;
+    }
 
     /**
      * @namespace nz::nodes::io
@@ -557,6 +633,43 @@ namespace nz::nodes {
              * 2024/11/29
              */
             Tensor::value_type getLoss() const;
+
+            /**
+             * @brief Prints the type, data, gradient, and loss of the node.
+             *
+             * The `print()` method outputs the information about the node, including its type, the tensor data stored in the node's
+             * output, the corresponding gradient, and the loss value (if available). This is useful for debugging and inspecting
+             * the state of nodes in a computational graph or during training, allowing for easy visualization of the node's content,
+             * gradients, and any associated loss.
+             *
+             * The method outputs the following details:
+             * - **Type**: The type of the node (e.g., the operation it represents, such as "MatrixMul", "ReLU", etc.).
+             * - **Data**: The tensor data stored in the node's `output` tensor.
+             * - **Gradient**: If the node has a computed gradient, it is also displayed, providing insights into the gradient values
+             *   that are being backpropagated through the network during training.
+             * - **Loss**: The loss value associated with the node (if applicable). This value can be used to track the error or
+             *   discrepancy during the forward-backward pass in training.
+             *
+             * This method is primarily used for debugging and monitoring the state of tensors, gradients, and loss, making it easier
+             * to inspect how the data, gradients, and error values flow through the network.
+             *
+             * @note
+             * - The `output` tensor should contain both the data and the gradient information, and both are printed when this
+             *   method is called.
+             * - The `loss` value will only be printed if it is associated with the node. If the node does not have a loss value,
+             *   this field may be omitted.
+             * - This method is typically used during development or debugging phases and should not be used in performance-critical
+             *   code as it involves printing potentially large amounts of data.
+             *
+             * @param os The output stream (e.g., `std::cout`) to which the node's information will be printed.
+             *
+             * @author
+             * Mgepahmge (https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/11/29
+             */
+            void print(std::ostream& os) const override;
         };
     }
 
