@@ -193,67 +193,102 @@ namespace nz::krnl {
         ReLUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n);
     }
 
-    __global__ void Sigmoid(float* out, const float* in,
-                            unsigned long long n) {
+    __global__ void SigmoidKernel(float* out, const float* in,
+                                  const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = 1.0f / (1.0f + __expf(-in[idx]));
         }
     }
 
-    __global__ void SigmoidBackward(float* A_grad, const float* B,
-                                    const float* B_grad,
-                                    unsigned long long n) {
+    void Sigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                 const unsigned long long n) {
+        SigmoidKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
+    __global__ void SigmoidBackwardKernel(float* A_grad, const float* B,
+                                          const float* B_grad,
+                                          unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = B[idx] * (1.0f - B[idx]) * B_grad[idx];
         }
     }
 
-    __global__ void Tanh(float* out, const float* in, unsigned long long n) {
+    void SigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* B, const float* B_grad,
+                         const unsigned long long n) {
+        SigmoidBackwardKernel<<<gridDim, blockDim>>>(A_grad, B, B_grad, n);
+    }
+
+    __global__ void TanhKernel(float* out, const float* in, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = __tanf(in[idx]);
         }
     }
 
-    __global__ void TanhBackward(float* A_grad, const float* B,
-                                 const float* B_grad, unsigned long long n) {
+    void Tanh(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+              const unsigned long long n) {
+        TanhKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
+    __global__ void TanhBackwardKernel(float* A_grad, const float* B,
+                                       const float* B_grad, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = (1.0f - B[idx] * B[idx]) * B_grad[idx];
         }
     }
 
-    __global__ void LeakyReLU(float* out, const float* in,
-                              unsigned long long n, float alpha) {
+    void TanhBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* B, const float* B_grad,
+                      const unsigned long long n) {
+        TanhBackwardKernel<<<gridDim, blockDim>>>(A_grad, B, B_grad, n);
+    }
+
+    __global__ void LeakyReLUKernel(float* out, const float* in,
+                                    const unsigned long long n, const float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] > 0 ? in[idx] : alpha * in[idx];
         }
     }
 
-    __global__ void LeakyReLUBackward(float* A_grad, const float* A,
-                                      const float* B_grad,
-                                      unsigned long long n,
-                                      float alpha) {
+    void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                   const unsigned long long n, const float alpha) {
+        LeakyReLUKernel<<<gridDim, blockDim>>>(out, in, n, alpha);
+    }
+
+    __global__ void LeakyReLUBackwardKernel(float* A_grad, const float* A,
+                                            const float* B_grad,
+                                            const unsigned long long n,
+                                            const float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0 ? B_grad[idx] : alpha * B_grad[idx];
         }
     }
 
+    void LeakyReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                           const unsigned long long n, const float alpha) {
+        LeakyReLUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha);
+    }
+
     __global__ void
-    Swish(float* out, const float* in, unsigned long long n) {
+    SwishKernel(float* out, const float* in, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] / (1.0f + __expf(-in[idx]));
         }
     }
 
-    __global__ void SwishBackward(float* A_grad, const float* A,
-                                  const float* B, const float* B_grad,
-                                  unsigned long long n) {
+    void Swish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+               const unsigned long long n) {
+        SwishKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
+    __global__ void SwishBackwardKernel(float* A_grad, const float* A,
+                                        const float* B, const float* B_grad,
+                                        const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = 1.0f / (1.0f + __expf(-A[idx])) + B[idx] * (1.0f - B[idx]) *
@@ -261,17 +296,27 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void ExponentialLinearUnit(float* out, const float* in, unsigned long long n,
-                                          float alpha) {
+    void SwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B,
+                       const float* B_grad, const unsigned long long n) {
+        SwishBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B, B_grad, n);
+    }
+
+    __global__ void ExponentialLinearUnitKernel(float* out, const float* in, const unsigned long long n,
+                                                const float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] > 0 ? in[idx] : alpha * (__expf(in[idx]) - 1);
         }
     }
 
-    __global__ void ELUBackward(float* A_grad, const float* A,
-                                const float* B_grad, unsigned long long n,
-                                float alpha) {
+    void ExponentialLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                               const unsigned long long n, const float alpha) {
+        ExponentialLinearUnitKernel<<<gridDim, blockDim>>>(out, in, n, alpha);
+    }
+
+    __global__ void ELUBackwardKernel(float* A_grad, const float* A,
+                                      const float* B_grad, const unsigned long long n,
+                                      const float alpha) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0
@@ -280,9 +325,14 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void HardSigmoid(float* out, const float* in,
-                                unsigned long long n, float alpha,
-                                float beta) {
+    void ELUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                     const unsigned long long n, const float alpha) {
+        ELUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha);
+    }
+
+    __global__ void HardSigmoidKernel(float* out, const float* in,
+                                      const unsigned long long n, const float alpha,
+                                      const float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] * alpha + beta;
@@ -290,10 +340,15 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void HardSigmoidBackward(float* A_grad, const float* A,
-                                        const float* B_grad,
-                                        unsigned long long n,
-                                        float alpha, float beta) {
+    void HardSigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                     const unsigned long long n, const float alpha, const float beta) {
+        HardSigmoidKernel<<<gridDim, blockDim>>>(out, in, n, alpha, beta);
+    }
+
+    __global__ void HardSigmoidBackwardKernel(float* A_grad, const float* A,
+                                              const float* B_grad,
+                                              const unsigned long long n,
+                                              const float alpha, const float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             float x = A[idx] * alpha + beta;
@@ -306,24 +361,35 @@ namespace nz::krnl {
         }
     }
 
+    void HardSigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A,
+                             const float* B_grad,
+                             const unsigned long long n, const float alpha, const float beta) {
+        HardSigmoidBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha, beta);
+    }
+
     __inline__ __device__ float LiteHardSigmoid(float x, float alpha, float beta) {
         float a = x * alpha + beta;
         return a > 1.0f ? 1.0f : (a < 0.0f ? 0.0f : a);
     }
 
-    __global__ void HardSwish(float* out, const float* in,
-                              unsigned long long n, float alpha,
-                              float beta) {
+    __global__ void HardSwishKernel(float* out, const float* in,
+                                    const unsigned long long n, const float alpha,
+                                    const float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] * LiteHardSigmoid(in[idx], alpha, beta);
         }
     }
 
-    __global__ void HardSwishBackward(float* A_grad, const float* A,
-                                      const float* B_grad,
-                                      unsigned long long n,
-                                      float alpha, float beta) {
+    void HardSwish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                   const unsigned long long n, const float alpha, const float beta) {
+        HardSwishKernel<<<gridDim, blockDim>>>(out, in, n, alpha, beta);
+    }
+
+    __global__ void HardSwishBackwardKernel(float* A_grad, const float* A,
+                                            const float* B_grad,
+                                            const unsigned long long n,
+                                            const float alpha, const float beta) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = LiteHardSigmoid(A[idx], alpha, beta) + B_grad[idx] * A[idx] *
@@ -332,8 +398,13 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void SummationExp(float* out, const float* g_data,
-                                 unsigned long long n) {
+    void HardSwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                           const unsigned long long n, const float alpha, const float beta) {
+        HardSwishBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha, beta);
+    }
+
+    __global__ void SummationExpKernel(float* out, const float* g_data,
+                                       const unsigned long long n) {
         extern __shared__ float sdata[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -391,16 +462,27 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void Softmax(float* out, const float* in,
-                            float exp_sum_of_input, unsigned long long n) {
+    void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
+                      const float* g_data,
+                      const unsigned long long n) {
+        SummationExpKernel<<<gridDim, blockDim, sharedMemSize>>>(out, g_data, n);
+    }
+
+    __global__ void SoftmaxKernel(float* out, const float* in,
+                                  const float exp_sum_of_input, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = __expf(in[idx]) / exp_sum_of_input;
         }
     }
 
-    __global__ void SoftmaxJacobian(float* out, const float* in,
-                                    unsigned long long n) {
+    void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float exp_sum_of_input,
+                 const unsigned long long n) {
+        SoftmaxKernel<<<gridDim, blockDim>>>(out, in, exp_sum_of_input, n);
+    }
+
+    __global__ void SoftmaxJacobianKernel(float* out, const float* in,
+                                    const unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         unsigned long long idy = blockIdx.y * blockDim.y + threadIdx.y;
         if (idx >= n || idy >= n) {
@@ -415,14 +497,18 @@ namespace nz::krnl {
         }
     }
 
+    void SoftmaxJacobian(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                         const unsigned long long n) {
+        SoftmaxJacobianKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
     __global__ void MeanSquaredError(float* out, const float* predict, const float* real,
                                      unsigned long long n) {
         extern __shared__ float smem[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
         if (idx < n) {
-            smem[tid] = (predict[idx] - real[idx]) * (predict[idx] - real[idx]) / (
-                float)n;
+            smem[tid] = (predict[idx] - real[idx]) * (predict[idx] - real[idx]) / (float)n;
         }
         else {
             smem[tid] = 0;

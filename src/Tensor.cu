@@ -429,7 +429,7 @@ namespace nz::data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::Sigmoid<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::Sigmoid(grid, block, result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -464,7 +464,7 @@ namespace nz::data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::Tanh<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::Tanh(grid, block, result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -497,9 +497,9 @@ namespace nz::data {
      */
     Tensor LeakyReLU(const Tensor& tensor, float alpha) {
         Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::LeakyReLU<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
+        const dim3 block(256);
+        const dim3 grid((tensor._size + block.x - 1) / block.x);
+        krnl::LeakyReLU(grid, block, result._data, tensor._data, tensor._size, alpha);
         return result;
     }
 
@@ -535,9 +535,9 @@ namespace nz::data {
      */
     Tensor Swish(const Tensor& tensor) {
         Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::Swish<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        const dim3 block(256);
+        const dim3 grid((tensor._size + block.x - 1) / block.x);
+        krnl::Swish(grid, block, result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -579,7 +579,7 @@ namespace nz::data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::ExponentialLinearUnit<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha);
+        krnl::ExponentialLinearUnit(grid, block, result._data, tensor._data, tensor._size, alpha);
         return result;
     }
 
@@ -624,7 +624,7 @@ namespace nz::data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::HardSigmoid<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
+        krnl::HardSigmoid(grid, block, result._data, tensor._data, tensor._size, alpha, beta);
         return result;
     }
 
@@ -667,7 +667,7 @@ namespace nz::data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::HardSwish<<<grid, block>>>(result._data, tensor._data, tensor._size, alpha, beta);
+        krnl::HardSwish(grid, block, result._data, tensor._data, tensor._size, alpha, beta);
         return result;
     }
 
@@ -713,14 +713,14 @@ namespace nz::data {
         float sum = 0;
         cudaMalloc(&result_d, grid.x * sizeof(Tensor::value_type));
         result_h = (float*)malloc(grid.x * sizeof(Tensor::value_type));
-        krnl::SummationExp<<<grid, block, block.x * sizeof(float)>>>(result_d, tensor._data, tensor._size);
+        krnl::SummationExp(grid, block, block.x * sizeof(float), result_d, tensor._data, tensor._size);
         cudaMemcpy(result_h, result_d, grid.x * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
             sum += result_h[i];
         }
         free(result_h);
         cudaFree(result_d);
-        krnl::Softmax<<<grid, block>>>(tensor._data, tensor._data, sum, tensor._size);
+        krnl::Softmax(grid, block, tensor._data, tensor._data, sum, tensor._size);
         return tensor;
     }
 

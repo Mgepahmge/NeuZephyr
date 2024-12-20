@@ -308,14 +308,14 @@ namespace nz::nodes {
     void SigmoidNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        Sigmoid<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+        Sigmoid(grid, block, output->data(), inputs[0]->output->data(), output->size());
     }
 
     void SigmoidNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            SigmoidBackward<<<grid, block>>>(inputs[0]->output->grad(), output->data(), output->grad(), output->size());
+            SigmoidBackward(grid, block, inputs[0]->output->grad(), output->data(), output->grad(), output->size());
         }
     }
 
@@ -329,14 +329,14 @@ namespace nz::nodes {
     void TanhNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        Tanh<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+        Tanh(grid, block, output->data(), inputs[0]->output->data(), output->size());
     }
 
     void TanhNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            TanhBackward<<<grid, block>>>(inputs[0]->output->grad(), output->data(), output->grad(), output->size());
+            TanhBackward(grid, block, inputs[0]->output->grad(), output->data(), output->grad(), output->size());
         }
     }
 
@@ -349,16 +349,16 @@ namespace nz::nodes {
     }
 
     void LeakyReLUNode::forward() {
-        dim3 block(256);
-        dim3 grid((output->size() + block.x - 1) / block.x);
-        LeakyReLU<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha);
+        const dim3 block(256);
+        const dim3 grid((output->size() + block.x - 1) / block.x);
+        LeakyReLU(grid, block, output->data(), inputs[0]->output->data(), output->size(), alpha);
     }
 
     void LeakyReLUNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
-            dim3 block(256);
-            dim3 grid((output->size() + block.x - 1) / block.x);
-            LeakyReLUBackward<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
+            const dim3 block(256);
+            const dim3 grid((output->size() + block.x - 1) / block.x);
+            LeakyReLUBackward(grid, block, inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
                                                output->size(), alpha);
         }
     }
@@ -371,16 +371,16 @@ namespace nz::nodes {
     }
 
     void SwishNode::forward() {
-        dim3 block(256);
-        dim3 grid((output->size() + block.x - 1) / block.x);
-        Swish<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+        const dim3 block(256);
+        const dim3 grid((output->size() + block.x - 1) / block.x);
+        Swish(grid, block, output->data(), inputs[0]->output->data(), output->size());
     }
 
     void SwishNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
-            dim3 block(256);
-            dim3 grid((output->size() + block.x - 1) / block.x);
-            SwishBackward<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->data(),
+            const dim3 block(256);
+            const dim3 grid((output->size() + block.x - 1) / block.x);
+            SwishBackward(grid, block, inputs[0]->output->grad(), inputs[0]->output->data(), output->data(),
                                            output->grad(), output->size());
         }
     }
@@ -396,14 +396,14 @@ namespace nz::nodes {
     void ELUNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        ExponentialLinearUnit<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha);
+        ExponentialLinearUnit(grid, block, output->data(), inputs[0]->output->data(), output->size(), alpha);
     }
 
     void ELUNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            ELUBackward<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
+            ELUBackward(grid, block, inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
                                          output->size(), alpha);
         }
     }
@@ -420,14 +420,14 @@ namespace nz::nodes {
     void HardSigmoidNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        HardSigmoid<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha, beta);
+        HardSigmoid(grid, block, output->data(), inputs[0]->output->data(), output->size(), alpha, beta);
     }
 
     void HardSigmoidNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            HardSigmoidBackward<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
+            HardSigmoidBackward(grid, block, inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
                                                  output->size(), alpha, beta);
         }
     }
@@ -444,14 +444,14 @@ namespace nz::nodes {
     void HardSwishNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        HardSwish<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size(), alpha, beta);
+        HardSwish(grid, block, output->data(), inputs[0]->output->data(), output->size(), alpha, beta);
     }
 
     void HardSwishNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            HardSwishBackward<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
+            HardSwishBackward(grid, block, inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
                                                output->size(), alpha, beta);
         }
     }
@@ -471,7 +471,7 @@ namespace nz::nodes {
         float* result_host;
         cudaMalloc((float**)&result, grid.x * sizeof(float));
         result_host = (float*)malloc(grid.x * sizeof(float));
-        SummationExp<<<grid, block, block.x * sizeof(float)>>>(result, inputs[0]->output->data(), output->size());
+        SummationExp(grid, block, block.x * sizeof(float), result, inputs[0]->output->data(), output->size());
         cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
             sum += result_host[i];
@@ -480,14 +480,14 @@ namespace nz::nodes {
         free(result_host);
         dim3 block2(256);
         dim3 grid2((output->size() + block.x - 1) / block.x);
-        Softmax<<<grid2, block2>>>(output->data(), inputs[0]->output->data(), sum, output->size());
+        Softmax(grid2, block2, output->data(), inputs[0]->output->data(), sum, output->size());
     }
 
     void SoftmaxNode::backward() {
         Tensor jacobian(std::vector<int>({output->shape()[0], output->shape()[0]}), false);
         dim3 block(16, 16);
         dim3 grid((output->shape()[0] + block.x - 1) / block.x, (output->shape()[0] + block.y - 1) / block.y);
-        SoftmaxJacobian<<<grid, block>>>(jacobian.data(), output->data(), output->size());
+        SoftmaxJacobian(grid, block, jacobian.data(), output->data(), output->size());
         dim3 block2(TILE_SIZE, TILE_SIZE);
         dim3 gird2((output->shape()[1] + TILE_SIZE - 1) / TILE_SIZE, (jacobian.shape()[0] + TILE_SIZE - 1) / TILE_SIZE);
         GeneralMatrixMul(gird2, block2, jacobian.data(), output->grad(), inputs[0]->output->grad(),

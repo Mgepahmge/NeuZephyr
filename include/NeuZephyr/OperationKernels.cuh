@@ -297,11 +297,14 @@ namespace nz::krnl {
      * This function applies the Sigmoid activation function (1 / (1 + exp(-x))) to each element of the input array
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Sigmoid result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void Sigmoid(float* out, const float* in, unsigned long long n);
+    void Sigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                  const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Sigmoid activation during backpropagation
@@ -309,12 +312,15 @@ namespace nz::krnl {
      * This function computes the gradient of the Sigmoid activation function during backpropagation
      * (dL/dx = dL/dy * sigmoid(x) * (1 - sigmoid(x))) and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param B Pointer to the input array elements (after activation)
      * @param B_grad Pointer to the gradient of the next layer
      * @param n The number of elements in the arrays
      */
-    __global__ void SigmoidBackward(float* A_grad, const float* B, const float* B_grad, unsigned long long n);
+    void SigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* B, const float* B_grad,
+                         const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Tanh activation function on the GPU
@@ -322,11 +328,14 @@ namespace nz::krnl {
      * This function applies the Tanh activation function (tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x)))
      * to each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Tanh result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void Tanh(float* out, const float* in, unsigned long long n);
+    void Tanh(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+               const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Tanh activation during backpropagation
@@ -334,12 +343,15 @@ namespace nz::krnl {
      * This function computes the gradient of the Tanh activation function during backpropagation
      * (dL/dx = dL/dy * (1 - tanh(x)^2)) and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param B Pointer to the input array elements (after activation)
      * @param B_grad Pointer to the gradient of the next layer
      * @param n The number of elements in the arrays
      */
-    __global__ void TanhBackward(float* A_grad, const float* B, const float* B_grad, unsigned long long n);
+    void TanhBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* B, const float* B_grad,
+                      const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Leaky ReLU activation function on the GPU
@@ -347,12 +359,15 @@ namespace nz::krnl {
      * This function applies the Leaky ReLU activation function (max(alpha * x, x)) to each element of the input array
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Leaky ReLU result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      * @param alpha The slope of the negative part of the Leaky ReLU (default 0.01)
      */
-    __global__ void LeakyReLU(float* out, const float* in, unsigned long long n, float alpha = 0.01f);
+    void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                    const unsigned long long n, const float alpha = 0.01f);
 
     /**
      * @brief Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation
@@ -360,13 +375,15 @@ namespace nz::krnl {
      * This function computes the gradient of the Leaky ReLU activation function during backpropagation
      * (dL/dx = dL/dy * (x > 0 ? 1 : alpha)) and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param A Pointer to the input array elements (before activation)
      * @param B_grad Pointer to the gradient of the next layer
      * @param n The number of elements in the arrays
      * @param alpha The slope of the negative part of the Leaky ReLU (default 0.01)
      */
-    __global__ void LeakyReLUBackward(float* A_grad, const float* A, const float* B_grad, unsigned long long n,
+    void LeakyReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
                                       float alpha = 0.01f);
 
     /**
@@ -375,11 +392,14 @@ namespace nz::krnl {
      * This function applies the Swish activation function (x * sigmoid(x)) to each element of the input array
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Swish result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void Swish(float* out, const float* in, unsigned long long n);
+    void Swish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                 const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Swish activation during backpropagation
@@ -387,14 +407,16 @@ namespace nz::krnl {
      * This function computes the gradient of the Swish activation function during backpropagation
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param A Pointer to the input array elements (before activation)
      * @param B Pointer to the output array elements (after activation)
      * @param B_grad Pointer to the gradient of the next layer
      * @param n The number of elements in the arrays
      */
-    __global__ void SwishBackward(float* A_grad, const float* A, const float* B, const float* B_grad,
-                                  unsigned long long n);
+    void SwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B,
+                         const float* B_grad, const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU
@@ -402,12 +424,14 @@ namespace nz::krnl {
      * This function applies the ELU activation function (x if x > 0, alpha * (exp(x) - 1) if x <= 0)
      * to each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the ELU result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      * @param alpha The alpha parameter used for negative values (default 1.0)
      */
-    __global__ void ExponentialLinearUnit(float* out, const float* in, unsigned long long n, float alpha = 1.0f);
+    void ExponentialLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, unsigned long long n, float alpha = 1.0f);
 
     /**
      * @brief Kernel function to compute the gradient of the ELU activation during backpropagation
@@ -415,13 +439,15 @@ namespace nz::krnl {
      * This function computes the gradient of the ELU activation function during backpropagation
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param A Pointer to the input array elements (before activation)
      * @param B_grad Pointer to the gradient of the next layer
      * @param n The number of elements in the arrays
      * @param alpha The alpha parameter used for negative values (default 1.0)
      */
-    __global__ void ELUBackward(float* A_grad, const float* A, const float* B_grad, unsigned long long n,
+    void ELUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
                                 float alpha = 1.0f);
 
     /**
@@ -430,14 +456,16 @@ namespace nz::krnl {
      * This function applies the Hard Sigmoid activation function (min(max(alpha * x + beta, 0), 1))
      * to each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Hard Sigmoid result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    __global__ void HardSigmoid(float* out, const float* in, unsigned long long n, float alpha = 0.2f,
-                                float beta = 0.5f);
+    void HardSigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                      const unsigned long long n, const float alpha = 0.2f, const float beta = 0.5f);
 
     /**
      * @brief Kernel function to compute the gradient of the Hard Sigmoid activation during backpropagation
@@ -445,6 +473,8 @@ namespace nz::krnl {
      * This function computes the gradient of the Hard Sigmoid activation function during backpropagation
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param A Pointer to the input array elements (before activation)
      * @param B_grad Pointer to the gradient of the next layer
@@ -452,7 +482,7 @@ namespace nz::krnl {
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    __global__ void HardSigmoidBackward(float* A_grad, const float* A, const float* B_grad, unsigned long long n,
+    void HardSigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
                                         float alpha = 0.2f, float beta = 0.5f);
 
     /**
@@ -461,13 +491,15 @@ namespace nz::krnl {
      * This function applies the Hard Swish activation function (x * HardSigmoid(x))
      * to each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Hard Swish result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    __global__ void HardSwish(float* out, const float* in, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
+    void HardSwish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
 
     /**
      * @brief Kernel function to compute the gradient of the Hard Swish activation during backpropagation
@@ -475,6 +507,8 @@ namespace nz::krnl {
      * This function computes the gradient of the Hard Swish activation function during backpropagation
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param A Pointer to the input array elements (before activation)
      * @param B_grad Pointer to the gradient of the next layer
@@ -482,7 +516,7 @@ namespace nz::krnl {
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    __global__ void HardSwishBackward(float* A_grad, const float* A, const float* B_grad, unsigned long long n,
+    void HardSwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
                                       float alpha = 0.2f, float beta = 0.5f);
 
     /**
@@ -491,11 +525,15 @@ namespace nz::krnl {
      * This function computes the summation of exponentials of all elements in the input array
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param sharedMemSize The size of the shared memory buffer used by the kernel
      * @param out Pointer to the output array where the summation of exponentials will be stored
      * @param g_data Pointer to the input array elements
      * @param n The number of elements in the input array
      */
-    __global__ void SummationExp(float* out, const float* g_data, unsigned long long n);
+    void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out, const float* g_data,
+                                 const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Softmax function on the GPU
@@ -504,23 +542,29 @@ namespace nz::krnl {
      * by exponentiating them and dividing by the sum of all exponentials, to each element of the input array
      * and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Softmax result will be stored
      * @param in Pointer to the input array elements
      * @param exp_sum_of_input The sum of the exponentials of the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void Softmax(float* out, const float* in, float exp_sum_of_input, unsigned long long n);
+    void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float exp_sum_of_input,
+                 const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the Jacobian of the Softmax function
      *
      * This function computes the Jacobian matrix of the Softmax function and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the Jacobian matrix will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input array
      */
-    __global__ void SoftmaxJacobian(float* out, const float* in, unsigned long long n);
+    void SoftmaxJacobian(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                         const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values
