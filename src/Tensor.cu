@@ -42,6 +42,20 @@ namespace nz::data {
             os << "]";
             os << std::endl;
         }
+        if (tensor._requires_grad) {
+            os << "Gradient: " << std::endl;
+            auto* grad = static_cast<Tensor::value_type*>(malloc(tensor._size * sizeof(Tensor::value_type)));
+            cudaMemcpy(grad, tensor._grad, tensor._size * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
+            for (int i = 0; i < tensor._shape[0]; ++i) {
+                const auto it = grad + i * tensor._shape[1];
+                const auto it_end = it + tensor._shape[1];
+                os << "[";
+                std::copy(it, it_end, output_iterator);
+                os << "]";
+                os << std::endl;
+            }
+            free(grad);
+        }
         free(data);
         return os;
     }
