@@ -148,7 +148,8 @@ namespace nz::krnl {
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
      */
-    __global__ void MatrixSub(const float* a, const float* b, float* c, unsigned long long n);
+    void MatrixSub(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
+                   const unsigned long long n);
 
     /**
      * @brief Kernel function to perform general matrix multiplication on GPU
@@ -158,6 +159,8 @@ namespace nz::krnl {
      * of large datasets. It takes two input arrays of floats and stores their product
      * in a third array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A Pointer to the first input matrix elements stored as a one-dimensional array
      * @param B Pointer to the second input matrix elements stored as a one-dimensional array
      * @param C Pointer to the output matrix where the result will be stored, allocated by the caller
@@ -165,8 +168,10 @@ namespace nz::krnl {
      * @param N The number of columns in the second input matrix;
      * @param K The number of columns in the first input matrix
      */
-    __global__ void GeneralMatrixMul(const float* A, const float* B, float* C, const unsigned long long M,
-                                     const unsigned long long N, const unsigned long long K);
+    void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, const float* A, const float* B, float* C,
+                          const unsigned long long M,
+                          const unsigned long long N,
+                          const unsigned long long K);
 
     /**
      * @brief Kernel function to transpose a matrix on the GPU
@@ -174,81 +179,101 @@ namespace nz::krnl {
      * This function performs the transposition of a matrix on the GPU, swapping rows and columns.
      * The resulting transposed matrix is stored in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param d_A Pointer to the input matrix elements stored as a one-dimensional array
      * @param d_B Pointer to the output matrix where the transposed result will be stored
      * @param rows The number of rows in the input matrix
      * @param cols The number of columns in the input matrix
      */
-    __global__ void Transpose(const float* d_A, float* d_B, const unsigned int rows, const unsigned int cols);
+    void Transpose(const dim3 gridDim, const dim3 blockDim, const float* d_A, float* d_B,
+                   const unsigned int rows,
+                   const unsigned int cols);
 
     /**
      * @brief Kernel function to perform scalar multiplication on the GPU
      *
      * This function multiplies each element of the input array by a scalar value and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the result will be stored
      * @param in Pointer to the input array elements
      * @param num The scalar value to multiply each element of the input array by
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void ScalarMul(float* out, const float* in, const float num, unsigned long long n);
+    void ScalarMul(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+                   const unsigned long long n);
 
     /**
      * @brief Kernel function to perform scalar division on the GPU
      *
      * This function divides each element of the input array by a scalar value and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the result will be stored
      * @param in Pointer to the input array elements
      * @param num The scalar value to divide each element of the input array by
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void ScalarDiv(float* out, const float* in, const float num, unsigned long long n);
+    void ScalarDiv(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+                   const unsigned long long n);
 
     /**
      * @brief Kernel function to add a scalar to each element of a matrix on the GPU
      *
      * This function adds a scalar value to each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the result will be stored
      * @param in Pointer to the input array elements
      * @param num The scalar value to add to each element of the input array
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void ScalarAdd(float* out, const float* in, const float num, unsigned long long n);
+    void ScalarAdd(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+                   const unsigned long long n);
 
     /**
      * @brief Kernel function to negate each element of a matrix on the GPU
      *
      * This function negates each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the negated result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void Negation(float* out, const float* in, unsigned long long n);
+    void Negation(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the reciprocal of each element of a matrix on the GPU
      *
      * This function computes the reciprocal (1/x) of each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the reciprocal result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void Recip(float* out, const float* in, unsigned long long n);
+    void Recip(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU
      *
      * This function applies the ReLU activation function (max(0, x)) to each element of the input array and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param out Pointer to the output array where the ReLU result will be stored
      * @param in Pointer to the input array elements
      * @param n The number of elements in the input and output arrays
      */
-    __global__ void RectifiedLinearUnit(float* out, const float* in, unsigned long long n);
+    void RectifiedLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                             const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the ReLU activation during backpropagation
@@ -256,12 +281,15 @@ namespace nz::krnl {
      * This function computes the gradient of the ReLU activation function during backpropagation
      * (dL/dx = dL/dy * (x > 0)) and stores the result in the output array.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A_grad Pointer to the output array where the gradient result will be stored
      * @param A Pointer to the input array elements (before activation)
      * @param B_grad Pointer to the gradient of the next layer
      * @param n The number of elements in the arrays
      */
-    __global__ void ReLUBackward(float* A_grad, const float* A, const float* B_grad, unsigned long long n);
+    void ReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                      const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Sigmoid activation function on the GPU

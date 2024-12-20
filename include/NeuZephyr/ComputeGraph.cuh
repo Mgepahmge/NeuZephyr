@@ -58,8 +58,6 @@
 #ifndef COMPUTEGRAPH_CUH
 #define COMPUTEGRAPH_CUH
 
-#include "Nodes.cuh"
-#include <unordered_map>
 #include <string>
 #include <queue>
 #include <fstream>

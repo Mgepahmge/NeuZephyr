@@ -118,7 +118,7 @@ namespace nz::data {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
         dim3 grid((rhs._size + block.x - 1) / block.x);
-        krnl::ScalarMul<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
+        krnl::ScalarMul(grid, block, result._data, rhs._data, lhs, rhs._size);
         return result;
     }
 
@@ -156,7 +156,7 @@ namespace nz::data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        krnl::ScalarMul<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        krnl::ScalarMul(grid, block, result._data, lhs._data, rhs, lhs._size);
         return result;
     }
 
@@ -194,7 +194,7 @@ namespace nz::data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        krnl::ScalarDiv<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        krnl::ScalarDiv(grid, block, result._data, lhs._data, rhs, lhs._size);
         return result;
     }
 
@@ -231,7 +231,7 @@ namespace nz::data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        krnl::ScalarAdd<<<grid, block>>>(result._data, lhs._data, rhs, lhs._size);
+        krnl::ScalarAdd(grid, block, result._data, lhs._data, rhs, lhs._size);
         return result;
     }
 
@@ -268,7 +268,7 @@ namespace nz::data {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
         dim3 grid((rhs._size + block.x - 1) / block.x);
-        krnl::ScalarAdd<<<grid, block>>>(result._data, rhs._data, lhs, rhs._size);
+        krnl::ScalarAdd(grid, block, result._data, rhs._data, lhs, rhs._size);
         return result;
     }
 
@@ -306,7 +306,7 @@ namespace nz::data {
         Tensor result(lhs._shape, lhs._requires_grad);
         dim3 block(256);
         dim3 grid((lhs._size + block.x - 1) / block.x);
-        krnl::ScalarAdd<<<grid, block>>>(result._data, lhs._data, -rhs, lhs._size);
+        krnl::ScalarAdd(grid, block, result._data, lhs._data, -rhs, lhs._size);
         return result;
     }
 
@@ -345,7 +345,7 @@ namespace nz::data {
         Tensor result(rhs._shape, rhs._requires_grad);
         dim3 block(256);
         dim3 grid((rhs._size + block.x - 1) / block.x);
-        krnl::ScalarAdd<<<grid, block>>>(result._data, rhs._data, -lhs, rhs._size);
+        krnl::ScalarAdd(grid, block, result._data, rhs._data, -lhs, rhs._size);
         return result;
     }
 
@@ -380,7 +380,7 @@ namespace nz::data {
         Tensor result(tensor._shape, tensor._requires_grad);
         dim3 block(256);
         dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::RectifiedLinearUnit<<<grid, block>>>(result._data, tensor._data, tensor._size);
+        krnl::RectifiedLinearUnit(grid, block, result._data, tensor._data, tensor._size);
         return result;
     }
 
@@ -870,13 +870,11 @@ namespace nz::data {
         free(data);
     }
 
-    void Tensor::copyData(const value_type* data, const shape_type& shape) {
+    void Tensor::copyData(const value_type* data) {
         cudaFree(_data);
         if (_requires_grad) {
             cudaFree(_grad);
         }
-        _size = shape[0] * shape[1];
-        _shape = shape;
         cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
         cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
         if (_requires_grad) {
@@ -939,7 +937,7 @@ namespace nz::data {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        krnl::MatrixSub<<<grid, block>>>(_data, other._data, result._data, _size);
+        krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);
         return result;
     }
 
@@ -950,7 +948,7 @@ namespace nz::data {
         Tensor result({_shape[0], other._shape[1]}, _requires_grad);
         dim3 block(TILE_SIZE, TILE_SIZE);
         dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
-        krnl::GeneralMatrixMul<<<grid, block>>>(_data, other._data, result._data, _shape[0], other._shape[1],
+        krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],
                                                    _shape[1]);
         return result;
     }
@@ -993,7 +991,7 @@ namespace nz::data {
         cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
         dim3 block(TILE_SIZE, TILE_SIZE);
         dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
-        krnl::Transpose<<<grid, block>>>(temp, _data, _shape[0], _shape[1]);
+        krnl::Transpose(grid, block, temp, _data, _shape[0], _shape[1]);
         reshape({_shape[1], _shape[0]});
         cudaFree(temp);
     }
@@ -1044,7 +1042,7 @@ namespace nz::data {
         Tensor result(_shape, _requires_grad);
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        krnl::Negation<<<grid, block>>>(result._data, _data, _size);
+        krnl::Negation(grid, block, result._data, _data, _size);
         return result;
     }
 
@@ -1053,7 +1051,7 @@ namespace nz::data {
         cudaMalloc(reinterpret_cast<value_type**>(&data), _size * sizeof(value_type));
         dim3 block(256);
         dim3 grid((_size + block.x - 1) / block.x);
-        krnl::Recip<<<grid, block>>>(data, _data, _size);
+        krnl::Recip(grid, block, data, _data, _size);
         cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
         cudaFree(data);
     }

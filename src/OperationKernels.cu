@@ -6,29 +6,35 @@
 
 namespace nz::krnl {
     __global__ void MatrixAddKernel(const float* a, const float* b, float* c,
-                              const unsigned long long n) {
+                                    const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             c[idx] = a[idx] + b[idx];
         }
     }
 
-    void MatrixAdd(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c, const unsigned long long n) {
+    void MatrixAdd(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
+                   const unsigned long long n) {
         MatrixAddKernel<<<gridDim, blockDim>>>(a, b, c, n);
     }
 
-    __global__ void MatrixSub(const float* a, const float* b, float* c,
-                              unsigned long long n) {
+    __global__ void MatrixSubKernel(const float* a, const float* b, float* c,
+                                    unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             c[idx] = a[idx] - b[idx];
         }
     }
 
-    __global__ void GeneralMatrixMul(const float* A, const float* B, float* C,
-                                     const unsigned long long M,
-                                     const unsigned long long N,
-                                     const unsigned long long K) {
+    void MatrixSub(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
+                   const unsigned long long n) {
+        MatrixSubKernel<<<gridDim, blockDim>>>(a, b, c, n);
+    }
+
+    __global__ void GeneralMatrixMulKernel(const float* A, const float* B, float* C,
+                                           const unsigned long long M,
+                                           const unsigned long long N,
+                                           const unsigned long long K) {
         __shared__ float As[TILE_SIZE][TILE_SIZE];
         __shared__ float Bs[TILE_SIZE][TILE_SIZE];
 
@@ -60,9 +66,16 @@ namespace nz::krnl {
             C[row * N + col] = sum;
     }
 
-    __global__ void Transpose(const float* d_A, float* d_B,
-                              const unsigned int rows,
-                              const unsigned int cols) {
+    void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, const float* A, const float* B, float* C,
+                          const unsigned long long M,
+                          const unsigned long long N,
+                          const unsigned long long K) {
+        GeneralMatrixMulKernel<<<gridDim, blockDim>>>(A, B, C, M, N, K);
+    }
+
+    __global__ void TransposeKernel(const float* d_A, float* d_B,
+                                    const unsigned int rows,
+                                    const unsigned int cols) {
         __shared__ float tile[TILE_SIZE][TILE_SIZE];
 
         unsigned int row = blockIdx.y * TILE_SIZE + threadIdx.y;
@@ -81,40 +94,65 @@ namespace nz::krnl {
             d_B[row * rows + col] = tile[threadIdx.x][threadIdx.y];
     }
 
-    __global__ void ScalarMul(float* out, const float* in, const float num,
-                              unsigned long long n) {
+    void Transpose(const dim3 gridDim, const dim3 blockDim, const float* d_A, float* d_B,
+                   const unsigned int rows,
+                   const unsigned int cols) {
+        TransposeKernel<<<gridDim, blockDim>>>(d_A, d_B, rows, cols);
+    }
+
+    __global__ void ScalarMulKernel(float* out, const float* in, const float num,
+                                    const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] * num;
         }
     }
 
-    __global__ void ScalarDiv(float* out, const float* in, const float num,
-                              unsigned long long n) {
+    void ScalarMul(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+                   const unsigned long long n) {
+        ScalarMulKernel<<<gridDim, blockDim>>>(out, in, num, n);
+    }
+
+    __global__ void ScalarDivKernel(float* out, const float* in, const float num,
+                                    const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] / num;
         }
     }
 
-    __global__ void ScalarAdd(float* out, const float* in, const float num,
-                              unsigned long long n) {
+    void ScalarDiv(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+                   const unsigned long long n) {
+        ScalarDivKernel<<<gridDim, blockDim>>>(out, in, num, n);
+    }
+
+    __global__ void ScalarAddKernel(float* out, const float* in, const float num,
+                                    const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] + num;
         }
     }
 
-    __global__ void Negation(float* out, const float* in,
-                             unsigned long long n) {
+    void ScalarAdd(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+                   const unsigned long long n) {
+        ScalarAddKernel<<<gridDim, blockDim>>>(out, in, num, n);
+    }
+
+    __global__ void NegationKernel(float* out, const float* in,
+                                   const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = -in[idx];
         }
     }
 
+    void Negation(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const unsigned long long n) {
+        NegationKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
     __global__ void
-    Recip(float* out, const float* in, unsigned long long n) {
+    RecipKernel(float* out, const float* in, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             if (in[idx] == 0) {
@@ -126,19 +164,33 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void RectifiedLinearUnit(float* out, const float* in, unsigned long long n) {
+    void Recip(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const unsigned long long n) {
+        RecipKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
+    __global__ void RectifiedLinearUnitKernel(float* out, const float* in, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = in[idx] > 0 ? in[idx] : 0;
         }
     }
 
-    __global__ void ReLUBackward(float* A_grad, const float* A,
-                                 const float* B_grad, unsigned long long n) {
+    void RectifiedLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                             const unsigned long long n) {
+        RectifiedLinearUnitKernel<<<gridDim, blockDim>>>(out, in, n);
+    }
+
+    __global__ void ReLUBackwardKernel(float* A_grad, const float* A,
+                                       const float* B_grad, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0 ? B_grad[idx] : 0;
         }
+    }
+
+    void ReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                      const unsigned long long n) {
+        ReLUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n);
     }
 
     __global__ void Sigmoid(float* out, const float* in,
@@ -223,8 +275,8 @@ namespace nz::krnl {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             A_grad[idx] = A[idx] > 0
-                ? B_grad[idx]
-                : alpha * __expf(A[idx]) * B_grad[idx];
+                              ? B_grad[idx]
+                              : alpha * __expf(A[idx]) * B_grad[idx];
         }
     }
 

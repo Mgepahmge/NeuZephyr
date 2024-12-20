@@ -111,7 +111,7 @@ namespace nz::graph {
                     const std::vector<int>& shape, const float* data, const bool requires_grad, const float* grad) {
         if (type == "Input") {
             auto* inputNode = new InputNode(shape, requires_grad);
-            inputNode->output->copyData(data, shape);
+            inputNode->output->copyData(data);
             if (requires_grad) {
                 inputNode->output->copyGrad(grad);
             }
@@ -128,7 +128,7 @@ namespace nz::graph {
         }
         else if (type == "Add") {
             auto* addNode = new AddNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
-            addNode->output->copyData(data, shape);
+            addNode->output->copyData(data);
             if (requires_grad) {
                 addNode->output->copyGrad(grad);
             }
@@ -137,7 +137,7 @@ namespace nz::graph {
         }
         else if (type == "MatMul") {
             auto* matmulNode = new MatMulNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
-            matmulNode->output->copyData(data, shape);
+            matmulNode->output->copyData(data);
             if (requires_grad) {
                 matmulNode->output->copyGrad(grad);
             }
@@ -149,7 +149,7 @@ namespace nz::graph {
         }
         else if (type == "Sub") {
             auto* subNode = new SubNode(graph->sortedNodes[pre[0]], graph->sortedNodes[pre[1]]);
-            subNode->output->copyData(data, shape);
+            subNode->output->copyData(data);
             if (requires_grad) {
                 subNode->output->copyGrad(grad);
             }
@@ -158,7 +158,7 @@ namespace nz::graph {
         }
         else if (type == "ReLU") {
             auto* reluNode = new ReLUNode(graph->sortedNodes[pre[0]]);
-            reluNode->output->copyData(data, shape);
+            reluNode->output->copyData(data);
             if (requires_grad) {
                 reluNode->output->copyGrad(grad);
             }
@@ -167,7 +167,7 @@ namespace nz::graph {
         }
         else if (type == "Sigmoid") {
             auto* sigmoidNode = new SigmoidNode(graph->sortedNodes[pre[0]]);
-            sigmoidNode->output->copyData(data, shape);
+            sigmoidNode->output->copyData(data);
             if (requires_grad) {
                 sigmoidNode->output->copyGrad(grad);
             }
@@ -176,7 +176,7 @@ namespace nz::graph {
         }
         else if (type == "Tanh") {
             auto* tanhNode = new TanhNode(graph->sortedNodes[pre[0]]);
-            tanhNode->output->copyData(data, shape);
+            tanhNode->output->copyData(data);
             if (requires_grad) {
                 tanhNode->output->copyGrad(grad);
             }
@@ -185,7 +185,7 @@ namespace nz::graph {
         }
         else if (type == "LeakyReLU") {
             auto* leakyreluNode = new LeakyReLUNode(graph->sortedNodes[pre[0]]);
-            leakyreluNode->output->copyData(data, shape);
+            leakyreluNode->output->copyData(data);
             if (requires_grad) {
                 leakyreluNode->output->copyGrad(grad);
             }
@@ -194,7 +194,7 @@ namespace nz::graph {
         }
         else if (type == "Swish") {
             auto* swishNode = new SwishNode(graph->sortedNodes[pre[0]]);
-            swishNode->output->copyData(data, shape);
+            swishNode->output->copyData(data);
             if (requires_grad) {
                 swishNode->output->copyGrad(grad);
             }
@@ -203,7 +203,7 @@ namespace nz::graph {
         }
         else if (type == "ELU") {
             auto* eluNode = new ELUNode(graph->sortedNodes[pre[0]]);
-            eluNode->output->copyData(data, shape);
+            eluNode->output->copyData(data);
             if (requires_grad) {
                 eluNode->output->copyGrad(grad);
             }
@@ -212,7 +212,7 @@ namespace nz::graph {
         }
         else if (type == "HardSigmoid") {
             auto* hardsigmoidNode = new HardSigmoidNode(graph->sortedNodes[pre[0]]);
-            hardsigmoidNode->output->copyData(data, shape);
+            hardsigmoidNode->output->copyData(data);
             if (requires_grad) {
                 hardsigmoidNode->output->copyGrad(grad);
             }
@@ -221,7 +221,7 @@ namespace nz::graph {
         }
         else if (type == "HardSwish") {
             auto* hardswishNode = new HardSwishNode(graph->sortedNodes[pre[0]]);
-            hardswishNode->output->copyData(data, shape);
+            hardswishNode->output->copyData(data);
             if (requires_grad) {
                 hardswishNode->output->copyGrad(grad);
             }
@@ -230,7 +230,7 @@ namespace nz::graph {
         }
         else if (type == "Softmax") {
             auto* softmaxNode = new SoftmaxNode(graph->sortedNodes[pre[0]]);
-            softmaxNode->output->copyData(data, shape);
+            softmaxNode->output->copyData(data);
             if (requires_grad) {
                 softmaxNode->output->copyGrad(grad);
             }
@@ -471,7 +471,7 @@ namespace nz::graph {
 
     void ComputeGraph::setInput(const std::string& name, const Tensor::value_type* data) {
         if (nodeRoster.find(name) != nodeRoster.end()) {
-            nodeRoster[name]->output->copyData(data, nodeRoster[name]->output->shape());
+            nodeRoster[name]->output->copyData(data);
         }
         else {
             throw std::runtime_error("Node not in graph");
@@ -480,7 +480,7 @@ namespace nz::graph {
 
     void ComputeGraph::setInput(const Node* node, const Tensor::value_type* data) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
-            node->output->copyData(data, node->output->shape());
+            node->output->copyData(data);
         }
         else {
             throw std::runtime_error("Node not in graph");

@@ -95,7 +95,7 @@ namespace nz::nodes {
         dim3 grid((inputs[1]->output->shape()[1] + block.x - 1) / block.x,
                   (inputs[0]->output->shape()[0] + block.y - 1) / block.y);
         // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
-        GeneralMatrixMul<<<grid, block>>>(inputs[0]->output->data(),
+        GeneralMatrixMul(grid, block, inputs[0]->output->data(),
                                           inputs[1]->output->data(),
                                           output->data(),
                                           inputs[0]->output->shape()[0],
@@ -111,7 +111,7 @@ namespace nz::nodes {
             dim3 block(TILE_SIZE, TILE_SIZE);
             dim3 grid((B_T.shape()[1] + block.x - 1) / block.x, (output->shape()[0] + block.y - 1) / block.y);
             // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
-            GeneralMatrixMul<<<grid, block>>>(output->grad(),
+            GeneralMatrixMul(grid, block, output->grad(),
                                               B_T.data(),
                                               inputs[0]->output->grad(),
                                               output->shape()[0],
@@ -125,7 +125,7 @@ namespace nz::nodes {
             dim3 block(TILE_SIZE, TILE_SIZE);
             dim3 grid((output->shape()[1] + block.x - 1) / block.x, (A_T.shape()[0] + block.y - 1) / block.y);
             // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
-            GeneralMatrixMul<<<grid, block>>>(A_T.data(),
+            GeneralMatrixMul(grid, block, A_T.data(),
                                               output->grad(),
                                               inputs[1]->output->grad(),
                                               A_T.shape()[0],
@@ -147,14 +147,14 @@ namespace nz::nodes {
     void ScalarMulNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        ScalarMul<<<grid, block>>>(output->data(), inputs[0]->output->data(), scalar, output->size());
+        ScalarMul(grid, block, output->data(), inputs[0]->output->data(), scalar, output->size());
     }
 
     void ScalarMulNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            ScalarMul<<<grid, block>>>(inputs[0]->output->grad(), output->grad(), scalar, output->size());
+            ScalarMul(grid, block, inputs[0]->output->grad(), output->grad(), scalar, output->size());
         }
     }
 
@@ -174,14 +174,14 @@ namespace nz::nodes {
     void ScalarDivNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        ScalarDiv<<<grid, block>>>(output->data(), inputs[0]->output->data(), scalar, output->size());
+        ScalarDiv(grid, block, output->data(), inputs[0]->output->data(), scalar, output->size());
     }
 
     void ScalarDivNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            ScalarDiv<<<grid, block>>>(inputs[0]->output->grad(), output->grad(), scalar, output->size());
+            ScalarDiv(grid, block, inputs[0]->output->grad(), output->grad(), scalar, output->size());
         }
     }
 
@@ -198,7 +198,7 @@ namespace nz::nodes {
     void ScalarAddNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        ScalarAdd<<<grid, block>>>(output->data(), inputs[0]->output->data(), scalar, output->size());
+        ScalarAdd(grid, block, output->data(), inputs[0]->output->data(), scalar, output->size());
     }
 
     void ScalarAddNode::backward() {
@@ -221,7 +221,7 @@ namespace nz::nodes {
     void ScalarSubNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        ScalarAdd<<<grid, block>>>(output->data(), inputs[0]->output->data(), scalar, output->size());
+        ScalarAdd(grid, block, output->data(), inputs[0]->output->data(), scalar, output->size());
     }
 
     void ScalarSubNode::backward() {
@@ -245,7 +245,7 @@ namespace nz::nodes {
     void SubNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        MatrixSub<<<grid, block>>>(inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
+        MatrixSub(grid, block, inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
                                    output->size());
     }
 
@@ -259,7 +259,7 @@ namespace nz::nodes {
             cudaMalloc(&n_grad, output->size() * sizeof(Tensor::value_type));
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            Negation<<<grid, block>>>(n_grad, output->grad(), output->size());
+            Negation(grid, block, n_grad, output->grad(), output->size());
             cudaMemcpy(inputs[1]->output->grad(), n_grad, output->size() * sizeof(Tensor::value_type),
                        cudaMemcpyDeviceToDevice);
             cudaFree(n_grad);
@@ -276,14 +276,14 @@ namespace nz::nodes {
     void ReLUNode::forward() {
         dim3 block(256);
         dim3 grid((output->size() + block.x - 1) / block.x);
-        RectifiedLinearUnit<<<grid, block>>>(output->data(), inputs[0]->output->data(), output->size());
+        RectifiedLinearUnit(grid, block, output->data(), inputs[0]->output->data(), output->size());
     }
 
     void ReLUNode::backward() {
         if (inputs[0]->output->requiresGrad()) {
             dim3 block(256);
             dim3 grid((output->size() + block.x - 1) / block.x);
-            ReLUBackward<<<grid, block>>>(inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
+            ReLUBackward(grid, block, inputs[0]->output->grad(), inputs[0]->output->data(), output->grad(),
                                           output->size());
         }
     }
@@ -480,7 +480,7 @@ namespace nz::nodes {
         SoftmaxJacobian<<<grid, block>>>(jacobian.data(), output->data(), output->size());
         dim3 block2(TILE_SIZE, TILE_SIZE);
         dim3 gird2((output->shape()[1] + TILE_SIZE - 1) / TILE_SIZE, (jacobian.shape()[0] + TILE_SIZE - 1) / TILE_SIZE);
-        GeneralMatrixMul<<<gird2, block2>>>(jacobian.data(), output->grad(), inputs[0]->output->grad(),
+        GeneralMatrixMul(gird2, block2, jacobian.data(), output->grad(), inputs[0]->output->grad(),
                                             jacobian.shape()[0], output->shape()[1], jacobian.shape()[1]);
     }
     }

@@ -430,8 +430,6 @@ namespace nz::data {
          *
          * @param data A pointer to the raw data to be copied into the tensor. The data should be stored in
          *             memory accessible by the host (CPU).
-         * @param shape A `shape_type` (alias for `std::vector<int>`) representing the dimensions of the tensor.
-         *              The size of the data must match the tensor's shape.
          *
          * This function first frees any previously allocated memory for both the tensor's data and gradients
          * (if applicable). Then, it allocates new memory on the GPU for the tensor's data and, if the tensor
@@ -448,11 +446,11 @@ namespace nz::data {
          * ```cpp
          * Tensor tensor({2, 3});  // Create a 2x3 tensor
          * float input_data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};
-         * tensor.copyData(input_data, {2, 3});  // Copy the data into the tensor
+         * tensor.copyData(input_data);  // Copy the data into the tensor
          * ```
          * @endcode
          */
-        void copyData(const value_type* data, const shape_type& shape);
+        void copyData(const value_type* data);
 
         /**
          * @brief Copies gradient data from host to GPU memory.
