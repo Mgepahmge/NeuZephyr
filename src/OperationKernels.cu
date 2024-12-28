@@ -566,12 +566,17 @@ namespace nz::krnl {
         MSEBackwardKernel<<<gridDim, blockDim>>>(out, predict, real, n);
     }
 
-    __global__ void StochasticGradientDescent(float* data, const float* grad, const float lr,
+    __global__ void StochasticGradientDescentKernel(float* data, const float* grad, const float lr,
                                               const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             data[idx] -= lr * grad[idx];
         }
+    }
+
+    void StochasticGradientDescent(const dim3 gridDim, const dim3 blockDim, float* data, const float* grad,
+                                   const float lr, const unsigned long long n) {
+        StochasticGradientDescentKernel<<<gridDim, blockDim>>>(data, grad, lr, n);
     }
 
     __global__ void BinaryCrossEntropyKernel(float* out, const float* predict, const float* real,
@@ -641,17 +646,21 @@ namespace nz::krnl {
         BCEBackwardKernel<<<gridDim, blockDim>>>(out, predict, real, n);
     }
 
-    __global__ void Momentum(float* output, const float* grad,
-                             const float* velocity, float beta,
-                             unsigned long long n) {
+    __global__ void MomentumKernel(float* output, const float* grad,
+                             const float* velocity, const float beta,
+                             const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             output[idx] = velocity[idx] * beta + grad[idx] * (1 - beta);
         }
     }
 
-    __global__ void AdaGrad(float* data, float* G, const float* grad, const float lr, const float eps,
-                            unsigned long long n) {
+    void Momentum(const dim3 gridDim, const dim3 blockDim, float* output, const float* grad, const float* velocity, const float beta, const unsigned long long n) {
+        MomentumKernel<<<gridDim, blockDim>>>(output, grad, velocity, beta, n);
+    }
+
+    __global__ void AdaGradKernel(float* data, float* G, const float* grad, const float lr, const float eps,
+                            const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -661,8 +670,13 @@ namespace nz::krnl {
         G[idx] = temp;
     }
 
-    __global__ void RMSprop(float* data, float* v, const float* grad, const float lr, const float beta,
-                            const float eps, unsigned long long n) {
+    void AdaGrad(const dim3 gridDim, const dim3 blockDim, float* data, float* G, const float* grad, const float lr,
+                 const float eps, const unsigned long long n) {
+        AdaGradKernel<<<gridDim, blockDim>>>(data, G, grad, lr, eps, n);
+    }
+
+    __global__ void RMSpropKernel(float* data, float* v, const float* grad, const float lr, const float beta,
+                            const float eps, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -672,8 +686,13 @@ namespace nz::krnl {
         v[idx] = temp;
     }
 
-    __global__ void Adam(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
-                         const float beta2, const float eps, const int t, unsigned long long n) {
+    void RMSprop(const dim3 gridDim, const dim3 blockDim, float* data, float* v, const float* grad, const float lr,
+                 const float beta, const float eps, const unsigned long long n) {
+        RMSpropKernel<<<gridDim, blockDim>>>(data, v, grad, lr, beta, eps, n);
+    }
+
+    __global__ void AdamKernel(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
+                         const float beta2, const float eps, const int t, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -687,9 +706,15 @@ namespace nz::krnl {
         v[idx] = v_temp;
     }
 
-    __global__ void NAdam(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
+    void Adam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* v, const float* grad,
+              const float lr, const float beta1, const float beta2, const float eps, const int t,
+              const unsigned long long n) {
+        AdamKernel<<<gridDim, blockDim>>>(data, m, v, grad, lr, beta1, beta2, eps, t, n);
+    }
+
+    __global__ void NAdamKernel(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
                           const float beta1, const float beta2, const float eps, const int t,
-                          unsigned long long n) {
+                          const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -705,9 +730,15 @@ namespace nz::krnl {
         v[idx] = v_temp;
     }
 
-    __global__ void AdaDelta(float* data, float* acc_delta, float* acc_grad, const float* grad,
+    void NAdam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* m_modified, float* v,
+               const float* grad, const float lr, const float beta1, const float beta2, const float eps, const int t,
+               const unsigned long long n) {
+        NAdamKernel<<<gridDim, blockDim>>>(data, m, m_modified, v, grad, lr, beta1, beta2, eps, t, n);
+    }
+
+    __global__ void AdaDeltaKernel(float* data, float* acc_delta, float* acc_grad, const float* grad,
                              const float rho, const float eps,
-                             unsigned long long n) {
+                             const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -718,5 +749,9 @@ namespace nz::krnl {
         const float delta_acc_temp = acc_delta[idx] * rho + delta_theta * delta_theta * (1 - rho);
         acc_delta[idx] = delta_acc_temp;
         acc_grad[idx] = delta_acc_grad_temp;
+    }
+    void AdaDelta(const dim3 gridDim, const dim3 blockDim, float* data, float* acc_delta, float* acc_grad,
+                  const float* grad, const float rho, const float eps, const unsigned long long n) {
+        AdaDeltaKernel<<<gridDim, blockDim>>>(data, acc_delta, acc_grad, grad, rho, eps, n);
     }
 }

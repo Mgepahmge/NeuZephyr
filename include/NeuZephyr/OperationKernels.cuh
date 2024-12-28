@@ -610,7 +610,8 @@ namespace nz::krnl {
      * @param lr The learning rate used for the gradient update
      * @param n The number of elements in the data and gradient arrays
      */
-    __global__ void StochasticGradientDescent(float* data, const float* grad, const float lr, unsigned long long n);
+    void StochasticGradientDescent(const dim3 gridDim, const dim3 blockDim, float* data, const float* grad,
+                                   const float lr, const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values
@@ -651,13 +652,15 @@ namespace nz::krnl {
      * This function updates the output array using the Momentum optimization method, which incorporates the
      * previous velocity to smooth the gradient update.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param output Pointer to the output array that will be updated
      * @param grad Pointer to the gradient array
      * @param velocity Pointer to the previous velocity array
      * @param beta The momentum factor (typically between 0.9 and 0.99)
      * @param n The number of elements in the output, gradient, and velocity arrays
      */
-    __global__ void Momentum(float* output, const float* grad, const float* velocity, float beta, unsigned long long n);
+    void Momentum(dim3 gridDim, dim3 blockDim, float* output, const float* grad, const float* velocity, float beta, unsigned long long n);
 
     /**
      * @brief Kernel function to apply AdaGrad optimization
@@ -665,6 +668,8 @@ namespace nz::krnl {
      * This function updates the data array using AdaGrad optimization, adjusting the learning rate for each
      * parameter based on the historical gradient squared values.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param data Pointer to the data array that will be updated
      * @param G Pointer to the array of accumulated squared gradients
      * @param grad Pointer to the gradient array
@@ -672,7 +677,8 @@ namespace nz::krnl {
      * @param eps A small constant to avoid division by zero (default 1e-8)
      * @param n The number of elements in the data, gradient, and accumulated gradient arrays
      */
-    __global__ void AdaGrad(float* data, float* G, const float* grad, float lr, float eps, unsigned long long n);
+    void AdaGrad(const dim3 gridDim, const dim3 blockDim, float* data, float* G, const float* grad, const float lr,
+                 const float eps, const unsigned long long n);
 
     /**
      * @brief Kernel function to apply RMSprop optimization
@@ -680,6 +686,8 @@ namespace nz::krnl {
      * This function updates the data array using RMSprop optimization, which divides the gradient by the moving
      * average of the squared gradient values.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param data Pointer to the data array that will be updated
      * @param v Pointer to the array of accumulated squared gradients
      * @param grad Pointer to the gradient array
@@ -688,8 +696,8 @@ namespace nz::krnl {
      * @param eps A small constant to avoid division by zero (default 1e-8)
      * @param n The number of elements in the data, gradient, and accumulated squared gradient arrays
      */
-    __global__ void RMSprop(float* data, float* v, const float* grad, const float lr, const float beta,
-                            const float eps, unsigned long long n);
+    void RMSprop(const dim3 gridDim, const dim3 blockDim, float* data, float* v, const float* grad, const float lr,
+                 const float beta, const float eps, const unsigned long long n);
 
     /**
      * @brief Kernel function to apply Adam optimization
@@ -697,6 +705,8 @@ namespace nz::krnl {
      * This function updates the data array using Adam optimization, which combines momentum and RMSprop
      * to adaptively adjust the learning rates of each parameter.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param data Pointer to the data array that will be updated
      * @param m Pointer to the first moment estimate (mean of gradients)
      * @param v Pointer to the second moment estimate (variance of gradients)
@@ -708,14 +718,17 @@ namespace nz::krnl {
      * @param t The current time step or iteration
      * @param n The number of elements in the data, gradient, and moment arrays
      */
-    __global__ void Adam(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
-                         const float beta2, const float eps, const int t, unsigned long long n);
+    void Adam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* v, const float* grad,
+              const float lr, const float beta1, const float beta2, const float eps, const int t,
+              const unsigned long long n);
 
     /**
      * @brief Kernel function to apply NAdam optimization
      *
      * This function updates the data array using NAdam optimization, which combines Adam with Nesterov momentum.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param data Pointer to the data array that will be updated
      * @param m Pointer to the first moment estimate (mean of gradients)
      * @param m_modified Pointer to the modified first moment estimate for Nesterov momentum
@@ -728,8 +741,9 @@ namespace nz::krnl {
      * @param t The current time step or iteration
      * @param n The number of elements in the data, gradient, and moment arrays
      */
-    __global__ void NAdam(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
-                          const float beta1, const float beta2, const float eps, const int t, unsigned long long n);
+    void NAdam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* m_modified, float* v,
+               const float* grad, const float lr, const float beta1, const float beta2, const float eps, const int t,
+               const unsigned long long n);
 
     /**
      * @brief Kernel function to apply AdaDelta optimization
@@ -737,6 +751,8 @@ namespace nz::krnl {
      * This function updates the data array using AdaDelta optimization, which uses a moving average of squared gradients
      * and deltas to adaptively adjust the learning rate.
      *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param data Pointer to the data array that will be updated
      * @param acc_delta Pointer to the accumulated delta values
      * @param acc_grad Pointer to the accumulated gradient squared values
@@ -745,8 +761,9 @@ namespace nz::krnl {
      * @param eps A small constant to avoid division by zero (default 1e-8)
      * @param n The number of elements in the data, gradient, and accumulated values arrays
      */
-    __global__ void AdaDelta(float* data, float* acc_delta, float* acc_grad, const float* grad,
-                             const float rho, const float eps, unsigned long long n);
+    void AdaDelta(const dim3 gridDim, const dim3 blockDim, float* data, float* acc_delta, float* acc_grad,
+                  const float* grad, const float rho, const float eps, const unsigned long long n);
+
 }
 
 #endif //OPERATIONKERNELS_CUH
