@@ -45,7 +45,6 @@
  */
 #ifndef OPERATIONKERNELS_CUH
 #define OPERATIONKERNELS_CUH
-#ifdef __CUDACC__
 
 #include "stdio.h"
 #include "utils.cuh"
@@ -119,6 +118,7 @@
  * @date 2024/12/07
  */
 namespace nz::krnl {
+#ifdef __CUDACC__
     /**
      * @brief Kernel function to perform matrix addition on GPU
      *
@@ -764,8 +764,7 @@ namespace nz::krnl {
      */
     void AdaDelta(const dim3 gridDim, const dim3 blockDim, float* data, float* acc_delta, float* acc_grad,
                   const float* grad, const float rho, const float eps, const unsigned long long n);
-
+#endif
 }
 
-#endif
 #endif //OPERATIONKERNELS_CUH
