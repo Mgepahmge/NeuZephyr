@@ -45,6 +45,7 @@
  */
 #ifndef OPERATIONKERNELS_CUH
 #define OPERATIONKERNELS_CUH
+#ifdef __CUDACC__
 
 #include "stdio.h"
 #include "utils.cuh"
@@ -766,4 +767,5 @@ namespace nz::krnl {
 
 }
 
+#endif
 #endif //OPERATIONKERNELS_CUH

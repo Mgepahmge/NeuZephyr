@@ -39,7 +39,6 @@
 #include "OperationKernels.cuh"
 #include <iterator>
 #include <stdexcept>
-#include <curand.h>
 #include <vector>
 #include "dl_export.cuh"
 
