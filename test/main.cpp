@@ -1,4 +1,4 @@
-#include "NeuZephyr/ComputeGraph.cuh"
+#include "include/NeuZephyr/ComputeGraph.cuh"
 using namespace nz;
 
 

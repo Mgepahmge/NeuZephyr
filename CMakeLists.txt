@@ -60,5 +60,3 @@ install(TARGETS NeuZephyr
 install(DIRECTORY include/NeuZephyr
         DESTINATION include
 )
-
-add_subdirectory(test)
