@@ -20,7 +20,7 @@ NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, d
 
 1. Clone the project:
    ```bash
-   git clone https://github.com/yourusername/NeuZephyr.git
+   git clone https://github.com/Mgepahmge/NeuZephyr.git
    cd NeuZephyr
    ```
 

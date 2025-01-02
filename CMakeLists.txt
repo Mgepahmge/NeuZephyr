@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
-project(Simple_DL_Framework VERSION 1.0.0 LANGUAGES CUDA CXX)
+project(NeuZephyr VERSION 0.1.0 LANGUAGES CUDA CXX)
 
 # Find CUDA
 find_package(CUDA REQUIRED)
@@ -104,3 +104,5 @@ install(
         "${CMAKE_CURRENT_BINARY_DIR}/NeuZephyrConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/NeuZephyr
 )
+
+include(CPack)

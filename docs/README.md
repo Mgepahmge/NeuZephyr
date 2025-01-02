@@ -28,7 +28,7 @@ For a detailed guide on how to use the `ComputeGraph` class, please refer to the
 
 1. Clone the project:
    ```bash
-   git clone https://github.com/yourusername/NeuZephyr.git
+   git clone https://github.com/Mgepahmge/NeuZephyr.git
    cd NeuZephyr
    ```
 
