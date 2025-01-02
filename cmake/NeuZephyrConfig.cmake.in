@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Import targets
+include("${CMAKE_CURRENT_LIST_DIR}/NeuZephyrTargets.cmake")
+
+check_required_components(NeuZephyr)
