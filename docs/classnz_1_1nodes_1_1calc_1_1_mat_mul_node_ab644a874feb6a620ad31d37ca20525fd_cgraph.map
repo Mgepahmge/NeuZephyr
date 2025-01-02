@@ -1,0 +1,14 @@
+<map id="nz::nodes::calc::MatMulNode::backward" name="nz::nodes::calc::MatMulNode::backward">
+<area shape="rect" id="Node000001" title="Backward pass for the MatMulNode to propagate gradients." alt="" coords="5,48,198,91"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="262,5,410,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,46,256,33,257,38,199,51"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="691,56,850,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,67,676,67,676,72,198,72"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="246,107,426,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,88,257,100,256,105,197,93"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2" title="Reshapes the tensor to the specified shape." alt="" coords="474,107,643,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="426,117,458,117,458,123,426,123"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="617,103,696,84,697,89,618,109"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="697,107,844,133"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="644,117,682,117,682,123,644,123"/>
+</map>

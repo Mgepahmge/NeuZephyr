@@ -1,0 +1,9 @@
+<map id="nz::nodes::io::OutputNode" name="nz::nodes::io::OutputNode">
+<area shape="rect" id="Node000001" title="Base class for loss function nodes in a computational graph." alt="" coords="123,80,297,107"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1nodes_1_1loss_1_1_binary_cross_entropy_node.html" title="Represents the Binary Cross&#45;Entropy (BCE) loss function node in a computational graph." alt="" coords="5,155,196,197"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,118,130,156,127,152,179,114"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html" title="Represents the Mean Squared Error (MSE) loss function node in a computational graph." alt="" coords="220,155,418,197"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="240,114,293,152,290,156,237,118"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="151,5,268,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,48,212,80,207,80,207,48"/>
+</map>

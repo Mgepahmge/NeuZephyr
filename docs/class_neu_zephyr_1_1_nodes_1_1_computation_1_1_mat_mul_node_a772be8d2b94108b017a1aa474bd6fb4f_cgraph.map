@@ -1,0 +1,5 @@
+<map id="NeuZephyr::Nodes::Computation::MatMulNode::forward" name="NeuZephyr::Nodes::Computation::MatMulNode::forward">
+<area shape="rect" id="Node000001" title="Forward pass for the MatMulNode to perform matrix multiplication." alt="" coords="5,5,219,48"/>
+<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a0bc12f600c36cea82bdf7dbfee3d8594" title="Kernel function to perform general matrix multiplication on GPU." alt="" coords="267,5,404,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="nz::opt::Adam::step" name="nz::opt::Adam::step">
+<area shape="rect" id="Node000001" title="Performs a single optimization step using the Adam algorithm." alt="" coords="5,5,142,32"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,5,326,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,174,16,174,21,142,21"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="374,5,522,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="326,16,359,16,359,21,326,21"/>
+</map>

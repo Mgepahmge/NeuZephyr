@@ -1,0 +1,5 @@
+<map id="nz::nodes::loss::MeanSquaredErrorNode::forward" name="nz::nodes::loss::MeanSquaredErrorNode::forward">
+<area shape="rect" id="Node000001" title="Computes the forward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,5,204,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ab77f0f296502a41852b8b75993276363" title="Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values." alt="" coords="252,13,432,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,24,236,24,236,29,204,29"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::TanhNode::backward" name="nz::nodes::calc::TanhNode::backward">
+<area shape="rect" id="Node000001" title="Backward pass for the TanhNode to compute gradients." alt="" coords="5,5,183,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ae292654b15c72e5de76584d3f3a11817" title="Kernel function to compute the gradient of the Tanh activation during backpropagation." alt="" coords="231,13,389,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,24,215,24,215,29,183,29"/>
+</map>

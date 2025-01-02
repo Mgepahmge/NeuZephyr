@@ -1,0 +1,5 @@
+<map id="NeuZephyr::Nodes::Computation::ReLUNode::forward" name="NeuZephyr::Nodes::Computation::ReLUNode::forward">
+<area shape="rect" id="Node000001" title="Forward pass for the ReLUNode to apply the ReLU activation function." alt="" coords="5,5,219,48"/>
+<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a0eb24e2329f5d2f9b175e40df5d52d6c" title="Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU." alt="" coords="267,5,407,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
+</map>

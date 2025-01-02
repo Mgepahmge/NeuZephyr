@@ -1,0 +1,5 @@
+<map id="NeuZephyr::Nodes::Computation::TanhNode::forward" name="NeuZephyr::Nodes::Computation::TanhNode::forward">
+<area shape="rect" id="Node000001" title="Forward pass for the TanhNode to apply the tanh activation function." alt="" coords="5,5,219,48"/>
+<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#aa6197b1a9c2c04fd677fca2a707d38e0" title="Kernel function to apply the Tanh activation function on the GPU." alt="" coords="267,5,404,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
+</map>

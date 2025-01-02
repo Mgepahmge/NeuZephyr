@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::TanhNode" name="nz::nodes::calc::TanhNode">
+<area shape="rect" id="Node000001" title="Represents a hyperbolic tangent (tanh) activation function node in a computational graph." alt="" coords="5,80,183,107"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="35,5,153,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,48,97,80,91,80,91,48"/>
+</map>

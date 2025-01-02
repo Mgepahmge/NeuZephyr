@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::ScalarMulNode::forward" name="nz::nodes::calc::ScalarMulNode::forward">
+<area shape="rect" id="Node000001" title="Forward pass for the ScalarMulNode to perform scalar multiplication." alt="" coords="5,5,182,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a3ff4ec6909c3296e1b0d5631c29a44bb" title="Kernel function to perform scalar multiplication on the GPU." alt="" coords="230,13,360,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,24,214,24,214,29,182,29"/>
+</map>

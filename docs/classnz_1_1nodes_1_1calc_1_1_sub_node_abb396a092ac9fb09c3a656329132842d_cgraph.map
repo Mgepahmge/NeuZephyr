@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::SubNode::backward" name="nz::nodes::calc::SubNode::backward">
+<area shape="rect" id="Node000001" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,5,178,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ac4e4b8e2415062632b49dd77694b0974" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="226,13,350,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
+</map>

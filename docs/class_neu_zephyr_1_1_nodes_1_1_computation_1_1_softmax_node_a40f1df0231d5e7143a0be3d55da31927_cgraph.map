@@ -1,0 +1,7 @@
+<map id="NeuZephyr::Nodes::Computation::SoftmaxNode::forward" name="NeuZephyr::Nodes::Computation::SoftmaxNode::forward">
+<area shape="rect" id="Node000001" title="Performs the forward pass of the Softmax operation." alt="" coords="5,39,219,81"/>
+<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#acf6ee69c4ac4a2b46c83c66f74bc2987" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="267,5,404,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,41,251,37,252,42,220,47"/>
+<area shape="rect" id="Node000003" href="$namespace_neu_zephyr_1_1_kernels.html#aad279f8704770b82ffbcfacac064a5ef" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="267,72,404,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,73,252,78,251,83,219,79"/>
+</map>
