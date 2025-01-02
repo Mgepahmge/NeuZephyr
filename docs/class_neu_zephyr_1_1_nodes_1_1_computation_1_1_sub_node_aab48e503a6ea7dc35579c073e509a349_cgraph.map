@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Computation::SubNode::backward" name="NeuZephyr::Nodes::Computation::SubNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,5,219,48"/>
-<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#ac6fa86909150427c4881c8c67683c585" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="267,5,404,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
-</map>

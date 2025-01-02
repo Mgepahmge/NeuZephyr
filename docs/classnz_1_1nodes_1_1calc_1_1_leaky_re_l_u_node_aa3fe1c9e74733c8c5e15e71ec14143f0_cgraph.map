@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::LeakyReLUNode::backward" name="nz::nodes::calc::LeakyReLUNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the LeakyReLUNode to compute gradients." alt="" coords="5,5,176,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a932eaf573ea612466b51a74260c4dc4c" title="Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation." alt="" coords="224,13,423,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
-</map>

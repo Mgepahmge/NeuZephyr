@@ -1,5 +1,0 @@
-<map id="nz::opt::SGD::step" name="nz::opt::SGD::step">
-<area shape="rect" id="Node000001" title="Performs a single step of the Stochastic Gradient Descent (SGD) optimization." alt="" coords="5,13,137,40"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a45834d2bbfcd8a5a7d80b3dc8a1b5c0e" title="Kernel function to perform Stochastic Gradient Descent (SGD) optimization." alt="" coords="185,5,368,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,24,169,24,169,29,137,29"/>
-</map>

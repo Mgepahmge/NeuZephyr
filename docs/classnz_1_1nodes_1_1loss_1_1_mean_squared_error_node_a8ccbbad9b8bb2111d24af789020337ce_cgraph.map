@@ -1,5 +1,0 @@
-<map id="nz::nodes::loss::MeanSquaredErrorNode::backward" name="nz::nodes::loss::MeanSquaredErrorNode::backward">
-<area shape="rect" id="Node000001" title="Computes the backward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,5,204,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a9860fb336a8f7a84b4b0eb226ea93755" title="Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation." alt="" coords="252,13,411,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,24,236,24,236,29,204,29"/>
-</map>

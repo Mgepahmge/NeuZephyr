@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Computation::HardSigmoidNode::forward" name="NeuZephyr::Nodes::Computation::HardSigmoidNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the HardSigmoidNode to apply the Hard Sigmoid activation function." alt="" coords="5,5,219,48"/>
-<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a3ae951e711d9eba2513da84131735b7a" title="Kernel function to apply the Hard Sigmoid activation function on the GPU." alt="" coords="267,5,404,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
-</map>

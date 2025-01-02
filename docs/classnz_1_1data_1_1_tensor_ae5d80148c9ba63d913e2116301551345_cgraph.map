@@ -1,5 +1,0 @@
-<map id="nz::data::Tensor::print" name="nz::data::Tensor::print">
-<area shape="rect" id="Node000001" title="Prints the tensor&#39;s data to the standard output." alt="" coords="5,5,154,32"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="202,5,350,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,16,186,16,186,21,154,21"/>
-</map>

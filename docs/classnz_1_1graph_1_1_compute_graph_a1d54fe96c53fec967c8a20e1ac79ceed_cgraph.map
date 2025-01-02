@@ -1,7 +1,0 @@
-<map id="nz::graph::ComputeGraph::print" name="nz::graph::ComputeGraph::print">
-<area shape="rect" id="Node000001" title="Prints the details of the computational graph to the provided output stream." alt="" coords="5,39,177,81"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1graph_1_1_compute_graph.html#aede9d05b6c8e7394ea730b5ffea42164" title="Checks whether the computational graph has been topologically sorted." alt="" coords="225,5,396,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,44,209,39,209,45,177,50"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1graph_1_1_compute_graph.html#a5960e75d631200994c0a2f78f58674dd" title="Performs topological sorting on the computational graph." alt="" coords="225,72,396,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,70,209,75,209,81,176,76"/>
-</map>

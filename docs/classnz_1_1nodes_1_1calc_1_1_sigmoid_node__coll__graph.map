@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::SigmoidNode" name="nz::nodes::calc::SigmoidNode">
-<area shape="rect" id="Node000001" title="Represents a Sigmoid activation function node in a computational graph." alt="" coords="5,80,202,107"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="45,5,162,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,48,106,80,101,80,101,48"/>
-</map>

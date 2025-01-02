@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Computation::LeakyReLUNode::forward" name="NeuZephyr::Nodes::Computation::LeakyReLUNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function." alt="" coords="5,5,219,48"/>
-<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a285345c1d785b3e2e57e61546d344bad" title="Kernel function to apply the Leaky ReLU activation function on the GPU." alt="" coords="267,5,404,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
-</map>

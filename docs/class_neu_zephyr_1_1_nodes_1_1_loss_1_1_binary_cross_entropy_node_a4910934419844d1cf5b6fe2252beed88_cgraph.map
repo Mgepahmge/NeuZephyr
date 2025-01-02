@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Loss::BinaryCrossEntropyNode::forward" name="NeuZephyr::Nodes::Loss::BinaryCrossEntropyNode::forward">
-<area shape="rect" id="Node000001" title="Computes the Binary Cross&#45;Entropy (BCE) loss in the forward pass." alt="" coords="5,5,183,64"/>
-<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a03a44febc6abfdac6df08b9fb33e6e03" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="231,13,377,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,32,215,32,215,37,183,37"/>
-</map>

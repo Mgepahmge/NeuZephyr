@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Computation::ScalarMulNode::forward" name="NeuZephyr::Nodes::Computation::ScalarMulNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the ScalarMulNode to perform scalar multiplication." alt="" coords="5,5,219,48"/>
-<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#aed9c4b4569969fff2d761183c0b4af9f" title="Kernel function to perform scalar multiplication on the GPU." alt="" coords="267,5,404,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Computation::ScalarDivNode::forward" name="NeuZephyr::Nodes::Computation::ScalarDivNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the ScalarDivNode to perform scalar division." alt="" coords="5,5,219,48"/>
-<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a5da67ef7fc145f0a65c2cca53b818ff6" title="Kernel function to perform scalar division on the GPU." alt="" coords="267,5,404,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
-</map>

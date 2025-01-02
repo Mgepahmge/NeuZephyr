@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::HardSigmoidNode::backward" name="nz::nodes::calc::HardSigmoidNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the HardSigmoidNode to compute gradients." alt="" coords="5,5,199,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#af056b58ddf4593c9ecd8aaff2f2f270b" title="Kernel function to compute the gradient of the Hard Sigmoid activation during backpropagation." alt="" coords="247,13,452,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,24,231,24,231,29,199,29"/>
-</map>

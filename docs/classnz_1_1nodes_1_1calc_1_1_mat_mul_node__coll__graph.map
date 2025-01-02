@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::MatMulNode" name="nz::nodes::calc::MatMulNode">
-<area shape="rect" id="Node000001" title="Represents a matrix multiplication operation node in a computational graph." alt="" coords="5,80,198,107"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="43,5,160,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,48,104,80,99,80,99,48"/>
-</map>

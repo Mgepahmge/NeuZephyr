@@ -1,5 +1,0 @@
-<map id="nz::graph::ComputeGraph::update" name="nz::graph::ComputeGraph::update">
-<area shape="rect" id="Node000001" title="Updates the parameters of the nodes that require gradients using the provided optimizer." alt="" coords="5,5,177,48"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1opt_1_1_optimizer.html#a826381abaaf29dbebade7cfd38b266e4" title="Pure virtual function for performing a single optimization step." alt="" coords="225,5,350,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,24,209,24,209,29,177,29"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="nz::data::Tensor::operator+" name="nz::data::Tensor::operator+">
-<area shape="rect" id="Node000001" title="Adds two tensors element&#45;wise and returns the result." alt="" coords="5,5,184,32"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a414aeef2e475b241515106887434daf3" title="Kernel function to perform matrix addition on GPU." alt="" coords="232,5,363,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,16,216,16,216,21,184,21"/>
-</map>

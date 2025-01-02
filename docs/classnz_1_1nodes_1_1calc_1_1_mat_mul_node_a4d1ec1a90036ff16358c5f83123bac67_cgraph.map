@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::MatMulNode::forward" name="nz::nodes::calc::MatMulNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the MatMulNode to perform matrix multiplication." alt="" coords="5,5,198,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a519052f82be824e8639ed89cea7b2c9d" title="Kernel function to perform general matrix multiplication on GPU." alt="" coords="246,13,420,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,24,230,24,230,29,198,29"/>
-</map>

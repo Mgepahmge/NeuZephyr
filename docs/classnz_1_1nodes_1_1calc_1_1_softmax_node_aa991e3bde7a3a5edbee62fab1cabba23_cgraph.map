@@ -1,7 +1,0 @@
-<map id="nz::nodes::calc::SoftmaxNode::backward" name="nz::nodes::calc::SoftmaxNode::backward">
-<area shape="rect" id="Node000001" title="Performs the backward pass of the Softmax operation." alt="" coords="5,23,173,65"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="226,5,374,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,31,210,27,210,32,174,37"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="221,56,379,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,51,206,55,205,61,173,57"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="nz::data::Tensor::copyData" name="nz::data::Tensor::copyData">
-<area shape="rect" id="Node000001" title="Copies data into the tensor from a raw pointer and reallocates memory." alt="" coords="5,5,185,32"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="233,5,381,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,16,217,16,217,21,185,21"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::ELUNode::backward" name="nz::nodes::calc::ELUNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the ELUNode to compute gradients." alt="" coords="5,5,181,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a4e0f485b7b2ab66d338c9f734ab2637e" title="Kernel function to compute the gradient of the ELU activation during backpropagation." alt="" coords="229,13,385,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,24,213,24,213,29,181,29"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::HardSigmoidNode::forward" name="nz::nodes::calc::HardSigmoidNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the HardSigmoidNode to apply the Hard Sigmoid activation function." alt="" coords="5,5,199,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ac26daf944beb52afd8e12cad044ef5bc" title="Kernel function to apply the Hard Sigmoid activation function on the GPU." alt="" coords="247,13,394,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,24,231,24,231,29,199,29"/>
-</map>

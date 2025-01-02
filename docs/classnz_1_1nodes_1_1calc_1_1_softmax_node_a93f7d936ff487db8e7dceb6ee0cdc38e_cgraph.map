@@ -1,7 +1,0 @@
-<map id="nz::nodes::calc::SoftmaxNode::forward" name="nz::nodes::calc::SoftmaxNode::forward">
-<area shape="rect" id="Node000001" title="Performs the forward pass of the Softmax operation." alt="" coords="5,23,173,65"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a34af1558b83a111a4c90996fb3b2a713" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="241,5,362,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,31,225,25,226,30,174,37"/>
-<area shape="rect" id="Node000003" href="$namespacenz_1_1krnl.html#a7b195b904d8c2dc9f53c95ae3254ee8d" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="221,56,382,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,51,206,55,205,61,173,57"/>
-</map>

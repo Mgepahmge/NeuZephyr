@@ -1,5 +1,0 @@
-<map id="nz::nodes::io::OutputNode::print" name="nz::nodes::io::OutputNode::print">
-<area shape="rect" id="Node000001" title="Prints the type, data, gradient, and loss of the node." alt="" coords="5,5,180,48"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e" title="Prints the type, data, and gradient of the node." alt="" coords="228,13,378,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,24,212,24,212,29,180,29"/>
-</map>

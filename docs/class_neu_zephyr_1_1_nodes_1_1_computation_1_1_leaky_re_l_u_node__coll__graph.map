@@ -1,5 +1,0 @@
-<map id="NeuZephyr::Nodes::Computation::LeakyReLUNode" name="NeuZephyr::Nodes::Computation::LeakyReLUNode">
-<area shape="rect" id="Node000001" title="Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational grap..." alt="" coords="5,80,219,123"/>
-<area shape="rect" id="Node000002" href="$class_neu_zephyr_1_1_nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="27,5,197,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,48,115,80,109,80,109,48"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="nz::nodes::loss::MeanSquaredErrorNode" name="nz::nodes::loss::MeanSquaredErrorNode">
-<area shape="rect" id="Node000001" title="Represents the Mean Squared Error (MSE) loss function node in a computational graph." alt="" coords="5,155,204,197"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1io_1_1_output_node.html" title="Base class for loss function nodes in a computational graph." alt="" coords="17,80,192,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,122,107,154,102,154,102,122"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="46,5,163,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,48,107,80,102,80,102,48"/>
-</map>

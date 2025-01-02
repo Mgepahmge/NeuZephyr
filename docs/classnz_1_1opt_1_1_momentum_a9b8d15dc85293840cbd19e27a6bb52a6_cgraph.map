@@ -1,7 +1,0 @@
-<map id="nz::opt::Momentum::step" name="nz::opt::Momentum::step">
-<area shape="rect" id="Node000001" title="Performs a single optimization step using the Momentum algorithm." alt="" coords="5,5,173,32"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1" title="Fills the tensor&#39;s data with a specified value." alt="" coords="221,5,357,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,16,205,16,205,21,173,21"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="405,5,553,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,16,390,16,390,21,357,21"/>
-</map>

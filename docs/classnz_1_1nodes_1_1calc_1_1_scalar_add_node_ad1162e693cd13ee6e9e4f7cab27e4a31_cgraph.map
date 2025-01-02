@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::ScalarAddNode::forward" name="nz::nodes::calc::ScalarAddNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the ScalarAddNode to perform scalar addition." alt="" coords="5,5,184,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#adcbfa84211bb6cac845f1dc94e59ec19" title="Kernel function to add a scalar to each element of a matrix on the GPU." alt="" coords="232,13,364,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,24,216,24,216,29,184,29"/>
-</map>

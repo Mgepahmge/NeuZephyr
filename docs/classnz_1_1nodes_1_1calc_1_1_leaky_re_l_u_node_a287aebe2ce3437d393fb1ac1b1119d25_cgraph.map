@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::LeakyReLUNode::forward" name="nz::nodes::calc::LeakyReLUNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function." alt="" coords="5,5,176,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0" title="Kernel function to apply the Leaky ReLU activation function on the GPU." alt="" coords="224,13,365,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="nz::nodes::calc::AddNode::forward" name="nz::nodes::calc::AddNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the AddNode to perform element&#45;wise addition." alt="" coords="5,5,178,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a414aeef2e475b241515106887434daf3" title="Kernel function to perform matrix addition on GPU." alt="" coords="226,13,357,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
-</map>

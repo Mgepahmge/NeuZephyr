@@ -1,5 +1,0 @@
-<map id="nz::data::Tensor::Tensor" name="nz::data::Tensor::Tensor">
-<area shape="rect" id="Node000001" title="Constructor that initializes a Tensor with the specified shape and data." alt="" coords="5,5,168,32"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="216,5,364,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,16,200,16,200,21,168,21"/>
-</map>

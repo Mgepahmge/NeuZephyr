@@ -1,7 +1,0 @@
-<map id="nz::nodes::loss::BinaryCrossEntropyNode" name="nz::nodes::loss::BinaryCrossEntropyNode">
-<area shape="rect" id="Node000001" title="Represents the Binary Cross&#45;Entropy (BCE) loss function node in a computational graph." alt="" coords="5,155,196,197"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1io_1_1_output_node.html" title="Base class for loss function nodes in a computational graph." alt="" coords="13,80,188,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,122,103,154,98,154,98,122"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="42,5,159,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,48,103,80,98,80,98,48"/>
-</map>
