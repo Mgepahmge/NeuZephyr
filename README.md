@@ -69,6 +69,12 @@ int main() {
 
 ---
 
+## Documentation
+
+For detailed documentation on how to use NeuZephyr, please visit the [NeuZephyr Documentation](https://mgepahmge.github.io/NeuZephyrDoc/).
+
+---
+
 ### Contact & Additional Information
 
 For inquiries, issues, or contributions, please contact:
