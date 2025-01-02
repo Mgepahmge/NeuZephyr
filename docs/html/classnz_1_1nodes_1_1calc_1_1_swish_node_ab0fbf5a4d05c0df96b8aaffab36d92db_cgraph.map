@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::SwishNode::forward" name="nz::nodes::calc::SwishNode::forward">
+<area shape="rect" id="Node000001" title="Forward pass for the SwishNode to apply the Swish activation function." alt="" coords="5,5,191,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3" title="Kernel function to apply the Swish activation function on the GPU." alt="" coords="239,13,347,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,24,223,24,223,29,191,29"/>
+</map>

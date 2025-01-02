@@ -1,0 +1,5 @@
+<map id="nz::nodes::loss::BinaryCrossEntropyNode::backward" name="nz::nodes::loss::BinaryCrossEntropyNode::backward">
+<area shape="rect" id="Node000001" title="Computes the gradients of the Binary Cross&#45;Entropy (BCE) loss with respect to the inputs during the b..." alt="" coords="5,5,196,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ae17e746fc1ebf04f1914ae7aad93cbf2" title="Kernel function to compute the gradient of Binary Cross Entropy (BCE) loss for backpropagation." alt="" coords="244,13,402,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,24,228,24,228,29,196,29"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="nz::graph::ComputeGraph::backward" name="nz::graph::ComputeGraph::backward">
+<area shape="rect" id="Node000001" title="Performs backward propagation on the computational graph." alt="" coords="5,5,177,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1graph_1_1_compute_graph.html#aede9d05b6c8e7394ea730b5ffea42164" title="Checks whether the computational graph has been topologically sorted." alt="" coords="225,5,396,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,24,209,24,209,29,177,29"/>
+</map>

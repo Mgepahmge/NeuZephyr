@@ -1,0 +1,5 @@
+<map id="NeuZephyr::Nodes::Computation::HardSigmoidNode::backward" name="NeuZephyr::Nodes::Computation::HardSigmoidNode::backward">
+<area shape="rect" id="Node000001" title="Backward pass for the HardSigmoidNode to compute gradients." alt="" coords="5,5,219,48"/>
+<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#a6d79f947e5f30881811281c207c28935" title="Kernel function to compute the gradient of the Hard Sigmoid activation during backpropagation." alt="" coords="267,5,429,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,24,251,24,251,29,219,29"/>
+</map>

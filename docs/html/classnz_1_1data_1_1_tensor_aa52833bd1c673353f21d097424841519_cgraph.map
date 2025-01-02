@@ -1,0 +1,10 @@
+<map id="nz::data::Tensor::reshape" name="nz::data::Tensor::reshape">
+<area shape="rect" id="Node000001" title="Reshapes the tensor to the specified shape using an initializer list." alt="" coords="5,31,175,57"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2" title="Reshapes the tensor to the specified shape." alt="" coords="223,56,392,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,51,207,55,207,60,175,57"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="440,5,598,32"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="175,36,425,22,425,27,175,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="366,53,445,34,446,39,367,58"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="446,56,593,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="393,67,430,67,430,72,393,72"/>
+</map>

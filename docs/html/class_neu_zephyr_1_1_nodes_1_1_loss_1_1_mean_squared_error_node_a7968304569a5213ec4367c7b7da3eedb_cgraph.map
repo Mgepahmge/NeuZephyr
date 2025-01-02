@@ -1,0 +1,5 @@
+<map id="NeuZephyr::Nodes::Loss::MeanSquaredErrorNode::forward" name="NeuZephyr::Nodes::Loss::MeanSquaredErrorNode::forward">
+<area shape="rect" id="Node000001" title="Computes the forward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,5,174,64"/>
+<area shape="rect" id="Node000002" href="$namespace_neu_zephyr_1_1_kernels.html#ad6d39bc957466f1774a049fe41f73270" title="Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values." alt="" coords="222,13,359,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,32,206,32,206,37,174,37"/>
+</map>

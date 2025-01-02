@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::HardSwishNode::backward" name="nz::nodes::calc::HardSwishNode::backward">
+<area shape="rect" id="Node000001" title="Backward pass for the HardSwishNode to compute gradients." alt="" coords="5,5,188,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ac888650dad7fcc8148c141230b0ec129" title="Kernel function to compute the gradient of the Hard Swish activation during backpropagation." alt="" coords="236,13,430,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,24,220,24,220,29,188,29"/>
+</map>

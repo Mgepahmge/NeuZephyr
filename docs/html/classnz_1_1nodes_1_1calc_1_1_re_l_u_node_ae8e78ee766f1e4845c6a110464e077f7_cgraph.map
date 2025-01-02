@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::ReLUNode::forward" name="nz::nodes::calc::ReLUNode::forward">
+<area shape="rect" id="Node000001" title="Forward pass for the ReLUNode to apply the ReLU activation function." alt="" coords="5,5,189,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#af7a6c276ed33c218e97f4e41c50f5ede" title="Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU." alt="" coords="237,13,420,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,24,221,24,221,29,189,29"/>
+</map>

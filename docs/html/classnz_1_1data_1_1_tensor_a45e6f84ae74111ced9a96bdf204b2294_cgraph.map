@@ -1,0 +1,9 @@
+<map id="nz::data::Tensor::transpose" name="nz::data::Tensor::transpose">
+<area shape="rect" id="Node000001" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="5,31,186,57"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2" title="Reshapes the tensor to the specified shape." alt="" coords="234,31,403,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,41,218,41,218,47,186,47"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="451,5,609,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,31,435,27,436,33,404,36"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="456,56,604,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="404,52,442,56,441,61,403,57"/>
+</map>

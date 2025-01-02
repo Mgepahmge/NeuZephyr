@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::SwishNode" name="nz::nodes::calc::SwishNode">
+<area shape="rect" id="Node000001" title="Represents a Swish activation function node in a computational graph." alt="" coords="5,80,191,107"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="39,5,157,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,48,101,80,95,80,95,48"/>
+</map>

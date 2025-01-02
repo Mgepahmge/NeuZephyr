@@ -1,0 +1,5 @@
+<map id="NeuZephyr::Nodes::Standard::OutputNode" name="NeuZephyr::Nodes::Standard::OutputNode">
+<area shape="rect" id="Node000001" title="Base class for loss function nodes in a computational graph." alt="" coords="5,80,197,123"/>
+<area shape="rect" id="Node000002" href="$class_neu_zephyr_1_1_nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="16,5,186,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,48,104,80,98,80,98,48"/>
+</map>

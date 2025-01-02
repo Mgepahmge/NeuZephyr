@@ -1,0 +1,5 @@
+<map id="nz::data::Tensor::fillGrad" name="nz::data::Tensor::fillGrad">
+<area shape="rect" id="Node000001" title="Fills the tensor&#39;s gradient data with a specified value." alt="" coords="5,5,170,32"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a8c2f5456e8261b507c65c9d6acb374fd" title="Retrieves a pointer to the gradient data stored in GPU memory." alt="" coords="218,5,366,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,16,202,16,202,21,170,21"/>
+</map>
