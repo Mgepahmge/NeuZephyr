@@ -1030,7 +1030,7 @@ namespace nz::data {
         return _data;
     }
 
-    Tensor::value_type* Tensor::grad() const noexcept {
+    Tensor::value_type* Tensor::grad() const {
         if (!_requires_grad) {
             throw std::runtime_error("Tensor does not require gradients");
         }

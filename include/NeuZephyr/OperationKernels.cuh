@@ -49,6 +49,8 @@
 #include "stdio.h"
 #include "utils.cuh"
 #define TILE_SIZE 32
+#define FULL_MASK 0xffffffff
+#define WARP_SIZE 32
 
 /**
  * @namespace nz::krnl

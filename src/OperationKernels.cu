@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 24-11-11.
-//
-
 #include "NeuZephyr/OperationKernels.cuh"
 
 namespace nz::krnl {
@@ -403,62 +399,42 @@ namespace nz::krnl {
         HardSwishBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha, beta);
     }
 
+    __inline__ __device__ float warpReduce(float localSum) {
+        localSum += __shfl_xor_sync(FULL_MASK, localSum, 16);
+        localSum += __shfl_xor_sync(FULL_MASK, localSum, 8);
+        localSum += __shfl_xor_sync(FULL_MASK, localSum, 4);
+        localSum += __shfl_xor_sync(FULL_MASK, localSum, 2);
+        localSum += __shfl_xor_sync(FULL_MASK, localSum, 1);
+        return localSum;
+    }
+
     __global__ void SummationExpKernel(float* out, const float* g_data,
                                        const unsigned long long n) {
         extern __shared__ float sdata[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
-
-        // copy data
+        const unsigned long long warpIdx = tid / WARP_SIZE;
+        const unsigned long long laneIdx = tid % WARP_SIZE;
+        float localSum = 0.0f;
         if (idx < n) {
-            sdata[tid] = __expf(g_data[idx]);
-        }
-        else {
-            sdata[tid] = 0;
+            localSum = __expf(g_data[idx]);
+        } else {
+            localSum = 0.0f;
         }
         __syncthreads();
-
-        // loop unroll
-        if (blockDim.x >= 1024 && tid < 512) {
-            sdata[tid] += sdata[tid + 512];
+        // Warp Reduce
+        localSum = warpReduce(localSum);
+        if (laneIdx == 0) {
+            sdata[warpIdx] = localSum;
         }
-
         __syncthreads();
-
-        if (blockDim.x >= 512 && tid < 256) {
-            sdata[tid] += sdata[tid + 256];
+        localSum = (idx < blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;
+        // Block Reduce
+        if (warpIdx == 0) {
+            localSum = warpReduce(localSum);
         }
-
-        __syncthreads();
-
-        if (blockDim.x >= 256 && tid < 128) {
-            sdata[tid] += sdata[tid + 128];
-        }
-
-        __syncthreads();
-
-        if (blockDim.x >= 128 && tid < 64) {
-            sdata[tid] += sdata[tid + 64];
-        }
-
-        __syncthreads();
-
-        // warp unroll
-        if (tid < 32) {
-            volatile float* vdata = sdata;
-            vdata[tid] += vdata[tid + 32];
-            vdata[tid] += vdata[tid + 16];
-            vdata[tid] += vdata[tid + 8];
-            vdata[tid] += vdata[tid + 4];
-            vdata[tid] += vdata[tid + 2];
-            vdata[tid] += vdata[tid + 1];
-        }
-
-        __syncthreads();
-
-        // write data back to global memory
         if (tid == 0) {
-            out[blockIdx.x] = sdata[0];
+            out[blockIdx.x] = localSum;
         }
     }
 

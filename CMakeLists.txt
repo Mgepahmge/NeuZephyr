@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 project(NeuZephyr VERSION 0.1.0 LANGUAGES CUDA CXX)
 
 # Find CUDA
-find_package(CUDA REQUIRED)
+find_package(CUDAToolkit REQUIRED)
 
 # Set C++ and CUDA standards
 set(CMAKE_CUDA_STANDARD 17)

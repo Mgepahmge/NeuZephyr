@@ -422,7 +422,7 @@ namespace nz::data {
         * ```
         * @endcode
         */
-        value_type* grad() const noexcept;
+        value_type* grad() const;
 
         /**
          * @brief Copies data into the tensor from a raw pointer and reallocates memory.
