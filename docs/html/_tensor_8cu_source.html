@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NeuZephyr: D:/C Program/Simple-CPP-DL-Framework/src/Tensor.cu Source File</title>
+<title>NeuZephyr: D:/C Program/NeuZephyr/src/Tensor.cu Source File</title>
 <link rel="icon" href="NZ_logo2.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -58,7 +58,7 @@ $(function(){ initResizable(false); });
 </script>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_7d51fe202189c243063c3c7c9d8f2954.html">Simple-CPP-DL-Framework</a></li><li class="navelem"><a class="el" href="dir_421a6e70e08ce7fa577fcbfd40e5b7a9.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_0f4df37fa58dcd77568124e5dca00df2.html">NeuZephyr</a></li><li class="navelem"><a class="el" href="dir_8f5f508cec2554de6d968dcdcb8501d0.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -69,8 +69,7 @@ $(function(){ initResizable(false); });
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="_tensor_8cuh.html">NeuZephyr/Tensor.cuh</a>&quot;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;curand.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="foldopen" id="foldopen00004" data-start="{" data-end="}">
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="namespacenz_1_1data.html">    4</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1data.html">nz::data</a> {</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1data.html">nz::data</a> {</div>
 <div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ab8eaa8e06861a868b7df1a9ee0616a1a">   34</a></span>    std::ostream&amp; <a class="code hl_function" href="namespacenz_1_1data.html#a2907370af84a6c5bdc4b72803c9edc68">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; tensor) {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">auto</span>* data = <span class="keyword">static_cast&lt;</span>Tensor::value_type*<span class="keyword">&gt;</span>(malloc(tensor._size * <span class="keyword">sizeof</span>(Tensor::value_type)));</div>
@@ -698,7 +697,6 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l01073" name="l01073"></a><span class="lineno"> 1073</span> </div>
 <div class="line"><a id="l01074" name="l01074"></a><span class="lineno"> 1074</span> </div>
 <div class="line"><a id="l01075" name="l01075"></a><span class="lineno"> 1075</span>}</div>
-</div>
 <div class="ttc" id="a_tensor_8cuh_html"><div class="ttname"><a href="_tensor_8cuh.html">Tensor.cuh</a></div><div class="ttdoc">Definition of the Tensor class for GPU-based tensor operations.</div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a0209493e6d5f49a7a72f4cadb97cf01b"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a0209493e6d5f49a7a72f4cadb97cf01b">nz::data::Tensor::setRequiresGrad</a></div><div class="ttdeci">void setRequiresGrad(const bool requires_grad) noexcept</div><div class="ttdoc">Sets whether the tensor requires gradient computation.</div><div class="ttdef"><b>Definition</b> <a href="#l00855">Tensor.cu:855</a></div></div>
@@ -726,7 +724,7 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_adfd7cafef1ded0b6dcebbcaeedd7025e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, const value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="#l01014">Tensor.cu:1014</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae5d80148c9ba63d913e2116301551345"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">nz::data::Tensor::print</a></div><div class="ttdeci">void print() const noexcept</div><div class="ttdoc">Prints the tensor's data to the standard output.</div><div class="ttdef"><b>Definition</b> <a href="#l00873">Tensor.cu:873</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="#l00915">Tensor.cu:915</a></div></div>
-<div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div><div class="ttdef"><b>Definition</b> <a href="#l00004">Tensor.cu:4</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a09849b685c23664bf02b0f824006f695"><div class="ttname"><a href="namespacenz_1_1data.html#a09849b685c23664bf02b0f824006f695">nz::data::Softmax</a></div><div class="ttdeci">Tensor Softmax(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Softmax activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00709">Tensor.cu:709</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a2037c2f13444847ea57d7110d8c48a51"><div class="ttname"><a href="namespacenz_1_1data.html#a2037c2f13444847ea57d7110d8c48a51">nz::data::Tanh</a></div><div class="ttdeci">Tensor Tanh(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Tanh (hyperbolic tangent) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00464">Tensor.cu:464</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a271473f387bde9059ad5afa03851184a"><div class="ttname"><a href="namespacenz_1_1data.html#a271473f387bde9059ad5afa03851184a">nz::data::Swish</a></div><div class="ttdeci">Tensor Swish(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00537">Tensor.cu:537</a></div></div>

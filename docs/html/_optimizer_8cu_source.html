@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NeuZephyr: D:/C Program/Simple-CPP-DL-Framework/src/Optimizer.cu Source File</title>
+<title>NeuZephyr: D:/C Program/NeuZephyr/src/Optimizer.cu Source File</title>
 <link rel="icon" href="NZ_logo2.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -58,7 +58,7 @@ $(function(){ initResizable(false); });
 </script>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_7d51fe202189c243063c3c7c9d8f2954.html">Simple-CPP-DL-Framework</a></li><li class="navelem"><a class="el" href="dir_421a6e70e08ce7fa577fcbfd40e5b7a9.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_0f4df37fa58dcd77568124e5dca00df2.html">NeuZephyr</a></li><li class="navelem"><a class="el" href="dir_8f5f508cec2554de6d968dcdcb8501d0.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -75,8 +75,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespacenz_1_1opt.html">   10</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1opt.html">nz::opt</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1opt.html">nz::opt</a> {</div>
 <div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">   11</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">SGD::SGD</a>(<span class="keyword">const</span> Tensor::value_type learning_rate) {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        this-&gt;learning_rate = learning_rate;</div>
@@ -251,7 +250,6 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
 </div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>} <span class="comment">// opt</span></div>
-</div>
 <div class="ttc" id="a_optimizer_8cuh_html"><div class="ttname"><a href="_optimizer_8cuh.html">Optimizer.cuh</a></div><div class="ttdoc">Definition of optimization algorithms for training deep learning models.</div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ac273bf64f5d447bce9b91f08ab312ba1"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(const value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00919">Tensor.cu:919</a></div></div>
@@ -270,7 +268,7 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aclassnz_1_1opt_1_1_r_m_sprop_html_aec35c9b3e1a1930d15a468c817a7352f"><div class="ttname"><a href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">nz::opt::RMSprop::RMSprop</a></div><div class="ttdeci">RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate)</div><div class="ttdoc">Constructs an RMSprop optimizer with specified learning rate and decay rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00061">Optimizer.cu:61</a></div></div>
 <div class="ttc" id="aclassnz_1_1opt_1_1_s_g_d_html_a2b3d169ace2070e793da8f270bd760c8"><div class="ttname"><a href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">nz::opt::SGD::SGD</a></div><div class="ttdeci">SGD(Tensor::value_type learning_rate)</div><div class="ttdoc">Constructor for the SGD optimizer.</div><div class="ttdef"><b>Definition</b> <a href="#l00011">Optimizer.cu:11</a></div></div>
 <div class="ttc" id="aclassnz_1_1opt_1_1_s_g_d_html_ac1232979bd4ed03f49b27e5f8391707f"><div class="ttname"><a href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">nz::opt::SGD::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single step of the Stochastic Gradient Descent (SGD) optimization.</div><div class="ttdef"><b>Definition</b> <a href="#l00015">Optimizer.cu:15</a></div></div>
-<div class="ttc" id="anamespacenz_1_1opt_html"><div class="ttname"><a href="namespacenz_1_1opt.html">nz::opt</a></div><div class="ttdoc">Contains optimization algorithms for training deep learning models.</div><div class="ttdef"><b>Definition</b> <a href="#l00010">Optimizer.cu:10</a></div></div>
+<div class="ttc" id="anamespacenz_1_1opt_html"><div class="ttname"><a href="namespacenz_1_1opt.html">nz::opt</a></div><div class="ttdoc">Contains optimization algorithms for training deep learning models.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

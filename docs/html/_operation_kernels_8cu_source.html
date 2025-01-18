@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NeuZephyr: D:/C Program/Simple-CPP-DL-Framework/src/OperationKernels.cu Source File</title>
+<title>NeuZephyr: D:/C Program/NeuZephyr/src/OperationKernels.cu Source File</title>
 <link rel="icon" href="NZ_logo2.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -58,7 +58,7 @@ $(function(){ initResizable(false); });
 </script>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_7d51fe202189c243063c3c7c9d8f2954.html">Simple-CPP-DL-Framework</a></li><li class="navelem"><a class="el" href="dir_421a6e70e08ce7fa577fcbfd40e5b7a9.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_0f4df37fa58dcd77568124e5dca00df2.html">NeuZephyr</a></li><li class="navelem"><a class="el" href="dir_8f5f508cec2554de6d968dcdcb8501d0.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -72,8 +72,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_operation_kernels_8cuh.html">NeuZephyr/OperationKernels.cuh</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespacenz_1_1krnl.html">    7</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1krnl.html">nz::krnl</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1krnl.html">nz::krnl</a> {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    __global__ <span class="keywordtype">void</span> MatrixAddKernel(<span class="keyword">const</span> <span class="keywordtype">float</span>* a, <span class="keyword">const</span> <span class="keywordtype">float</span>* b, <span class="keywordtype">float</span>* c,</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>                                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> n) {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> idx = blockIdx.x * blockDim.x + threadIdx.x;</div>
@@ -824,9 +823,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>        AdaDeltaKernel&lt;&lt;&lt;gridDim, blockDim&gt;&gt;&gt;(data, acc_delta, acc_grad, grad, rho, eps, n);</div>
 <div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>    }</div>
 <div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>}</div>
-</div>
 <div class="ttc" id="a_operation_kernels_8cuh_html"><div class="ttname"><a href="_operation_kernels_8cuh.html">OperationKernels.cuh</a></div><div class="ttdoc">CUDA Kernel Definitions for High-Performance Tensor Operations.</div></div>
-<div class="ttc" id="anamespacenz_1_1krnl_html"><div class="ttname"><a href="namespacenz_1_1krnl.html">nz::krnl</a></div><div class="ttdoc">High-Performance CUDA Kernel Implementations for Tensor Computations.</div><div class="ttdef"><b>Definition</b> <a href="#l00007">OperationKernels.cu:7</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html"><div class="ttname"><a href="namespacenz_1_1krnl.html">nz::krnl</a></div><div class="ttdoc">High-Performance CUDA Kernel Implementations for Tensor Computations.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

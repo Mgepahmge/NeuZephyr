@@ -29,7 +29,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Name" value="v0.1.0 - Initial Release"><param name="Local" value="index.html#autotoc_md87"><param name="ImageNumber" value="11"></OBJECT>
     </UL>
   </UL>
-<LI><OBJECT type="text/sitemap"><param name="Name" value="README"><param name="Local" value="md__d_1_2_c_01_program_2_simple-_c_p_p-_d_l-_framework_2docs_2_r_e_a_d_m_e.html"><param name="ImageNumber" value="11"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="README"><param name="Local" value="md__d_1_2_c_01_program_2_neu_zephyr_2docs_2_r_e_a_d_m_e.html"><param name="ImageNumber" value="11"></OBJECT>
 <LI><OBJECT type="text/sitemap"><param name="Name" value="Namespaces"><param name="Local" value="namespaces.html"><param name="ImageNumber" value="1"></OBJECT>
   <UL>
   <LI><OBJECT type="text/sitemap"><param name="Name" value="Namespace List"><param name="Local" value="namespaces.html#top"><param name="ImageNumber" value="1"></OBJECT>
@@ -700,11 +700,11 @@
     <UL>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="C Program"><param name="Local" value="dir_e392f09aff1dd6b247bd9ec9517b783a.html"><param name="ImageNumber" value="1"></OBJECT>
       <UL>
-      <LI><OBJECT type="text/sitemap"><param name="Name" value="Simple-CPP-DL-Framework"><param name="Local" value="dir_7d51fe202189c243063c3c7c9d8f2954.html"><param name="ImageNumber" value="1"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="NeuZephyr"><param name="Local" value="dir_0f4df37fa58dcd77568124e5dca00df2.html"><param name="ImageNumber" value="1"></OBJECT>
         <UL>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="include"><param name="Local" value="dir_97f37d364692842b5c9c324f8276c79f.html"><param name="ImageNumber" value="1"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="include"><param name="Local" value="dir_dcc560a8579dc3be2f2a5d09ffa86852.html"><param name="ImageNumber" value="1"></OBJECT>
           <UL>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="NeuZephyr"><param name="Local" value="dir_2f4c200f2b7a32bc1c79d90ee544797c.html"><param name="ImageNumber" value="1"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="NeuZephyr"><param name="Local" value="dir_67cac29739c2e153e1e5a03519f7eb22.html"><param name="ImageNumber" value="1"></OBJECT>
             <UL>
             <LI><OBJECT type="text/sitemap"><param name="Name" value="ComputeGraph.cuh"><param name="Local" value="_compute_graph_8cuh.html"><param name="ImageNumber" value="1"></OBJECT>
               <UL>
@@ -991,7 +991,7 @@
             <LI><OBJECT type="text/sitemap"><param name="Name" value="utils.cuh"><param name="Local" value="utils_8cuh_source.html"><param name="ImageNumber" value="11"></OBJECT>
             </UL>
           </UL>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="src"><param name="Local" value="dir_421a6e70e08ce7fa577fcbfd40e5b7a9.html"><param name="ImageNumber" value="1"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="src"><param name="Local" value="dir_8f5f508cec2554de6d968dcdcb8501d0.html"><param name="ImageNumber" value="1"></OBJECT>
           <UL>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="ComputeGraph.cu"><param name="Local" value="_compute_graph_8cu_source.html"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="Nodes.cu"><param name="Local" value="_nodes_8cu_source.html"><param name="ImageNumber" value="11"></OBJECT>

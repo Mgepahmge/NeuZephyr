@@ -257,14 +257,14 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for representing and manipulating multidimensional arrays (tensors) in GPU memory. </p>
 <p>The <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class is designed for high-performance numerical computations in GPU-based environments. It provides a wide range of functionalities, including tensor creation, mathematical operations, memory management, and gradient computation for deep learning tasks.</p>
-<h3><a class="anchor" id="autotoc_md64"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 Type Definitions:</h3>
 <ul>
 <li><code>size_type</code>: An alias for <code>unsigned long long</code>, used to represent the size of the tensor. Supports large tensors with up to 64-bit indices.</li>
 <li><code>value_type</code>: An alias for <code>float</code>, representing the data type of the tensor elements. Suitable for most machine learning computations.</li>
 <li><code>shape_type</code>: An alias for <code>std::vector&lt;int&gt;</code>, representing the shape of the tensor (e.g., <code>{2, 3}</code> for a 2x3 matrix).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md65"></a>
+<h3><a class="anchor" id="autotoc_md64"></a>
 Key Features:</h3>
 <ul>
 <li><b>Memory Management</b>: Handles GPU memory allocation and deallocation using CUDA.</li>
@@ -273,7 +273,7 @@ Key Features:</h3>
 <li><b>Gradient Support</b>: Tracks gradients for tensors that require gradient computation (<code>requires_grad</code>) to facilitate backpropagation in neural networks.</li>
 <li><b>Shape Transformation</b>: Supports reshaping and transposing tensors.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md65"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacenz_1_1data.html">nz::data</a>;</div>
 <div class="line"> </div>
@@ -295,7 +295,7 @@ Usage Example:</h3>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b549dd795e302066b32600220b5bfd9"><div class="ttname"><a href="#a2b549dd795e302066b32600220b5bfd9">nz::data::Tensor::ReLU</a></div><div class="ttdeci">friend DL_API Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00394">Tensor.cu:394</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ac273bf64f5d447bce9b91f08ab312ba1"><div class="ttname"><a href="#ac273bf64f5d447bce9b91f08ab312ba1">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(const value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00919">Tensor.cu:919</a></div></div>
-<div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00004">Tensor.cu:4</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><ul>
 <li>Ensure proper cleanup by calling the destructor or relying on RAII to avoid memory leaks.</li>
 <li><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a> size and shape must match during operations to prevent runtime errors.</li>
@@ -2969,8 +2969,8 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/C Program/Simple-CPP-DL-Framework/include/NeuZephyr/<a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a></li>
-<li>D:/C Program/Simple-CPP-DL-Framework/src/<a class="el" href="_tensor_8cu_source.html">Tensor.cu</a></li>
+<li>D:/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a></li>
+<li>D:/C Program/NeuZephyr/src/<a class="el" href="_tensor_8cu_source.html">Tensor.cu</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

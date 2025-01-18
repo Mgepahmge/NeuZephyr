@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NeuZephyr: D:/C Program/Simple-CPP-DL-Framework/src/Nodes.cu Source File</title>
+<title>NeuZephyr: D:/C Program/NeuZephyr/src/Nodes.cu Source File</title>
 <link rel="icon" href="NZ_logo2.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -58,7 +58,7 @@ $(function(){ initResizable(false); });
 </script>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_7d51fe202189c243063c3c7c9d8f2954.html">Simple-CPP-DL-Framework</a></li><li class="navelem"><a class="el" href="dir_421a6e70e08ce7fa577fcbfd40e5b7a9.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e392f09aff1dd6b247bd9ec9517b783a.html">C Program</a></li><li class="navelem"><a class="el" href="dir_0f4df37fa58dcd77568124e5dca00df2.html">NeuZephyr</a></li><li class="navelem"><a class="el" href="dir_8f5f508cec2554de6d968dcdcb8501d0.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -72,8 +72,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_nodes_8cuh.html">NeuZephyr/Nodes.cuh</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespacenz_1_1nodes.html">    7</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1nodes.html">nz::nodes</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1nodes.html">nz::nodes</a> {</div>
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">    8</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">Node::print</a>(std::ostream&amp; os)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        os &lt;&lt; <span class="stringliteral">&quot;Type: &quot;</span> &lt;&lt; type &lt;&lt; std::endl;</div>
@@ -81,8 +80,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    }</div>
 </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="namespacenz_1_1nodes_1_1io.html">   13</a></span>    <span class="keyword">namespace </span>io {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">namespace </span>io {</div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classnz_1_1nodes_1_1io_1_1_input_node.html#a217dbf39ca3882f5e514357f72f29458">   14</a></span>        <a class="code hl_function" href="classnz_1_1nodes_1_1io_1_1_input_node.html#a217dbf39ca3882f5e514357f72f29458">InputNode::InputNode</a>(<span class="keyword">const</span> Tensor::shape_type&amp; shape, <span class="keywordtype">bool</span> requires_grad) {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            output = std::make_shared&lt;Tensor&gt;(shape, requires_grad);</div>
@@ -149,10 +147,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
 </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="namespacenz_1_1nodes_1_1calc.html">   61</a></span>    <span class="keyword">namespace </span>calc {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">namespace </span>calc {</div>
 <div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classnz_1_1nodes_1_1calc_1_1_add_node.html#abf5d0c2b9827bfb8fd1f3a004db80175">   62</a></span>        <a class="code hl_function" href="classnz_1_1nodes_1_1calc_1_1_add_node.html#abf5d0c2b9827bfb8fd1f3a004db80175">AddNode::AddNode</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input_left, <a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input_right) {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (input_left-&gt;output-&gt;shape() != input_right-&gt;output-&gt;shape()) {</div>
@@ -684,10 +680,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>    }</div>
 </div>
 <div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>    }</div>
-</div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span> </div>
-<div class="foldopen" id="foldopen00498" data-start="{" data-end="}">
-<div class="line"><a id="l00498" name="l00498"></a><span class="lineno"><a class="line" href="namespacenz_1_1nodes_1_1loss.html">  498</a></span>    <span class="keyword">namespace </span>loss {</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>    <span class="keyword">namespace </span>loss {</div>
 <div class="foldopen" id="foldopen00499" data-start="{" data-end="}">
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno"><a class="line" href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#ac9e098d63556329314c7389b779169b6">  499</a></span>        <a class="code hl_function" href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#ac9e098d63556329314c7389b779169b6">MeanSquaredErrorNode::MeanSquaredErrorNode</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input1, <a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input2):</div>
 <div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>        OutputNode(input1) {</div>
@@ -773,9 +767,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>    }</div>
 </div>
 <div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    }</div>
-</div>
 <div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>}</div>
-</div>
 <div class="ttc" id="a_nodes_8cuh_html"><div class="ttname"><a href="_nodes_8cuh.html">Nodes.cuh</a></div><div class="ttdoc">Declaration of the Node class and various derived node classes for neural network operations.</div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01029">Tensor.cu:1029</a></div></div>
@@ -845,7 +837,7 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_html_a8ccbbad9b8bb2111d24af789020337ce"><div class="ttname"><a href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#a8ccbbad9b8bb2111d24af789020337ce">nz::nodes::loss::MeanSquaredErrorNode::backward</a></div><div class="ttdeci">void backward() override</div><div class="ttdoc">Computes the backward pass of the Mean Squared Error (MSE) loss function.</div><div class="ttdef"><b>Definition</b> <a href="#l00526">Nodes.cu:526</a></div></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_html_ac9e098d63556329314c7389b779169b6"><div class="ttname"><a href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#ac9e098d63556329314c7389b779169b6">nz::nodes::loss::MeanSquaredErrorNode::MeanSquaredErrorNode</a></div><div class="ttdeci">MeanSquaredErrorNode(Node *input1, Node *input2)</div><div class="ttdoc">Constructor to initialize a MeanSquaredErrorNode for computing the Mean Squared Error (MSE) loss.</div><div class="ttdef"><b>Definition</b> <a href="#l00499">Nodes.cu:499</a></div></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_html_ae81d6afb059f76617ea034032c12ec13"><div class="ttname"><a href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#ae81d6afb059f76617ea034032c12ec13">nz::nodes::loss::MeanSquaredErrorNode::forward</a></div><div class="ttdeci">void forward() override</div><div class="ttdoc">Computes the forward pass of the Mean Squared Error (MSE) loss function.</div><div class="ttdef"><b>Definition</b> <a href="#l00508">Nodes.cu:508</a></div></div>
-<div class="ttc" id="anamespacenz_1_1nodes_html"><div class="ttname"><a href="namespacenz_1_1nodes.html">nz::nodes</a></div><div class="ttdoc">Contains classes and functionality for nodes in a neural network or computational graph.</div><div class="ttdef"><b>Definition</b> <a href="#l00007">Nodes.cu:7</a></div></div>
+<div class="ttc" id="anamespacenz_1_1nodes_html"><div class="ttname"><a href="namespacenz_1_1nodes.html">nz::nodes</a></div><div class="ttdoc">Contains classes and functionality for nodes in a neural network or computational graph.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
