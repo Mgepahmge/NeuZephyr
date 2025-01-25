@@ -511,7 +511,7 @@ namespace nz::nodes {
         float* result;
         auto* result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
         cudaMalloc(&result, grid.x * sizeof(float));
-        MeanSquaredError(grid, block, block.x * sizeof(float), result, inputs[0]->output->data(),
+        MeanSquaredError(grid, block, block.x / WARP_SIZE * sizeof(float), result, inputs[0]->output->data(),
                                                                    inputs[1]->output->data(), output->size());
         cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
@@ -546,7 +546,7 @@ namespace nz::nodes {
         float* result;
         auto* result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
         cudaMalloc(&result, grid.x * sizeof(float));
-        BinaryCrossEntropy(grid, block, block.x * sizeof(float), result, inputs[0]->output->data(),
+        BinaryCrossEntropy(grid, block, block.x / WARP_SIZE * sizeof(float), result, inputs[0]->output->data(),
                                                                      inputs[1]->output->data(), output->size());
         cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
         for (int i = 0; i < grid.x; i++) {
