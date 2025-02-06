@@ -1,4 +1,7 @@
 #include "NeuZephyr/OperationKernels.cuh"
+#include <cuda_runtime.h>
+#include <cuda_fp16.h>
+#include <mma.h>
 
 namespace nz::krnl {
     __global__ void MatrixAddKernel(const float* a, const float* b, float* c,
@@ -708,8 +711,79 @@ namespace nz::krnl {
         acc_delta[idx] = delta_acc_temp;
         acc_grad[idx] = delta_acc_grad_temp;
     }
+
     void AdaDelta(const dim3 gridDim, const dim3 blockDim, float* data, float* acc_delta, float* acc_grad,
                   const float* grad, const float rho, const float eps, const unsigned long long n) {
         AdaDeltaKernel<<<gridDim, blockDim>>>(data, acc_delta, acc_grad, grad, rho, eps, n);
+    }
+
+    __global__ void GeneralMatrixMulTensorKernel(const half* A, const half* B, float* C, const unsigned long long m, const unsigned long long n, const unsigned long long k) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        const unsigned long long warpIdx = idx / warpSize;
+        const unsigned long long blockM = m / MMA;
+        const unsigned long long blockN = n / MMA;
+        const unsigned long long rowA = warpIdx / blockN;
+        const unsigned long long colB = warpIdx % blockN;
+        nvcuda::wmma::fragment<nvcuda::wmma::matrix_a, MMA, MMA, MMA, half, nvcuda::wmma::row_major> A_frag;
+        nvcuda::wmma::fragment<nvcuda::wmma::matrix_b, MMA, MMA, MMA, half, nvcuda::wmma::row_major> B_frag;
+        nvcuda::wmma::fragment<nvcuda::wmma::accumulator, MMA, MMA, MMA, float> C_frag;
+        fill_fragment(C_frag, 0.0f);
+        if (rowA < blockM && colB < blockN) {
+            for (int i = 0; i < k/MMA; i++) {
+                load_matrix_sync(A_frag, A + rowA * k * MMA + i * MMA, k);
+                load_matrix_sync(B_frag, B + colB * MMA + i * n * MMA, n);
+                mma_sync(C_frag, A_frag, B_frag, C_frag);
+            }
+            store_matrix_sync(C + rowA * n * MMA + colB * MMA, C_frag, n, nvcuda::wmma::mem_row_major);
+        }
+    }
+
+    __global__ void Padding(half* out, const float* in, const unsigned long long M, const unsigned long long N, const unsigned long long m, const unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        const unsigned long long row = idx / n;
+        const unsigned long long col = idx % n;
+        if (row < m && col < n) {
+            if (row < M && col < N) {
+                out[row * n + col] = __float2half(in[row * N + col]);
+            } else {
+                out[row * n + col] = __float2half(0.0f);
+            }
+        }
+    }
+
+    __global__ void Cutting(float* out, const float* in, const unsigned long long M, const unsigned long long N, const unsigned long long m, const unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        const unsigned long long row = idx / n;
+        const unsigned long long col = idx % n;
+        if (row < M && col < N) {
+            out[row * N + col] = in[row * n + col];
+        }
+    }
+
+    void TensorCoreGEMM(const float* A, const float* B, float* C, const unsigned long long M, const unsigned long long N, const unsigned long long K) {
+        const unsigned long long m = CEIL(M);
+        const unsigned long long k = CEIL(K);
+        const unsigned long long n = CEIL(N);
+        half* padded_A;
+        half* padded_B;
+        float* padded_C;
+        cudaMalloc(reinterpret_cast<void**>(&padded_A), m * k * sizeof(half));
+        cudaMalloc(reinterpret_cast<void**>(&padded_B), k * n * sizeof(half));
+        cudaMalloc(reinterpret_cast<void**>(&padded_C), m * n * sizeof(float));
+        cudaMemset(padded_C, 0, m * n * sizeof(float));
+        Padding<<<(m * k + 256 - 1) / 256, 256>>>(padded_A, A, M, K, m, k);
+        Padding<<<(k * n + 256 - 1) / 256, 256>>>(padded_B, B, K, N, k, n);
+        cudaDeviceSynchronize();
+        const unsigned long long tiles = (m * n) >> 8;
+        dim3 block(256);
+        const unsigned int warpPerBlock = block.x / 32;
+        dim3 grid((tiles + warpPerBlock - 1) / warpPerBlock);
+        GeneralMatrixMulTensorKernel<<<grid, block>>>(padded_A, padded_B, padded_C, m, n, k);
+        cudaDeviceSynchronize();
+        Cutting<<<(m * n + 256 - 1) / 256, 256>>>(C, padded_C, M, N, m, n);
+        cudaDeviceSynchronize();
+        cudaFree(padded_A);
+        cudaFree(padded_B);
+        cudaFree(padded_C);
     }
 }

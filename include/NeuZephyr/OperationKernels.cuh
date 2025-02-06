@@ -49,8 +49,10 @@
 #include "stdio.h"
 #include "utils.cuh"
 #define TILE_SIZE 32
-#define FULL_MASK 0xffffffff
+#define FULL_MASK 0xffffffffu
 #define WARP_SIZE 32
+#define MMA 16
+#define CEIL(X) (((X) + 15) & ~15)
 
 /**
  * @namespace nz::krnl
@@ -307,7 +309,7 @@ namespace nz::krnl {
      * @param n The number of elements in the input and output arrays
      */
     void Sigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
-                  const unsigned long long n);
+                 const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Sigmoid activation during backpropagation
@@ -338,7 +340,7 @@ namespace nz::krnl {
      * @param n The number of elements in the input and output arrays
      */
     void Tanh(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
-               const unsigned long long n);
+              const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Tanh activation during backpropagation
@@ -370,7 +372,7 @@ namespace nz::krnl {
      * @param alpha The slope of the negative part of the Leaky ReLU (default 0.01)
      */
     void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
-                    const unsigned long long n, const float alpha = 0.01f);
+                   const unsigned long long n, const float alpha = 0.01f);
 
     /**
      * @brief Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation
@@ -386,8 +388,9 @@ namespace nz::krnl {
      * @param n The number of elements in the arrays
      * @param alpha The slope of the negative part of the Leaky ReLU (default 0.01)
      */
-    void LeakyReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
-                                      float alpha = 0.01f);
+    void LeakyReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                           unsigned long long n,
+                           float alpha = 0.01f);
 
     /**
      * @brief Kernel function to apply the Swish activation function on the GPU
@@ -402,7 +405,7 @@ namespace nz::krnl {
      * @param n The number of elements in the input and output arrays
      */
     void Swish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
-                 const unsigned long long n);
+               const unsigned long long n);
 
     /**
      * @brief Kernel function to compute the gradient of the Swish activation during backpropagation
@@ -419,7 +422,7 @@ namespace nz::krnl {
      * @param n The number of elements in the arrays
      */
     void SwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B,
-                         const float* B_grad, const unsigned long long n);
+                       const float* B_grad, const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU
@@ -434,7 +437,8 @@ namespace nz::krnl {
      * @param n The number of elements in the input and output arrays
      * @param alpha The alpha parameter used for negative values (default 1.0)
      */
-    void ExponentialLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, unsigned long long n, float alpha = 1.0f);
+    void ExponentialLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+                               unsigned long long n, float alpha = 1.0f);
 
     /**
      * @brief Kernel function to compute the gradient of the ELU activation during backpropagation
@@ -450,8 +454,9 @@ namespace nz::krnl {
      * @param n The number of elements in the arrays
      * @param alpha The alpha parameter used for negative values (default 1.0)
      */
-    void ELUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
-                                float alpha = 1.0f);
+    void ELUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                     unsigned long long n,
+                     float alpha = 1.0f);
 
     /**
      * @brief Kernel function to apply the Hard Sigmoid activation function on the GPU
@@ -468,7 +473,7 @@ namespace nz::krnl {
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
     void HardSigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
-                      const unsigned long long n, const float alpha = 0.2f, const float beta = 0.5f);
+                     const unsigned long long n, const float alpha = 0.2f, const float beta = 0.5f);
 
     /**
      * @brief Kernel function to compute the gradient of the Hard Sigmoid activation during backpropagation
@@ -485,8 +490,9 @@ namespace nz::krnl {
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    void HardSigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
-                                        float alpha = 0.2f, float beta = 0.5f);
+    void HardSigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A,
+                             const float* B_grad, unsigned long long n,
+                             float alpha = 0.2f, float beta = 0.5f);
 
     /**
      * @brief Kernel function to apply the Hard Swish activation function on the GPU
@@ -502,7 +508,8 @@ namespace nz::krnl {
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    void HardSwish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, unsigned long long n, float alpha = 0.2f, float beta = 0.5f);
+    void HardSwish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, unsigned long long n,
+                   float alpha = 0.2f, float beta = 0.5f);
 
     /**
      * @brief Kernel function to compute the gradient of the Hard Swish activation during backpropagation
@@ -519,8 +526,9 @@ namespace nz::krnl {
      * @param alpha The slope of the Hard Sigmoid (default 0.2)
      * @param beta The offset of the Hard Sigmoid (default 0.5)
      */
-    void HardSwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad, unsigned long long n,
-                                      float alpha = 0.2f, float beta = 0.5f);
+    void HardSwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+                           unsigned long long n,
+                           float alpha = 0.2f, float beta = 0.5f);
 
     /**
      * @brief Kernel function to compute the summation of exponentials of each element in the input array
@@ -535,8 +543,9 @@ namespace nz::krnl {
      * @param g_data Pointer to the input array elements
      * @param n The number of elements in the input array
      */
-    void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out, const float* g_data,
-                                 const unsigned long long n);
+    void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
+                      const float* g_data,
+                      const unsigned long long n);
 
     /**
      * @brief Kernel function to apply the Softmax function on the GPU
@@ -663,7 +672,8 @@ namespace nz::krnl {
      * @param beta The momentum factor (typically between 0.9 and 0.99)
      * @param n The number of elements in the output, gradient, and velocity arrays
      */
-    void Momentum(dim3 gridDim, dim3 blockDim, float* output, const float* grad, const float* velocity, float beta, unsigned long long n);
+    void Momentum(dim3 gridDim, dim3 blockDim, float* output, const float* grad, const float* velocity, float beta,
+                  unsigned long long n);
 
     /**
      * @brief Kernel function to apply AdaGrad optimization
@@ -766,6 +776,26 @@ namespace nz::krnl {
      */
     void AdaDelta(const dim3 gridDim, const dim3 blockDim, float* data, float* acc_delta, float* acc_grad,
                   const float* grad, const float rho, const float eps, const unsigned long long n);
+
+    /**
+     * @brief Kernel function to perform fast matrix multiplication using Tensor Cores with half-precision (FP16) support
+     *
+     * This function performs matrix multiplication on two input matrices A and B using Tensor Cores, which are specialized
+     * hardware units in modern GPUs designed for high-throughput matrix operations. The matrices are internally padded to
+     * be multiples of 16 for efficient computation and then cropped back to their original dimensions after the operation.
+     *
+     * @param A Pointer to the first input matrix (of size M x K)
+     * @param B Pointer to the second input matrix (of size K x N)
+     * @param C Pointer to the result matrix (of size M x N)
+     * @param M The number of rows in matrix A and matrix C
+     * @param N The number of columns in matrix B and matrix C
+     * @param K The number of columns in matrix A and rows in matrix B
+     *
+     * @note The matrices A and B are assumed to be padded to the nearest multiple of 16 for efficient computation.
+     *       After the computation, the resulting matrix C will be cropped back to the original dimensions (M x N).
+     */
+    void TensorCoreGEMM(const float* A, const float* B, float* C, const unsigned long long M,
+                        const unsigned long long N, const unsigned long long K);
 #endif
 }
 
