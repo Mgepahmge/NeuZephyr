@@ -133,13 +133,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a38ba233ef49f34620297f96edd962c55" id="r_a38ba233ef49f34620297f96edd962c55"><td class="memItemLeft" align="right" valign="top">value_type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38ba233ef49f34620297f96edd962c55">data</a> () const noexcept</td></tr>
 <tr class="memdesc:a38ba233ef49f34620297f96edd962c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a pointer to the tensor's data stored in GPU memory.  <br /></td></tr>
 <tr class="separator:a38ba233ef49f34620297f96edd962c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c2f5456e8261b507c65c9d6acb374fd" id="r_a8c2f5456e8261b507c65c9d6acb374fd"><td class="memItemLeft" align="right" valign="top">value_type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c2f5456e8261b507c65c9d6acb374fd">grad</a> () const noexcept</td></tr>
-<tr class="memdesc:a8c2f5456e8261b507c65c9d6acb374fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a pointer to the gradient data stored in GPU memory.  <br /></td></tr>
-<tr class="separator:a8c2f5456e8261b507c65c9d6acb374fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6107b98beb881d0209345185d5ad145" id="r_ad6107b98beb881d0209345185d5ad145"><td class="memItemLeft" align="right" valign="top">value_type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6107b98beb881d0209345185d5ad145">grad</a> () const</td></tr>
+<tr class="memdesc:ad6107b98beb881d0209345185d5ad145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a pointer to the gradient data stored in GPU memory.  <br /></td></tr>
+<tr class="separator:ad6107b98beb881d0209345185d5ad145"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9ee8e3fd0bf6bf8f13eecbf3d78924d" id="r_ad9ee8e3fd0bf6bf8f13eecbf3d78924d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9ee8e3fd0bf6bf8f13eecbf3d78924d">copyData</a> (const value_type *<a class="el" href="#a38ba233ef49f34620297f96edd962c55">data</a>)</td></tr>
 <tr class="memdesc:ad9ee8e3fd0bf6bf8f13eecbf3d78924d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies data into the tensor from a raw pointer and reallocates memory.  <br /></td></tr>
 <tr class="separator:ad9ee8e3fd0bf6bf8f13eecbf3d78924d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f538f32f233f649ee69b0fff624851d" id="r_a6f538f32f233f649ee69b0fff624851d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f538f32f233f649ee69b0fff624851d">copyGrad</a> (const value_type *<a class="el" href="#a8c2f5456e8261b507c65c9d6acb374fd">grad</a>) const</td></tr>
+<tr class="memitem:a6f538f32f233f649ee69b0fff624851d" id="r_a6f538f32f233f649ee69b0fff624851d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f538f32f233f649ee69b0fff624851d">copyGrad</a> (const value_type *<a class="el" href="#ad6107b98beb881d0209345185d5ad145">grad</a>) const</td></tr>
 <tr class="memdesc:a6f538f32f233f649ee69b0fff624851d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies gradient data from host to GPU memory.  <br /></td></tr>
 <tr class="separator:a6f538f32f233f649ee69b0fff624851d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Modifiers</div></td></tr>
@@ -257,14 +257,14 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for representing and manipulating multidimensional arrays (tensors) in GPU memory. </p>
 <p>The <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class is designed for high-performance numerical computations in GPU-based environments. It provides a wide range of functionalities, including tensor creation, mathematical operations, memory management, and gradient computation for deep learning tasks.</p>
-<h3><a class="anchor" id="autotoc_md63"></a>
+<h3><a class="anchor" id="autotoc_md64"></a>
 Type Definitions:</h3>
 <ul>
 <li><code>size_type</code>: An alias for <code>unsigned long long</code>, used to represent the size of the tensor. Supports large tensors with up to 64-bit indices.</li>
 <li><code>value_type</code>: An alias for <code>float</code>, representing the data type of the tensor elements. Suitable for most machine learning computations.</li>
 <li><code>shape_type</code>: An alias for <code>std::vector&lt;int&gt;</code>, representing the shape of the tensor (e.g., <code>{2, 3}</code> for a 2x3 matrix).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md64"></a>
+<h3><a class="anchor" id="autotoc_md65"></a>
 Key Features:</h3>
 <ul>
 <li><b>Memory Management</b>: Handles GPU memory allocation and deallocation using CUDA.</li>
@@ -273,7 +273,7 @@ Key Features:</h3>
 <li><b>Gradient Support</b>: Tracks gradients for tensors that require gradient computation (<code>requires_grad</code>) to facilitate backpropagation in neural networks.</li>
 <li><b>Shape Transformation</b>: Supports reshaping and transposing tensors.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md65"></a>
+<h3><a class="anchor" id="autotoc_md66"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacenz_1_1data.html">nz::data</a>;</div>
 <div class="line"> </div>
@@ -745,7 +745,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classnz_1_1data_1_1_tensor_a6f538f32f233f649ee69b0fff624851d_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a6f538f32f233f649ee69b0fff624851d_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_a6f538f32f233f649ee69b0fff624851d_cgraph" id="aclassnz_1_1data_1_1_tensor_a6f538f32f233f649ee69b0fff624851d_cgraph">
 <area shape="rect" title="Copies gradient data from host to GPU memory." alt="" coords="5,5,185,32"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a8c2f5456e8261b507c65c9d6acb374fd" title="Retrieves a pointer to the gradient data stored in GPU memory." alt="" coords="233,5,381,32"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145" title="Retrieves a pointer to the gradient data stored in GPU memory." alt="" coords="233,5,381,32"/>
 <area shape="poly" title=" " alt="" coords="185,16,217,16,217,21,185,21"/>
 </map>
 </div>
@@ -880,21 +880,18 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph" id="aclassnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph">
 <area shape="rect" title="Fills the tensor&#39;s gradient data with a specified value." alt="" coords="5,5,170,32"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a8c2f5456e8261b507c65c9d6acb374fd" title="Retrieves a pointer to the gradient data stored in GPU memory." alt="" coords="218,5,366,32"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145" title="Retrieves a pointer to the gradient data stored in GPU memory." alt="" coords="218,5,366,32"/>
 <area shape="poly" title=" " alt="" coords="170,16,202,16,202,21,170,21"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a8c2f5456e8261b507c65c9d6acb374fd" name="a8c2f5456e8261b507c65c9d6acb374fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c2f5456e8261b507c65c9d6acb374fd">&#9670;&#160;</a></span>grad()</h2>
+<a id="ad6107b98beb881d0209345185d5ad145" name="ad6107b98beb881d0209345185d5ad145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6107b98beb881d0209345185d5ad145">&#9670;&#160;</a></span>grad()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Tensor::value_type * nz::data::Tensor::grad </td>
@@ -903,11 +900,6 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Retrieves a pointer to the gradient data stored in GPU memory. </p>
@@ -2969,8 +2961,8 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a></li>
-<li>D:/C Program/NeuZephyr/src/<a class="el" href="_tensor_8cu_source.html">Tensor.cu</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/src/<a class="el" href="_tensor_8cu_source.html">Tensor.cu</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

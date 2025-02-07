@@ -129,7 +129,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md48"></a>
+<h3><a class="anchor" id="autotoc_md49"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using LeakyReLUNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -142,14 +142,14 @@ Usage Example:</h3>
 <div class="line">leaky_relu_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *leaky_relu_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_html_ae26fe5bd4367d39c5b054ecd0f4621fa"><div class="ttname"><a href="#ae26fe5bd4367d39c5b054ecd0f4621fa">nz::nodes::calc::LeakyReLUNode::LeakyReLUNode</a></div><div class="ttdeci">LeakyReLUNode(Node *input, Tensor::value_type alpha=0.01f)</div><div class="ttdoc">Constructor to initialize a LeakyReLUNode for applying the Leaky ReLU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00343">Nodes.cu:343</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_html_ae26fe5bd4367d39c5b054ecd0f4621fa"><div class="ttname"><a href="#ae26fe5bd4367d39c5b054ecd0f4621fa">nz::nodes::calc::LeakyReLUNode::LeakyReLUNode</a></div><div class="ttdeci">LeakyReLUNode(Node *input, Tensor::value_type alpha=0.01f)</div><div class="ttdoc">Constructor to initialize a LeakyReLUNode for applying the Leaky ReLU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00331">Nodes.cu:331</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a287aebe2ce3437d393fb1ac1b1119d25" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function.">forward()</a> for the Leaky <a class="el" href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089" title="Applies the Rectified Linear Unit (ReLU) activation function to a tensor.">ReLU</a> computation in the <a class="el" href="#a287aebe2ce3437d393fb1ac1b1119d25" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#aa3fe1c9e74733c8c5e15e71ec14143f0" title="Backward pass for the LeakyReLUNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#aa3fe1c9e74733c8c5e15e71ec14143f0" title="Backward pass for the LeakyReLUNode to compute gradients.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l02189">2189</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l02193">2193</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae26fe5bd4367d39c5b054ecd0f4621fa" name="ae26fe5bd4367d39c5b054ecd0f4621fa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae26fe5bd4367d39c5b054ecd0f4621fa">&#9670;&#160;</a></span>LeakyReLUNode()</h2>
@@ -206,7 +206,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00343">343</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00331">331</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -254,7 +254,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00357">357</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00345">345</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -295,13 +295,13 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00351">351</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00339">339</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a></li>
-<li>D:/C Program/NeuZephyr/src/<a class="el" href="_nodes_8cu_source.html">Nodes.cu</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/src/<a class="el" href="_nodes_8cu_source.html">Nodes.cu</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

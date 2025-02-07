@@ -1,5 +1,5 @@
-<map id="D:/C Program/NeuZephyr/include/NeuZephyr/ComputeGraph.cuh" name="D:/C Program/NeuZephyr/include/NeuZephyr/ComputeGraph.cuh">
-<area shape="rect" id="Node000001" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="5,5,257,48"/>
-<area shape="rect" id="Node000002" href="$_compute_graph_8cu_source.html" title=" " alt="" coords="46,96,216,139"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,64,134,96,128,96,128,64"/>
+<map id="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/ComputeGraph.cuh" name="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/ComputeGraph.cuh">
+<area shape="rect" id="Node000001" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="15,5,217,80"/>
+<area shape="rect" id="Node000002" href="$_compute_graph_8cu_source.html" title=" " alt="" coords="5,128,227,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,95,119,127,113,127,113,95"/>
 </map>

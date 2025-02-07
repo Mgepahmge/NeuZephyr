@@ -126,6 +126,30 @@ namespace nz::graph {
      * This class is designed to be used in a computational graph where nodes represent various mathematical operations
      * and tensors represent the data that flows through the graph.
      *
+     * ## Supported node types
+     * | Type             | Reference                               |
+     * |------------------|-----------------------------------------|
+     * | Input            | nz::nodes::io::InputNode                |
+     * | Output           | nz::nodes::io::OutputNode               |
+     * | Add              | nz::nodes::calc::AddNode                |
+     * | MatMul           | nz::nodes::calc::MatMulNode             |
+     * | ScalarMul        | nz::nodes::calc::ScalarMulNode          |
+     * | ScalarDiv        | nz::nodes::calc::ScalarDivNode          |
+     * | ScalarAdd        | nz::nodes::calc::ScalarAddNode          |
+     * | ScalarSub        | nz::nodes::calc::ScalarSubNode          |
+     * | Sub              | nz::nodes::calc::SubNode                |
+     * | ReLU             | nz::nodes::calc::ReLUNode               |
+     * | Sigmoid          | nz::nodes::calc::SigmoidNode            |
+     * | Tanh             | nz::nodes::calc::TanhNode               |
+     * | LeakyReLU        | nz::nodes::calc::LeakyReLUNode          |
+     * | Swish            | nz::nodes::calc::SwishNode              |
+     * | ELU              | nz::nodes::calc::ELUNode                |
+     * | HardSigmoid      | nz::nodes::calc::HardSigmoidNode        |
+     * | HardSwish        | nz::nodes::calc::HardSwishNode          |
+     * | Softmax          | nz::nodes::calc::SoftmaxNode            |
+     * | MeanSquaredError | nz::nodes::loss::MeanSquaredErrorNode   |
+     * | BinaryCrossEntropy| nz::nodes::loss::BinaryCrossEntropyNode |
+     *
      * @note
      * - The graph handles nodes by their names. Each node is stored in a node roster, allowing for easy lookup.
      * - The nodes should be connected properly for the forward and backward passes to work correctly.
@@ -137,7 +161,7 @@ namespace nz::graph {
      *
      * auto* input1 = graph.addInput({3, 4}, false, "Input");  // Add input data
      * auto* input2 = graph.addInput({4, 3}, true, "Weight");
-     * auto* input3 = graph.addInput({3, 3}, false, "Real");
+     * auto* input3 = graph.addInput({3, 3}, false, "Label");
      *
      * nodes::calc::MatMulNode matmul(input1, input2); // Add Computation nodes
      * graph.addNode(&matmul, "MatMul");
@@ -154,11 +178,11 @@ namespace nz::graph {
      *
      * graph.addInput({3, 4}, false, "Input");
      * graph.addInput({4, 3}, true, "Weight");
-     * graph.addInput({3, 3}, false, "Real");
+     * graph.addInput({3, 3}, false, "Label");
      *
      * graph.addNode("MatMul", "Input", "Weight", "MatMul");
      * graph.addNode("ReLU", "MatMul", "", "ReLU");
-     * graph.addNode("MeanSquaredError", "ReLU", "Real");
+     * graph.addNode("MeanSquaredError", "ReLU", "Label");
      *
      * graph.randomizeAll();
      *
@@ -1434,7 +1458,6 @@ namespace nz::graph {
 
         /// @}
     };
-
 }
 
 #endif //COMPUTEGRAPH_CUH

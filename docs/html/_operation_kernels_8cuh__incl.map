@@ -1,9 +1,9 @@
-<map id="D:/C Program/NeuZephyr/include/NeuZephyr/OperationKernels.cuh" name="D:/C Program/NeuZephyr/include/NeuZephyr/OperationKernels.cuh">
-<area shape="rect" id="Node000001" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="5,5,200,64"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="28,112,89,139"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,66,74,99,69,97,86,63"/>
-<area shape="rect" id="Node000003" href="$utils_8cuh_source.html" title=" " alt="" coords="113,112,183,139"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,63,137,97,132,99,115,66"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="112,187,184,213"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="150,139,150,171,145,171,145,139"/>
+<map id="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/OperationKernels.cuh" name="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/OperationKernels.cuh">
+<area shape="rect" id="Node000001" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="5,5,208,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="32,128,93,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,81,77,115,72,113,87,79"/>
+<area shape="rect" id="Node000003" href="$utils_8cuh_source.html" title=" " alt="" coords="117,128,187,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,79,142,113,137,115,121,81"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="116,203,188,229"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="154,155,154,187,149,187,149,155"/>
 </map>

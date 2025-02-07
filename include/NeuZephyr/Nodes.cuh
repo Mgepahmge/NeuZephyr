@@ -852,12 +852,14 @@ namespace nz::nodes {
          * The `MatMulNode` class performs matrix multiplication between two input tensors. It implements the matrix
          * multiplication operation in the forward pass, and propagates the gradients during the backward pass.
          * This node is typically used to represent fully connected layers or other linear algebraic operations
-         * in a neural network or computational graph.
+         * in a neural network or computational graph. The node now leverages Tensor Cores for efficient half-precision
+         * matrix multiplication, improving performance during forward and backward passes.
          *
          * @details
          * Key features:
          * - **Forward Pass**: The `forward()` method computes the matrix multiplication of two input tensors and stores
-         *   the result in the `output` tensor.
+         *   the result in the `output` tensor. The computation is accelerated using Tensor Cores with half-precision (FP16)
+         *   to speed up matrix multiplication operations.
          * - **Backward Pass**: The `backward()` method propagates the gradients from the output tensor to the input tensors
          *   using the chain rule of calculus.
          * - **Shape Check**: The constructor ensures that the number of columns in the left input tensor matches the number
@@ -867,6 +869,8 @@ namespace nz::nodes {
          *
          * @note
          * - The left input tensor's number of columns must match the right input tensor's number of rows.
+         * - The matrix multiplication operation in this node uses Tensor Cores for faster computation using half-precision
+         *   floating-point arithmetic (FP16).
          *
          * ### Usage Example:
          * ```cpp

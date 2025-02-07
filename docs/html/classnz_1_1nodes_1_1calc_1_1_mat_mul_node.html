@@ -114,18 +114,19 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a matrix multiplication operation node in a computational graph. </p>
-<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_mat_mul_node.html" title="Represents a matrix multiplication operation node in a computational graph.">MatMulNode</a></code> class performs matrix multiplication between two input tensors. It implements the matrix multiplication operation in the forward pass, and propagates the gradients during the backward pass. This node is typically used to represent fully connected layers or other linear algebraic operations in a neural network or computational graph.</p>
+<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_mat_mul_node.html" title="Represents a matrix multiplication operation node in a computational graph.">MatMulNode</a></code> class performs matrix multiplication between two input tensors. It implements the matrix multiplication operation in the forward pass, and propagates the gradients during the backward pass. This node is typically used to represent fully connected layers or other linear algebraic operations in a neural network or computational graph. The node now leverages Tensor Cores for efficient half-precision matrix multiplication, improving performance during forward and backward passes.</p>
 <p>Key features:</p><ul>
-<li><b>Forward Pass</b>: The <code><a class="el" href="#a4d1ec1a90036ff16358c5f83123bac67" title="Forward pass for the MatMulNode to perform matrix multiplication.">forward()</a></code> method computes the matrix multiplication of two input tensors and stores the result in the <code>output</code> tensor.</li>
+<li><b>Forward Pass</b>: The <code><a class="el" href="#a4d1ec1a90036ff16358c5f83123bac67" title="Forward pass for the MatMulNode to perform matrix multiplication.">forward()</a></code> method computes the matrix multiplication of two input tensors and stores the result in the <code>output</code> tensor. The computation is accelerated using Tensor Cores with half-precision (FP16) to speed up matrix multiplication operations.</li>
 <li><b>Backward Pass</b>: The <code><a class="el" href="#ab644a874feb6a620ad31d37ca20525fd" title="Backward pass for the MatMulNode to propagate gradients.">backward()</a></code> method propagates the gradients from the output tensor to the input tensors using the chain rule of calculus.</li>
 <li><b>Shape Check</b>: The constructor ensures that the number of columns in the left input tensor matches the number of rows in the right input tensor, as required for matrix multiplication.</li>
 </ul>
 <p>This class is part of the <code><a class="el" href="namespacenz_1_1nodes.html" title="Contains classes and functionality for nodes in a neural network or computational graph.">nz::nodes</a></code> namespace and is used for matrix operations in a computational graph.</p>
 <dl class="section note"><dt>Note</dt><dd><ul>
 <li>The left input tensor's number of columns must match the right input tensor's number of rows.</li>
+<li>The matrix multiplication operation in this node uses Tensor Cores for faster computation using half-precision floating-point arithmetic (FP16).</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md39"></a>
+<h3><a class="anchor" id="autotoc_md40"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example 1: Creating and using a MatMulNode</span></div>
 <div class="line">InputNode input1({3, 2}, <span class="keyword">true</span>);  <span class="comment">// Create the first input node with shape {3, 2}</span></div>
@@ -146,7 +147,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l00896">896</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l00900">900</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a493c723e88870bdc46c9b30b74b1e173" name="a493c723e88870bdc46c9b30b74b1e173"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a493c723e88870bdc46c9b30b74b1e173">&#9670;&#160;</a></span>MatMulNode()</h2>
@@ -239,7 +240,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00116">116</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00109">109</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -305,8 +306,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a></li>
-<li>D:/C Program/NeuZephyr/src/<a class="el" href="_nodes_8cu_source.html">Nodes.cu</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/src/<a class="el" href="_nodes_8cu_source.html">Nodes.cu</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

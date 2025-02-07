@@ -1,19 +1,19 @@
-<map id="D:/C Program/NeuZephyr/include/NeuZephyr/Tensor.cuh" name="D:/C Program/NeuZephyr/include/NeuZephyr/Tensor.cuh">
-<area shape="rect" id="Node000001" title="Definition of the Tensor class for GPU&#45;based tensor operations." alt="" coords="200,5,402,48"/>
-<area shape="rect" id="Node000002" href="$_operation_kernels_8cuh.html" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="6,96,153,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,51,129,93,128,88,243,46"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="177,96,238,123"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="279,51,235,88,232,84,275,47"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="262,96,340,123"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="304,49,304,80,298,80,298,49"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="364,96,422,123"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="326,47,369,84,365,88,323,51"/>
-<area shape="rect" id="Node000009" href="$dl__export_8cuh_source.html" title=" " alt="" coords="446,96,545,123"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="352,46,452,87,450,92,350,51"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,171,66,197"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,125,53,159,49,156,70,122"/>
-<area shape="rect" id="Node000004" href="$utils_8cuh_source.html" title=" " alt="" coords="90,171,160,197"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="90,122,111,156,107,159,85,125"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="89,245,160,272"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="128,198,128,230,122,230,122,198"/>
+<map id="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/Tensor.cuh" name="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/Tensor.cuh">
+<area shape="rect" id="Node000001" title="Definition of the Tensor class for GPU&#45;based tensor operations." alt="" coords="200,5,402,80"/>
+<area shape="rect" id="Node000002" href="$_operation_kernels_8cuh.html" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="6,128,153,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,83,123,124,121,119,215,78"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="177,128,238,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="267,82,232,118,228,115,264,78"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="262,128,340,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="304,80,304,112,298,112,298,80"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="364,128,422,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="338,78,372,115,368,118,334,82"/>
+<area shape="rect" id="Node000009" href="$dl__export_8cuh_source.html" title=" " alt="" coords="446,128,545,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="376,78,458,118,455,123,374,83"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,203,66,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,157,53,191,49,188,70,154"/>
+<area shape="rect" id="Node000004" href="$utils_8cuh_source.html" title=" " alt="" coords="90,203,160,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="90,154,111,188,107,191,85,157"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="89,277,160,304"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="128,230,128,262,122,262,122,230"/>
 </map>

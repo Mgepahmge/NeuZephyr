@@ -2,12 +2,16 @@
 
 NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, designed to provide efficient GPU acceleration for deep learning model training and inference. Its goal is to help developers quickly implement deep learning models while maintaining an easy-to-use interface.
 
+---
+
 ## Features
 
 - Built on CUDA C for efficient GPU acceleration
 - Supports common deep learning operations, such as tensor operations, matrix multiplication, etc.
 - Lightweight design, easy to integrate into existing projects
 - C++ interface for seamless integration with other C++ projects
+
+---
 
 ## Installation
 
@@ -41,8 +45,11 @@ NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, d
 
 ### Dependencies
 
-- CUDA driver
-- CMake 3.10 or higher
+- **CUDA Driver**: A GPU with compute capability 7.0 or higher is required to support Tensor Cores. Tensor Cores are available on NVIDIA Volta, Turing, and Ampere architectures (e.g., V100, T4, A100, and others).
+- **CUDA Version**: CUDA 10.1 or higher is required to access Tensor Cores for single-precision matrix multiplication. Ensure the appropriate driver and runtime libraries are installed for full functionality.
+- **CMake**: Version 3.18 or higher is required for building the project.
+
+---
 
 ## Example
 
@@ -53,12 +60,29 @@ NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, d
 #include <NeuZephyr/ComputeGraph.cuh>
 
 int main() {
-    nz::data::Tensor a({3, 4});
-    nz::data::Tensor b({4, 3});
-    a.fill(1);
-    b.fill(2);
-    std::cout << a * b << std::endl;
-    return 0;
+   // Create a compute graph
+   graph::ComputeGraph graph;
+   
+   // Add input nodes
+   graph.addInput({3, 4}, false, "Input");
+   graph.addInput({4, 3}, true, "Weight");
+   graph.addInput({3, 3}, false, "Label");
+   
+   // Add other nodes
+   graph.addNode("MatMul", "Input", "Weight", "MatMul");
+   graph.addNode("ReLU", "MatMul", "", "ReLU");
+   graph.addNode("MeanSquaredError", "ReLU", "Label");
+   
+   graph.randomizeAll();
+   
+   // Perform forward and backward passes
+   graph.forward();
+   graph.backward();
+   std::cout << graph << std::endl; // Print result
+   
+   // Update weights
+   opt::SGD optimizer(0.01); // Create optimizer
+   graph.update(&optimizer); // Update weights
 }
 ```
 
@@ -105,3 +129,9 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 - Added basic optimizers (SGD, Adam).
 - Implemented a linear layer for neural networks.
 - Supported common loss functions (Mean Squared Error, Cross-Entropy, etc.).
+
+### v0.2.0 - Performance Optimization
+- Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.
+- Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.
+- Further fine-tuned matrix operations for increased efficiency.
+

@@ -127,7 +127,7 @@ Public Member Functions</h2></td></tr>
 <li>A warning is issued indicating that scalar operations do not support saving to files, and users are encouraged to use matrix operations for model persistence.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md43"></a>
+<h3><a class="anchor" id="autotoc_md44"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using ScalarSubNode for scalar subtraction</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -138,7 +138,7 @@ Usage Example:</h3>
 <div class="line">scalar_sub_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *scalar_sub_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_sub_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1calc_1_1_scalar_sub_node.html">nz::nodes::calc::ScalarSubNode</a></div><div class="ttdoc">Represents a scalar subtraction operation node in a computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l01476">Nodes.cuh:1476</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_sub_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1calc_1_1_scalar_sub_node.html">nz::nodes::calc::ScalarSubNode</a></div><div class="ttdoc">Represents a scalar subtraction operation node in a computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l01480">Nodes.cuh:1480</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac5d375db4c17885e597c4dcca9d0a318" title="Forward pass for the ScalarSubNode to perform scalar subtraction.">forward()</a> for the scalar subtraction computation in the <a class="el" href="#ac5d375db4c17885e597c4dcca9d0a318" title="Forward pass for the ScalarSubNode to perform scalar subtraction.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a7880d18811e20c3ec34b1417a28d697e" title="Backward pass for the ScalarSubNode to propagate gradients.">backward()</a> for gradient propagation in the <a class="el" href="#a7880d18811e20c3ec34b1417a28d697e" title="Backward pass for the ScalarSubNode to propagate gradients.">backward</a> pass.</dd></dl>
@@ -149,7 +149,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l01476">1476</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l01480">1480</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a27b61f5a960545b810cf3151fe65adf6" name="a27b61f5a960545b810cf3151fe65adf6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27b61f5a960545b810cf3151fe65adf6">&#9670;&#160;</a></span>ScalarSubNode()</h2>
@@ -200,7 +200,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00221">221</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00209">209</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -245,7 +245,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00237">237</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00225">225</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -290,13 +290,13 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00231">231</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00219">219</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a></li>
-<li>D:/C Program/NeuZephyr/src/<a class="el" href="_nodes_8cu_source.html">Nodes.cu</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a></li>
+<li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/src/<a class="el" href="_nodes_8cu_source.html">Nodes.cu</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -212,7 +212,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a75f918fb756d5f7155ee49092ce713e1"><param name="Name" value="getOutput() const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#aef02d3290fb92b142be346f2fdb125c5"><param name="Name" value="getOutputHost() const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a69d293299714e489ce8cc2dba1e5a9a5"><param name="Name" value="getOutputNode() const"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a8c2f5456e8261b507c65c9d6acb374fd"><param name="Name" value="grad() const noexcept"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"><param name="Name" value="grad() const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html#ab9821ac15d218a07161a211b04db5528"><param name="Name" value="HardSigmoid(const Tensor &amp;tensor, float alpha=0.2f, float beta=0.5f)"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html#ab9821ac15d218a07161a211b04db5528"><param name="Name" value="nz::data"></OBJECT>
@@ -282,7 +282,7 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a8c2f5456e8261b507c65c9d6acb374fd"><param name="Name" value="grad() const noexcept"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"><param name="Name" value="grad() const"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
@@ -1157,7 +1157,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a856ffb66fa42357ab1a12f9f74d2aba4"><param name="Name" value="randomize(const std::string &amp;name, unsigned long long seed=0)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8"><param name="Name" value="randomize(unsigned long long seed=0) const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a90e4737107c4ec96a1a95022daa6de2f"><param name="Name" value="randomizeAll() const"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="md__d_1_2_c_01_program_2_neu_zephyr_2docs_2_r_e_a_d_m_e.html"><param name="Name" value="README"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="md__d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2docs_2_r_e_a_d_m_e.html"><param name="Name" value="README"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55"><param name="Name" value="recip() const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089"><param name="Name" value="ReLU(const Tensor &amp;tensor)"></OBJECT>
   <UL>

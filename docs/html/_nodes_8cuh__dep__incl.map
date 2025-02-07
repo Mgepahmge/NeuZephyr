@@ -1,13 +1,13 @@
-<map id="D:/C Program/NeuZephyr/include/NeuZephyr/Nodes.cuh" name="D:/C Program/NeuZephyr/include/NeuZephyr/Nodes.cuh">
-<area shape="rect" id="Node000001" title="Declaration of the Node class and various derived node classes for neural network operations." alt="" coords="257,5,458,48"/>
-<area shape="rect" id="Node000002" href="$_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models." alt="" coords="139,96,358,139"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="322,60,276,97,272,93,319,56"/>
-<area shape="rect" id="Node000006" href="$_nodes_8cu_source.html" title=" " alt="" coords="382,96,552,139"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="396,56,443,93,440,97,393,60"/>
-<area shape="rect" id="Node000003" href="$_compute_graph_8cuh.html" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="5,187,257,229"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,150,160,188,157,184,207,146"/>
-<area shape="rect" id="Node000005" href="$_optimizer_8cu_source.html" title=" " alt="" coords="280,187,451,229"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="289,146,340,184,337,188,286,150"/>
-<area shape="rect" id="Node000004" href="$_compute_graph_8cu_source.html" title=" " alt="" coords="46,277,216,320"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,245,134,277,128,277,128,245"/>
+<map id="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/Nodes.cuh" name="D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/Nodes.cuh">
+<area shape="rect" id="Node000001" title="Declaration of the Node class and various derived node classes for neural network operations." alt="" coords="230,5,432,80"/>
+<area shape="rect" id="Node000002" href="$_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models." alt="" coords="124,128,326,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="290,94,259,129,255,126,286,90"/>
+<area shape="rect" id="Node000006" href="$_nodes_8cu_source.html" title=" " alt="" coords="350,136,522,195"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="375,90,413,134,409,137,371,94"/>
+<area shape="rect" id="Node000003" href="$_compute_graph_8cuh.html" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="15,251,217,325"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="184,216,151,252,147,248,180,213"/>
+<area shape="rect" id="Node000005" href="$_optimizer_8cu_source.html" title=" " alt="" coords="241,259,431,317"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="271,213,312,256,308,260,267,216"/>
+<area shape="rect" id="Node000004" href="$_compute_graph_8cu_source.html" title=" " alt="" coords="5,373,227,432"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="119,341,119,373,113,373,113,341"/>
 </map>

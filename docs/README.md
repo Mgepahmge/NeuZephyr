@@ -4,11 +4,13 @@
 
 NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, designed to provide efficient GPU acceleration for deep learning model training and inference. Its goal is to help developers quickly implement deep learning models while maintaining an easy-to-use interface.
 
-If you're new to NeuZephyr and want to get started quickly, **the best place to begin is the documentation for the `ComputeGraph` class**. The `ComputeGraph` class allows you to define and manipulate the structure of your neural network, making it the foundation for both training and inference.
+If you're new to NeuZephyr and want to get started quickly, **the best place to begin is the documentation for the `nz::graph::ComputeGraph` class**. The `nz::graph::ComputeGraph` class allows you to define and manipulate the structure of your neural network, making it the foundation for both training and inference.
 
-Once you understand how to use the **ComputeGraph**, you'll be able to easily integrate other features like Tensors, Nodes, Optimizers, and more into your models.
+Once you understand how to use the **nz::graph::ComputeGraph**, you'll be able to easily integrate other features like Tensors, Nodes, Optimizers, and more into your models.
 
-For a detailed guide on how to use the `ComputeGraph` class, please refer to the **`ComputeGraph.cuh`** file or its documentation.
+For a detailed guide on how to use the `ComputeGraphh` class, please refer to the **`nz::graph::ComputeGraph`** class or its documentation.
+
+---
 
 ## Features
 
@@ -16,6 +18,8 @@ For a detailed guide on how to use the `ComputeGraph` class, please refer to the
 - Supports common deep learning operations, such as tensor operations, matrix multiplication, etc.
 - Lightweight design, easy to integrate into existing projects
 - C++ interface for seamless integration with other C++ projects
+
+---
 
 ## Installation
 
@@ -49,8 +53,12 @@ For a detailed guide on how to use the `ComputeGraph` class, please refer to the
 
 ### Dependencies
 
-- CUDA driver
-- CMake 3.10 or higher
+- **CUDA Driver**: A GPU with compute capability 7.0 or higher is required to support Tensor Cores. Tensor Cores are available on NVIDIA Volta, Turing, and Ampere architectures (e.g., V100, T4, A100, and others).
+- **CUDA Version**: CUDA 10.1 or higher is required to access Tensor Cores for single-precision matrix multiplication. Ensure the appropriate driver and runtime libraries are installed for full functionality.
+- **CMake**: Version 3.18 or higher is required for building the project.
+
+
+---
 
 ## Key Components
 
@@ -92,6 +100,8 @@ For more detailed information, please refer to the corresponding header files or
 
 For further assistance, feel free to check the repository or reach out to the maintainers.
 
+---
+
 ### Notes
 
 - The library currently supports only CUDA environments and assumes that the CUDA driver and libraries are properly installed.
@@ -105,6 +115,8 @@ For inquiries, issues, or contributions, please contact:
 
 - Email: [yss489589139@outlook.com](mailto:yss489589139@outlook.com)
 - GitHub Repository: [https://github.com/Mgepahmge/NeuZephyr](https://github.com/Mgepahmge/NeuZephyr)
+
+---
 
 ### Disclaimer
 
@@ -129,3 +141,8 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 - Added basic optimizers (SGD, Adam).
 - Implemented a linear layer for neural networks.
 - Supported common loss functions (Mean Squared Error, Cross-Entropy, etc.).
+
+### v0.2.0 - Performance Optimization
+- Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.
+- Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.
+- Further fine-tuned matrix operations for increased efficiency.

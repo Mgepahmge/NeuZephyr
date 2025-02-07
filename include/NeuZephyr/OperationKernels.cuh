@@ -157,21 +157,21 @@ namespace nz::krnl {
                    const unsigned long long n);
 
     /**
-     * @brief Kernel function to perform general matrix multiplication on GPU
+     * @brief Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores
      *
      * This function is designed to execute general matrix multiplication using CUDA technology,
-     * leveraging parallel computing capabilities of the GPU for efficient processing
-     * of large datasets. It takes two input arrays of floats and stores their product
-     * in a third array.
+     * leveraging the parallel computing capabilities of the GPU for efficient processing
+     * of large datasets. It performs single-precision (FP32) matrix multiplication on the CUDA cores,
+     * taking two input arrays of floats and storing their product in a third array.
      *
      * @param gridDim The grid dimensions for the CUDA kernel launch configuration
      * @param blockDim The block dimensions for the CUDA kernel launch configuration
      * @param A Pointer to the first input matrix elements stored as a one-dimensional array
      * @param B Pointer to the second input matrix elements stored as a one-dimensional array
      * @param C Pointer to the output matrix where the result will be stored, allocated by the caller
-     * @param M The number of rows in the first input matrix
-     * @param N The number of columns in the second input matrix;
-     * @param K The number of columns in the first input matrix
+     * @param M The number of rows in matrix A and matrix C
+     * @param N The number of columns in matrix B and matrix C
+     * @param K The number of columns in matrix A and rows in matrix B
      */
     void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, const float* A, const float* B, float* C,
                           const unsigned long long M,
