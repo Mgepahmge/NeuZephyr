@@ -259,7 +259,7 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span>* input1 = graph.<a class="code hl_function" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a>({3, 4}, <span class="keyword">false</span>, <span class="stringliteral">&quot;Input&quot;</span>);  <span class="comment">// Add input data</span></div>
 <div class="line"><span class="keyword">auto</span>* input2 = graph.<a class="code hl_function" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a>({4, 3}, <span class="keyword">true</span>, <span class="stringliteral">&quot;Weight&quot;</span>);</div>
-<div class="line"><span class="keyword">auto</span>* input3 = graph.<a class="code hl_function" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a>({3, 3}, <span class="keyword">false</span>, <span class="stringliteral">&quot;Real&quot;</span>);</div>
+<div class="line"><span class="keyword">auto</span>* input3 = graph.<a class="code hl_function" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a>({3, 3}, <span class="keyword">false</span>, <span class="stringliteral">&quot;Label&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">nodes::calc::MatMulNode matmul(input1, input2); <span class="comment">// Add Computation nodes</span></div>
 <div class="line">graph.<a class="code hl_function" href="#a5ce9a271dcea6cc2b9490cd815ee53ed">addNode</a>(&amp;matmul, <span class="stringliteral">&quot;MatMul&quot;</span>);</div>
@@ -276,11 +276,11 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line">graph.<a class="code hl_function" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a>({3, 4}, <span class="keyword">false</span>, <span class="stringliteral">&quot;Input&quot;</span>);</div>
 <div class="line">graph.addInput({4, 3}, <span class="keyword">true</span>, <span class="stringliteral">&quot;Weight&quot;</span>);</div>
-<div class="line">graph.addInput({3, 3}, <span class="keyword">false</span>, <span class="stringliteral">&quot;Real&quot;</span>);</div>
+<div class="line">graph.addInput({3, 3}, <span class="keyword">false</span>, <span class="stringliteral">&quot;Label&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">graph.addNode(<span class="stringliteral">&quot;MatMul&quot;</span>, <span class="stringliteral">&quot;Input&quot;</span>, <span class="stringliteral">&quot;Weight&quot;</span>, <span class="stringliteral">&quot;MatMul&quot;</span>);</div>
 <div class="line">graph.addNode(<span class="stringliteral">&quot;ReLU&quot;</span>, <span class="stringliteral">&quot;MatMul&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;ReLU&quot;</span>);</div>
-<div class="line">graph.addNode(<span class="stringliteral">&quot;MeanSquaredError&quot;</span>, <span class="stringliteral">&quot;ReLU&quot;</span>, <span class="stringliteral">&quot;Real&quot;</span>);</div>
+<div class="line">graph.addNode(<span class="stringliteral">&quot;MeanSquaredError&quot;</span>, <span class="stringliteral">&quot;ReLU&quot;</span>, <span class="stringliteral">&quot;Label&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">graph.randomizeAll();</div>
 <div class="line"> </div>
