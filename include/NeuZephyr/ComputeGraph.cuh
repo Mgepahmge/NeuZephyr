@@ -1302,6 +1302,36 @@ namespace nz::graph {
          */
         Node* operator[](const std::string& name);
 
+        /**
+         * @brief Generates a formatted string representing the list of nodes in the ComputeGraph.
+         *
+         * @return A string containing a tabular representation of node names and types.
+         *
+         * This function iterates through the `nodeRoster` of the ComputeGraph to determine the maximum width required for displaying node names and types. It then constructs a formatted string using `std::ostringstream` to present the nodes in a tabular format.
+         *
+         * Memory management: The function does not allocate any dynamic memory that needs to be explicitly managed. It uses local variables and the `std::ostringstream` which handles its own memory internally.
+         *
+         * Exception handling: This function does not explicitly catch exceptions. Exceptions such as `std::bad_alloc` may be thrown if there is insufficient memory during the construction of the output string.
+         *
+         * This function only depends on the `nodeRoster` member of the `ComputeGraph` class, which stores the mapping between node names and pointers.
+         *
+         * @throws std::bad_alloc If there is insufficient memory to construct the output string.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of nodes in the `nodeRoster`, as it iterates through the map twice.
+         * - The output string is formatted in a left - aligned tabular style.
+         *
+         * @code
+         * ```cpp
+         * ComputeGraph graph;
+         * // Assume some nodes are added to the graph
+         * std::string nodesListStr = graph.nodesList();
+         * std::cout << nodesListStr << std::endl;
+         * ```
+         * @endcode
+         */
+        std::string nodesList();
+
         /// @}
 
         /// @name Computation

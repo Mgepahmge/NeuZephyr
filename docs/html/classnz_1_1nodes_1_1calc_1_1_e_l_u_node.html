@@ -111,6 +111,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
+<tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_af8b4bab3271df92ca1f0914f7a97b1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#af8b4bab3271df92ca1f0914f7a97b1e8">dataInject</a> (const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool grad=false) const</td></tr>
+<tr class="memdesc:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from a std::initializer_list into the output tensor of the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a>, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents an Exponential Linear Unit (ELU) activation function node in a computational graph. </p>
@@ -132,7 +142,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md51"></a>
+<h3><a class="anchor" id="autotoc_md50"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using ELUNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -145,14 +155,14 @@ Usage Example:</h3>
 <div class="line">elu_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *elu_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_e_l_u_node_html_a1dc0572d0688d2e65912b367286ac6ad"><div class="ttname"><a href="#a1dc0572d0688d2e65912b367286ac6ad">nz::nodes::calc::ELUNode::ELUNode</a></div><div class="ttdeci">ELUNode(Node *input, Tensor::value_type alpha=1.0f)</div><div class="ttdoc">Constructor to initialize an ELUNode for applying the ELU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00376">Nodes.cu:376</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_e_l_u_node_html_a1dc0572d0688d2e65912b367286ac6ad"><div class="ttname"><a href="#a1dc0572d0688d2e65912b367286ac6ad">nz::nodes::calc::ELUNode::ELUNode</a></div><div class="ttdeci">ELUNode(Node *input, Tensor::value_type alpha=1.0f)</div><div class="ttdoc">Constructor to initialize an ELUNode for applying the ELU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00391">Nodes.cu:391</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#acd8b07d5fbd5a920d58d55a72a9ff092" title="Forward pass for the ELUNode to apply the ELU activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1data.html#a463a6acd4af10f53a8f57e30fba2e660" title="Applies the Exponential Linear Unit (ELU) activation function to a tensor.">ELU</a> computation in the <a class="el" href="#acd8b07d5fbd5a920d58d55a72a9ff092" title="Forward pass for the ELUNode to apply the ELU activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a167cd647d2a6e3f273c250f15562a317" title="Backward pass for the ELUNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#a167cd647d2a6e3f273c250f15562a317" title="Backward pass for the ELUNode to compute gradients.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l02488">2488</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l02648">2648</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1dc0572d0688d2e65912b367286ac6ad" name="a1dc0572d0688d2e65912b367286ac6ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1dc0572d0688d2e65912b367286ac6ad">&#9670;&#160;</a></span>ELUNode()</h2>
@@ -209,7 +219,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00376">376</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00391">391</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -258,7 +268,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00390">390</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00405">405</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -303,7 +313,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00384">384</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00399">399</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>

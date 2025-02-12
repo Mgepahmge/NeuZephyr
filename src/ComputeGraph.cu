@@ -806,5 +806,29 @@ namespace nz::graph {
     Node* ComputeGraph::operator[](const std::string& name) {
         return nodeRoster[name];
     }
+
+    std::string ComputeGraph::nodesList() {
+        size_t name_width = 4;
+        size_t type_width = 4;
+
+        for (const auto& [name, node] : nodeRoster) {
+            if (name.length() > name_width) name_width = name.length();
+            if (node->type.length() > type_width) type_width = node->type.length();
+        }
+
+        std::ostringstream oss;
+        oss << std::left;
+
+        oss << std::setw(static_cast<long long>(name_width)) << "Name" << " | "
+            << std::setw(static_cast<long long>(type_width)) << "Type";
+
+        for (const auto& [name, node] : nodeRoster) {
+            oss << "\n"
+                << std::setw(static_cast<long long>(name_width)) << name << " | "
+                << std::setw(static_cast<long long>(type_width)) << node->type;
+        }
+
+        return oss.str();
+    }
 } // Graph
 // nz

@@ -110,115 +110,115 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> value_type* data, <span class="keywordtype">bool</span> requires_grad = <span class="keyword">false</span>, <span class="keywordtype">bool</span> host = <span class="keyword">true</span>);</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> std::initializer_list&lt;value_type&gt;&amp; data,</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                        <span class="keywordtype">bool</span> requires_grad = <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other);</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other);</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; operator=(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">~Tensor</a>();</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> std::initializer_list&lt;value_type&gt;&amp; data,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                        <span class="keywordtype">bool</span> requires_grad = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; operator=(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">~Tensor</a>();</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        [[nodiscard]] <span class="keywordtype">bool</span> requiresGrad() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        [[nodiscard]] shape_type shape() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        [[nodiscard]] size_type size() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        <span class="keywordtype">void</span> setRequiresGrad(<span class="keywordtype">bool</span> requires_grad) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        [[nodiscard]] value_type* data() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        [[nodiscard]] value_type* grad() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>        <span class="keywordtype">void</span> dataInject(<span class="keyword">const</span> value_type* data, <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
-<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt;</div>
-<div class="foldopen" id="foldopen00499" data-start="{" data-end="}">
-<div class="line"><a id="l00499" name="l00499"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57">  499</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57">dataInject</a>(Iterator begin, Iterator end, <span class="keyword">const</span> <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>            <span class="keywordflow">if</span> (std::distance(begin, end) &lt; _size) {</div>
-<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;The length of the input array is less than the size of the tensor.&quot;</span>);</div>
-<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>            }</div>
-<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>            <span class="keyword">auto</span>* host_data = <span class="keyword">new</span> value_type[_size];</div>
-<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>            <span class="keyword">auto</span> it = begin;</div>
-<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0; i &lt; _size; ++i, ++it) {</div>
-<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>                host_data[i] = <span class="keyword">static_cast&lt;</span>value_type<span class="keyword">&gt;</span>(*it);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        [[nodiscard]] <span class="keywordtype">bool</span> requiresGrad() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        [[nodiscard]] shape_type shape() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        [[nodiscard]] size_type size() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        <span class="keywordtype">void</span> setRequiresGrad(<span class="keywordtype">bool</span> requires_grad) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        [[nodiscard]] value_type* data() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        [[nodiscard]] value_type* grad() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>        <span class="keywordtype">void</span> dataInject(<span class="keyword">const</span> value_type* data, <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> </div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt;</div>
+<div class="foldopen" id="foldopen00496" data-start="{" data-end="}">
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57">  496</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57">dataInject</a>(Iterator begin, Iterator end, <span class="keyword">const</span> <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>            <span class="keywordflow">if</span> (std::distance(begin, end) &lt; _size) {</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;The length of the input array is less than the size of the tensor.&quot;</span>);</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>            }</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>            <span class="keyword">auto</span>* host_data = <span class="keyword">new</span> value_type[_size];</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>            <span class="keyword">auto</span> it = begin;</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0; i &lt; _size; ++i, ++it) {</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>                host_data[i] = <span class="keyword">static_cast&lt;</span>value_type<span class="keyword">&gt;</span>(*it);</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>            }</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>            <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>                dataInject(host_data, grad);</div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>            }</div>
-<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>            <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>                dataInject(host_data, grad);</div>
-<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>            }</div>
-<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>            <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::runtime_error&amp; e) {</div>
-<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>                <span class="keyword">delete</span>[] host_data;</div>
-<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>                <span class="keywordflow">throw</span>;</div>
-<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>            }</div>
-<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>            <span class="keyword">delete</span>[] host_data;</div>
-<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>        }</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>            <span class="keywordflow">catch</span> ([[maybe_unused]] <span class="keyword">const</span> std::runtime_error&amp; e) {</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>                <span class="keyword">delete</span>[] host_data;</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>                <span class="keywordflow">throw</span>;</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>            }</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>            <span class="keyword">delete</span>[] host_data;</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>        }</div>
 </div>
-<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span> </div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>        <span class="keywordtype">void</span> dataInject(<span class="keyword">const</span> std::initializer_list&lt;value_type&gt;&amp; data, <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span> </div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>        <span class="keywordtype">void</span> dataInject(<span class="keyword">const</span> std::initializer_list&lt;value_type&gt;&amp; data, <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span> </div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>
-<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span> </div>
-<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>        <span class="keywordtype">void</span> zeroGrad() const noexcept;</div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> </div>
-<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>        <span class="keywordtype">void</span> randomize(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> seed = 0) const;</div>
-<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span> </div>
-<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>        <span class="keywordtype">void</span> clear() const;</div>
-<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span> </div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>        <span class="keywordtype">void</span> fill(const value_type value) const;</div>
-<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
-<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>        <span class="keywordtype">void</span> fillGrad(const value_type value) const;</div>
-<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
-<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>        <span class="keywordtype">void</span> reshape(const shape_type&amp; shape);</div>
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> </div>
-<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>        <span class="keywordtype">void</span> reshape(const std::initializer_list&lt;<span class="keywordtype">int</span>&gt;&amp; shape);</div>
-<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span> </div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        <span class="keywordtype">void</span> transpose();</div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
-<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>        <span class="keywordtype">void</span> setData(const shape_type&amp; position, const value_type value) const;</div>
-<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
-<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>        <span class="keywordtype">void</span> setData(const std::initializer_list&lt;<span class="keywordtype">int</span>&gt;&amp; position, const value_type value) const;</div>
-<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span> </div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>        <span class="keywordtype">void</span> zeroGrad() const noexcept;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span> </div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>        <span class="keywordtype">void</span> randomize(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> seed = 0) const;</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>        <span class="keywordtype">void</span> clear() const;</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span> </div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>        <span class="keywordtype">void</span> fill(value_type value) const;</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> </div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>        <span class="keywordtype">void</span> fillGrad(value_type value) const;</div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span> </div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>        <span class="keywordtype">void</span> reshape(const shape_type&amp; shape);</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> </div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>        <span class="keywordtype">void</span> reshape(const std::initializer_list&lt;<span class="keywordtype">int</span>&gt;&amp; shape);</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>        <span class="keywordtype">void</span> transpose();</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span> </div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>        <span class="keywordtype">void</span> setData(const shape_type&amp; position, value_type value) const;</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span> </div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>        <span class="keywordtype">void</span> setData(const std::initializer_list&lt;<span class="keywordtype">int</span>&gt;&amp; position, value_type value) const;</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span> </div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span> </div>
 <div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span> </div>
-<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span> </div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator+(const <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) const;</div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span> </div>
-<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator-(const <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) const;</div>
-<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span> </div>
-<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator*(const <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) const;</div>
-<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span> </div>
-<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator-() const;</div>
-<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span> </div>
-<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span>        <span class="keywordtype">void</span> recip() const;</div>
-<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span> </div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator+(const <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) const;</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span> </div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator-(const <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) const;</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator*(const <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) const;</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span> </div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> operator-() const;</div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span> </div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>        <span class="keywordtype">void</span> recip() const;</div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span> </div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> </div>
 <div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span> </div>
-<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span> </div>
-<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>        std::ostream&amp; printGrad(std::ostream&amp; os) const;</div>
-<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span> </div>
-<div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span>        <span class="keywordtype">void</span> print() const noexcept;</div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span>        std::ostream&amp; printGrad(std::ostream&amp; os) const;</div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span> </div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span>        <span class="keywordtype">void</span> print() const noexcept;</div>
+<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span> </div>
+<div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span> </div>
 <div class="line"><a id="l01035" name="l01035"></a><span class="lineno"> 1035</span> </div>
-<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span> </div>
-<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span> </div>
-<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span>    private:</div>
-<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span>        size_type _size;</div>
-<div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span>        shape_type _shape;</div>
-<div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span>        value_type* _data;</div>
-<div class="line"><a id="l01043" name="l01043"></a><span class="lineno"> 1043</span>        value_type* _grad;</div>
-<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"> 1044</span>        <span class="keywordtype">bool</span> _requires_grad;</div>
-<div class="line"><a id="l01045" name="l01045"></a><span class="lineno"> 1045</span>    };</div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span>    private:</div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>        size_type _size;</div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span>        shape_type _shape;</div>
+<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span>        value_type* _data;</div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span>        value_type* _grad;</div>
+<div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span>        <span class="keywordtype">bool</span> _requires_grad;</div>
+<div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span>    };</div>
 </div>
-<div class="line"><a id="l01046" name="l01046"></a><span class="lineno"> 1046</span>}</div>
-<div class="line"><a id="l01047" name="l01047"></a><span class="lineno"> 1047</span> </div>
-<div class="line"><a id="l01048" name="l01048"></a><span class="lineno"> 1048</span><span class="preprocessor">#endif </span><span class="comment">//TENSOR_CUH</span></div>
+<div class="line"><a id="l01043" name="l01043"></a><span class="lineno"> 1043</span>}</div>
+<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"> 1044</span> </div>
+<div class="line"><a id="l01045" name="l01045"></a><span class="lineno"> 1045</span><span class="preprocessor">#endif </span><span class="comment">//TENSOR_CUH</span></div>
 <div class="ttc" id="a_operation_kernels_8cuh_html"><div class="ttname"><a href="_operation_kernels_8cuh.html">OperationKernels.cuh</a></div><div class="ttdoc">CUDA Kernel Definitions for High-Performance Tensor Operations.</div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae3cc31f5b541809d75556ebbfda8ae57"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(Iterator begin, Iterator end, const bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor using iterators.</div><div class="ttdef"><b>Definition</b> <a href="#l00499">Tensor.cuh:499</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae3cc31f5b541809d75556ebbfda8ae57"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(Iterator begin, Iterator end, const bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor using iterators.</div><div class="ttdef"><b>Definition</b> <a href="#l00496">Tensor.cuh:496</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00394">Tensor.cu:394</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a3b044ce5a34b4724830f073efb954743"><div class="ttname"><a href="namespacenz_1_1data.html#a3b044ce5a34b4724830f073efb954743">nz::data::operator/</a></div><div class="ttdeci">Tensor operator/(const Tensor &amp;lhs, const Tensor::value_type rhs)</div><div class="ttdoc">Divides a tensor by a scalar (element-wise division).</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00208">Tensor.cu:208</a></div></div>

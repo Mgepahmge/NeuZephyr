@@ -145,12 +145,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afc4e6385b97cf7ceb8bb74748b73b681" id="r_afc4e6385b97cf7ceb8bb74748b73b681"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc4e6385b97cf7ceb8bb74748b73b681">clear</a> () const</td></tr>
 <tr class="memdesc:afc4e6385b97cf7ceb8bb74748b73b681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the tensor's data by setting all elements to zero.  <br /></td></tr>
 <tr class="separator:afc4e6385b97cf7ceb8bb74748b73b681"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac273bf64f5d447bce9b91f08ab312ba1" id="r_ac273bf64f5d447bce9b91f08ab312ba1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a> (const value_type value) const</td></tr>
-<tr class="memdesc:ac273bf64f5d447bce9b91f08ab312ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the tensor's data with a specified value.  <br /></td></tr>
-<tr class="separator:ac273bf64f5d447bce9b91f08ab312ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb81990f3d306489153ed461d2088a15" id="r_acb81990f3d306489153ed461d2088a15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb81990f3d306489153ed461d2088a15">fillGrad</a> (const value_type value) const</td></tr>
-<tr class="memdesc:acb81990f3d306489153ed461d2088a15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the tensor's gradient data with a specified value.  <br /></td></tr>
-<tr class="separator:acb81990f3d306489153ed461d2088a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba025895b2c8b69de8d36c73c74929e" id="r_aaba025895b2c8b69de8d36c73c74929e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a> (value_type value) const</td></tr>
+<tr class="memdesc:aaba025895b2c8b69de8d36c73c74929e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the tensor's data with a specified value.  <br /></td></tr>
+<tr class="separator:aaba025895b2c8b69de8d36c73c74929e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab748aad919304a22289d42d78510438c" id="r_ab748aad919304a22289d42d78510438c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab748aad919304a22289d42d78510438c">fillGrad</a> (value_type value) const</td></tr>
+<tr class="memdesc:ab748aad919304a22289d42d78510438c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the tensor's gradient data with a specified value.  <br /></td></tr>
+<tr class="separator:ab748aad919304a22289d42d78510438c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a877f9f2704e39100142d81d289ddc3f2" id="r_a877f9f2704e39100142d81d289ddc3f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a877f9f2704e39100142d81d289ddc3f2">reshape</a> (const shape_type &amp;<a class="el" href="#aade7b0c42622279888d755f4f7989aac">shape</a>)</td></tr>
 <tr class="memdesc:a877f9f2704e39100142d81d289ddc3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reshapes the tensor to the specified shape.  <br /></td></tr>
 <tr class="separator:a877f9f2704e39100142d81d289ddc3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,12 +160,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45e6f84ae74111ced9a96bdf204b2294" id="r_a45e6f84ae74111ced9a96bdf204b2294"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45e6f84ae74111ced9a96bdf204b2294">transpose</a> ()</td></tr>
 <tr class="memdesc:a45e6f84ae74111ced9a96bdf204b2294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transposes the tensor by swapping its dimensions and rearranging the data.  <br /></td></tr>
 <tr class="separator:a45e6f84ae74111ced9a96bdf204b2294"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfd7cafef1ded0b6dcebbcaeedd7025e" id="r_adfd7cafef1ded0b6dcebbcaeedd7025e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfd7cafef1ded0b6dcebbcaeedd7025e">setData</a> (const shape_type &amp;position, const value_type value) const</td></tr>
-<tr class="memdesc:adfd7cafef1ded0b6dcebbcaeedd7025e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific element of the tensor's data to a given value.  <br /></td></tr>
-<tr class="separator:adfd7cafef1ded0b6dcebbcaeedd7025e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec014759de2cdbc4e629f2ec662d91f9" id="r_aec014759de2cdbc4e629f2ec662d91f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec014759de2cdbc4e629f2ec662d91f9">setData</a> (const std::initializer_list&lt; int &gt; &amp;position, const value_type value) const</td></tr>
-<tr class="memdesc:aec014759de2cdbc4e629f2ec662d91f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific element of the tensor's data to a given value using an initializer list for position.  <br /></td></tr>
-<tr class="separator:aec014759de2cdbc4e629f2ec662d91f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2cee8a54e65497113afd0c4f85dc02c" id="r_ae2cee8a54e65497113afd0c4f85dc02c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a> (const shape_type &amp;position, value_type value) const</td></tr>
+<tr class="memdesc:ae2cee8a54e65497113afd0c4f85dc02c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific element of the tensor's data to a given value.  <br /></td></tr>
+<tr class="separator:ae2cee8a54e65497113afd0c4f85dc02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37b775411e85e7eff40e5d159ea44c0f" id="r_a37b775411e85e7eff40e5d159ea44c0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37b775411e85e7eff40e5d159ea44c0f">setData</a> (const std::initializer_list&lt; int &gt; &amp;position, value_type value) const</td></tr>
+<tr class="memdesc:a37b775411e85e7eff40e5d159ea44c0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific element of the tensor's data to a given value using an initializer list for position.  <br /></td></tr>
+<tr class="separator:a37b775411e85e7eff40e5d159ea44c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Math</div></td></tr>
 <tr class="memitem:a36cd1679c45059de64deeca9152b0288" id="r_a36cd1679c45059de64deeca9152b0288"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36cd1679c45059de64deeca9152b0288">operator+</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;other) const</td></tr>
 <tr class="memdesc:a36cd1679c45059de64deeca9152b0288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds two tensors element-wise and returns the result.  <br /></td></tr>
@@ -250,14 +250,14 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for representing and manipulating multidimensional arrays (tensors) in GPU memory. </p>
 <p>The <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class is designed for high-performance numerical computations in GPU-based environments. It provides a wide range of functionalities, including tensor creation, mathematical operations, memory management, and gradient computation for deep learning tasks.</p>
-<h3><a class="anchor" id="autotoc_md64"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 Type Definitions:</h3>
 <ul>
 <li><code>size_type</code>: An alias for <code>unsigned long long</code>, used to represent the size of the tensor. Supports large tensors with up to 64-bit indices.</li>
 <li><code>value_type</code>: An alias for <code>float</code>, representing the data type of the tensor elements. Suitable for most machine learning computations.</li>
 <li><code>shape_type</code>: An alias for <code>std::vector&lt;int&gt;</code>, representing the shape of the tensor (e.g., <code>{2, 3}</code> for a 2x3 matrix).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md65"></a>
+<h3><a class="anchor" id="autotoc_md64"></a>
 Key Features:</h3>
 <ul>
 <li><b>Memory Management</b>: Handles GPU memory allocation and deallocation using CUDA.</li>
@@ -266,13 +266,13 @@ Key Features:</h3>
 <li><b>Gradient Support</b>: Tracks gradients for tensors that require gradient computation (<code>requires_grad</code>) to facilitate backpropagation in neural networks.</li>
 <li><b>Shape Transformation</b>: Supports reshaping and transposing tensors.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md65"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacenz_1_1data.html">nz::data</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Create a tensor that requires gradient with shape 2x3</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);     <span class="comment">// Fill the tensor with value 1.0</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);     <span class="comment">// Fill the tensor with value 1.0</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Apply element-wise ReLU activation</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a2b549dd795e302066b32600220b5bfd9">ReLU</a>(tensor);</div>
@@ -281,13 +281,14 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Perform matrix multiplication (2x3 * 3x2 = 2x2)</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor3({3, 2}, <span class="keyword">true</span>);</div>
-<div class="line">tensor3.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(3.0f); <span class="comment">// Fill tensor3 with value 3.0</span></div>
+<div class="line">tensor3.<a class="code hl_function" href="#a56eed9ac874126485dfd494d4ec59c33">dataInject</a>({1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f}); <span class="comment">// Fill tensor3 with values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> multiplied_result = tensor * tensor3;  <span class="comment">// Multiply tensor (2x3) by tensor3 (3x2)</span></div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Multiplication result (2x3 * 3x2 = 2x2):&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">std::cout &lt;&lt; multiplied_result &lt;&lt; std::endl;  <span class="comment">// Print the result of matrix multiplication</span></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b549dd795e302066b32600220b5bfd9"><div class="ttname"><a href="#a2b549dd795e302066b32600220b5bfd9">nz::data::Tensor::ReLU</a></div><div class="ttdeci">friend DL_API Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00394">Tensor.cu:394</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ac273bf64f5d447bce9b91f08ab312ba1"><div class="ttname"><a href="#ac273bf64f5d447bce9b91f08ab312ba1">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(const value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00918">Tensor.cu:918</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a56eed9ac874126485dfd494d4ec59c33"><div class="ttname"><a href="#a56eed9ac874126485dfd494d4ec59c33">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(const value_type *data, bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00891">Tensor.cu:891</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00918">Tensor.cu:918</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><ul>
 <li>Ensure proper cleanup by calling the destructor or relying on RAII to avoid memory leaks.</li>
@@ -513,9 +514,6 @@ Here is the call graph for this function:</div>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><span class="comment">// Assume shape_type and value_type are defined</span></div>
-<div class="line"><span class="keyword">using </span>shape_type = std::vector&lt;size_t&gt;;</div>
-<div class="line"><span class="keyword">using </span>value_type = float;</div>
 <div class="line"> </div>
 <div class="line">shape_type <a class="code hl_function" href="#aade7b0c42622279888d755f4f7989aac">shape</a> = {2, 3};</div>
 <div class="line"><span class="keywordflow">try</span> {</div>
@@ -911,12 +909,12 @@ template&lt;typename Iterator &gt; </div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cuh_source.html#l00499">499</a> of file <a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cuh_source.html#l00496">496</a> of file <a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a>.</p>
 
 </div>
 </div>
-<a id="ac273bf64f5d447bce9b91f08ab312ba1" name="ac273bf64f5d447bce9b91f08ab312ba1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac273bf64f5d447bce9b91f08ab312ba1">&#9670;&#160;</a></span>fill()</h2>
+<a id="aaba025895b2c8b69de8d36c73c74929e" name="aaba025895b2c8b69de8d36c73c74929e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaba025895b2c8b69de8d36c73c74929e">&#9670;&#160;</a></span>fill()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -924,7 +922,7 @@ template&lt;typename Iterator &gt; </div>
         <tr>
           <td class="memname">void nz::data::Tensor::fill </td>
           <td>(</td>
-          <td class="paramtype">const value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -945,15 +943,15 @@ template&lt;typename Iterator &gt; </div>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(5.0f);      <span class="comment">// Fill the tensor&#39;s data with the value 5.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(5.0f);      <span class="comment">// Fill the tensor&#39;s data with the value 5.0f</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00918">918</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classnz_1_1data_1_1_tensor_ac273bf64f5d447bce9b91f08ab312ba1_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ac273bf64f5d447bce9b91f08ab312ba1_cgraph" alt=""/></div>
-<map name="aclassnz_1_1data_1_1_tensor_ac273bf64f5d447bce9b91f08ab312ba1_cgraph" id="aclassnz_1_1data_1_1_tensor_ac273bf64f5d447bce9b91f08ab312ba1_cgraph">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_aaba025895b2c8b69de8d36c73c74929e_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_aaba025895b2c8b69de8d36c73c74929e_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_aaba025895b2c8b69de8d36c73c74929e_cgraph" id="aclassnz_1_1data_1_1_tensor_aaba025895b2c8b69de8d36c73c74929e_cgraph">
 <area shape="rect" title="Fills the tensor&#39;s data with a specified value." alt="" coords="5,5,142,32"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="190,5,338,32"/>
 <area shape="poly" title=" " alt="" coords="142,16,174,16,174,21,142,21"/>
@@ -962,8 +960,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="acb81990f3d306489153ed461d2088a15" name="acb81990f3d306489153ed461d2088a15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb81990f3d306489153ed461d2088a15">&#9670;&#160;</a></span>fillGrad()</h2>
+<a id="ab748aad919304a22289d42d78510438c" name="ab748aad919304a22289d42d78510438c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab748aad919304a22289d42d78510438c">&#9670;&#160;</a></span>fillGrad()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -971,7 +969,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void nz::data::Tensor::fillGrad </td>
           <td>(</td>
-          <td class="paramtype">const value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -991,15 +989,15 @@ Here is the call graph for this function:</div>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);  <span class="comment">// Create a tensor with gradient support</span></div>
-<div class="line">tensor.<a class="code hl_function" href="#acb81990f3d306489153ed461d2088a15">fillGrad</a>(0.0f);        <span class="comment">// Set all gradient values to 0.0f</span></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_acb81990f3d306489153ed461d2088a15"><div class="ttname"><a href="#acb81990f3d306489153ed461d2088a15">nz::data::Tensor::fillGrad</a></div><div class="ttdeci">void fillGrad(const value_type value) const</div><div class="ttdoc">Fills the tensor's gradient data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00927">Tensor.cu:927</a></div></div>
+<div class="line">tensor.<a class="code hl_function" href="#ab748aad919304a22289d42d78510438c">fillGrad</a>(0.0f);        <span class="comment">// Set all gradient values to 0.0f</span></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ab748aad919304a22289d42d78510438c"><div class="ttname"><a href="#ab748aad919304a22289d42d78510438c">nz::data::Tensor::fillGrad</a></div><div class="ttdeci">void fillGrad(value_type value) const</div><div class="ttdoc">Fills the tensor's gradient data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00927">Tensor.cu:927</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00927">927</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph" alt=""/></div>
-<map name="aclassnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph" id="aclassnz_1_1data_1_1_tensor_acb81990f3d306489153ed461d2088a15_cgraph">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_ab748aad919304a22289d42d78510438c_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ab748aad919304a22289d42d78510438c_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_ab748aad919304a22289d42d78510438c_cgraph" id="aclassnz_1_1data_1_1_tensor_ab748aad919304a22289d42d78510438c_cgraph">
 <area shape="rect" title="Fills the tensor&#39;s gradient data with a specified value." alt="" coords="5,5,170,32"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145" title="Retrieves a pointer to the gradient data stored in GPU memory." alt="" coords="218,5,366,32"/>
 <area shape="poly" title=" " alt="" coords="170,16,202,16,202,21,170,21"/>
@@ -1638,8 +1636,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="adfd7cafef1ded0b6dcebbcaeedd7025e" name="adfd7cafef1ded0b6dcebbcaeedd7025e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfd7cafef1ded0b6dcebbcaeedd7025e">&#9670;&#160;</a></span>setData() <span class="overload">[1/2]</span></h2>
+<a id="ae2cee8a54e65497113afd0c4f85dc02c" name="ae2cee8a54e65497113afd0c4f85dc02c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2cee8a54e65497113afd0c4f85dc02c">&#9670;&#160;</a></span>setData() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1652,7 +1650,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1685,16 +1683,16 @@ Here is the call graph for this function:</div>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
-<div class="line">tensor.<a class="code hl_function" href="#adfd7cafef1ded0b6dcebbcaeedd7025e">setData</a>(std::vector&lt;int&gt;({1, 2}), 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a>(std::vector&lt;int&gt;({1, 2}), 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_adfd7cafef1ded0b6dcebbcaeedd7025e"><div class="ttname"><a href="#adfd7cafef1ded0b6dcebbcaeedd7025e">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, const value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01013">Tensor.cu:1013</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae2cee8a54e65497113afd0c4f85dc02c"><div class="ttname"><a href="#ae2cee8a54e65497113afd0c4f85dc02c">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01013">Tensor.cu:1013</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01013">1013</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classnz_1_1data_1_1_tensor_adfd7cafef1ded0b6dcebbcaeedd7025e_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_adfd7cafef1ded0b6dcebbcaeedd7025e_cgraph" alt=""/></div>
-<map name="aclassnz_1_1data_1_1_tensor_adfd7cafef1ded0b6dcebbcaeedd7025e_cgraph" id="aclassnz_1_1data_1_1_tensor_adfd7cafef1ded0b6dcebbcaeedd7025e_cgraph">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph" id="aclassnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph">
 <area shape="rect" title="Sets a specific element of the tensor&#39;s data to a given value." alt="" coords="5,5,175,32"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="223,5,371,32"/>
 <area shape="poly" title=" " alt="" coords="175,16,207,16,207,21,175,21"/>
@@ -1703,8 +1701,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aec014759de2cdbc4e629f2ec662d91f9" name="aec014759de2cdbc4e629f2ec662d91f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec014759de2cdbc4e629f2ec662d91f9">&#9670;&#160;</a></span>setData() <span class="overload">[2/2]</span></h2>
+<a id="a37b775411e85e7eff40e5d159ea44c0f" name="a37b775411e85e7eff40e5d159ea44c0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37b775411e85e7eff40e5d159ea44c0f">&#9670;&#160;</a></span>setData() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1717,7 +1715,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1750,17 +1748,17 @@ Here is the call graph for this function:</div>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
-<div class="line">tensor.<a class="code hl_function" href="#adfd7cafef1ded0b6dcebbcaeedd7025e">setData</a>({1, 2}, 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a>({1, 2}, 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01024">1024</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classnz_1_1data_1_1_tensor_aec014759de2cdbc4e629f2ec662d91f9_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_aec014759de2cdbc4e629f2ec662d91f9_cgraph" alt=""/></div>
-<map name="aclassnz_1_1data_1_1_tensor_aec014759de2cdbc4e629f2ec662d91f9_cgraph" id="aclassnz_1_1data_1_1_tensor_aec014759de2cdbc4e629f2ec662d91f9_cgraph">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_a37b775411e85e7eff40e5d159ea44c0f_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a37b775411e85e7eff40e5d159ea44c0f_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_a37b775411e85e7eff40e5d159ea44c0f_cgraph" id="aclassnz_1_1data_1_1_tensor_a37b775411e85e7eff40e5d159ea44c0f_cgraph">
 <area shape="rect" title="Sets a specific element of the tensor&#39;s data to a given value using an initializer list for position." alt="" coords="5,5,175,32"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e" title="Sets a specific element of the tensor&#39;s data to a given value." alt="" coords="223,5,392,32"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#ae2cee8a54e65497113afd0c4f85dc02c" title="Sets a specific element of the tensor&#39;s data to a given value." alt="" coords="223,5,392,32"/>
 <area shape="poly" title=" " alt="" coords="175,16,207,16,207,21,175,21"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="440,5,588,32"/>
 <area shape="poly" title=" " alt="" coords="392,16,424,16,424,21,392,21"/>
@@ -2003,7 +2001,7 @@ ELU(x) = alpha * (exp(x) - 1), if x &lt;= 0
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(-1.0f);  <span class="comment">// Fill the tensor with negative values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(-1.0f);  <span class="comment">// Fill the tensor with negative values</span></div>
 <div class="line"><span class="keywordtype">float</span> alpha = 1.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a30aa89b90999505d6af26dc30dc207c7">ELU</a>(tensor, alpha);  <span class="comment">// Apply the ELU activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2068,7 +2066,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
 <div class="line"><span class="keywordtype">float</span> alpha = 0.2f;</div>
 <div class="line"><span class="keywordtype">float</span> beta = 0.5f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a2b912f1b9d4b301c2f360b693cf03ef3">HardSigmoid</a>(tensor, alpha, beta);  <span class="comment">// Apply the Hard Sigmoid activation</span></div>
@@ -2132,7 +2130,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
 <div class="line"><span class="keywordtype">float</span> alpha = 1.0f;</div>
 <div class="line"><span class="keywordtype">float</span> beta = 3.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a2ea20bf5c1d1526f35c9406d362ae7c9">HardSwish</a>(tensor, alpha, beta);  <span class="comment">// Apply the Hard Swish activation</span></div>
@@ -2188,7 +2186,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a5e2316f5542b552f910fdf27923bbb29">Tanh</a>(tensor);  <span class="comment">// Apply the Tanh activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
@@ -2243,7 +2241,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = tensor * scalar;  <span class="comment">// Multiply each element of the tensor by 2.0f</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2298,7 +2296,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = scalar * tensor;  <span class="comment">// Multiply each element of the tensor by 2.0f</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2353,7 +2351,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = tensor + scalar;  <span class="comment">// Add 2.0f to each element of the tensor</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2408,7 +2406,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = scalar + tensor;  <span class="comment">// Add 2.0f to each element of the tensor</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2463,7 +2461,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = tensor - scalar;  <span class="comment">// Subtract 2.0f from each element of the tensor</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2519,7 +2517,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = scalar - tensor;  <span class="comment">// Subtract each element of the tensor from 2.0f</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2575,7 +2573,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
 <div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = tensor / scalar;  <span class="comment">// Divide each element of the tensor by 2.0f</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
@@ -2631,7 +2629,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
 <div class="line">std::cout &lt;&lt; tensor &lt;&lt; std::endl;  <span class="comment">// Prints the tensor to standard output in matrix format</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
@@ -2732,7 +2730,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(-1.0f);  <span class="comment">// Fill the tensor with negative values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(-1.0f);  <span class="comment">// Fill the tensor with negative values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a2b549dd795e302066b32600220b5bfd9">ReLU</a>(tensor);  <span class="comment">// Apply the ReLU activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
@@ -2781,7 +2779,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values between 0 and 1</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values between 0 and 1</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a305eaad4aee364dee9efbaf07f1ace2f">Sigmoid</a>(tensor);  <span class="comment">// Apply the Sigmoid activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
@@ -2833,7 +2831,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a40d075b64061912220a8cc51c980fb2c">Softmax</a>(tensor);  <span class="comment">// Apply the Softmax activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
@@ -2884,7 +2882,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#aa0a7800d605fe70d8a694b8d5287ab61">Swish</a>(tensor);  <span class="comment">// Apply the Swish activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
@@ -2934,7 +2932,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="#ac273bf64f5d447bce9b91f08ab312ba1">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values</span></div>
+<div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0.5f);  <span class="comment">// Fill the tensor with values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a5e2316f5542b552f910fdf27923bbb29">Tanh</a>(tensor);  <span class="comment">// Apply the Tanh activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>

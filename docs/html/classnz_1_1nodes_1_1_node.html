@@ -135,6 +135,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a7d2c36560f68c28e655ca242da5b2097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
+<tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a609f1730085dd1d31e0ddcbbae48a065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b4bab3271df92ca1f0914f7a97b1e8" id="r_af8b4bab3271df92ca1f0914f7a97b1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8b4bab3271df92ca1f0914f7a97b1e8">dataInject</a> (const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool grad=false) const</td></tr>
+<tr class="memdesc:af8b4bab3271df92ca1f0914f7a97b1e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from a std::initializer_list into the output tensor of the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a>, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:af8b4bab3271df92ca1f0914f7a97b1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for nodes in a neural network or computational graph. </p>
@@ -194,6 +204,191 @@ Public Member Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
 <p>Implemented in <a class="el" href="classnz_1_1nodes_1_1calc_1_1_add_node.html#aacd0de4600132791c8da7860dba3e43c">nz::nodes::calc::AddNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_e_l_u_node.html#a167cd647d2a6e3f273c250f15562a317">nz::nodes::calc::ELUNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_sigmoid_node.html#ad977c6a8c49252de4038f8ac08beed3c">nz::nodes::calc::HardSigmoidNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_swish_node.html#ace2cc92220449c5425a75d8e7f35ff42">nz::nodes::calc::HardSwishNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node.html#aa3fe1c9e74733c8c5e15e71ec14143f0">nz::nodes::calc::LeakyReLUNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_mat_mul_node.html#ab644a874feb6a620ad31d37ca20525fd">nz::nodes::calc::MatMulNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_re_l_u_node.html#af06dd1eadec4b3616c7c9e655820b1b8">nz::nodes::calc::ReLUNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_scalar_add_node.html#a453eed787a8161b36410bef2ba8b0a75">nz::nodes::calc::ScalarAddNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_scalar_div_node.html#a9b72dc5618e8e11790756c91116719e4">nz::nodes::calc::ScalarDivNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_scalar_mul_node.html#a074fe78c03e0b62c5e69b6a25b6b4c24">nz::nodes::calc::ScalarMulNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_scalar_sub_node.html#a7880d18811e20c3ec34b1417a28d697e">nz::nodes::calc::ScalarSubNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_sigmoid_node.html#a05fe16b3ecde344d9463efabf1318115">nz::nodes::calc::SigmoidNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_softmax_node.html#aa991e3bde7a3a5edbee62fab1cabba23">nz::nodes::calc::SoftmaxNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_sub_node.html#abb396a092ac9fb09c3a656329132842d">nz::nodes::calc::SubNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_swish_node.html#a55758c143f9a941d24abc58a43ae5e9d">nz::nodes::calc::SwishNode</a>, <a class="el" href="classnz_1_1nodes_1_1calc_1_1_tanh_node.html#ac75b18193ae5de920c0060ad83d1542a">nz::nodes::calc::TanhNode</a>, <a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html#a3cde8af9401a117601dcdb0c9063516a">nz::nodes::io::InputNode</a>, <a class="el" href="classnz_1_1nodes_1_1io_1_1_output_node.html#a2f76355b646a9c9f1a0972ad87f6a260">nz::nodes::io::OutputNode</a>, <a class="el" href="classnz_1_1nodes_1_1loss_1_1_binary_cross_entropy_node.html#a868b2f5886b2e2adee12439ad50ca91a">nz::nodes::loss::BinaryCrossEntropyNode</a>, and <a class="el" href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#a8ccbbad9b8bb2111d24af789020337ce">nz::nodes::loss::MeanSquaredErrorNode</a>.</p>
+
+</div>
+</div>
+<a id="af8b4bab3271df92ca1f0914f7a97b1e8" name="af8b4bab3271df92ca1f0914f7a97b1e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b4bab3271df92ca1f0914f7a97b1e8">&#9670;&#160;</a></span>dataInject() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::nodes::Node::dataInject </td>
+          <td>(</td>
+          <td class="paramtype">const std::initializer_list&lt; Tensor::value_type &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>grad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Injects data from a std::initializer_list into the output tensor of the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a>, optionally setting its gradient requirement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A std::initializer_list containing the data to be injected into the output tensor (host-to-device). </td></tr>
+    <tr><td class="paramname">grad</td><td>A boolean indicating whether the output tensor should require gradient computation after data injection.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None.</dd></dl>
+<p>This function is responsible for injecting data from a std::initializer_list into the output tensor of the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a>. Memory management is handled by the underlying <code>dataInject</code> method of the <code>Tensor</code> class. The <code>output</code> tensor is assumed to have already allocated enough memory to accommodate the data in the <code>std::initializer_list</code>.</p>
+<p>Regarding exception handling, this function does not explicitly catch any exceptions. Exceptions that might occur during data injection, such as memory allocation errors in the <code>Tensor</code> class, will propagate to the caller.</p>
+<p>This function acts as a bridge between the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a> and its output tensor, allowing data to be easily provided using a <code>std::initializer_list</code>.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td>explicitly, but the <code>dataInject</code> method of the <code>Tensor</code> class may throw exceptions, such as <code>std::bad_alloc</code> if memory allocation fails during the injection process.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Ensure that the <code>std::initializer_list</code> contains enough elements to fill the output tensor according to its shape.</li>
+<li>The CUDA runtime environment should be properly initialized before calling this function if the tensor is using CUDA memory.</li>
+<li>The time complexity of this function is O(n), where n is the number of elements in the <code>std::initializer_list</code>, as it involves copying data from the list into the tensor.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"> </div>
+<div class="line">InputNode node({2, 2}, <span class="keyword">true</span>);</div>
+<div class="line">node.dataInject({1.0f, 2.0f, 3.0f, 4.0f});</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00017">17</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+
+</div>
+</div>
+<a id="a7d2c36560f68c28e655ca242da5b2097" name="a7d2c36560f68c28e655ca242da5b2097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d2c36560f68c28e655ca242da5b2097">&#9670;&#160;</a></span>dataInject() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::nodes::Node::dataInject </td>
+          <td>(</td>
+          <td class="paramtype">const Tensor::value_type *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>grad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Injects data into a relevant tensor object, optionally setting its gradient requirement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A pointer to the data to be injected into the tensor (host-to-device). This data will be used to populate the tensor. </td></tr>
+    <tr><td class="paramname">grad</td><td>A boolean indicating whether the tensor should require gradient computation after data injection. Defaults to false.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None.</dd></dl>
+<p>This function is designed to inject data into a tensor object. Memory management within this function is handled by the underlying tensor operations. It is assumed that the tensor object has already allocated the necessary memory to hold the data pointed to by <code>data</code>.</p>
+<p>Regarding exception handling, this function does not explicitly catch any exceptions. Exceptions that might occur during data injection, such as memory access errors or CUDA errors (if applicable), will propagate to the caller.</p>
+<p>This function likely interacts with other components related to the tensor, such as the computation graph or the gradient computation system, depending on the value of <code>grad</code>.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td>explicitly, but underlying tensor operations may throw exceptions, such as std::bad_alloc if memory allocation fails during the injection process.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Ensure that the <code>data</code> pointer is valid and points to enough data to fill the target tensor.</li>
+<li>The CUDA runtime environment should be properly initialized before calling this function if the tensor is using CUDA memory.</li>
+<li>The time complexity of this function is O(n), where n is the number of elements in the tensor, as it involves copying data into the tensor.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"> </div>
+<div class="line">value_type data[] = {1.0f, 2.0f, 3.0f, 4.0f};</div>
+<div class="line"><span class="comment">// Assume there is an object that has the dataInject method</span></div>
+<div class="line">InputNode input({2, 2}), <span class="keyword">true</span>);</div>
+<div class="line">obj.dataInject(data);</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00013">13</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+
+</div>
+</div>
+<a id="a609f1730085dd1d31e0ddcbbae48a065" name="a609f1730085dd1d31e0ddcbbae48a065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a609f1730085dd1d31e0ddcbbae48a065">&#9670;&#160;</a></span>dataInject() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Iterator &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::nodes::Node::dataInject </td>
+          <td>(</td>
+          <td class="paramtype">Iterator</td>          <td class="paramname"><span class="paramname"><em>begin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iterator</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>grad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Iterator</td><td>The type of the iterators used to define the data range. It should support the standard iterator operations like dereferencing and incrementing. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>An iterator pointing to the beginning of the data range (host-to-device). The data in this range will be injected into the output tensor. </td></tr>
+    <tr><td class="paramname">end</td><td>An iterator pointing to the end of the data range (host-to-device). </td></tr>
+    <tr><td class="paramname">grad</td><td>A boolean indicating whether the output tensor should require gradient computation after data injection. Defaults to false.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None.</dd></dl>
+<p>This template function is used to inject data from an iterator range into the output tensor of the InputNode. Memory management is handled by the underlying <code>dataInject</code> method of the <code>Tensor</code> class. It is assumed that the <code>output</code> tensor has already allocated sufficient memory to hold the data from the iterator range.</p>
+<p>Regarding exception handling, this function does not explicitly catch any exceptions. Exceptions that might occur during data injection, such as iterator invalidation or memory allocation errors in the <code>Tensor</code> class, will propagate to the caller.</p>
+<p>This function serves as a wrapper around the <code>dataInject</code> method of the <code>output</code> tensor, facilitating the use of iterators to provide data for injection.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td>explicitly, but the <code>dataInject</code> method of the <code>Tensor</code> class may throw exceptions, such as <code>std::bad_alloc</code> if memory allocation fails during the injection process.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Ensure that the iterator range <code>[begin, end)</code> is valid and that the data type pointed to by the iterators is compatible with the <code>Tensor::value_type</code>.</li>
+<li>The CUDA runtime environment should be properly initialized before calling this function if the tensor is using CUDA memory.</li>
+<li>The time complexity of this function is O(n), where n is the number of elements in the iterator range, as it involves copying data from the range into the tensor.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"> </div>
+<div class="line">std::vector&lt;value_type&gt; data = {1.0f, 2.0f, 3.0f, 4.0f};</div>
+<div class="line">InputNode inputNode({2, 2}, <span class="keyword">true</span>);</div>
+<div class="line">inputNode.dataInject(data.begin(), data.end());</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l00278">278</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 
 </div>
 </div>

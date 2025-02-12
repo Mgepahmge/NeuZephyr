@@ -111,6 +111,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
+<tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_af8b4bab3271df92ca1f0914f7a97b1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#af8b4bab3271df92ca1f0914f7a97b1e8">dataInject</a> (const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool grad=false) const</td></tr>
+<tr class="memdesc:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from a std::initializer_list into the output tensor of the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a>, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Swish activation function node in a computational graph. </p>
@@ -129,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md50"></a>
+<h3><a class="anchor" id="autotoc_md49"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using SwishNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -142,14 +152,14 @@ Usage Example:</h3>
 <div class="line">swish_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *swish_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_html_a20f471bd6a03cf6d72d4e37eaba9fbb7"><div class="ttname"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">nz::nodes::calc::SwishNode::SwishNode</a></div><div class="ttdeci">SwishNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SwishNode for applying the Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00354">Nodes.cu:354</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_html_a20f471bd6a03cf6d72d4e37eaba9fbb7"><div class="ttname"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">nz::nodes::calc::SwishNode::SwishNode</a></div><div class="ttdeci">SwishNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SwishNode for applying the Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00369">Nodes.cu:369</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a> for the Swish computation in the <a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l02344">2344</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l02504">2504</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a20f471bd6a03cf6d72d4e37eaba9fbb7" name="a20f471bd6a03cf6d72d4e37eaba9fbb7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">&#9670;&#160;</a></span>SwishNode()</h2>
@@ -199,7 +209,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00354">354</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00369">369</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -246,7 +256,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00367">367</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00382">382</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -286,7 +296,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00361">361</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00376">376</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>

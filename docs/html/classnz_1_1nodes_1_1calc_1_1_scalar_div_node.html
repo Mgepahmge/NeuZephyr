@@ -111,6 +111,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
+<tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
+<tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_af8b4bab3271df92ca1f0914f7a97b1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#af8b4bab3271df92ca1f0914f7a97b1e8">dataInject</a> (const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool grad=false) const</td></tr>
+<tr class="memdesc:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from a std::initializer_list into the output tensor of the <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">Node</a>, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:af8b4bab3271df92ca1f0914f7a97b1e8 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a scalar division operation node in a computational graph. </p>
@@ -128,7 +138,7 @@ Public Member Functions</h2></td></tr>
 <li>A warning is issued indicating that scalar operations do not support saving to files, and users are encouraged to use matrix operations for model persistence.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md42"></a>
+<h3><a class="anchor" id="autotoc_md41"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using ScalarDivNode for scalar division</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -139,7 +149,7 @@ Usage Example:</h3>
 <div class="line">scalar_div_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *scalar_div_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1calc_1_1_scalar_div_node.html">nz::nodes::calc::ScalarDivNode</a></div><div class="ttdoc">Represents a scalar division operation node in a computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l01190">Nodes.cuh:1190</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1calc_1_1_scalar_div_node.html">nz::nodes::calc::ScalarDivNode</a></div><div class="ttdoc">Represents a scalar division operation node in a computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l01350">Nodes.cuh:1350</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4728d1f10d35d7e71b11acd32ee1a26d" title="Forward pass for the ScalarDivNode to perform scalar division.">forward()</a> for the <a class="el" href="#a4728d1f10d35d7e71b11acd32ee1a26d" title="Forward pass for the ScalarDivNode to perform scalar division.">forward</a> pass implementation. </dd>
 <dd>
 <a class="el" href="#a9b72dc5618e8e11790756c91116719e4" title="Backward pass for the ScalarDivNode to propagate gradients.">backward()</a> for the gradient propagation in the <a class="el" href="#a9b72dc5618e8e11790756c91116719e4" title="Backward pass for the ScalarDivNode to propagate gradients.">backward</a> pass.</dd></dl>
@@ -156,7 +166,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l01190">1190</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cuh_source.html#l01350">1350</a> of file <a class="el" href="_nodes_8cuh_source.html">Nodes.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac04d8d6de4becf4e1c7911e99c131b7d" name="ac04d8d6de4becf4e1c7911e99c131b7d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac04d8d6de4becf4e1c7911e99c131b7d">&#9670;&#160;</a></span>ScalarDivNode()</h2>
@@ -213,7 +223,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00159">159</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00174">174</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -259,7 +269,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00178">178</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00193">193</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -304,7 +314,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00172">172</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00187">187</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
