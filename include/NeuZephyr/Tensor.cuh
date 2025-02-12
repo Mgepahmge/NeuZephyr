@@ -112,7 +112,7 @@ namespace nz::data {
      *
      * // Perform matrix multiplication (2x3 * 3x2 = 2x2)
      * Tensor tensor3({3, 2}, true);
-     * tensor3.fill(3.0f); // Fill tensor3 with value 3.0
+     * tensor3.dataInject({1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f}); // Fill tensor3 with values
      * Tensor multiplied_result = tensor * tensor3;  // Multiply tensor (2x3) by tensor3 (3x2)
      * std::cout << "Multiplication result (2x3 * 3x2 = 2x2):" << std::endl;
      * std::cout << multiplied_result << std::endl;  // Print the result of matrix multiplication
@@ -643,7 +643,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void fill(const value_type value) const;
+        void fill(value_type value) const;
 
         /**
          * @brief Fills the tensor's gradient data with a specified value.
@@ -665,7 +665,7 @@ namespace nz::data {
          * tensor.fillGrad(0.0f);        // Set all gradient values to 0.0f
          * @endcode
          */
-        void fillGrad(const value_type value) const;
+        void fillGrad(value_type value) const;
 
         /**
          * @brief Reshapes the tensor to the specified shape.
