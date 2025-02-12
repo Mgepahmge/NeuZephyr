@@ -247,8 +247,7 @@ namespace nz::nodes {
      */
     template <typename T>
     std::enable_if_t<std::is_base_of_v<Node, T>, std::ostream&>
-    operator<<(std::ostream& os, const T& node)
-    {
+    operator<<(std::ostream& os, const T& node) {
         node.print(os);
         return os;
     }
@@ -388,6 +387,91 @@ namespace nz::nodes {
              * 2024/11/29
              */
             explicit InputNode(const Tensor& tensor);
+
+            /**
+             * @brief Constructs an InputNode object with specified tensor shape, data, gradient requirement, and data location.
+             *
+             * @param shape A reference to the shape of the output tensor of the input node (host-to-device). It defines the dimensions of the tensor.
+             * @param data A pointer to the initial data of the output tensor. The data can be either on the host or device depending on the `host` parameter.
+             * @param requires_grad A boolean indicating whether the output tensor requires gradient computation.
+             * @param host A boolean indicating whether the data pointed to by `data` is on the host or device. If true, data is on the host; otherwise, it is on the device.
+             *
+             * @return None. This is a constructor.
+             *
+             * This constructor initializes an `InputNode` object. It creates a new `Tensor` object using the provided `shape`, `data`, `requires_grad`, and `host` parameters and stores a shared pointer to this tensor in the `output` member variable.
+             *
+             * In terms of memory management, the `std::shared_ptr` in `output` takes care of the memory of the `Tensor` object. When the last reference to the `Tensor` object held by a `std::shared_ptr` is destroyed, the `Tensor` object will be automatically deleted.
+             *
+             * Regarding exception handling, this constructor does not explicitly catch any exceptions thrown by the `Tensor` constructor. If the `Tensor` constructor fails (e.g., due to insufficient memory or invalid input), the exception will propagate to the caller.
+             *
+             * This constructor is a fundamental part of the `InputNode` class as it initializes the output tensor of the input node.
+             *
+             * @throws None explicitly, but the `Tensor` constructor may throw exceptions, such as `std::bad_alloc` if memory allocation fails.
+             *
+             * @note
+             * - Ensure that the `data` pointer is valid and points to enough data to fill the tensor according to the specified shape.
+             * - The CUDA runtime environment should be properly initialized before calling this constructor if the tensor is using CUDA memory.
+             * - This constructor has a time complexity of O(1) for creating the `std::shared_ptr` and O(n) for the `Tensor` constructor, where n is the total number of elements in the tensor.
+             *
+             * @code
+             * ```cpp
+             * #include <vector>
+             *
+             * shape_type shape = {2, 3};
+             * value_type data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};
+             * try {
+             *     InputNode inputNode(shape, data, true, true);
+             * } catch (const std::exception& e) {
+             *     std::cerr << e.what() << std::endl;
+             * }
+             * ```
+             * @endcode
+             */
+            explicit InputNode(const Tensor::shape_type& shape, const Tensor::value_type* data,
+                               bool requires_grad = false, bool host = false);
+
+            /**
+             * @brief Constructs an InputNode object with a specified tensor shape, initializer list data, and gradient requirement.
+             *
+             * @param shape A reference to the shape of the output tensor of the input node (host-to-device). It determines the dimensions and total size of the tensor.
+             * @param data A std::initializer_list containing the initial data for the output tensor (host-to-device).
+             * @param requires_grad A boolean indicating whether the output tensor requires gradient computation.
+             *
+             * @return None. This is a constructor.
+             *
+             * This constructor initializes an InputNode object. It creates a new Tensor object using the provided shape, initializer list data, and gradient requirement, and stores a shared pointer to this tensor in the output member variable.
+             *
+             * For memory management, the std::shared_ptr in output takes care of the Tensor object's memory. When the last reference to the Tensor object held by a std::shared_ptr is destroyed, the Tensor object will be automatically deleted.
+             *
+             * Regarding exception handling, this constructor does not explicitly catch any exceptions thrown by the Tensor constructor. If the Tensor constructor fails (e.g., due to insufficient memory or an invalid initializer list size), the exception will propagate to the caller.
+             *
+             * This constructor is an important part of the InputNode class as it provides a convenient way to initialize the output tensor of the input node with an initializer list.
+             *
+             * @throws None explicitly, but the Tensor constructor may throw exceptions such as std::invalid_argument if the initializer list size is insufficient or std::bad_alloc if memory allocation fails.
+             *
+             * @note
+             * - Ensure that the std::initializer_list contains enough elements to fill the tensor according to the specified shape.
+             * - The CUDA runtime environment should be properly initialized before calling this constructor if the tensor is using CUDA memory.
+             * - The time complexity of this constructor is O(1) for creating the std::shared_ptr and O(n) for the Tensor constructor, where n is the total number of elements in the tensor.
+             *
+             * @code
+             * ```cpp
+             * #include <vector>
+             * // Assume Tensor::shape_type and Tensor::value_type are defined
+             * using shape_type = std::vector<size_t>;
+             * using value_type = float;
+             *
+             * shape_type shape = {2, 3};
+             * try {
+             *     InputNode inputNode(shape, {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f}, true);
+             * } catch (const std::exception& e) {
+             *     std::cerr << e.what() << std::endl;
+             * }
+             * ```
+             * @endcode
+             */
+            explicit InputNode(const Tensor::shape_type& shape, std::initializer_list<Tensor::value_type> data,
+                               bool requires_grad = false);
 
             /**
              * @brief Forward pass for the `InputNode`.

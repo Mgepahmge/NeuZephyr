@@ -245,9 +245,6 @@ namespace nz::data {
          * @code
          * ```cpp
          * #include <vector>
-         * // Assume shape_type and value_type are defined
-         * using shape_type = std::vector<size_t>;
-         * using value_type = float;
          *
          * shape_type shape = {2, 3};
          * try {
