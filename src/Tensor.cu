@@ -743,10 +743,14 @@ namespace nz::data {
         }
     }
 
-    Tensor::Tensor(const shape_type& shape, const value_type* data, const bool requires_grad) :
+    Tensor::Tensor(const shape_type& shape, const value_type* data, const bool requires_grad, const bool host) :
         _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
         cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
-        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
+        if (host) {
+            cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
+        } else {
+            cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
+        }
         if (_requires_grad) {
             cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
         }
@@ -755,29 +759,24 @@ namespace nz::data {
         }
     }
 
-    Tensor::Tensor(const std::initializer_list<int>& shape, const bool requires_grad) :
-        _shape(shape), _requires_grad(requires_grad) {
-        _size = _shape[0] * _shape[1];
+    Tensor::Tensor(const shape_type& shape, const std::initializer_list<value_type>& data, const bool requires_grad)  :
+        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
+        if (std::distance(data.begin(), data.end()) < _size) {
+            throw std::invalid_argument("Initializer list size is less than the tensor size.");
+        }
         cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
         if (_requires_grad) {
             cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
-        }
-        else {
+        } else {
             _grad = nullptr;
         }
-    }
-
-    Tensor::Tensor(const std::initializer_list<int>& shape, const value_type* data, const bool requires_grad) :
-        _shape(shape), _requires_grad(requires_grad) {
-        _size = _shape[0] * _shape[1];
-        cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
-        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
-        if (_requires_grad) {
-            cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
+        auto host_buf = new value_type[_size];
+        auto it = data.begin();
+        for (auto i = 0; i < _size; ++i, ++it) {
+            host_buf[i] = *it;
         }
-        else {
-            _grad = nullptr;
-        }
+        cudaMemcpy(_data, host_buf, _size * sizeof(value_type), cudaMemcpyHostToDevice);
+        delete[] host_buf;
     }
 
     // Copy and Move constructors
@@ -863,6 +862,10 @@ namespace nz::data {
         _requires_grad = requires_grad;
     }
 
+    void Tensor::dataInject(const std::initializer_list<value_type>& data, const bool grad) const {
+        dataInject(data.begin(), data.end(), grad);
+    }
+
     // Operations
     void Tensor::zeroGrad() const noexcept {
         if (_requires_grad) {
@@ -885,24 +888,20 @@ namespace nz::data {
         free(data);
     }
 
-    void Tensor::copyData(const value_type* data) {
-        cudaFree(_data);
-        if (_requires_grad) {
-            cudaFree(_grad);
+    void Tensor::dataInject(const value_type* data, const bool grad) const {
+        if (grad) {
+            if (_requires_grad) {
+                if (const cudaError_t error = cudaMemcpy(_grad, data, _size * sizeof(value_type), cudaMemcpyHostToDevice); error != cudaSuccess) {
+                    throw std::runtime_error("Failed to copy gradient data to device");
+                }
+            } else {
+                throw std::runtime_error("Tensor does not require gradients");
+            }
+        } else {
+            if (const cudaError_t error = cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice); error != cudaSuccess) {
+                throw std::runtime_error("Failed to copy data to device");
+            }
         }
-        cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
-        cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice);
-        if (_requires_grad) {
-            cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
-            cudaMemset(_grad, 0, _size * sizeof(value_type));
-        }
-    }
-
-    void Tensor::copyGrad(const value_type* grad) const {
-        if (!_requires_grad) {
-            throw std::runtime_error("Tensor does not require gradients");
-        }
-        cudaMemcpy(_grad, grad, _size * sizeof(value_type), cudaMemcpyHostToDevice);
     }
 
     void Tensor::randomize(unsigned long long seed) const {

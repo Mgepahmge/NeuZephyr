@@ -134,7 +134,7 @@ Usage Example:</h3>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">float</span> data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  <span class="comment">// Sample input values</span></div>
-<div class="line">input.output-&gt;copyData(data);  <span class="comment">// Copy data to the input tensor</span></div>
+<div class="line">input.output-&gt;dataInject(data);  <span class="comment">// Copy data to the input tensor</span></div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_function" href="#a014a289c458494bf3bf02f266c129205">HardSwishNode</a> hard_swish_node(&amp;input, 1.0f, 0.5f);  <span class="comment">// Apply Hard Swish activation</span></div>
 <div class="line">hard_swish_node.forward();  <span class="comment">// Perform the forward pass</span></div>

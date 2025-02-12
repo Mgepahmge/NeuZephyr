@@ -175,104 +175,91 @@ namespace nz::data {
         * This constructor allocates GPU memory for the tensor based on the specified shape.
         * If `requires_grad` is set to true, additional memory is allocated for storing gradients.
         */
-        explicit Tensor(const shape_type& shape, const bool requires_grad = false);
+        explicit Tensor(const shape_type& shape, bool requires_grad = false);
 
         /**
-        * @brief Constructor that initializes a Tensor with the specified shape and data.
-        *
-        * @param shape A vector representing the dimensions of the tensor.
-        * @param data A pointer to the initial data to be copied into the tensor.
-        * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
-        *
-        * This constructor allocates GPU memory for the tensor and copies the provided data
-        * to the GPU. If `requires_grad` is true, additional memory is allocated for gradients.
-        */
-        explicit Tensor(const shape_type& shape, const value_type* data, const bool requires_grad = false);
+         * @brief Constructs a Tensor object with specified shape, data, gradient requirement, and data location.
+         *
+         * @param shape A reference to the shape of the tensor (host-to-device). The shape determines the size of the tensor.
+         * @param data A pointer to the initial data of the tensor. The data can be either on the host or device depending on the `host` parameter.
+         * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
+         * @param host A boolean indicating whether the data pointed to by `data` is on the host or device. If true, data is on the host; otherwise, it is on the device.
+         *
+         * @return None. This is a constructor.
+         *
+         * This constructor initializes a `Tensor` object. It first calculates the total size of the tensor based on the provided shape. Then, it allocates device memory for the tensor's data using `cudaMalloc`.
+         *
+         * Depending on the value of the `host` parameter, it copies the data from either the host or another device memory location to the newly allocated device memory using `cudaMemcpy`.
+         *
+         * If the `requires_grad` parameter is `true`, it also allocates device memory for the gradient data of the tensor. Otherwise, it sets the gradient pointer `_grad` to `nullptr`.
+         *
+         * For memory management, the constructor allocates device memory for the tensor's data and gradient (if required). The responsibility of freeing this memory lies with the destructor of the `Tensor` class.
+         *
+         * In terms of exception handling, this constructor does not explicitly catch any CUDA errors. If a CUDA operation fails (e.g., `cudaMalloc` or `cudaMemcpy`), it will likely lead to undefined behavior in subsequent operations. It is the caller's responsibility to check for CUDA errors using `cudaGetLastError` or other appropriate methods.
+         *
+         * This constructor is a fundamental part of the `Tensor` class as it initializes the object's internal state.
+         *
+         * @throws None explicitly, but CUDA operations may fail and return an error code.
+         *
+         * @note
+         * - Ensure that the `data` pointer is valid and points to enough data to fill the tensor according to the specified shape.
+         * - The CUDA runtime environment should be properly initialized before calling this constructor.
+         * - This constructor has a time complexity of O(1) for memory allocation and O(n) for data copying, where n is the total number of elements in the tensor (`_size`).
+         *
+         * @code
+         * ```cpp
+         * shape_type shape = {2, 3};
+         * value_type data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};
+         * Tensor tensor(shape, data, true, true);
+         * ```
+         * @endcode
+         */
+        explicit Tensor(const shape_type& shape, const value_type* data, bool requires_grad = false, bool host = true);
 
         /**
-        * @brief Constructor that initializes a Tensor using an initializer list for shape.
-        *
-        * @param shape An initializer list representing the dimensions of the tensor.
-        * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
-        *
-        * This constructor is a convenience function for easily creating tensors without
-        * explicitly constructing a `std::vector` for the shape.
-        */
-        explicit Tensor(const std::initializer_list<int>& shape, const bool requires_grad = false);
-
-        /**
-        * @brief Constructor that initializes a Tensor using an initializer list for shape.
-        *
-        * @param shape An initializer list representing the dimensions of the tensor.
-        * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
-        *
-        * This constructor is a convenience function for easily creating tensors without
-        * explicitly constructing a `std::vector` for the shape and copying the provided data.
-        *
-        */
-        explicit Tensor(const std::initializer_list<int>& shape, const value_type* data,
-                        const bool requires_grad = false);
-
-        /**
-        * @brief Template constructor to initialize a Tensor with data from an iterator range.
-        *
-        * @tparam Iterator The type of iterator used to provide data.
-        * @param shape A vector representing the dimensions of the tensor.
-        * @param first An iterator pointing to the beginning of the data.
-        * @param last An iterator pointing to the end of the data.
-        * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
-        *
-        * This constructor calculates the total size of the tensor from the iterator range and
-        * validates it against the provided shape. It then allocates memory on the GPU and
-        * copies the data.
-        *
-        * @throws std::invalid_argument If the shape and data size do not match.
-        */
-        template <typename Iterator>
-        Tensor::Tensor(const shape_type shape, Iterator first, Iterator last, const bool requires_grad) :
-            _size(std::distance(first, last)), _shape(shape), _requires_grad(requires_grad) {
-            if (shape[0] * shape[1] != _size) {
-                throw std::invalid_argument("The size of the data does not match the shape.");
-            }
-            cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
-            cudaMemcpy(_data, first, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
-            if (_requires_grad) {
-                cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
-            }
-        }
-
-        /**
-        * @brief Template constructor to initialize a Tensor using an initializer list and an iterator range.
-        *
-        * @tparam Iterator The type of iterator used to provide data.
-        * @param shape An initializer list representing the dimensions of the tensor.
-        * @param first An iterator pointing to the beginning of the data range.
-        * @param last An iterator pointing to the end of the data range.
-        * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
-        *
-        * This constructor computes the size of the tensor from the iterator range and validates
-        * it against the provided shape. Memory is allocated on the GPU for the data and gradients
-        * (if applicable). The data is copied from the iterator range to the GPU.
-        *
-        * @throws std::invalid_argument If the shape dimensions do not match the size of the data range.
-        *
-        * @note The shape must be valid for the provided data size (i.e., the total elements in the
-        * shape must equal the distance between `first` and `last`). CUDA memory (`cudaMalloc`) is
-        * allocated, so ensure that GPU resources are available.
-        */
-        template <typename Iterator>
-        Tensor::Tensor(const std::initializer_list<int>& shape, Iterator first, Iterator last,
-                       const bool requires_grad) :
-            _size(std::distance(first, last)), _shape(shape), _requires_grad(requires_grad) {
-            if (_shape[0] * _shape[1] != _size) {
-                throw std::invalid_argument("The size of the data does not match the shape.");
-            }
-            cudaMalloc((value_type**)&_data, _size * sizeof(value_type));
-            cudaMemcpy(_data, first, _size * sizeof(value_type), cudaMemcpyDeviceToDevice);
-            if (_requires_grad) {
-                cudaMalloc((value_type**)&_grad, _size * sizeof(value_type));
-            }
-        }
+         * @brief Constructs a Tensor object with a specified shape, initializer list data, and gradient requirement.
+         *
+         * @param shape A reference to the shape of the tensor (host-to-device). The shape determines the dimensions and total size of the tensor.
+         * @param data A std::initializer_list containing the initial data for the tensor (host-to-device).
+         * @param requires_grad A boolean indicating whether the tensor requires gradient computation.
+         *
+         * @return None. This is a constructor.
+         *
+         * This constructor initializes a Tensor object. First, it calculates the total size of the tensor based on the provided shape. It then checks if the size of the std::initializer_list is sufficient to fill the tensor. If not, it throws a std::invalid_argument exception.
+         *
+         * For memory management, it allocates device memory for the tensor's data using cudaMalloc. If the tensor requires gradient computation, it also allocates device memory for the gradient data; otherwise, it sets the gradient pointer to nullptr.
+         *
+         * A temporary host buffer is created to hold the data from the std::initializer_list. The data is copied from the initializer list to the host buffer and then transferred from the host buffer to the device memory using cudaMemcpy. After the transfer, the temporary host buffer is deleted to prevent memory leaks.
+         *
+         * Regarding exception handling, it throws a std::invalid_argument if the initializer list size is insufficient. Any CUDA errors during memory allocation or data transfer are not explicitly caught here, and it's the caller's responsibility to check for CUDA errors.
+         *
+         * This constructor is an important part of the Tensor class as it provides a convenient way to initialize a tensor with an initializer list.
+         *
+         * @throws std::invalid_argument If the size of the std::initializer_list is less than the size of the tensor.
+         *
+         * @note
+         * - Ensure that the std::initializer_list contains enough elements to fill the tensor according to the specified shape.
+         * - The CUDA runtime environment should be properly initialized before calling this constructor.
+         * - The time complexity of this constructor is O(n), where n is the total number of elements in the tensor, due to the loop that copies data from the initializer list to the host buffer.
+         *
+         * @code
+         * ```cpp
+         * #include <vector>
+         * // Assume shape_type and value_type are defined
+         * using shape_type = std::vector<size_t>;
+         * using value_type = float;
+         *
+         * shape_type shape = {2, 3};
+         * try {
+         *     Tensor tensor(shape, {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f}, true);
+         * } catch (const std::invalid_argument& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
+        explicit Tensor(const shape_type& shape, const std::initializer_list<value_type>& data,
+                        bool requires_grad = false);
 
         /**
         * @brief Copy constructor for Tensor.
@@ -336,7 +323,7 @@ namespace nz::data {
         * which is essential for backpropagation in neural networks. By default, tensors do not
         * require gradients unless explicitly specified during construction or via `setRequiresGrad`.
         */
-        bool requiresGrad() const noexcept;
+        [[nodiscard]] bool requiresGrad() const noexcept;
 
         /**
         * @brief Retrieves the shape of the tensor.
@@ -347,7 +334,7 @@ namespace nz::data {
         * a tensor with shape `{2, 3}` represents a 2x3 matrix. The shape is defined during construction
         * or reshaping of the tensor.
         */
-        shape_type shape() const noexcept;
+        [[nodiscard]] shape_type shape() const noexcept;
 
         /**
         * @brief Retrieves the total number of elements in the tensor.
@@ -358,7 +345,7 @@ namespace nz::data {
         * a tensor with shape `{2, 3}` will have a size of 6. This value is useful for memory allocation
         * and tensor operations.
         */
-        size_type size() const noexcept;
+        [[nodiscard]] size_type size() const noexcept;
 
         /**
         * @brief Sets whether the tensor requires gradient computation.
@@ -370,7 +357,7 @@ namespace nz::data {
         *
         * @note Modifying this setting does not affect any existing gradient data stored in the tensor.
         */
-        void setRequiresGrad(const bool requires_grad) noexcept;
+        void setRequiresGrad(bool requires_grad) noexcept;
 
         /**
          * @brief Retrieves a pointer to the tensor's data stored in GPU memory.
@@ -393,7 +380,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        value_type* data() const noexcept;
+        [[nodiscard]] value_type* data() const noexcept;
 
         /**
         * @brief Retrieves a pointer to the gradient data stored in GPU memory.
@@ -422,65 +409,144 @@ namespace nz::data {
         * ```
         * @endcode
         */
-        value_type* grad() const;
+        [[nodiscard]] value_type* grad() const;
 
         /**
-         * @brief Copies data into the tensor from a raw pointer and reallocates memory.
+         * @brief Injects data or gradient data into the tensor.
          *
-         * @param data A pointer to the raw data to be copied into the tensor. The data should be stored in
-         *             memory accessible by the host (CPU).
+         * @param data A pointer to the data to be injected (host-to-device).
+         * @param grad A boolean indicating whether to inject gradient data.
          *
-         * This function first frees any previously allocated memory for both the tensor's data and gradients
-         * (if applicable). Then, it allocates new memory on the GPU for the tensor's data and, if the tensor
-         * requires gradients, for its gradient data. The provided data is copied into the tensor's GPU memory.
+         * @return void
+         *
+         * This function is responsible for injecting data or gradient data into the tensor.
+         * For memory management, it uses `cudaMemcpy` to copy data from the host to the device.
+         * If the `grad` parameter is `true`, it tries to copy data to the gradient buffer (`_grad`).
+         * If the tensor does not require gradients (`_requires_grad` is `false`), it throws an exception.
+         * If the `grad` parameter is `false`, it copies data to the main data buffer (`_data`).
+         *
+         * The exception handling mechanism is in place to catch any CUDA memory copy errors.
+         * If the `cudaMemcpy` operation fails, it throws a `std::runtime_error` with an appropriate error message.
+         *
+         * This function is closely related to the `Tensor` class as it modifies the internal data of the tensor.
+         *
+         * @throws std::runtime_error If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
          *
          * @note
-         * - This function assumes that the provided data is stored in host memory (CPU). If the data is already
-         *   in GPU memory, a different method should be used.
-         * - It performs both memory allocation and data copy, ensuring that the tensor and its gradient memory
-         *   are correctly managed.
-         * - If gradients are required (`requires_grad`), the gradient memory is initialized to zero after allocation.
+         * - The input data pointer `data` should point to a valid memory location with enough data to fill the tensor.
+         * - Ensure that the CUDA environment is properly initialized before calling this function.
+         *
+         * @warning
+         * This function is not safe.
+         * If the length of the input array pointed to by `data` is less than the size of the tensor, it will lead to undefined behavior and potentially cause unknown issues in the program.
          *
          * @code
          * ```cpp
-         * Tensor tensor({2, 3});  // Create a 2x3 tensor
-         * float input_data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};
-         * tensor.copyData(input_data);  // Copy the data into the tensor
+         * Tensor tensor({1, 3});
+         * float data[] = {1.0, 2.0, 3.0};
+         * try {
+         *     tensor.dataInject(data, false);
+         * } catch (const std::runtime_error& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
          * ```
          * @endcode
          */
-        void copyData(const value_type* data);
+        void dataInject(const value_type* data, bool grad = false) const;
 
         /**
-         * @brief Copies gradient data from host to GPU memory.
+         * @brief Injects data or gradient data into the tensor using iterators.
          *
-         * This function copies the provided gradient data from host (CPU) memory to the
-         * tensor's gradient memory on the GPU. It assumes that the tensor has been initialized
-         * with gradient support (`requires_grad` is `true`). If gradients are not required,
-         * an exception will be thrown.
+         * @param begin An iterator pointing to the beginning of the input data range (host-to-device).
+         * @param end An iterator pointing to the end of the input data range (host-to-device).
+         * @param grad A boolean indicating whether to inject gradient data. Defaults to false.
          *
-         * @param grad A pointer to the gradient data in host (CPU) memory to be copied to the tensor's GPU memory.
+         * @return void
          *
-         * This function performs the following steps:
-         * 1. It checks whether the tensor requires gradients. If not, a `std::runtime_error` is thrown.
-         * 2. If gradients are required, it copies the provided gradient data from host memory to device memory using `cudaMemcpy`.
+         * This function injects data or gradient data into the tensor using the provided iterator range.
+         * First, it checks if the length of the input range (determined by `std::distance(begin, end)`) is at least as large as the size of the tensor (`_size`). If not, it throws a `std::runtime_error`.
          *
-         * @throws std::runtime_error If the tensor does not require gradients.
+         * For memory management, it allocates a temporary host array `host_data` of size `_size` to store the data from the iterator range. The data is then copied from the iterator range to this temporary array. After that, it calls the `dataInject` function with the temporary array and the `grad` flag.
+         *
+         * In case of an exception during the call to the `dataInject` function, the temporary array is deleted to prevent memory leaks. Finally, the temporary array is deleted after the call to `dataInject` returns successfully.
+         *
+         * The exception handling mechanism catches any `std::runtime_error` thrown by the `dataInject` function and re - throws it after cleaning up the temporary memory.
+         *
+         * This function is closely related to the `Tensor` class and the other `dataInject` function as it uses the other `dataInject` function to perform the actual data injection.
+         *
+         * @throws std::runtime_error If the length of the input array is less than the size of the tensor.
+         * @throws std::runtime_error If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
          *
          * @note
-         * - Ensure that the `grad` pointer points to valid memory on the host (CPU).
-         * - The tensor must have been created with `requires_grad` set to `true`. Otherwise, calling this function
-         *   will result in an error.
+         * - The iterators `begin` and `end` should be valid and form a proper range.
+         * - The input data should be convertible to the `value_type` of the tensor.
+         * - The time complexity of this function is O(n), where n is the size of the tensor (`_size`), due to the loop that copies data from the iterator range to the temporary array.
          *
          * @code
          * ```cpp
-         * Tensor tensor({2, 3}, true);  // Create a tensor with gradient support
-         * float grad_data[] = {0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f};
-         * tensor.copyGrad(grad_data);  // Copy gradient data to tensor's GPU memory
+         * #include <vector>
+         * Tensor tensor({1,3});
+         * std::vector<float> data = {1.0f, 2.0f, 3.0f};
+         * try {
+         *     tensor.dataInject(data.begin(), data.end(), false);
+         * } catch (const std::runtime_error& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
          * ```
-         * @endcode 
+         * @endcode
          */
-        void copyGrad(const value_type* grad) const;
+        template <typename Iterator>
+        void dataInject(Iterator begin, Iterator end, const bool grad = false) const {
+            if (std::distance(begin, end) < _size) {
+                throw std::runtime_error("The length of the input array is less than the size of the tensor.");
+            }
+            auto* host_data = new value_type[_size];
+            auto it = begin;
+            for (auto i = 0; i < _size; ++i, ++it) {
+                host_data[i] = static_cast<value_type>(*it);
+            }
+            try {
+                dataInject(host_data, grad);
+            }
+            catch (const std::runtime_error& e) {
+                delete[] host_data;
+                throw;
+            }
+            delete[] host_data;
+        }
+
+        /**
+         * @brief Injects data or gradient data into the tensor using a std::initializer_list.
+         *
+         * @param data A std::initializer_list containing the data to be injected (host-to-device).
+         * @param grad A boolean indicating whether to inject gradient data.
+         *
+         * @return void
+         *
+         * This function serves as a wrapper that calls another `dataInject` function, passing the begin and end iterators of the provided `std::initializer_list`.
+         * In terms of memory management, it relies on the underlying `dataInject` function to handle memory operations for the actual data injection.
+         * Regarding exception handling, it simply propagates any exceptions thrown by the underlying `dataInject` function without additional handling.
+         * This function is closely related to the `Tensor` class and the other `dataInject` functions as it leverages the existing data injection logic.
+         *
+         * @throws std::runtime_error If the length of the input array is less than the size of the tensor.
+         * @throws std::runtime_error If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
+         *
+         * @note
+         * - The `std::initializer_list` should contain enough elements to fill the tensor.
+         * - This function has a time complexity of O(1) for the wrapper itself, but the overall complexity depends on the underlying `dataInject` function which is O(n) where n is the size of the tensor.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor({1,3});
+         * try {
+         *     tensor.dataInject({1.0f, 2.0f, 3.0f}, false);
+         * } catch (const std::runtime_error& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
+        void dataInject(const std::initializer_list<value_type>& data, bool grad = false) const;
 
         /// @}
 

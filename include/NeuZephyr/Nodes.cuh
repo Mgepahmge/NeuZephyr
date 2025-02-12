@@ -1749,7 +1749,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * ReLUNode relu_node(&input);  // Apply ReLU activation
          * relu_node.forward();  // Perform the forward pass
@@ -1892,7 +1892,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * SigmoidNode sigmoid_node(&input);  // Apply Sigmoid activation
          * sigmoid_node.forward();  // Perform the forward pass
@@ -2034,7 +2034,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * TanhNode tanh_node(&input);  // Apply tanh activation
          * tanh_node.forward();  // Perform the forward pass
@@ -2173,7 +2173,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * LeakyReLUNode leaky_relu_node(&input, 0.1f);  // Apply Leaky ReLU activation with alpha = 0.1
          * leaky_relu_node.forward();  // Perform the forward pass
@@ -2324,7 +2324,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * SwishNode swish_node(&input);  // Apply Swish activation
          * swish_node.forward();  // Perform the forward pass
@@ -2468,7 +2468,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * ELUNode elu_node(&input, 0.5f);  // Apply ELU activation with alpha = 0.5
          * elu_node.forward();  // Perform the forward pass
@@ -2623,7 +2623,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * HardSigmoidNode hard_sigmoid_node(&input, 0.2f, 0.5f);  // Apply Hard Sigmoid activation
          * hard_sigmoid_node.forward();  // Perform the forward pass
@@ -2774,7 +2774,7 @@ namespace nz::nodes {
          * InputNode input({3, 3}, true);  // Create an input node with shape {3, 3}
          *
          * float data[] = {-1.0f, 0.0f, 1.0f, 2.0f, -2.0f, 3.0f, -3.0f, 4.0f, -4.0f};  // Sample input values
-         * input.output->copyData(data);  // Copy data to the input tensor
+         * input.output->dataInject(data);  // Copy data to the input tensor
          *
          * HardSwishNode hard_swish_node(&input, 1.0f, 0.5f);  // Apply Hard Swish activation
          * hard_swish_node.forward();  // Perform the forward pass
@@ -2972,7 +2972,7 @@ namespace nz::nodes {
          * // Creating a Softmax node in a neural network
          * InputNode input({1, 5}, true);  // Input node with shape {1, 5}
          * float logits[] = {2.0f, 1.0f, 0.1f, 3.0f, -1.0f};
-         * input.output->copyData(logits);
+         * input.output->dataInject(logits);
          *
          * SoftmaxNode softmax(&input);
          * softmax.forward();
@@ -3184,8 +3184,8 @@ namespace nz::nodes {
  *
  * float data1[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f};  // Sample input1 values
  * float data2[] = {1.5f, 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f, 8.5f, 9.5f};  // Sample input2 values
- * input1.output->copyData(data1);  // Copy data to the first input tensor
- * input2.output->copyData(data2);  // Copy data to the second input tensor
+ * input1.output->dataInject(data1);  // Copy data to the first input tensor
+ * input2.output->dataInject(data2);  // Copy data to the second input tensor
  *
  * MeanSquaredErrorNode mse_node(&input1, &input2);  // Create the Mean Squared Error node
  * mse_node.forward();  // Perform the forward pass and compute the MSE loss
@@ -3338,8 +3338,8 @@ namespace nz::nodes {
          *
          * float data1[] = {0.9f, 0.2f, 0.8f, 0.1f, 0.5f, 0.7f, 0.3f, 0.9f, 0.6f};  // Sample predicted values
          * float data2[] = {1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f};  // Sample true labels
-         * input1.output->copyData(data1);  // Copy data to the first input tensor
-         * input2.output->copyData(data2);  // Copy data to the second input tensor
+         * input1.output->dataInject(data1);  // Copy data to the first input tensor
+         * input2.output->dataInject(data2);  // Copy data to the second input tensor
          *
          * BinaryCrossEntropyNode bce_node(&input1, &input2);  // Create the Binary Cross-Entropy node
          * bce_node.forward();  // Perform the forward pass and compute the BCE loss

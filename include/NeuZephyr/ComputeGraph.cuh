@@ -957,7 +957,7 @@ namespace nz::graph {
          * graph.setInput("input_node_name", inputData);  // Sets the input data for the specified node
          * ```
          *
-         * @see Tensor::copyData() for the method that copies the data into the tensor.
+         * @see Tensor::dataInject() for the method that inject the data into the tensor.
          * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author
@@ -988,7 +988,7 @@ namespace nz::graph {
          * graph.setInput(inputNode, inputData);  // Sets the input data for the specified node
          * ```
          *
-         * @see Tensor::copyData() for the method that copies the data into the tensor.
+         * @see Tensor::dataInject() for the method that inject the data into the tensor.
          * @see data::Tensor for the class representing tensors and their associated operations.
          *
          * @author

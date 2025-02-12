@@ -154,7 +154,7 @@ Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Creating a Softmax node in a neural network</span></div>
 <div class="line">InputNode input({1, 5}, <span class="keyword">true</span>);  <span class="comment">// Input node with shape {1, 5}</span></div>
 <div class="line"><span class="keywordtype">float</span> logits[] = {2.0f, 1.0f, 0.1f, 3.0f, -1.0f};</div>
-<div class="line">input.output-&gt;copyData(logits);</div>
+<div class="line">input.output-&gt;dataInject(logits);</div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_function" href="#a6bd70cb3436435bac2055e86dfdb078b">SoftmaxNode</a> softmax(&amp;input);</div>
 <div class="line">softmax.forward();</div>

@@ -294,7 +294,7 @@ $(function(){ initResizable(false); });
 </div>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
 <div class="foldopen" id="foldopen00734" data-start="{" data-end="}">
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a95e3eb01472e481d4706865154bbe254">  734</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) <span class="comment">// NOLINT(*-pro-type-member-init)</span></div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a6a3fc1e2d0b5154cdb4961679d0752af">  734</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) <span class="comment">// NOLINT(*-pro-type-member-init)</span></div>
 <div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>        :</div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {</div>
 <div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
@@ -308,422 +308,418 @@ $(function(){ initResizable(false); });
 </div>
 <div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span> </div>
 <div class="foldopen" id="foldopen00746" data-start="{" data-end="}">
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a8475c86c87529018ee696c1bc9881acd">  746</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> value_type* data, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) :</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a93226c5c743300a5d1ddd4e39d8fd616">  746</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> value_type* data, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad, <span class="keyword">const</span> <span class="keywordtype">bool</span> host) :</div>
 <div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {</div>
 <div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>        }</div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>            _grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>        }</div>
-<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>    }</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>        <span class="keywordflow">if</span> (host) {</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>            cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>            cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        }</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>        }</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>            _grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        }</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>    }</div>
 </div>
-<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span> </div>
-<div class="foldopen" id="foldopen00758" data-start="{" data-end="}">
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ae3baa2c2aa28598cbb54c0b548a3d5d3">  758</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> std::initializer_list&lt;int&gt;&amp; shape, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) :</div>
-<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        _shape(shape), _requires_grad(requires_grad) {</div>
-<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>        _size = _shape[0] * _shape[1];</div>
-<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>        }</div>
-<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>        <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>            _grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>        }</div>
-<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>    }</div>
-</div>
-<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span> </div>
-<div class="foldopen" id="foldopen00770" data-start="{" data-end="}">
-<div class="line"><a id="l00770" name="l00770"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a1b89d066e292906f641ede952bee50e5">  770</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> std::initializer_list&lt;int&gt;&amp; shape, <span class="keyword">const</span> value_type* data, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) :</div>
-<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>        _shape(shape), _requires_grad(requires_grad) {</div>
-<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>        _size = _shape[0] * _shape[1];</div>
-<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span> </div>
+<div class="foldopen" id="foldopen00762" data-start="{" data-end="}">
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a18937864a9eb48eb91a5d82ebf9c010e">  762</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> shape_type&amp; shape, <span class="keyword">const</span> std::initializer_list&lt;value_type&gt;&amp; data, <span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad)  :</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>        <span class="keywordflow">if</span> (std::distance(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>.begin(), <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>.end()) &lt; _size) {</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>            throw std::invalid_argument(<span class="stringliteral">&quot;Initializer list size is less than the tensor size.&quot;</span>);</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>        }</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>            _grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>        }</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>        <span class="keyword">auto</span> host_buf = <span class="keyword">new</span> value_type[_size];</div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>        <span class="keyword">auto</span> it = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>.begin();</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0; i &lt; _size; ++i, ++it) {</div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>            host_buf[i] = *it;</div>
 <div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>        }</div>
-<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>        <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>            _grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>        }</div>
-<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>    }</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>        cudaMemcpy(_data, host_buf, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>        <span class="keyword">delete</span>[] host_buf;</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    }</div>
 </div>
-<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
-<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>    <span class="comment">// Copy and Move constructors</span></div>
-<div class="foldopen" id="foldopen00784" data-start="{" data-end="}">
-<div class="line"><a id="l00784" name="l00784"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a6184f0270420ac054f7bd372bbed1406">  784</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) :</div>
-<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>        _size(other._size), _shape(other._shape), _requires_grad(other._requires_grad) {</div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>        cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>            cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>        }</div>
-<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>        <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>            _grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>        }</div>
-<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>    }</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span> </div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>    <span class="comment">// Copy and Move constructors</span></div>
+<div class="foldopen" id="foldopen00783" data-start="{" data-end="}">
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a6184f0270420ac054f7bd372bbed1406">  783</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) :</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>        _size(other._size), _shape(other._shape), _requires_grad(other._requires_grad) {</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>        cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>            cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>        }</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>            _grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>        }</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>    }</div>
 </div>
-<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span> </div>
-<div class="foldopen" id="foldopen00797" data-start="{" data-end="}">
-<div class="line"><a id="l00797" name="l00797"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aac66dc9afe373fb5f64372a2cc8aee2b">  797</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) noexcept :</div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>        _size(other._size), _shape(std::move(other._shape)), _requires_grad(other._requires_grad) {</div>
-<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>        cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>        cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>            cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>        }</div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>        other._data = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>        other._grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>    }</div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span> </div>
+<div class="foldopen" id="foldopen00796" data-start="{" data-end="}">
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aac66dc9afe373fb5f64372a2cc8aee2b">  796</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">Tensor::Tensor</a>(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) noexcept :</div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>        _size(other._size), _shape(std::move(other._shape)), _requires_grad(other._requires_grad) {</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>        cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>        cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>            cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>        }</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>        other._data = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>        other._grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>    }</div>
 </div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span> </div>
-<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>    <span class="comment">// Assignment operators</span></div>
-<div class="foldopen" id="foldopen00810" data-start="{" data-end="}">
-<div class="line"><a id="l00810" name="l00810"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">  810</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">Tensor::operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) {</div>
-<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
-<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>            _size = other._size;</div>
-<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>            _shape = other._shape;</div>
-<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>            _requires_grad = other._requires_grad;</div>
-<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>            cudaFree(_data);</div>
-<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>            cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>            cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>            <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>                cudaFree(_grad);</div>
-<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>                cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>                cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>            }</div>
-<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>        }</div>
-<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>    }</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span> </div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>    <span class="comment">// Assignment operators</span></div>
+<div class="foldopen" id="foldopen00809" data-start="{" data-end="}">
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">  809</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">Tensor::operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other) {</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>            _size = other._size;</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>            _shape = other._shape;</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>            _requires_grad = other._requires_grad;</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>            cudaFree(_data);</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>            cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>            cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>            <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>                cudaFree(_grad);</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>                cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>                cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>            }</div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>        }</div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>    }</div>
 </div>
-<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span> </div>
-<div class="foldopen" id="foldopen00827" data-start="{" data-end="}">
-<div class="line"><a id="l00827" name="l00827"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a096c2fa69b1383eabb6b5e44b492f9fa">  827</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">Tensor::operator=</a>(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
-<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>            _size = other._size;</div>
-<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>            _shape = std::move(other._shape);</div>
-<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>            cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>            <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>                cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>            }</div>
-<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>            other._data = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>            other._grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>        }</div>
-<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span>    }</div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span> </div>
+<div class="foldopen" id="foldopen00826" data-start="{" data-end="}">
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a096c2fa69b1383eabb6b5e44b492f9fa">  826</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">Tensor::operator=</a>(<a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp;&amp; other) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>            _size = other._size;</div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>            _shape = std::move(other._shape);</div>
+<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>            cudaMemcpy(_data, other._data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>            <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>                cudaMemcpy(_grad, other._grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>            }</div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>            other._data = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>            other._grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>        }</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>    }</div>
 </div>
-<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span> </div>
-<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>    <span class="comment">// Destructor</span></div>
-<div class="foldopen" id="foldopen00842" data-start="{" data-end="}">
-<div class="line"><a id="l00842" name="l00842"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17">  842</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17">Tensor::~Tensor</a>() {</div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>        cudaFree(_data);</div>
-<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>            cudaFree(_grad);</div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>        }</div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>    }</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>    <span class="comment">// Destructor</span></div>
+<div class="foldopen" id="foldopen00841" data-start="{" data-end="}">
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17">  841</a></span>    <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17">Tensor::~Tensor</a>() {</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>        cudaFree(_data);</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>            cudaFree(_grad);</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>        }</div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>    }</div>
 </div>
-<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span> </div>
-<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>    <span class="comment">// Getter methods</span></div>
-<div class="line"><a id="l00850" name="l00850"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c">  850</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c">Tensor::requiresGrad</a>() const noexcept { <span class="keywordflow">return</span> _requires_grad; }</div>
-<div class="line"><a id="l00851" name="l00851"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">  851</a></span>    Tensor::shape_type <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">Tensor::shape</a>() const noexcept { <span class="keywordflow">return</span> _shape; }</div>
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">  852</a></span>    Tensor::size_type <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">Tensor::size</a>() const noexcept { <span class="keywordflow">return</span> _size; }</div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span> </div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>    <span class="comment">// Setter methods</span></div>
-<div class="foldopen" id="foldopen00855" data-start="{" data-end="}">
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a0209493e6d5f49a7a72f4cadb97cf01b">  855</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a0209493e6d5f49a7a72f4cadb97cf01b">Tensor::setRequiresGrad</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>        <span class="keywordflow">if</span> (requires_grad &amp;&amp; _grad == <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>            cudaMalloc(<span class="keyword">reinterpret_cast&lt;</span>value_type**<span class="keyword">&gt;</span>(_grad), _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>        }</div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>        <span class="keywordflow">if</span> (!requires_grad &amp;&amp; _grad != <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>            cudaFree(_grad);</div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>            _grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span>        }</div>
-<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>        _requires_grad = requires_grad;</div>
-<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    }</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> </div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>    <span class="comment">// Getter methods</span></div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c">  849</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c">Tensor::requiresGrad</a>() const noexcept { <span class="keywordflow">return</span> _requires_grad; }</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">  850</a></span>    Tensor::shape_type <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">Tensor::shape</a>() const noexcept { <span class="keywordflow">return</span> _shape; }</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">  851</a></span>    Tensor::size_type <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">Tensor::size</a>() const noexcept { <span class="keywordflow">return</span> _size; }</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span> </div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>    <span class="comment">// Setter methods</span></div>
+<div class="foldopen" id="foldopen00854" data-start="{" data-end="}">
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a6a369c5e1096775b772303fea143f0b0">  854</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a6a369c5e1096775b772303fea143f0b0">Tensor::setRequiresGrad</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> requires_grad) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>        <span class="keywordflow">if</span> (requires_grad &amp;&amp; _grad == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>            cudaMalloc(<span class="keyword">reinterpret_cast&lt;</span>value_type**<span class="keyword">&gt;</span>(_grad), _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>        }</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>        <span class="keywordflow">if</span> (!requires_grad &amp;&amp; _grad != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>            cudaFree(_grad);</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>            _grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>        }</div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span>        _requires_grad = requires_grad;</div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>    }</div>
 </div>
-<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span> </div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    <span class="comment">// Operations</span></div>
-<div class="foldopen" id="foldopen00867" data-start="{" data-end="}">
-<div class="line"><a id="l00867" name="l00867"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5">  867</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5">Tensor::zeroGrad</a>() const noexcept {</div>
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>            cudaMemset(_grad, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>        }</div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>    }</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span> </div>
+<div class="foldopen" id="foldopen00865" data-start="{" data-end="}">
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a2c4217ad3ebcdb4a1bcf2fd38151d007">  865</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33">Tensor::dataInject</a>(<span class="keyword">const</span> std::initializer_list&lt;value_type&gt;&amp; data, <span class="keyword">const</span> <span class="keywordtype">bool</span> grad)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33">dataInject</a>(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>.begin(), <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>.end(), <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>);</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>    }</div>
 </div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span> </div>
-<div class="foldopen" id="foldopen00873" data-start="{" data-end="}">
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">  873</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">Tensor::print</a>() const noexcept {</div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>        <span class="keyword">const</span> std::ostream_iterator&lt;value_type&gt; output_iterator(std::cout, <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>        cudaMemcpy(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>        <span class="keywordflow">for</span> (size_type i = 0; i &lt; _shape[0]; ++i) {</div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>            <span class="keyword">const</span> <span class="keyword">auto</span> it = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> + i * _shape[1];</div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>            <span class="keyword">const</span> <span class="keyword">auto</span> end_it = it + _shape[1];</div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
-<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>            std::copy(it, end_it, output_iterator);</div>
-<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;</div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>            std::cout &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>        }</div>
-<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
-<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>    }</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span> </div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>    <span class="comment">// Operations</span></div>
+<div class="foldopen" id="foldopen00870" data-start="{" data-end="}">
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5">  870</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5">Tensor::zeroGrad</a>() const noexcept {</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>            cudaMemset(_grad, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>        }</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>    }</div>
 </div>
-<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span> </div>
-<div class="foldopen" id="foldopen00888" data-start="{" data-end="}">
-<div class="line"><a id="l00888" name="l00888"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ad9ee8e3fd0bf6bf8f13eecbf3d78924d">  888</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad9ee8e3fd0bf6bf8f13eecbf3d78924d">Tensor::copyData</a>(<span class="keyword">const</span> value_type* data) {</div>
-<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>        cudaFree(_data);</div>
-<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>            cudaFree(_grad);</div>
-<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        }</div>
-<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>            cudaMemset(_grad, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>        }</div>
-<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>    }</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span> </div>
+<div class="foldopen" id="foldopen00876" data-start="{" data-end="}">
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">  876</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">Tensor::print</a>() const noexcept {</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>        <span class="keyword">const</span> std::ostream_iterator&lt;value_type&gt; output_iterator(std::cout, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>        cudaMemcpy(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>        <span class="keywordflow">for</span> (size_type i = 0; i &lt; _shape[0]; ++i) {</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>            <span class="keyword">const</span> <span class="keyword">auto</span> it = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> + i * _shape[1];</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>            <span class="keyword">const</span> <span class="keyword">auto</span> end_it = it + _shape[1];</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>            std::copy(it, end_it, output_iterator);</div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;</div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>            std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>        }</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>    }</div>
 </div>
-<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span> </div>
-<div class="foldopen" id="foldopen00901" data-start="{" data-end="}">
-<div class="line"><a id="l00901" name="l00901"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a6f538f32f233f649ee69b0fff624851d">  901</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a6f538f32f233f649ee69b0fff624851d">Tensor::copyGrad</a>(<span class="keyword">const</span> value_type* grad)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>        <span class="keywordflow">if</span> (!_requires_grad) {</div>
-<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Tensor does not require gradients&quot;</span>);</div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span> </div>
+<div class="foldopen" id="foldopen00891" data-start="{" data-end="}">
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33">  891</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33">Tensor::dataInject</a>(<span class="keyword">const</span> value_type* data, <span class="keyword">const</span> <span class="keywordtype">bool</span> grad)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>) {</div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>            <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>                <span class="keywordflow">if</span> (<span class="keyword">const</span> cudaError_t error = cudaMemcpy(_grad, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice); error != cudaSuccess) {</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>                    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Failed to copy gradient data to device&quot;</span>);</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>                }</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Tensor does not require gradients&quot;</span>);</div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>            }</div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>            <span class="keywordflow">if</span> (<span class="keyword">const</span> cudaError_t error = cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice); error != cudaSuccess) {</div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Failed to copy data to device&quot;</span>);</div>
+<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>            }</div>
 <div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>        }</div>
-<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>        cudaMemcpy(_grad, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>    }</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>    }</div>
 </div>
-<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span> </div>
-<div class="foldopen" id="foldopen00908" data-start="{" data-end="}">
-<div class="line"><a id="l00908" name="l00908"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8">  908</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8">Tensor::randomize</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> seed)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>        curandGenerator_t gen;</div>
-<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>        curandCreateGenerator(&amp;gen, CURAND_RNG_PSEUDO_DEFAULT);</div>
-<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>        curandSetPseudoRandomGeneratorSeed(gen, seed);</div>
-<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>        curandGenerateUniform(gen, _data, _size);</div>
-<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>    }</div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span> </div>
+<div class="foldopen" id="foldopen00907" data-start="{" data-end="}">
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8">  907</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8">Tensor::randomize</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> seed)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>        curandGenerator_t gen;</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>        curandCreateGenerator(&amp;gen, CURAND_RNG_PSEUDO_DEFAULT);</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>        curandSetPseudoRandomGeneratorSeed(gen, seed);</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>        curandGenerateUniform(gen, _data, _size);</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>    }</div>
 </div>
-<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span> </div>
-<div class="foldopen" id="foldopen00915" data-start="{" data-end="}">
-<div class="line"><a id="l00915" name="l00915"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">  915</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">Tensor::clear</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>        cudaMemset(_data, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>    }</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span> </div>
+<div class="foldopen" id="foldopen00914" data-start="{" data-end="}">
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">  914</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">Tensor::clear</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>        cudaMemset(_data, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>    }</div>
 </div>
-<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span> </div>
-<div class="foldopen" id="foldopen00919" data-start="{" data-end="}">
-<div class="line"><a id="l00919" name="l00919"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">  919</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">Tensor::fill</a>(<span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>        <span class="keywordflow">for</span> (size_type i = 0; i &lt; _size; ++i) {</div>
-<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>            <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>[i] = value;</div>
-<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>        }</div>
-<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
-<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span>    }</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span> </div>
+<div class="foldopen" id="foldopen00918" data-start="{" data-end="}">
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">  918</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">Tensor::fill</a>(<span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>        <span class="keywordflow">for</span> (size_type i = 0; i &lt; _size; ++i) {</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>            <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>[i] = value;</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>        }</div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>    }</div>
 </div>
-<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span> </div>
-<div class="foldopen" id="foldopen00928" data-start="{" data-end="}">
-<div class="line"><a id="l00928" name="l00928"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#acb81990f3d306489153ed461d2088a15">  928</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#acb81990f3d306489153ed461d2088a15">Tensor::fillGrad</a>(<span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>        <span class="keywordflow">for</span> (size_type i = 0; i &lt; _size; ++i) {</div>
-<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>            <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>[i] = value;</div>
-<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>        }</div>
-<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>        cudaMemcpy(_grad, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>);</div>
-<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>    }</div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span> </div>
+<div class="foldopen" id="foldopen00927" data-start="{" data-end="}">
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#acb81990f3d306489153ed461d2088a15">  927</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#acb81990f3d306489153ed461d2088a15">Tensor::fillGrad</a>(<span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>        <span class="keywordflow">for</span> (size_type i = 0; i &lt; _size; ++i) {</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>            <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>[i] = value;</div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>        }</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>        cudaMemcpy(_grad, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">grad</a>);</div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>    }</div>
 </div>
-<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span> </div>
-<div class="foldopen" id="foldopen00937" data-start="{" data-end="}">
-<div class="line"><a id="l00937" name="l00937"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a36cd1679c45059de64deeca9152b0288">  937</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#aa9a34602a74495d35e0ce4c28be382f2">Tensor::operator+</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>        <span class="keywordflow">if</span> (_shape != other._shape) {</div>
-<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Tensor shapes do not match&quot;</span>);</div>
-<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>        }</div>
-<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result(_shape, _requires_grad);</div>
-<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span>        <span class="keyword">const</span> dim3 block(256);</div>
-<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span>        <span class="keyword">const</span> dim3 grid((_size + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>        krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);</div>
-<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span>        <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>    }</div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span> </div>
+<div class="foldopen" id="foldopen00936" data-start="{" data-end="}">
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a36cd1679c45059de64deeca9152b0288">  936</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#aa9a34602a74495d35e0ce4c28be382f2">Tensor::operator+</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>        <span class="keywordflow">if</span> (_shape != other._shape) {</div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Tensor shapes do not match&quot;</span>);</div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span>        }</div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result(_shape, _requires_grad);</div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>        <span class="keyword">const</span> dim3 block(256);</div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span>        <span class="keyword">const</span> dim3 grid((_size + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span>        krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);</div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span>    }</div>
 </div>
-<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span> </div>
-<div class="foldopen" id="foldopen00948" data-start="{" data-end="}">
-<div class="line"><a id="l00948" name="l00948"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a25cc6634977413df0b67d6e7365448a2">  948</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#a967587adbd1bee1878176d9e32ed91a8">Tensor::operator-</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>        <span class="keywordflow">if</span> (_shape != other._shape) {</div>
-<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Tensor shapes do not match&quot;</span>);</div>
-<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>        }</div>
-<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result(_shape, _requires_grad);</div>
-<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>        dim3 block(256);</div>
-<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>        dim3 grid((_size + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>        krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);</div>
-<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>        <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>    }</div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span> </div>
+<div class="foldopen" id="foldopen00947" data-start="{" data-end="}">
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a25cc6634977413df0b67d6e7365448a2">  947</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#a967587adbd1bee1878176d9e32ed91a8">Tensor::operator-</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>        <span class="keywordflow">if</span> (_shape != other._shape) {</div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Tensor shapes do not match&quot;</span>);</div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>        }</div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result(_shape, _requires_grad);</div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>        dim3 block(256);</div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>        dim3 grid((_size + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>        krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>    }</div>
 </div>
-<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span> </div>
-<div class="foldopen" id="foldopen00959" data-start="{" data-end="}">
-<div class="line"><a id="l00959" name="l00959"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aaa22ac6f3de75ee92a4307320eda7e87">  959</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#a68f2eb7f4435de9f79b682b1e9126148">Tensor::operator*</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>        <span class="keywordflow">if</span> (_shape[1] != other._shape[0]) {</div>
-<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Matrix shapes do not match&quot;</span>);</div>
-<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>        }</div>
-<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result({_shape[0], other._shape[1]}, _requires_grad);</div>
-<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>        dim3 block(TILE_SIZE, TILE_SIZE);</div>
-<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span>        dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);</div>
-<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>        krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],</div>
-<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>                                                   _shape[1]);</div>
-<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>        <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>    }</div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span> </div>
+<div class="foldopen" id="foldopen00958" data-start="{" data-end="}">
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aaa22ac6f3de75ee92a4307320eda7e87">  958</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#a68f2eb7f4435de9f79b682b1e9126148">Tensor::operator*</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span>        <span class="keywordflow">if</span> (_shape[1] != other._shape[0]) {</div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Matrix shapes do not match&quot;</span>);</div>
+<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>        }</div>
+<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result({_shape[0], other._shape[1]}, _requires_grad);</div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span>        dim3 block(TILE_SIZE, TILE_SIZE);</div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>        dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);</div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span>        krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],</div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>                                                   _shape[1]);</div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>    }</div>
 </div>
-<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span> </div>
-<div class="foldopen" id="foldopen00971" data-start="{" data-end="}">
-<div class="line"><a id="l00971" name="l00971"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">  971</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">Tensor::reshape</a>(<span class="keyword">const</span> shape_type&amp; shape) {</div>
-<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[0] * <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[1] != _size) {</div>
-<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>            WARN(<span class="stringliteral">&quot;Reshaping to a different size will cause data loss&quot;</span>);</div>
-<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span>        }</div>
-<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>        <span class="keyword">auto</span>* temp = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>        cudaMemcpy(temp, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
-<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>        cudaFree(_data);</div>
-<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>        value_type* temp_grad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>            temp_grad = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span>            cudaMemcpy(temp_grad, _grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
-<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>            cudaFree(_grad);</div>
-<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>        }</div>
-<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>        <span class="keyword">const</span> size_type <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">size</a> = _size;</div>
-<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>        _size = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[0] * <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[1];</div>
-<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>        _shape = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>;</div>
-<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span>        cudaMemset(_data, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span>        cudaMemcpy(_data, temp, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">size</a> * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>        free(temp);</div>
-<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
-<div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>            cudaMemset(_grad, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span>            cudaMemcpy(_grad, temp_grad, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">size</a> * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span>            free(temp_grad);</div>
-<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>        }</div>
-<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>    }</div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span> </div>
+<div class="foldopen" id="foldopen00970" data-start="{" data-end="}">
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">  970</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">Tensor::reshape</a>(<span class="keyword">const</span> shape_type&amp; shape) {</div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[0] * <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[1] != _size) {</div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>            WARN(<span class="stringliteral">&quot;Reshaping to a different size will cause data loss&quot;</span>);</div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>        }</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span>        <span class="keyword">auto</span>* temp = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>        cudaMemcpy(temp, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>        cudaFree(_data);</div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>        value_type* temp_grad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>            temp_grad = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>            cudaMemcpy(temp_grad, _grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span>            cudaFree(_grad);</div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>        }</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>        <span class="keyword">const</span> size_type <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">size</a> = _size;</div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>        _size = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[0] * <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>[1];</div>
+<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>        _shape = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>;</div>
+<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>        cudaMalloc((value_type**)&amp;_data, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span>        cudaMemset(_data, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span>        cudaMemcpy(_data, temp, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">size</a> * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span>        free(temp);</div>
+<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>        <span class="keywordflow">if</span> (_requires_grad) {</div>
+<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span>            cudaMalloc((value_type**)&amp;_grad, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span>            cudaMemset(_grad, 0, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>            cudaMemcpy(_grad, temp_grad, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">size</a> * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span>            free(temp_grad);</div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span>        }</div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>    }</div>
 </div>
-<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span> </div>
-<div class="foldopen" id="foldopen00999" data-start="{" data-end="}">
-<div class="line"><a id="l00999" name="l00999"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aa52833bd1c673353f21d097424841519">  999</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">Tensor::reshape</a>(<span class="keyword">const</span> std::initializer_list&lt;int&gt;&amp; shape) {</div>
-<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">reshape</a>(shape_type(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>));</div>
-<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span>    }</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span> </div>
+<div class="foldopen" id="foldopen00998" data-start="{" data-end="}">
+<div class="line"><a id="l00998" name="l00998"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aa52833bd1c673353f21d097424841519">  998</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">Tensor::reshape</a>(<span class="keyword">const</span> std::initializer_list&lt;int&gt;&amp; shape) {</div>
+<div class="line"><a id="l00999" name="l00999"></a><span class="lineno">  999</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">reshape</a>(shape_type(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">shape</a>));</div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span>    }</div>
 </div>
-<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"> 1002</span> </div>
-<div class="foldopen" id="foldopen01003" data-start="{" data-end="}">
-<div class="line"><a id="l01003" name="l01003"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294"> 1003</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294">Tensor::transpose</a>() {</div>
-<div class="line"><a id="l01004" name="l01004"></a><span class="lineno"> 1004</span>        value_type* temp;</div>
-<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"> 1005</span>        cudaMalloc((value_type**)&amp;temp, _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span>        cudaMemcpy(temp, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l01007" name="l01007"></a><span class="lineno"> 1007</span>        dim3 block(TILE_SIZE, TILE_SIZE);</div>
-<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span>        dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);</div>
-<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span>        krnl::Transpose(grid, block, temp, _data, _shape[0], _shape[1]);</div>
-<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">reshape</a>({_shape[1], _shape[0]});</div>
-<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>        cudaFree(temp);</div>
-<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span>    }</div>
+<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span> </div>
+<div class="foldopen" id="foldopen01002" data-start="{" data-end="}">
+<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294"> 1002</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294">Tensor::transpose</a>() {</div>
+<div class="line"><a id="l01003" name="l01003"></a><span class="lineno"> 1003</span>        value_type* temp;</div>
+<div class="line"><a id="l01004" name="l01004"></a><span class="lineno"> 1004</span>        cudaMalloc((value_type**)&amp;temp, _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"> 1005</span>        cudaMemcpy(temp, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span>        dim3 block(TILE_SIZE, TILE_SIZE);</div>
+<div class="line"><a id="l01007" name="l01007"></a><span class="lineno"> 1007</span>        dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);</div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span>        krnl::Transpose(grid, block, temp, _data, _shape[0], _shape[1]);</div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">reshape</a>({_shape[1], _shape[0]});</div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span>        cudaFree(temp);</div>
+<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>    }</div>
 </div>
-<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span> </div>
-<div class="foldopen" id="foldopen01014" data-start="{" data-end="}">
-<div class="line"><a id="l01014" name="l01014"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e"> 1014</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">Tensor::setData</a>(<span class="keyword">const</span> shape_type&amp; position, <span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span>        <span class="keywordflow">if</span> (position[0] &gt;= _shape[0] || position[1] &gt;= _shape[1]) {</div>
-<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid position&quot;</span>);</div>
-<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span>        }</div>
-<div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l01019" name="l01019"></a><span class="lineno"> 1019</span>        cudaMemcpy(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
-<div class="line"><a id="l01020" name="l01020"></a><span class="lineno"> 1020</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>[position[0] * _shape[1] + position[1]] = value;</div>
-<div class="line"><a id="l01021" name="l01021"></a><span class="lineno"> 1021</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
-<div class="line"><a id="l01022" name="l01022"></a><span class="lineno"> 1022</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
-<div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span>    }</div>
+<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span> </div>
+<div class="foldopen" id="foldopen01013" data-start="{" data-end="}">
+<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e"> 1013</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">Tensor::setData</a>(<span class="keyword">const</span> shape_type&amp; position, <span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span>        <span class="keywordflow">if</span> (position[0] &gt;= _shape[0] || position[1] &gt;= _shape[1]) {</div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span>            <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Invalid position&quot;</span>);</div>
+<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span>        }</div>
+<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span>        cudaMemcpy(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _data, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
+<div class="line"><a id="l01019" name="l01019"></a><span class="lineno"> 1019</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>[position[0] * _shape[1] + position[1]] = value;</div>
+<div class="line"><a id="l01020" name="l01020"></a><span class="lineno"> 1020</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyHostToDevice);</div>
+<div class="line"><a id="l01021" name="l01021"></a><span class="lineno"> 1021</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
+<div class="line"><a id="l01022" name="l01022"></a><span class="lineno"> 1022</span>    }</div>
 </div>
-<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span> </div>
-<div class="foldopen" id="foldopen01025" data-start="{" data-end="}">
-<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aec014759de2cdbc4e629f2ec662d91f9"> 1025</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">Tensor::setData</a>(<span class="keyword">const</span> std::initializer_list&lt;int&gt;&amp; position, <span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">setData</a>(shape_type(position), value);</div>
-<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span>    }</div>
+<div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span> </div>
+<div class="foldopen" id="foldopen01024" data-start="{" data-end="}">
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#aec014759de2cdbc4e629f2ec662d91f9"> 1024</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">Tensor::setData</a>(<span class="keyword">const</span> std::initializer_list&lt;int&gt;&amp; position, <span class="keyword">const</span> value_type value)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span>        <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">setData</a>(shape_type(position), value);</div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>    }</div>
 </div>
-<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span> </div>
-<div class="foldopen" id="foldopen01029" data-start="{" data-end="}">
-<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55"> 1029</a></span>    Tensor::value_type* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">Tensor::data</a>() const noexcept {</div>
-<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span>        <span class="keywordflow">return</span> _data;</div>
-<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span>    }</div>
+<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span> </div>
+<div class="foldopen" id="foldopen01028" data-start="{" data-end="}">
+<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55"> 1028</a></span>    Tensor::value_type* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">Tensor::data</a>() const noexcept {</div>
+<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span>        <span class="keywordflow">return</span> _data;</div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span>    }</div>
 </div>
-<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span> </div>
-<div class="foldopen" id="foldopen01033" data-start="{" data-end="}">
-<div class="line"><a id="l01033" name="l01033"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"> 1033</a></span>    Tensor::value_type* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">Tensor::grad</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span>        <span class="keywordflow">if</span> (!_requires_grad) {</div>
-<div class="line"><a id="l01035" name="l01035"></a><span class="lineno"> 1035</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Tensor does not require gradients&quot;</span>);</div>
-<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span>        }</div>
-<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>        <span class="keywordflow">return</span> _grad;</div>
-<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span>    }</div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span> </div>
+<div class="foldopen" id="foldopen01032" data-start="{" data-end="}">
+<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"> 1032</a></span>    Tensor::value_type* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">Tensor::grad</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01033" name="l01033"></a><span class="lineno"> 1033</span>        <span class="keywordflow">if</span> (!_requires_grad) {</div>
+<div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Tensor does not require gradients&quot;</span>);</div>
+<div class="line"><a id="l01035" name="l01035"></a><span class="lineno"> 1035</span>        }</div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span>        <span class="keywordflow">return</span> _grad;</div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>    }</div>
 </div>
-<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span> </div>
-<div class="foldopen" id="foldopen01040" data-start="{" data-end="}">
-<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a4b02ed4d2afec1ce75931201af181e14"> 1040</a></span>    std::ostream&amp; <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a4b02ed4d2afec1ce75931201af181e14">Tensor::printGrad</a>(std::ostream&amp; os)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
-<div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span>        cudaMemcpy(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
-<div class="line"><a id="l01043" name="l01043"></a><span class="lineno"> 1043</span>        std::ostream_iterator&lt;value_type&gt; output_iterator(os, <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"> 1044</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; _shape[0]; ++i) {</div>
-<div class="line"><a id="l01045" name="l01045"></a><span class="lineno"> 1045</span>            <span class="keyword">const</span> <span class="keyword">auto</span> it = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> + i * _shape[1];</div>
-<div class="line"><a id="l01046" name="l01046"></a><span class="lineno"> 1046</span>            <span class="keyword">const</span> <span class="keyword">auto</span> it_end = it + _shape[1];</div>
-<div class="line"><a id="l01047" name="l01047"></a><span class="lineno"> 1047</span>            os &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
-<div class="line"><a id="l01048" name="l01048"></a><span class="lineno"> 1048</span>            std::copy(it, it_end, output_iterator);</div>
-<div class="line"><a id="l01049" name="l01049"></a><span class="lineno"> 1049</span>            os &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;</div>
-<div class="line"><a id="l01050" name="l01050"></a><span class="lineno"> 1050</span>            os &lt;&lt; std::endl;</div>
-<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span>        }</div>
-<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
-<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span>        <span class="keywordflow">return</span> os;</div>
-<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span>    }</div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span> </div>
+<div class="foldopen" id="foldopen01039" data-start="{" data-end="}">
+<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a4b02ed4d2afec1ce75931201af181e14"> 1039</a></span>    std::ostream&amp; <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a4b02ed4d2afec1ce75931201af181e14">Tensor::printGrad</a>(std::ostream&amp; os)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span>        <span class="keyword">auto</span>* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> = <span class="keyword">static_cast&lt;</span>value_type*<span class="keyword">&gt;</span>(malloc(_size * <span class="keyword">sizeof</span>(value_type)));</div>
+<div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span>        cudaMemcpy(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _grad, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToHost);</div>
+<div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span>        std::ostream_iterator&lt;value_type&gt; output_iterator(os, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l01043" name="l01043"></a><span class="lineno"> 1043</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; _shape[0]; ++i) {</div>
+<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"> 1044</span>            <span class="keyword">const</span> <span class="keyword">auto</span> it = <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a> + i * _shape[1];</div>
+<div class="line"><a id="l01045" name="l01045"></a><span class="lineno"> 1045</span>            <span class="keyword">const</span> <span class="keyword">auto</span> it_end = it + _shape[1];</div>
+<div class="line"><a id="l01046" name="l01046"></a><span class="lineno"> 1046</span>            os &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
+<div class="line"><a id="l01047" name="l01047"></a><span class="lineno"> 1047</span>            std::copy(it, it_end, output_iterator);</div>
+<div class="line"><a id="l01048" name="l01048"></a><span class="lineno"> 1048</span>            os &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;</div>
+<div class="line"><a id="l01049" name="l01049"></a><span class="lineno"> 1049</span>            os &lt;&lt; std::endl;</div>
+<div class="line"><a id="l01050" name="l01050"></a><span class="lineno"> 1050</span>        }</div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span>        free(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span>        <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span>    }</div>
 </div>
-<div class="line"><a id="l01055" name="l01055"></a><span class="lineno"> 1055</span> </div>
-<div class="foldopen" id="foldopen01056" data-start="{" data-end="}">
-<div class="line"><a id="l01056" name="l01056"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ad66d0c0f5d9ecb375e1006bc0aecf404"> 1056</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#a967587adbd1bee1878176d9e32ed91a8">Tensor::operator-</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result(_shape, _requires_grad);</div>
-<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span>        dim3 block(256);</div>
-<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span>        dim3 grid((_size + block.x - 1) / block.x);</div>
-<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span>        krnl::Negation(grid, block, result._data, _data, _size);</div>
-<div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>        <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span>    }</div>
+<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span> </div>
+<div class="foldopen" id="foldopen01055" data-start="{" data-end="}">
+<div class="line"><a id="l01055" name="l01055"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#ad66d0c0f5d9ecb375e1006bc0aecf404"> 1055</a></span>    <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> <a class="code hl_friend" href="classnz_1_1data_1_1_tensor.html#a967587adbd1bee1878176d9e32ed91a8">Tensor::operator-</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01056" name="l01056"></a><span class="lineno"> 1056</span>        <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result(_shape, _requires_grad);</div>
+<div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span>        dim3 block(256);</div>
+<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span>        dim3 grid((_size + block.x - 1) / block.x);</div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span>        krnl::Negation(grid, block, result._data, _data, _size);</div>
+<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>    }</div>
 </div>
-<div class="line"><a id="l01063" name="l01063"></a><span class="lineno"> 1063</span> </div>
-<div class="foldopen" id="foldopen01064" data-start="{" data-end="}">
-<div class="line"><a id="l01064" name="l01064"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55"> 1064</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55">Tensor::recip</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"> 1065</span>        value_type* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>;</div>
-<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span>        cudaMalloc(<span class="keyword">reinterpret_cast&lt;</span>value_type**<span class="keyword">&gt;</span>(&amp;<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>), _size * <span class="keyword">sizeof</span>(value_type));</div>
-<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span>        dim3 block(256);</div>
-<div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span>        dim3 grid((_size + block.x - 1) / block.x);</div>
-<div class="line"><a id="l01069" name="l01069"></a><span class="lineno"> 1069</span>        krnl::Recip(grid, block, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _data, _size);</div>
-<div class="line"><a id="l01070" name="l01070"></a><span class="lineno"> 1070</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l01071" name="l01071"></a><span class="lineno"> 1071</span>        cudaFree(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
-<div class="line"><a id="l01072" name="l01072"></a><span class="lineno"> 1072</span>    }</div>
+<div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span> </div>
+<div class="foldopen" id="foldopen01063" data-start="{" data-end="}">
+<div class="line"><a id="l01063" name="l01063"></a><span class="lineno"><a class="line" href="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55"> 1063</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55">Tensor::recip</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l01064" name="l01064"></a><span class="lineno"> 1064</span>        value_type* <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>;</div>
+<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"> 1065</span>        cudaMalloc(<span class="keyword">reinterpret_cast&lt;</span>value_type**<span class="keyword">&gt;</span>(&amp;<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>), _size * <span class="keyword">sizeof</span>(value_type));</div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span>        dim3 block(256);</div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span>        dim3 grid((_size + block.x - 1) / block.x);</div>
+<div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span>        krnl::Recip(grid, block, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _data, _size);</div>
+<div class="line"><a id="l01069" name="l01069"></a><span class="lineno"> 1069</span>        cudaMemcpy(_data, <a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>, _size * <span class="keyword">sizeof</span>(value_type), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l01070" name="l01070"></a><span class="lineno"> 1070</span>        cudaFree(<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">data</a>);</div>
+<div class="line"><a id="l01071" name="l01071"></a><span class="lineno"> 1071</span>    }</div>
 </div>
+<div class="line"><a id="l01072" name="l01072"></a><span class="lineno"> 1072</span> </div>
 <div class="line"><a id="l01073" name="l01073"></a><span class="lineno"> 1073</span> </div>
-<div class="line"><a id="l01074" name="l01074"></a><span class="lineno"> 1074</span> </div>
-<div class="line"><a id="l01075" name="l01075"></a><span class="lineno"> 1075</span>}</div>
+<div class="line"><a id="l01074" name="l01074"></a><span class="lineno"> 1074</span>}</div>
 <div class="ttc" id="a_tensor_8cuh_html"><div class="ttname"><a href="_tensor_8cuh.html">Tensor.cuh</a></div><div class="ttdoc">Definition of the Tensor class for GPU-based tensor operations.</div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a0209493e6d5f49a7a72f4cadb97cf01b"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a0209493e6d5f49a7a72f4cadb97cf01b">nz::data::Tensor::setRequiresGrad</a></div><div class="ttdeci">void setRequiresGrad(const bool requires_grad) noexcept</div><div class="ttdoc">Sets whether the tensor requires gradient computation.</div><div class="ttdef"><b>Definition</b> <a href="#l00855">Tensor.cu:855</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a178a2240cd5d441be508490b2613fc55"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55">nz::data::Tensor::recip</a></div><div class="ttdeci">void recip() const</div><div class="ttdoc">Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.</div><div class="ttdef"><b>Definition</b> <a href="#l01064">Tensor.cu:1064</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a31a3aa01fa3ccb56503994a99e39e177"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">nz::data::Tensor::size</a></div><div class="ttdeci">size_type size() const noexcept</div><div class="ttdoc">Retrieves the total number of elements in the tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00852">Tensor.cu:852</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a368d4476ebf71957a9228921a3f00b17"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17">nz::data::Tensor::~Tensor</a></div><div class="ttdeci">~Tensor()</div><div class="ttdoc">Destructor for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00842">Tensor.cu:842</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="#l01029">Tensor.cu:1029</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a45e6f84ae74111ced9a96bdf204b2294"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294">nz::data::Tensor::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transposes the tensor by swapping its dimensions and rearranging the data.</div><div class="ttdef"><b>Definition</b> <a href="#l01003">Tensor.cu:1003</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4b02ed4d2afec1ce75931201af181e14"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a4b02ed4d2afec1ce75931201af181e14">nz::data::Tensor::printGrad</a></div><div class="ttdeci">std::ostream &amp; printGrad(std::ostream &amp;os) const</div><div class="ttdoc">Prints the gradient values of the tensor to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="#l01040">Tensor.cu:1040</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a178a2240cd5d441be508490b2613fc55"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a178a2240cd5d441be508490b2613fc55">nz::data::Tensor::recip</a></div><div class="ttdeci">void recip() const</div><div class="ttdoc">Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.</div><div class="ttdef"><b>Definition</b> <a href="#l01063">Tensor.cu:1063</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a31a3aa01fa3ccb56503994a99e39e177"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177">nz::data::Tensor::size</a></div><div class="ttdeci">size_type size() const noexcept</div><div class="ttdoc">Retrieves the total number of elements in the tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00851">Tensor.cu:851</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a368d4476ebf71957a9228921a3f00b17"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17">nz::data::Tensor::~Tensor</a></div><div class="ttdeci">~Tensor()</div><div class="ttdoc">Destructor for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00841">Tensor.cu:841</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="#l01028">Tensor.cu:1028</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a45e6f84ae74111ced9a96bdf204b2294"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294">nz::data::Tensor::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transposes the tensor by swapping its dimensions and rearranging the data.</div><div class="ttdef"><b>Definition</b> <a href="#l01002">Tensor.cu:1002</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4b02ed4d2afec1ce75931201af181e14"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a4b02ed4d2afec1ce75931201af181e14">nz::data::Tensor::printGrad</a></div><div class="ttdeci">std::ostream &amp; printGrad(std::ostream &amp;os) const</div><div class="ttdoc">Prints the gradient values of the tensor to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="#l01039">Tensor.cu:1039</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a56eed9ac874126485dfd494d4ec59c33"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(const value_type *data, bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00891">Tensor.cu:891</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a68f2eb7f4435de9f79b682b1e9126148"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a68f2eb7f4435de9f79b682b1e9126148">nz::data::Tensor::operator*</a></div><div class="ttdeci">friend DL_API Tensor operator*(value_type lhs, const Tensor &amp;rhs)</div><div class="ttdoc">Multiplies a tensor by a scalar (element-wise multiplication).</div><div class="ttdef"><b>Definition</b> <a href="#l00132">Tensor.cu:132</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a6f538f32f233f649ee69b0fff624851d"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a6f538f32f233f649ee69b0fff624851d">nz::data::Tensor::copyGrad</a></div><div class="ttdeci">void copyGrad(const value_type *grad) const</div><div class="ttdoc">Copies gradient data from host to GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="#l00901">Tensor.cu:901</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7a9f1d5fae2989181645e5f59f7666d8"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8">nz::data::Tensor::randomize</a></div><div class="ttdeci">void randomize(unsigned long long seed=0) const</div><div class="ttdoc">Randomizes the tensor's data with a uniform distribution.</div><div class="ttdef"><b>Definition</b> <a href="#l00908">Tensor.cu:908</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7cbc6dd248b882c95840835d0deaae1c"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c">nz::data::Tensor::requiresGrad</a></div><div class="ttdeci">bool requiresGrad() const noexcept</div><div class="ttdoc">Checks whether the tensor requires gradient computation.</div><div class="ttdef"><b>Definition</b> <a href="#l00850">Tensor.cu:850</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a877f9f2704e39100142d81d289ddc3f2"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">nz::data::Tensor::reshape</a></div><div class="ttdeci">void reshape(const shape_type &amp;shape)</div><div class="ttdoc">Reshapes the tensor to the specified shape.</div><div class="ttdef"><b>Definition</b> <a href="#l00971">Tensor.cu:971</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a6a369c5e1096775b772303fea143f0b0"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a6a369c5e1096775b772303fea143f0b0">nz::data::Tensor::setRequiresGrad</a></div><div class="ttdeci">void setRequiresGrad(bool requires_grad) noexcept</div><div class="ttdoc">Sets whether the tensor requires gradient computation.</div><div class="ttdef"><b>Definition</b> <a href="#l00854">Tensor.cu:854</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7a9f1d5fae2989181645e5f59f7666d8"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a7a9f1d5fae2989181645e5f59f7666d8">nz::data::Tensor::randomize</a></div><div class="ttdeci">void randomize(unsigned long long seed=0) const</div><div class="ttdoc">Randomizes the tensor's data with a uniform distribution.</div><div class="ttdef"><b>Definition</b> <a href="#l00907">Tensor.cu:907</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7cbc6dd248b882c95840835d0deaae1c"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c">nz::data::Tensor::requiresGrad</a></div><div class="ttdeci">bool requiresGrad() const noexcept</div><div class="ttdoc">Checks whether the tensor requires gradient computation.</div><div class="ttdef"><b>Definition</b> <a href="#l00849">Tensor.cu:849</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a877f9f2704e39100142d81d289ddc3f2"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2">nz::data::Tensor::reshape</a></div><div class="ttdeci">void reshape(const shape_type &amp;shape)</div><div class="ttdoc">Reshapes the tensor to the specified shape.</div><div class="ttdef"><b>Definition</b> <a href="#l00970">Tensor.cu:970</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a967587adbd1bee1878176d9e32ed91a8"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#a967587adbd1bee1878176d9e32ed91a8">nz::data::Tensor::operator-</a></div><div class="ttdeci">friend DL_API Tensor operator-(const Tensor &amp;lhs, value_type rhs)</div><div class="ttdoc">Subtracts a scalar from a tensor (element-wise subtraction).</div><div class="ttdef"><b>Definition</b> <a href="#l00320">Tensor.cu:320</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aa9a34602a74495d35e0ce4c28be382f2"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aa9a34602a74495d35e0ce4c28be382f2">nz::data::Tensor::operator+</a></div><div class="ttdeci">friend DL_API Tensor operator+(const Tensor &amp;lhs, value_type rhs)</div><div class="ttdoc">Adds a scalar to a tensor (element-wise addition).</div><div class="ttdef"><b>Definition</b> <a href="#l00245">Tensor.cu:245</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aade7b0c42622279888d755f4f7989aac"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">nz::data::Tensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00851">Tensor.cu:851</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaf4088ef68468c61fc2f437b793d40d5"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5">nz::data::Tensor::zeroGrad</a></div><div class="ttdeci">void zeroGrad() const noexcept</div><div class="ttdoc">Resets the gradient data to zero.</div><div class="ttdef"><b>Definition</b> <a href="#l00867">Tensor.cu:867</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ac273bf64f5d447bce9b91f08ab312ba1"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(const value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="#l00919">Tensor.cu:919</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_acb81990f3d306489153ed461d2088a15"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#acb81990f3d306489153ed461d2088a15">nz::data::Tensor::fillGrad</a></div><div class="ttdeci">void fillGrad(const value_type value) const</div><div class="ttdoc">Fills the tensor's gradient data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="#l00928">Tensor.cu:928</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_acdb68bf53d38e5a93fdd0effa4c3059a"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">nz::data::Tensor::operator=</a></div><div class="ttdeci">Tensor &amp; operator=(const Tensor &amp;other)</div><div class="ttdoc">Assignment operator for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00810">Tensor.cu:810</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aade7b0c42622279888d755f4f7989aac"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac">nz::data::Tensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00850">Tensor.cu:850</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaf4088ef68468c61fc2f437b793d40d5"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5">nz::data::Tensor::zeroGrad</a></div><div class="ttdeci">void zeroGrad() const noexcept</div><div class="ttdoc">Resets the gradient data to zero.</div><div class="ttdef"><b>Definition</b> <a href="#l00870">Tensor.cu:870</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ac273bf64f5d447bce9b91f08ab312ba1"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ac273bf64f5d447bce9b91f08ab312ba1">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(const value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="#l00918">Tensor.cu:918</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_acb81990f3d306489153ed461d2088a15"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#acb81990f3d306489153ed461d2088a15">nz::data::Tensor::fillGrad</a></div><div class="ttdeci">void fillGrad(const value_type value) const</div><div class="ttdoc">Fills the tensor's gradient data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="#l00927">Tensor.cu:927</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_acdb68bf53d38e5a93fdd0effa4c3059a"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a">nz::data::Tensor::operator=</a></div><div class="ttdeci">Tensor &amp; operator=(const Tensor &amp;other)</div><div class="ttdoc">Assignment operator for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00809">Tensor.cu:809</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad0dda0efff93778cab46fd5aa708b983"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ad0dda0efff93778cab46fd5aa708b983">nz::data::Tensor::Tensor</a></div><div class="ttdeci">Tensor()</div><div class="ttdoc">Default constructor for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00730">Tensor.cu:730</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad6107b98beb881d0209345185d5ad145"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">nz::data::Tensor::grad</a></div><div class="ttdeci">value_type * grad() const</div><div class="ttdoc">Retrieves a pointer to the gradient data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="#l01033">Tensor.cu:1033</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad9ee8e3fd0bf6bf8f13eecbf3d78924d"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ad9ee8e3fd0bf6bf8f13eecbf3d78924d">nz::data::Tensor::copyData</a></div><div class="ttdeci">void copyData(const value_type *data)</div><div class="ttdoc">Copies data into the tensor from a raw pointer and reallocates memory.</div><div class="ttdef"><b>Definition</b> <a href="#l00888">Tensor.cu:888</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_adfd7cafef1ded0b6dcebbcaeedd7025e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, const value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="#l01014">Tensor.cu:1014</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae5d80148c9ba63d913e2116301551345"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">nz::data::Tensor::print</a></div><div class="ttdeci">void print() const noexcept</div><div class="ttdoc">Prints the tensor's data to the standard output.</div><div class="ttdef"><b>Definition</b> <a href="#l00873">Tensor.cu:873</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="#l00915">Tensor.cu:915</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad6107b98beb881d0209345185d5ad145"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145">nz::data::Tensor::grad</a></div><div class="ttdeci">value_type * grad() const</div><div class="ttdoc">Retrieves a pointer to the gradient data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="#l01032">Tensor.cu:1032</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_adfd7cafef1ded0b6dcebbcaeedd7025e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#adfd7cafef1ded0b6dcebbcaeedd7025e">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, const value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="#l01013">Tensor.cu:1013</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae5d80148c9ba63d913e2116301551345"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345">nz::data::Tensor::print</a></div><div class="ttdeci">void print() const noexcept</div><div class="ttdoc">Prints the tensor's data to the standard output.</div><div class="ttdef"><b>Definition</b> <a href="#l00876">Tensor.cu:876</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="#l00914">Tensor.cu:914</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a09849b685c23664bf02b0f824006f695"><div class="ttname"><a href="namespacenz_1_1data.html#a09849b685c23664bf02b0f824006f695">nz::data::Softmax</a></div><div class="ttdeci">Tensor Softmax(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Softmax activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00709">Tensor.cu:709</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a2037c2f13444847ea57d7110d8c48a51"><div class="ttname"><a href="namespacenz_1_1data.html#a2037c2f13444847ea57d7110d8c48a51">nz::data::Tanh</a></div><div class="ttdeci">Tensor Tanh(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Tanh (hyperbolic tangent) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="#l00464">Tensor.cu:464</a></div></div>

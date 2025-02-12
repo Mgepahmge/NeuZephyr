@@ -156,8 +156,8 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">float</span> data1[] = {0.9f, 0.2f, 0.8f, 0.1f, 0.5f, 0.7f, 0.3f, 0.9f, 0.6f};  <span class="comment">// Sample predicted values</span></div>
 <div class="line"><span class="keywordtype">float</span> data2[] = {1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f};  <span class="comment">// Sample true labels</span></div>
-<div class="line">input1.output-&gt;copyData(data1);  <span class="comment">// Copy data to the first input tensor</span></div>
-<div class="line">input2.output-&gt;copyData(data2);  <span class="comment">// Copy data to the second input tensor</span></div>
+<div class="line">input1.output-&gt;dataInject(data1);  <span class="comment">// Copy data to the first input tensor</span></div>
+<div class="line">input2.output-&gt;dataInject(data2);  <span class="comment">// Copy data to the second input tensor</span></div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_function" href="#a79a7fb04d377c806b1a05306ba3bb601">BinaryCrossEntropyNode</a> bce_node(&amp;input1, &amp;input2);  <span class="comment">// Create the Binary Cross-Entropy node</span></div>
 <div class="line">bce_node.forward();  <span class="comment">// Perform the forward pass and compute the BCE loss</span></div>
