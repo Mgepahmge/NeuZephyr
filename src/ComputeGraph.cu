@@ -302,7 +302,7 @@ namespace nz::graph {
     }
 
     InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape, bool requires_grad, const std::string& name) {
-        auto node = new InputNode(shape, requires_grad);
+        const auto node = new InputNode(shape, requires_grad);
         nodes.push_back(node);
         inputNodes.push_back(node);
         if (name == "default") {
@@ -319,25 +319,7 @@ namespace nz::graph {
     }
 
     InputNode* ComputeGraph::addInput(const Tensor& tensor, const std::string& name) {
-        auto node = new InputNode(tensor);
-        nodes.push_back(node);
-        inputNodes.push_back(node);
-        if (name == "default") {
-            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
-            nodeRoster[node_name] = node;
-            nodeRosterReverse[node] = node_name;
-            nodesRef++;
-        }
-        else {
-            nodeRoster[name] = node;
-            nodeRosterReverse[node] = name;
-        }
-        return node;
-    }
-
-    InputNode* ComputeGraph::addInput(const std::initializer_list<int>& shape, bool requires_grad,
-                                      const std::string& name) {
-        auto node = new InputNode(shape, requires_grad);
+        const auto node = new InputNode(tensor);
         nodes.push_back(node);
         inputNodes.push_back(node);
         if (name == "default") {
@@ -367,6 +349,43 @@ namespace nz::graph {
             nodeRosterReverse[input] = name;
         }
         return input;
+    }
+
+    InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape, const Tensor::value_type* data,
+        const bool requires_grad, const bool host, const std::string& name) {
+        const auto node = new InputNode(shape, data, requires_grad, host);
+        nodes.push_back(node);
+        inputNodes.push_back(node);
+        if (name == "default") {
+            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = node;
+            nodeRosterReverse[node] = node_name;
+            nodesRef++;
+        }
+        else {
+            nodeRoster[name] = node;
+            nodeRosterReverse[node] = name;
+        }
+        return node;
+    }
+
+    InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape,
+        const std::initializer_list<Tensor::value_type>& data, const bool requires_grad,
+        const std::string& name) {
+        const auto node = new InputNode(shape, data, requires_grad);
+        nodes.push_back(node);
+        inputNodes.push_back(node);
+        if (name == "default") {
+            const std::string node_name = node->type + "_" + std::to_string(nodesRef);
+            nodeRoster[node_name] = node;
+            nodeRosterReverse[node] = node_name;
+            nodesRef++;
+        }
+        else {
+            nodeRoster[name] = node;
+            nodeRosterReverse[node] = name;
+        }
+        return node;
     }
 
     OutputNode* ComputeGraph::addOutput(OutputNode* node, const std::string& name) {

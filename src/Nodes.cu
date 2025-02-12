@@ -35,7 +35,7 @@ namespace nz::nodes {
             type = "Input";
         }
 
-        InputNode::InputNode(const Tensor::shape_type& shape, const std::initializer_list<Tensor::value_type> data,
+        InputNode::InputNode(const Tensor::shape_type& shape, const std::initializer_list<Tensor::value_type>& data,
             const bool requires_grad) {
             output = std::make_shared<Tensor>(shape, data, requires_grad);
             type = "Input";

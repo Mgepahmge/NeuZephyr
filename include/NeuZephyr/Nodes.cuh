@@ -572,7 +572,7 @@ namespace nz::nodes {
              * ```
              * @endcode
              */
-            explicit InputNode(const Tensor::shape_type& shape, std::initializer_list<Tensor::value_type> data,
+            explicit InputNode(const Tensor::shape_type& shape, const std::initializer_list<Tensor::value_type>& data,
                                bool requires_grad = false);
 
             /**
