@@ -10,6 +10,14 @@ namespace nz::nodes {
         os << *output << std::flush;
     }
 
+    void Node::dataInject(const Tensor::value_type* data, const bool grad) const {
+        output->dataInject(data, grad);
+    }
+
+    void Node::dataInject(const std::initializer_list<Tensor::value_type>& data, const bool grad) const {
+        output->dataInject(data, grad);
+    }
+
     namespace io {
         InputNode::InputNode(const Tensor::shape_type& shape, bool requires_grad) {
             output = std::make_shared<Tensor>(shape, requires_grad);

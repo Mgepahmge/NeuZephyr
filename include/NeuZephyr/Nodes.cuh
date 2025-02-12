@@ -207,6 +207,108 @@ namespace nz::nodes {
          * 2024/11/29
          */
         virtual void print(std::ostream& os) const;
+
+        /**
+         * @brief Injects data into a relevant tensor object, optionally setting its gradient requirement.
+         *
+         * @param data A pointer to the data to be injected into the tensor (host-to-device). This data will be used to populate the tensor.
+         * @param grad A boolean indicating whether the tensor should require gradient computation after data injection. Defaults to false.
+         *
+         * @return None.
+         *
+         * This function is designed to inject data into a tensor object. Memory management within this function is handled by the underlying tensor operations. It is assumed that the tensor object has already allocated the necessary memory to hold the data pointed to by `data`.
+         *
+         * Regarding exception handling, this function does not explicitly catch any exceptions. Exceptions that might occur during data injection, such as memory access errors or CUDA errors (if applicable), will propagate to the caller.
+         *
+         * This function likely interacts with other components related to the tensor, such as the computation graph or the gradient computation system, depending on the value of `grad`.
+         *
+         * @throws None explicitly, but underlying tensor operations may throw exceptions, such as std::bad_alloc if memory allocation fails during the injection process.
+         *
+         * @note
+         * - Ensure that the `data` pointer is valid and points to enough data to fill the target tensor.
+         * - The CUDA runtime environment should be properly initialized before calling this function if the tensor is using CUDA memory.
+         * - The time complexity of this function is O(n), where n is the number of elements in the tensor, as it involves copying data into the tensor.
+         *
+         * @code
+         * ```cpp
+         *
+         * value_type data[] = {1.0f, 2.0f, 3.0f, 4.0f};
+         * // Assume there is an object that has the dataInject method
+         * InputNode input({2, 2}), true);
+         * obj.dataInject(data);
+         * ```
+         * @endcode
+         */
+        void dataInject(const Tensor::value_type* data, bool grad = false) const;
+
+        /**
+         * @brief Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.
+         *
+         * @tparam Iterator The type of the iterators used to define the data range. It should support the standard iterator operations like dereferencing and incrementing.
+         * @param begin An iterator pointing to the beginning of the data range (host-to-device). The data in this range will be injected into the output tensor.
+         * @param end An iterator pointing to the end of the data range (host-to-device).
+         * @param grad A boolean indicating whether the output tensor should require gradient computation after data injection. Defaults to false.
+         *
+         * @return None.
+         *
+         * This template function is used to inject data from an iterator range into the output tensor of the InputNode. Memory management is handled by the underlying `dataInject` method of the `Tensor` class. It is assumed that the `output` tensor has already allocated sufficient memory to hold the data from the iterator range.
+         *
+         * Regarding exception handling, this function does not explicitly catch any exceptions. Exceptions that might occur during data injection, such as iterator invalidation or memory allocation errors in the `Tensor` class, will propagate to the caller.
+         *
+         * This function serves as a wrapper around the `dataInject` method of the `output` tensor, facilitating the use of iterators to provide data for injection.
+         *
+         * @throws None explicitly, but the `dataInject` method of the `Tensor` class may throw exceptions, such as `std::bad_alloc` if memory allocation fails during the injection process.
+         *
+         * @note
+         * - Ensure that the iterator range `[begin, end)` is valid and that the data type pointed to by the iterators is compatible with the `Tensor::value_type`.
+         * - The CUDA runtime environment should be properly initialized before calling this function if the tensor is using CUDA memory.
+         * - The time complexity of this function is O(n), where n is the number of elements in the iterator range, as it involves copying data from the range into the tensor.
+         *
+         * @code
+         * ```cpp
+         * #include <vector>
+         *
+         * std::vector<value_type> data = {1.0f, 2.0f, 3.0f, 4.0f};
+         * InputNode inputNode({2, 2}, true);
+         * inputNode.dataInject(data.begin(), data.end());
+         * ```
+         * @endcode
+         */
+        template <typename Iterator>
+        void dataInject(Iterator begin, Iterator end, const bool grad = false) const {
+            output->dataInject(begin, end, grad);
+        }
+
+        /**
+         * @brief Injects data from a std::initializer_list into the output tensor of the Node, optionally setting its gradient requirement.
+         *
+         * @param data A std::initializer_list containing the data to be injected into the output tensor (host-to-device).
+         * @param grad A boolean indicating whether the output tensor should require gradient computation after data injection.
+         *
+         * @return None.
+         *
+         * This function is responsible for injecting data from a std::initializer_list into the output tensor of the Node. Memory management is handled by the underlying `dataInject` method of the `Tensor` class. The `output` tensor is assumed to have already allocated enough memory to accommodate the data in the `std::initializer_list`.
+         *
+         * Regarding exception handling, this function does not explicitly catch any exceptions. Exceptions that might occur during data injection, such as memory allocation errors in the `Tensor` class, will propagate to the caller.
+         *
+         * This function acts as a bridge between the Node and its output tensor, allowing data to be easily provided using a `std::initializer_list`.
+         *
+         * @throws None explicitly, but the `dataInject` method of the `Tensor` class may throw exceptions, such as `std::bad_alloc` if memory allocation fails during the injection process.
+         *
+         * @note
+         * - Ensure that the `std::initializer_list` contains enough elements to fill the output tensor according to its shape.
+         * - The CUDA runtime environment should be properly initialized before calling this function if the tensor is using CUDA memory.
+         * - The time complexity of this function is O(n), where n is the number of elements in the `std::initializer_list`, as it involves copying data from the list into the tensor.
+         *
+         * @code
+         * ```cpp
+         *
+         * InputNode node({2, 2}, true);
+         * node.dataInject({1.0f, 2.0f, 3.0f, 4.0f});
+         * ```
+         * @endcode
+         */
+        void dataInject(const std::initializer_list<Tensor::value_type>& data, bool grad = false) const;
     };
 
     /**
