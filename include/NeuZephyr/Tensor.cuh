@@ -508,7 +508,7 @@ namespace nz::data {
             try {
                 dataInject(host_data, grad);
             }
-            catch (const std::runtime_error& e) {
+            catch ([[maybe_unused]] const std::runtime_error& e) {
                 delete[] host_data;
                 throw;
             }
@@ -784,7 +784,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void setData(const shape_type& position, const value_type value) const;
+        void setData(const shape_type& position, value_type value) const;
 
         /**
          * @brief Sets a specific element of the tensor's data to a given value using an initializer list for position.
@@ -818,7 +818,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void setData(const std::initializer_list<int>& position, const value_type value) const;
+        void setData(const std::initializer_list<int>& position, value_type value) const;
 
         /// @}
 

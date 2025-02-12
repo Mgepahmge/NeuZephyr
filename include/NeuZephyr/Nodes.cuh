@@ -390,32 +390,6 @@ namespace nz::nodes {
             explicit InputNode(const Tensor& tensor);
 
             /**
-             * @brief Constructor to initialize an `InputNode` with a shape specified by an initializer list.
-             *
-             * This constructor initializes an `InputNode` with a tensor whose shape is defined by an initializer list.
-             * The tensor is created with the given shape, and it can optionally track gradients if `requires_grad` is set to `true`.
-             * The `InputNode` class does not perform any computations; it simply holds and provides the input data to the network.
-             *
-             * @param shape An initializer list that defines the shape of the tensor. This specifies the dimensions of the input data.
-             * @param requires_grad A boolean flag indicating whether the tensor should track gradients. Defaults to `false`.
-             *
-             * The `InputNode` will store a `Tensor` object, initialized with the given shape and gradient tracking setting.
-             * This tensor can then be used as the input to subsequent nodes in the computational graph.
-             *
-             * @note
-             * - The `forward()` and `backward()` methods in the `InputNode` are not used for computation, as this node only stores and provides input data.
-             * - `requires_grad` determines whether the input tensor will store gradients, which is useful if the input data
-             *   is part of the network's parameters or if you need to track the gradients for this node during backpropagation.
-             *
-             * @author
-             * Mgepahmge (https://github.com/Mgepahmge)
-             *
-             * @date
-             * 2024/11/29
-             */
-            explicit InputNode(const std::initializer_list<int>& shape, bool requires_grad = false);
-
-            /**
              * @brief Forward pass for the `InputNode`.
              *
              * The `forward()` method for the `InputNode` is a no-op (no operation) because the input node does not perform any
@@ -632,7 +606,7 @@ namespace nz::nodes {
              * @date
              * 2024/11/29
              */
-            Tensor::value_type getLoss() const;
+            [[nodiscard]] Tensor::value_type getLoss() const;
 
             /**
              * @brief Prints the type, data, gradient, and loss of the node.
