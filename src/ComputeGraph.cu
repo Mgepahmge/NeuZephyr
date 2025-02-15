@@ -5,6 +5,8 @@
 #include "NeuZephyr/ComputeGraph.cuh"
 
 #include <filesystem>
+#include <sstream>
+#include <fstream>
 
 namespace nz::graph {
     std::ostream& ComputeGraph::print(std::ostream& os) {

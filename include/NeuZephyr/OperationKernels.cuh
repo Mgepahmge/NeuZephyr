@@ -46,14 +46,6 @@
 #ifndef OPERATIONKERNELS_CUH
 #define OPERATIONKERNELS_CUH
 
-#include "stdio.h"
-#include "utils.cuh"
-#define TILE_SIZE 32
-#define FULL_MASK 0xffffffffu
-#define WARP_SIZE 32
-#define MMA 16
-#define CEIL(X) (((X) + 15) & ~15)
-
 /**
  * @namespace nz::krnl
  * @brief High-Performance CUDA Kernel Implementations for Tensor Computations

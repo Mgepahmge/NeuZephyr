@@ -41,6 +41,7 @@
 #ifndef NODES_CUH
 #define NODES_CUH
 
+#include <memory>
 #include "Tensor.cuh"
 
 /**
@@ -76,7 +77,6 @@
  */
 namespace nz::nodes {
     using namespace data;
-    using namespace krnl;
 
     /**
      * @class Node

@@ -35,8 +35,6 @@
  */
 #ifndef TENSOR_CUH
 #define TENSOR_CUH
-
-#include "OperationKernels.cuh"
 #include <iterator>
 #include <stdexcept>
 #include <vector>

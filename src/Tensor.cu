@@ -1,4 +1,6 @@
 #include "NeuZephyr/Tensor.cuh"
+#include "NeuZephyr/utils.cuh"
+#include "NeuZephyr/OperationKernels.cuh"
 #include <curand.h>
 
 namespace nz::data {

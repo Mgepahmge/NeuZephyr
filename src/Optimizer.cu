@@ -1,11 +1,9 @@
-//
-// Created by Administrator on 24-11-20.
-//
-
 #include "NeuZephyr/Optimizer.cuh"
-
+#include "NeuZephyr/OperationKernels.cuh"
 #include <fstream>
-#include <string>
+
+using namespace nz::krnl;
+
 
 namespace nz::opt {
     SGD::SGD(const Tensor::value_type learning_rate) {

@@ -1,10 +1,9 @@
-//
-// Created by Administrator on 24-11-11.
-//
-
 #include "NeuZephyr/Nodes.cuh"
+#include "NeuZephyr/OperationKernels.cuh"
+#include "NeuZephyr/utils.cuh"
 
 namespace nz::nodes {
+    using namespace krnl;
     void Node::print(std::ostream& os) const {
         os << "Type: " << type << std::endl;
         os << *output << std::flush;
