@@ -66,208 +66,208 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">Optimizer.cu</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Created by Administrator on 24-11-20.</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="_optimizer_8cuh.html">NeuZephyr/Optimizer.cuh</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="_operation_kernels_8cuh.html">NeuZephyr/OperationKernels.cuh</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_optimizer_8cuh.html">NeuZephyr/Optimizer.cuh</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacenz_1_1krnl.html">nz::krnl</a>;</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1opt.html">nz::opt</a> {</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">   11</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">SGD::SGD</a>(<span class="keyword">const</span> Tensor::value_type learning_rate) {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        this-&gt;learning_rate = learning_rate;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    }</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacenz_1_1opt.html">nz::opt</a> {</div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">    9</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">SGD::SGD</a>(<span class="keyword">const</span> Tensor::value_type learning_rate) {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        this-&gt;learning_rate = learning_rate;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    }</div>
 </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">   15</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">SGD::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        dim3 block(256);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        StochasticGradientDescent(grid, block, input-&gt;output-&gt;data(), input-&gt;output-&gt;grad(), learning_rate,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                                                   input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    }</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">   13</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">SGD::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        dim3 block(256);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        StochasticGradientDescent(grid, block, input-&gt;output-&gt;data(), input-&gt;output-&gt;grad(), learning_rate,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                                                   input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    }</div>
 </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_momentum.html#accdb15acc2b9f0e2f1fc7dce593c169d">   22</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_momentum.html#accdb15acc2b9f0e2f1fc7dce593c169d">Momentum::Momentum</a>(Tensor::value_type learning_rate, Tensor::value_type beta) {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        this-&gt;learning_rate = learning_rate;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        this-&gt;beta = beta;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_momentum.html#accdb15acc2b9f0e2f1fc7dce593c169d">   20</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_momentum.html#accdb15acc2b9f0e2f1fc7dce593c169d">Momentum::Momentum</a>(Tensor::value_type learning_rate, Tensor::value_type beta) {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        this-&gt;learning_rate = learning_rate;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        this-&gt;beta = beta;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_momentum.html#a9b8d15dc85293840cbd19e27a6bb52a6">   27</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_momentum.html#a9b8d15dc85293840cbd19e27a6bb52a6">Momentum::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">if</span> (velocity.find(input) == velocity.end()) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            v.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            velocity[input] = v;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordtype">float</span>* temp;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        cudaMalloc(&amp;temp, input-&gt;output-&gt;size() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">const</span> dim3 block(256);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">const</span> dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        krnl::Momentum(grid, block, temp, input-&gt;output-&gt;grad(), velocity[input].data(), beta,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                           input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        cudaMemcpy(velocity[input].data(), temp, input-&gt;output-&gt;size() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), cudaMemcpyDeviceToDevice);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        StochasticGradientDescent(grid, block, input-&gt;output-&gt;data(), velocity[input].data(), learning_rate,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                                   input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        cudaFree(temp);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_momentum.html#a9b8d15dc85293840cbd19e27a6bb52a6">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_momentum.html#a9b8d15dc85293840cbd19e27a6bb52a6">Momentum::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">if</span> (velocity.find(input) == velocity.end()) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            v.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            velocity[input] = v;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">float</span>* temp;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        cudaMalloc(&amp;temp, input-&gt;output-&gt;size() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">const</span> dim3 block(256);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">const</span> dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        krnl::Momentum(grid, block, temp, input-&gt;output-&gt;grad(), velocity[input].data(), beta,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                                           input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        cudaMemcpy(velocity[input].data(), temp, input-&gt;output-&gt;size() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), cudaMemcpyDeviceToDevice);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        StochasticGradientDescent(grid, block, input-&gt;output-&gt;data(), velocity[input].data(), learning_rate,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                                   input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        cudaFree(temp);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_grad.html#a4bb060af66efe393674e65c837ccdc60">   45</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_ada_grad.html#a4bb060af66efe393674e65c837ccdc60">AdaGrad::AdaGrad</a>(Tensor::value_type learning_rate) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        this-&gt;learning_rate = learning_rate;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_grad.html#a4bb060af66efe393674e65c837ccdc60">   43</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_ada_grad.html#a4bb060af66efe393674e65c837ccdc60">AdaGrad::AdaGrad</a>(Tensor::value_type learning_rate) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        this-&gt;learning_rate = learning_rate;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_grad.html#ac0755dbf299371f78decfe63b0bf8ab6">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_ada_grad.html#ac0755dbf299371f78decfe63b0bf8ab6">AdaGrad::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">if</span> (gss.find(input) == gss.end()) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> g(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            g.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            gss[input] = g;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        dim3 block(256);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        krnl::AdaGrad(grid, block, input-&gt;output-&gt;data(), gss[input].data(), input-&gt;output-&gt;grad(),</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                                          learning_rate, epsilon, input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_grad.html#ac0755dbf299371f78decfe63b0bf8ab6">   47</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_ada_grad.html#ac0755dbf299371f78decfe63b0bf8ab6">AdaGrad::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (gss.find(input) == gss.end()) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> g(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            g.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            gss[input] = g;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        dim3 block(256);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        krnl::AdaGrad(grid, block, input-&gt;output-&gt;data(), gss[input].data(), input-&gt;output-&gt;grad(),</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                          learning_rate, epsilon, input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
 </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">   61</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">RMSprop::RMSprop</a>(Tensor::value_type learning_rate, Tensor::value_type decay_rate) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        this-&gt;learning_rate = learning_rate;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        this-&gt;decay_rate = decay_rate;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">   59</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">RMSprop::RMSprop</a>(Tensor::value_type learning_rate, Tensor::value_type decay_rate) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        this-&gt;learning_rate = learning_rate;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        this-&gt;decay_rate = decay_rate;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
 </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_r_m_sprop.html#ad5356d2c2dccd94c5f78ff69c76aa2ee">   66</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_r_m_sprop.html#ad5356d2c2dccd94c5f78ff69c76aa2ee">RMSprop::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (v.find(input) == v.end()) {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            v_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            v[input] = v_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        dim3 block(256);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        krnl::RMSprop(grid, block, input-&gt;output-&gt;data(), v[input].data(), input-&gt;output-&gt;grad(), learning_rate,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                                          decay_rate, epsilon, input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_r_m_sprop.html#ad5356d2c2dccd94c5f78ff69c76aa2ee">   64</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_r_m_sprop.html#ad5356d2c2dccd94c5f78ff69c76aa2ee">RMSprop::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">if</span> (v.find(input) == v.end()) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            v_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            v[input] = v_;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        dim3 block(256);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        krnl::RMSprop(grid, block, input-&gt;output-&gt;data(), v[input].data(), input-&gt;output-&gt;grad(), learning_rate,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                                          decay_rate, epsilon, input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
 </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_adam.html#a7514c0e41db88f3996bc677c654db438">   78</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_adam.html#a7514c0e41db88f3996bc677c654db438">Adam::Adam</a>(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        this-&gt;learning_rate = learning_rate;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        this-&gt;beta1 = beta1;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        this-&gt;beta2 = beta2;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        this-&gt;it = 0;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_adam.html#a7514c0e41db88f3996bc677c654db438">   76</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_adam.html#a7514c0e41db88f3996bc677c654db438">Adam::Adam</a>(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        this-&gt;learning_rate = learning_rate;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        this-&gt;beta1 = beta1;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        this-&gt;beta2 = beta2;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        this-&gt;it = 0;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
 </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_adam.html#aa7fc73a17f092e104d5284d2556a1a98">   85</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_adam.html#aa7fc73a17f092e104d5284d2556a1a98">Adam::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        it++;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">if</span> (m.find(input) == m.end()) {</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> m_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            m_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            m[input] = m_;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">if</span> (v.find(input) == v.end()) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            v_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            v[input] = v_;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        }</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        dim3 block(256);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        krnl::Adam(grid, block, input-&gt;output-&gt;data(), m[input].data(), v[input].data(), input-&gt;output-&gt;grad(),</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                                       learning_rate, beta1, beta2, epsilon, it, input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_adam.html#aa7fc73a17f092e104d5284d2556a1a98">   83</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_adam.html#aa7fc73a17f092e104d5284d2556a1a98">Adam::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        it++;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">if</span> (m.find(input) == m.end()) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> m_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            m_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            m[input] = m_;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> (v.find(input) == v.end()) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            v_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            v[input] = v_;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        dim3 block(256);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        krnl::Adam(grid, block, input-&gt;output-&gt;data(), m[input].data(), v[input].data(), input-&gt;output-&gt;grad(),</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                                       learning_rate, beta1, beta2, epsilon, it, input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
 </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_n_adam.html#a2a13f32181ab30524b0fdf4ca555805f">  103</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_n_adam.html#a2a13f32181ab30524b0fdf4ca555805f">NAdam::NAdam</a>(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        this-&gt;learning_rate = learning_rate;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        this-&gt;beta1 = beta1;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        this-&gt;beta2 = beta2;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        this-&gt;it = 0;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="}">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_n_adam.html#a2a13f32181ab30524b0fdf4ca555805f">  101</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_n_adam.html#a2a13f32181ab30524b0fdf4ca555805f">NAdam::NAdam</a>(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        this-&gt;learning_rate = learning_rate;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        this-&gt;beta1 = beta1;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        this-&gt;beta2 = beta2;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        this-&gt;it = 0;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
 </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_n_adam.html#add5c94bdc1b012f035b51339f92e7a49">  110</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_n_adam.html#add5c94bdc1b012f035b51339f92e7a49">NAdam::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        it++;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">if</span> (m.find(input) == m.end()) {</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> m_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            m_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            m[input] = m_;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">if</span> (v.find(input) == v.end()) {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            v_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            v[input] = v_;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (m_modified.find(input) == m_modified.end()) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> m_mod_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            m_mod_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            m_modified[input] = m_mod_;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        dim3 block(256);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        krnl::NAdam(grid, block, input-&gt;output-&gt;data(), m[input].data(), m_modified[input].data(),</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                                        v[input].data(),</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                                        input-&gt;output-&gt;grad(), learning_rate, beta1, beta2, epsilon, it,</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                                        input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_n_adam.html#add5c94bdc1b012f035b51339f92e7a49">  108</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_n_adam.html#add5c94bdc1b012f035b51339f92e7a49">NAdam::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        it++;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">if</span> (m.find(input) == m.end()) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> m_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            m_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            m[input] = m_;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">if</span> (v.find(input) == v.end()) {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> v_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            v_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            v[input] = v_;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">if</span> (m_modified.find(input) == m_modified.end()) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> m_mod_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            m_mod_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            m_modified[input] = m_mod_;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        dim3 block(256);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        krnl::NAdam(grid, block, input-&gt;output-&gt;data(), m[input].data(), m_modified[input].data(),</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                                        v[input].data(),</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                                        input-&gt;output-&gt;grad(), learning_rate, beta1, beta2, epsilon, it,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                                        input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_delta.html#a7bf0e669daf70a8de09d3e1c9cb8bc5c">  135</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_ada_delta.html#a7bf0e669daf70a8de09d3e1c9cb8bc5c">AdaDelta::AdaDelta</a>(Tensor::value_type rho) {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        this-&gt;learning_rate = rho;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_delta.html#a7bf0e669daf70a8de09d3e1c9cb8bc5c">  133</a></span>    <a class="code hl_function" href="classnz_1_1opt_1_1_ada_delta.html#a7bf0e669daf70a8de09d3e1c9cb8bc5c">AdaDelta::AdaDelta</a>(Tensor::value_type rho) {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        this-&gt;learning_rate = rho;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }</div>
 </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_delta.html#a0d24bd903517823f9607160d2e8207a1">  139</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_ada_delta.html#a0d24bd903517823f9607160d2e8207a1">AdaDelta::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">if</span> (acc_delta.find(input) == acc_delta.end()) {</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> delta_acc_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            delta_acc_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            acc_delta[input] = delta_acc_;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        }</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordflow">if</span> (acc_grad.find(input) == acc_grad.end()) {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> delta_acc_grad_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            delta_acc_grad_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            acc_grad[input] = delta_acc_grad_;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        }</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        dim3 block(256);</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        krnl::AdaDelta(grid, block, input-&gt;output-&gt;data(), acc_delta[input].data(), acc_grad[input].data(),</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                                           input-&gt;output-&gt;grad(), learning_rate, epsilon,</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                                           input-&gt;output-&gt;size());</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classnz_1_1opt_1_1_ada_delta.html#a0d24bd903517823f9607160d2e8207a1">  137</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1opt_1_1_ada_delta.html#a0d24bd903517823f9607160d2e8207a1">AdaDelta::step</a>(<a class="code hl_class" href="classnz_1_1nodes_1_1_node.html">Node</a>* input) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">if</span> (acc_delta.find(input) == acc_delta.end()) {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> delta_acc_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            delta_acc_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            acc_delta[input] = delta_acc_;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">if</span> (acc_grad.find(input) == acc_grad.end()) {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> delta_acc_grad_(input-&gt;output-&gt;shape(), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            delta_acc_grad_.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(0);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            acc_grad[input] = delta_acc_grad_;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        dim3 block(256);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        dim3 grid((input-&gt;output-&gt;size() + block.x - 1) / block.x);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        krnl::AdaDelta(grid, block, input-&gt;output-&gt;data(), acc_delta[input].data(), acc_grad[input].data(),</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                                           input-&gt;output-&gt;grad(), learning_rate, epsilon,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                                           input-&gt;output-&gt;size());</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
 </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>} <span class="comment">// opt</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>} <span class="comment">// opt</span></div>
+<div class="ttc" id="a_operation_kernels_8cuh_html"><div class="ttname"><a href="_operation_kernels_8cuh.html">OperationKernels.cuh</a></div><div class="ttdoc">CUDA Kernel Definitions for High-Performance Tensor Operations.</div></div>
 <div class="ttc" id="a_optimizer_8cuh_html"><div class="ttname"><a href="_optimizer_8cuh.html">Optimizer.cuh</a></div><div class="ttdoc">Definition of optimization algorithms for training deep learning models.</div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00918">Tensor.cu:918</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00131">Tensor.cuh:131</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00920">Tensor.cu:920</a></div></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1_node.html">nz::nodes::Node</a></div><div class="ttdoc">Base class for nodes in a neural network or computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l00114">Nodes.cuh:114</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_ada_delta_html_a0d24bd903517823f9607160d2e8207a1"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_delta.html#a0d24bd903517823f9607160d2e8207a1">nz::opt::AdaDelta::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the AdaDelta algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00139">Optimizer.cu:139</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_ada_delta_html_a7bf0e669daf70a8de09d3e1c9cb8bc5c"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_delta.html#a7bf0e669daf70a8de09d3e1c9cb8bc5c">nz::opt::AdaDelta::AdaDelta</a></div><div class="ttdeci">AdaDelta(Tensor::value_type rho)</div><div class="ttdoc">Constructs an AdaDelta optimizer with a specified decay rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00135">Optimizer.cu:135</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_ada_grad_html_a4bb060af66efe393674e65c837ccdc60"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_grad.html#a4bb060af66efe393674e65c837ccdc60">nz::opt::AdaGrad::AdaGrad</a></div><div class="ttdeci">AdaGrad(Tensor::value_type learning_rate)</div><div class="ttdoc">Constructs an AdaGrad optimizer with the specified learning rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00045">Optimizer.cu:45</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_ada_grad_html_ac0755dbf299371f78decfe63b0bf8ab6"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_grad.html#ac0755dbf299371f78decfe63b0bf8ab6">nz::opt::AdaGrad::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the AdaGrad algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">Optimizer.cu:49</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_adam_html_a7514c0e41db88f3996bc677c654db438"><div class="ttname"><a href="classnz_1_1opt_1_1_adam.html#a7514c0e41db88f3996bc677c654db438">nz::opt::Adam::Adam</a></div><div class="ttdeci">Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2)</div><div class="ttdoc">Constructs an Adam optimizer with the specified hyperparameters.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">Optimizer.cu:78</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_adam_html_aa7fc73a17f092e104d5284d2556a1a98"><div class="ttname"><a href="classnz_1_1opt_1_1_adam.html#aa7fc73a17f092e104d5284d2556a1a98">nz::opt::Adam::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the Adam algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00085">Optimizer.cu:85</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_momentum_html_a9b8d15dc85293840cbd19e27a6bb52a6"><div class="ttname"><a href="classnz_1_1opt_1_1_momentum.html#a9b8d15dc85293840cbd19e27a6bb52a6">nz::opt::Momentum::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the Momentum algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00027">Optimizer.cu:27</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_momentum_html_accdb15acc2b9f0e2f1fc7dce593c169d"><div class="ttname"><a href="classnz_1_1opt_1_1_momentum.html#accdb15acc2b9f0e2f1fc7dce593c169d">nz::opt::Momentum::Momentum</a></div><div class="ttdeci">Momentum(Tensor::value_type learning_rate, Tensor::value_type beta)</div><div class="ttdoc">Constructs a Momentum optimizer with a specified learning rate and momentum factor.</div><div class="ttdef"><b>Definition</b> <a href="#l00022">Optimizer.cu:22</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_n_adam_html_a2a13f32181ab30524b0fdf4ca555805f"><div class="ttname"><a href="classnz_1_1opt_1_1_n_adam.html#a2a13f32181ab30524b0fdf4ca555805f">nz::opt::NAdam::NAdam</a></div><div class="ttdeci">NAdam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2)</div><div class="ttdoc">Constructs a NAdam optimizer with specified hyperparameters.</div><div class="ttdef"><b>Definition</b> <a href="#l00103">Optimizer.cu:103</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_n_adam_html_add5c94bdc1b012f035b51339f92e7a49"><div class="ttname"><a href="classnz_1_1opt_1_1_n_adam.html#add5c94bdc1b012f035b51339f92e7a49">nz::opt::NAdam::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the NAdam algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00110">Optimizer.cu:110</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_r_m_sprop_html_ad5356d2c2dccd94c5f78ff69c76aa2ee"><div class="ttname"><a href="classnz_1_1opt_1_1_r_m_sprop.html#ad5356d2c2dccd94c5f78ff69c76aa2ee">nz::opt::RMSprop::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the RMSprop algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00066">Optimizer.cu:66</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_r_m_sprop_html_aec35c9b3e1a1930d15a468c817a7352f"><div class="ttname"><a href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">nz::opt::RMSprop::RMSprop</a></div><div class="ttdeci">RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate)</div><div class="ttdoc">Constructs an RMSprop optimizer with specified learning rate and decay rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00061">Optimizer.cu:61</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_s_g_d_html_a2b3d169ace2070e793da8f270bd760c8"><div class="ttname"><a href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">nz::opt::SGD::SGD</a></div><div class="ttdeci">SGD(Tensor::value_type learning_rate)</div><div class="ttdoc">Constructor for the SGD optimizer.</div><div class="ttdef"><b>Definition</b> <a href="#l00011">Optimizer.cu:11</a></div></div>
-<div class="ttc" id="aclassnz_1_1opt_1_1_s_g_d_html_ac1232979bd4ed03f49b27e5f8391707f"><div class="ttname"><a href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">nz::opt::SGD::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single step of the Stochastic Gradient Descent (SGD) optimization.</div><div class="ttdef"><b>Definition</b> <a href="#l00015">Optimizer.cu:15</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_ada_delta_html_a0d24bd903517823f9607160d2e8207a1"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_delta.html#a0d24bd903517823f9607160d2e8207a1">nz::opt::AdaDelta::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the AdaDelta algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00137">Optimizer.cu:137</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_ada_delta_html_a7bf0e669daf70a8de09d3e1c9cb8bc5c"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_delta.html#a7bf0e669daf70a8de09d3e1c9cb8bc5c">nz::opt::AdaDelta::AdaDelta</a></div><div class="ttdeci">AdaDelta(Tensor::value_type rho)</div><div class="ttdoc">Constructs an AdaDelta optimizer with a specified decay rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00133">Optimizer.cu:133</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_ada_grad_html_a4bb060af66efe393674e65c837ccdc60"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_grad.html#a4bb060af66efe393674e65c837ccdc60">nz::opt::AdaGrad::AdaGrad</a></div><div class="ttdeci">AdaGrad(Tensor::value_type learning_rate)</div><div class="ttdoc">Constructs an AdaGrad optimizer with the specified learning rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00043">Optimizer.cu:43</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_ada_grad_html_ac0755dbf299371f78decfe63b0bf8ab6"><div class="ttname"><a href="classnz_1_1opt_1_1_ada_grad.html#ac0755dbf299371f78decfe63b0bf8ab6">nz::opt::AdaGrad::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the AdaGrad algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00047">Optimizer.cu:47</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_adam_html_a7514c0e41db88f3996bc677c654db438"><div class="ttname"><a href="classnz_1_1opt_1_1_adam.html#a7514c0e41db88f3996bc677c654db438">nz::opt::Adam::Adam</a></div><div class="ttdeci">Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2)</div><div class="ttdoc">Constructs an Adam optimizer with the specified hyperparameters.</div><div class="ttdef"><b>Definition</b> <a href="#l00076">Optimizer.cu:76</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_adam_html_aa7fc73a17f092e104d5284d2556a1a98"><div class="ttname"><a href="classnz_1_1opt_1_1_adam.html#aa7fc73a17f092e104d5284d2556a1a98">nz::opt::Adam::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the Adam algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">Optimizer.cu:83</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_momentum_html_a9b8d15dc85293840cbd19e27a6bb52a6"><div class="ttname"><a href="classnz_1_1opt_1_1_momentum.html#a9b8d15dc85293840cbd19e27a6bb52a6">nz::opt::Momentum::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the Momentum algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">Optimizer.cu:25</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_momentum_html_accdb15acc2b9f0e2f1fc7dce593c169d"><div class="ttname"><a href="classnz_1_1opt_1_1_momentum.html#accdb15acc2b9f0e2f1fc7dce593c169d">nz::opt::Momentum::Momentum</a></div><div class="ttdeci">Momentum(Tensor::value_type learning_rate, Tensor::value_type beta)</div><div class="ttdoc">Constructs a Momentum optimizer with a specified learning rate and momentum factor.</div><div class="ttdef"><b>Definition</b> <a href="#l00020">Optimizer.cu:20</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_n_adam_html_a2a13f32181ab30524b0fdf4ca555805f"><div class="ttname"><a href="classnz_1_1opt_1_1_n_adam.html#a2a13f32181ab30524b0fdf4ca555805f">nz::opt::NAdam::NAdam</a></div><div class="ttdeci">NAdam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2)</div><div class="ttdoc">Constructs a NAdam optimizer with specified hyperparameters.</div><div class="ttdef"><b>Definition</b> <a href="#l00101">Optimizer.cu:101</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_n_adam_html_add5c94bdc1b012f035b51339f92e7a49"><div class="ttname"><a href="classnz_1_1opt_1_1_n_adam.html#add5c94bdc1b012f035b51339f92e7a49">nz::opt::NAdam::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the NAdam algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00108">Optimizer.cu:108</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_r_m_sprop_html_ad5356d2c2dccd94c5f78ff69c76aa2ee"><div class="ttname"><a href="classnz_1_1opt_1_1_r_m_sprop.html#ad5356d2c2dccd94c5f78ff69c76aa2ee">nz::opt::RMSprop::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single optimization step using the RMSprop algorithm.</div><div class="ttdef"><b>Definition</b> <a href="#l00064">Optimizer.cu:64</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_r_m_sprop_html_aec35c9b3e1a1930d15a468c817a7352f"><div class="ttname"><a href="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f">nz::opt::RMSprop::RMSprop</a></div><div class="ttdeci">RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate)</div><div class="ttdoc">Constructs an RMSprop optimizer with specified learning rate and decay rate.</div><div class="ttdef"><b>Definition</b> <a href="#l00059">Optimizer.cu:59</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_s_g_d_html_a2b3d169ace2070e793da8f270bd760c8"><div class="ttname"><a href="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8">nz::opt::SGD::SGD</a></div><div class="ttdeci">SGD(Tensor::value_type learning_rate)</div><div class="ttdoc">Constructor for the SGD optimizer.</div><div class="ttdef"><b>Definition</b> <a href="#l00009">Optimizer.cu:9</a></div></div>
+<div class="ttc" id="aclassnz_1_1opt_1_1_s_g_d_html_ac1232979bd4ed03f49b27e5f8391707f"><div class="ttname"><a href="classnz_1_1opt_1_1_s_g_d.html#ac1232979bd4ed03f49b27e5f8391707f">nz::opt::SGD::step</a></div><div class="ttdeci">void step(Node *input) override</div><div class="ttdoc">Performs a single step of the Stochastic Gradient Descent (SGD) optimization.</div><div class="ttdef"><b>Definition</b> <a href="#l00013">Optimizer.cu:13</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html"><div class="ttname"><a href="namespacenz_1_1krnl.html">nz::krnl</a></div><div class="ttdoc">High-Performance CUDA Kernel Implementations for Tensor Computations.</div></div>
 <div class="ttc" id="anamespacenz_1_1opt_html"><div class="ttname"><a href="namespacenz_1_1opt.html">nz::opt</a></div><div class="ttdoc">Contains optimization algorithms for training deep learning models.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

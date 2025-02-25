@@ -74,47 +74,43 @@ $(function(){ initResizable(false); });
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;queue&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
+<code>#include &quot;<a class="el" href="_operation_kernels_8cuh_source.html">NeuZephyr/OperationKernels.cuh</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_optimizer_8cuh_source.html">Optimizer.cuh</a>&quot;</code><br />
+<code>#include &quot;utils.cuh&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ComputeGraph.cuh:</div>
 <div class="dyncontent">
 <div class="center"><img src="_compute_graph_8cuh__incl.png" border="0" usemap="#a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_compute_graph_8cuh" alt=""/></div>
 <map name="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_compute_graph_8cuh" id="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_compute_graph_8cuh">
-<area shape="rect" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="95,5,297,80"/>
+<area shape="rect" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="170,5,372,80"/>
 <area shape="rect" title=" " alt="" coords="5,128,59,155"/>
-<area shape="poly" title=" " alt="" coords="135,83,68,122,65,117,132,78"/>
+<area shape="poly" title=" " alt="" coords="181,83,75,126,73,121,179,78"/>
 <area shape="rect" title=" " alt="" coords="82,128,139,155"/>
-<area shape="poly" title=" " alt="" coords="166,82,134,118,130,114,162,79"/>
-<area shape="rect" title=" " alt="" coords="163,128,229,155"/>
-<area shape="poly" title=" " alt="" coords="199,80,199,112,193,112,193,80"/>
-<area shape="rect" title=" " alt="" coords="252,128,321,155"/>
-<area shape="poly" title=" " alt="" coords="232,78,266,114,262,118,228,82"/>
-<area shape="rect" href="_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models." alt="" coords="345,128,447,155"/>
-<area shape="poly" title=" " alt="" coords="273,78,357,119,355,123,271,83"/>
-<area shape="rect" title=" " alt="" coords="280,203,390,229"/>
-<area shape="poly" title=" " alt="" coords="387,157,357,193,353,189,383,153"/>
-<area shape="rect" href="_nodes_8cuh.html" title="Declaration of the Node class and various derived node classes for neural network operations." alt="" coords="414,203,498,229"/>
-<area shape="poly" title=" " alt="" coords="408,154,438,189,434,193,404,157"/>
-<area shape="rect" href="_tensor_8cuh.html" title="Definition of the Tensor class for GPU&#45;based tensor operations." alt="" coords="413,277,499,304"/>
-<area shape="poly" title=" " alt="" coords="459,230,459,262,453,262,453,230"/>
-<area shape="rect" href="_operation_kernels_8cuh.html" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="162,352,308,379"/>
-<area shape="poly" title=" " alt="" coords="418,307,289,349,287,344,417,302"/>
-<area shape="rect" title=" " alt="" coords="332,352,393,379"/>
-<area shape="poly" title=" " alt="" coords="441,307,392,345,389,340,438,302"/>
-<area shape="rect" title=" " alt="" coords="417,352,495,379"/>
-<area shape="poly" title=" " alt="" coords="459,305,459,336,453,336,453,305"/>
-<area shape="rect" title=" " alt="" coords="519,352,577,379"/>
-<area shape="poly" title=" " alt="" coords="474,302,522,340,519,345,470,307"/>
-<area shape="rect" href="dl__export_8cuh_source.html" title=" " alt="" coords="601,352,700,379"/>
-<area shape="poly" title=" " alt="" coords="491,302,603,344,601,349,489,307"/>
-<area shape="rect" title=" " alt="" coords="160,427,221,453"/>
-<area shape="poly" title=" " alt="" coords="229,381,208,415,204,412,225,378"/>
-<area shape="rect" href="utils_8cuh_source.html" title=" " alt="" coords="245,427,315,453"/>
-<area shape="poly" title=" " alt="" coords="245,378,266,412,262,415,240,381"/>
-<area shape="rect" title=" " alt="" coords="244,501,316,528"/>
-<area shape="poly" title=" " alt="" coords="283,454,283,486,277,486,277,454"/>
+<area shape="poly" title=" " alt="" coords="211,83,146,122,143,118,208,78"/>
+<area shape="rect" href="_operation_kernels_8cuh.html" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="164,128,378,155"/>
+<area shape="poly" title=" " alt="" coords="273,80,273,112,268,112,268,80"/>
+<area shape="rect" href="_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models." alt="" coords="402,128,504,155"/>
+<area shape="poly" title=" " alt="" coords="341,78,417,118,415,123,339,83"/>
+<area shape="rect" href="utils_8cuh_source.html" title=" " alt="" coords="529,128,599,155"/>
+<area shape="poly" title=" " alt="" coords="373,75,515,121,513,126,372,80"/>
+<area shape="rect" title=" " alt="" coords="281,203,391,229"/>
+<area shape="poly" title=" " alt="" coords="434,157,371,197,368,192,432,153"/>
+<area shape="rect" href="_nodes_8cuh.html" title="Declaration of the Node class and various derived node classes for neural network operations." alt="" coords="415,203,500,229"/>
+<area shape="poly" title=" " alt="" coords="457,155,458,187,453,187,451,155"/>
+<area shape="rect" title=" " alt="" coords="372,277,441,304"/>
+<area shape="poly" title=" " alt="" coords="451,231,426,266,422,263,446,228"/>
+<area shape="rect" href="_tensor_8cuh.html" title="Definition of the Tensor class for GPU&#45;based tensor operations." alt="" coords="465,277,551,304"/>
+<area shape="poly" title=" " alt="" coords="468,228,493,263,489,266,464,231"/>
+<area shape="rect" title=" " alt="" coords="339,352,400,379"/>
+<area shape="poly" title=" " alt="" coords="485,307,408,347,406,342,483,302"/>
+<area shape="rect" title=" " alt="" coords="424,352,502,379"/>
+<area shape="poly" title=" " alt="" coords="502,306,481,340,476,337,498,303"/>
+<area shape="rect" title=" " alt="" coords="526,352,583,379"/>
+<area shape="poly" title=" " alt="" coords="518,303,541,338,536,340,514,306"/>
+<area shape="rect" href="dl__export_8cuh_source.html" title=" " alt="" coords="608,352,707,379"/>
+<area shape="poly" title=" " alt="" coords="535,302,618,342,616,347,533,307"/>
+<area shape="rect" title=" " alt="" coords="528,203,600,229"/>
+<area shape="poly" title=" " alt="" coords="567,155,567,187,561,187,561,155"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">

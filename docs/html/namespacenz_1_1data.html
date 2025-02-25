@@ -193,11 +193,11 @@ ELU(x) = alpha * (exp(x) - 1), if x &lt;= 0
 <div class="line">Tensor result = <a class="code hl_function" href="#a463a6acd4af10f53a8f57e30fba2e660">ELU</a>(tensor, alpha);  <span class="comment">// Apply the ELU activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00918">Tensor.cu:918</a></div></div>
-<div class="ttc" id="anamespacenz_1_1data_html_a463a6acd4af10f53a8f57e30fba2e660"><div class="ttname"><a href="#a463a6acd4af10f53a8f57e30fba2e660">nz::data::ELU</a></div><div class="ttdeci">Tensor ELU(const Tensor &amp;tensor, float alpha)</div><div class="ttdoc">Applies the Exponential Linear Unit (ELU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00579">Tensor.cu:579</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00131">Tensor.cuh:131</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00920">Tensor.cu:920</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a463a6acd4af10f53a8f57e30fba2e660"><div class="ttname"><a href="#a463a6acd4af10f53a8f57e30fba2e660">nz::data::ELU</a></div><div class="ttdeci">Tensor ELU(const Tensor &amp;tensor, float alpha)</div><div class="ttdoc">Applies the Exponential Linear Unit (ELU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00581">Tensor.cu:581</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00579">579</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00581">581</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -253,9 +253,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#ab9821ac15d218a07161a211b04db5528">HardSigmoid</a>(tensor, alpha, beta);  <span class="comment">// Apply the Hard Sigmoid activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_ab9821ac15d218a07161a211b04db5528"><div class="ttname"><a href="#ab9821ac15d218a07161a211b04db5528">nz::data::HardSigmoid</a></div><div class="ttdeci">Tensor HardSigmoid(const Tensor &amp;tensor, float alpha, float beta)</div><div class="ttdoc">Applies the Hard Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00624">Tensor.cu:624</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_ab9821ac15d218a07161a211b04db5528"><div class="ttname"><a href="#ab9821ac15d218a07161a211b04db5528">nz::data::HardSigmoid</a></div><div class="ttdeci">Tensor HardSigmoid(const Tensor &amp;tensor, float alpha, float beta)</div><div class="ttdoc">Applies the Hard Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00626">Tensor.cu:626</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00624">624</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00626">626</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -309,9 +309,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#a68859b30e6833b954f27f89eb8592235">HardSwish</a>(tensor, alpha, beta);  <span class="comment">// Apply the Hard Swish activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a68859b30e6833b954f27f89eb8592235"><div class="ttname"><a href="#a68859b30e6833b954f27f89eb8592235">nz::data::HardSwish</a></div><div class="ttdeci">Tensor HardSwish(const Tensor &amp;tensor, float alpha, float beta)</div><div class="ttdoc">Applies the Hard Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00667">Tensor.cu:667</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a68859b30e6833b954f27f89eb8592235"><div class="ttname"><a href="#a68859b30e6833b954f27f89eb8592235">nz::data::HardSwish</a></div><div class="ttdeci">Tensor HardSwish(const Tensor &amp;tensor, float alpha, float beta)</div><div class="ttdoc">Applies the Hard Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00669">Tensor.cu:669</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00667">667</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00669">669</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -355,9 +355,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#a2037c2f13444847ea57d7110d8c48a51">Tanh</a>(tensor);  <span class="comment">// Apply the Tanh activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a2037c2f13444847ea57d7110d8c48a51"><div class="ttname"><a href="#a2037c2f13444847ea57d7110d8c48a51">nz::data::Tanh</a></div><div class="ttdeci">Tensor Tanh(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Tanh (hyperbolic tangent) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00464">Tensor.cu:464</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a2037c2f13444847ea57d7110d8c48a51"><div class="ttname"><a href="#a2037c2f13444847ea57d7110d8c48a51">nz::data::Tanh</a></div><div class="ttdeci">Tensor Tanh(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Tanh (hyperbolic tangent) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00466">Tensor.cu:466</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00499">499</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00501">501</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -404,7 +404,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00170">170</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00172">172</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -451,7 +451,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00132">132</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00134">134</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -498,7 +498,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00245">245</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00247">247</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -545,7 +545,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00282">282</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00284">284</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -592,7 +592,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00320">320</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00322">322</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -640,7 +640,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00359">359</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00361">361</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -688,7 +688,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00208">208</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00210">210</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -734,7 +734,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; tensor &lt;&lt; std::endl;  <span class="comment">// Prints the tensor to standard output in matrix format</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00034">34</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00036">36</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -779,7 +779,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cin &gt;&gt; tensor;  <span class="comment">// Reads the tensor&#39;s data from standard input</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00092">92</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00094">94</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -819,9 +819,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#a2cd35db5c2bc0fc68cb0461d2f600089">ReLU</a>(tensor);  <span class="comment">// Apply the ReLU activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00394">Tensor.cu:394</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00396">Tensor.cu:396</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00394">394</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00396">396</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -861,9 +861,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#a370bede45854c04c8222e9971cedc075">Sigmoid</a>(tensor);  <span class="comment">// Apply the Sigmoid activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a370bede45854c04c8222e9971cedc075"><div class="ttname"><a href="#a370bede45854c04c8222e9971cedc075">nz::data::Sigmoid</a></div><div class="ttdeci">Tensor Sigmoid(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00429">Tensor.cu:429</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a370bede45854c04c8222e9971cedc075"><div class="ttname"><a href="#a370bede45854c04c8222e9971cedc075">nz::data::Sigmoid</a></div><div class="ttdeci">Tensor Sigmoid(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00431">Tensor.cu:431</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00429">429</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00431">431</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -905,9 +905,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#a09849b685c23664bf02b0f824006f695">Softmax</a>(tensor);  <span class="comment">// Apply the Softmax activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a09849b685c23664bf02b0f824006f695"><div class="ttname"><a href="#a09849b685c23664bf02b0f824006f695">nz::data::Softmax</a></div><div class="ttdeci">Tensor Softmax(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Softmax activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00709">Tensor.cu:709</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a09849b685c23664bf02b0f824006f695"><div class="ttname"><a href="#a09849b685c23664bf02b0f824006f695">nz::data::Softmax</a></div><div class="ttdeci">Tensor Softmax(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Softmax activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00711">Tensor.cu:711</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00709">709</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00711">711</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -948,9 +948,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">Tensor result = <a class="code hl_function" href="#a271473f387bde9059ad5afa03851184a">Swish</a>(tensor);  <span class="comment">// Apply the Swish activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a271473f387bde9059ad5afa03851184a"><div class="ttname"><a href="#a271473f387bde9059ad5afa03851184a">nz::data::Swish</a></div><div class="ttdeci">Tensor Swish(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00537">Tensor.cu:537</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a271473f387bde9059ad5afa03851184a"><div class="ttname"><a href="#a271473f387bde9059ad5afa03851184a">nz::data::Swish</a></div><div class="ttdeci">Tensor Swish(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00539">Tensor.cu:539</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00537">537</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00539">539</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -991,7 +991,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00464">464</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00466">466</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>

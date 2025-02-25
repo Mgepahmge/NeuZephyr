@@ -150,7 +150,7 @@ Usage Example:</h3>
 <div class="line">relu_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *relu_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_html_a78a8e2e5cf13d31956e2367d923efa53"><div class="ttname"><a href="#a78a8e2e5cf13d31956e2367d923efa53">nz::nodes::calc::ReLUNode::ReLUNode</a></div><div class="ttdeci">ReLUNode(Node *input)</div><div class="ttdoc">Constructor to initialize a ReLUNode for applying the ReLU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00282">Nodes.cu:282</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_html_a78a8e2e5cf13d31956e2367d923efa53"><div class="ttname"><a href="#a78a8e2e5cf13d31956e2367d923efa53">nz::nodes::calc::ReLUNode::ReLUNode</a></div><div class="ttdeci">ReLUNode(Node *input)</div><div class="ttdoc">Constructor to initialize a ReLUNode for applying the ReLU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00281">Nodes.cu:281</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae8e78ee766f1e4845c6a110464e077f7" title="Forward pass for the ReLUNode to apply the ReLU activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089" title="Applies the Rectified Linear Unit (ReLU) activation function to a tensor.">ReLU</a> activation computation in the <a class="el" href="#ae8e78ee766f1e4845c6a110464e077f7" title="Forward pass for the ReLUNode to apply the ReLU activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#af06dd1eadec4b3616c7c9e655820b1b8" title="Backward pass for the ReLUNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#af06dd1eadec4b3616c7c9e655820b1b8" title="Backward pass for the ReLUNode to compute gradients.">backward</a> pass.</dd></dl>
@@ -206,7 +206,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00282">282</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00281">281</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -241,7 +241,7 @@ Usage Example:</h3>
 <li>The grid and block dimensions are calculated dynamically based on the size of the <code>output</code> tensor.</li>
 <li>The derivative of ReLU is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">ReLU</a><span class="stringliteral">&#39;(x) = 1, if x &gt; 0</span></div>
 <div class="line"><span class="stringliteral">          0, if x &lt;= 0</span></div>
-<div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00394">Tensor.cu:394</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00396">Tensor.cu:396</a></div></div>
 </div><!-- fragment --> This derivative is applied element-wise to propagate gradients through the ReLU operation.</li>
 <li>Gradients are accumulated in the gradient tensor of the input node.</li>
 </ul>
@@ -256,7 +256,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00295">295</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00294">294</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00289">289</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00288">288</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>

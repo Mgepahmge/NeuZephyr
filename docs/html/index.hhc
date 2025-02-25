@@ -763,6 +763,7 @@
                       </UL>
                     </UL>
                   <LI><OBJECT type="text/sitemap"><param name="Name" value="dl_export.cuh"><param name="Local" value="dl__export_8cuh_source.html"><param name="ImageNumber" value="11"></OBJECT>
+                  <LI><OBJECT type="text/sitemap"><param name="Name" value="NeuZephyrCudaErrorHandling.cuh"><param name="Local" value="_neu_zephyr_cuda_error_handling_8cuh_source.html"><param name="ImageNumber" value="11"></OBJECT>
                   <LI><OBJECT type="text/sitemap"><param name="Name" value="Nodes.cuh"><param name="Local" value="_nodes_8cuh.html"><param name="ImageNumber" value="1"></OBJECT>
                     <UL>
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="nz::nodes::Node"><param name="Local" value="classnz_1_1nodes_1_1_node.html"><param name="ImageNumber" value="1"></OBJECT>

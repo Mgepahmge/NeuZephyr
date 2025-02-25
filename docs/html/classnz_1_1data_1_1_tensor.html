@@ -285,10 +285,10 @@ Usage Example:</h3>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> multiplied_result = tensor * tensor3;  <span class="comment">// Multiply tensor (2x3) by tensor3 (3x2)</span></div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Multiplication result (2x3 * 3x2 = 2x2):&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">std::cout &lt;&lt; multiplied_result &lt;&lt; std::endl;  <span class="comment">// Print the result of matrix multiplication</span></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b549dd795e302066b32600220b5bfd9"><div class="ttname"><a href="#a2b549dd795e302066b32600220b5bfd9">nz::data::Tensor::ReLU</a></div><div class="ttdeci">friend DL_API Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00394">Tensor.cu:394</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a56eed9ac874126485dfd494d4ec59c33"><div class="ttname"><a href="#a56eed9ac874126485dfd494d4ec59c33">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(const value_type *data, bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00891">Tensor.cu:891</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00918">Tensor.cu:918</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00131">Tensor.cuh:131</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b549dd795e302066b32600220b5bfd9"><div class="ttname"><a href="#a2b549dd795e302066b32600220b5bfd9">nz::data::Tensor::ReLU</a></div><div class="ttdeci">friend DL_API Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00396">Tensor.cu:396</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a56eed9ac874126485dfd494d4ec59c33"><div class="ttname"><a href="#a56eed9ac874126485dfd494d4ec59c33">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(const value_type *data, bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00893">Tensor.cu:893</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00920">Tensor.cu:920</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><ul>
 <li>Ensure proper cleanup by calling the destructor or relying on RAII to avoid memory leaks.</li>
@@ -299,7 +299,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge(<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cuh_source.html#l00133">133</a> of file <a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cuh_source.html#l00131">131</a> of file <a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad0dda0efff93778cab46fd5aa708b983" name="ad0dda0efff93778cab46fd5aa708b983"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0dda0efff93778cab46fd5aa708b983">&#9670;&#160;</a></span>Tensor() <span class="overload">[1/6]</span></h2>
@@ -319,7 +319,7 @@ Usage Example:</h3>
 <p>Default constructor for <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a>. </p>
 <p>Initializes an empty <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a> with no data or shape. This constructor is primarily used as a placeholder or for initializing variables before assigning a valid tensor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00730">730</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00732">732</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -360,7 +360,7 @@ Usage Example:</h3>
 </dl>
 <p>This constructor allocates GPU memory for the tensor based on the specified shape. If <code>requires_grad</code> is set to true, additional memory is allocated for storing gradients. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00734">734</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00736">736</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -435,11 +435,11 @@ Usage Example:</h3>
 <div class="line">value_type <a class="code hl_function" href="#a38ba233ef49f34620297f96edd962c55">data</a>[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> tensor(<a class="code hl_function" href="#aade7b0c42622279888d755f4f7989aac">shape</a>, <a class="code hl_function" href="#a38ba233ef49f34620297f96edd962c55">data</a>, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01028">Tensor.cu:1028</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aade7b0c42622279888d755f4f7989aac"><div class="ttname"><a href="#aade7b0c42622279888d755f4f7989aac">nz::data::Tensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00850">Tensor.cu:850</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad0dda0efff93778cab46fd5aa708b983"><div class="ttname"><a href="#ad0dda0efff93778cab46fd5aa708b983">nz::data::Tensor::Tensor</a></div><div class="ttdeci">Tensor()</div><div class="ttdoc">Default constructor for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00730">Tensor.cu:730</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01030">Tensor.cu:1030</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aade7b0c42622279888d755f4f7989aac"><div class="ttname"><a href="#aade7b0c42622279888d755f4f7989aac">nz::data::Tensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00852">Tensor.cu:852</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad0dda0efff93778cab46fd5aa708b983"><div class="ttname"><a href="#ad0dda0efff93778cab46fd5aa708b983">nz::data::Tensor::Tensor</a></div><div class="ttdeci">Tensor()</div><div class="ttdoc">Default constructor for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00732">Tensor.cu:732</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00746">746</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00748">748</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -523,7 +523,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00762">762</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00764">764</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -561,7 +561,7 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Performs a deep copy of the tensor, including its shape, data, and gradient (if applicable). </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00783">783</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00785">785</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -597,7 +597,7 @@ Here is the call graph for this function:</div>
 </dl>
 <p>Moves the tensor data and ownership of the GPU memory to the new object. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00796">796</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00798">798</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -619,7 +619,7 @@ Here is the call graph for this function:</div>
 <p>Destructor for <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a>. </p>
 <p>Releases all GPU memory allocated for the tensor's data and gradient. Ensures that no memory leaks occur during the lifetime of the <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a> object. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00841">841</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00843">843</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -650,9 +650,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#afc4e6385b97cf7ceb8bb74748b73b681">clear</a>();         <span class="comment">// Clear the tensor&#39;s data by setting all elements to zero</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00914">Tensor.cu:914</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00916">Tensor.cu:916</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00914">914</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00916">916</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -693,7 +693,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Use gpu_data in CUDA kernels or other GPU-based operations</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01028">1028</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01030">1030</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -747,7 +747,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00865">865</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00867">867</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -820,7 +820,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00891">891</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00893">893</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -909,7 +909,7 @@ template&lt;typename Iterator &gt; </div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cuh_source.html#l00496">496</a> of file <a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cuh_source.html#l00494">494</a> of file <a class="el" href="_tensor_8cuh_source.html">Tensor.cuh</a>.</p>
 
 </div>
 </div>
@@ -946,7 +946,7 @@ template&lt;typename Iterator &gt; </div>
 <div class="line">tensor.<a class="code hl_function" href="#aaba025895b2c8b69de8d36c73c74929e">fill</a>(5.0f);      <span class="comment">// Fill the tensor&#39;s data with the value 5.0f</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00918">918</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00920">920</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -990,9 +990,9 @@ Here is the call graph for this function:</div>
 </dd></dl>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);  <span class="comment">// Create a tensor with gradient support</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#ab748aad919304a22289d42d78510438c">fillGrad</a>(0.0f);        <span class="comment">// Set all gradient values to 0.0f</span></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ab748aad919304a22289d42d78510438c"><div class="ttname"><a href="#ab748aad919304a22289d42d78510438c">nz::data::Tensor::fillGrad</a></div><div class="ttdeci">void fillGrad(value_type value) const</div><div class="ttdoc">Fills the tensor's gradient data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00927">Tensor.cu:927</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ab748aad919304a22289d42d78510438c"><div class="ttname"><a href="#ab748aad919304a22289d42d78510438c">nz::data::Tensor::fillGrad</a></div><div class="ttdeci">void fillGrad(value_type value) const</div><div class="ttdoc">Fills the tensor's gradient data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00929">Tensor.cu:929</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00927">927</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00929">929</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1053,7 +1053,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01032">1032</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01034">1034</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1100,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> result = tensor1 * tensor2;  <span class="comment">// Multiply the matrices (result will be 2x2)</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00958">958</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00960">960</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1147,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> result = tensor1 + tensor2;  <span class="comment">// Adds the two tensors element-wise</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00936">936</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00938">938</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1181,7 +1181,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = -tensor;  <span class="comment">// Negates all elements of the tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01055">1055</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01057">1057</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1228,7 +1228,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> result = tensor1 - tensor2;  <span class="comment">// Subtracts tensor2 from tensor1 element-wise</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00947">947</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00949">949</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1257,7 +1257,7 @@ Here is the call graph for this function:</div>
 <p>Performs a deep copy of the tensor, including its shape, data, and gradient (if applicable).</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the assigned <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a> object. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00809">809</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00811">811</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1294,7 +1294,7 @@ Here is the call graph for this function:</div>
 <p>Moves the tensor data and ownership of the GPU memory to the new object.</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the assigned <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a> object. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00826">826</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00828">828</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1333,9 +1333,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
 <div class="line">tensor.<a class="code hl_function" href="#ae5d80148c9ba63d913e2116301551345">print</a>();  <span class="comment">// Prints the tensor&#39;s data to the standard output in matrix format</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae5d80148c9ba63d913e2116301551345"><div class="ttname"><a href="#ae5d80148c9ba63d913e2116301551345">nz::data::Tensor::print</a></div><div class="ttdeci">void print() const noexcept</div><div class="ttdoc">Prints the tensor's data to the standard output.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00876">Tensor.cu:876</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae5d80148c9ba63d913e2116301551345"><div class="ttname"><a href="#ae5d80148c9ba63d913e2116301551345">nz::data::Tensor::print</a></div><div class="ttdeci">void print() const noexcept</div><div class="ttdoc">Prints the tensor's data to the standard output.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00878">Tensor.cu:878</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00876">876</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00878">878</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1389,9 +1389,9 @@ Here is the call graph for this function:</div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Gradient: &quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">tensor.<a class="code hl_function" href="#a4b02ed4d2afec1ce75931201af181e14">printGrad</a>(std::cout);  <span class="comment">// Print the gradient of the tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4b02ed4d2afec1ce75931201af181e14"><div class="ttname"><a href="#a4b02ed4d2afec1ce75931201af181e14">nz::data::Tensor::printGrad</a></div><div class="ttdeci">std::ostream &amp; printGrad(std::ostream &amp;os) const</div><div class="ttdoc">Prints the gradient values of the tensor to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01039">Tensor.cu:1039</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4b02ed4d2afec1ce75931201af181e14"><div class="ttname"><a href="#a4b02ed4d2afec1ce75931201af181e14">nz::data::Tensor::printGrad</a></div><div class="ttdeci">std::ostream &amp; printGrad(std::ostream &amp;os) const</div><div class="ttdoc">Prints the gradient values of the tensor to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01041">Tensor.cu:1041</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01039">1039</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01041">1041</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1441,9 +1441,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a7a9f1d5fae2989181645e5f59f7666d8">randomize</a>(12345);  <span class="comment">// Randomize tensor&#39;s data with a seed of 12345</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7a9f1d5fae2989181645e5f59f7666d8"><div class="ttname"><a href="#a7a9f1d5fae2989181645e5f59f7666d8">nz::data::Tensor::randomize</a></div><div class="ttdeci">void randomize(unsigned long long seed=0) const</div><div class="ttdoc">Randomizes the tensor's data with a uniform distribution.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00907">Tensor.cu:907</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7a9f1d5fae2989181645e5f59f7666d8"><div class="ttname"><a href="#a7a9f1d5fae2989181645e5f59f7666d8">nz::data::Tensor::randomize</a></div><div class="ttdeci">void randomize(unsigned long long seed=0) const</div><div class="ttdoc">Randomizes the tensor's data with a uniform distribution.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00909">Tensor.cu:909</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00907">907</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00909">909</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1475,9 +1475,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
 <div class="line">tensor.<a class="code hl_function" href="#a178a2240cd5d441be508490b2613fc55">recip</a>();  <span class="comment">// Computes the reciprocal of each element in the tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a178a2240cd5d441be508490b2613fc55"><div class="ttname"><a href="#a178a2240cd5d441be508490b2613fc55">nz::data::Tensor::recip</a></div><div class="ttdeci">void recip() const</div><div class="ttdoc">Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01063">Tensor.cu:1063</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a178a2240cd5d441be508490b2613fc55"><div class="ttname"><a href="#a178a2240cd5d441be508490b2613fc55">nz::data::Tensor::recip</a></div><div class="ttdeci">void recip() const</div><div class="ttdoc">Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01065">Tensor.cu:1065</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01063">1063</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01065">1065</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1518,7 +1518,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the tensor requires gradient computation, <code>false</code> otherwise.</dd></dl>
 <p>This function allows you to query whether the tensor is marked for gradient tracking, which is essential for backpropagation in neural networks. By default, tensors do not require gradients unless explicitly specified during construction or via <code>setRequiresGrad</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00849">849</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00851">851</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1560,9 +1560,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a877f9f2704e39100142d81d289ddc3f2">reshape</a>(std::vector&lt;int&gt;({3, 2}));  <span class="comment">// Reshape the tensor to shape 3x2, unused elements will be filled with zeros</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a877f9f2704e39100142d81d289ddc3f2"><div class="ttname"><a href="#a877f9f2704e39100142d81d289ddc3f2">nz::data::Tensor::reshape</a></div><div class="ttdeci">void reshape(const shape_type &amp;shape)</div><div class="ttdoc">Reshapes the tensor to the specified shape.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00970">Tensor.cu:970</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a877f9f2704e39100142d81d289ddc3f2"><div class="ttname"><a href="#a877f9f2704e39100142d81d289ddc3f2">nz::data::Tensor::reshape</a></div><div class="ttdeci">void reshape(const shape_type &amp;shape)</div><div class="ttdoc">Reshapes the tensor to the specified shape.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00972">Tensor.cu:972</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00970">970</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00972">972</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1617,7 +1617,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.<a class="code hl_function" href="#a877f9f2704e39100142d81d289ddc3f2">reshape</a>({3, 2});  <span class="comment">// Reshape the tensor to shape 3x2, unused elements will be filled with zeros</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00998">998</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01000">1000</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1685,9 +1685,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a>(std::vector&lt;int&gt;({1, 2}), 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae2cee8a54e65497113afd0c4f85dc02c"><div class="ttname"><a href="#ae2cee8a54e65497113afd0c4f85dc02c">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01013">Tensor.cu:1013</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae2cee8a54e65497113afd0c4f85dc02c"><div class="ttname"><a href="#ae2cee8a54e65497113afd0c4f85dc02c">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01015">Tensor.cu:1015</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01013">1013</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01015">1015</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1751,7 +1751,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.<a class="code hl_function" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a>({1, 2}, 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01024">1024</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01026">1026</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1800,7 +1800,7 @@ Here is the call graph for this function:</div>
 <p>This function allows you to enable or disable gradient tracking for the tensor. If gradient computation is enabled, additional memory may be allocated for storing gradients.</p>
 <dl class="section note"><dt>Note</dt><dd>Modifying this setting does not affect any existing gradient data stored in the tensor. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00854">854</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00856">856</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1831,7 +1831,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>A <code>shape_type</code> (alias for <code>std::vector&lt;int&gt;</code>) representing the dimensions of the tensor.</dd></dl>
 <p>The shape provides information about the size of each dimension in the tensor. For example, a tensor with shape <code>{2, 3}</code> represents a 2x3 matrix. The shape is defined during construction or reshaping of the tensor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00850">850</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00852">852</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1862,7 +1862,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>A <code>size_type</code> (alias for <code>unsigned long long</code>) representing the total number of elements.</dd></dl>
 <p>This function calculates the product of the dimensions in the tensor's shape. For example, a tensor with shape <code>{2, 3}</code> will have a size of 6. This value is useful for memory allocation and tensor operations. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00851">851</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00853">853</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1893,9 +1893,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a45e6f84ae74111ced9a96bdf204b2294">transpose</a>();     <span class="comment">// Transpose the tensor to shape 3x2</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a45e6f84ae74111ced9a96bdf204b2294"><div class="ttname"><a href="#a45e6f84ae74111ced9a96bdf204b2294">nz::data::Tensor::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transposes the tensor by swapping its dimensions and rearranging the data.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01002">Tensor.cu:1002</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a45e6f84ae74111ced9a96bdf204b2294"><div class="ttname"><a href="#a45e6f84ae74111ced9a96bdf204b2294">nz::data::Tensor::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transposes the tensor by swapping its dimensions and rearranging the data.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l01004">Tensor.cu:1004</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01002">1002</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l01004">1004</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1947,9 +1947,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);  <span class="comment">// Create a tensor with gradient support</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#aaf4088ef68468c61fc2f437b793d40d5">zeroGrad</a>();  <span class="comment">// Reset the gradients to zero</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaf4088ef68468c61fc2f437b793d40d5"><div class="ttname"><a href="#aaf4088ef68468c61fc2f437b793d40d5">nz::data::Tensor::zeroGrad</a></div><div class="ttdeci">void zeroGrad() const noexcept</div><div class="ttdoc">Resets the gradient data to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00870">Tensor.cu:870</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaf4088ef68468c61fc2f437b793d40d5"><div class="ttname"><a href="#aaf4088ef68468c61fc2f437b793d40d5">nz::data::Tensor::zeroGrad</a></div><div class="ttdeci">void zeroGrad() const noexcept</div><div class="ttdoc">Resets the gradient data to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00872">Tensor.cu:872</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00870">870</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00872">872</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2006,9 +2006,9 @@ ELU(x) = alpha * (exp(x) - 1), if x &lt;= 0
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a30aa89b90999505d6af26dc30dc207c7">ELU</a>(tensor, alpha);  <span class="comment">// Apply the ELU activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a30aa89b90999505d6af26dc30dc207c7"><div class="ttname"><a href="#a30aa89b90999505d6af26dc30dc207c7">nz::data::Tensor::ELU</a></div><div class="ttdeci">friend DL_API Tensor ELU(const Tensor &amp;tensor, float alpha=1.0f)</div><div class="ttdoc">Applies the Exponential Linear Unit (ELU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00579">Tensor.cu:579</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a30aa89b90999505d6af26dc30dc207c7"><div class="ttname"><a href="#a30aa89b90999505d6af26dc30dc207c7">nz::data::Tensor::ELU</a></div><div class="ttdeci">friend DL_API Tensor ELU(const Tensor &amp;tensor, float alpha=1.0f)</div><div class="ttdoc">Applies the Exponential Linear Unit (ELU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00581">Tensor.cu:581</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00579">579</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00581">581</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2072,9 +2072,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a2b912f1b9d4b301c2f360b693cf03ef3">HardSigmoid</a>(tensor, alpha, beta);  <span class="comment">// Apply the Hard Sigmoid activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b912f1b9d4b301c2f360b693cf03ef3"><div class="ttname"><a href="#a2b912f1b9d4b301c2f360b693cf03ef3">nz::data::Tensor::HardSigmoid</a></div><div class="ttdeci">friend DL_API Tensor HardSigmoid(const Tensor &amp;tensor, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Applies the Hard Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00624">Tensor.cu:624</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b912f1b9d4b301c2f360b693cf03ef3"><div class="ttname"><a href="#a2b912f1b9d4b301c2f360b693cf03ef3">nz::data::Tensor::HardSigmoid</a></div><div class="ttdeci">friend DL_API Tensor HardSigmoid(const Tensor &amp;tensor, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Applies the Hard Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00626">Tensor.cu:626</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00624">624</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00626">626</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2136,9 +2136,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a2ea20bf5c1d1526f35c9406d362ae7c9">HardSwish</a>(tensor, alpha, beta);  <span class="comment">// Apply the Hard Swish activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2ea20bf5c1d1526f35c9406d362ae7c9"><div class="ttname"><a href="#a2ea20bf5c1d1526f35c9406d362ae7c9">nz::data::Tensor::HardSwish</a></div><div class="ttdeci">friend DL_API Tensor HardSwish(const Tensor &amp;tensor, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Applies the Hard Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00667">Tensor.cu:667</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2ea20bf5c1d1526f35c9406d362ae7c9"><div class="ttname"><a href="#a2ea20bf5c1d1526f35c9406d362ae7c9">nz::data::Tensor::HardSwish</a></div><div class="ttdeci">friend DL_API Tensor HardSwish(const Tensor &amp;tensor, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Applies the Hard Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00669">Tensor.cu:669</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00667">667</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00669">669</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2190,9 +2190,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a5e2316f5542b552f910fdf27923bbb29">Tanh</a>(tensor);  <span class="comment">// Apply the Tanh activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a5e2316f5542b552f910fdf27923bbb29"><div class="ttname"><a href="#a5e2316f5542b552f910fdf27923bbb29">nz::data::Tensor::Tanh</a></div><div class="ttdeci">friend DL_API Tensor Tanh(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Tanh (hyperbolic tangent) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00464">Tensor.cu:464</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a5e2316f5542b552f910fdf27923bbb29"><div class="ttname"><a href="#a5e2316f5542b552f910fdf27923bbb29">nz::data::Tensor::Tanh</a></div><div class="ttdeci">friend DL_API Tensor Tanh(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Tanh (hyperbolic tangent) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00466">Tensor.cu:466</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00499">499</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00501">501</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2247,7 +2247,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00170">170</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00172">172</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2302,7 +2302,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00132">132</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00134">134</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2357,7 +2357,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00245">245</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00247">247</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2412,7 +2412,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00282">282</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00284">284</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2467,7 +2467,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00320">320</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00322">322</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2523,7 +2523,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00359">359</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00361">361</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2579,7 +2579,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00208">208</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00210">210</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2633,7 +2633,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; tensor &lt;&lt; std::endl;  <span class="comment">// Prints the tensor to standard output in matrix format</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00034">34</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00036">36</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2686,7 +2686,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cin &gt;&gt; tensor;  <span class="comment">// Reads the tensor&#39;s data from standard input</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00092">92</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00094">94</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2735,7 +2735,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00394">394</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00396">396</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2783,9 +2783,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a305eaad4aee364dee9efbaf07f1ace2f">Sigmoid</a>(tensor);  <span class="comment">// Apply the Sigmoid activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a305eaad4aee364dee9efbaf07f1ace2f"><div class="ttname"><a href="#a305eaad4aee364dee9efbaf07f1ace2f">nz::data::Tensor::Sigmoid</a></div><div class="ttdeci">friend DL_API Tensor Sigmoid(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00429">Tensor.cu:429</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a305eaad4aee364dee9efbaf07f1ace2f"><div class="ttname"><a href="#a305eaad4aee364dee9efbaf07f1ace2f">nz::data::Tensor::Sigmoid</a></div><div class="ttdeci">friend DL_API Tensor Sigmoid(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Sigmoid activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00431">Tensor.cu:431</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00429">429</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00431">431</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2835,9 +2835,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#a40d075b64061912220a8cc51c980fb2c">Softmax</a>(tensor);  <span class="comment">// Apply the Softmax activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a40d075b64061912220a8cc51c980fb2c"><div class="ttname"><a href="#a40d075b64061912220a8cc51c980fb2c">nz::data::Tensor::Softmax</a></div><div class="ttdeci">friend DL_API Tensor Softmax(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Softmax activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00709">Tensor.cu:709</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a40d075b64061912220a8cc51c980fb2c"><div class="ttname"><a href="#a40d075b64061912220a8cc51c980fb2c">nz::data::Tensor::Softmax</a></div><div class="ttdeci">friend DL_API Tensor Softmax(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Softmax activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00711">Tensor.cu:711</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00709">709</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00711">711</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2886,9 +2886,9 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_friend" href="#aa0a7800d605fe70d8a694b8d5287ab61">Swish</a>(tensor);  <span class="comment">// Apply the Swish activation</span></div>
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aa0a7800d605fe70d8a694b8d5287ab61"><div class="ttname"><a href="#aa0a7800d605fe70d8a694b8d5287ab61">nz::data::Tensor::Swish</a></div><div class="ttdeci">friend DL_API Tensor Swish(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00537">Tensor.cu:537</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aa0a7800d605fe70d8a694b8d5287ab61"><div class="ttname"><a href="#aa0a7800d605fe70d8a694b8d5287ab61">nz::data::Tensor::Swish</a></div><div class="ttdeci">friend DL_API Tensor Swish(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Swish activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00539">Tensor.cu:539</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00537">537</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00539">539</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2937,7 +2937,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00464">464</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00466">466</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
