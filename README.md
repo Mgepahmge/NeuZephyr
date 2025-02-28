@@ -17,8 +17,8 @@ NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, d
 
 ### System Requirements
 
-- CUDA driver (Recommended version: CUDA 10.2 or higher)
-- CMake 3.10 or higher
+- CUDA driver (Recommended version: CUDA 12 or higher)
+- CMake 3.10 or higher (Recommended version: CMake 3.18 or higher)
 
 ### Installation Steps
 
