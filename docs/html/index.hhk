@@ -367,7 +367,7 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a096c2fa69b1383eabb6b5e44b492f9fa"><param name="Name" value="operator=(Tensor &amp;&amp;other) noexcept"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a26b24cc132d14e054b3c25923516d781"><param name="Name" value="operator=(Tensor &amp;&amp;other) noexcept(false)"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
@@ -375,7 +375,7 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345"><param name="Name" value="print() const noexcept"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a052a50c725caef79520b2751680c2693"><param name="Name" value="print() const"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
@@ -403,19 +403,11 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa52833bd1c673353f21d097424841519"><param name="Name" value="reshape(const std::initializer_list&lt; int &gt; &amp;shape)"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
-  <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae2cee8a54e65497113afd0c4f85dc02c"><param name="Name" value="setData(const shape_type &amp;position, value_type value) const"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a37b775411e85e7eff40e5d159ea44c0f"><param name="Name" value="setData(const std::initializer_list&lt; int &gt; &amp;position, value_type value) const"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6a369c5e1096775b772303fea143f0b0"><param name="Name" value="setRequiresGrad(bool requires_grad) noexcept"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#abddb47a6dc305d289a1e4f91d01a5082"><param name="Name" value="setRequiresGrad(bool requires_grad)"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
@@ -463,7 +455,7 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aac66dc9afe373fb5f64372a2cc8aee2b"><param name="Name" value="Tensor(Tensor &amp;&amp;other) noexcept"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#adb57f91ae907875d78d804de85dbbc73"><param name="Name" value="Tensor(Tensor &amp;&amp;other) noexcept(false)"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
@@ -471,11 +463,11 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5"><param name="Name" value="zeroGrad() const noexcept"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0"><param name="Name" value="zeroGrad() const"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html"><param name="Name" value="nz::data::Tensor"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17"><param name="Name" value="~Tensor()"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a98a8b254d2b6c8b4893d7a286452a9b0"><param name="Name" value="~Tensor() noexcept(false)"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html"><param name="Name" value="nz::data"></OBJECT>
   <UL>
@@ -1165,7 +1157,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab8eaa8e06861a868b7df1a9ee0616a1a"><param name="Name" value="nz::data::Tensor"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#acdb68bf53d38e5a93fdd0effa4c3059a"><param name="Name" value="operator=(const Tensor &amp;other)"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a096c2fa69b1383eabb6b5e44b492f9fa"><param name="Name" value="operator=(Tensor &amp;&amp;other) noexcept"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a26b24cc132d14e054b3c25923516d781"><param name="Name" value="operator=(Tensor &amp;&amp;other) noexcept(false)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html#a40134aba93013e1b0d43c6fd5158d400"><param name="Name" value="operator&gt;&gt;(std::istream &amp;is, const Tensor &amp;tensor)"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html#a40134aba93013e1b0d43c6fd5158d400"><param name="Name" value="nz::data"></OBJECT>
@@ -1177,7 +1169,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a5ae0d765ed40c4973b54dc20a5cddf61"><param name="Name" value="operator[](const std::string &amp;name)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1opt_1_1_optimizer.html#aaf8d92566a815254dbb0ace9af9cb1ae"><param name="Name" value="Optimizer()=default"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1io_1_1_output_node.html#a98af165dc12d16d812708c3cdc9097b2"><param name="Name" value="OutputNode(Node *input)"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae5d80148c9ba63d913e2116301551345"><param name="Name" value="print() const noexcept"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a052a50c725caef79520b2751680c2693"><param name="Name" value="print() const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1io_1_1_output_node.html#ac340bd5a932808333e08e8bf24d53039"><param name="Name" value="print(std::ostream &amp;os) const override"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e"><param name="Name" value="print(std::ostream &amp;os) const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a1d54fe96c53fec967c8a20e1ac79ceed"><param name="Name" value="print(std::ostream &amp;os)"></OBJECT>
@@ -1199,7 +1191,6 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1calc_1_1_re_l_u_node.html#a78a8e2e5cf13d31956e2367d923efa53"><param name="Name" value="ReLUNode(Node *input)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a7cbc6dd248b882c95840835d0deaae1c"><param name="Name" value="requiresGrad() const noexcept"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2"><param name="Name" value="reshape(const shape_type &amp;shape)"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa52833bd1c673353f21d097424841519"><param name="Name" value="reshape(const std::initializer_list&lt; int &gt; &amp;shape)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1opt_1_1_r_m_sprop.html#aec35c9b3e1a1930d15a468c817a7352f"><param name="Name" value="RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a6aa07603223ea714d74fc884218cb50f"><param name="Name" value="save(const std::string &amp;path)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1calc_1_1_scalar_add_node.html#a83edb10337111d0ffe7140a154954a3b"><param name="Name" value="ScalarAddNode(Node *input, Tensor::value_type scalar)"></OBJECT>
@@ -1207,10 +1198,9 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1calc_1_1_scalar_mul_node.html#a32ca702895991f74b867c06e1807c96e"><param name="Name" value="ScalarMulNode(Node *input, Tensor::value_type scalar)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1nodes_1_1calc_1_1_scalar_sub_node.html#a27b61f5a960545b810cf3151fe65adf6"><param name="Name" value="ScalarSubNode(Node *input, Tensor::value_type scalar)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae2cee8a54e65497113afd0c4f85dc02c"><param name="Name" value="setData(const shape_type &amp;position, value_type value) const"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a37b775411e85e7eff40e5d159ea44c0f"><param name="Name" value="setData(const std::initializer_list&lt; int &gt; &amp;position, value_type value) const"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#ad1cf80f1b6ad23d39aa2c95ea80fa802"><param name="Name" value="setInput(const Node *node, const Tensor::value_type *data)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a1c84c586e2e269d282fe801b64e23cc9"><param name="Name" value="setInput(const std::string &amp;name, const Tensor::value_type *data)"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6a369c5e1096775b772303fea143f0b0"><param name="Name" value="setRequiresGrad(bool requires_grad) noexcept"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#abddb47a6dc305d289a1e4f91d01a5082"><param name="Name" value="setRequiresGrad(bool requires_grad)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1opt_1_1_s_g_d.html#a2b3d169ace2070e793da8f270bd760c8"><param name="Name" value="SGD(Tensor::value_type learning_rate)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac"><param name="Name" value="shape() const noexcept"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacenz_1_1data.html#a370bede45854c04c8222e9971cedc075"><param name="Name" value="Sigmoid(const Tensor &amp;tensor)"></OBJECT>
@@ -1285,15 +1275,21 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a18937864a9eb48eb91a5d82ebf9c010e"><param name="Name" value="Tensor(const shape_type &amp;shape, const std::initializer_list&lt; value_type &gt; &amp;data, bool requires_grad=false)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a93226c5c743300a5d1ddd4e39d8fd616"><param name="Name" value="Tensor(const shape_type &amp;shape, const value_type *data, bool requires_grad=false, bool host=true)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6184f0270420ac054f7bd372bbed1406"><param name="Name" value="Tensor(const Tensor &amp;other)"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aac66dc9afe373fb5f64372a2cc8aee2b"><param name="Name" value="Tensor(Tensor &amp;&amp;other) noexcept"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#adb57f91ae907875d78d804de85dbbc73"><param name="Name" value="Tensor(Tensor &amp;&amp;other) noexcept(false)"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a5960e75d631200994c0a2f78f58674dd"><param name="Name" value="topologicalSort()"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294"><param name="Name" value="transpose()"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#aee306895a3078a0b09d2a4bdf4843200"><param name="Name" value="update(Optimizer *optimizer) const"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aaf4088ef68468c61fc2f437b793d40d5"><param name="Name" value="zeroGrad() const noexcept"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0"><param name="Name" value="zeroGrad() const"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0"><param name="Name" value="nz::data::Tensor"></OBJECT>
+  </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a3f94019acc205a47726c0b0797b0e631"><param name="Name" value="zeroGrad() const"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a3f94019acc205a47726c0b0797b0e631"><param name="Name" value="nz::graph::ComputeGraph"></OBJECT>
+  </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1graph_1_1_compute_graph.html#a6397db45a249af6389dd3f7548b5aa0a"><param name="Name" value="~ComputeGraph()=default"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1opt_1_1_optimizer.html#ab9262983ef3bd11e6f548862b2f58e1d"><param name="Name" value="~Optimizer()=default"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a368d4476ebf71957a9228921a3f00b17"><param name="Name" value="~Tensor()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a98a8b254d2b6c8b4893d7a286452a9b0"><param name="Name" value="~Tensor() noexcept(false)"></OBJECT>
 </UL>
 </BODY>
 </HTML>

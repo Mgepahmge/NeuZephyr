@@ -121,6 +121,8 @@ namespace nz::data {
      * - Ensure proper cleanup by calling the destructor or relying on RAII to avoid memory leaks.
      * - Tensor size and shape must match during operations to prevent runtime errors.
      * - Requires CUDA-compatible hardware and a properly configured environment.
+     * - Most of the methods in this class involve CUDA operations and may throw the nz::CudaException in certain cases.
+     *
      *
      * @author
      * Mgepahmge(https://github.com/Mgepahmge)

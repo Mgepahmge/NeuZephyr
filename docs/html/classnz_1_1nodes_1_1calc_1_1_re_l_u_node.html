@@ -241,7 +241,7 @@ Usage Example:</h3>
 <li>The grid and block dimensions are calculated dynamically based on the size of the <code>output</code> tensor.</li>
 <li>The derivative of ReLU is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">ReLU</a><span class="stringliteral">&#39;(x) = 1, if x &gt; 0</span></div>
 <div class="line"><span class="stringliteral">          0, if x &lt;= 0</span></div>
-<div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00396">Tensor.cu:396</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a2cd35db5c2bc0fc68cb0461d2f600089"><div class="ttname"><a href="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089">nz::data::ReLU</a></div><div class="ttdeci">Tensor ReLU(const Tensor &amp;tensor)</div><div class="ttdoc">Applies the Rectified Linear Unit (ReLU) activation function to a tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00404">Tensor.cu:404</a></div></div>
 </div><!-- fragment --> This derivative is applied element-wise to propagate gradients through the ReLU operation.</li>
 <li>Gradients are accumulated in the gradient tensor of the input node.</li>
 </ul>
