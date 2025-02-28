@@ -272,7 +272,7 @@ namespace nz::data {
         *
         * Moves the tensor data and ownership of the GPU memory to the new object.
         */
-        Tensor(Tensor&& other) noexcept;
+        Tensor(Tensor&& other) noexcept(false);
 
         /**
         * @brief Assignment operator for Tensor.
@@ -294,7 +294,7 @@ namespace nz::data {
         *
         * @return A reference to the assigned Tensor object.
         */
-        Tensor& operator=(Tensor&& other) noexcept;
+        Tensor& operator=(Tensor&& other) noexcept(false);
 
         /**
         * @brief Destructor for Tensor.
@@ -302,7 +302,7 @@ namespace nz::data {
         * Releases all GPU memory allocated for the tensor's data and gradient. Ensures
         * that no memory leaks occur during the lifetime of the Tensor object.
         */
-        ~Tensor();
+        ~Tensor() noexcept(false);
 
         /// @}
 
@@ -352,7 +352,7 @@ namespace nz::data {
         *
         * @note Modifying this setting does not affect any existing gradient data stored in the tensor.
         */
-        void setRequiresGrad(bool requires_grad) noexcept;
+        void setRequiresGrad(bool requires_grad);
 
         /**
          * @brief Retrieves a pointer to the tensor's data stored in GPU memory.
@@ -421,11 +421,11 @@ namespace nz::data {
          * If the `grad` parameter is `false`, it copies data to the main data buffer (`_data`).
          *
          * The exception handling mechanism is in place to catch any CUDA memory copy errors.
-         * If the `cudaMemcpy` operation fails, it throws a `std::runtime_error` with an appropriate error message.
+         * If the `cudaMemcpy` operation fails, it throws a `nz::CudaException` with an appropriate error message.
          *
          * This function is closely related to the `Tensor` class as it modifies the internal data of the tensor.
          *
-         * @throws std::runtime_error If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
+         * @throws nz::CudaException If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
          *
          * @note
          * - The input data pointer `data` should point to a valid memory location with enough data to fill the tensor.
@@ -465,12 +465,12 @@ namespace nz::data {
          *
          * In case of an exception during the call to the `dataInject` function, the temporary array is deleted to prevent memory leaks. Finally, the temporary array is deleted after the call to `dataInject` returns successfully.
          *
-         * The exception handling mechanism catches any `std::runtime_error` thrown by the `dataInject` function and re - throws it after cleaning up the temporary memory.
+         * The exception handling mechanism catches any `nz::CudaException` or `std::runtime_error` thrown by the `dataInject` function and re - throws it after cleaning up the temporary memory.
          *
          * This function is closely related to the `Tensor` class and the other `dataInject` function as it uses the other `dataInject` function to perform the actual data injection.
          *
          * @throws std::runtime_error If the length of the input array is less than the size of the tensor.
-         * @throws std::runtime_error If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
+         * @throws nz::CudaException If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
          *
          * @note
          * - The iterators `begin` and `end` should be valid and form a proper range.
@@ -524,7 +524,7 @@ namespace nz::data {
          * This function is closely related to the `Tensor` class and the other `dataInject` functions as it leverages the existing data injection logic.
          *
          * @throws std::runtime_error If the length of the input array is less than the size of the tensor.
-         * @throws std::runtime_error If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
+         * @throws nz::CudaException If the CUDA memory copy fails or if the tensor does not require gradients when trying to inject gradient data.
          *
          * @note
          * - The `std::initializer_list` should contain enough elements to fill the tensor.
@@ -566,7 +566,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void zeroGrad() const noexcept;
+        void zeroGrad() const;
 
         /**
          * @brief Randomizes the tensor's data with a uniform distribution.
@@ -693,36 +693,6 @@ namespace nz::data {
         void reshape(const shape_type& shape);
 
         /**
-         * @brief Reshapes the tensor to the specified shape using an initializer list.
-         *
-         * This function changes the shape of the tensor, adjusting the layout of the data
-         * in memory. The new shape is specified using an initializer list. If the new shape
-         * has more elements than the current tensor, the extra elements will be initialized to zero.
-         * If the new shape has fewer elements, the excess elements will be discarded.
-         *
-         * @param shape An `std::initializer_list<int>` representing the new dimensions of the tensor.
-         *              The total number of elements in the new shape can be larger or smaller than the current shape.
-         *
-         * This function performs the following steps:
-         * 1. It updates the tensor's shape to the new dimensions.
-         * 2. If the new shape requires more elements than the current shape, the new elements are initialized to zero.
-         * 3. If the new shape requires fewer elements, the excess data is discarded.
-         *
-         * @note
-         * - This function does not reallocate memory. It simply adjusts how the existing data is interpreted based on the new shape.
-         * - If the new shape has more elements than the current tensor, the excess elements will be initialized to zero.
-         * - If the new shape has fewer elements, data beyond the new size will be discarded.
-         *
-         * @code
-         * ```cpp
-         * Tensor tensor({2, 3});  // Create a tensor with shape 2x3
-         * tensor.reshape({3, 2});  // Reshape the tensor to shape 3x2, unused elements will be filled with zeros
-         * ```
-         * @endcode
-         */
-        void reshape(const std::initializer_list<int>& shape);
-
-        /**
          * @brief Transposes the tensor by swapping its dimensions and rearranging the data.
          *
          * This function performs a transpose on the tensor by swapping its rows and columns.
@@ -780,40 +750,6 @@ namespace nz::data {
          * @endcode
          */
         void setData(const shape_type& position, value_type value) const;
-
-        /**
-         * @brief Sets a specific element of the tensor's data to a given value using an initializer list for position.
-         *
-         * This function modifies a specific element of the tensor's data stored in GPU memory.
-         * The element to be modified is specified by its position in the tensor's shape, which is given as
-         * an initializer list for the 2D index (row, column). The function copies the tensor's data from GPU memory
-         * to host memory, modifies the specified element, and then copies the updated data back to GPU memory.
-         *
-         * @param position An `std::initializer_list<int>` representing the 2D index (row, column)
-         *                 of the element to modify.
-         * @param value The value to which the specified element will be set.
-         *
-         * This function performs the following steps:
-         * 1. It checks if the provided position is valid within the tensor's shape. If not, an exception is thrown.
-         * 2. It copies the tensor's data from GPU memory to host memory using `cudaMemcpy`.
-         * 3. It modifies the specified element at the given position in the tensor's data.
-         * 4. It copies the updated data back to the GPU memory.
-         *
-         * @throws std::invalid_argument If the provided position is out of bounds.
-         *
-         * @note
-         * - This function uses memory copying between host and device, which can introduce performance overhead.
-         * - The tensor's data is modified on the host first and then copied back to the GPU. This approach may not be
-         *   the most efficient for large tensors or frequent updates.
-         *
-         * @code
-         * ```cpp
-         * Tensor tensor({2, 3});  // Create a tensor with shape 2x3
-         * tensor.setData({1, 2}, 7.5f);  // Set the element at position (1, 2) to 7.5f
-         * ```
-         * @endcode
-         */
-        void setData(const std::initializer_list<int>& position, value_type value) const;
 
         /// @}
 
@@ -1026,7 +962,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void print() const noexcept;
+        void print() const;
 
         /// @}
 

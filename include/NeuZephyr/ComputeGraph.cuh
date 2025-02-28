@@ -60,7 +60,7 @@
 
 #include <string>
 #include <queue>
-#include "NeuZephyr/OperationKernels.cuh"
+#include "OperationKernels.cuh"
 #include "Optimizer.cuh"
 #include "utils.cuh"
 

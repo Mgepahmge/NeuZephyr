@@ -130,7 +130,7 @@ namespace nz::krnl {
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
      */
-    void MatrixAdd(dim3 gridDim, dim3 blockDim, const float* a, const float* b, float* c, const unsigned long long n);
+    void MatrixAdd(dim3 gridDim, dim3 blockDim, const float* a, const float* b, float* c, unsigned long long n);
 
     /**
      * @brief Kernel function to perform matrix subtraction on GPU
@@ -145,8 +145,8 @@ namespace nz::krnl {
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
      */
-    void MatrixSub(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
-                   const unsigned long long n);
+    void MatrixSub(dim3 gridDim, dim3 blockDim, const float* a, const float* b, float* c,
+                   unsigned long long n);
 
     /**
      * @brief Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores
@@ -165,10 +165,10 @@ namespace nz::krnl {
      * @param N The number of columns in matrix B and matrix C
      * @param K The number of columns in matrix A and rows in matrix B
      */
-    void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, const float* A, const float* B, float* C,
-                          const unsigned long long M,
-                          const unsigned long long N,
-                          const unsigned long long K);
+    void GeneralMatrixMul(dim3 gridDim, dim3 blockDim, const float* A, const float* B, float* C,
+                          unsigned long long M,
+                          unsigned long long N,
+                          unsigned long long K);
 
     /**
      * @brief Kernel function to transpose a matrix on the GPU
