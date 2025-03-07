@@ -134,7 +134,7 @@ Public Member Functions</h2></td></tr>
 <li>Ensure that the model parameters have been properly initialized, and gradients are computed before calling this method.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md61"></a>
+<h3><a class="anchor" id="autotoc_md68"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1opt_1_1_n_adam.html">NAdam</a> optimizer(0.001, 0.9, 0.999);</div>
 <div class="line">graph.update(&amp;optimizer); <span class="comment">// Suppose &quot;graph&quot; is a computation graph waiting for gradient updates.</span></div>
@@ -252,7 +252,7 @@ Nodes::Node for the class representing model parameters.</dd></dl>
 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2a13f32181ab30524b0fdf4ca555805f" title="Constructs a NAdam optimizer with specified hyperparameters.">NAdam::NAdam()</a> Constructor for initializing optimizer parameters </dd>
 <dd>
-krnl::NAdam CUDA kernel implementing the <a class="el" href="classnz_1_1opt_1_1_n_adam.html" title="NAdam optimizer for deep learning models.">NAdam</a> update rule</dd></dl>
+<a class="el" href="namespacenz_1_1krnl.html#a04cc89e77f54501bd5434503a1a63493" title="Kernel function to apply NAdam optimization.">krnl::NAdam</a> CUDA kernel implementing the <a class="el" href="classnz_1_1opt_1_1_n_adam.html" title="NAdam optimizer for deep learning models.">NAdam</a> update rule</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/07 </dd></dl>
 
@@ -264,9 +264,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1opt_1_1_n_adam_add5c94bdc1b012f035b51339f92e7a49_cgraph.png" border="0" usemap="#aclassnz_1_1opt_1_1_n_adam_add5c94bdc1b012f035b51339f92e7a49_cgraph" alt=""/></div>
 <map name="aclassnz_1_1opt_1_1_n_adam_add5c94bdc1b012f035b51339f92e7a49_cgraph" id="aclassnz_1_1opt_1_1_n_adam_add5c94bdc1b012f035b51339f92e7a49_cgraph">
-<area shape="rect" title="Performs a single optimization step using the NAdam algorithm." alt="" coords="5,5,152,32"/>
+<area shape="rect" title="Performs a single optimization step using the NAdam algorithm." alt="" coords="5,31,152,57"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="200,5,336,32"/>
-<area shape="poly" title=" " alt="" coords="152,16,184,16,184,21,152,21"/>
+<area shape="poly" title=" " alt="" coords="152,32,184,27,185,32,152,37"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a04cc89e77f54501bd5434503a1a63493" title="Kernel function to apply NAdam optimization." alt="" coords="210,56,326,83"/>
+<area shape="poly" title=" " alt="" coords="152,51,195,57,194,62,152,56"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="384,5,532,32"/>
 <area shape="poly" title=" " alt="" coords="336,16,369,16,369,21,336,21"/>
 </map>

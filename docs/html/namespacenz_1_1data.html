@@ -76,12 +76,21 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible container-like interfaces.  <a href="classnz_1_1data_1_1_mapped_tensor.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.  <a href="classnz_1_1data_1_1_tensor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:af967fb10a908c374d8378ac7ef22779c" id="r_af967fb10a908c374d8378ac7ef22779c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af967fb10a908c374d8378ac7ef22779c">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> &amp;tensor)</td></tr>
+<tr class="memdesc:af967fb10a908c374d8378ac7ef22779c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the &lt;&lt; operator to print a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object to an output stream.  <br /></td></tr>
+<tr class="separator:af967fb10a908c374d8378ac7ef22779c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ea5e60f987ab3853b4d0af44453a9e2" id="r_a4ea5e60f987ab3853b4d0af44453a9e2"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ea5e60f987ab3853b4d0af44453a9e2">operator&gt;&gt;</a> (std::istream &amp;is, <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> &amp;tensor)</td></tr>
+<tr class="memdesc:a4ea5e60f987ab3853b4d0af44453a9e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the &gt;&gt; operator to read data from an input stream into a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object.  <br /></td></tr>
+<tr class="separator:a4ea5e60f987ab3853b4d0af44453a9e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2907370af84a6c5bdc4b72803c9edc68" id="r_a2907370af84a6c5bdc4b72803c9edc68"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2907370af84a6c5bdc4b72803c9edc68">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;tensor)</td></tr>
 <tr class="memdesc:a2907370af84a6c5bdc4b72803c9edc68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the <code>&lt;&lt;</code> operator to print the tensor's data to an output stream.  <br /></td></tr>
 <tr class="separator:a2907370af84a6c5bdc4b72803c9edc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -692,8 +701,62 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 
 </div>
 </div>
+<a id="af967fb10a908c374d8378ac7ef22779c" name="af967fb10a908c374d8378ac7ef22779c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af967fb10a908c374d8378ac7ef22779c">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; nz::data::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tensor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overload the &lt;&lt; operator to print a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object to an output stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>An output stream (host-to-host) where the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> data and gradient will be printed. </td></tr>
+    <tr><td class="paramname">tensor</td><td>A constant reference (host-to-host) to the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object to be printed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the output stream <code>os</code> after printing the tensor data and possibly its gradient.</dd></dl>
+<p>This function provides a convenient way to print a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object using the &lt;&lt; operator. It first calls the <code>print</code> method of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> to print the tensor's data. If the tensor requires gradients, it then prints a header "Gradient: " followed by the gradient data using the <code>printGrad</code> method.</p>
+<p>Memory management: The function does not allocate or deallocate any memory. It relies on the <code>print</code> and <code>printGrad</code> methods of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>, which also do not perform memory allocation. Exception handling: If the tensor requires gradients and an exception occurs during the <code>printGrad</code> call (e.g., due to an invalid state of the output stream or incorrect internal data), the exception will be propagated. If the tensor does not require gradients, the <code>printGrad</code> call is skipped, and no exception related to gradient printing will be thrown. Relationship with other components: This function is related to the data presentation component of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>. It integrates the <code>print</code> and <code>printGrad</code> methods to provide a unified way of printing the tensor and its gradient.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Propagated from the <code>printGrad</code> method if the tensor requires gradients and there is an issue with gradient printing.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The overall time complexity of this function is O(m * n) if the tensor does not require gradients and O(2 * m * n) if it does, where m is the number of rows (<code>_shape[0]</code>) and n is the number of columns (<code>_shape[1]</code>) of the tensor, as it iterates over the tensor data and possibly the gradient data.</li>
+<li>Ensure that the output stream <code>os</code> is in a valid state before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line">nz::data::MappedTensor::shape_type shape = {2, 3};</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> tensor(shape, <span class="keyword">true</span>);</div>
+<div class="line">tensor.dataInject({1, 2, 3, 4, 5, 6}, <span class="keyword">false</span>);</div>
+<div class="line">tensor.dataInject({7, 8, 9, 10, 11, 12}, <span class="keyword">true</span>);</div>
+<div class="line">std::cout &lt;&lt; tensor;</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a></div><div class="ttdoc">A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cuh_source.html#l00065">MappedTensor.cuh:65</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00043">43</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+
+</div>
+</div>
 <a id="a2907370af84a6c5bdc4b72803c9edc68" name="a2907370af84a6c5bdc4b72803c9edc68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2907370af84a6c5bdc4b72803c9edc68">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2907370af84a6c5bdc4b72803c9edc68">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -739,7 +802,7 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 </div>
 </div>
 <a id="a40134aba93013e1b0d43c6fd5158d400" name="a40134aba93013e1b0d43c6fd5158d400"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40134aba93013e1b0d43c6fd5158d400">&#9670;&#160;</a></span>operator&gt;&gt;()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a40134aba93013e1b0d43c6fd5158d400">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -780,6 +843,52 @@ HardSigmoid(x) = 1, if x &gt; 2.5
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00095">95</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+
+</div>
+</div>
+<a id="a4ea5e60f987ab3853b4d0af44453a9e2" name="a4ea5e60f987ab3853b4d0af44453a9e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ea5e60f987ab3853b4d0af44453a9e2">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream &amp; nz::data::operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>is</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tensor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overload the &gt;&gt; operator to read data from an input stream into a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">is</td><td>An input stream (host-to-host) from which the data will be read. </td></tr>
+    <tr><td class="paramname">tensor</td><td>A reference (host-to-host) to the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object where the data will be stored.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the input stream <code>is</code> after the reading operation.</dd></dl>
+<p>This function provides a convenient way to populate a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object with data from an input stream. It iterates through the elements of the tensor and reads values from the input stream one by one, until either all elements of the tensor have been filled or the input stream fails to provide more data.</p>
+<p>Memory management: The function does not allocate or deallocate any memory. It assumes that the <code>_data</code> array of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> has already been allocated with the appropriate size (<code>_size</code>). Exception handling: If the input stream fails to provide data (e.g., due to end-of-file or an invalid input format), the loop will terminate, and the function will return the input stream in its current state. No exceptions are thrown by this function itself, but the <code>&gt;&gt;</code> operator on the input stream may throw exceptions depending on its implementation. Relationship with other components: This function is related to the data input component of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>. It integrates with the standard input stream to allow easy data population.</p>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the size of the tensor (<code>_size</code>), as it iterates through each element of the tensor once.</li>
+<li>Ensure that the input stream contains valid data in the correct format to avoid unexpected behavior.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line">nz::data::MappedTensor::shape_type shape = {2, 3};</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> tensor(shape, <span class="keyword">false</span>);</div>
+<div class="line">std::istringstream iss(<span class="stringliteral">&quot;1 2 3 4 5 6&quot;</span>);</div>
+<div class="line">iss &gt;&gt; tensor;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00079">79</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>

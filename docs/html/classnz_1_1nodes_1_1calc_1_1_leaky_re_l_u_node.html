@@ -124,8 +124,9 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational graph. </p>
-<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node.html" title="Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational grap...">LeakyReLUNode</a></code> class applies the Leaky ReLU activation function to the input tensor. Unlike the standard ReLU, Leaky ReLU allows a small, non-zero gradient for negative input values. The function is defined as: </p><div class="fragment"><div class="line">LeakyReLU(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
+<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node.html" title="Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational grap...">LeakyReLUNode</a></code> class applies the Leaky ReLU activation function to the input tensor. Unlike the standard ReLU, Leaky ReLU allows a small, non-zero gradient for negative input values. The function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0">LeakyReLU</a>(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
 <div class="line">               alpha * x, <span class="keywordflow">if</span> x &lt;= 0</div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a46f2fac9d4d89c221194e3d44174bda0"><div class="ttname"><a href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0">nz::krnl::LeakyReLU</a></div><div class="ttdeci">void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n, const float alpha=0.01f)</div><div class="ttdoc">Kernel function to apply the Leaky ReLU activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00256">OperationKernels.cu:256</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> is a small constant that determines the slope for negative values.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Leaky ReLU activation function element-wise to the input tensor. Positive values remain unchanged, while negative values are scaled by <code>alpha</code>.</li>
@@ -139,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md48"></a>
+<h3><a class="anchor" id="autotoc_md55"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using LeakyReLUNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -204,7 +205,7 @@ Usage Example:</h3>
 <li>The node's type is set to "LeakyReLU" to reflect its operation.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>The Leaky ReLU activation function is defined as: <div class="fragment"><div class="line">LeakyReLU(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
+<li>The Leaky ReLU activation function is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0">LeakyReLU</a>(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
 <div class="line">               alpha * x, <span class="keywordflow">if</span> x &lt;= 0</div>
 </div><!-- fragment --></li>
 <li>This node supports automatic gradient tracking if the input tensor requires gradients.</li>
@@ -245,7 +246,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Backward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node.html" title="Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational grap...">LeakyReLUNode</a></code> to compute gradients. </p>
-<p>The <code><a class="el" href="#aa3fe1c9e74733c8c5e15e71ec14143f0" title="Backward pass for the LeakyReLUNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the Leaky ReLU activation function. The gradient computation is defined as: </p><div class="fragment"><div class="line">LeakyReLU<span class="stringliteral">&#39;(x) = 1, if x &gt; 0</span></div>
+<p>The <code><a class="el" href="#aa3fe1c9e74733c8c5e15e71ec14143f0" title="Backward pass for the LeakyReLUNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the Leaky ReLU activation function. The gradient computation is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0">LeakyReLU</a><span class="stringliteral">&#39;(x) = 1, if x &gt; 0</span></div>
 <div class="line"><span class="stringliteral">                alpha, if x &lt;= 0</span></div>
 </div><!-- fragment --><ul>
 <li>A CUDA kernel (<code>LeakyReLUBackward</code>) is launched to compute the gradients in parallel on the GPU.</li>
@@ -265,6 +266,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00359">359</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_aa3fe1c9e74733c8c5e15e71ec14143f0_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_aa3fe1c9e74733c8c5e15e71ec14143f0_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_aa3fe1c9e74733c8c5e15e71ec14143f0_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_aa3fe1c9e74733c8c5e15e71ec14143f0_cgraph">
+<area shape="rect" title="Backward pass for the LeakyReLUNode to compute gradients." alt="" coords="5,5,176,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a932eaf573ea612466b51a74260c4dc4c" title="Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation." alt="" coords="224,13,423,40"/>
+<area shape="poly" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -292,7 +303,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Forward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node.html" title="Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational grap...">LeakyReLUNode</a></code> to apply the Leaky ReLU activation function. </p>
-<p>The <code><a class="el" href="#a287aebe2ce3437d393fb1ac1b1119d25" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function.">forward()</a></code> method applies the Leaky ReLU activation function element-wise to the input tensor. Positive input values remain unchanged, while negative input values are scaled by the <code>alpha</code> parameter. The result is stored in the <code>output</code> tensor. The function is defined as: </p><div class="fragment"><div class="line">LeakyReLU(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
+<p>The <code><a class="el" href="#a287aebe2ce3437d393fb1ac1b1119d25" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function.">forward()</a></code> method applies the Leaky ReLU activation function element-wise to the input tensor. Positive input values remain unchanged, while negative input values are scaled by the <code>alpha</code> parameter. The result is stored in the <code>output</code> tensor. The function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0">LeakyReLU</a>(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
 <div class="line">               alpha * x, <span class="keywordflow">if</span> x &lt;= 0</div>
 </div><!-- fragment --><ul>
 <li>A CUDA kernel (<code>LeakyReLU</code>) is launched to compute the activation function in parallel on the GPU.</li>
@@ -306,6 +317,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00353">353</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_a287aebe2ce3437d393fb1ac1b1119d25_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_a287aebe2ce3437d393fb1ac1b1119d25_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_a287aebe2ce3437d393fb1ac1b1119d25_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node_a287aebe2ce3437d393fb1ac1b1119d25_cgraph">
+<area shape="rect" title="Forward pass for the LeakyReLUNode to apply the Leaky ReLU activation function." alt="" coords="5,5,176,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0" title="Kernel function to apply the Leaky ReLU activation function on the GPU." alt="" coords="224,13,365,40"/>
+<area shape="poly" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
+</map>
+</div>
 
 </div>
 </div>

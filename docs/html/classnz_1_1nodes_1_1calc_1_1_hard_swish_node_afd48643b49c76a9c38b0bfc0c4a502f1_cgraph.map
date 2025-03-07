@@ -1,5 +1,5 @@
 <map id="nz::nodes::calc::HardSwishNode::forward" name="nz::nodes::calc::HardSwishNode::forward">
 <area shape="rect" id="Node000001" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function." alt="" coords="5,5,188,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a07c114bd79070971d24497269954acc6" title="Kernel function to apply the Hard Swish activation function on the GPU." alt="" coords="236,13,372,40"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad" title="Kernel function to apply the Hard Swish activation function on the GPU." alt="" coords="236,13,372,40"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,24,220,24,220,29,188,29"/>
 </map>

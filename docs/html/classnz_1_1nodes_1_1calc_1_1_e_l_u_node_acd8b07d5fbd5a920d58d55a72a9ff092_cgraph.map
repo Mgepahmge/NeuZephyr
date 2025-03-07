@@ -1,5 +1,5 @@
 <map id="nz::nodes::calc::ELUNode::forward" name="nz::nodes::calc::ELUNode::forward">
 <area shape="rect" id="Node000001" title="Forward pass for the ELUNode to apply the ELU activation function." alt="" coords="5,5,181,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ae5cdc2c4f8a33eaf63214c3a38ef24f0" title="Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU." alt="" coords="229,13,428,40"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a76bae8401d19501237cb390fb6f6e11a" title="Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU." alt="" coords="229,13,428,40"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,24,213,24,213,29,181,29"/>
 </map>

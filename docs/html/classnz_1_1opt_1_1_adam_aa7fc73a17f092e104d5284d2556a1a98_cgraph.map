@@ -1,7 +1,9 @@
 <map id="nz::opt::Adam::step" name="nz::opt::Adam::step">
-<area shape="rect" id="Node000001" title="Performs a single optimization step using the Adam algorithm." alt="" coords="5,5,142,32"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,5,326,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,174,16,174,21,142,21"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="374,5,522,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="326,16,359,16,359,21,326,21"/>
+<area shape="rect" id="Node000001" title="Performs a single optimization step using the Adam algorithm." alt="" coords="5,31,142,57"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#af867be3ad4ff2028ae16857a368054f2" title="Kernel function to apply Adam optimization." alt="" coords="205,5,311,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,32,189,25,190,31,142,37"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,56,326,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,51,174,55,174,60,142,56"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="374,56,522,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="326,67,359,67,359,72,326,72"/>
 </map>

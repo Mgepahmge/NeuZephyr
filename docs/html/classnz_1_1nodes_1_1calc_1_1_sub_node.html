@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
 <li>Gradients are propagated efficiently, with negation applied to the right input tensor's gradient during backpropagation.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md44"></a>
+<h3><a class="anchor" id="autotoc_md51"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using SubNode for tensor subtraction</span></div>
 <div class="line">InputNode input1({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create the first input node with shape {3, 3}</span></div>
@@ -268,6 +268,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00264">264</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_sub_node_abb396a092ac9fb09c3a656329132842d_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_sub_node_abb396a092ac9fb09c3a656329132842d_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_sub_node_abb396a092ac9fb09c3a656329132842d_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_sub_node_abb396a092ac9fb09c3a656329132842d_cgraph">
+<area shape="rect" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,5,178,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#ac4e4b8e2415062632b49dd77694b0974" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="226,13,350,40"/>
+<area shape="poly" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -313,6 +323,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00257">257</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_sub_node_a6ba6a63da4e869f8f0004896d01fe3f1_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_sub_node_a6ba6a63da4e869f8f0004896d01fe3f1_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_sub_node_a6ba6a63da4e869f8f0004896d01fe3f1_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_sub_node_a6ba6a63da4e869f8f0004896d01fe3f1_cgraph">
+<area shape="rect" title="Forward pass for the SubNode to perform tensor subtraction." alt="" coords="5,5,178,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a02ad4d4f320e2561be553557ef5805af" title="Kernel function to perform matrix subtraction on GPU." alt="" coords="226,13,357,40"/>
+<area shape="poly" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
+</map>
+</div>
 
 </div>
 </div>

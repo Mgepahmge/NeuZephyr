@@ -1,14 +1,13 @@
 <map id="nz::nodes::calc::MatMulNode::backward" name="nz::nodes::calc::MatMulNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the MatMulNode to propagate gradients." alt="" coords="5,48,198,91"/>
+<area shape="rect" id="Node000001" title="Backward pass for the MatMulNode to propagate gradients." alt="" coords="5,73,198,116"/>
 <area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="262,5,410,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,46,256,33,257,38,199,51"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="691,56,850,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,67,676,67,676,72,198,72"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="246,107,426,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,88,257,100,256,105,197,93"/>
-<area shape="rect" id="Node000005" href="$classnz_1_1data_1_1_tensor.html#a877f9f2704e39100142d81d289ddc3f2" title="Reshapes the tensor to the specified shape." alt="" coords="474,107,643,133"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="426,117,458,117,458,123,426,123"/>
-<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="617,103,696,84,697,89,618,109"/>
-<area shape="rect" id="Node000006" href="$classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="697,107,844,133"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="644,117,682,117,682,123,644,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,70,245,41,269,34,270,39,246,47,163,75"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="257,56,415,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,82,241,77,241,82,198,87"/>
+<area shape="rect" id="Node000004" href="$namespacenz_1_1krnl.html#afaaec3e0398823e64710a8474ff1dcd5" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="246,107,426,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,102,231,106,230,111,198,108"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="246,157,426,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="163,114,246,143,270,150,269,155,245,148,161,119"/>
+<area shape="rect" id="Node000006" href="$namespacenz_1_1krnl.html#ac35465fb782e707b54abe85d98d417f6" title="Kernel function to transpose a matrix on the GPU." alt="" coords="474,157,607,184"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="426,168,458,168,458,173,426,173"/>
 </map>

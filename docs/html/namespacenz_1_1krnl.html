@@ -64,12 +64,147 @@ $(function(){ initResizable(false); });
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">nz::krnl Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>High-Performance CUDA Kernel Implementations for Tensor Computations.  
 <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac24c370f0323c789136d1c2e1fd00137" id="r_ac24c370f0323c789136d1c2e1fd00137"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac24c370f0323c789136d1c2e1fd00137">MatrixAdd</a> (dim3 gridDim, dim3 blockDim, const float *a, const float *b, float *c, unsigned long long n)</td></tr>
+<tr class="memdesc:ac24c370f0323c789136d1c2e1fd00137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix addition on GPU.  <br /></td></tr>
+<tr class="separator:ac24c370f0323c789136d1c2e1fd00137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ad4d4f320e2561be553557ef5805af" id="r_a02ad4d4f320e2561be553557ef5805af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02ad4d4f320e2561be553557ef5805af">MatrixSub</a> (dim3 gridDim, dim3 blockDim, const float *a, const float *b, float *c, unsigned long long n)</td></tr>
+<tr class="memdesc:a02ad4d4f320e2561be553557ef5805af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix subtraction on GPU.  <br /></td></tr>
+<tr class="separator:a02ad4d4f320e2561be553557ef5805af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d3b5cd440afb3c6557515247b5b680" id="r_a33d3b5cd440afb3c6557515247b5b680"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33d3b5cd440afb3c6557515247b5b680">GeneralMatrixMul</a> (dim3 gridDim, dim3 blockDim, const float *A, const float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</td></tr>
+<tr class="memdesc:a33d3b5cd440afb3c6557515247b5b680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores.  <br /></td></tr>
+<tr class="separator:a33d3b5cd440afb3c6557515247b5b680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35465fb782e707b54abe85d98d417f6" id="r_ac35465fb782e707b54abe85d98d417f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac35465fb782e707b54abe85d98d417f6">Transpose</a> (const dim3 gridDim, const dim3 blockDim, const float *d_A, float *d_B, const unsigned int rows, const unsigned int cols)</td></tr>
+<tr class="memdesc:ac35465fb782e707b54abe85d98d417f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to transpose a matrix on the GPU.  <br /></td></tr>
+<tr class="separator:ac35465fb782e707b54abe85d98d417f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff4ec6909c3296e1b0d5631c29a44bb" id="r_a3ff4ec6909c3296e1b0d5631c29a44bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ff4ec6909c3296e1b0d5631c29a44bb">ScalarMul</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float num, const unsigned long long n)</td></tr>
+<tr class="memdesc:a3ff4ec6909c3296e1b0d5631c29a44bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform scalar multiplication on the GPU.  <br /></td></tr>
+<tr class="separator:a3ff4ec6909c3296e1b0d5631c29a44bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5836f2ff0444a53b8ae60e8fee4b01ac" id="r_a5836f2ff0444a53b8ae60e8fee4b01ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5836f2ff0444a53b8ae60e8fee4b01ac">ScalarDiv</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float num, const unsigned long long n)</td></tr>
+<tr class="memdesc:a5836f2ff0444a53b8ae60e8fee4b01ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform scalar division on the GPU.  <br /></td></tr>
+<tr class="separator:a5836f2ff0444a53b8ae60e8fee4b01ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcbfa84211bb6cac845f1dc94e59ec19" id="r_adcbfa84211bb6cac845f1dc94e59ec19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcbfa84211bb6cac845f1dc94e59ec19">ScalarAdd</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float num, const unsigned long long n)</td></tr>
+<tr class="memdesc:adcbfa84211bb6cac845f1dc94e59ec19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to add a scalar to each element of a matrix on the GPU.  <br /></td></tr>
+<tr class="separator:adcbfa84211bb6cac845f1dc94e59ec19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e4b8e2415062632b49dd77694b0974" id="r_ac4e4b8e2415062632b49dd77694b0974"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4e4b8e2415062632b49dd77694b0974">Negation</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:ac4e4b8e2415062632b49dd77694b0974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to negate each element of a matrix on the GPU.  <br /></td></tr>
+<tr class="separator:ac4e4b8e2415062632b49dd77694b0974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d66573a9e8bb1816eaae83dbdb0bcf6" id="r_a9d66573a9e8bb1816eaae83dbdb0bcf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d66573a9e8bb1816eaae83dbdb0bcf6">Recip</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:a9d66573a9e8bb1816eaae83dbdb0bcf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the reciprocal of each element of a matrix on the GPU.  <br /></td></tr>
+<tr class="separator:a9d66573a9e8bb1816eaae83dbdb0bcf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7a6c276ed33c218e97f4e41c50f5ede" id="r_af7a6c276ed33c218e97f4e41c50f5ede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7a6c276ed33c218e97f4e41c50f5ede">RectifiedLinearUnit</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:af7a6c276ed33c218e97f4e41c50f5ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU.  <br /></td></tr>
+<tr class="separator:af7a6c276ed33c218e97f4e41c50f5ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a11355c95bb213319f035c77f405f0" id="r_ae0a11355c95bb213319f035c77f405f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0a11355c95bb213319f035c77f405f0">ReLUBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *A, const float *B_grad, const unsigned long long n)</td></tr>
+<tr class="memdesc:ae0a11355c95bb213319f035c77f405f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the ReLU activation during backpropagation.  <br /></td></tr>
+<tr class="separator:ae0a11355c95bb213319f035c77f405f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabac4b35d1aa83e380e0ef33af0a9e57" id="r_aabac4b35d1aa83e380e0ef33af0a9e57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabac4b35d1aa83e380e0ef33af0a9e57">Sigmoid</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:aabac4b35d1aa83e380e0ef33af0a9e57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Sigmoid activation function on the GPU.  <br /></td></tr>
+<tr class="separator:aabac4b35d1aa83e380e0ef33af0a9e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ca09a71042bdbf1434f2f37e95797b" id="r_a65ca09a71042bdbf1434f2f37e95797b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65ca09a71042bdbf1434f2f37e95797b">SigmoidBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *B, const float *B_grad, const unsigned long long n)</td></tr>
+<tr class="memdesc:a65ca09a71042bdbf1434f2f37e95797b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Sigmoid activation during backpropagation.  <br /></td></tr>
+<tr class="separator:a65ca09a71042bdbf1434f2f37e95797b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9abd2a1f99af9e1799edb336355d1ba0" id="r_a9abd2a1f99af9e1799edb336355d1ba0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9abd2a1f99af9e1799edb336355d1ba0">Tanh</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:a9abd2a1f99af9e1799edb336355d1ba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Tanh activation function on the GPU.  <br /></td></tr>
+<tr class="separator:a9abd2a1f99af9e1799edb336355d1ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae292654b15c72e5de76584d3f3a11817" id="r_ae292654b15c72e5de76584d3f3a11817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae292654b15c72e5de76584d3f3a11817">TanhBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *B, const float *B_grad, const unsigned long long n)</td></tr>
+<tr class="memdesc:ae292654b15c72e5de76584d3f3a11817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Tanh activation during backpropagation.  <br /></td></tr>
+<tr class="separator:ae292654b15c72e5de76584d3f3a11817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46f2fac9d4d89c221194e3d44174bda0" id="r_a46f2fac9d4d89c221194e3d44174bda0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46f2fac9d4d89c221194e3d44174bda0">LeakyReLU</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n, const float alpha=0.01f)</td></tr>
+<tr class="memdesc:a46f2fac9d4d89c221194e3d44174bda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Leaky ReLU activation function on the GPU.  <br /></td></tr>
+<tr class="separator:a46f2fac9d4d89c221194e3d44174bda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a932eaf573ea612466b51a74260c4dc4c" id="r_a932eaf573ea612466b51a74260c4dc4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a932eaf573ea612466b51a74260c4dc4c">LeakyReLUBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *A, const float *B_grad, unsigned long long n, float alpha=0.01f)</td></tr>
+<tr class="memdesc:a932eaf573ea612466b51a74260c4dc4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation.  <br /></td></tr>
+<tr class="separator:a932eaf573ea612466b51a74260c4dc4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d16dbfa0fdad676c5eecd502aa312a3" id="r_a5d16dbfa0fdad676c5eecd502aa312a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d16dbfa0fdad676c5eecd502aa312a3">Swish</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:a5d16dbfa0fdad676c5eecd502aa312a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Swish activation function on the GPU.  <br /></td></tr>
+<tr class="separator:a5d16dbfa0fdad676c5eecd502aa312a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c31fba26003ca607eb484f3ff66701c" id="r_a1c31fba26003ca607eb484f3ff66701c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c31fba26003ca607eb484f3ff66701c">SwishBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *A, const float *B, const float *B_grad, const unsigned long long n)</td></tr>
+<tr class="memdesc:a1c31fba26003ca607eb484f3ff66701c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Swish activation during backpropagation.  <br /></td></tr>
+<tr class="separator:a1c31fba26003ca607eb484f3ff66701c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76bae8401d19501237cb390fb6f6e11a" id="r_a76bae8401d19501237cb390fb6f6e11a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76bae8401d19501237cb390fb6f6e11a">ExponentialLinearUnit</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, unsigned long long n, float alpha=1.0f)</td></tr>
+<tr class="memdesc:a76bae8401d19501237cb390fb6f6e11a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU.  <br /></td></tr>
+<tr class="separator:a76bae8401d19501237cb390fb6f6e11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60576f05d988d55c4ed32faf22b71605" id="r_a60576f05d988d55c4ed32faf22b71605"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60576f05d988d55c4ed32faf22b71605">ELUBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *A, const float *B_grad, unsigned long long n, float alpha=1.0f)</td></tr>
+<tr class="memdesc:a60576f05d988d55c4ed32faf22b71605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the ELU activation during backpropagation.  <br /></td></tr>
+<tr class="separator:a60576f05d988d55c4ed32faf22b71605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec68f7e90b1451e551de0804ef11df1c" id="r_aec68f7e90b1451e551de0804ef11df1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec68f7e90b1451e551de0804ef11df1c">HardSigmoid</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n, const float alpha=0.2f, const float beta=0.5f)</td></tr>
+<tr class="memdesc:aec68f7e90b1451e551de0804ef11df1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Hard Sigmoid activation function on the GPU.  <br /></td></tr>
+<tr class="separator:aec68f7e90b1451e551de0804ef11df1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a168ca2b5e433574004ae73b5f7deec" id="r_a1a168ca2b5e433574004ae73b5f7deec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a168ca2b5e433574004ae73b5f7deec">HardSigmoidBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *A, const float *B_grad, unsigned long long n, float alpha=0.2f, float beta=0.5f)</td></tr>
+<tr class="memdesc:a1a168ca2b5e433574004ae73b5f7deec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Hard Sigmoid activation during backpropagation.  <br /></td></tr>
+<tr class="separator:a1a168ca2b5e433574004ae73b5f7deec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c18d8a2b6ddeeeb83cea014829864ad" id="r_a6c18d8a2b6ddeeeb83cea014829864ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c18d8a2b6ddeeeb83cea014829864ad">HardSwish</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</td></tr>
+<tr class="memdesc:a6c18d8a2b6ddeeeb83cea014829864ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Hard Swish activation function on the GPU.  <br /></td></tr>
+<tr class="separator:a6c18d8a2b6ddeeeb83cea014829864ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a293918c6c59bd44f5f0c94b5791202f7" id="r_a293918c6c59bd44f5f0c94b5791202f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a293918c6c59bd44f5f0c94b5791202f7">HardSwishBackward</a> (const dim3 gridDim, const dim3 blockDim, float *A_grad, const float *A, const float *B_grad, unsigned long long n, float alpha=0.2f, float beta=0.5f)</td></tr>
+<tr class="memdesc:a293918c6c59bd44f5f0c94b5791202f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Hard Swish activation during backpropagation.  <br /></td></tr>
+<tr class="separator:a293918c6c59bd44f5f0c94b5791202f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab711742ea831cdf1fb86824d17e25f" id="r_a8ab711742ea831cdf1fb86824d17e25f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ab711742ea831cdf1fb86824d17e25f">SummationExp</a> (const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float *out, const float *g_data, const unsigned long long n)</td></tr>
+<tr class="memdesc:a8ab711742ea831cdf1fb86824d17e25f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the summation of exponentials of each element in the input array.  <br /></td></tr>
+<tr class="separator:a8ab711742ea831cdf1fb86824d17e25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2da66c855055532571077c3f0db0425" id="r_af2da66c855055532571077c3f0db0425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2da66c855055532571077c3f0db0425">Softmax</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float exp_sum_of_input, const unsigned long long n)</td></tr>
+<tr class="memdesc:af2da66c855055532571077c3f0db0425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Softmax function on the GPU.  <br /></td></tr>
+<tr class="separator:af2da66c855055532571077c3f0db0425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa8960ce34fdfd2f7ebbb5762bec2e4" id="r_a7aa8960ce34fdfd2f7ebbb5762bec2e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aa8960ce34fdfd2f7ebbb5762bec2e4">SoftmaxJacobian</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</td></tr>
+<tr class="memdesc:a7aa8960ce34fdfd2f7ebbb5762bec2e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the Jacobian of the Softmax function.  <br /></td></tr>
+<tr class="separator:a7aa8960ce34fdfd2f7ebbb5762bec2e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ac88757669475405e9b11280a54e947" id="r_a6ac88757669475405e9b11280a54e947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ac88757669475405e9b11280a54e947">MeanSquaredError</a> (const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float *out, const float *predict, const float *real, const unsigned long long n)</td></tr>
+<tr class="memdesc:a6ac88757669475405e9b11280a54e947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values.  <br /></td></tr>
+<tr class="separator:a6ac88757669475405e9b11280a54e947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b897372ef72573098d23f19c887f86" id="r_ac8b897372ef72573098d23f19c887f86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8b897372ef72573098d23f19c887f86">MSEBackward</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *predict, const float *real, const unsigned long long n)</td></tr>
+<tr class="memdesc:ac8b897372ef72573098d23f19c887f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation.  <br /></td></tr>
+<tr class="separator:ac8b897372ef72573098d23f19c887f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a519338ba13d0b3a381fa187a0141d196" id="r_a519338ba13d0b3a381fa187a0141d196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a519338ba13d0b3a381fa187a0141d196">StochasticGradientDescent</a> (const dim3 gridDim, const dim3 blockDim, float *data, const float *grad, const float lr, const unsigned long long n)</td></tr>
+<tr class="memdesc:a519338ba13d0b3a381fa187a0141d196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform Stochastic Gradient Descent (SGD) optimization.  <br /></td></tr>
+<tr class="separator:a519338ba13d0b3a381fa187a0141d196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ac93615d2263e015c2677953a77a3d" id="r_aa8ac93615d2263e015c2677953a77a3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8ac93615d2263e015c2677953a77a3d">BinaryCrossEntropy</a> (const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float *out, const float *predict, const float *real, const unsigned long long n)</td></tr>
+<tr class="memdesc:aa8ac93615d2263e015c2677953a77a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values.  <br /></td></tr>
+<tr class="separator:aa8ac93615d2263e015c2677953a77a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d32b374b22c0bd3f507d5c5ed8aeca6" id="r_a8d32b374b22c0bd3f507d5c5ed8aeca6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d32b374b22c0bd3f507d5c5ed8aeca6">BCEBackward</a> (const dim3 gridDim, const dim3 blockDim, float *out, const float *predict, const float *real, const unsigned long long n)</td></tr>
+<tr class="memdesc:a8d32b374b22c0bd3f507d5c5ed8aeca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of Binary Cross Entropy (BCE) loss for backpropagation.  <br /></td></tr>
+<tr class="separator:a8d32b374b22c0bd3f507d5c5ed8aeca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a657c98688dfb7749e382bba46ccbfd5b" id="r_a657c98688dfb7749e382bba46ccbfd5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a657c98688dfb7749e382bba46ccbfd5b">Momentum</a> (dim3 gridDim, dim3 blockDim, float *output, const float *grad, const float *velocity, float beta, unsigned long long n)</td></tr>
+<tr class="memdesc:a657c98688dfb7749e382bba46ccbfd5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply Momentum optimization.  <br /></td></tr>
+<tr class="separator:a657c98688dfb7749e382bba46ccbfd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9860327858b8f09981e31d78b7bf39d2" id="r_a9860327858b8f09981e31d78b7bf39d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9860327858b8f09981e31d78b7bf39d2">AdaGrad</a> (const dim3 gridDim, const dim3 blockDim, float *data, float *G, const float *grad, const float lr, const float eps, const unsigned long long n)</td></tr>
+<tr class="memdesc:a9860327858b8f09981e31d78b7bf39d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply AdaGrad optimization.  <br /></td></tr>
+<tr class="separator:a9860327858b8f09981e31d78b7bf39d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ea9559eff9305923d9f4cd2c562e1e" id="r_a02ea9559eff9305923d9f4cd2c562e1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02ea9559eff9305923d9f4cd2c562e1e">RMSprop</a> (const dim3 gridDim, const dim3 blockDim, float *data, float *v, const float *grad, const float lr, const float beta, const float eps, const unsigned long long n)</td></tr>
+<tr class="memdesc:a02ea9559eff9305923d9f4cd2c562e1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply RMSprop optimization.  <br /></td></tr>
+<tr class="separator:a02ea9559eff9305923d9f4cd2c562e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af867be3ad4ff2028ae16857a368054f2" id="r_af867be3ad4ff2028ae16857a368054f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af867be3ad4ff2028ae16857a368054f2">Adam</a> (const dim3 gridDim, const dim3 blockDim, float *data, float *m, float *v, const float *grad, const float lr, const float beta1, const float beta2, const float eps, const int t, const unsigned long long n)</td></tr>
+<tr class="memdesc:af867be3ad4ff2028ae16857a368054f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply Adam optimization.  <br /></td></tr>
+<tr class="separator:af867be3ad4ff2028ae16857a368054f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04cc89e77f54501bd5434503a1a63493" id="r_a04cc89e77f54501bd5434503a1a63493"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04cc89e77f54501bd5434503a1a63493">NAdam</a> (const dim3 gridDim, const dim3 blockDim, float *data, float *m, float *m_modified, float *v, const float *grad, const float lr, const float beta1, const float beta2, const float eps, const int t, const unsigned long long n)</td></tr>
+<tr class="memdesc:a04cc89e77f54501bd5434503a1a63493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply NAdam optimization.  <br /></td></tr>
+<tr class="separator:a04cc89e77f54501bd5434503a1a63493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d18897fad679e1ceb29c2f9ebfffb0b" id="r_a8d18897fad679e1ceb29c2f9ebfffb0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d18897fad679e1ceb29c2f9ebfffb0b">AdaDelta</a> (const dim3 gridDim, const dim3 blockDim, float *data, float *acc_delta, float *acc_grad, const float *grad, const float rho, const float eps, const unsigned long long n)</td></tr>
+<tr class="memdesc:a8d18897fad679e1ceb29c2f9ebfffb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply AdaDelta optimization.  <br /></td></tr>
+<tr class="separator:a8d18897fad679e1ceb29c2f9ebfffb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaaec3e0398823e64710a8474ff1dcd5" id="r_afaaec3e0398823e64710a8474ff1dcd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaaec3e0398823e64710a8474ff1dcd5">TensorCoreGEMM</a> (const float *A, const float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</td></tr>
+<tr class="memdesc:afaaec3e0398823e64710a8474ff1dcd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform fast matrix multiplication using Tensor Cores with half-precision (FP16) support.  <br /></td></tr>
+<tr class="separator:afaaec3e0398823e64710a8474ff1dcd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8d5892bd795b00c76203e1155b0780" id="r_a7c8d5892bd795b00c76203e1155b0780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c8d5892bd795b00c76203e1155b0780">Fill</a> (dim3 gridDim, dim3 blockDim, float *data, float value, unsigned long long n)</td></tr>
+<tr class="memdesc:a7c8d5892bd795b00c76203e1155b0780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to fill a data array with a given value.  <br /></td></tr>
+<tr class="separator:a7c8d5892bd795b00c76203e1155b0780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e77cfb3eca024d16efdfb0b50d3b4c" id="r_ab1e77cfb3eca024d16efdfb0b50d3b4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1e77cfb3eca024d16efdfb0b50d3b4c">HadamardProduct</a> (dim3 gridDim, dim3 blockDim, float *out, const float *in1, const float *in2, unsigned long long n)</td></tr>
+<tr class="memdesc:ab1e77cfb3eca024d16efdfb0b50d3b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise Hadamard product of two arrays.  <br /></td></tr>
+<tr class="separator:ab1e77cfb3eca024d16efdfb0b50d3b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeba04211c5d61e2451ee0df15bd23eb" id="r_adeba04211c5d61e2451ee0df15bd23eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adeba04211c5d61e2451ee0df15bd23eb">ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, const float *in1, const float *in2, unsigned long long n)</td></tr>
+<tr class="memdesc:adeba04211c5d61e2451ee0df15bd23eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
+<tr class="separator:adeba04211c5d61e2451ee0df15bd23eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-Performance CUDA Kernel Implementations for Tensor Computations. </p>
 <p>The <a class="el" href="namespacenz_1_1krnl.html" title="High-Performance CUDA Kernel Implementations for Tensor Computations.">nz::krnl</a> namespace provides an extensive collection of CUDA kernel functions optimized for accelerated tensor operations and deep learning computations.</p>
@@ -136,7 +271,2621 @@ Optimization Algorithms</h2>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="_operation_kernels_8cuh.html" title="CUDA Kernel Definitions for High-Performance Tensor Operations.">OperationKernels.cuh</a></dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/07 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8d18897fad679e1ceb29c2f9ebfffb0b" name="a8d18897fad679e1ceb29c2f9ebfffb0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d18897fad679e1ceb29c2f9ebfffb0b">&#9670;&#160;</a></span>AdaDelta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::AdaDelta </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>acc_delta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>acc_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>rho</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>eps</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply AdaDelta optimization. </p>
+<p>This function updates the data array using AdaDelta optimization, which uses a moving average of squared gradients and deltas to adaptively adjust the learning rate.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be updated </td></tr>
+    <tr><td class="paramname">acc_delta</td><td>Pointer to the accumulated delta values </td></tr>
+    <tr><td class="paramname">acc_grad</td><td>Pointer to the accumulated gradient squared values </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">rho</td><td>The decay rate for the moving averages (typically between 0.9 and 0.95) </td></tr>
+    <tr><td class="paramname">eps</td><td>A small constant to avoid division by zero (default 1e-8) </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data, gradient, and accumulated values arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00718">718</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a9860327858b8f09981e31d78b7bf39d2" name="a9860327858b8f09981e31d78b7bf39d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9860327858b8f09981e31d78b7bf39d2">&#9670;&#160;</a></span>AdaGrad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::AdaGrad </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>G</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>eps</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply AdaGrad optimization. </p>
+<p>This function updates the data array using AdaGrad optimization, adjusting the learning rate for each parameter based on the historical gradient squared values.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be updated </td></tr>
+    <tr><td class="paramname">G</td><td>Pointer to the array of accumulated squared gradients </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">lr</td><td>The learning rate used for the gradient update </td></tr>
+    <tr><td class="paramname">eps</td><td>A small constant to avoid division by zero (default 1e-8) </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data, gradient, and accumulated gradient arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00637">637</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="af867be3ad4ff2028ae16857a368054f2" name="af867be3ad4ff2028ae16857a368054f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af867be3ad4ff2028ae16857a368054f2">&#9670;&#160;</a></span>Adam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Adam </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>m</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>beta1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>beta2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>eps</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply Adam optimization. </p>
+<p>This function updates the data array using Adam optimization, which combines momentum and RMSprop to adaptively adjust the learning rates of each parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be updated </td></tr>
+    <tr><td class="paramname">m</td><td>Pointer to the first moment estimate (mean of gradients) </td></tr>
+    <tr><td class="paramname">v</td><td>Pointer to the second moment estimate (variance of gradients) </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">lr</td><td>The learning rate used for the gradient update </td></tr>
+    <tr><td class="paramname">beta1</td><td>The exponential decay rate for the first moment estimate (default 0.9) </td></tr>
+    <tr><td class="paramname">beta2</td><td>The exponential decay rate for the second moment estimate (default 0.999) </td></tr>
+    <tr><td class="paramname">eps</td><td>A small constant to avoid division by zero (default 1e-8) </td></tr>
+    <tr><td class="paramname">t</td><td>The current time step or iteration </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data, gradient, and moment arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00673">673</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a8d32b374b22c0bd3f507d5c5ed8aeca6" name="a8d32b374b22c0bd3f507d5c5ed8aeca6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d32b374b22c0bd3f507d5c5ed8aeca6">&#9670;&#160;</a></span>BCEBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::BCEBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>predict</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>real</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of Binary Cross Entropy (BCE) loss for backpropagation. </p>
+<p>This function computes the gradient of the Binary Cross Entropy loss between the predicted and real values for each element in the input arrays and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the BCE gradient will be stored </td></tr>
+    <tr><td class="paramname">predict</td><td>Pointer to the predicted values </td></tr>
+    <tr><td class="paramname">real</td><td>Pointer to the real values </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00607">607</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="aa8ac93615d2263e015c2677953a77a3d" name="aa8ac93615d2263e015c2677953a77a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ac93615d2263e015c2677953a77a3d">&#9670;&#160;</a></span>BinaryCrossEntropy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::BinaryCrossEntropy </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>sharedMemSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>predict</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>real</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values. </p>
+<p>This function computes the Binary Cross Entropy loss between the predicted and real values for each element in the input arrays and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">sharedMemSize</td><td>The size of the shared memory buffer used by the kernel </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the BCE result will be stored </td></tr>
+    <tr><td class="paramname">predict</td><td>Pointer to the predicted values </td></tr>
+    <tr><td class="paramname">real</td><td>Pointer to the real values </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00593">593</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="adeba04211c5d61e2451ee0df15bd23eb" name="adeba04211c5d61e2451ee0df15bd23eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeba04211c5d61e2451ee0df15bd23eb">&#9670;&#160;</a></span>ElementwiseDivide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ElementwiseDivide </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform element-wise division of two arrays. </p>
+<p>This function performs element-wise division of two input arrays and stores the result in an output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array </td></tr>
+    <tr><td class="paramname">in1</td><td>Pointer to the first input array </td></tr>
+    <tr><td class="paramname">in2</td><td>Pointerto the second input array </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise division of two arrays. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00829">829</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a60576f05d988d55c4ed32faf22b71605" name="a60576f05d988d55c4ed32faf22b71605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60576f05d988d55c4ed32faf22b71605">&#9670;&#160;</a></span>ELUBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ELUBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the ELU activation during backpropagation. </p>
+<p>This function computes the gradient of the ELU activation function during backpropagation and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the input array elements (before activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The alpha parameter used for negative values (default 1.0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00328">328</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a76bae8401d19501237cb390fb6f6e11a" name="a76bae8401d19501237cb390fb6f6e11a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76bae8401d19501237cb390fb6f6e11a">&#9670;&#160;</a></span>ExponentialLinearUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ExponentialLinearUnit </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU. </p>
+<p>This function applies the ELU activation function (x if x &gt; 0, alpha * (exp(x) - 1) if x &lt;= 0) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the ELU result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The alpha parameter used for negative values (default 1.0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00312">312</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a7c8d5892bd795b00c76203e1155b0780" name="a7c8d5892bd795b00c76203e1155b0780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c8d5892bd795b00c76203e1155b0780">&#9670;&#160;</a></span>Fill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Fill </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to fill a data array with a given value. </p>
+<p>This function fills a data array with a specified value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be filled </td></tr>
+    <tr><td class="paramname">value</td><td>The value to fill the array with </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data array</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is used for initializing the data array with a given value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00805">805</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a33d3b5cd440afb3c6557515247b5b680" name="a33d3b5cd440afb3c6557515247b5b680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d3b5cd440afb3c6557515247b5b680">&#9670;&#160;</a></span>GeneralMatrixMul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::GeneralMatrixMul </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>C</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>M</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>K</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores. </p>
+<p>This function is designed to execute general matrix multiplication using CUDA technology, leveraging the parallel computing capabilities of the GPU for efficient processing of large datasets. It performs single-precision (FP32) matrix multiplication on the CUDA cores, taking two input arrays of floats and storing their product in a third array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the first input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">B</td><td>Pointer to the second input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">C</td><td>Pointer to the output matrix where the result will be stored, allocated by the caller </td></tr>
+    <tr><td class="paramname">M</td><td>The number of rows in matrix A and matrix C </td></tr>
+    <tr><td class="paramname">N</td><td>The number of columns in matrix B and matrix C </td></tr>
+    <tr><td class="paramname">K</td><td>The number of columns in matrix A and rows in matrix B </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00069">69</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ab1e77cfb3eca024d16efdfb0b50d3b4c" name="ab1e77cfb3eca024d16efdfb0b50d3b4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1e77cfb3eca024d16efdfb0b50d3b4c">&#9670;&#160;</a></span>HadamardProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::HadamardProduct </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform element-wise Hadamard product of two arrays. </p>
+<p>This function performs element-wise Hadamard product of two input arrays and stores the result in an output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array </td></tr>
+    <tr><td class="paramname">in1</td><td>Pointer to the first input array </td></tr>
+    <tr><td class="paramname">in2</td><td>Pointerto the second input array </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise Hadamard product of two arrays. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00816">816</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="aec68f7e90b1451e551de0804ef11df1c" name="aec68f7e90b1451e551de0804ef11df1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec68f7e90b1451e551de0804ef11df1c">&#9670;&#160;</a></span>HardSigmoid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::HardSigmoid </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.2f</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.5f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Hard Sigmoid activation function on the GPU. </p>
+<p>This function applies the Hard Sigmoid activation function (min(max(alpha * x + beta, 0), 1)) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Hard Sigmoid result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The slope of the Hard Sigmoid (default 0.2) </td></tr>
+    <tr><td class="paramname">beta</td><td>The offset of the Hard Sigmoid (default 0.5) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00343">343</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a1a168ca2b5e433574004ae73b5f7deec" name="a1a168ca2b5e433574004ae73b5f7deec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a168ca2b5e433574004ae73b5f7deec">&#9670;&#160;</a></span>HardSigmoidBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::HardSigmoidBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.2f</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.5f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Hard Sigmoid activation during backpropagation. </p>
+<p>This function computes the gradient of the Hard Sigmoid activation function during backpropagation and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the input array elements (before activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The slope of the Hard Sigmoid (default 0.2) </td></tr>
+    <tr><td class="paramname">beta</td><td>The offset of the Hard Sigmoid (default 0.5) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00364">364</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a6c18d8a2b6ddeeeb83cea014829864ad" name="a6c18d8a2b6ddeeeb83cea014829864ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c18d8a2b6ddeeeb83cea014829864ad">&#9670;&#160;</a></span>HardSwish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::HardSwish </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.2f</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.5f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Hard Swish activation function on the GPU. </p>
+<p>This function applies the Hard Swish activation function (x * HardSigmoid(x)) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Hard Swish result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The slope of the Hard Sigmoid (default 0.2) </td></tr>
+    <tr><td class="paramname">beta</td><td>The offset of the Hard Sigmoid (default 0.5) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00384">384</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a293918c6c59bd44f5f0c94b5791202f7" name="a293918c6c59bd44f5f0c94b5791202f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a293918c6c59bd44f5f0c94b5791202f7">&#9670;&#160;</a></span>HardSwishBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::HardSwishBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.2f</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.5f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Hard Swish activation during backpropagation. </p>
+<p>This function computes the gradient of the Hard Swish activation function during backpropagation and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the input array elements (before activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The slope of the Hard Sigmoid (default 0.2) </td></tr>
+    <tr><td class="paramname">beta</td><td>The offset of the Hard Sigmoid (default 0.5) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00401">401</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a46f2fac9d4d89c221194e3d44174bda0" name="a46f2fac9d4d89c221194e3d44174bda0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46f2fac9d4d89c221194e3d44174bda0">&#9670;&#160;</a></span>LeakyReLU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::LeakyReLU </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.01f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Leaky ReLU activation function on the GPU. </p>
+<p>This function applies the Leaky ReLU activation function (max(alpha * x, x)) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Leaky ReLU result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The slope of the negative part of the Leaky ReLU (default 0.01) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00256">256</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a932eaf573ea612466b51a74260c4dc4c" name="a932eaf573ea612466b51a74260c4dc4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a932eaf573ea612466b51a74260c4dc4c">&#9670;&#160;</a></span>LeakyReLUBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::LeakyReLUBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.01f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation. </p>
+<p>This function computes the gradient of the Leaky ReLU activation function during backpropagation (dL/dx = dL/dy * (x &gt; 0 ? 1 : alpha)) and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the input array elements (before activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+    <tr><td class="paramname">alpha</td><td>The slope of the negative part of the Leaky ReLU (default 0.01) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00271">271</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ac24c370f0323c789136d1c2e1fd00137" name="ac24c370f0323c789136d1c2e1fd00137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24c370f0323c789136d1c2e1fd00137">&#9670;&#160;</a></span>MatrixAdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::MatrixAdd </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform matrix addition on GPU. </p>
+<p>This function is designed to execute matrix addition using CUDA technology, leveraging parallel computing capabilities of the GPU for efficient processing of large datasets. It takes two input arrays of floats and stores their sum in a third array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">a</td><td>Pointer to the first input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">b</td><td>Pointer to the second input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">c</td><td>Pointer to the output matrix where the result will be stored, allocated by the caller </td></tr>
+    <tr><td class="paramname">n</td><td>The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00016">16</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a02ad4d4f320e2561be553557ef5805af" name="a02ad4d4f320e2561be553557ef5805af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ad4d4f320e2561be553557ef5805af">&#9670;&#160;</a></span>MatrixSub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::MatrixSub </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform matrix subtraction on GPU. </p>
+<p>This function is designed to execute matrix subtraction using CUDA technology, leveraging parallel computing capabilities of the GPU for efficient processing of large datasets. It takes two input arrays of floats and stores their difference in a third array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>Pointer to the first input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">b</td><td>Pointer to the second input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">c</td><td>Pointer to the output matrix where the result will be stored, allocated by the caller </td></tr>
+    <tr><td class="paramname">n</td><td>The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00029">29</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a6ac88757669475405e9b11280a54e947" name="a6ac88757669475405e9b11280a54e947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ac88757669475405e9b11280a54e947">&#9670;&#160;</a></span>MeanSquaredError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::MeanSquaredError </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>sharedMemSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>predict</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>real</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values. </p>
+<p>This function computes the Mean Squared Error loss between the predicted and real values for each element in the input arrays and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">sharedMemSize</td><td>The size of the shared memory buffer used by the kernel </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the MSE result will be stored </td></tr>
+    <tr><td class="paramname">predict</td><td>Pointer to the predicted values </td></tr>
+    <tr><td class="paramname">real</td><td>Pointer to the real values </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00524">524</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a657c98688dfb7749e382bba46ccbfd5b" name="a657c98688dfb7749e382bba46ccbfd5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a657c98688dfb7749e382bba46ccbfd5b">&#9670;&#160;</a></span>Momentum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Momentum </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>output</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>velocity</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply Momentum optimization. </p>
+<p>This function updates the output array using the Momentum optimization method, which incorporates the previous velocity to smooth the gradient update.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">output</td><td>Pointer to the output array that will be updated </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">velocity</td><td>Pointer to the previous velocity array </td></tr>
+    <tr><td class="paramname">beta</td><td>The momentum factor (typically between 0.9 and 0.99) </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the output, gradient, and velocity arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00621">621</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ac8b897372ef72573098d23f19c887f86" name="ac8b897372ef72573098d23f19c887f86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8b897372ef72573098d23f19c887f86">&#9670;&#160;</a></span>MSEBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::MSEBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>predict</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>real</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation. </p>
+<p>This function computes the gradient of the Mean Squared Error loss between the predicted and real values for each element in the input arrays and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the MSE gradient will be stored </td></tr>
+    <tr><td class="paramname">predict</td><td>Pointer to the predicted values </td></tr>
+    <tr><td class="paramname">real</td><td>Pointer to the real values </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00537">537</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a04cc89e77f54501bd5434503a1a63493" name="a04cc89e77f54501bd5434503a1a63493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04cc89e77f54501bd5434503a1a63493">&#9670;&#160;</a></span>NAdam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::NAdam </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>m</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>m_modified</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>beta1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>beta2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>eps</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply NAdam optimization. </p>
+<p>This function updates the data array using NAdam optimization, which combines Adam with Nesterov momentum.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be updated </td></tr>
+    <tr><td class="paramname">m</td><td>Pointer to the first moment estimate (mean of gradients) </td></tr>
+    <tr><td class="paramname">m_modified</td><td>Pointer to the modified first moment estimate for Nesterov momentum </td></tr>
+    <tr><td class="paramname">v</td><td>Pointer to the second moment estimate (variance of gradients) </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">lr</td><td>The learning rate used for the gradient update </td></tr>
+    <tr><td class="paramname">beta1</td><td>The exponential decay rate for the first moment estimate (default 0.9) </td></tr>
+    <tr><td class="paramname">beta2</td><td>The exponential decay rate for the second moment estimate (default 0.999) </td></tr>
+    <tr><td class="paramname">eps</td><td>A small constant to avoid division by zero (default 1e-8) </td></tr>
+    <tr><td class="paramname">t</td><td>The current time step or iteration </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data, gradient, and moment arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00697">697</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ac4e4b8e2415062632b49dd77694b0974" name="ac4e4b8e2415062632b49dd77694b0974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e4b8e2415062632b49dd77694b0974">&#9670;&#160;</a></span>Negation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Negation </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to negate each element of a matrix on the GPU. </p>
+<p>This function negates each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the negated result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00150">150</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a9d66573a9e8bb1816eaae83dbdb0bcf6" name="a9d66573a9e8bb1816eaae83dbdb0bcf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d66573a9e8bb1816eaae83dbdb0bcf6">&#9670;&#160;</a></span>Recip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Recip </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the reciprocal of each element of a matrix on the GPU. </p>
+<p>This function computes the reciprocal (1/x) of each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the reciprocal result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00167">167</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="af7a6c276ed33c218e97f4e41c50f5ede" name="af7a6c276ed33c218e97f4e41c50f5ede"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7a6c276ed33c218e97f4e41c50f5ede">&#9670;&#160;</a></span>RectifiedLinearUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::RectifiedLinearUnit </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU. </p>
+<p>This function applies the ReLU activation function (max(0, x)) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the ReLU result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00178">178</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ae0a11355c95bb213319f035c77f405f0" name="ae0a11355c95bb213319f035c77f405f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a11355c95bb213319f035c77f405f0">&#9670;&#160;</a></span>ReLUBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ReLUBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the ReLU activation during backpropagation. </p>
+<p>This function computes the gradient of the ReLU activation function during backpropagation (dL/dx = dL/dy * (x &gt; 0)) and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the input array elements (before activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00191">191</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a02ea9559eff9305923d9f4cd2c562e1e" name="a02ea9559eff9305923d9f4cd2c562e1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ea9559eff9305923d9f4cd2c562e1e">&#9670;&#160;</a></span>RMSprop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::RMSprop </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>eps</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply RMSprop optimization. </p>
+<p>This function updates the data array using RMSprop optimization, which divides the gradient by the moving average of the squared gradient values.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be updated </td></tr>
+    <tr><td class="paramname">v</td><td>Pointer to the array of accumulated squared gradients </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">lr</td><td>The learning rate used for the gradient update </td></tr>
+    <tr><td class="paramname">beta</td><td>The smoothing factor (typically between 0.9 and 0.99) </td></tr>
+    <tr><td class="paramname">eps</td><td>A small constant to avoid division by zero (default 1e-8) </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data, gradient, and accumulated squared gradient arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00653">653</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="adcbfa84211bb6cac845f1dc94e59ec19" name="adcbfa84211bb6cac845f1dc94e59ec19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcbfa84211bb6cac845f1dc94e59ec19">&#9670;&#160;</a></span>ScalarAdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ScalarAdd </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to add a scalar to each element of a matrix on the GPU. </p>
+<p>This function adds a scalar value to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">num</td><td>The scalar value to add to each element of the input array </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00137">137</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a5836f2ff0444a53b8ae60e8fee4b01ac" name="a5836f2ff0444a53b8ae60e8fee4b01ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5836f2ff0444a53b8ae60e8fee4b01ac">&#9670;&#160;</a></span>ScalarDiv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ScalarDiv </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform scalar division on the GPU. </p>
+<p>This function divides each element of the input array by a scalar value and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">num</td><td>The scalar value to divide each element of the input array by </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00124">124</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a3ff4ec6909c3296e1b0d5631c29a44bb" name="a3ff4ec6909c3296e1b0d5631c29a44bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff4ec6909c3296e1b0d5631c29a44bb">&#9670;&#160;</a></span>ScalarMul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::ScalarMul </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform scalar multiplication on the GPU. </p>
+<p>This function multiplies each element of the input array by a scalar value and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">num</td><td>The scalar value to multiply each element of the input array by </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00111">111</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="aabac4b35d1aa83e380e0ef33af0a9e57" name="aabac4b35d1aa83e380e0ef33af0a9e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabac4b35d1aa83e380e0ef33af0a9e57">&#9670;&#160;</a></span>Sigmoid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Sigmoid </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Sigmoid activation function on the GPU. </p>
+<p>This function applies the Sigmoid activation function (1 / (1 + exp(-x))) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Sigmoid result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00204">204</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a65ca09a71042bdbf1434f2f37e95797b" name="a65ca09a71042bdbf1434f2f37e95797b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ca09a71042bdbf1434f2f37e95797b">&#9670;&#160;</a></span>SigmoidBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::SigmoidBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Sigmoid activation during backpropagation. </p>
+<p>This function computes the gradient of the Sigmoid activation function during backpropagation (dL/dx = dL/dy * sigmoid(x) * (1 - sigmoid(x))) and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">B</td><td>Pointer to the input array elements (after activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00218">218</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="af2da66c855055532571077c3f0db0425" name="af2da66c855055532571077c3f0db0425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2da66c855055532571077c3f0db0425">&#9670;&#160;</a></span>Softmax()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Softmax </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>exp_sum_of_input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Softmax function on the GPU. </p>
+<p>This function applies the Softmax activation function, which normalizes the input values by exponentiating them and dividing by the sum of all exponentials, to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Softmax result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">exp_sum_of_input</td><td>The sum of the exponentials of the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00462">462</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a7aa8960ce34fdfd2f7ebbb5762bec2e4" name="a7aa8960ce34fdfd2f7ebbb5762bec2e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa8960ce34fdfd2f7ebbb5762bec2e4">&#9670;&#160;</a></span>SoftmaxJacobian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::SoftmaxJacobian </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the Jacobian of the Softmax function. </p>
+<p>This function computes the Jacobian matrix of the Softmax function and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Jacobian matrix will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input array </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00483">483</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a519338ba13d0b3a381fa187a0141d196" name="a519338ba13d0b3a381fa187a0141d196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a519338ba13d0b3a381fa187a0141d196">&#9670;&#160;</a></span>StochasticGradientDescent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::StochasticGradientDescent </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform Stochastic Gradient Descent (SGD) optimization. </p>
+<p>This function updates the data array by applying Stochastic Gradient Descent with the given learning rate and gradient for each element in the input arrays.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to the data array that will be updated </td></tr>
+    <tr><td class="paramname">grad</td><td>Pointer to the gradient array </td></tr>
+    <tr><td class="paramname">lr</td><td>The learning rate used for the gradient update </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data and gradient arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00550">550</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a8ab711742ea831cdf1fb86824d17e25f" name="a8ab711742ea831cdf1fb86824d17e25f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ab711742ea831cdf1fb86824d17e25f">&#9670;&#160;</a></span>SummationExp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::SummationExp </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>sharedMemSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>g_data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the summation of exponentials of each element in the input array. </p>
+<p>This function computes the summation of exponentials of all elements in the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">sharedMemSize</td><td>The size of the shared memory buffer used by the kernel </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the summation of exponentials will be stored </td></tr>
+    <tr><td class="paramname">g_data</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input array </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00448">448</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a5d16dbfa0fdad676c5eecd502aa312a3" name="a5d16dbfa0fdad676c5eecd502aa312a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d16dbfa0fdad676c5eecd502aa312a3">&#9670;&#160;</a></span>Swish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Swish </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Swish activation function on the GPU. </p>
+<p>This function applies the Swish activation function (x * sigmoid(x)) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Swish result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00284">284</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a1c31fba26003ca607eb484f3ff66701c" name="a1c31fba26003ca607eb484f3ff66701c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c31fba26003ca607eb484f3ff66701c">&#9670;&#160;</a></span>SwishBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::SwishBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Swish activation during backpropagation. </p>
+<p>This function computes the gradient of the Swish activation function during backpropagation and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">A</td><td>Pointer to the input array elements (before activation) </td></tr>
+    <tr><td class="paramname">B</td><td>Pointer to the output array elements (after activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00299">299</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a9abd2a1f99af9e1799edb336355d1ba0" name="a9abd2a1f99af9e1799edb336355d1ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9abd2a1f99af9e1799edb336355d1ba0">&#9670;&#160;</a></span>Tanh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Tanh </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to apply the Tanh activation function on the GPU. </p>
+<p>This function applies the Tanh activation function (tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))) to each element of the input array and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the Tanh result will be stored </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00230">230</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ae292654b15c72e5de76584d3f3a11817" name="ae292654b15c72e5de76584d3f3a11817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae292654b15c72e5de76584d3f3a11817">&#9670;&#160;</a></span>TanhBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::TanhBackward </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>A_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B_grad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of the Tanh activation during backpropagation. </p>
+<p>This function computes the gradient of the Tanh activation function during backpropagation (dL/dx = dL/dy * (1 - tanh(x)^2)) and stores the result in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">A_grad</td><td>Pointer to the output array where the gradient result will be stored </td></tr>
+    <tr><td class="paramname">B</td><td>Pointer to the input array elements (after activation) </td></tr>
+    <tr><td class="paramname">B_grad</td><td>Pointer to the gradient of the next layer </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00243">243</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="afaaec3e0398823e64710a8474ff1dcd5" name="afaaec3e0398823e64710a8474ff1dcd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaaec3e0398823e64710a8474ff1dcd5">&#9670;&#160;</a></span>TensorCoreGEMM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::TensorCoreGEMM </td>
+          <td>(</td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>C</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>M</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>K</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform fast matrix multiplication using Tensor Cores with half-precision (FP16) support. </p>
+<p>This function performs matrix multiplication on two input matrices A and B using Tensor Cores, which are specialized hardware units in modern GPUs designed for high-throughput matrix operations. The matrices are internally padded to be multiples of 16 for efficient computation and then cropped back to their original dimensions after the operation.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Pointer to the first input matrix (of size M x K) </td></tr>
+    <tr><td class="paramname">B</td><td>Pointer to the second input matrix (of size K x N) </td></tr>
+    <tr><td class="paramname">C</td><td>Pointer to the result matrix (of size M x N) </td></tr>
+    <tr><td class="paramname">M</td><td>The number of rows in matrix A and matrix C </td></tr>
+    <tr><td class="paramname">N</td><td>The number of columns in matrix B and matrix C </td></tr>
+    <tr><td class="paramname">K</td><td>The number of columns in matrix A and rows in matrix B</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The matrices A and B are assumed to be padded to the nearest multiple of 16 for efficient computation. After the computation, the resulting matrix C will be cropped back to the original dimensions (M x N). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00770">770</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="ac35465fb782e707b54abe85d98d417f6" name="ac35465fb782e707b54abe85d98d417f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac35465fb782e707b54abe85d98d417f6">&#9670;&#160;</a></span>Transpose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Transpose </td>
+          <td>(</td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>d_A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>d_B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int</td>          <td class="paramname"><span class="paramname"><em>rows</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int</td>          <td class="paramname"><span class="paramname"><em>cols</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to transpose a matrix on the GPU. </p>
+<p>This function performs the transposition of a matrix on the GPU, swapping rows and columns. The resulting transposed matrix is stored in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">d_A</td><td>Pointer to the input matrix elements stored as a one-dimensional array </td></tr>
+    <tr><td class="paramname">d_B</td><td>Pointer to the output matrix where the transposed result will be stored </td></tr>
+    <tr><td class="paramname">rows</td><td>The number of rows in the input matrix </td></tr>
+    <tr><td class="paramname">cols</td><td>The number of columns in the input matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00097">97</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0

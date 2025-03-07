@@ -1,5 +1,7 @@
 <map id="nz::data::Tensor::recip" name="nz::data::Tensor::recip">
-<area shape="rect" id="Node000001" title="Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in&#45;place." alt="" coords="5,5,157,32"/>
+<area shape="rect" id="Node000001" title="Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in&#45;place." alt="" coords="5,31,157,57"/>
 <area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="205,5,353,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,16,189,16,189,21,157,21"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,32,189,27,190,33,158,37"/>
+<area shape="rect" id="Node000003" href="$namespacenz_1_1krnl.html#a9d66573a9e8bb1816eaae83dbdb0bcf6" title="Kernel function to compute the reciprocal of each element of a matrix on the GPU." alt="" coords="226,56,332,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,51,211,58,210,63,157,56"/>
 </map>

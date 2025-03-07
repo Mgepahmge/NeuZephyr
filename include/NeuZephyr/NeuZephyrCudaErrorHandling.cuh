@@ -103,7 +103,7 @@ do {                                                                            
 cudaError_t __err = call;                                                   \
 if (__err != cudaSuccess) {                                                 \
 cudaDeviceReset();                                                      \
-throw CudaException(__FILE__, __LINE__, __err, #call);                  \
+throw nz::CudaException(__FILE__, __LINE__, __err, #call);                  \
 }                                                                           \
 } while (0)
 
@@ -112,10 +112,9 @@ do {                                                                            
 cudaError_t __err = cudaGetLastError();                                     \
 if (__err != cudaSuccess) {                                                 \
 cudaDeviceReset();                                                      \
-throw CudaException(__FILE__, __LINE__, __err, "cudaGetLastError()");   \
+throw nz::CudaException(__FILE__, __LINE__, __err, "cudaGetLastError()");   \
 }                                                                           \
 } while (0)
 
 #endif
 #endif //NEUZEPHYRCUDAERRORHANDLING_CUH
-

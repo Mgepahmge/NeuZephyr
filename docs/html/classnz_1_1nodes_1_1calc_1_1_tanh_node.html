@@ -124,11 +124,12 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a hyperbolic tangent (tanh) activation function node in a computational graph. </p>
-<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_tanh_node.html" title="Represents a hyperbolic tangent (tanh) activation function node in a computational graph.">TanhNode</a></code> class applies the hyperbolic tangent (tanh) activation function to the input tensor. The tanh function is defined as: </p><div class="fragment"><div class="line">Tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
+<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_tanh_node.html" title="Represents a hyperbolic tangent (tanh) activation function node in a computational graph.">TanhNode</a></code> class applies the hyperbolic tangent (tanh) activation function to the input tensor. The tanh function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0">Tanh</a>(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a9abd2a1f99af9e1799edb336355d1ba0"><div class="ttname"><a href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0">nz::krnl::Tanh</a></div><div class="ttdeci">void Tanh(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Tanh activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00230">OperationKernels.cu:230</a></div></div>
 </div><!-- fragment --><p> It maps input values to the range (-1, 1) and is commonly used in neural networks for non-linear activation.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the tanh activation function element-wise to the input tensor, mapping values to the range (-1, 1).</li>
-<li><b>Backward Pass</b>: Computes the gradient of the loss with respect to the input tensor using the derivative of the tanh function, which is: <div class="fragment"><div class="line">Tanh<span class="stringliteral">&#39;(x) = 1 - Tanh(x)^2</span></div>
+<li><b>Backward Pass</b>: Computes the gradient of the loss with respect to the input tensor using the derivative of the tanh function, which is: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0">Tanh</a><span class="stringliteral">&#39;(x) = 1 - Tanh(x)^2</span></div>
 </div><!-- fragment --></li>
 <li><b>Shape Preservation</b>: The output tensor has the same shape as the input tensor.</li>
 <li><b>Gradient Management</b>: Automatically tracks gradients if required by the input tensor.</li>
@@ -139,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md47"></a>
+<h3><a class="anchor" id="autotoc_md54"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using TanhNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -198,7 +199,7 @@ Usage Example:</h3>
 <li>The node's type is set to "Tanh" to reflect its operation.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>The tanh activation function maps input values to the range (-1, 1) and is defined as: <div class="fragment"><div class="line">Tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
+<li>The tanh activation function maps input values to the range (-1, 1) and is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0">Tanh</a>(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
 </div><!-- fragment --></li>
 <li>This node supports automatic gradient tracking if the input tensor requires gradients.</li>
 </ul>
@@ -238,7 +239,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Backward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_tanh_node.html" title="Represents a hyperbolic tangent (tanh) activation function node in a computational graph.">TanhNode</a></code> to compute gradients. </p>
-<p>The <code><a class="el" href="#ac75b18193ae5de920c0060ad83d1542a" title="Backward pass for the TanhNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the tanh activation function. The gradient is propagated using the formula: </p><div class="fragment"><div class="line">Tanh<span class="stringliteral">&#39;(x) = 1 - Tanh(x)^2</span></div>
+<p>The <code><a class="el" href="#ac75b18193ae5de920c0060ad83d1542a" title="Backward pass for the TanhNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the tanh activation function. The gradient is propagated using the formula: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0">Tanh</a><span class="stringliteral">&#39;(x) = 1 - Tanh(x)^2</span></div>
 </div><!-- fragment --><ul>
 <li>A CUDA kernel (<code>TanhBackward</code>) is launched to compute the gradients in parallel on the GPU.</li>
 <li>The derivative of the tanh function is applied element-wise to the <code>output</code> tensor's data and combined with the gradient of the <code>output</code> tensor to compute the input gradient.</li>
@@ -256,6 +257,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00337">337</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_tanh_node_ac75b18193ae5de920c0060ad83d1542a_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_tanh_node_ac75b18193ae5de920c0060ad83d1542a_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_tanh_node_ac75b18193ae5de920c0060ad83d1542a_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_tanh_node_ac75b18193ae5de920c0060ad83d1542a_cgraph">
+<area shape="rect" title="Backward pass for the TanhNode to compute gradients." alt="" coords="5,5,183,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#ae292654b15c72e5de76584d3f3a11817" title="Kernel function to compute the gradient of the Tanh activation during backpropagation." alt="" coords="231,13,389,40"/>
+<area shape="poly" title=" " alt="" coords="183,24,215,24,215,29,183,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -283,7 +294,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Forward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_tanh_node.html" title="Represents a hyperbolic tangent (tanh) activation function node in a computational graph.">TanhNode</a></code> to apply the tanh activation function. </p>
-<p>The <code><a class="el" href="#a451ff464932275955fbec1c33abdba97" title="Forward pass for the TanhNode to apply the tanh activation function.">forward()</a></code> method applies the hyperbolic tangent (tanh) activation function element-wise to the input tensor. The result is stored in the <code>output</code> tensor. The tanh function is defined as: </p><div class="fragment"><div class="line">Tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
+<p>The <code><a class="el" href="#a451ff464932275955fbec1c33abdba97" title="Forward pass for the TanhNode to apply the tanh activation function.">forward()</a></code> method applies the hyperbolic tangent (tanh) activation function element-wise to the input tensor. The result is stored in the <code>output</code> tensor. The tanh function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0">Tanh</a>(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
 </div><!-- fragment --><p> It maps input values to the range (-1, 1).</p>
 <ul>
 <li>A CUDA kernel (<code>Tanh</code>) is launched to compute the activation function in parallel on the GPU.</li>
@@ -297,6 +308,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00331">331</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_tanh_node_a451ff464932275955fbec1c33abdba97_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_tanh_node_a451ff464932275955fbec1c33abdba97_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_tanh_node_a451ff464932275955fbec1c33abdba97_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_tanh_node_a451ff464932275955fbec1c33abdba97_cgraph">
+<area shape="rect" title="Forward pass for the TanhNode to apply the tanh activation function." alt="" coords="5,5,183,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a9abd2a1f99af9e1799edb336355d1ba0" title="Kernel function to apply the Tanh activation function on the GPU." alt="" coords="231,13,331,40"/>
+<area shape="poly" title=" " alt="" coords="183,24,215,24,215,29,183,29"/>
+</map>
+</div>
 
 </div>
 </div>

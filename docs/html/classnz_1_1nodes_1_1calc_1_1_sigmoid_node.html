@@ -124,11 +124,12 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Sigmoid activation function node in a computational graph. </p>
-<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_sigmoid_node.html" title="Represents a Sigmoid activation function node in a computational graph.">SigmoidNode</a></code> class applies the Sigmoid activation function to the input tensor. The Sigmoid function is defined as: </p><div class="fragment"><div class="line">Sigmoid(x) = 1 / (1 + exp(-x))</div>
+<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_sigmoid_node.html" title="Represents a Sigmoid activation function node in a computational graph.">SigmoidNode</a></code> class applies the Sigmoid activation function to the input tensor. The Sigmoid function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57">Sigmoid</a>(x) = 1 / (1 + exp(-x))</div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_aabac4b35d1aa83e380e0ef33af0a9e57"><div class="ttname"><a href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57">nz::krnl::Sigmoid</a></div><div class="ttdeci">void Sigmoid(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00204">OperationKernels.cu:204</a></div></div>
 </div><!-- fragment --><p> It is commonly used in neural networks for binary classification tasks or as a gating mechanism in recurrent networks.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Sigmoid activation function element-wise to the input tensor, mapping values to the range (0, 1).</li>
-<li><b>Backward Pass</b>: Computes the gradient of the loss with respect to the input tensor using the derivative of the Sigmoid function, which is: <div class="fragment"><div class="line">Sigmoid<span class="stringliteral">&#39;(x) = Sigmoid(x) * (1 - Sigmoid(x))</span></div>
+<li><b>Backward Pass</b>: Computes the gradient of the loss with respect to the input tensor using the derivative of the Sigmoid function, which is: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57">Sigmoid</a><span class="stringliteral">&#39;(x) = Sigmoid(x) * (1 - Sigmoid(x))</span></div>
 </div><!-- fragment --></li>
 <li><b>Shape Preservation</b>: The output tensor has the same shape as the input tensor.</li>
 <li><b>Gradient Management</b>: Automatically tracks gradients if required by the input tensor.</li>
@@ -139,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md46"></a>
+<h3><a class="anchor" id="autotoc_md53"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using SigmoidNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -153,7 +154,7 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *sigmoid_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_html_aad3fb8b89ac7cde6d70c464e06c35ade"><div class="ttname"><a href="#aad3fb8b89ac7cde6d70c464e06c35ade">nz::nodes::calc::SigmoidNode::SigmoidNode</a></div><div class="ttdeci">SigmoidNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SigmoidNode for applying the Sigmoid activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00303">Nodes.cu:303</a></div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward()</a> for the Sigmoid activation computation in the <a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward</a> pass. </dd>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57" title="Kernel function to apply the Sigmoid activation function on the GPU.">Sigmoid</a> activation computation in the <a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a05fe16b3ecde344d9463efabf1318115" title="Backward pass for the SigmoidNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#a05fe16b3ecde344d9463efabf1318115" title="Backward pass for the SigmoidNode to compute gradients.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
@@ -198,7 +199,7 @@ Usage Example:</h3>
 <li>The node's type is set to "Sigmoid" to reflect its operation.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>The Sigmoid activation function maps input values to the range (0, 1) and is defined as: <div class="fragment"><div class="line">Sigmoid(x) = 1 / (1 + exp(-x))</div>
+<li>The Sigmoid activation function maps input values to the range (0, 1) and is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57">Sigmoid</a>(x) = 1 / (1 + exp(-x))</div>
 </div><!-- fragment --></li>
 <li>This node supports automatic gradient tracking if the input tensor requires gradients.</li>
 </ul>
@@ -238,7 +239,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Backward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_sigmoid_node.html" title="Represents a Sigmoid activation function node in a computational graph.">SigmoidNode</a></code> to compute gradients. </p>
-<p>The <code><a class="el" href="#a05fe16b3ecde344d9463efabf1318115" title="Backward pass for the SigmoidNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the Sigmoid activation function. The gradient is propagated using the formula: </p><div class="fragment"><div class="line">Sigmoid<span class="stringliteral">&#39;(x) = Sigmoid(x) * (1 - Sigmoid(x))</span></div>
+<p>The <code><a class="el" href="#a05fe16b3ecde344d9463efabf1318115" title="Backward pass for the SigmoidNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the Sigmoid activation function. The gradient is propagated using the formula: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57">Sigmoid</a><span class="stringliteral">&#39;(x) = Sigmoid(x) * (1 - Sigmoid(x))</span></div>
 </div><!-- fragment --><ul>
 <li>A CUDA kernel (<code>SigmoidBackward</code>) is launched to compute the gradients in parallel on the GPU.</li>
 <li>The derivative of the Sigmoid function is applied element-wise to the <code>output</code> tensor's data and combined with the gradient of the <code>output</code> tensor to compute the input gradient.</li>
@@ -249,13 +250,23 @@ Usage Example:</h3>
 <li>The shape of the gradient tensor matches that of the input tensor.</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward()</a> for the Sigmoid activation computation in the <a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward</a> pass.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57" title="Kernel function to apply the Sigmoid activation function on the GPU.">Sigmoid</a> activation computation in the <a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00316">316</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_sigmoid_node_a05fe16b3ecde344d9463efabf1318115_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_a05fe16b3ecde344d9463efabf1318115_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_a05fe16b3ecde344d9463efabf1318115_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_a05fe16b3ecde344d9463efabf1318115_cgraph">
+<area shape="rect" title="Backward pass for the SigmoidNode to compute gradients." alt="" coords="5,5,171,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a65ca09a71042bdbf1434f2f37e95797b" title="Kernel function to compute the gradient of the Sigmoid activation during backpropagation." alt="" coords="219,13,396,40"/>
+<area shape="poly" title=" " alt="" coords="171,24,203,24,203,29,171,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -283,7 +294,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Forward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_sigmoid_node.html" title="Represents a Sigmoid activation function node in a computational graph.">SigmoidNode</a></code> to apply the Sigmoid activation function. </p>
-<p>The <code><a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward()</a></code> method applies the Sigmoid activation function element-wise to the input tensor. The result is stored in the <code>output</code> tensor. The Sigmoid function is defined as: </p><div class="fragment"><div class="line">Sigmoid(x) = 1 / (1 + exp(-x))</div>
+<p>The <code><a class="el" href="#aa24b02f6d79fda31e6ad150879ed2bbb" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function.">forward()</a></code> method applies the Sigmoid activation function element-wise to the input tensor. The result is stored in the <code>output</code> tensor. The Sigmoid function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57">Sigmoid</a>(x) = 1 / (1 + exp(-x))</div>
 </div><!-- fragment --><p> It maps input values to the range (0, 1).</p>
 <ul>
 <li>A CUDA kernel (<code>Sigmoid</code>) is launched to compute the activation function in parallel on the GPU.</li>
@@ -297,6 +308,16 @@ Usage Example:</h3>
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00310">310</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_sigmoid_node_aa24b02f6d79fda31e6ad150879ed2bbb_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_aa24b02f6d79fda31e6ad150879ed2bbb_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_aa24b02f6d79fda31e6ad150879ed2bbb_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_sigmoid_node_aa24b02f6d79fda31e6ad150879ed2bbb_cgraph">
+<area shape="rect" title="Forward pass for the SigmoidNode to apply the Sigmoid activation function." alt="" coords="5,5,171,48"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#aabac4b35d1aa83e380e0ef33af0a9e57" title="Kernel function to apply the Sigmoid activation function on the GPU." alt="" coords="219,13,338,40"/>
+<area shape="poly" title=" " alt="" coords="171,24,203,24,203,29,171,29"/>
+</map>
+</div>
 
 </div>
 </div>

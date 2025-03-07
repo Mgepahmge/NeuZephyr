@@ -1,5 +1,5 @@
 <map id="nz::nodes::loss::BinaryCrossEntropyNode::forward" name="nz::nodes::loss::BinaryCrossEntropyNode::forward">
 <area shape="rect" id="Node000001" title="Computes the Binary Cross&#45;Entropy (BCE) loss in the forward pass." alt="" coords="5,5,196,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a275cb72d438001beafecae9f65b94e3f" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="244,13,433,40"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#aa8ac93615d2263e015c2677953a77a3d" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="244,13,433,40"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,24,228,24,228,29,196,29"/>
 </map>
