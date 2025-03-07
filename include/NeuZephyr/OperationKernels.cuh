@@ -803,6 +803,40 @@ namespace nz::krnl {
      * @note This function is used for initializing the data array with a given value.
      */
     void Fill(dim3 gridDim, dim3 blockDim, float* data, float value, unsigned long long n);
+
+    /**
+     * @brief Kernel function to perform element-wise Hadamard product of two arrays
+     *
+     * This function performs element-wise Hadamard product of two input arrays and stores the result in an output array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param out Pointer to the output array
+     * @param in1 Pointer to the first input array
+     * @param in2 Pointerto the second input array
+     * @param n The number of elements in the arrays
+     *
+     * @note This function is used for computing the element-wise Hadamard product of two arrays.
+     */
+    void HadamardProduct(dim3 gridDim, dim3 blockDim, float* out, const float* in1, const float* in2,
+                         unsigned long long n);
+
+    /**
+     * @brief Kernel function to perform element-wise division of two arrays
+     *
+     * This function performs element-wise division of two input arrays and stores the result in an output array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param out Pointer to the output array
+     * @param in1 Pointer to the first input array
+     * @param in2 Pointerto the second input array
+     * @param n The number of elements in the arrays
+     *
+     * @note This function is used for computing the element-wise division of two arrays.
+     */
+    void ElementwiseDivide(dim3 gridDim, dim3 blockDim, float* out, const float* in1, const float* in2,
+                           unsigned long long n);
 #endif
 }
 

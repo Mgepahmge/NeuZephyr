@@ -422,7 +422,8 @@ namespace nz::krnl {
         float localSum = 0.0f;
         if (idx < n) {
             localSum = __expf(g_data[idx]);
-        } else {
+        }
+        else {
             localSum = 0.0f;
         }
         __syncthreads();
@@ -526,7 +527,7 @@ namespace nz::krnl {
     }
 
     __global__ void MSEBackwardKernel(float* out, const float* predict,
-                                const float* real, const unsigned long long n) {
+                                      const float* real, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = 2 * (predict[idx] - real[idx]) / (float)n;
@@ -539,7 +540,7 @@ namespace nz::krnl {
     }
 
     __global__ void StochasticGradientDescentKernel(float* data, const float* grad, const float lr,
-                                              const unsigned long long n) {
+                                                    const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             data[idx] -= lr * grad[idx];
@@ -552,7 +553,7 @@ namespace nz::krnl {
     }
 
     __global__ void BinaryCrossEntropyKernel(float* out, const float* predict, const float* real,
-                                       const unsigned long long n) {
+                                             const unsigned long long n) {
         extern __shared__ float smem[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -590,12 +591,12 @@ namespace nz::krnl {
     }
 
     void BinaryCrossEntropy(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
-                             const float* predict, const float* real, const unsigned long long n) {
+                            const float* predict, const float* real, const unsigned long long n) {
         BinaryCrossEntropyKernel<<<gridDim, blockDim, sharedMemSize>>>(out, predict, real, n);
     }
 
     __global__ void BCEBackwardKernel(float* out, const float* predict,
-                                const float* real, unsigned long long n) {
+                                      const float* real, unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             out[idx] = ((predict[idx] - real[idx]) / (
@@ -609,20 +610,21 @@ namespace nz::krnl {
     }
 
     __global__ void MomentumKernel(float* output, const float* grad,
-                             const float* velocity, const float beta,
-                             const unsigned long long n) {
+                                   const float* velocity, const float beta,
+                                   const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             output[idx] = velocity[idx] * beta + grad[idx] * (1 - beta);
         }
     }
 
-    void Momentum(const dim3 gridDim, const dim3 blockDim, float* output, const float* grad, const float* velocity, const float beta, const unsigned long long n) {
+    void Momentum(const dim3 gridDim, const dim3 blockDim, float* output, const float* grad, const float* velocity,
+                  const float beta, const unsigned long long n) {
         MomentumKernel<<<gridDim, blockDim>>>(output, grad, velocity, beta, n);
     }
 
     __global__ void AdaGradKernel(float* data, float* G, const float* grad, const float lr, const float eps,
-                            const unsigned long long n) {
+                                  const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -638,7 +640,7 @@ namespace nz::krnl {
     }
 
     __global__ void RMSpropKernel(float* data, float* v, const float* grad, const float lr, const float beta,
-                            const float eps, const unsigned long long n) {
+                                  const float eps, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -654,7 +656,7 @@ namespace nz::krnl {
     }
 
     __global__ void AdamKernel(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
-                         const float beta2, const float eps, const int t, const unsigned long long n) {
+                               const float beta2, const float eps, const int t, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -675,8 +677,8 @@ namespace nz::krnl {
     }
 
     __global__ void NAdamKernel(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
-                          const float beta1, const float beta2, const float eps, const int t,
-                          const unsigned long long n) {
+                                const float beta1, const float beta2, const float eps, const int t,
+                                const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -699,8 +701,8 @@ namespace nz::krnl {
     }
 
     __global__ void AdaDeltaKernel(float* data, float* acc_delta, float* acc_grad, const float* grad,
-                             const float rho, const float eps,
-                             const unsigned long long n) {
+                                   const float rho, const float eps,
+                                   const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= n) {
             return;
@@ -718,7 +720,8 @@ namespace nz::krnl {
         AdaDeltaKernel<<<gridDim, blockDim>>>(data, acc_delta, acc_grad, grad, rho, eps, n);
     }
 
-    __global__ void GeneralMatrixMulTensorKernel(const half* A, const half* B, float* C, const unsigned long long m, const unsigned long long n, const unsigned long long k) {
+    __global__ void GeneralMatrixMulTensorKernel(const half* A, const half* B, float* C, const unsigned long long m,
+                                                 const unsigned long long n, const unsigned long long k) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long warpIdx = idx / warpSize;
         const unsigned long long blockM = m / MMA;
@@ -730,7 +733,7 @@ namespace nz::krnl {
         nvcuda::wmma::fragment<nvcuda::wmma::accumulator, MMA, MMA, MMA, float> C_frag;
         fill_fragment(C_frag, 0.0f);
         if (rowA < blockM && colB < blockN) {
-            for (int i = 0; i < k/MMA; i++) {
+            for (int i = 0; i < k / MMA; i++) {
                 load_matrix_sync(A_frag, A + rowA * k * MMA + i * MMA, k);
                 load_matrix_sync(B_frag, B + colB * MMA + i * n * MMA, n);
                 mma_sync(C_frag, A_frag, B_frag, C_frag);
@@ -739,20 +742,23 @@ namespace nz::krnl {
         }
     }
 
-    __global__ void Padding(half* out, const float* in, const unsigned long long M, const unsigned long long N, const unsigned long long m, const unsigned long long n) {
+    __global__ void Padding(half* out, const float* in, const unsigned long long M, const unsigned long long N,
+                            const unsigned long long m, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long row = idx / n;
         const unsigned long long col = idx % n;
         if (row < m && col < n) {
             if (row < M && col < N) {
                 out[row * n + col] = __float2half(in[row * N + col]);
-            } else {
+            }
+            else {
                 out[row * n + col] = __float2half(0.0f);
             }
         }
     }
 
-    __global__ void Cutting(float* out, const float* in, const unsigned long long M, const unsigned long long N, const unsigned long long m, const unsigned long long n) {
+    __global__ void Cutting(float* out, const float* in, const unsigned long long M, const unsigned long long N,
+                            const unsigned long long m, const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long row = idx / n;
         const unsigned long long col = idx % n;
@@ -761,7 +767,8 @@ namespace nz::krnl {
         }
     }
 
-    void TensorCoreGEMM(const float* A, const float* B, float* C, const unsigned long long M, const unsigned long long N, const unsigned long long K) {
+    void TensorCoreGEMM(const float* A, const float* B, float* C, const unsigned long long M,
+                        const unsigned long long N, const unsigned long long K) {
         const unsigned long long m = CEIL(M);
         const unsigned long long k = CEIL(K);
         const unsigned long long n = CEIL(N);
@@ -797,5 +804,30 @@ namespace nz::krnl {
 
     void Fill(const dim3 gridDim, const dim3 blockDim, float* data, const float value, const unsigned long long n) {
         FillKernel<<<gridDim, blockDim>>>(data, value, n);
+    }
+
+    __global__ void HadamardProductKernel(float* out, const float* in1, const float* in2, const unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in1[idx] * in2[idx];
+        }
+    }
+
+    void HadamardProduct(const dim3 gridDim, const dim3 blockDim, float* out, const float* in1, const float* in2,
+                         const unsigned long long n) {
+        HadamardProductKernel<<<gridDim, blockDim>>>(out, in1, in2, n);
+    }
+
+    __global__ void ElementwiseDivideKernel(float* out, const float* in1, const float* in2,
+                                            const unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx] = in1[idx] / in2[idx];
+        }
+    }
+
+    void ElementwiseDivide(const dim3 gridDim, const dim3 blockDim, float* out, const float* in1, const float* in2,
+                           const unsigned long long n) {
+        ElementwiseDivideKernel<<<gridDim, blockDim>>>(out, in1, in2, n);
     }
 }
