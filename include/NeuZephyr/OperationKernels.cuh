@@ -786,8 +786,23 @@ namespace nz::krnl {
      * @note The matrices A and B are assumed to be padded to the nearest multiple of 16 for efficient computation.
      *       After the computation, the resulting matrix C will be cropped back to the original dimensions (M x N).
      */
-    void TensorCoreGEMM(const float* A, const float* B, float* C, const unsigned long long M,
-                        const unsigned long long N, const unsigned long long K);
+    void TensorCoreGEMM(const float* A, const float* B, float* C, unsigned long long M,
+                        unsigned long long N, unsigned long long K);
+
+    /**
+     * @brief Kernel function to fill a data array with a given value
+     *
+     * This function fills a data array with a specified value.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param data Pointer to the data array that will be filled
+     * @param value The value to fill the array with
+     * @param n The number of elements in the data array
+     *
+     * @note This function is used for initializing the data array with a given value.
+     */
+    void Fill(dim3 gridDim, dim3 blockDim, float* data, float value, unsigned long long n);
 #endif
 }
 

@@ -787,4 +787,15 @@ namespace nz::krnl {
         cudaFree(padded_B);
         cudaFree(padded_C);
     }
+
+    __global__ void FillKernel(float* data, const float value, const unsigned long long n) {
+        const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            data[idx] = value;
+        }
+    }
+
+    void Fill(const dim3 gridDim, const dim3 blockDim, float* data, const float value, const unsigned long long n) {
+        FillKernel<<<gridDim, blockDim>>>(data, value, n);
+    }
 }
