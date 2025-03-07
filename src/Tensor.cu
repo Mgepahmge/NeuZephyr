@@ -1020,15 +1020,23 @@ namespace nz::data {
     }
 
     void Tensor::transpose() {
-        value_type* temp;
-        CHECK(cudaMalloc(&temp, _size * sizeof(value_type)));
-        CHECK(cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
         const dim3 block(TILE_SIZE, TILE_SIZE);
         const dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
-        krnl::Transpose(grid, block, temp, _data, _shape[0], _shape[1]);
+        value_type* temp;
+        CHECK(cudaMalloc(&temp, _size * sizeof(value_type)));
+        krnl::Transpose(grid, block, _data, temp, _shape[0], _shape[1]);
         CHECK(cudaDeviceSynchronize());
-        reshape({_shape[1], _shape[0]});
-        CHECK(cudaFree(temp));
+        CHECK(cudaFree(_data));
+        _data = temp;
+        if (_requires_grad) {
+            value_type* tempGrad;
+            CHECK(cudaMalloc(&tempGrad, _size * sizeof(value_type)));
+            krnl::Transpose(grid, block, _grad, tempGrad, _shape[0], _shape[1]);
+            CHECK(cudaDeviceSynchronize());
+            CHECK(cudaFree(_grad));
+            _grad = tempGrad;
+        }
+        std::swap(_shape[0], _shape[1]);
     }
 
     void Tensor::setData(const shape_type& position, const value_type value) const {
