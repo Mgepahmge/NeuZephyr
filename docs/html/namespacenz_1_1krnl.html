@@ -204,6 +204,9 @@ Functions</h2></td></tr>
 <tr class="memitem:adeba04211c5d61e2451ee0df15bd23eb" id="r_adeba04211c5d61e2451ee0df15bd23eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adeba04211c5d61e2451ee0df15bd23eb">ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, const float *in1, const float *in2, unsigned long long n)</td></tr>
 <tr class="memdesc:adeba04211c5d61e2451ee0df15bd23eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
 <tr class="separator:adeba04211c5d61e2451ee0df15bd23eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48fdfa2ba1f5215f55f1f2490956f5ef" id="r_a48fdfa2ba1f5215f55f1f2490956f5ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48fdfa2ba1f5215f55f1f2490956f5ef">Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, const float *in, unsigned long long n)</td></tr>
+<tr class="memdesc:a48fdfa2ba1f5215f55f1f2490956f5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
+<tr class="separator:a48fdfa2ba1f5215f55f1f2490956f5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-Performance CUDA Kernel Implementations for Tensor Computations. </p>
@@ -2488,6 +2491,64 @@ Optimization Algorithms</h2>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00550">550</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+
+</div>
+</div>
+<a id="a48fdfa2ba1f5215f55f1f2490956f5ef" name="a48fdfa2ba1f5215f55f1f2490956f5ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48fdfa2ba1f5215f55f1f2490956f5ef">&#9670;&#160;</a></span>Summation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Summation </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>sharedMemSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform element-wise summation of two arrays. </p>
+<p>This function performs element-wise summation of two input arrays and stores the result in an output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
+    <tr><td class="paramname">sharedMemSize</td><td>The size of the shared memory buffer </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise summation of two arrays. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00862">862</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 
 </div>
 </div>

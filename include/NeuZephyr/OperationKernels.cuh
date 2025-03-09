@@ -837,6 +837,22 @@ namespace nz::krnl {
      */
     void ElementwiseDivide(dim3 gridDim, dim3 blockDim, float* out, const float* in1, const float* in2,
                            unsigned long long n);
+
+    /**
+     * @brief Kernel function to perform element-wise summation of two arrays
+     *
+     * This function performs element-wise summation of two input arrays and stores the result in an output array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param sharedMemSize The size of the shared memory buffer
+     * @param out Pointer to the output array
+     * @param in Pointer to the input array
+     * @param n The number of elements in the arrays
+     *
+     * @note This function is used for computing the element-wise summation of two arrays.
+     */
+    void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float* out, const float* in, unsigned long long n);
 #endif
 }
 

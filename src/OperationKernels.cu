@@ -433,7 +433,7 @@ namespace nz::krnl {
             sdata[warpIdx] = localSum;
         }
         __syncthreads();
-        localSum = (idx < blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;
+        localSum = (tid < blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;
         // Block Reduce
         if (warpIdx == 0) {
             localSum = warpReduce(localSum);
@@ -507,7 +507,7 @@ namespace nz::krnl {
         }
         __syncthreads();
 
-        localSum = (idx < blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;
+        localSum = (tid < blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;
 
         __syncthreads();
 
@@ -577,7 +577,7 @@ namespace nz::krnl {
         }
         __syncthreads();
 
-        localSum = (idx < blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;
+        localSum = (tid < blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;
         __syncthreads();
 
         if (warpIdx == 0) {
@@ -829,5 +829,37 @@ namespace nz::krnl {
     void ElementwiseDivide(const dim3 gridDim, const dim3 blockDim, float* out, const float* in1, const float* in2,
                            const unsigned long long n) {
         ElementwiseDivideKernel<<<gridDim, blockDim>>>(out, in1, in2, n);
+    }
+
+    __global__ void SummationKernel(float* out, const float* in, const unsigned long long n) {
+        extern __shared__ float sdata[];
+        const unsigned long long tid = threadIdx.x;
+        const unsigned long long idx = blockDim.x * blockIdx.x + threadIdx.x;
+        const unsigned long long warpIdx = tid / WARP_SIZE;
+        const unsigned long long laneIdx = tid % WARP_SIZE;
+        float localSum = 0.0f;
+        if (idx < n) {
+            localSum = in[idx];
+        }
+        __syncthreads();
+        localSum = warpReduce(localSum);
+        __syncthreads();
+        if (laneIdx == 0) {
+            sdata[warpIdx] = localSum;
+        }
+        __syncthreads();
+        localSum = (tid < blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;
+        __syncthreads();
+        if (warpIdx == 0) {
+            localSum = warpReduce(localSum);
+        }
+        __syncthreads();
+        if (tid == 0) {
+            out[blockIdx.x] = localSum;
+        }
+    }
+
+    void Summation(const dim3 gridDim, const dim3 blockDim, const unsigned long long sharedMemSize, float* out, const float* in, const unsigned long long n) {
+        SummationKernel<<<gridDim, blockDim, sharedMemSize>>>(out, in, n);
     }
 }

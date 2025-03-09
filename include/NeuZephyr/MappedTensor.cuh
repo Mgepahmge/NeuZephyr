@@ -1097,6 +1097,74 @@ namespace nz::data {
          * @endcode
          */
         void recip();
+
+        /**
+         * @brief Calculate the sum of all elements in the MappedTensor.
+         *
+         * @return The sum of all elements in the MappedTensor as a value of type `MappedTensor::value_type`.
+         *
+         * This function computes the sum of all elements within the MappedTensor. It utilizes CUDA parallel processing to perform the summation efficiently. First, it determines the block and grid dimensions for the CUDA kernel. Then, it allocates pinned host memory for storing the intermediate results using `cudaMallocHost`. The `krnl::Summation` CUDA kernel is launched to calculate partial sums on the device. After the kernel execution, the function synchronizes the device using `cudaDeviceSynchronize` to ensure that all operations are completed. Finally, it sums up the partial results on the host, frees the allocated pinned host memory, and returns the total sum.
+         *
+         * Memory management:
+         * - Pinned host memory is allocated for `dData` using `cudaMallocHost` and freed using `cudaFreeHost`.
+         *
+         * Exception handling:
+         * - The `CHECK` macro is used to handle CUDA API errors. If any CUDA API call fails, the `CHECK` macro will throw an exception, causing the function to terminate.
+         *
+         * Relationship with other components:
+         * - This function relies on the `krnl::Summation` CUDA kernel to perform partial sums on the device.
+         * - It also depends on the `CHECK` macro to handle CUDA API errors and `cudaDeviceSynchronize` for device synchronization.
+         *
+         * @throws [Exception type thrown by CHECK macro] If there are CUDA API errors during memory allocation, kernel execution, or memory synchronization.
+         *
+         * @note
+         * - The time complexity of this function is approximately O(n), where n is the number of elements in the MappedTensor (`_size`). The CUDA kernel parallelizes the partial sum calculation, and the final sum on the host is a linear operation over the number of grid blocks.
+         * - Ensure that the CUDA device is properly initialized before calling this function.
+         * - Pinned host memory allocation may have limitations, so be aware of potential memory constraints.
+         *
+         * @code
+         * ```cpp
+         * nz::data::MappedTensor mapped_tensor({2, 3}, true);
+         * // Assume mapped_tensor is filled with some values
+         * nz::data::MappedTensor::value_type sum_result = mapped_tensor.sum();
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type sum() const;
+
+        /**
+         * @brief Calculate the sum of the exponential values of all elements in the MappedTensor.
+         *
+         * @return The sum of the exponential values of all elements in the MappedTensor as a value of type `MappedTensor::value_type`.
+         *
+         * This function computes the sum of the exponential values of all elements within the MappedTensor. It first determines the CUDA block and grid dimensions based on the size of the tensor. Then, it allocates pinned host memory using `cudaMallocHost` to store the intermediate results. The `krnl::SummationExp` CUDA kernel is launched to calculate the partial sums of the exponential values on the device. After the kernel execution, the function synchronizes the device using `cudaDeviceSynchronize` to ensure all operations are completed. Finally, it sums up the partial results on the host, frees the allocated pinned host memory, and returns the total sum.
+         *
+         * Memory management:
+         * - Pinned host memory is allocated for `dData` using `cudaMallocHost` and freed using `cudaFreeHost`.
+         *
+         * Exception handling:
+         * - The `CHECK` macro is used to handle CUDA API errors. If any CUDA API call fails, the `CHECK` macro will throw an exception, causing the function to terminate.
+         *
+         * Relationship with other components:
+         * - This function relies on the `krnl::SummationExp` CUDA kernel to perform partial sums of exponential values on the device.
+         * - It also depends on the `CHECK` macro to handle CUDA API errors and `cudaDeviceSynchronize` for device synchronization.
+         *
+         * @throws [Exception type thrown by CHECK macro] If there are CUDA API errors during memory allocation, kernel execution, or memory synchronization.
+         *
+         * @note
+         * - The time complexity of this function is approximately O(n), where n is the number of elements in the MappedTensor (`_size`). The CUDA kernel parallelizes the partial sum calculation of exponential values, and the final sum on the host is a linear operation over the number of grid blocks.
+         * - Ensure that the CUDA device is properly initialized before calling this function.
+         * - Pinned host memory allocation may have limitations, so be aware of potential memory constraints.
+         *
+         * @code
+         * ```cpp
+         * nz::data::MappedTensor mapped_tensor({2, 3}, true);
+         * // Assume mapped_tensor is filled with some values
+         * nz::data::MappedTensor::value_type exp_sum_result = mapped_tensor.expSum();
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type expSum() const;
         /// @}
 
     private:

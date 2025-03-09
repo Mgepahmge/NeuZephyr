@@ -77,19 +77,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_operation_kernels_8cuh__dep__incl.png" border="0" usemap="#a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuhdep" alt=""/></div>
 <map name="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuhdep" id="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuhdep">
-<area shape="rect" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="582,5,784,80"/>
+<area shape="rect" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="695,5,897,80"/>
 <area shape="rect" href="_compute_graph_8cuh.html" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="15,128,217,203"/>
-<area shape="poly" title=" " alt="" coords="567,64,406,92,230,131,218,134,217,128,229,125,405,87,566,59"/>
+<area shape="poly" title=" " alt="" coords="679,58,469,86,349,106,230,131,218,133,217,128,229,125,348,101,468,81,679,53"/>
 <area shape="rect" href="_mapped_tensor_8cu_source.html" title=" " alt="" coords="242,136,460,195"/>
-<area shape="poly" title=" " alt="" coords="568,88,431,138,429,133,566,83"/>
+<area shape="poly" title=" " alt="" coords="680,76,473,131,447,138,445,133,471,125,679,71"/>
 <area shape="rect" href="_nodes_8cu_source.html" title=" " alt="" coords="484,136,655,195"/>
-<area shape="poly" title=" " alt="" coords="640,94,598,137,594,134,636,90"/>
+<area shape="poly" title=" " alt="" coords="714,90,625,138,622,133,712,85"/>
 <area shape="rect" href="_operation_kernels_8cu_source.html" title=" " alt="" coords="679,136,913,195"/>
-<area shape="poly" title=" " alt="" coords="730,90,771,134,767,137,726,94"/>
+<area shape="poly" title=" " alt="" coords="799,96,799,136,793,136,793,96"/>
 <area shape="rect" href="_optimizer_8cu_source.html" title=" " alt="" coords="937,136,1127,195"/>
-<area shape="poly" title=" " alt="" coords="799,81,950,133,948,138,798,86"/>
+<area shape="poly" title=" " alt="" coords="883,85,977,133,974,138,881,90"/>
 <area shape="rect" href="_tensor_8cu_source.html" title=" " alt="" coords="1151,136,1324,195"/>
-<area shape="poly" title=" " alt="" coords="800,57,962,85,1139,125,1164,133,1162,138,1138,131,961,90,799,63"/>
+<area shape="poly" title=" " alt="" coords="913,67,1023,93,1139,125,1162,133,1161,138,1138,131,1022,98,912,72"/>
+<area shape="rect" href="_tensor_operations_8cu_source.html" title=" " alt="" coords="1348,136,1583,195"/>
+<area shape="poly" title=" " alt="" coords="913,56,1112,84,1337,125,1368,133,1367,138,1335,131,1111,89,912,61"/>
 <area shape="rect" href="_compute_graph_8cu_source.html" title=" " alt="" coords="5,251,227,309"/>
 <area shape="poly" title=" " alt="" coords="119,218,119,250,113,250,113,218"/>
 </map>
@@ -234,6 +236,9 @@ Functions</h2></td></tr>
 <tr class="memitem:adeba04211c5d61e2451ee0df15bd23eb" id="r_adeba04211c5d61e2451ee0df15bd23eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#adeba04211c5d61e2451ee0df15bd23eb">nz::krnl::ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, const float *in1, const float *in2, unsigned long long n)</td></tr>
 <tr class="memdesc:adeba04211c5d61e2451ee0df15bd23eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
 <tr class="separator:adeba04211c5d61e2451ee0df15bd23eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48fdfa2ba1f5215f55f1f2490956f5ef" id="r_a48fdfa2ba1f5215f55f1f2490956f5ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a48fdfa2ba1f5215f55f1f2490956f5ef">nz::krnl::Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, const float *in, unsigned long long n)</td></tr>
+<tr class="memdesc:a48fdfa2ba1f5215f55f1f2490956f5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
+<tr class="separator:a48fdfa2ba1f5215f55f1f2490956f5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>CUDA Kernel Definitions for High-Performance Tensor Operations. </p>

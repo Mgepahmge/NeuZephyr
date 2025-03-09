@@ -54,6 +54,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a7a5cfca5c5635d15e20bb8edff1e5b65"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a7f5550020dbf34ae87f208c22a73e28d"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="end"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="expSum"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#ad4b349b1cbc2fef18f4b450f4d11377a"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="fill"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#acf793cf0d23af29076d18cd46a6d19cf"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a7a6bc3862735542300e7f3ecd2df887f"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator+"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a42529629ec686811b950f50b84cffd62"><param name="ImageNumber" value="11"></OBJECT>
@@ -73,6 +74,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="setShape"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#aefb5c705fc6d224469978cf64ca37e0b"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="shape"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="size"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#aa144f9f3b76741e5d3fb3b5df3cc3b42"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="sum"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#afabf30bc35435f1101a61afa77b026ad"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="transpose"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#afae0e7076636cd708762f57f10f03952"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&lt;&lt;"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a1cd02ca3d7e7592ba6658b333ff207b4"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#abaacd16c39a6f16fde32336c7696c94f"><param name="ImageNumber" value="11"></OBJECT>
@@ -91,6 +93,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2c4217ad3ebcdb4a1bcf2fd38151d007"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="expSum"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa1818a10415337403d43aad091a5a4c7"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="fill"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="fillGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab748aad919304a22289d42d78510438c"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="grad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"><param name="ImageNumber" value="11"></OBJECT>
@@ -110,12 +113,9 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="setRequiresGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#abddb47a6dc305d289a1e4f91d01a5082"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="shape"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="size"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="sum"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a4a657091dfa6a490d873ab8e95d9bb9e"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="transpose"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="zeroGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="ELU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a30aa89b90999505d6af26dc30dc207c7"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSigmoid"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2b912f1b9d4b301c2f360b693cf03ef3"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSwish"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2ea20bf5c1d1526f35c9406d362ae7c9"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="LeakyReLU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a3653067d86437be1d51d05081140bd68"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ac4787c0c64c0519ff853323c776bfd8d"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a68f2eb7f4435de9f79b682b1e9126148"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator+"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa9a34602a74495d35e0ce4c28be382f2"><param name="ImageNumber" value="11"></OBJECT>
@@ -125,16 +125,12 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator/"><param name="Local" value="classnz_1_1data_1_1_tensor.html#af5c7a02727faf97b05e235dc1a45ed85"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&lt;&lt;"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab8eaa8e06861a868b7df1a9ee0616a1a"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a1ae147fdd4255f7d148aef41e3e436a9"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="ReLU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2b549dd795e302066b32600220b5bfd9"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="Sigmoid"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a305eaad4aee364dee9efbaf07f1ace2f"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a40d075b64061912220a8cc51c980fb2c"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa0a7800d605fe70d8a694b8d5287ab61"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="Tanh"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a5e2316f5542b552f910fdf27923bbb29"><param name="ImageNumber" value="11"></OBJECT>
           </UL>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="ELU"><param name="Local" value="namespacenz_1_1data.html#a463a6acd4af10f53a8f57e30fba2e660"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSigmoid"><param name="Local" value="namespacenz_1_1data.html#ab9821ac15d218a07161a211b04db5528"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSwish"><param name="Local" value="namespacenz_1_1data.html#a68859b30e6833b954f27f89eb8592235"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="LeakyReLU"><param name="Local" value="namespacenz_1_1data.html#ae638e4a70745936b4542263a5fef9b9d"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="ELU"><param name="Local" value="namespacenz_1_1data.html#a5e6656db9844fdb33add8afa7c0ceb8a"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSigmoid"><param name="Local" value="namespacenz_1_1data.html#a836b8388aba110fd9130757ef743597a"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSwish"><param name="Local" value="namespacenz_1_1data.html#a07ab6e69dbefd62eae7058c9136aea2a"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="LeakyReLU"><param name="Local" value="namespacenz_1_1data.html#a65ebd7e32d0d942bffdcd1665def151e"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="namespacenz_1_1data.html#ab7386d5f0c567a1bed5a78eab4bf2d6b"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="namespacenz_1_1data.html#ac65cd4ed45d91da297a90d4381411064"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="operator+"><param name="Local" value="namespacenz_1_1data.html#ab5c3243e28d8132d9514c8d37d597a7f"><param name="ImageNumber" value="11"></OBJECT>
@@ -146,11 +142,12 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&lt;&lt;"><param name="Local" value="namespacenz_1_1data.html#a2907370af84a6c5bdc4b72803c9edc68"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="namespacenz_1_1data.html#a40134aba93013e1b0d43c6fd5158d400"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="namespacenz_1_1data.html#a4ea5e60f987ab3853b4d0af44453a9e2"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="ReLU"><param name="Local" value="namespacenz_1_1data.html#a2cd35db5c2bc0fc68cb0461d2f600089"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="Sigmoid"><param name="Local" value="namespacenz_1_1data.html#a370bede45854c04c8222e9971cedc075"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="ReLU"><param name="Local" value="namespacenz_1_1data.html#a9bcee9a75db3d824b92ed17a59711428"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="Sigmoid"><param name="Local" value="namespacenz_1_1data.html#a0740e60918114b0a4d7c88d09aeb8f88"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="namespacenz_1_1data.html#a09849b685c23664bf02b0f824006f695"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="namespacenz_1_1data.html#a271473f387bde9059ad5afa03851184a"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="Tanh"><param name="Local" value="namespacenz_1_1data.html#a2037c2f13444847ea57d7110d8c48a51"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="namespacenz_1_1data.html#ad6092c1138e5093c07ec00c12c72314a"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="namespacenz_1_1data.html#a42cbe5a414e4212ee7a26b0a66ce08a4"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="Tanh"><param name="Local" value="namespacenz_1_1data.html#a56c9ff66e41ae568a2fec83708c4dd85"><param name="ImageNumber" value="11"></OBJECT>
         </UL>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="graph"><param name="Local" value="namespacenz_1_1graph.html"><param name="ImageNumber" value="1"></OBJECT>
         <UL>
@@ -233,6 +230,7 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="SoftmaxJacobian"><param name="Local" value="namespacenz_1_1krnl.html#a7aa8960ce34fdfd2f7ebbb5762bec2e4"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="StochasticGradientDescent"><param name="Local" value="namespacenz_1_1krnl.html#a519338ba13d0b3a381fa187a0141d196"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="Summation"><param name="Local" value="namespacenz_1_1krnl.html#a48fdfa2ba1f5215f55f1f2490956f5ef"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="SummationExp"><param name="Local" value="namespacenz_1_1krnl.html#a8ab711742ea831cdf1fb86824d17e25f"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="SwishBackward"><param name="Local" value="namespacenz_1_1krnl.html#a1c31fba26003ca607eb484f3ff66701c"><param name="ImageNumber" value="11"></OBJECT>
@@ -466,6 +464,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a7a5cfca5c5635d15e20bb8edff1e5b65"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a7f5550020dbf34ae87f208c22a73e28d"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="end"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="expSum"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#ad4b349b1cbc2fef18f4b450f4d11377a"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="fill"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#acf793cf0d23af29076d18cd46a6d19cf"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a7a6bc3862735542300e7f3ecd2df887f"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator+"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a42529629ec686811b950f50b84cffd62"><param name="ImageNumber" value="11"></OBJECT>
@@ -485,6 +484,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="setShape"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#aefb5c705fc6d224469978cf64ca37e0b"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="shape"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="size"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#aa144f9f3b76741e5d3fb3b5df3cc3b42"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="sum"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#afabf30bc35435f1101a61afa77b026ad"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="transpose"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#afae0e7076636cd708762f57f10f03952"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&lt;&lt;"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#a1cd02ca3d7e7592ba6658b333ff207b4"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="classnz_1_1data_1_1_mapped_tensor.html#abaacd16c39a6f16fde32336c7696c94f"><param name="ImageNumber" value="11"></OBJECT>
@@ -503,6 +503,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2c4217ad3ebcdb4a1bcf2fd38151d007"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="expSum"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa1818a10415337403d43aad091a5a4c7"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="fill"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="fillGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab748aad919304a22289d42d78510438c"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="grad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"><param name="ImageNumber" value="11"></OBJECT>
@@ -522,12 +523,9 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="setRequiresGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#abddb47a6dc305d289a1e4f91d01a5082"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="shape"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="size"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="sum"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a4a657091dfa6a490d873ab8e95d9bb9e"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="transpose"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="zeroGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="ELU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a30aa89b90999505d6af26dc30dc207c7"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSigmoid"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2b912f1b9d4b301c2f360b693cf03ef3"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSwish"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2ea20bf5c1d1526f35c9406d362ae7c9"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="LeakyReLU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a3653067d86437be1d51d05081140bd68"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ac4787c0c64c0519ff853323c776bfd8d"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a68f2eb7f4435de9f79b682b1e9126148"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator+"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa9a34602a74495d35e0ce4c28be382f2"><param name="ImageNumber" value="11"></OBJECT>
@@ -537,11 +535,7 @@
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator/"><param name="Local" value="classnz_1_1data_1_1_tensor.html#af5c7a02727faf97b05e235dc1a45ed85"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&lt;&lt;"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab8eaa8e06861a868b7df1a9ee0616a1a"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a1ae147fdd4255f7d148aef41e3e436a9"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="ReLU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2b549dd795e302066b32600220b5bfd9"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="Sigmoid"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a305eaad4aee364dee9efbaf07f1ace2f"><param name="ImageNumber" value="11"></OBJECT>
           <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a40d075b64061912220a8cc51c980fb2c"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa0a7800d605fe70d8a694b8d5287ab61"><param name="ImageNumber" value="11"></OBJECT>
-          <LI><OBJECT type="text/sitemap"><param name="Name" value="Tanh"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a5e2316f5542b552f910fdf27923bbb29"><param name="ImageNumber" value="11"></OBJECT>
           </UL>
         </UL>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="graph"><param name="Local" value="namespacenz_1_1graph.html"><param name="ImageNumber" value="1"></OBJECT>
@@ -1090,6 +1084,7 @@
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="_operation_kernels_8cuh.html#af2da66c855055532571077c3f0db0425"><param name="ImageNumber" value="11"></OBJECT>
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="SoftmaxJacobian"><param name="Local" value="_operation_kernels_8cuh.html#a7aa8960ce34fdfd2f7ebbb5762bec2e4"><param name="ImageNumber" value="11"></OBJECT>
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="StochasticGradientDescent"><param name="Local" value="_operation_kernels_8cuh.html#a519338ba13d0b3a381fa187a0141d196"><param name="ImageNumber" value="11"></OBJECT>
+                    <LI><OBJECT type="text/sitemap"><param name="Name" value="Summation"><param name="Local" value="_operation_kernels_8cuh.html#a48fdfa2ba1f5215f55f1f2490956f5ef"><param name="ImageNumber" value="11"></OBJECT>
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="SummationExp"><param name="Local" value="_operation_kernels_8cuh.html#a8ab711742ea831cdf1fb86824d17e25f"><param name="ImageNumber" value="11"></OBJECT>
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="_operation_kernels_8cuh.html#a5d16dbfa0fdad676c5eecd502aa312a3"><param name="ImageNumber" value="11"></OBJECT>
                     <LI><OBJECT type="text/sitemap"><param name="Name" value="SwishBackward"><param name="Local" value="_operation_kernels_8cuh.html#a1c31fba26003ca607eb484f3ff66701c"><param name="ImageNumber" value="11"></OBJECT>
@@ -1158,6 +1153,7 @@
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2c4217ad3ebcdb4a1bcf2fd38151d007"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a56eed9ac874126485dfd494d4ec59c33"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="dataInject"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ae3cc31f5b541809d75556ebbfda8ae57"><param name="ImageNumber" value="11"></OBJECT>
+                      <LI><OBJECT type="text/sitemap"><param name="Name" value="expSum"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa1818a10415337403d43aad091a5a4c7"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="fill"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="fillGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab748aad919304a22289d42d78510438c"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="grad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ad6107b98beb881d0209345185d5ad145"><param name="ImageNumber" value="11"></OBJECT>
@@ -1177,12 +1173,9 @@
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="setRequiresGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#abddb47a6dc305d289a1e4f91d01a5082"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="shape"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="size"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177"><param name="ImageNumber" value="11"></OBJECT>
+                      <LI><OBJECT type="text/sitemap"><param name="Name" value="sum"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a4a657091dfa6a490d873ab8e95d9bb9e"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="transpose"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="zeroGrad"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="ELU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a30aa89b90999505d6af26dc30dc207c7"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSigmoid"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2b912f1b9d4b301c2f360b693cf03ef3"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="HardSwish"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2ea20bf5c1d1526f35c9406d362ae7c9"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="LeakyReLU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a3653067d86437be1d51d05081140bd68"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ac4787c0c64c0519ff853323c776bfd8d"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="operator*"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a68f2eb7f4435de9f79b682b1e9126148"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="operator+"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa9a34602a74495d35e0ce4c28be382f2"><param name="ImageNumber" value="11"></OBJECT>
@@ -1192,13 +1185,10 @@
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="operator/"><param name="Local" value="classnz_1_1data_1_1_tensor.html#af5c7a02727faf97b05e235dc1a45ed85"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&lt;&lt;"><param name="Local" value="classnz_1_1data_1_1_tensor.html#ab8eaa8e06861a868b7df1a9ee0616a1a"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="operator&gt;&gt;"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a1ae147fdd4255f7d148aef41e3e436a9"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="ReLU"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a2b549dd795e302066b32600220b5bfd9"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="Sigmoid"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a305eaad4aee364dee9efbaf07f1ace2f"><param name="ImageNumber" value="11"></OBJECT>
                       <LI><OBJECT type="text/sitemap"><param name="Name" value="Softmax"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a40d075b64061912220a8cc51c980fb2c"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="Swish"><param name="Local" value="classnz_1_1data_1_1_tensor.html#aa0a7800d605fe70d8a694b8d5287ab61"><param name="ImageNumber" value="11"></OBJECT>
-                      <LI><OBJECT type="text/sitemap"><param name="Name" value="Tanh"><param name="Local" value="classnz_1_1data_1_1_tensor.html#a5e2316f5542b552f910fdf27923bbb29"><param name="ImageNumber" value="11"></OBJECT>
                       </UL>
                     </UL>
+                  <LI><OBJECT type="text/sitemap"><param name="Name" value="TensorOperations.cuh"><param name="Local" value="_tensor_operations_8cuh_source.html"><param name="ImageNumber" value="11"></OBJECT>
                   <LI><OBJECT type="text/sitemap"><param name="Name" value="utils.cuh"><param name="Local" value="utils_8cuh_source.html"><param name="ImageNumber" value="11"></OBJECT>
                   </UL>
                 </UL>
@@ -1210,6 +1200,7 @@
                 <LI><OBJECT type="text/sitemap"><param name="Name" value="OperationKernels.cu"><param name="Local" value="_operation_kernels_8cu_source.html"><param name="ImageNumber" value="11"></OBJECT>
                 <LI><OBJECT type="text/sitemap"><param name="Name" value="Optimizer.cu"><param name="Local" value="_optimizer_8cu_source.html"><param name="ImageNumber" value="11"></OBJECT>
                 <LI><OBJECT type="text/sitemap"><param name="Name" value="Tensor.cu"><param name="Local" value="_tensor_8cu_source.html"><param name="ImageNumber" value="11"></OBJECT>
+                <LI><OBJECT type="text/sitemap"><param name="Name" value="TensorOperations.cu"><param name="Local" value="_tensor_operations_8cu_source.html"><param name="ImageNumber" value="11"></OBJECT>
                 </UL>
               </UL>
             </UL>

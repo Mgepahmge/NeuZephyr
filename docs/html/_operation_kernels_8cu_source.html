@@ -551,7 +551,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>            sdata[warpIdx] = localSum;</div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>        }</div>
 <div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        __syncthreads();</div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        localSum = (idx &lt; blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        localSum = (tid &lt; blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;</div>
 <div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        <span class="comment">// Block Reduce</span></div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>        <span class="keywordflow">if</span> (warpIdx == 0) {</div>
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>            localSum = warpReduce(localSum);</div>
@@ -631,7 +631,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>        }</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>        __syncthreads();</div>
 <div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span> </div>
-<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>        localSum = (idx &lt; blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>        localSum = (tid &lt; blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;</div>
 <div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
 <div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>        __syncthreads();</div>
 <div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span> </div>
@@ -707,7 +707,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>        }</div>
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>        __syncthreads();</div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span> </div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>        localSum = (idx &lt; blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>        localSum = (tid &lt; blockDim.x / WARP_SIZE) ? smem[laneIdx] : 0.0f;</div>
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>        __syncthreads();</div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>        <span class="keywordflow">if</span> (warpIdx == 0) {</div>
@@ -984,7 +984,41 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>        ElementwiseDivideKernel&lt;&lt;&lt;gridDim, blockDim&gt;&gt;&gt;(out, in1, in2, n);</div>
 <div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>    }</div>
 </div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>}</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>    __global__ <span class="keywordtype">void</span> SummationKernel(<span class="keywordtype">float</span>* out, <span class="keyword">const</span> <span class="keywordtype">float</span>* in, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> n) {</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>        <span class="keyword">extern</span> __shared__ <span class="keywordtype">float</span> sdata[];</div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> tid = threadIdx.x;</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> idx = blockDim.x * blockIdx.x + threadIdx.x;</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> warpIdx = tid / WARP_SIZE;</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> laneIdx = tid % WARP_SIZE;</div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>        <span class="keywordtype">float</span> localSum = 0.0f;</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>        <span class="keywordflow">if</span> (idx &lt; n) {</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>            localSum = in[idx];</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>        }</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>        __syncthreads();</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>        localSum = warpReduce(localSum);</div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>        __syncthreads();</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>        <span class="keywordflow">if</span> (laneIdx == 0) {</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>            sdata[warpIdx] = localSum;</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>        }</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>        __syncthreads();</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>        localSum = (tid &lt; blockDim.x / WARP_SIZE) ? sdata[laneIdx] : 0.0f;</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>        __syncthreads();</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>        <span class="keywordflow">if</span> (warpIdx == 0) {</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>            localSum = warpReduce(localSum);</div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>        }</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>        __syncthreads();</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>        <span class="keywordflow">if</span> (tid == 0) {</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>            out[blockIdx.x] = localSum;</div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>        }</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>    }</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span> </div>
+<div class="foldopen" id="foldopen00862" data-start="{" data-end="}">
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno"><a class="line" href="namespacenz_1_1krnl.html#a48fdfa2ba1f5215f55f1f2490956f5ef">  862</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespacenz_1_1krnl.html#a48fdfa2ba1f5215f55f1f2490956f5ef">Summation</a>(<span class="keyword">const</span> dim3 gridDim, <span class="keyword">const</span> dim3 blockDim, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> sharedMemSize, <span class="keywordtype">float</span>* out, <span class="keyword">const</span> <span class="keywordtype">float</span>* in, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> n) {</div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>        SummationKernel&lt;&lt;&lt;gridDim, blockDim, sharedMemSize&gt;&gt;&gt;(out, in, n);</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    }</div>
+</div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>}</div>
 <div class="ttc" id="a_operation_kernels_8cuh_html"><div class="ttname"><a href="_operation_kernels_8cuh.html">OperationKernels.cuh</a></div><div class="ttdoc">CUDA Kernel Definitions for High-Performance Tensor Operations.</div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html"><div class="ttname"><a href="namespacenz_1_1krnl.html">nz::krnl</a></div><div class="ttdoc">High-Performance CUDA Kernel Implementations for Tensor Computations.</div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html_a02ad4d4f320e2561be553557ef5805af"><div class="ttname"><a href="namespacenz_1_1krnl.html#a02ad4d4f320e2561be553557ef5805af">nz::krnl::MatrixSub</a></div><div class="ttdeci">void MatrixSub(dim3 gridDim, dim3 blockDim, const float *a, const float *b, float *c, unsigned long long n)</div><div class="ttdoc">Kernel function to perform matrix subtraction on GPU.</div><div class="ttdef"><b>Definition</b> <a href="#l00029">OperationKernels.cu:29</a></div></div>
@@ -996,6 +1030,7 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="anamespacenz_1_1krnl_html_a33d3b5cd440afb3c6557515247b5b680"><div class="ttname"><a href="namespacenz_1_1krnl.html#a33d3b5cd440afb3c6557515247b5b680">nz::krnl::GeneralMatrixMul</a></div><div class="ttdeci">void GeneralMatrixMul(dim3 gridDim, dim3 blockDim, const float *A, const float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</div><div class="ttdoc">Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores.</div><div class="ttdef"><b>Definition</b> <a href="#l00069">OperationKernels.cu:69</a></div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html_a3ff4ec6909c3296e1b0d5631c29a44bb"><div class="ttname"><a href="namespacenz_1_1krnl.html#a3ff4ec6909c3296e1b0d5631c29a44bb">nz::krnl::ScalarMul</a></div><div class="ttdeci">void ScalarMul(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float num, const unsigned long long n)</div><div class="ttdoc">Kernel function to perform scalar multiplication on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="#l00111">OperationKernels.cu:111</a></div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html_a46f2fac9d4d89c221194e3d44174bda0"><div class="ttname"><a href="namespacenz_1_1krnl.html#a46f2fac9d4d89c221194e3d44174bda0">nz::krnl::LeakyReLU</a></div><div class="ttdeci">void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n, const float alpha=0.01f)</div><div class="ttdoc">Kernel function to apply the Leaky ReLU activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="#l00256">OperationKernels.cu:256</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a48fdfa2ba1f5215f55f1f2490956f5ef"><div class="ttname"><a href="namespacenz_1_1krnl.html#a48fdfa2ba1f5215f55f1f2490956f5ef">nz::krnl::Summation</a></div><div class="ttdeci">void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, const float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to perform element-wise summation of two arrays.</div><div class="ttdef"><b>Definition</b> <a href="#l00862">OperationKernels.cu:862</a></div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html_a519338ba13d0b3a381fa187a0141d196"><div class="ttname"><a href="namespacenz_1_1krnl.html#a519338ba13d0b3a381fa187a0141d196">nz::krnl::StochasticGradientDescent</a></div><div class="ttdeci">void StochasticGradientDescent(const dim3 gridDim, const dim3 blockDim, float *data, const float *grad, const float lr, const unsigned long long n)</div><div class="ttdoc">Kernel function to perform Stochastic Gradient Descent (SGD) optimization.</div><div class="ttdef"><b>Definition</b> <a href="#l00550">OperationKernels.cu:550</a></div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html_a5836f2ff0444a53b8ae60e8fee4b01ac"><div class="ttname"><a href="namespacenz_1_1krnl.html#a5836f2ff0444a53b8ae60e8fee4b01ac">nz::krnl::ScalarDiv</a></div><div class="ttdeci">void ScalarDiv(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float num, const unsigned long long n)</div><div class="ttdoc">Kernel function to perform scalar division on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="#l00124">OperationKernels.cu:124</a></div></div>
 <div class="ttc" id="anamespacenz_1_1krnl_html_a5d16dbfa0fdad676c5eecd502aa312a3"><div class="ttname"><a href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">nz::krnl::Swish</a></div><div class="ttdeci">void Swish(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="#l00284">OperationKernels.cu:284</a></div></div>

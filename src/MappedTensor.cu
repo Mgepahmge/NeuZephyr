@@ -448,4 +448,34 @@ namespace nz::data {
         CHECK(cudaFreeHost(_data));
         _data = temp;
     }
+
+    MappedTensor::value_type MappedTensor::sum() const {
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        value_type* dData;
+        CHECK(cudaMallocHost(&dData, grid.x * sizeof(value_type)));
+        krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
+        CHECK(cudaDeviceSynchronize());
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += dData[i];
+        }
+        CHECK(cudaFreeHost(dData));
+        return result;
+    }
+
+    MappedTensor::value_type MappedTensor::expSum() const {
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        value_type* dData;
+        CHECK(cudaMallocHost(&dData, grid.x * sizeof(value_type)));
+        krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
+        CHECK(cudaDeviceSynchronize());
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += dData[i];
+        }
+        CHECK(cudaFreeHost(dData));
+        return result;
+    }
 }

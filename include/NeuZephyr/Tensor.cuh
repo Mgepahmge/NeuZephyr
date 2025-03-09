@@ -145,14 +145,6 @@ namespace nz::data {
         friend DL_API Tensor operator+(value_type lhs, const Tensor& rhs);
         friend DL_API Tensor operator-(const Tensor& lhs, value_type rhs);
         friend DL_API Tensor operator-(value_type lhs, const Tensor& rhs);
-        friend DL_API Tensor ReLU(const Tensor& tensor);
-        friend DL_API Tensor Sigmoid(const Tensor& tensor);
-        friend DL_API Tensor Tanh(const Tensor& tensor);
-        friend DL_API Tensor LeakyReLU(const Tensor& tensor, float alpha = 0.01f);
-        friend DL_API Tensor Swish(const Tensor& tensor);
-        friend DL_API Tensor ELU(const Tensor& tensor, float alpha = 1.0f);
-        friend DL_API Tensor HardSigmoid(const Tensor& tensor, float alpha = 0.2f, float beta = 0.5f);
-        friend DL_API Tensor HardSwish(const Tensor& tensor, float alpha = 0.2f, float beta = 0.5f);
         friend DL_API Tensor Softmax(const Tensor& tensor);
 
         /// @name Constructors and Destructors
@@ -905,6 +897,74 @@ namespace nz::data {
          * @endcode
          */
         void recip() const;
+
+        /**
+         * @brief Compute the sum of all elements in the Tensor.
+         *
+         * @return The sum of all elements in the Tensor as a value of type `Tensor::value_type`.
+         *
+         * This function calculates the sum of all elements in the Tensor using CUDA parallel processing. It first determines the block and grid dimensions for the CUDA kernel. Then, it allocates device memory for intermediate results and host memory to store the results copied from the device. The `krnl::Summation` CUDA kernel is launched to perform partial sums on the device. After the kernel execution, the partial sums are copied from the device to the host using `cudaMemcpy`. Finally, the partial sums on the host are added together to obtain the total sum, and the allocated host and device memory are freed.
+         *
+         * Memory management:
+         * - Host memory is allocated for `hData` using `new[]` and freed using `delete[]`.
+         * - Device memory is allocated for `dData` using `cudaMalloc` and freed using `cudaFree`.
+         *
+         * Exception handling:
+         * - The `CHECK` macro is used to handle CUDA API errors. If a CUDA API call fails, the `CHECK` macro will throw an exception, and the function will terminate.
+         *
+         * Relationship with other components:
+         * - This function depends on the `krnl::Summation` CUDA kernel to perform partial sums on the device.
+         * - It also depends on the `CHECK` macro to handle CUDA API errors.
+         *
+         * @throws [Exception type thrown by CHECK macro] If there are CUDA API errors during memory allocation, kernel execution, or memory copying.
+         *
+         * @note
+         * - The time complexity of this function is approximately O(n), where n is the number of elements in the Tensor (`_size`). The CUDA kernel parallelizes the partial sum calculation, and the final sum on the host is a linear operation over the number of grid blocks.
+         * - Ensure that the CUDA device is properly initialized before calling this function.
+         *
+         * @code
+         * ```cpp
+         * nz::data::Tensor tensor({2, 3}, true);
+         * // Assume tensor is filled with some values
+         * nz::data::Tensor::value_type sum_result = tensor.sum();
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type sum() const;
+
+        /**
+         * @brief Compute the sum of the exponential values of all elements in the Tensor.
+         *
+         * @return The sum of the exponential values of all elements in the Tensor as a value of type `Tensor::value_type`.
+         *
+         * This function calculates the sum of the exponential values of all elements in the Tensor. It first configures the CUDA block and grid dimensions. Then, it allocates device memory for intermediate results and host memory to hold the copied results from the device. The `krnl::SummationExp` CUDA kernel is launched to compute the partial sums of the exponential values on the device. After the kernel execution, the partial sums are transferred from the device to the host using `cudaMemcpy`. Finally, the partial sums on the host are added together to obtain the total sum, and the allocated host and device memory are freed.
+         *
+         * Memory management:
+         * - Host memory is allocated for `hData` using `new[]` and freed using `delete[]`.
+         * - Device memory is allocated for `dData` using `cudaMalloc` and freed using `cudaFree`.
+         *
+         * Exception handling:
+         * - The `CHECK` macro is used to handle CUDA API errors. If a CUDA API call fails, the `CHECK` macro will throw an exception, and the function will terminate.
+         *
+         * Relationship with other components:
+         * - This function depends on the `krnl::SummationExp` CUDA kernel to perform the partial sums of exponential values on the device.
+         * - It also depends on the `CHECK` macro to handle CUDA API errors.
+         *
+         * @throws [Exception type thrown by CHECK macro] If there are CUDA API errors during memory allocation, kernel execution, or memory copying.
+         *
+         * @note
+         * - The time complexity of this function is approximately O(n), where n is the number of elements in the Tensor (`_size`). The CUDA kernel parallelizes the partial sum calculation of exponential values, and the final sum on the host is a linear operation over the number of grid blocks.
+         * - Ensure that the CUDA device is properly initialized before calling this function.
+         *
+         * @code
+         * ```cpp
+         * nz::data::Tensor tensor({2, 3}, true);
+         * // Assume tensor is filled with some values
+         * nz::data::Tensor::value_type exp_sum_result = tensor.expSum();
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type expSum() const;
 
         /// @}
 

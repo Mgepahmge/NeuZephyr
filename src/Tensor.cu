@@ -375,322 +375,6 @@ namespace nz::data {
     }
 
     /**
-     * @brief Applies the Rectified Linear Unit (ReLU) activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the ReLU activation function element-wise
-     * to the given tensor. ReLU is a popular activation function in neural networks that replaces all negative
-     * values in the tensor with zero, leaving positive values unchanged.
-     *
-     * @param tensor The tensor to which the ReLU activation function will be applied.
-     * @return A new tensor containing the result of the ReLU activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`RectifiedLinearUnit`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise ReLU activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(-1.0f);  // Fill the tensor with negative values
-     * Tensor result = ReLU(tensor);  // Apply the ReLU activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor ReLU(const Tensor& tensor) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::RectifiedLinearUnit(grid, block, result._data, tensor._data, tensor._size);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Sigmoid activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the Sigmoid activation function element-wise
-     * to the given tensor. The Sigmoid function squashes each element of the tensor to a value between 0 and 1.
-     * The Sigmoid function is commonly used in neural networks, especially for binary classification tasks.
-     *
-     * @param tensor The tensor to which the Sigmoid activation function will be applied.
-     * @return A new tensor containing the result of the Sigmoid activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`Sigmoid`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise Sigmoid activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(0.5f);  // Fill the tensor with values between 0 and 1
-     * Tensor result = Sigmoid(tensor);  // Apply the Sigmoid activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor Sigmoid(const Tensor& tensor) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::Sigmoid(grid, block, result._data, tensor._data, tensor._size);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Tanh (hyperbolic tangent) activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the Tanh activation function element-wise
-     * to the given tensor. The Tanh function squashes each element of the tensor to a value between -1 and 1.
-     * The Tanh function is often used in neural networks and is similar to the Sigmoid function but has a wider output range.
-     *
-     * @param tensor The tensor to which the Tanh activation function will be applied.
-     * @return A new tensor containing the result of the Tanh activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`Tanh`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise Tanh activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(0.5f);  // Fill the tensor with values
-     * Tensor result = Tanh(tensor);  // Apply the Tanh activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor Tanh(const Tensor& tensor) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::Tanh(grid, block, result._data, tensor._data, tensor._size);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Tanh (hyperbolic tangent) activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the Tanh activation function element-wise
-     * to the given tensor. The Tanh function squashes each element of the tensor to a value between -1 and 1.
-     * The Tanh function is often used in neural networks and is similar to the Sigmoid function but has a wider output range.
-     *
-     * @param tensor The tensor to which the Tanh activation function will be applied.
-     * @return A new tensor containing the result of the Tanh activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`Tanh`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise Tanh activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(0.5f);  // Fill the tensor with values
-     * Tensor result = Tanh(tensor);  // Apply the Tanh activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor LeakyReLU(const Tensor& tensor, float alpha) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        const dim3 block(256);
-        const dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::LeakyReLU(grid, block, result._data, tensor._data, tensor._size, alpha);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Swish activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the Swish activation function element-wise
-     * to the given tensor. Swish is a smooth, non-monotonic activation function defined as:
-     *
-     *     Swish(x) = x / (1 + exp(-x))
-     *
-     * Swish has been shown to work well in deep neural networks, offering benefits over ReLU in certain tasks.
-     *
-     * @param tensor The tensor to which the Swish activation function will be applied.
-     * @return A new tensor containing the result of the Swish activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`Swish`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise Swish activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(0.5f);  // Fill the tensor with values
-     * Tensor result = Swish(tensor);  // Apply the Swish activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor Swish(const Tensor& tensor) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        const dim3 block(256);
-        const dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::Swish(grid, block, result._data, tensor._data, tensor._size);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Exponential Linear Unit (ELU) activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the ELU activation function element-wise
-     * to the given tensor. ELU is a smooth, differentiable activation function defined as:
-     *
-     *     ELU(x) = x, if x > 0
-     *     ELU(x) = alpha * (exp(x) - 1), if x <= 0
-     *
-     * where `alpha` is a hyperparameter that controls the slope of the negative part of the function.
-     * ELU has been shown to perform better than ReLU in certain situations, especially in deep networks.
-     *
-     * @param tensor The tensor to which the ELU activation function will be applied.
-     * @param alpha A parameter that controls the value for negative inputs. It determines the slope of the negative part.
-     * @return A new tensor containing the result of the ELU activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`ExponentialLinearUnit`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise ELU activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(-1.0f);  // Fill the tensor with negative values
-     * float alpha = 1.0f;
-     * Tensor result = ELU(tensor, alpha);  // Apply the ELU activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor ELU(const Tensor& tensor, float alpha) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::ExponentialLinearUnit(grid, block, result._data, tensor._data, tensor._size, alpha);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Hard Sigmoid activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the Hard Sigmoid activation function element-wise
-     * to the given tensor. Hard Sigmoid is a piecewise linear approximation of the Sigmoid function, defined as:
-     *
-     *     HardSigmoid(x) = alpha * x + beta, if x is between -2.5 and 2.5
-     *     HardSigmoid(x) = 0, if x < -2.5
-     *     HardSigmoid(x) = 1, if x > 2.5
-     *
-     * where `alpha` and `beta` are parameters that control the slope and the shift of the function.
-     * Hard Sigmoid is often used in neural networks as a computationally efficient approximation to Sigmoid.
-     *
-     * @param tensor The tensor to which the Hard Sigmoid activation function will be applied.
-     * @param alpha A parameter that controls the slope of the activation function.
-     * @param beta A parameter that controls the shift of the activation function.
-     * @return A new tensor containing the result of the Hard Sigmoid activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`HardSigmoid`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise Hard Sigmoid activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(1.0f);  // Fill the tensor with values
-     * float alpha = 0.2f;
-     * float beta = 0.5f;
-     * Tensor result = HardSigmoid(tensor, alpha, beta);  // Apply the Hard Sigmoid activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor HardSigmoid(const Tensor& tensor, float alpha, float beta) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::HardSigmoid(grid, block, result._data, tensor._data, tensor._size, alpha, beta);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
-     * @brief Applies the Hard Swish activation function to a tensor.
-     *
-     * This function is a friend of the `Tensor` class and applies the Hard Swish activation function element-wise
-     * to the given tensor. Hard Swish is a variant of the Swish activation function, which is defined as:
-     *
-     *     HardSwish(x) = x * (ReLU6(x + 3) / 6)
-     *
-     * where `ReLU6(x)` is the Rectified Linear Unit function with a maximum value of 6. The Hard Swish function
-     * is computationally more efficient than the original Swish function while maintaining similar properties.
-     *
-     * @param tensor The tensor to which the Hard Swish activation function will be applied.
-     * @param alpha A parameter that controls the scaling of the activation. Typically, this is set to 1.0.
-     * @param beta A parameter that controls the shift of the activation. Typically, this is set to 3.0.
-     * @return A new tensor containing the result of the Hard Swish activation applied element-wise to the input tensor.
-     *
-     * This function uses a CUDA kernel (`HardSwish`) to perform the element-wise activation in parallel
-     * on the GPU. The result is stored in a new tensor, which is returned.
-     *
-     * @note
-     * - This operator does not modify the original tensor. Instead, it returns a new tensor that contains the
-     *   result of the element-wise Hard Swish activation.
-     * - The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.
-     *
-     * @code
-     * ```cpp
-     * Tensor tensor({2, 3});
-     * tensor.fill(1.0f);  // Fill the tensor with values
-     * float alpha = 1.0f;
-     * float beta = 3.0f;
-     * Tensor result = HardSwish(tensor, alpha, beta);  // Apply the Hard Swish activation
-     * std::cout << result << std::endl;  // Print the resulting tensor
-     * ```
-     * @endcode
-     */
-    Tensor HardSwish(const Tensor& tensor, float alpha, float beta) {
-        Tensor result(tensor._shape, tensor._requires_grad);
-        dim3 block(256);
-        dim3 grid((tensor._size + block.x - 1) / block.x);
-        krnl::HardSwish(grid, block, result._data, tensor._data, tensor._size, alpha, beta);
-        CHECK(cudaDeviceSynchronize());
-        return result;
-    }
-
-    /**
      * @brief Applies the Softmax activation function to a tensor.
      *
      * This function is a friend of the `Tensor` class and applies the Softmax activation function element-wise
@@ -732,7 +416,7 @@ namespace nz::data {
         float sum = 0;
         cudaMalloc(&result_d, grid.x * sizeof(Tensor::value_type));
         result_h = static_cast<float*>(malloc(grid.x * sizeof(Tensor::value_type)));
-        krnl::SummationExp(grid, block, block.x * sizeof(float), result_d, tensor._data, tensor._size);
+        krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), result_d, tensor._data, tensor._size);
         CHECK(cudaMemcpy(result_h, result_d, grid.x * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost));
         for (int i = 0; i < grid.x; i++) {
             sum += result_h[i];
@@ -1094,5 +778,39 @@ namespace nz::data {
         krnl::Recip(grid, block, data, _data, _size);
         CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
         cudaFree(data);
+    }
+
+    Tensor::value_type Tensor::sum() const {
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        value_type* dData;
+        auto* hData = new value_type[grid.x];
+        CHECK(cudaMalloc(&dData, grid.x * sizeof(value_type)));
+        krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
+        CHECK(cudaMemcpy(hData, dData, grid.x * sizeof(value_type), cudaMemcpyDeviceToHost));
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += hData[i];
+        }
+        delete[] hData;
+        CHECK(cudaFree(dData));
+        return result;
+    }
+
+    Tensor::value_type Tensor::expSum() const {
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        value_type* dData;
+        auto* hData = new value_type[grid.x];
+        CHECK(cudaMalloc(&dData, grid.x * sizeof(value_type)));
+        krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
+        CHECK(cudaMemcpy(hData, dData, grid.x * sizeof(value_type), cudaMemcpyDeviceToHost));
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += hData[i];
+        }
+        delete[] hData;
+        CHECK(cudaFree(dData));
+        return result;
     }
 }
