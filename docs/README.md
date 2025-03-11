@@ -146,3 +146,9 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 - Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.
 - Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.
 - Further fine-tuned matrix operations for increased efficiency.
+
+### v0.3.0 - Memory Management Upgrade
+- Added MappedTensor class using CUDA zero-copy memory (ideal for frequent host-side data access in non-compute-intensive scenarios).
+- Unified APIs between MappedTensor and original Tensor class (using CUDA global memory) for consistent interfaces.
+- Preserved high-performance Tensor implementation (recommended for compute-intensive workloads).
+- Optimized memory mapping mechanisms to reduce host-device transfer overhead.
