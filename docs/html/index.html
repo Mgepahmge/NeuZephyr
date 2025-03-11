@@ -172,7 +172,15 @@ v0.2.0 - Performance Optimization</h3>
 <ul>
 <li>Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.</li>
 <li>Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.</li>
-<li>Further fine-tuned matrix operations for increased efficiency. </li>
+<li>Further fine-tuned matrix operations for increased efficiency.</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md101"></a>
+v0.3.0 - Memory Management Upgrade</h3>
+<ul>
+<li>Added MappedTensor class using CUDA zero-copy memory (ideal for frequent host-side data access in non-compute-intensive scenarios).</li>
+<li>Unified APIs between MappedTensor and original Tensor class (using CUDA global memory) for consistent interfaces.</li>
+<li>Preserved high-performance Tensor implementation (recommended for compute-intensive workloads).</li>
+<li>Optimized memory mapping mechanisms to reduce host-device transfer overhead. </li>
 </ul>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
