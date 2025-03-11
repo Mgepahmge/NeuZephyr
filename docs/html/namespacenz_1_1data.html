@@ -121,6 +121,38 @@ Functions</h2></td></tr>
 <tr class="memitem:ad6092c1138e5093c07ec00c12c72314a"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad6092c1138e5093c07ec00c12c72314a">Softmax</a> (T input)</td></tr>
 <tr class="memdesc:ad6092c1138e5093c07ec00c12c72314a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the softmax function for a given input of type T.  <br /></td></tr>
 <tr class="separator:ad6092c1138e5093c07ec00c12c72314a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab99b7c0a7c96a6de43f5b3f25af7f918" id="r_ab99b7c0a7c96a6de43f5b3f25af7f918"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ab99b7c0a7c96a6de43f5b3f25af7f918"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab99b7c0a7c96a6de43f5b3f25af7f918">operator+</a> (T &amp;lhs, const float rhs)</td></tr>
+<tr class="memdesc:ab99b7c0a7c96a6de43f5b3f25af7f918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the addition operator to add a scalar float to a tensor of type T.  <br /></td></tr>
+<tr class="separator:ab99b7c0a7c96a6de43f5b3f25af7f918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cbc31234b126e3ce84c273e0cc8714a" id="r_a5cbc31234b126e3ce84c273e0cc8714a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a5cbc31234b126e3ce84c273e0cc8714a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5cbc31234b126e3ce84c273e0cc8714a">operator+</a> (const float lhs, T &amp;rhs)</td></tr>
+<tr class="memdesc:a5cbc31234b126e3ce84c273e0cc8714a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the addition operator to add a tensor of type T to a scalar float.  <br /></td></tr>
+<tr class="separator:a5cbc31234b126e3ce84c273e0cc8714a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc650ae262aba5f1b0fa9cca8cae311e" id="r_acc650ae262aba5f1b0fa9cca8cae311e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:acc650ae262aba5f1b0fa9cca8cae311e"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acc650ae262aba5f1b0fa9cca8cae311e">operator-</a> (T &amp;lhs, const float rhs)</td></tr>
+<tr class="memdesc:acc650ae262aba5f1b0fa9cca8cae311e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the subtraction operator to subtract a scalar float from a tensor of type T.  <br /></td></tr>
+<tr class="separator:acc650ae262aba5f1b0fa9cca8cae311e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ecefd608c1f6b3ce4e9d752dd05c0e7" id="r_a5ecefd608c1f6b3ce4e9d752dd05c0e7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a5ecefd608c1f6b3ce4e9d752dd05c0e7"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5ecefd608c1f6b3ce4e9d752dd05c0e7">operator-</a> (const float lhs, T &amp;rhs)</td></tr>
+<tr class="memdesc:a5ecefd608c1f6b3ce4e9d752dd05c0e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the subtraction operator to subtract a tensor of type T from a scalar float.  <br /></td></tr>
+<tr class="separator:a5ecefd608c1f6b3ce4e9d752dd05c0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8730252e35a8e59aacb429efb0d6b828" id="r_a8730252e35a8e59aacb429efb0d6b828"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8730252e35a8e59aacb429efb0d6b828"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8730252e35a8e59aacb429efb0d6b828">operator*</a> (T &amp;lhs, const float rhs)</td></tr>
+<tr class="memdesc:a8730252e35a8e59aacb429efb0d6b828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the multiplication operator to multiply a tensor of type T by a scalar float.  <br /></td></tr>
+<tr class="separator:a8730252e35a8e59aacb429efb0d6b828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f0029a210088048368560c6e4c4d8a6" id="r_a6f0029a210088048368560c6e4c4d8a6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a6f0029a210088048368560c6e4c4d8a6"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6f0029a210088048368560c6e4c4d8a6">operator*</a> (const float lhs, T &amp;rhs)</td></tr>
+<tr class="memdesc:a6f0029a210088048368560c6e4c4d8a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the multiplication operator to multiply a scalar float by a tensor of type T.  <br /></td></tr>
+<tr class="separator:a6f0029a210088048368560c6e4c4d8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a771a257e9dd839ce330e9b40fd1dda56" id="r_a771a257e9dd839ce330e9b40fd1dda56"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a771a257e9dd839ce330e9b40fd1dda56"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a771a257e9dd839ce330e9b40fd1dda56">operator/</a> (T &amp;lhs, const float rhs)</td></tr>
+<tr class="memdesc:a771a257e9dd839ce330e9b40fd1dda56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the division operator to divide a tensor of type T by a scalar float.  <br /></td></tr>
+<tr class="separator:a771a257e9dd839ce330e9b40fd1dda56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275956a1088d701845f4599da84cdc84" id="r_a275956a1088d701845f4599da84cdc84"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a275956a1088d701845f4599da84cdc84"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a275956a1088d701845f4599da84cdc84">operator/</a> (const float lhs, T &amp;rhs)</td></tr>
+<tr class="memdesc:a275956a1088d701845f4599da84cdc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the division operator to divide a scalar float by a tensor of type T.  <br /></td></tr>
+<tr class="separator:a275956a1088d701845f4599da84cdc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af967fb10a908c374d8378ac7ef22779c" id="r_af967fb10a908c374d8378ac7ef22779c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af967fb10a908c374d8378ac7ef22779c">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> &amp;tensor)</td></tr>
 <tr class="memdesc:af967fb10a908c374d8378ac7ef22779c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the &lt;&lt; operator to print a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object to an output stream.  <br /></td></tr>
 <tr class="separator:af967fb10a908c374d8378ac7ef22779c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,30 +165,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a40134aba93013e1b0d43c6fd5158d400" id="r_a40134aba93013e1b0d43c6fd5158d400"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40134aba93013e1b0d43c6fd5158d400">operator&gt;&gt;</a> (std::istream &amp;is, const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;tensor)</td></tr>
 <tr class="memdesc:a40134aba93013e1b0d43c6fd5158d400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the <code>&gt;&gt;</code> operator to read a tensor's data from an input stream.  <br /></td></tr>
 <tr class="separator:a40134aba93013e1b0d43c6fd5158d400"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac65cd4ed45d91da297a90d4381411064" id="r_ac65cd4ed45d91da297a90d4381411064"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac65cd4ed45d91da297a90d4381411064">operator*</a> (const Tensor::value_type lhs, const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;rhs)</td></tr>
-<tr class="memdesc:ac65cd4ed45d91da297a90d4381411064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a tensor by a scalar (element-wise multiplication).  <br /></td></tr>
-<tr class="separator:ac65cd4ed45d91da297a90d4381411064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7386d5f0c567a1bed5a78eab4bf2d6b" id="r_ab7386d5f0c567a1bed5a78eab4bf2d6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7386d5f0c567a1bed5a78eab4bf2d6b">operator*</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;lhs, const Tensor::value_type rhs)</td></tr>
-<tr class="memdesc:ab7386d5f0c567a1bed5a78eab4bf2d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a tensor by a scalar (element-wise multiplication).  <br /></td></tr>
-<tr class="separator:ab7386d5f0c567a1bed5a78eab4bf2d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b044ce5a34b4724830f073efb954743" id="r_a3b044ce5a34b4724830f073efb954743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b044ce5a34b4724830f073efb954743">operator/</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;lhs, const Tensor::value_type rhs)</td></tr>
-<tr class="memdesc:a3b044ce5a34b4724830f073efb954743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divides a tensor by a scalar (element-wise division).  <br /></td></tr>
-<tr class="separator:a3b044ce5a34b4724830f073efb954743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5c3243e28d8132d9514c8d37d597a7f" id="r_ab5c3243e28d8132d9514c8d37d597a7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5c3243e28d8132d9514c8d37d597a7f">operator+</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;lhs, const Tensor::value_type rhs)</td></tr>
-<tr class="memdesc:ab5c3243e28d8132d9514c8d37d597a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a scalar to a tensor (element-wise addition).  <br /></td></tr>
-<tr class="separator:ab5c3243e28d8132d9514c8d37d597a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0f75427702f8732bc1833b272baa7f6" id="r_aa0f75427702f8732bc1833b272baa7f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0f75427702f8732bc1833b272baa7f6">operator+</a> (const Tensor::value_type lhs, const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;rhs)</td></tr>
-<tr class="memdesc:aa0f75427702f8732bc1833b272baa7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a scalar to a tensor (element-wise addition).  <br /></td></tr>
-<tr class="separator:aa0f75427702f8732bc1833b272baa7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a402c3fdfb410d9351a43087834982bbe" id="r_a402c3fdfb410d9351a43087834982bbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a402c3fdfb410d9351a43087834982bbe">operator-</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;lhs, const Tensor::value_type rhs)</td></tr>
-<tr class="memdesc:a402c3fdfb410d9351a43087834982bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtracts a scalar from a tensor (element-wise subtraction).  <br /></td></tr>
-<tr class="separator:a402c3fdfb410d9351a43087834982bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00d2b2ae594fa907461c12045de8f470" id="r_a00d2b2ae594fa907461c12045de8f470"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00d2b2ae594fa907461c12045de8f470">operator-</a> (const Tensor::value_type lhs, const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;rhs)</td></tr>
-<tr class="memdesc:a00d2b2ae594fa907461c12045de8f470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtracts a tensor from a scalar (element-wise subtraction).  <br /></td></tr>
-<tr class="separator:a00d2b2ae594fa907461c12045de8f470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09849b685c23664bf02b0f824006f695" id="r_a09849b685c23664bf02b0f824006f695"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09849b685c23664bf02b0f824006f695">Softmax</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;tensor)</td></tr>
-<tr class="memdesc:a09849b685c23664bf02b0f824006f695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the Softmax activation function to a tensor.  <br /></td></tr>
-<tr class="separator:a09849b685c23664bf02b0f824006f695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains data structures and utilities for tensor operations in machine learning workflows. </p>
@@ -219,9 +227,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a5e6656db9844fdb33add8afa7c0ceb8a">ELU</a>(input, 0.5f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a5e6656db9844fdb33add8afa7c0ceb8a"><div class="ttname"><a href="#a5e6656db9844fdb33add8afa7c0ceb8a">nz::data::ELU</a></div><div class="ttdeci">T ELU(T input, const float alpha=1.0f)</div><div class="ttdoc">Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00223">TensorOperations.cuh:223</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a5e6656db9844fdb33add8afa7c0ceb8a"><div class="ttname"><a href="#a5e6656db9844fdb33add8afa7c0ceb8a">nz::data::ELU</a></div><div class="ttdeci">T ELU(T input, const float alpha=1.0f)</div><div class="ttdoc">Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00233">TensorOperations.cuh:233</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00223">223</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00233">233</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -280,9 +288,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a836b8388aba110fd9130757ef743597a">HardSigmoid</a>(input, 0.3f, 0.6f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a836b8388aba110fd9130757ef743597a"><div class="ttname"><a href="#a836b8388aba110fd9130757ef743597a">nz::data::HardSigmoid</a></div><div class="ttdeci">T HardSigmoid(T input, const float alpha=0.2f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00262">TensorOperations.cuh:262</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a836b8388aba110fd9130757ef743597a"><div class="ttname"><a href="#a836b8388aba110fd9130757ef743597a">nz::data::HardSigmoid</a></div><div class="ttdeci">T HardSigmoid(T input, const float alpha=0.2f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00272">TensorOperations.cuh:272</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00262">262</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00272">272</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -341,9 +349,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a07ab6e69dbefd62eae7058c9136aea2a">HardSwish</a>(input, 0.4f, 0.7f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a07ab6e69dbefd62eae7058c9136aea2a"><div class="ttname"><a href="#a07ab6e69dbefd62eae7058c9136aea2a">nz::data::HardSwish</a></div><div class="ttdeci">T HardSwish(T input, const float alpha=0.5f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00301">TensorOperations.cuh:301</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a07ab6e69dbefd62eae7058c9136aea2a"><div class="ttname"><a href="#a07ab6e69dbefd62eae7058c9136aea2a">nz::data::HardSwish</a></div><div class="ttdeci">T HardSwish(T input, const float alpha=0.5f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00311">TensorOperations.cuh:311</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00301">301</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00311">311</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -396,342 +404,476 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a65ebd7e32d0d942bffdcd1665def151e">LeakyReLU</a>(input, 0.02f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a65ebd7e32d0d942bffdcd1665def151e"><div class="ttname"><a href="#a65ebd7e32d0d942bffdcd1665def151e">nz::data::LeakyReLU</a></div><div class="ttdeci">T LeakyReLU(T input, const float alpha=0.01f)</div><div class="ttdoc">Apply the Leaky Rectified Linear Unit (Leaky ReLU) activation function element-wise to an input tenso...</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00149">TensorOperations.cuh:149</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a65ebd7e32d0d942bffdcd1665def151e"><div class="ttname"><a href="#a65ebd7e32d0d942bffdcd1665def151e">nz::data::LeakyReLU</a></div><div class="ttdeci">T LeakyReLU(T input, const float alpha=0.01f)</div><div class="ttdoc">Apply the Leaky Rectified Linear Unit (Leaky ReLU) activation function element-wise to an input tenso...</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00159">TensorOperations.cuh:159</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00149">149</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00159">159</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="ab7386d5f0c567a1bed5a78eab4bf2d6b" name="ab7386d5f0c567a1bed5a78eab4bf2d6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7386d5f0c567a1bed5a78eab4bf2d6b">&#9670;&#160;</a></span>operator*() <span class="overload">[1/2]</span></h2>
+<a id="a6f0029a210088048368560c6e4c4d8a6" name="a6f0029a210088048368560c6e4c4d8a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f0029a210088048368560c6e4c4d8a6">&#9670;&#160;</a></span>operator*() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator* </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator* </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Multiplies a tensor by a scalar (element-wise multiplication). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the multiplication operator (<code>*</code>) to multiply each element of the tensor by a scalar value. It performs element-wise multiplication, where every element in the tensor is multiplied by the given scalar.</p>
+<p>Overload the multiplication operator to multiply a scalar float by a tensor of type T. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The tensor whose elements will be multiplied by the scalar. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The scalar value to multiply each element of the tensor by. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A constant float value representing the left - hand side scalar to multiply the tensor by. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A reference to the right - hand side tensor of type T. The tensor data is used in the multiplication operation.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise multiplication.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarMul</code>) to perform the element-wise multiplication in parallel on the GPU. The result is stored in a new tensor, which is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of multiplying each element of the tensor rhs by the scalar lhs.</dd></dl>
+<p>This template operator overload first verifies if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If the type is valid, it constructs a new tensor <code>result</code> with the same shape and gradient requirement as <code>rhs</code>. Subsequently, it invokes the <code>iScalarMul</code> function to multiply each element of <code>rhs</code> data by the scalar <code>lhs</code>. Finally, the newly created tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created within the function, and its memory allocation depends on the constructor of type T. The memory of <code>result</code> will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the <code>iScalarMul</code> function or the constructor of type T throws an exception, it will be propagated to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function relies on the <code>iScalarMul</code> function to perform the actual multiplication operation.</li>
+<li>It also depends on the <code>shape()</code> and <code>requiresGrad()</code> member functions of type T.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise multiplication.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>rhs</code>. This is because the <code>iScalarMul</code> function needs to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>rhs</code> has valid shape, gradient requirement, and size information.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = tensor * scalar;  <span class="comment">// Multiply each element of the tensor by 2.0f</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f * tensor;</div>
 <div class="line">```</div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00619">Tensor.cu:619</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00174">174</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00610">610</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="ac65cd4ed45d91da297a90d4381411064" name="ac65cd4ed45d91da297a90d4381411064"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac65cd4ed45d91da297a90d4381411064">&#9670;&#160;</a></span>operator*() <span class="overload">[2/2]</span></h2>
+<a id="a8730252e35a8e59aacb429efb0d6b828" name="a8730252e35a8e59aacb429efb0d6b828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8730252e35a8e59aacb429efb0d6b828">&#9670;&#160;</a></span>operator*() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator* </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator* </td>
           <td>(</td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Multiplies a tensor by a scalar (element-wise multiplication). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the multiplication operator (<code>*</code>) to multiply each element of the tensor by a scalar value. It performs element-wise multiplication, where every element in the tensor is multiplied by the given scalar.</p>
+<p>Overload the multiplication operator to multiply a tensor of type T by a scalar float. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The scalar value to multiply each element of the tensor by. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The tensor whose elements will be multiplied by the scalar. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A reference to the left - hand side tensor of type T. The tensor data is used as the base for the multiplication operation. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A constant float value representing the right - hand side scalar to multiply the tensor by.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise multiplication.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarMul</code>) to perform the element-wise multiplication in parallel on the GPU. The result is stored in a new tensor, which is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of multiplying each element of the tensor lhs by the scalar rhs.</dd></dl>
+<p>This template operator overload first checks if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If valid, it creates a new tensor <code>result</code> with the same shape and gradient requirement as <code>lhs</code>. To perform the multiplication, it calls the <code>iScalarMul</code> function to multiply each element of <code>lhs</code> data by the scalar <code>rhs</code>. Finally, the newly created tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function, which may allocate memory based on the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the <code>iScalarMul</code> function or the constructor of type T throws an exception, it will propagate to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the <code>iScalarMul</code> function to perform the actual multiplication operation.</li>
+<li>It also depends on the <code>shape()</code> and <code>requiresGrad()</code> member functions of type T.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise multiplication.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>lhs</code>. This is because the <code>iScalarMul</code> function needs to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>lhs</code> has valid shape, gradient requirement, and size information.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = scalar * tensor;  <span class="comment">// Multiply each element of the tensor by 2.0f</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor * 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00135">135</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00568">568</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="ab5c3243e28d8132d9514c8d37d597a7f" name="ab5c3243e28d8132d9514c8d37d597a7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5c3243e28d8132d9514c8d37d597a7f">&#9670;&#160;</a></span>operator+() <span class="overload">[1/2]</span></h2>
+<a id="a5cbc31234b126e3ce84c273e0cc8714a" name="a5cbc31234b126e3ce84c273e0cc8714a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cbc31234b126e3ce84c273e0cc8714a">&#9670;&#160;</a></span>operator+() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator+ </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator+ </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a scalar to a tensor (element-wise addition). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the addition operator (<code>+</code>) to add a scalar value to each element of the tensor. It performs element-wise addition, where every element in the tensor is increased by the given scalar.</p>
+<p>Overload the addition operator to add a tensor of type T to a scalar float. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The tensor whose elements will be added by the scalar. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The scalar value to add to each element of the tensor. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A constant float value representing the left - hand side scalar to be added to the tensor. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A reference to the right - hand side tensor of type T. The tensor data is used to perform the addition operation.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise addition.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarAdd</code>) to perform the element-wise addition in parallel on the GPU. The result is stored in a new tensor, which is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of adding the scalar lhs to each element of the tensor rhs.</dd></dl>
+<p>This function is a template operator overload. It first checks if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If the type is valid, it creates a new tensor <code>result</code> with the same shape and gradient requirement as <code>rhs</code>. Then, it calls the <code>iScalarAdd</code> function to add the scalar <code>lhs</code> to each element of the data in <code>rhs</code> and stores the result in <code>result</code>. Finally, the newly created tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function, which may allocate memory according to the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the <code>iScalarAdd</code> function or the constructor of type T throws an exception, it will be propagated to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the <code>iScalarAdd</code> function to perform the actual scalar - tensor addition.</li>
+<li>It also depends on the <code>shape()</code> and <code>requiresGrad()</code> member functions of type T.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise addition.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>rhs</code>. This is because the <code>iScalarAdd</code> function needs to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>rhs</code> has valid shape, gradient requirement, and size information.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = tensor + scalar;  <span class="comment">// Add 2.0f to each element of the tensor</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f + tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00251">251</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00442">442</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="aa0f75427702f8732bc1833b272baa7f6" name="aa0f75427702f8732bc1833b272baa7f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0f75427702f8732bc1833b272baa7f6">&#9670;&#160;</a></span>operator+() <span class="overload">[2/2]</span></h2>
+<a id="ab99b7c0a7c96a6de43f5b3f25af7f918" name="ab99b7c0a7c96a6de43f5b3f25af7f918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab99b7c0a7c96a6de43f5b3f25af7f918">&#9670;&#160;</a></span>operator+() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator+ </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator+ </td>
           <td>(</td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a scalar to a tensor (element-wise addition). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the addition operator (<code>+</code>) to add a scalar value to each element of the tensor. It performs element-wise addition, where every element in the tensor is increased by the given scalar.</p>
+<p>Overload the addition operator to add a scalar float to a tensor of type T. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The scalar value to add to each element of the tensor. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The tensor whose elements will be added by the scalar. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A reference to the left - hand side tensor of type T. The tensor data is modified in - place during the addition operation. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A constant float value representing the right - hand side scalar to be added to the tensor.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise addition.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarAdd</code>) to perform the element-wise addition in parallel on the GPU. The result is stored in a new tensor, which is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of adding the scalar rhs to each element of the tensor lhs.</dd></dl>
+<p>This function is a template operator overload that adds a scalar float value to a tensor. It first checks if the type T meets the requirements using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If the type is valid, it creates a new tensor <code>result</code> with the same shape and gradient requirement as <code>lhs</code>. Then, it calls the <code>iScalarAdd</code> function to perform the actual addition operation, which adds the scalar <code>rhs</code> to each element of the data in <code>lhs</code> and stores the result in <code>result</code>. Finally, the newly created tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function, which may allocate memory depending on the implementation of the constructor of type T. The memory for the result will be managed by the destructor of the object when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. However, if the <code>iScalarAdd</code> function or the constructor of type T throws an exception, it will propagate up to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the <code>iScalarAdd</code> function to perform the actual scalar - tensor addition.</li>
+<li>It also depends on the <code>shape()</code> and <code>requiresGrad()</code> member functions of type T.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise addition.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>lhs</code>. This is because the <code>iScalarAdd</code> function needs to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>lhs</code> has valid shape, gradient requirement, and size information.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = scalar + tensor;  <span class="comment">// Add 2.0f to each element of the tensor</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor + 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00289">289</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00400">400</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="a402c3fdfb410d9351a43087834982bbe" name="a402c3fdfb410d9351a43087834982bbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a402c3fdfb410d9351a43087834982bbe">&#9670;&#160;</a></span>operator-() <span class="overload">[1/2]</span></h2>
+<a id="a5ecefd608c1f6b3ce4e9d752dd05c0e7" name="a5ecefd608c1f6b3ce4e9d752dd05c0e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ecefd608c1f6b3ce4e9d752dd05c0e7">&#9670;&#160;</a></span>operator-() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator- </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator- </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Subtracts a scalar from a tensor (element-wise subtraction). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the subtraction operator (<code>-</code>) to subtract a scalar value from each element of the tensor. It performs element-wise subtraction, where every element in the tensor is decreased by the given scalar.</p>
+<p>Overload the subtraction operator to subtract a tensor of type T from a scalar float. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The tensor whose elements will have the scalar subtracted from them. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The scalar value to subtract from each element of the tensor. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A constant float value representing the left - hand side scalar from which the tensor will be subtracted. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A reference to the right - hand side tensor of type T. The tensor data is used in the subtraction operation.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise subtraction.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarAdd</code>) to perform the element-wise subtraction in parallel on the GPU. The result is stored in a new tensor, which is returned. The scalar is negated during the operation to achieve subtraction.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of subtracting each element of the tensor rhs from the scalar lhs.</dd></dl>
+<p>This template operator overload first checks if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If the type is valid, it creates a new tensor <code>result</code> by negating the tensor <code>rhs</code>. Then, it calls the <code>iScalarAdd</code> function to add the scalar <code>lhs</code> to each element of the negated tensor <code>result</code>. Finally, the resulting tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function, which may allocate memory according to the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the negation operation of <code>rhs</code>, the <code>iScalarAdd</code> function, or the constructor of type T throws an exception, it will be propagated to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the negation operator of type T to obtain the negated tensor.</li>
+<li>It also depends on the <code>iScalarAdd</code> function to perform the addition of the scalar to the negated tensor.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise subtraction.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>rhs</code>. This is because both the negation operation and the <code>iScalarAdd</code> function need to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>rhs</code> has valid shape, gradient requirement, and size information.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = tensor - scalar;  <span class="comment">// Subtract 2.0f from each element of the tensor</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f - tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00328">328</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00526">526</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="a00d2b2ae594fa907461c12045de8f470" name="a00d2b2ae594fa907461c12045de8f470"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00d2b2ae594fa907461c12045de8f470">&#9670;&#160;</a></span>operator-() <span class="overload">[2/2]</span></h2>
+<a id="acc650ae262aba5f1b0fa9cca8cae311e" name="acc650ae262aba5f1b0fa9cca8cae311e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc650ae262aba5f1b0fa9cca8cae311e">&#9670;&#160;</a></span>operator-() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator- </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator- </td>
           <td>(</td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Subtracts a tensor from a scalar (element-wise subtraction). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the subtraction operator (<code>-</code>) to subtract each element of the tensor from a scalar value. It performs element-wise subtraction, where every element in the tensor is subtracted from the given scalar.</p>
+<p>Overload the subtraction operator to subtract a scalar float from a tensor of type T. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The scalar value from which each element of the tensor will be subtracted. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The tensor whose elements will be subtracted from the scalar. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A reference to the left - hand side tensor of type T. The tensor data is used as the base for the subtraction operation. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A constant float value representing the right - hand side scalar to be subtracted from the tensor.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise subtraction.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarAdd</code>) to perform the element-wise subtraction in parallel on the GPU. The result is stored in a new tensor, which is returned. The scalar is negated during the operation to achieve subtraction.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of subtracting the scalar rhs from each element of the tensor lhs.</dd></dl>
+<p>This template operator overload first checks if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If valid, it creates a new tensor <code>result</code> with the same shape and gradient requirement as <code>lhs</code>. To perform the subtraction, it calls the <code>iScalarAdd</code> function with <code>-rhs</code> as the scalar to be added to each element of <code>lhs</code> data. Finally, the newly created tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function, which may allocate memory based on the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the <code>iScalarAdd</code> function or the constructor of type T throws an exception, it will propagate to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the <code>iScalarAdd</code> function to perform the actual subtraction operation (by adding the negative of the scalar).</li>
+<li>It also depends on the <code>shape()</code> and <code>requiresGrad()</code> member functions of type T.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise subtraction.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
-<li>The scalar is negated to perform subtraction, which results in <code>lhs - rhs</code> for each element in the tensor.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>lhs</code>. This is because the <code>iScalarAdd</code> function needs to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>lhs</code> has valid shape, gradient requirement, and size information.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = scalar - tensor;  <span class="comment">// Subtract each element of the tensor from 2.0f</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor - 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00368">368</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00484">484</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
-<a id="a3b044ce5a34b4724830f073efb954743" name="a3b044ce5a34b4724830f073efb954743"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b044ce5a34b4724830f073efb954743">&#9670;&#160;</a></span>operator/()</h2>
+<a id="a275956a1088d701845f4599da84cdc84" name="a275956a1088d701845f4599da84cdc84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275956a1088d701845f4599da84cdc84">&#9670;&#160;</a></span>operator/() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::operator/ </td>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator/ </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Tensor::value_type</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Divides a tensor by a scalar (element-wise division). </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and provides an overloaded version of the division operator (<code>/</code>) to divide each element of the tensor by a scalar value. It performs element-wise division, where every element in the tensor is divided by the given scalar.</p>
+<p>Overload the division operator to divide a scalar float by a tensor of type T. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The tensor whose elements will be divided by the scalar. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The scalar value by which each element of the tensor will be divided. </td></tr>
+    <tr><td class="paramname">lhs</td><td>A constant float value representing the left - hand side scalar dividend. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A reference to the right - hand side tensor of type T. The tensor data is used as the divisor for the division operation.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new tensor containing the result of the element-wise division.</dd></dl>
-<p>This function uses a CUDA kernel (<code>ScalarDiv</code>) to perform the element-wise division in parallel on the GPU. The result is stored in a new tensor, which is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of dividing the scalar lhs by each element of the tensor rhs.</dd></dl>
+<p>This template operator overload first verifies if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If valid, it creates a copy of the tensor <code>rhs</code> named <code>result</code>. Then it calls the <code>recip</code> method of <code>result</code> to compute the reciprocal of each element in the tensor. Finally, it uses the <code>iScalarMul</code> function to multiply each element of the <code>result</code> tensor by the scalar <code>lhs</code>.</p>
+<p>Memory management:</p><ul>
+<li>A copy of the tensor <code>rhs</code> is created as <code>result</code>, and its memory allocation depends on the copy - constructor of type T. The memory of <code>result</code> will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the <code>recip</code> method, <code>iScalarMul</code> function, or the copy - constructor of type T throws an exception, it will be propagated to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the <code>recip</code> method of type T to compute the reciprocal of each element in the tensor.</li>
+<li>It also depends on the <code>iScalarMul</code> function to perform the multiplication operation.</li>
+</ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator does not modify the original tensor. Instead, it returns a new tensor that contains the result of the element-wise division.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
-<li>Division by zero should be handled appropriately, and input tensors should be checked to ensure no element is zero.</li>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>rhs</code>. This is because both the <code>recip</code> method and the <code>iScalarMul</code> function need to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>rhs</code> has valid shape, gradient requirement, and size information.</li>
+<li>Ensure that no element in the tensor <code>rhs</code> is zero to avoid division by zero errors during the <code>recip</code> operation.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(10.0f);  <span class="comment">// Fill the tensor with 10.0f</span></div>
-<div class="line"><span class="keywordtype">float</span> scalar = 2.0f;</div>
-<div class="line">Tensor result = tensor / scalar;  <span class="comment">// Divide each element of the tensor by 2.0f</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() and recip() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some non - zero values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f / tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00213">213</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00696">696</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+
+</div>
+</div>
+<a id="a771a257e9dd839ce330e9b40fd1dda56" name="a771a257e9dd839ce330e9b40fd1dda56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a771a257e9dd839ce330e9b40fd1dda56">&#9670;&#160;</a></span>operator/() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overload the division operator to divide a tensor of type T by a scalar float. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>A reference to the left - hand side tensor of type T. The tensor data is used as the dividend for the division operation. </td></tr>
+    <tr><td class="paramname">rhs</td><td>A constant float value representing the right - hand side scalar divisor.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor of type T that is the result of dividing each element of the tensor lhs by the scalar rhs.</dd></dl>
+<p>This template operator overload first checks if the type T is a valid tensor type using <code>is_valid_tensor_type&lt;T&gt;::value</code>. If valid, it creates a new tensor <code>result</code> with the same shape and gradient requirement as <code>lhs</code>. Then it calls the <code>iScalarDiv</code> function to divide each element of <code>lhs</code> data by the scalar <code>rhs</code>. Finally, the newly created tensor <code>result</code> is returned.</p>
+<p>Memory management:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function, and its memory allocation depends on the constructor of type T. The memory of <code>result</code> will be managed by its destructor when it goes out of scope.</li>
+</ul>
+<p>Exception handling:</p><ul>
+<li>There is no explicit exception handling in this function. If the <code>iScalarDiv</code> function or the constructor of type T throws an exception, it will propagate to the caller.</li>
+</ul>
+<p>Relationship with other components:</p><ul>
+<li>This function depends on the <code>iScalarDiv</code> function to perform the actual division operation.</li>
+<li>It also depends on the <code>shape()</code> and <code>requiresGrad()</code> member functions of type T.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the size of the tensor <code>lhs</code>. This is because the <code>iScalarDiv</code> function needs to iterate over each element of the tensor.</li>
+<li>Ensure that the type T is a valid tensor type as determined by <code>is_valid_tensor_type&lt;T&gt;::value</code>.</li>
+<li>Ensure that the tensor <code>lhs</code> has valid shape, gradient requirement, and size information.</li>
+<li>Ensure that the scalar <code>rhs</code> is not zero to avoid division by zero errors.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="comment">// Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor / 2.0f;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00653">653</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -830,6 +972,7 @@ template&lt;typename T &gt; </div>
 <div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with 1.0f</span></div>
 <div class="line">std::cout &lt;&lt; tensor &lt;&lt; std::endl;  <span class="comment">// Prints the tensor to standard output in matrix format</span></div>
 <div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00292">Tensor.cu:292</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00037">37</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
@@ -969,9 +1112,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a9bcee9a75db3d824b92ed17a59711428">ReLU</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00037">TensorOperations.cuh:37</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00047">TensorOperations.cuh:47</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00037">37</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00047">47</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1018,58 +1161,14 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a0740e60918114b0a4d7c88d09aeb8f88">Sigmoid</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a0740e60918114b0a4d7c88d09aeb8f88"><div class="ttname"><a href="#a0740e60918114b0a4d7c88d09aeb8f88">nz::data::Sigmoid</a></div><div class="ttdeci">T Sigmoid(T input)</div><div class="ttdoc">Apply the sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00074">TensorOperations.cuh:74</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a0740e60918114b0a4d7c88d09aeb8f88"><div class="ttname"><a href="#a0740e60918114b0a4d7c88d09aeb8f88">nz::data::Sigmoid</a></div><div class="ttdeci">T Sigmoid(T input)</div><div class="ttdoc">Apply the sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00084">TensorOperations.cuh:84</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00074">74</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
-
-</div>
-</div>
-<a id="a09849b685c23664bf02b0f824006f695" name="a09849b685c23664bf02b0f824006f695"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09849b685c23664bf02b0f824006f695">&#9670;&#160;</a></span>Softmax() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> nz::data::Softmax </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>tensor</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Applies the Softmax activation function to a tensor. </p>
-<p>This function is a friend of the <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class and applies the Softmax activation function element-wise to the given tensor. The Softmax function converts the tensor into a probability distribution, where each element is transformed into a value between 0 and 1, and the sum of all elements in the tensor equals 1. The Softmax function is commonly used in the output layer of neural networks for multi-class classification tasks.</p>
-<p>The Softmax function for each element <code>x_i</code> in the tensor is computed as: </p><pre class="fragment">Softmax(x_i) = exp(x_i) / sum(exp(x_j) for all j)
-</pre><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tensor</td><td>The tensor to which the Softmax activation function will be applied. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The input tensor with the Softmax function applied element-wise.</dd></dl>
-<p>This function uses a CUDA kernel (<code>SummationExp</code>) to compute the sum of the exponentiated values in parallel on the GPU, and then another kernel (<code>Softmax</code>) to apply the Softmax transformation. The result is stored in the original tensor, which is returned.</p>
-<dl class="section note"><dt>Note</dt><dd><ul>
-<li>This operator modifies the original tensor by applying the Softmax transformation in-place.</li>
-<li>The function assumes that the tensor is already in a valid state and that the tensor's data is in GPU memory.</li>
-<li>The Softmax computation is performed in two stages: first by calculating the exponentiated values' sum, then applying the Softmax transformation.</li>
-</ul>
-</dd></dl>
-<div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
-<div class="line">tensor.<a class="code hl_function" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">fill</a>(1.0f);  <span class="comment">// Fill the tensor with values</span></div>
-<div class="line">Tensor result = <a class="code hl_function" href="#ad6092c1138e5093c07ec00c12c72314a">Softmax</a>(tensor);  <span class="comment">// Apply the Softmax activation</span></div>
-<div class="line">std::cout &lt;&lt; result &lt;&lt; std::endl;  <span class="comment">// Print the resulting tensor</span></div>
-<div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_ad6092c1138e5093c07ec00c12c72314a"><div class="ttname"><a href="#ad6092c1138e5093c07ec00c12c72314a">nz::data::Softmax</a></div><div class="ttdeci">T Softmax(T input)</div><div class="ttdoc">Compute the softmax function for a given input of type T.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00342">TensorOperations.cuh:342</a></div></div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00411">411</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00084">84</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
 <a id="ad6092c1138e5093c07ec00c12c72314a" name="ad6092c1138e5093c07ec00c12c72314a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6092c1138e5093c07ec00c12c72314a">&#9670;&#160;</a></span>Softmax() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6092c1138e5093c07ec00c12c72314a">&#9670;&#160;</a></span>Softmax()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1115,8 +1214,9 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="comment">// Assume input is filled with some values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = <a class="code hl_function" href="#ad6092c1138e5093c07ec00c12c72314a">Softmax</a>(input);</div>
 <div class="line">```</div>
+<div class="ttc" id="anamespacenz_1_1data_html_ad6092c1138e5093c07ec00c12c72314a"><div class="ttname"><a href="#ad6092c1138e5093c07ec00c12c72314a">nz::data::Softmax</a></div><div class="ttdeci">T Softmax(T input)</div><div class="ttdoc">Compute the softmax function for a given input of type T.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00352">TensorOperations.cuh:352</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00342">342</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00352">352</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1163,9 +1263,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a42cbe5a414e4212ee7a26b0a66ce08a4">Swish</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a42cbe5a414e4212ee7a26b0a66ce08a4"><div class="ttname"><a href="#a42cbe5a414e4212ee7a26b0a66ce08a4">nz::data::Swish</a></div><div class="ttdeci">T Swish(T input)</div><div class="ttdoc">Apply the Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00185">TensorOperations.cuh:185</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a42cbe5a414e4212ee7a26b0a66ce08a4"><div class="ttname"><a href="#a42cbe5a414e4212ee7a26b0a66ce08a4">nz::data::Swish</a></div><div class="ttdeci">T Swish(T input)</div><div class="ttdoc">Apply the Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00195">TensorOperations.cuh:195</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00185">185</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00195">195</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1212,9 +1312,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a56c9ff66e41ae568a2fec83708c4dd85">Tanh</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a56c9ff66e41ae568a2fec83708c4dd85"><div class="ttname"><a href="#a56c9ff66e41ae568a2fec83708c4dd85">nz::data::Tanh</a></div><div class="ttdeci">T Tanh(T input)</div><div class="ttdoc">Apply the hyperbolic tangent (tanh) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00111">TensorOperations.cuh:111</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a56c9ff66e41ae568a2fec83708c4dd85"><div class="ttname"><a href="#a56c9ff66e41ae568a2fec83708c4dd85">nz::data::Tanh</a></div><div class="ttdeci">T Tanh(T input)</div><div class="ttdoc">Apply the hyperbolic tangent (tanh) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00121">TensorOperations.cuh:121</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00111">111</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00121">121</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>

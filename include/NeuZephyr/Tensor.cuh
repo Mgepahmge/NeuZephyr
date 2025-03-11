@@ -138,14 +138,6 @@ namespace nz::data {
 
         friend DL_API std::ostream& operator<<(std::ostream& os, const Tensor& tensor);
         friend DL_API std::istream& operator>>(std::istream& is, const Tensor& tensor);
-        friend DL_API Tensor operator*(value_type lhs, const Tensor& rhs);
-        friend DL_API Tensor operator*(const Tensor& lhs, value_type rhs);
-        friend DL_API Tensor operator/(const Tensor& lhs, value_type rhs);
-        friend DL_API Tensor operator+(const Tensor& lhs, value_type rhs);
-        friend DL_API Tensor operator+(value_type lhs, const Tensor& rhs);
-        friend DL_API Tensor operator-(const Tensor& lhs, value_type rhs);
-        friend DL_API Tensor operator-(value_type lhs, const Tensor& rhs);
-        friend DL_API Tensor Softmax(const Tensor& tensor);
 
         /// @name Constructors and Destructors
         /// @{

@@ -68,4 +68,22 @@ namespace nz::data {
         krnl::Softmax(grid, block, output, input, sum, size);
         CHECK(cudaDeviceSynchronize());
     }
+
+    void iScalarAdd(float* output, const float* input, const float scalar, const unsigned long long size) {
+        const dim3 block(BLOCKSIZE);
+        const dim3 grid((size + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::ScalarAdd(grid, block, output, input, scalar, size);
+    }
+
+    void iScalarDiv(float* output, const float* input, const float scalar, const unsigned long long size) {
+        const dim3 block(BLOCKSIZE);
+        const dim3 grid((size + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::ScalarDiv(grid, block, output, input, scalar, size);
+    }
+
+    void iScalarMul(float* output, const float* input, float scalar, unsigned long long size) {
+        const dim3 block(BLOCKSIZE);
+        const dim3 grid((size + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::ScalarMul(grid, block, output, input, scalar, size);
+    }
 }

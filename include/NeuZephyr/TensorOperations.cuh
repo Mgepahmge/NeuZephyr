@@ -1,9 +1,19 @@
 #ifndef TENSOROPERATIONS_CUH
 #define TENSOROPERATIONS_CUH
 #include "dl_export.cuh"
+#include "Tensor.cuh"
+#include "MappedTensor.cuh"
 #define BLOCKSIZE 512
 
 namespace nz::data {
+    template <typename T>
+    struct is_valid_tensor_type : std::disjunction<
+            std::is_same<T, Tensor>,
+            std::is_same<T, MappedTensor>
+        > {
+    };
+
+
     DL_API void iRELU(float* output, const float* input, unsigned long long size);
 
     /**
@@ -342,6 +352,351 @@ namespace nz::data {
     T Softmax(T input) {
         T result(input.shape(), input.requiresGrad());
         iSoftmax(result.data(), input.data(), input.expSum(), input.size());
+        return result;
+    }
+
+    DL_API void iScalarAdd(float* output, const float* input, float scalar, unsigned long long size);
+
+    DL_API void iScalarDiv(float* output, const float* input, float scalar, unsigned long long size);
+
+    DL_API void iScalarMul(float* output, const float* input, float scalar, unsigned long long size);
+
+    /**
+     * @brief Overload the addition operator to add a scalar float to a tensor of type T.
+     *
+     * @param lhs A reference to the left - hand side tensor of type T. The tensor data is modified in - place during the addition operation.
+     * @param rhs A constant float value representing the right - hand side scalar to be added to the tensor.
+     *
+     * @return A new tensor of type T that is the result of adding the scalar rhs to each element of the tensor lhs.
+     *
+     * This function is a template operator overload that adds a scalar float value to a tensor. It first checks if the type T meets the requirements using `is_valid_tensor_type<T>::value`. If the type is valid, it creates a new tensor `result` with the same shape and gradient requirement as `lhs`. Then, it calls the `iScalarAdd` function to perform the actual addition operation, which adds the scalar `rhs` to each element of the data in `lhs` and stores the result in `result`. Finally, the newly created tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created inside the function, which may allocate memory depending on the implementation of the constructor of type T. The memory for the result will be managed by the destructor of the object when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. However, if the `iScalarAdd` function or the constructor of type T throws an exception, it will propagate up to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the `iScalarAdd` function to perform the actual scalar - tensor addition.
+     * - It also depends on the `shape()` and `requiresGrad()` member functions of type T.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `lhs`. This is because the `iScalarAdd` function needs to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `lhs` has valid shape, gradient requirement, and size information.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = tensor + 2.0f;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator+(T& lhs, const float rhs) {
+        T result(lhs.shape(), lhs.requiresGrad());
+        iScalarAdd(result.data(), lhs.data(), rhs, lhs.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the addition operator to add a tensor of type T to a scalar float.
+     *
+     * @param lhs A constant float value representing the left - hand side scalar to be added to the tensor.
+     * @param rhs A reference to the right - hand side tensor of type T. The tensor data is used to perform the addition operation.
+     *
+     * @return A new tensor of type T that is the result of adding the scalar lhs to each element of the tensor rhs.
+     *
+     * This function is a template operator overload. It first checks if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If the type is valid, it creates a new tensor `result` with the same shape and gradient requirement as `rhs`. Then, it calls the `iScalarAdd` function to add the scalar `lhs` to each element of the data in `rhs` and stores the result in `result`. Finally, the newly created tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created inside the function, which may allocate memory according to the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the `iScalarAdd` function or the constructor of type T throws an exception, it will be propagated to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the `iScalarAdd` function to perform the actual scalar - tensor addition.
+     * - It also depends on the `shape()` and `requiresGrad()` member functions of type T.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `rhs`. This is because the `iScalarAdd` function needs to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `rhs` has valid shape, gradient requirement, and size information.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = 2.0f + tensor;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator+(const float lhs, T& rhs) {
+        T result(rhs.shape(), rhs.requiresGrad());
+        iScalarAdd(result.data(), rhs.data(), lhs, rhs.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the subtraction operator to subtract a scalar float from a tensor of type T.
+     *
+     * @param lhs A reference to the left - hand side tensor of type T. The tensor data is used as the base for the subtraction operation.
+     * @param rhs A constant float value representing the right - hand side scalar to be subtracted from the tensor.
+     *
+     * @return A new tensor of type T that is the result of subtracting the scalar rhs from each element of the tensor lhs.
+     *
+     * This template operator overload first checks if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If valid, it creates a new tensor `result` with the same shape and gradient requirement as `lhs`. To perform the subtraction, it calls the `iScalarAdd` function with `-rhs` as the scalar to be added to each element of `lhs` data. Finally, the newly created tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created inside the function, which may allocate memory based on the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the `iScalarAdd` function or the constructor of type T throws an exception, it will propagate to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the `iScalarAdd` function to perform the actual subtraction operation (by adding the negative of the scalar).
+     * - It also depends on the `shape()` and `requiresGrad()` member functions of type T.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `lhs`. This is because the `iScalarAdd` function needs to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `lhs` has valid shape, gradient requirement, and size information.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = tensor - 2.0f;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator-(T& lhs, const float rhs) {
+        T result(lhs.shape(), lhs.requiresGrad());
+        iScalarAdd(result.data(), lhs.data(), -rhs, lhs.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the subtraction operator to subtract a tensor of type T from a scalar float.
+     *
+     * @param lhs A constant float value representing the left - hand side scalar from which the tensor will be subtracted.
+     * @param rhs A reference to the right - hand side tensor of type T. The tensor data is used in the subtraction operation.
+     *
+     * @return A new tensor of type T that is the result of subtracting each element of the tensor rhs from the scalar lhs.
+     *
+     * This template operator overload first checks if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If the type is valid, it creates a new tensor `result` by negating the tensor `rhs`. Then, it calls the `iScalarAdd` function to add the scalar `lhs` to each element of the negated tensor `result`. Finally, the resulting tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created inside the function, which may allocate memory according to the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the negation operation of `rhs`, the `iScalarAdd` function, or the constructor of type T throws an exception, it will be propagated to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the negation operator of type T to obtain the negated tensor.
+     * - It also depends on the `iScalarAdd` function to perform the addition of the scalar to the negated tensor.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `rhs`. This is because both the negation operation and the `iScalarAdd` function need to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `rhs` has valid shape, gradient requirement, and size information.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = 2.0f - tensor;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator-(const float lhs, T& rhs) {
+        T result = -rhs;
+        iScalarAdd(result.data(), result.data(), lhs, result.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the multiplication operator to multiply a tensor of type T by a scalar float.
+     *
+     * @param lhs A reference to the left - hand side tensor of type T. The tensor data is used as the base for the multiplication operation.
+     * @param rhs A constant float value representing the right - hand side scalar to multiply the tensor by.
+     *
+     * @return A new tensor of type T that is the result of multiplying each element of the tensor lhs by the scalar rhs.
+     *
+     * This template operator overload first checks if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If valid, it creates a new tensor `result` with the same shape and gradient requirement as `lhs`. To perform the multiplication, it calls the `iScalarMul` function to multiply each element of `lhs` data by the scalar `rhs`. Finally, the newly created tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created inside the function, which may allocate memory based on the constructor of type T. The memory of the result will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the `iScalarMul` function or the constructor of type T throws an exception, it will propagate to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the `iScalarMul` function to perform the actual multiplication operation.
+     * - It also depends on the `shape()` and `requiresGrad()` member functions of type T.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `lhs`. This is because the `iScalarMul` function needs to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `lhs` has valid shape, gradient requirement, and size information.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = tensor * 2.0f;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator*(T& lhs, const float rhs) {
+        T result(lhs.shape(), lhs.requiresGrad());
+        iScalarMul(result.data(), lhs.data(), rhs, lhs.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the multiplication operator to multiply a scalar float by a tensor of type T.
+     *
+     * @param lhs A constant float value representing the left - hand side scalar to multiply the tensor by.
+     * @param rhs A reference to the right - hand side tensor of type T. The tensor data is used in the multiplication operation.
+     *
+     * @return A new tensor of type T that is the result of multiplying each element of the tensor rhs by the scalar lhs.
+     *
+     * This template operator overload first verifies if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If the type is valid, it constructs a new tensor `result` with the same shape and gradient requirement as `rhs`. Subsequently, it invokes the `iScalarMul` function to multiply each element of `rhs` data by the scalar `lhs`. Finally, the newly created tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created within the function, and its memory allocation depends on the constructor of type T. The memory of `result` will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the `iScalarMul` function or the constructor of type T throws an exception, it will be propagated to the caller.
+     *
+     * Relationship with other components:
+     * - This function relies on the `iScalarMul` function to perform the actual multiplication operation.
+     * - It also depends on the `shape()` and `requiresGrad()` member functions of type T.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `rhs`. This is because the `iScalarMul` function needs to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `rhs` has valid shape, gradient requirement, and size information.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = 2.0f * tensor;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator*(const float lhs, T& rhs) {
+        T result(rhs.shape(), rhs.requiresGrad());
+        iScalarMul(result.data(), rhs.data(), lhs, rhs.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the division operator to divide a tensor of type T by a scalar float.
+     *
+     * @param lhs A reference to the left - hand side tensor of type T. The tensor data is used as the dividend for the division operation.
+     * @param rhs A constant float value representing the right - hand side scalar divisor.
+     *
+     * @return A new tensor of type T that is the result of dividing each element of the tensor lhs by the scalar rhs.
+     *
+     * This template operator overload first checks if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If valid, it creates a new tensor `result` with the same shape and gradient requirement as `lhs`. Then it calls the `iScalarDiv` function to divide each element of `lhs` data by the scalar `rhs`. Finally, the newly created tensor `result` is returned.
+     *
+     * Memory management:
+     * - A new tensor `result` is created inside the function, and its memory allocation depends on the constructor of type T. The memory of `result` will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the `iScalarDiv` function or the constructor of type T throws an exception, it will propagate to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the `iScalarDiv` function to perform the actual division operation.
+     * - It also depends on the `shape()` and `requiresGrad()` member functions of type T.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `lhs`. This is because the `iScalarDiv` function needs to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `lhs` has valid shape, gradient requirement, and size information.
+     * - Ensure that the scalar `rhs` is not zero to avoid division by zero errors.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some values
+     * nz::data::Tensor result = tensor / 2.0f;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator/(T& lhs, const float rhs) {
+        T result(lhs.shape(), lhs.requiresGrad());
+        iScalarDiv(result.data(), lhs.data(), rhs, lhs.size());
+        return result;
+    }
+
+    /**
+     * @brief Overload the division operator to divide a scalar float by a tensor of type T.
+     *
+     * @param lhs A constant float value representing the left - hand side scalar dividend.
+     * @param rhs A reference to the right - hand side tensor of type T. The tensor data is used as the divisor for the division operation.
+     *
+     * @return A new tensor of type T that is the result of dividing the scalar lhs by each element of the tensor rhs.
+     *
+     * This template operator overload first verifies if the type T is a valid tensor type using `is_valid_tensor_type<T>::value`. If valid, it creates a copy of the tensor `rhs` named `result`. Then it calls the `recip` method of `result` to compute the reciprocal of each element in the tensor. Finally, it uses the `iScalarMul` function to multiply each element of the `result` tensor by the scalar `lhs`.
+     *
+     * Memory management:
+     * - A copy of the tensor `rhs` is created as `result`, and its memory allocation depends on the copy - constructor of type T. The memory of `result` will be managed by its destructor when it goes out of scope.
+     *
+     * Exception handling:
+     * - There is no explicit exception handling in this function. If the `recip` method, `iScalarMul` function, or the copy - constructor of type T throws an exception, it will be propagated to the caller.
+     *
+     * Relationship with other components:
+     * - This function depends on the `recip` method of type T to compute the reciprocal of each element in the tensor.
+     * - It also depends on the `iScalarMul` function to perform the multiplication operation.
+     *
+     * @note
+     * - The time complexity of this function is O(n), where n is the size of the tensor `rhs`. This is because both the `recip` method and the `iScalarMul` function need to iterate over each element of the tensor.
+     * - Ensure that the type T is a valid tensor type as determined by `is_valid_tensor_type<T>::value`.
+     * - Ensure that the tensor `rhs` has valid shape, gradient requirement, and size information.
+     * - Ensure that no element in the tensor `rhs` is zero to avoid division by zero errors during the `recip` operation.
+     *
+     * @code
+     * ```cpp
+     * // Assume Tensor is a valid tensor type with shape(), requiresGrad() and recip() member functions
+     * nz::data::Tensor tensor({2, 3}, true);
+     * // Assume tensor is filled with some non - zero values
+     * nz::data::Tensor result = 2.0f / tensor;
+     * ```
+     * @endcode
+     */
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    operator/(const float lhs, T& rhs) {
+        T result = rhs;
+        result.recip();
+        iScalarMul(result.data(), result.data(), lhs, result.size());
         return result;
     }
 }
