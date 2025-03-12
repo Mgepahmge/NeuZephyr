@@ -313,6 +313,9 @@ namespace nz::data {
 
     void MappedTensor::reshape(const shape_type& shape) {
         const size_type newSize = shape[0] * shape[1];
+        if (newSize != _size) {
+            WARN("Reshaping to a different size will cause data loss");
+        }
         value_type* temp;
         CHECK(cudaMallocHost(&temp, newSize * sizeof(value_type)));
         CHECK(cudaMemset(temp, 0, newSize * sizeof(value_type)));

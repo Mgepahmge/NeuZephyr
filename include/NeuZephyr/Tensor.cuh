@@ -996,27 +996,32 @@ namespace nz::data {
         std::ostream& printGrad(std::ostream& os) const;
 
         /**
-         * @brief Prints the tensor's data to the standard output.
+         * @brief Prints the tensor data to an output stream.
          *
-         * This function prints the elements of the tensor to the standard output (usually the console),
-         * formatted as a 2D matrix. Each row of the tensor is printed on a new line, and each element in a row
-         * is separated by a space.
+         * @param os The output stream to which the tensor data will be written (host-to-host).
          *
-         * The tensor's data is copied from GPU memory to host memory for printing, which could introduce performance
-         * overhead, especially for large tensors.
+         * @return The output stream after the tensor data has been written.
+         *
+         * This function copies the tensor data from device memory to host memory using `cudaMemcpy`.
+         * It then allocates memory on the host using `malloc` to hold the copied data.
+         * After printing the data to the output stream, it frees the allocated host memory using `free`.
+         * The function does not throw any exceptions under normal circumstances. If `cudaMemcpy` fails,
+         * the behavior depends on the `CHECK` macro, which is assumed to handle errors appropriately.
          *
          * @note
-         * - This function does not modify the tensor. It only prints the current tensor's data.
-         * - The tensor's data is copied from the device (GPU) to the host (CPU) memory using `cudaMemcpy` before printing.
+         * - The time complexity of this function is O(n), where n is the total number of elements in the tensor.
+         * - Ensure that the CUDA environment is properly initialized before calling this function.
          *
          * @code
          * ```cpp
-         * Tensor tensor({2, 3});
-         * tensor.print();  // Prints the tensor's data to the standard output in matrix format
+         * Tensor tensor;
+         * std::ostringstream oss;
+         * tensor.print(oss);
+         * std::cout << oss.str();
          * ```
          * @endcode
          */
-        void print() const;
+        std::ostream& print(std::ostream& os) const;
 
         /// @}
 

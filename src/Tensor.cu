@@ -35,32 +35,11 @@ namespace nz::data {
      * @endcode
      */
     std::ostream& operator<<(std::ostream& os, const Tensor& tensor) {
-        auto* data = static_cast<Tensor::value_type*>(malloc(tensor._size * sizeof(Tensor::value_type)));
-        CHECK(cudaMemcpy(data, tensor._data, tensor._size * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost));
-        std::ostream_iterator<Tensor::value_type> output_iterator(os, " ");
-        for (int i = 0; i < tensor._shape[0]; ++i) {
-            const auto it = data + i * tensor._shape[1];
-            const auto it_end = it + tensor._shape[1];
-            os << "[";
-            std::copy(it, it_end, output_iterator);
-            os << "]";
-            os << std::endl;
-        }
+        tensor.print(os);
         if (tensor._requires_grad) {
             os << "Gradient: " << std::endl;
-            auto* grad = static_cast<Tensor::value_type*>(malloc(tensor._size * sizeof(Tensor::value_type)));
-            CHECK(cudaMemcpy(grad, tensor._grad, tensor._size * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost));
-            for (int i = 0; i < tensor._shape[0]; ++i) {
-                const auto it = grad + i * tensor._shape[1];
-                const auto it_end = it + tensor._shape[1];
-                os << "[";
-                std::copy(it, it_end, output_iterator);
-                os << "]";
-                os << std::endl;
-            }
-            free(grad);
+            tensor.printGrad(os);
         }
-        free(data);
         return os;
     }
 
@@ -173,11 +152,9 @@ namespace nz::data {
 
     Tensor::Tensor(Tensor&& other) noexcept(false):
         _size(other._size), _shape(std::move(other._shape)), _requires_grad(other._requires_grad) {
-        CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
-        CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
-        CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+        _data = other._data;
         if (_requires_grad) {
-            CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+            _grad = other._grad;
         }
         other._data = nullptr;
         other._grad = nullptr;
@@ -189,11 +166,11 @@ namespace nz::data {
             _shape = other._shape;
             _requires_grad = other._requires_grad;
             CHECK(cudaFree(_data));
-            CHECK(cudaMalloc((value_type**)&_data, _size * sizeof(value_type)));
+            CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
             CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
             if (_requires_grad) {
                 CHECK(cudaFree(_grad));
-                CHECK(cudaMalloc((value_type**)&_grad, _size * sizeof(value_type)));
+                CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
                 CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
             }
         }
@@ -204,12 +181,14 @@ namespace nz::data {
         if (this != &other) {
             _size = other._size;
             _shape = std::move(other._shape);
-            CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
-            if (_requires_grad) {
-                CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
-            }
+            CHECK(cudaFree(_data));
+            _data = other._data;
             other._data = nullptr;
-            other._grad = nullptr;
+            if (_requires_grad) {
+                CHECK(cudaFree(_grad));
+                _grad = other._grad;
+                other._grad = nullptr;
+            }
         }
         return *this;
     }
@@ -249,19 +228,20 @@ namespace nz::data {
         }
     }
 
-    void Tensor::print() const {
-        const std::ostream_iterator<value_type> output_iterator(std::cout, " ");
+    std::ostream& Tensor::print(std::ostream& os) const {
+        const std::ostream_iterator<value_type> output_iterator(os, " ");
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
         CHECK(cudaMemcpy(data, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
         for (size_type i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
             const auto end_it = it + _shape[1];
-            std::cout << "[";
+            os << "[";
             std::copy(it, end_it, output_iterator);
-            std::cout << "]";
-            std::cout << std::endl;
+            os << "]";
+            os << std::endl;
         }
         free(data);
+        return os;
     }
 
     void Tensor::dataInject(const value_type* data, const bool grad) const {
@@ -345,35 +325,27 @@ namespace nz::data {
     }
 
     void Tensor::reshape(const shape_type& shape) {
-        if (shape[0] * shape[1] != _size) {
+        const size_type size = shape[0] * shape[1];
+        if (size != _size) {
             WARN("Reshaping to a different size will cause data loss");
         }
-        auto* temp = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        CHECK(cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
+        value_type* temp;
+        CHECK(cudaMalloc(&temp, size * sizeof(value_type)));
+        CHECK(cudaMemset(temp, 0, size * sizeof(value_type)));
+        CHECK(cudaMemcpy(temp, _data, (size < _size ? size : _size) * sizeof(value_type), cudaMemcpyDeviceToDevice));
         CHECK(cudaFree(_data));
-
-        value_type* temp_grad = nullptr;
+        _data = temp;
         if (_requires_grad) {
-            temp_grad = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-            CHECK(cudaMemcpy(temp_grad, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
+            value_type* tempGrad;
+            CHECK(cudaMalloc(&tempGrad, size * sizeof(value_type)));
+            CHECK(cudaMemset(tempGrad, 0, size * sizeof(value_type)));
+            CHECK(cudaMemcpy(tempGrad, _grad, (size < _size ? size : _size) * sizeof(value_type),
+                cudaMemcpyDeviceToDevice));
             CHECK(cudaFree(_grad));
+            _grad = tempGrad;
         }
-
-        const size_type size = _size;
-        _size = shape[0] * shape[1];
         _shape = shape;
-
-        CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
-        CHECK(cudaMemset(_data, 0, _size * sizeof(value_type)));
-        CHECK(cudaMemcpy(_data, temp, size * sizeof(value_type), cudaMemcpyHostToDevice));
-        free(temp);
-
-        if (_requires_grad) {
-            CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
-            CHECK(cudaMemset(_grad, 0, _size * sizeof(value_type)));
-            CHECK(cudaMemcpy(_grad, temp_grad, size * sizeof(value_type), cudaMemcpyHostToDevice));
-            free(temp_grad);
-        }
+        _size = size;
     }
 
     void Tensor::transpose() {
@@ -419,9 +391,12 @@ namespace nz::data {
     }
 
     std::ostream& Tensor::printGrad(std::ostream& os) const {
+        if (!_requires_grad) {
+            throw std::runtime_error("Tensor does not require gradients");
+        }
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
         CHECK(cudaMemcpy(data, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
-        std::ostream_iterator<value_type> output_iterator(os, " ");
+        const std::ostream_iterator<value_type> output_iterator(os, " ");
         for (int i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
             const auto it_end = it + _shape[1];
