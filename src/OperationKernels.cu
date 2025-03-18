@@ -5,7 +5,7 @@
 #include <mma.h>
 
 namespace nz::krnl {
-    __global__ void MatrixAddKernel(const float* a, const float* b, float* c,
+    __global__ void MatrixAddKernel(float* c, const float* a, const float* b,
                                     const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
@@ -15,11 +15,11 @@ namespace nz::krnl {
 
     void MatrixAdd(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
                    const unsigned long long n) {
-        MatrixAddKernel<<<gridDim, blockDim>>>(a, b, c, n);
+        MatrixAddKernel<<<gridDim, blockDim>>>(c, a, b, n);
     }
 
-    __global__ void MatrixSubKernel(const float* a, const float* b, float* c,
-                                    unsigned long long n) {
+    __global__ void MatrixSubKernel(float* c, const float* a, const float* b,
+                                    const unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
             c[idx] = a[idx] - b[idx];
@@ -28,10 +28,10 @@ namespace nz::krnl {
 
     void MatrixSub(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
                    const unsigned long long n) {
-        MatrixSubKernel<<<gridDim, blockDim>>>(a, b, c, n);
+        MatrixSubKernel<<<gridDim, blockDim>>>(c, a, b, n);
     }
 
-    __global__ void GeneralMatrixMulKernel(const float* A, const float* B, float* C,
+    __global__ void GeneralMatrixMulKernel(float* C, const float* A, const float* B,
                                            const unsigned long long M,
                                            const unsigned long long N,
                                            const unsigned long long K) {
@@ -70,10 +70,10 @@ namespace nz::krnl {
                           const unsigned long long M,
                           const unsigned long long N,
                           const unsigned long long K) {
-        GeneralMatrixMulKernel<<<gridDim, blockDim>>>(A, B, C, M, N, K);
+        GeneralMatrixMulKernel<<<gridDim, blockDim>>>(C, A, B, M, N, K);
     }
 
-    __global__ void TransposeKernel(const float* d_A, float* d_B,
+    __global__ void TransposeKernel(float* d_B, const float* d_A,
                                     const unsigned int rows,
                                     const unsigned int cols) {
         __shared__ float tile[TILE_SIZE][TILE_SIZE];
@@ -97,7 +97,7 @@ namespace nz::krnl {
     void Transpose(const dim3 gridDim, const dim3 blockDim, const float* d_A, float* d_B,
                    const unsigned int rows,
                    const unsigned int cols) {
-        TransposeKernel<<<gridDim, blockDim>>>(d_A, d_B, rows, cols);
+        TransposeKernel<<<gridDim, blockDim>>>(d_B, d_A, rows, cols);
     }
 
     __global__ void ScalarMulKernel(float* out, const float* in, const float num,
@@ -720,7 +720,7 @@ namespace nz::krnl {
         AdaDeltaKernel<<<gridDim, blockDim>>>(data, acc_delta, acc_grad, grad, rho, eps, n);
     }
 
-    __global__ void GeneralMatrixMulTensorKernel(const half* A, const half* B, float* C, const unsigned long long m,
+    __global__ void GeneralMatrixMulTensorKernel(float* C, const half* A, const half* B, const unsigned long long m,
                                                  const unsigned long long n, const unsigned long long k) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long warpIdx = idx / warpSize;
@@ -786,7 +786,7 @@ namespace nz::krnl {
         dim3 block(256);
         const unsigned int warpPerBlock = block.x / 32;
         dim3 grid((tiles + warpPerBlock - 1) / warpPerBlock);
-        GeneralMatrixMulTensorKernel<<<grid, block>>>(padded_A, padded_B, padded_C, m, n, k);
+        GeneralMatrixMulTensorKernel<<<grid, block>>>(padded_C, padded_A, padded_B, m, n, k);
         cudaDeviceSynchronize();
         Cutting<<<(m * n + 256 - 1) / 256, 256>>>(C, padded_C, M, N, m, n);
         cudaDeviceSynchronize();
