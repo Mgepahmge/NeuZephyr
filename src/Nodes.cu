@@ -1,6 +1,7 @@
 #include "NeuZephyr/Nodes.cuh"
 #include "NeuZephyr/OperationKernels.cuh"
 #include "NeuZephyr/utils.cuh"
+#include "NeuZephyr/StreamManager.cuh"
 
 namespace nz::nodes {
     using namespace krnl;
@@ -93,11 +94,11 @@ namespace nz::nodes {
 
         void AddNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
                            cudaMemcpyDeviceToDevice);
             }
             if (inputs[1]->output->requiresGrad()) {
-                cudaMemcpy(inputs[1]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(inputs[1]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
                            cudaMemcpyDeviceToDevice);
             }
         }
@@ -215,7 +216,7 @@ namespace nz::nodes {
 
         void ScalarAddNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
                            cudaMemcpyDeviceToDevice);
             }
         }
@@ -238,7 +239,7 @@ namespace nz::nodes {
 
         void ScalarSubNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
                            cudaMemcpyDeviceToDevice);
             }
         }
@@ -263,18 +264,18 @@ namespace nz::nodes {
 
         void SubNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                cudaMemcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
                            cudaMemcpyDeviceToDevice);
             }
             if (inputs[1]->output->requiresGrad()) {
                 Tensor::value_type* n_grad;
-                cudaMalloc(&n_grad, output->size() * sizeof(Tensor::value_type));
+                cuStrm::StreamManager<Tensor::value_type>::Instance().malloc(&n_grad, output->size() * sizeof(Tensor::value_type));
                 dim3 block(256);
                 dim3 grid((output->size() + block.x - 1) / block.x);
                 Negation(grid, block, n_grad, output->grad(), output->size());
-                cudaMemcpy(inputs[1]->output->grad(), n_grad, output->size() * sizeof(Tensor::value_type),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(inputs[1]->output->grad(), n_grad, output->size() * sizeof(Tensor::value_type),
                            cudaMemcpyDeviceToDevice);
-                cudaFree(n_grad);
+                cuStrm::StreamManager<Tensor::value_type>::Instance().free(n_grad);
             }
         }
 
@@ -470,18 +471,19 @@ namespace nz::nodes {
             const dim3 block(256);
             const dim3 grid((output->size() + block.x - 1) / block.x);
             float* result;
-            cudaMalloc((float**)&result, grid.x * sizeof(float));
+            cuStrm::StreamManager<Tensor::value_type>::Instance().malloc((float**)&result, grid.x * sizeof(float));
             auto* result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
             SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), result, inputs[0]->output->data(),
                          output->size());
-            cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(result_host);
             for (int i = 0; i < grid.x; i++) {
                 sum += result_host[i];
             }
-            cudaFree(result);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().free(result);
             free(result_host);
-            dim3 block2(256);
-            dim3 grid2((output->size() + block.x - 1) / block.x);
+            const dim3 block2(256);
+            const dim3 grid2((output->size() + block.x - 1) / block.x);
             Softmax(grid2, block2, output->data(), inputs[0]->output->data(), sum, output->size());
         }
 
@@ -511,14 +513,15 @@ namespace nz::nodes {
             const dim3 grid((output->size() + block.x - 1) / block.x);
             float* result;
             auto* result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
-            cudaMalloc(&result, grid.x * sizeof(float));
+            cuStrm::StreamManager<Tensor::value_type>::Instance().malloc(&result, grid.x * sizeof(float));
             MeanSquaredError(grid, block, block.x / WARP_SIZE * sizeof(float), result, inputs[0]->output->data(),
                              inputs[1]->output->data(), output->size());
-            cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(result_host);
             for (int i = 0; i < grid.x; i++) {
                 loss += result_host[i];
             }
-            cudaFree(result);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().free(result);
             free(result_host);
         }
 
@@ -546,15 +549,16 @@ namespace nz::nodes {
             const dim3 grid((output->size() + block.x - 1) / block.x);
             float* result;
             auto* result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
-            cudaMalloc(&result, grid.x * sizeof(float));
+            cuStrm::StreamManager<Tensor::value_type>::Instance().malloc(&result, grid.x * sizeof(float));
             BinaryCrossEntropy(grid, block, block.x / WARP_SIZE * sizeof(float), result, inputs[0]->output->data(),
                                inputs[1]->output->data(), output->size());
-            cudaMemcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(result_host);
             for (int i = 0; i < grid.x; i++) {
                 loss += result_host[i];
             }
             std::cout << "TEST" << std::endl;
-            cudaFree(result);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().free(result);
             free(result_host);
         }
 

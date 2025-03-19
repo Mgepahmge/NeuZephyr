@@ -243,6 +243,7 @@ namespace nz::data {
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
         cuStrm::StreamManager<value_type>::Instance().memcpy(data, _data, _size * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<value_type>::Instance().syncData(data);
         for (size_type i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
             const auto end_it = it + _shape[1];
@@ -411,6 +412,7 @@ namespace nz::data {
         cuStrm::StreamManager<value_type>::Instance().memcpy(data, _grad, _size * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
         const std::ostream_iterator<value_type> output_iterator(os, " ");
+        cuStrm::StreamManager<value_type>::Instance().syncData(data);
         for (int i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
             const auto it_end = it + _shape[1];

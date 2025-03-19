@@ -1,5 +1,6 @@
 #include "NeuZephyr/Optimizer.cuh"
 #include "NeuZephyr/OperationKernels.cuh"
+#include "NeuZephyr/StreamManager.cuh"
 #include <fstream>
 
 using namespace nz::krnl;
@@ -29,15 +30,15 @@ namespace nz::opt {
             velocity[input] = v;
         }
         float* temp;
-        cudaMalloc(&temp, input->output->size() * sizeof(float));
+        cuStrm::StreamManager<Tensor::value_type>::Instance().malloc(&temp, input->output->size() * sizeof(float));
         const dim3 block(256);
         const dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::Momentum(grid, block, temp, input->output->grad(), velocity[input].data(), beta,
                                            input->output->size());
-        cudaMemcpy(velocity[input].data(), temp, input->output->size() * sizeof(float), cudaMemcpyDeviceToDevice);
+        cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(velocity[input].data(), temp, input->output->size() * sizeof(float), cudaMemcpyDeviceToDevice);
         StochasticGradientDescent(grid, block, input->output->data(), velocity[input].data(), learning_rate,
                                                    input->output->size());
-        cudaFree(temp);
+        cuStrm::StreamManager<Tensor::value_type>::Instance().free(temp);
     }
 
     AdaGrad::AdaGrad(Tensor::value_type learning_rate) {

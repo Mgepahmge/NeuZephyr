@@ -1,5 +1,5 @@
 #include "NeuZephyr/ComputeGraph.cuh"
-
+#include "NeuZephyr/StreamManager.cuh"
 #include <filesystem>
 #include <sstream>
 #include <fstream>
@@ -517,8 +517,9 @@ namespace nz::graph {
         }
         auto* data = static_cast<Tensor::value_type*>(malloc(
             outputNodes[0]->output->size() * sizeof(Tensor::value_type)));
-        cudaMemcpy(data, outputNodes[0]->output->data(), outputNodes[0]->output->size() * sizeof(Tensor::value_type),
+        cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(data, outputNodes[0]->output->data(), outputNodes[0]->output->size() * sizeof(Tensor::value_type),
                    cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(data);
         return data;
     }
 
@@ -594,7 +595,8 @@ namespace nz::graph {
                 << node->output->shape()[1] << "],\n";
             out << "    \"data\": [";
             auto* data = new float[node->output->size()];
-            cudaMemcpy(data, node->output->data(), node->output->size() * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(data, node->output->data(), node->output->size() * sizeof(float), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(data);
             for (size_t j = 0; j < node->output->size(); ++j) {
                 out << data[j];
                 if (j < node->output->size() - 1) {
@@ -607,8 +609,9 @@ namespace nz::graph {
             if (node->output->requiresGrad()) {
                 out << "    \"grad\": [";
                 auto* grad_data = new float[node->output->size()];
-                cudaMemcpy(grad_data, node->output->grad(), node->output->size() * sizeof(float),
+                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(grad_data, node->output->grad(), node->output->size() * sizeof(float),
                            cudaMemcpyDeviceToHost);
+                cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(grad_data);
                 for (size_t j = 0; j < node->output->size(); ++j) {
                     out << grad_data[j];
                     if (j < node->output->size() - 1) {
