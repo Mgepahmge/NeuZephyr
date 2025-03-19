@@ -8,6 +8,7 @@
 #include "NeuZephyr/NeuZephyrCudaErrorHandling.cuh"
 #include "NeuZephyr/OperationKernels.cuh"
 #include "NeuZephyr/utils.cuh"
+#include "NeuZephyr/StreamManager.cuh"
 
 namespace nz::data {
     /**
@@ -101,9 +102,11 @@ namespace nz::data {
     }
 
     MappedTensor::MappedTensor(const MappedTensor& other) : MappedTensor(other._shape, other._requires_grad) {
-        CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(_data, other._data, _size * sizeof(value_type),
+                                                             cudaMemcpyDeviceToDevice);
         if (_requires_grad) {
-            CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_grad, other._grad, _size * sizeof(value_type),
+                                                                 cudaMemcpyDeviceToDevice);
         }
     }
 
@@ -123,10 +126,10 @@ namespace nz::data {
     MappedTensor& MappedTensor::operator=(const MappedTensor& other) {
         if (this != &other) {
             if (_requires_grad && _grad) {
-                CHECK(cudaFreeHost(_grad));
+                cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             }
             if (_data) {
-                CHECK(cudaFreeHost(_data));
+                cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
             }
             _shape = other._shape;
             _size = other._size;
@@ -138,9 +141,11 @@ namespace nz::data {
             else {
                 _grad = nullptr;
             }
-            CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_data, other._data, _size * sizeof(value_type),
+                                                                 cudaMemcpyDeviceToDevice);
             if (_requires_grad) {
-                CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+                cuStrm::StreamManager<value_type>::Instance().memcpy(_grad, other._grad, _size * sizeof(value_type),
+                                                                     cudaMemcpyDeviceToDevice);
             }
             return *this;
         }
@@ -150,10 +155,10 @@ namespace nz::data {
     MappedTensor& MappedTensor::operator=(MappedTensor&& other) noexcept(false) {
         if (this != &other) {
             if (_data) {
-                CHECK(cudaFreeHost(_data));
+                cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
             }
             if (_requires_grad && _grad) {
-                CHECK(cudaFreeHost(_grad));
+                cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             }
             _shape = std::move(other._shape);
             _size = other._size;
@@ -172,18 +177,20 @@ namespace nz::data {
 
     MappedTensor::~MappedTensor() noexcept(false) {
         if (_requires_grad && _grad) {
-            CHECK(cudaFreeHost(_grad));
+            cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
         }
         if (_data) {
-            CHECK(cudaFreeHost(_data));
+            cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
         }
     }
 
     MappedTensor::iterator MappedTensor::begin() const {
+        sync();
         return _data;
     }
 
     MappedTensor::iterator MappedTensor::end() const {
+        sync();
         return _data + _size;
     }
 
@@ -205,7 +212,7 @@ namespace nz::data {
 
     void MappedTensor::setRequiresGrad(const bool requires_grad) {
         if (_requires_grad && !requires_grad) {
-            CHECK(cudaFreeHost(_grad));
+            cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             _grad = nullptr;
             _requires_grad = requires_grad;
         }
@@ -218,36 +225,46 @@ namespace nz::data {
     void MappedTensor::setShape(const shape_type& shape) {
         value_type* temp;
         CHECK(cudaMallocHost(&temp, shape[0] * shape[1] * sizeof(value_type)));
-        CHECK(cudaMemset(temp, 0, shape[0] * shape[1] * sizeof(value_type)));
-        CHECK(cudaMemcpy(temp, _data, (_size < (shape[0] * shape[1]) ? _size : shape[0] * shape[1]) * sizeof(value_type)
-            ,
-            cudaMemcpyDeviceToDevice));
-        CHECK(cudaFreeHost(_data));
+        cuStrm::StreamManager<value_type>::Instance().memset(temp, 0, shape[0] * shape[1] * sizeof(value_type));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(temp, _data,
+                                                             (_size < (shape[0] * shape[1])
+                                                                  ? _size
+                                                                  : shape[0] * shape[1]) * sizeof(value_type)
+                                                             ,
+                                                             cudaMemcpyDeviceToDevice);
+        cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
             CHECK(cudaMallocHost(&tempGrad, shape[0] * shape[1] * sizeof(value_type)));
-            CHECK(cudaMemset(tempGrad, 0, shape[0] * shape[1] * sizeof(value_type)));
-            CHECK(cudaMemcpy(tempGrad, _grad, (_size < (shape[0] * shape[1]) ? _size : shape[0] * shape[1]) * sizeof(
-                    value_type),
-                cudaMemcpyDeviceToDevice));
-            CHECK(cudaFreeHost(_grad));
+            cuStrm::StreamManager<value_type>::Instance().memset(tempGrad, 0, shape[0] * shape[1] * sizeof(value_type));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(tempGrad, _grad,
+                                                                 (_size < (shape[0] * shape[1])
+                                                                      ? _size
+                                                                      : shape[0] * shape[1]) * sizeof(
+                                                                     value_type),
+                                                                 cudaMemcpyDeviceToDevice);
+            cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             _grad = tempGrad;
         }
         _shape = shape;
         _size = shape[0] * shape[1];
     }
 
-    void MappedTensor::dataInject(const value_type* data, const size_type size, const bool isGrad) const {
+    void MappedTensor::dataInject(float* data, const size_type size, const bool isGrad) const {
         if (isGrad) {
             if (!_requires_grad) {
                 throw std::invalid_argument(
                     "Gradient injection is not allowed for tensors that do not require gradients.");
             }
-            CHECK(cudaMemcpy(_grad, data, (size < _size ? size : _size) * sizeof(value_type), cudaMemcpyHostToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_grad, data,
+                                                                 (size < _size ? size : _size) * sizeof(value_type),
+                                                                 cudaMemcpyHostToDevice);
         }
         else {
-            CHECK(cudaMemcpy(_data, data, (size < _size ? size : _size) * sizeof(value_type), cudaMemcpyHostToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data,
+                                                                 (size < _size ? size : _size) * sizeof(value_type),
+                                                                 cudaMemcpyHostToDevice);
         }
     }
 
@@ -267,6 +284,7 @@ namespace nz::data {
 
     std::ostream& MappedTensor::print(std::ostream& os) const {
         const std::ostream_iterator<value_type> oit(os, " ");
+        syncData();
         for (auto i = 0; i < _shape[0]; i++) {
             const auto begin = _data + i * _shape[1];
             const auto end = begin + _shape[1];
@@ -282,6 +300,7 @@ namespace nz::data {
             throw std::invalid_argument("Gradient printing is not allowed for tensors that do not require gradients.");
         }
         const std::ostream_iterator<value_type> oit(os, " ");
+        syncGrad();
         for (auto i = 0; i < _shape[0]; i++) {
             const auto begin = _grad + i * _shape[1];
             const auto end = begin + _shape[1];
@@ -293,6 +312,7 @@ namespace nz::data {
     }
 
     auto MappedTensor::operator[](const size_type index) const -> value_type& {
+        syncData();
         if (index >= _size) {
             throw std::out_of_range("Index out of range.");
         }
@@ -300,13 +320,14 @@ namespace nz::data {
     }
 
     void MappedTensor::clear() const {
-        CHECK(cudaMemset(_data, 0, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().memset(_data, 0, _size * sizeof(value_type));
     }
 
     void MappedTensor::clearGrad() const {
         if (_requires_grad) {
-            CHECK(cudaMemset(_grad, 0, _size * sizeof(value_type)));
-        } else {
+            cuStrm::StreamManager<value_type>::Instance().memset(_grad, 0, _size * sizeof(value_type));
+        }
+        else {
             throw std::runtime_error("Gradient clearing is not allowed for tensors that do not require gradients.");
         }
     }
@@ -318,16 +339,20 @@ namespace nz::data {
         }
         value_type* temp;
         CHECK(cudaMallocHost(&temp, newSize * sizeof(value_type)));
-        CHECK(cudaMemset(temp, 0, newSize * sizeof(value_type)));
-        CHECK(cudaMemcpy(temp, _data, (_size < newSize ? _size : newSize) * sizeof(value_type), cudaMemcpyDeviceToDevice));
-        CHECK(cudaFreeHost(_data));
+        cuStrm::StreamManager<value_type>::Instance().memset(temp, 0, newSize * sizeof(value_type));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(temp, _data,
+                                                             (_size < newSize ? _size : newSize) * sizeof(value_type),
+                                                             cudaMemcpyDeviceToDevice);
+        cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
             CHECK(cudaMallocHost(&tempGrad, newSize * sizeof(value_type)));
-            CHECK(cudaMemset(tempGrad, 0, newSize * sizeof(value_type)));
-            CHECK(cudaMemcpy(tempGrad, _grad, (_size < newSize ? _size : newSize) * sizeof(value_type), cudaMemcpyDeviceToDevice));
-            CHECK(cudaFreeHost(_grad));
+            cuStrm::StreamManager<value_type>::Instance().memset(tempGrad, 0, newSize * sizeof(value_type));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(tempGrad, _grad,
+                                                                 (_size < newSize ? _size : newSize) * sizeof(
+                                                                     value_type), cudaMemcpyDeviceToDevice);
+            cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             _grad = tempGrad;
         }
         _shape = shape;
@@ -336,7 +361,8 @@ namespace nz::data {
 
     void MappedTensor::randomize(size_type seed, const bool isGrad) const {
         if (isGrad && !_requires_grad) {
-            throw std::invalid_argument("Gradient randomization is not allowed for tensors that do not require gradients.");
+            throw std::invalid_argument(
+                "Gradient randomization is not allowed for tensors that do not require gradients.");
         }
         if (!seed) {
             seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -360,7 +386,6 @@ namespace nz::data {
         const dim3 block(512);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::Fill(grid, block, isGrad ? _grad : _data, value, _size);
-        CHECK(cudaDeviceSynchronize());
     }
 
     void MappedTensor::transpose() {
@@ -369,15 +394,14 @@ namespace nz::data {
         value_type* temp;
         CHECK(cudaMallocHost(&temp, _size * sizeof(value_type)));
         krnl::Transpose(grid, block, _data, temp, _shape[0], _shape[1]);
-        CHECK(cudaDeviceSynchronize());
-        CHECK(cudaFreeHost(_data));
+        cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
             CHECK(cudaMallocHost(&tempGrad, _size * sizeof(value_type)));
             krnl::Transpose(grid, block, _grad, tempGrad, _shape[0], _shape[1]);
             CHECK(cudaDeviceSynchronize());
-            CHECK(cudaFreeHost(_grad));
+            cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             _grad = tempGrad;
         }
         std::swap(_shape[0], _shape[1]);
@@ -391,7 +415,6 @@ namespace nz::data {
         const dim3 block(512);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);
-        CHECK(cudaDeviceSynchronize());
         return result;
     }
 
@@ -403,7 +426,6 @@ namespace nz::data {
         const dim3 block(512);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);
-        CHECK(cudaDeviceSynchronize());
         return result;
     }
 
@@ -416,7 +438,6 @@ namespace nz::data {
         const dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
         krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],
                                _shape[1]);
-        CHECK(cudaDeviceSynchronize());
         return result;
     }
 
@@ -425,7 +446,6 @@ namespace nz::data {
         const dim3 grid((_size + block.x - 1) / block.x);
         MappedTensor result(_shape, _requires_grad);
         krnl::Negation(grid, block, result._data, _data, _size);
-        CHECK(cudaDeviceSynchronize());
         return result;
     }
 
@@ -437,7 +457,6 @@ namespace nz::data {
         const dim3 grid((_size + block.x - 1) / block.x);
         MappedTensor result(_shape, _requires_grad);
         krnl::ElementwiseDivide(grid, block, result._data, _data, other._data, _size);
-        CHECK(cudaDeviceSynchronize());
         return result;
     }
 
@@ -447,8 +466,7 @@ namespace nz::data {
         value_type* temp;
         CHECK(cudaMallocHost(&temp, _size * sizeof(value_type)));
         krnl::Recip(grid, block, temp, _data, _size);
-        CHECK(cudaDeviceSynchronize());
-        CHECK(cudaFreeHost(_data));
+        cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
         _data = temp;
     }
 
@@ -458,12 +476,11 @@ namespace nz::data {
         value_type* dData;
         CHECK(cudaMallocHost(&dData, grid.x * sizeof(value_type)));
         krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
-        CHECK(cudaDeviceSynchronize());
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += dData[i];
         }
-        CHECK(cudaFreeHost(dData));
+        cuStrm::StreamManager<value_type>::Instance().freeHost(dData);
         return result;
     }
 
@@ -473,12 +490,26 @@ namespace nz::data {
         value_type* dData;
         CHECK(cudaMallocHost(&dData, grid.x * sizeof(value_type)));
         krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
-        CHECK(cudaDeviceSynchronize());
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += dData[i];
         }
-        CHECK(cudaFreeHost(dData));
+        cuStrm::StreamManager<value_type>::Instance().freeHost(dData);
         return result;
+    }
+
+    void MappedTensor::syncGrad() const {
+        if (_requires_grad) {
+            cuStrm::StreamManager<value_type>::Instance().syncData(_grad);
+        }
+    }
+
+    void MappedTensor::syncData() const {
+        cuStrm::StreamManager<value_type>::Instance().syncData(_data);
+    }
+
+    void MappedTensor::sync() const {
+        syncData();
+        syncGrad();
     }
 }

@@ -198,7 +198,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        explicit Tensor(const shape_type& shape, const value_type* data, bool requires_grad = false, bool host = true);
+        explicit Tensor(const shape_type& shape, value_type* data, bool requires_grad = false, bool host = true);
 
         /**
          * @brief Constructs a Tensor object with a specified shape, initializer list data, and gradient requirement.
@@ -433,7 +433,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void dataInject(const value_type* data, bool grad = false) const;
+        void dataInject(value_type* data, bool grad = false) const;
 
         /**
          * @brief Injects data or gradient data into the tensor using iterators.
@@ -957,6 +957,81 @@ namespace nz::data {
          * @endcode
          */
         [[nodiscard]] value_type expSum() const;
+
+        /**
+         * @brief Synchronize the tensor data by waiting for all CUDA stream write operations to complete.
+         *
+         * This function accesses the singleton instance of `cuStrm::StreamManager` specialized for the `value_type` of the `Tensor` class. It then calls the `syncData` method of this instance, passing the `_data` member of the `Tensor` object. This operation blocks the host until all CUDA stream write operations on the `_data` are finished.
+         *
+         * @param None
+         *
+         * @return None
+         *
+         * Memory management for the `_data` is assumed to be handled elsewhere in the codebase. There is no memory allocation or deallocation within this function.
+         * This function does not have an explicit exception - handling mechanism. It relies on the `syncData` method of the `cuStrm::StreamManager` instance to manage any errors that may occur during the synchronization process.
+         *
+         * @note
+         * - The time complexity of this function depends on the time required for the CUDA stream write operations on `_data` to complete. In the worst - case scenario, if there are long - running write operations, it may take a significant amount of time.
+         *
+         * @code
+         * ```cpp
+         * // Assume Tensor is defined and an instance is created
+         * Tensor tensor;
+         * tensor.syncData();
+         * ```
+         * @endcode
+         */
+        void syncData() const;
+
+        /**
+         * @brief Synchronize the gradient data of the tensor if gradient computation is required.
+         *
+         * This function first checks the `_requires_grad` flag of the `Tensor` object. If the flag is set to `true`, it accesses the singleton instance of `cuStrm::StreamManager` specialized for the `value_type` of the `Tensor` class. Then it calls the `syncData` method of this instance, passing the `_grad` member of the `Tensor` object. This operation blocks the host until all CUDA stream write operations on the `_grad` are completed.
+         *
+         * @param None
+         *
+         * @return None
+         *
+         * Memory management for the `_grad` is assumed to be handled elsewhere in the codebase. There is no memory allocation or deallocation within this function.
+         * This function does not have an explicit exception - handling mechanism. It relies on the `syncData` method of the `cuStrm::StreamManager` instance to manage any errors that may occur during the synchronization process.
+         *
+         * @note
+         * - The time complexity of this function depends on whether the `_requires_grad` flag is `true` and the time required for the CUDA stream write operations on `_grad` to complete. If `_requires_grad` is `false`, the function has a constant time complexity O(1). Otherwise, in the worst - case scenario with long - running write operations, it may take a significant amount of time.
+         *
+         * @code
+         * ```cpp
+         * // Assume Tensor is defined and an instance is created
+         * Tensor tensor;
+         * tensor.syncGrad();
+         * ```
+         * @endcode
+         */
+        void syncGrad() const;
+
+        /**
+         * @brief Synchronize both the tensor data and its gradient data.
+         *
+         * This function calls the `syncData` method to synchronize the tensor data and then calls the `syncGrad` method to synchronize the gradient data if gradient computation is required. It ensures that all CUDA stream write operations on the data and gradient (if applicable) are completed.
+         *
+         * @param None
+         *
+         * @return None
+         *
+         * Memory management for the data and gradient is assumed to be handled by the `syncData` and `syncGrad` methods respectively. There is no additional memory allocation or deallocation within this function.
+         * This function does not have an explicit exception - handling mechanism. It relies on the exception - handling of the `syncData` and `syncGrad` methods to manage any errors that may occur during the synchronization process.
+         *
+         * @note
+         * - The time complexity of this function depends on the time complexity of the `syncData` and `syncGrad` methods. In the worst - case scenario, if both operations involve long - running CUDA stream write operations, it may take a significant amount of time.
+         *
+         * @code
+         * ```cpp
+         * // Assume Tensor is defined and an instance is created
+         * Tensor tensor;
+         * tensor.sync();
+         * ```
+         * @endcode
+         */
+        void sync() const;
 
         /// @}
 

@@ -106,7 +106,7 @@ namespace nz::graph {
      * 2024/12/09
      */
     void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
-                    const std::vector<int>& shape, const float* data, const bool requires_grad, const float* grad) {
+                    const std::vector<int>& shape, float* data, const bool requires_grad, float* grad) {
         if (type == "Input") {
             auto* inputNode = new InputNode(shape, requires_grad);
             inputNode->output->dataInject(data);
@@ -349,7 +349,7 @@ namespace nz::graph {
         return input;
     }
 
-    InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape, const Tensor::value_type* data,
+    InputNode* ComputeGraph::addInput(const Tensor::shape_type& shape, Tensor::value_type* data,
         const bool requires_grad, const bool host, const std::string& name) {
         const auto node = new InputNode(shape, data, requires_grad, host);
         nodes.push_back(node);
@@ -486,7 +486,7 @@ namespace nz::graph {
         }
     }
 
-    void ComputeGraph::setInput(const std::string& name, const Tensor::value_type* data) {
+    void ComputeGraph::setInput(const std::string& name, Tensor::value_type* data) {
         if (nodeRoster.find(name) != nodeRoster.end()) {
             nodeRoster[name]->output->dataInject(data);
         }
@@ -495,7 +495,7 @@ namespace nz::graph {
         }
     }
 
-    void ComputeGraph::setInput(const Node* node, const Tensor::value_type* data) {
+    void ComputeGraph::setInput(const Node* node, Tensor::value_type* data) {
         if (std::find(nodes.begin(), nodes.end(), node) != nodes.end()) {
             node->output->dataInject(data);
         }

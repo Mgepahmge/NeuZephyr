@@ -130,7 +130,7 @@ namespace nz::krnl {
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
      */
-    void MatrixAdd(dim3 gridDim, dim3 blockDim, const float* a, const float* b, float* c, unsigned long long n);
+    void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c, unsigned long long n);
 
     /**
      * @brief Kernel function to perform matrix subtraction on GPU

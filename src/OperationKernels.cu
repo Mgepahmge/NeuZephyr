@@ -1,10 +1,13 @@
 #include "NeuZephyr/OperationKernels.cuh"
 #include "NeuZephyr/utils.cuh"
+#include "NeuZephyr/StreamManager.cuh"
 #include <cuda_runtime.h>
 #include <cuda_fp16.h>
 #include <mma.h>
 
 namespace nz::krnl {
+    using namespace cuStrm;
+
     __global__ void MatrixAddKernel(float* c, const float* a, const float* b,
                                     const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -13,9 +16,9 @@ namespace nz::krnl {
         }
     }
 
-    void MatrixAdd(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
+    void MatrixAdd(const dim3 gridDim, const dim3 blockDim, float* a, float* b, float* c,
                    const unsigned long long n) {
-        MatrixAddKernel<<<gridDim, blockDim>>>(c, a, b, n);
+        cuStrm::StreamManager<float>::Instance().submit(MatrixAddKernel, gridDim, blockDim, 0, c, a, b, n);
     }
 
     __global__ void MatrixSubKernel(float* c, const float* a, const float* b,
@@ -859,7 +862,8 @@ namespace nz::krnl {
         }
     }
 
-    void Summation(const dim3 gridDim, const dim3 blockDim, const unsigned long long sharedMemSize, float* out, const float* in, const unsigned long long n) {
+    void Summation(const dim3 gridDim, const dim3 blockDim, const unsigned long long sharedMemSize, float* out,
+                   const float* in, const unsigned long long n) {
         SummationKernel<<<gridDim, blockDim, sharedMemSize>>>(out, in, n);
     }
 }

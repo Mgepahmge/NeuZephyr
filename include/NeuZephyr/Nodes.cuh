@@ -239,7 +239,7 @@ namespace nz::nodes {
          * ```
          * @endcode
          */
-        void dataInject(const Tensor::value_type* data, bool grad = false) const;
+        void dataInject(Tensor::value_type* data, bool grad = false) const;
 
         /**
          * @brief Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.
@@ -529,7 +529,7 @@ namespace nz::nodes {
              * ```
              * @endcode
              */
-            explicit InputNode(const Tensor::shape_type& shape, const Tensor::value_type* data,
+            explicit InputNode(const Tensor::shape_type& shape, Tensor::value_type* data,
                                bool requires_grad = false, bool host = false);
 
             /**

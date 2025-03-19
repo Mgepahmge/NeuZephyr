@@ -9,7 +9,7 @@ namespace nz::nodes {
         os << *output << std::flush;
     }
 
-    void Node::dataInject(const Tensor::value_type* data, const bool grad) const {
+    void Node::dataInject(Tensor::value_type* data, const bool grad) const {
         output->dataInject(data, grad);
     }
 
@@ -28,7 +28,7 @@ namespace nz::nodes {
             type = "Input";
         }
 
-        InputNode::InputNode(const Tensor::shape_type& shape, const Tensor::value_type* data, const bool requires_grad,
+        InputNode::InputNode(const Tensor::shape_type& shape, Tensor::value_type* data, const bool requires_grad,
             bool host) {
             output = std::make_shared<Tensor>(shape, data, requires_grad, host);
             type = "Input";

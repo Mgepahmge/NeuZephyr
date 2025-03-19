@@ -2,6 +2,7 @@
 #include "NeuZephyr/utils.cuh"
 #include "NeuZephyr/OperationKernels.cuh"
 #include "NeuZephyr/NeuZephyrCudaErrorHandling.cuh"
+#include "NeuZephyr/StreamManager.cuh"
 #include <curand.h>
 
 namespace nz::data {
@@ -76,7 +77,8 @@ namespace nz::data {
         for (int i = 0; i < tensor._size; ++i) {
             is >> data[i];
         }
-        CHECK(cudaMemcpy(tensor._data, data, tensor._size * sizeof(Tensor::value_type), cudaMemcpyHostToDevice));
+        cuStrm::StreamManager<float>::Instance().memcpy(tensor._data, data, tensor._size * sizeof(Tensor::value_type),
+                                                        cudaMemcpyHostToDevice);
         free(data);
         return is;
     }
@@ -89,26 +91,28 @@ namespace nz::data {
     Tensor::Tensor(const shape_type& shape, const bool requires_grad) // NOLINT(*-pro-type-member-init)
         :
         _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
-        CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
         if (_requires_grad) {
-            CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
+            cuStrm::StreamManager<value_type>::Instance().malloc(&_grad, _size * sizeof(value_type));
         }
         else {
             _grad = nullptr;
         }
     }
 
-    Tensor::Tensor(const shape_type& shape, const value_type* data, const bool requires_grad, const bool host) :
+    Tensor::Tensor(const shape_type& shape, value_type* data, const bool requires_grad, const bool host) :
         _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
-        CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
         if (host) {
-            CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
+                                                                 cudaMemcpyHostToDevice);
         }
         else {
-            CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
+                                                                 cudaMemcpyDeviceToDevice);
         }
         if (_requires_grad) {
-            CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
+            cuStrm::StreamManager<value_type>::Instance().malloc(&_grad, _size * sizeof(value_type));
         }
         else {
             _grad = nullptr;
@@ -120,9 +124,9 @@ namespace nz::data {
         if (std::distance(data.begin(), data.end()) < _size) {
             throw std::invalid_argument("Initializer list size is less than the tensor size.");
         }
-        CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
         if (_requires_grad) {
-            CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
+            cuStrm::StreamManager<value_type>::Instance().malloc(&_grad, _size * sizeof(value_type));
         }
         else {
             _grad = nullptr;
@@ -132,18 +136,21 @@ namespace nz::data {
         for (auto i = 0; i < _size; ++i, ++it) {
             host_buf[i] = *it;
         }
-        CHECK(cudaMemcpy(_data, host_buf, _size * sizeof(value_type), cudaMemcpyHostToDevice));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(_data, host_buf, _size * sizeof(value_type),
+                                                             cudaMemcpyHostToDevice);
         delete[] host_buf;
     }
 
     // Copy and Move constructors
     Tensor::Tensor(const Tensor& other) :
         _size(other._size), _shape(other._shape), _requires_grad(other._requires_grad) {
-        CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
-        CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(_data, other._data, _size * sizeof(value_type),
+                                                             cudaMemcpyDeviceToDevice);
         if (_requires_grad) {
-            CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
-            CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+            cuStrm::StreamManager<value_type>::Instance().malloc(&_grad, _size * sizeof(value_type));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_grad, other._grad, _size * sizeof(value_type),
+                                                                 cudaMemcpyDeviceToDevice);
         }
         else {
             _grad = nullptr;
@@ -165,13 +172,15 @@ namespace nz::data {
             _size = other._size;
             _shape = other._shape;
             _requires_grad = other._requires_grad;
-            CHECK(cudaFree(_data));
-            CHECK(cudaMalloc(&_data, _size * sizeof(value_type)));
-            CHECK(cudaMemcpy(_data, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+            cuStrm::StreamManager<value_type>::Instance().free(_data);
+            cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_data, other._data, _size * sizeof(value_type),
+                                                                 cudaMemcpyDeviceToDevice);
             if (_requires_grad) {
-                CHECK(cudaFree(_grad));
-                CHECK(cudaMalloc(&_grad, _size * sizeof(value_type)));
-                CHECK(cudaMemcpy(_grad, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
+                cuStrm::StreamManager<value_type>::Instance().free(_grad);
+                cuStrm::StreamManager<value_type>::Instance().malloc(&_grad, _size * sizeof(value_type));
+                cuStrm::StreamManager<value_type>::Instance().memcpy(_grad, other._grad, _size * sizeof(value_type),
+                                                                     cudaMemcpyDeviceToDevice);
             }
         }
         return *this;
@@ -181,11 +190,11 @@ namespace nz::data {
         if (this != &other) {
             _size = other._size;
             _shape = std::move(other._shape);
-            CHECK(cudaFree(_data));
+            cuStrm::StreamManager<value_type>::Instance().free(_data);
             _data = other._data;
             other._data = nullptr;
             if (_requires_grad) {
-                CHECK(cudaFree(_grad));
+                cuStrm::StreamManager<value_type>::Instance().free(_grad);
                 _grad = other._grad;
                 other._grad = nullptr;
             }
@@ -194,9 +203,9 @@ namespace nz::data {
     }
 
     Tensor::~Tensor() noexcept(false) {
-        CHECK(cudaFree(_data));
+        cuStrm::StreamManager<value_type>::Instance().free(_data);
         if (_requires_grad) {
-            CHECK(cudaFree(_grad));
+            cuStrm::StreamManager<value_type>::Instance().free(_grad);
         }
     }
 
@@ -208,10 +217,11 @@ namespace nz::data {
     // Setter methods
     void Tensor::setRequiresGrad(const bool requires_grad) {
         if (requires_grad && _grad == nullptr) {
-            CHECK(cudaMalloc(reinterpret_cast<value_type**>(_grad), _size * sizeof(value_type)));
+            cuStrm::StreamManager<value_type>::Instance().malloc(reinterpret_cast<value_type**>(_grad),
+                                                                 _size * sizeof(value_type));
         }
         if (!requires_grad && _grad != nullptr) {
-            CHECK(cudaFree(_grad));
+            cuStrm::StreamManager<value_type>::Instance().free(_grad);
             _grad = nullptr;
         }
         _requires_grad = requires_grad;
@@ -224,14 +234,15 @@ namespace nz::data {
     // Operations
     void Tensor::zeroGrad() const {
         if (_requires_grad) {
-            CHECK(cudaMemset(_grad, 0, _size * sizeof(value_type)));
+            cuStrm::StreamManager<value_type>::Instance().memset(_grad, 0, _size * sizeof(value_type));
         }
     }
 
     std::ostream& Tensor::print(std::ostream& os) const {
         const std::ostream_iterator<value_type> output_iterator(os, " ");
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        CHECK(cudaMemcpy(data, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(data, _data, _size * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
         for (size_type i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
             const auto end_it = it + _shape[1];
@@ -244,21 +255,23 @@ namespace nz::data {
         return os;
     }
 
-    void Tensor::dataInject(const value_type* data, const bool grad) const {
+    void Tensor::dataInject(value_type* data, const bool grad) const {
         if (grad) {
             if (_requires_grad) {
-                CHECK(cudaMemcpy(_grad, data, _size * sizeof(value_type), cudaMemcpyHostToDevice));
+                cuStrm::StreamManager<value_type>::Instance().memcpy(_grad, data, _size * sizeof(value_type),
+                                                                     cudaMemcpyHostToDevice);
             }
             else {
                 throw std::runtime_error("Tensor does not require gradients");
             }
         }
         else {
-            CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
+                                                                 cudaMemcpyHostToDevice);
         }
     }
 
-    void Tensor::randomize(unsigned long long seed) const {
+    void Tensor::randomize(const unsigned long long seed) const {
         curandGenerator_t gen;
         curandCreateGenerator(&gen, CURAND_RNG_PSEUDO_DEFAULT);
         curandSetPseudoRandomGeneratorSeed(gen, seed);
@@ -266,25 +279,19 @@ namespace nz::data {
     }
 
     void Tensor::clear() const {
-        CHECK(cudaMemset(_data, 0, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().memset(_data, 0, _size * sizeof(value_type));
     }
 
     void Tensor::fill(const value_type value) const {
-        auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        for (size_type i = 0; i < _size; ++i) {
-            data[i] = value;
-        }
-        CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice));
-        free(data);
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        krnl::Fill(grid, block, _data, value, _size);
     }
 
     void Tensor::fillGrad(const value_type value) const {
-        auto* grad = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        for (size_type i = 0; i < _size; ++i) {
-            grad[i] = value;
-        }
-        CHECK(cudaMemcpy(_grad, grad, _size * sizeof(value_type), cudaMemcpyHostToDevice));
-        free(grad);
+        const dim3 block(256);
+        const dim3 grid((_size + block.x - 1) / block.x);
+        krnl::Fill(grid, block, _grad, value, _size);
     }
 
     Tensor Tensor::operator+(const Tensor& other) const {
@@ -295,7 +302,7 @@ namespace nz::data {
         const dim3 block(256);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);
-        CHECK(cudaDeviceSynchronize());
+
         return result;
     }
 
@@ -307,7 +314,7 @@ namespace nz::data {
         const dim3 block(256);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);
-        CHECK(cudaDeviceSynchronize());
+
         return result;
     }
 
@@ -320,7 +327,7 @@ namespace nz::data {
         const dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
         krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],
                                _shape[1]);
-        CHECK(cudaDeviceSynchronize());
+
         return result;
     }
 
@@ -330,18 +337,21 @@ namespace nz::data {
             WARN("Reshaping to a different size will cause data loss");
         }
         value_type* temp;
-        CHECK(cudaMalloc(&temp, size * sizeof(value_type)));
-        CHECK(cudaMemset(temp, 0, size * sizeof(value_type)));
-        CHECK(cudaMemcpy(temp, _data, (size < _size ? size : _size) * sizeof(value_type), cudaMemcpyDeviceToDevice));
-        CHECK(cudaFree(_data));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&temp, size * sizeof(value_type));
+        cuStrm::StreamManager<value_type>::Instance().memset(temp, 0, size * sizeof(value_type));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(temp, _data,
+                                                             (size < _size ? size : _size) * sizeof(value_type),
+                                                             cudaMemcpyDeviceToDevice);
+        cuStrm::StreamManager<value_type>::Instance().free(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
-            CHECK(cudaMalloc(&tempGrad, size * sizeof(value_type)));
-            CHECK(cudaMemset(tempGrad, 0, size * sizeof(value_type)));
-            CHECK(cudaMemcpy(tempGrad, _grad, (size < _size ? size : _size) * sizeof(value_type),
-                cudaMemcpyDeviceToDevice));
-            CHECK(cudaFree(_grad));
+            cuStrm::StreamManager<value_type>::Instance().malloc(&tempGrad, size * sizeof(value_type));
+            cuStrm::StreamManager<value_type>::Instance().memset(tempGrad, 0, size * sizeof(value_type));
+            cuStrm::StreamManager<value_type>::Instance().memcpy(tempGrad, _grad,
+                                                                 (size < _size ? size : _size) * sizeof(value_type),
+                                                                 cudaMemcpyDeviceToDevice);
+            cuStrm::StreamManager<value_type>::Instance().free(_grad);
             _grad = tempGrad;
         }
         _shape = shape;
@@ -352,17 +362,17 @@ namespace nz::data {
         const dim3 block(TILE_SIZE, TILE_SIZE);
         const dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
         value_type* temp;
-        CHECK(cudaMalloc(&temp, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&temp, _size * sizeof(value_type));
         krnl::Transpose(grid, block, _data, temp, _shape[0], _shape[1]);
-        CHECK(cudaDeviceSynchronize());
-        CHECK(cudaFree(_data));
+
+        cuStrm::StreamManager<value_type>::Instance().free(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
-            CHECK(cudaMalloc(&tempGrad, _size * sizeof(value_type)));
+            cuStrm::StreamManager<value_type>::Instance().malloc(&tempGrad, _size * sizeof(value_type));
             krnl::Transpose(grid, block, _grad, tempGrad, _shape[0], _shape[1]);
-            CHECK(cudaDeviceSynchronize());
-            CHECK(cudaFree(_grad));
+
+            cuStrm::StreamManager<value_type>::Instance().free(_grad);
             _grad = tempGrad;
         }
         std::swap(_shape[0], _shape[1]);
@@ -373,11 +383,14 @@ namespace nz::data {
             throw std::invalid_argument("Invalid position");
         }
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        CHECK(cudaMemcpy(data, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(data, _data, _size * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
         data[position[0] * _shape[1] + position[1]] = value;
-        CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyHostToDevice));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
+                                                             cudaMemcpyHostToDevice);
         free(data);
     }
+
 
     Tensor::value_type* Tensor::data() const noexcept {
         return _data;
@@ -395,7 +408,8 @@ namespace nz::data {
             throw std::runtime_error("Tensor does not require gradients");
         }
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        CHECK(cudaMemcpy(data, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(data, _grad, _size * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
         const std::ostream_iterator<value_type> output_iterator(os, " ");
         for (int i = 0; i < _shape[0]; ++i) {
             const auto it = data + i * _shape[1];
@@ -414,18 +428,19 @@ namespace nz::data {
         const dim3 block(256);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::Negation(grid, block, result._data, _data, _size);
-        CHECK(cudaDeviceSynchronize());
+
         return result;
     }
 
     void Tensor::recip() const {
         value_type* data;
-        CHECK(cudaMalloc(&data, _size * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&data, _size * sizeof(value_type));
         const dim3 block(256);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::Recip(grid, block, data, _data, _size);
-        CHECK(cudaMemcpy(_data, data, _size * sizeof(value_type), cudaMemcpyDeviceToDevice));
-        cudaFree(data);
+        cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
+                                                             cudaMemcpyDeviceToDevice);
+        cuStrm::StreamManager<value_type>::Instance().free(data);
     }
 
     Tensor::value_type Tensor::sum() const {
@@ -433,15 +448,16 @@ namespace nz::data {
         const dim3 grid((_size + block.x - 1) / block.x);
         value_type* dData;
         auto* hData = new value_type[grid.x];
-        CHECK(cudaMalloc(&dData, grid.x * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&dData, grid.x * sizeof(value_type));
         krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
-        CHECK(cudaMemcpy(hData, dData, grid.x * sizeof(value_type), cudaMemcpyDeviceToHost));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += hData[i];
         }
         delete[] hData;
-        CHECK(cudaFree(dData));
+        cuStrm::StreamManager<value_type>::Instance().free(dData);
         return result;
     }
 
@@ -450,15 +466,31 @@ namespace nz::data {
         const dim3 grid((_size + block.x - 1) / block.x);
         value_type* dData;
         auto* hData = new value_type[grid.x];
-        CHECK(cudaMalloc(&dData, grid.x * sizeof(value_type)));
+        cuStrm::StreamManager<value_type>::Instance().malloc(&dData, grid.x * sizeof(value_type));
         krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
-        CHECK(cudaMemcpy(hData, dData, grid.x * sizeof(value_type), cudaMemcpyDeviceToHost));
+        cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += hData[i];
         }
         delete[] hData;
-        CHECK(cudaFree(dData));
+        cuStrm::StreamManager<value_type>::Instance().free(dData);
         return result;
+    }
+
+    void Tensor::syncData() const {
+        cuStrm::StreamManager<value_type>::Instance().syncData(_data);
+    }
+
+    void Tensor::syncGrad() const {
+        if (_requires_grad) {
+            cuStrm::StreamManager<value_type>::Instance().syncData(_grad);
+        }
+    }
+
+    void Tensor::sync() const {
+        syncData();
+        syncGrad();
     }
 }

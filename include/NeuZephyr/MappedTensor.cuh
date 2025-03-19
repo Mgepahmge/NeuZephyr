@@ -507,7 +507,7 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void dataInject(const value_type* data, size_type size, bool isGrad = false) const;
+        void dataInject(float* data, size_type size, bool isGrad = false) const;
 
         /**
          * @brief Inject data from an iterator range into either the tensor's data or its gradient.
@@ -1165,6 +1165,79 @@ namespace nz::data {
          * @endcode
          */
         [[nodiscard]] value_type expSum() const;
+
+        /**
+         * @brief Synchronizes the gradient data if gradient computation is required.
+         *
+         * This function checks the `_requires_grad` flag. If the flag is set to `true`, it calls the `syncData` method of the `cuStrm::streamManagerFP32` object, passing the `_grad` data. The `syncData` method blocks the host until all CUDA stream write operations on the input data are completed.
+         *
+         * @return None
+         *
+         * There is no explicit memory allocation or deallocation in this function. Memory management for the `_grad` data is assumed to be handled elsewhere.
+         * The function does not have an explicit exception - handling mechanism. It relies on the `cuStrm::streamManagerFP32.syncData` method to manage any errors during the synchronization process.
+         *
+         * @note
+         * - The time complexity of this function depends on the time it takes for the CUDA stream write operations on `_grad` to complete. In the worst - case scenario, if there are long - running write operations, it could take a significant amount of time.
+         *
+         * @code
+         * ```cpp
+         * // Assume MappedTensor is defined and an instance is created
+         * MappedTensor mappedTensor;
+         * mappedTensor.syncGrad();
+         * ```
+         * @endcode
+         */
+        void syncGrad() const;
+
+        /**
+         * @brief Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish.
+         *
+         * This function invokes the `syncData` method of the `cuStrm::streamManagerFP32` object, passing the `_data` member of the `MappedTensor` class. It blocks the host until all CUDA stream write operations on the `_data` are completed.
+         *
+         * @param None
+         *
+         * @return None
+         *
+         * Memory management for the `_data` is assumed to be handled elsewhere. There is no memory allocation or deallocation within this function.
+         * This function does not have an explicit exception - handling mechanism. It depends on the `cuStrm::streamManagerFP32.syncData` method to handle any errors during the synchronization process.
+         *
+         * @note
+         * - The time complexity of this function depends on the time taken for the CUDA stream write operations on `_data` to complete. In the worst - case scenario, it could take a long time if there are long - running write operations.
+         *
+         * @code
+         * ```cpp
+         * // Assume MappedTensor is defined and an instance is created
+         * MappedTensor mappedTensor;
+         * mappedTensor.syncData();
+         * ```
+         * @endcode
+         */
+        void syncData() const;
+
+        /**
+         * @brief Synchronizes the tensor data and its gradient.
+         *
+         * This function first calls the `syncData` method of the `cuStrm::streamManagerFP32` object, passing the `_data` member of the `MappedTensor` class. This is to ensure that all CUDA stream write operations on the tensor data are completed by blocking the host. Then it calls the `syncGrad` method to synchronize the gradient data if gradient computation is required.
+         *
+         * @param None
+         *
+         * @return None
+         *
+         * There is no explicit memory allocation or deallocation in this function. Memory management for the `_data` and `_grad` data is assumed to be handled elsewhere.
+         * The function does not have an explicit exception - handling mechanism. It relies on the `cuStrm::streamManagerFP32.syncData` method and the `syncGrad` method to manage any errors during the synchronization process.
+         *
+         * @note
+         * - The time complexity of this function depends on the time it takes for the CUDA stream write operations on `_data` and `_grad` (if applicable) to complete. In the worst - case scenario, if there are long - running write operations, it could take a significant amount of time.
+         *
+         * @code
+         * ```cpp
+         * // Assume MappedTensor is defined and an instance is created
+         * MappedTensor mappedTensor;
+         * mappedTensor.sync();
+         * ```
+         * @endcode
+         */
+        void sync() const;
         /// @}
 
     private:

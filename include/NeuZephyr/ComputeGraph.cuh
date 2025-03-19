@@ -237,8 +237,8 @@ namespace nz::graph {
         friend DL_API std::ostream& operator<<(std::ostream& os, ComputeGraph& graph);
         friend DL_API void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name,
                                       std::vector<int> pre,
-                                      const std::vector<int>& shape, const float* data, bool requires_grad,
-                                      const float* grad);
+                                      const std::vector<int>& shape, float* data, bool requires_grad,
+                                      float* grad);
 
         /// @name Constructors and Destructors
         /// @{
@@ -429,7 +429,7 @@ namespace nz::graph {
          * ```
          * @endcode
          */
-        InputNode* addInput(const Tensor::shape_type& shape, const Tensor::value_type* data, bool requires_grad,
+        InputNode* addInput(const Tensor::shape_type& shape, Tensor::value_type* data, bool requires_grad,
                             bool host, const std::string& name = "default");
 
         /**
@@ -1011,7 +1011,7 @@ namespace nz::graph {
          * @date
          * 2024/12/09
          */
-        void setInput(const std::string& name, const Tensor::value_type* data);
+        void setInput(const std::string& name, Tensor::value_type* data);
 
         /**
          * @brief Sets the input data for a specified node in the computational graph using a node pointer.
@@ -1042,7 +1042,7 @@ namespace nz::graph {
          * @date
          * 2024/12/09
          */
-        void setInput(const Node* node, const Tensor::value_type* data);
+        void setInput(const Node* node, Tensor::value_type* data);
 
         /// @}
 
