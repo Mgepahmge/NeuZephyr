@@ -14,7 +14,7 @@ namespace nz::data {
     };
 
 
-    DL_API void iRELU(float* output, const float* input, unsigned long long size);
+    DL_API void iRELU(float* output, float* input, unsigned long long size);
 
     /**
      * @brief Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.
@@ -50,7 +50,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iSigmoid(float* output, const float* input, unsigned long long size);
+    DL_API void iSigmoid(float* output, float* input, unsigned long long size);
 
     /**
      * @brief Apply the sigmoid activation function element-wise to an input tensor.
@@ -87,7 +87,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iTanh(float* output, const float* input, unsigned long long size);
+    DL_API void iTanh(float* output, float* input, unsigned long long size);
 
     /**
      * @brief Apply the hyperbolic tangent (tanh) activation function element-wise to an input tensor.
@@ -124,7 +124,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iLeakyReLU(float* output, const float* input, unsigned long long size, float alpha);
+    DL_API void iLeakyReLU(float* output, float* input, unsigned long long size, float alpha);
 
     /**
      * @brief Apply the Leaky Rectified Linear Unit (Leaky ReLU) activation function element-wise to an input tensor.
@@ -162,7 +162,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iSwish(float* output, const float* input, unsigned long long size);
+    DL_API void iSwish(float* output, float* input, unsigned long long size);
 
     /**
      * @brief Apply the Swish activation function element-wise to an input tensor.
@@ -198,7 +198,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iELU(float* output, const float* input, unsigned long long size, float alpha);
+    DL_API void iELU(float* output, float* input, unsigned long long size, float alpha);
 
     /**
      * @brief Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.
@@ -236,7 +236,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iHardSigmoid(float* output, const float* input, unsigned long long size, float alpha, float beta);
+    DL_API void iHardSigmoid(float* output, float* input, unsigned long long size, float alpha, float beta);
 
     /**
      * @brief Apply the Hard Sigmoid activation function element-wise to an input tensor.
@@ -275,7 +275,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iHardSwish(float* output, const float* input, unsigned long long size, float alpha, float beta);
+    DL_API void iHardSwish(float* output, float* input, unsigned long long size, float alpha, float beta);
 
     /**
      * @brief Apply the Hard Swish activation function element-wise to an input tensor.
@@ -314,7 +314,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iSoftmax(float* output, const float* input, float sum, unsigned long long size);
+    DL_API void iSoftmax(float* output, float* input, float sum, unsigned long long size);
 
     /**
      * @brief Compute the softmax function for a given input of type T.
@@ -355,11 +355,11 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iScalarAdd(float* output, const float* input, float scalar, unsigned long long size);
+    DL_API void iScalarAdd(float* output, float* input, float scalar, unsigned long long size);
 
-    DL_API void iScalarDiv(float* output, const float* input, float scalar, unsigned long long size);
+    DL_API void iScalarDiv(float* output, float* input, float scalar, unsigned long long size);
 
-    DL_API void iScalarMul(float* output, const float* input, float scalar, unsigned long long size);
+    DL_API void iScalarMul(float* output, float* input, float scalar, unsigned long long size);
 
     /**
      * @brief Overload the addition operator to add a scalar float to a tensor of type T.

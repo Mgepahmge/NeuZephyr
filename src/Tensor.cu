@@ -273,10 +273,7 @@ namespace nz::data {
     }
 
     void Tensor::randomize(const unsigned long long seed) const {
-        curandGenerator_t gen;
-        curandCreateGenerator(&gen, CURAND_RNG_PSEUDO_DEFAULT);
-        curandSetPseudoRandomGeneratorSeed(gen, seed);
-        curandGenerateUniform(gen, _data, _size);
+        cuStrm::StreamManager<value_type>::Instance().randomize(_data, _size, seed, CURAND_RNG_PSEUDO_DEFAULT);
     }
 
     void Tensor::clear() const {

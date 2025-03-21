@@ -18,7 +18,7 @@ namespace nz::krnl {
 
     void MatrixAdd(const dim3 gridDim, const dim3 blockDim, float* a, float* b, float* c,
                    const unsigned long long n) {
-        cuStrm::StreamManager<float>::Instance().submit(MatrixAddKernel, gridDim, blockDim, 0, c, a, b, n);
+        StreamManager<float>::Instance().submit(MatrixAddKernel, gridDim, blockDim, 0, c, a, b, n);
     }
 
     __global__ void MatrixSubKernel(float* c, const float* a, const float* b,
@@ -29,9 +29,9 @@ namespace nz::krnl {
         }
     }
 
-    void MatrixSub(const dim3 gridDim, const dim3 blockDim, const float* a, const float* b, float* c,
+    void MatrixSub(const dim3 gridDim, const dim3 blockDim, float* a, float* b, float* c,
                    const unsigned long long n) {
-        MatrixSubKernel<<<gridDim, blockDim>>>(c, a, b, n);
+        StreamManager<float>::Instance().submit(MatrixSubKernel, gridDim, blockDim, 0, c, a, b, n);
     }
 
     __global__ void GeneralMatrixMulKernel(float* C, const float* A, const float* B,
@@ -69,11 +69,11 @@ namespace nz::krnl {
             C[row * N + col] = sum;
     }
 
-    void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, const float* A, const float* B, float* C,
+    void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, float* A, float* B, float* C,
                           const unsigned long long M,
                           const unsigned long long N,
                           const unsigned long long K) {
-        GeneralMatrixMulKernel<<<gridDim, blockDim>>>(C, A, B, M, N, K);
+        StreamManager<float>::Instance().submit(GeneralMatrixMulKernel, gridDim, blockDim, 0, C, A, B, M, N, K);
     }
 
     __global__ void TransposeKernel(float* d_B, const float* d_A,
@@ -97,10 +97,10 @@ namespace nz::krnl {
             d_B[row * rows + col] = tile[threadIdx.x][threadIdx.y];
     }
 
-    void Transpose(const dim3 gridDim, const dim3 blockDim, const float* d_A, float* d_B,
+    void Transpose(const dim3 gridDim, const dim3 blockDim, float* d_A, float* d_B,
                    const unsigned int rows,
                    const unsigned int cols) {
-        TransposeKernel<<<gridDim, blockDim>>>(d_B, d_A, rows, cols);
+        StreamManager<float>::Instance().submit(TransposeKernel, gridDim, blockDim, 0, d_B, d_A, rows, cols);
     }
 
     __global__ void ScalarMulKernel(float* out, const float* in, const float num,
@@ -111,9 +111,9 @@ namespace nz::krnl {
         }
     }
 
-    void ScalarMul(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+    void ScalarMul(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const float num,
                    const unsigned long long n) {
-        ScalarMulKernel<<<gridDim, blockDim>>>(out, in, num, n);
+        StreamManager<float>::Instance().submit(ScalarMulKernel, gridDim, blockDim, 0, out, in, num, n);
     }
 
     __global__ void ScalarDivKernel(float* out, const float* in, const float num,
@@ -124,9 +124,9 @@ namespace nz::krnl {
         }
     }
 
-    void ScalarDiv(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+    void ScalarDiv(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const float num,
                    const unsigned long long n) {
-        ScalarDivKernel<<<gridDim, blockDim>>>(out, in, num, n);
+        StreamManager<float>::Instance().submit(ScalarDivKernel, gridDim, blockDim, 0, out, in, num, n);
     }
 
     __global__ void ScalarAddKernel(float* out, const float* in, const float num,
@@ -137,9 +137,9 @@ namespace nz::krnl {
         }
     }
 
-    void ScalarAdd(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float num,
+    void ScalarAdd(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const float num,
                    const unsigned long long n) {
-        ScalarAddKernel<<<gridDim, blockDim>>>(out, in, num, n);
+        StreamManager<float>::Instance().submit(ScalarAddKernel, gridDim, blockDim, 0, out, in, num, n);
     }
 
     __global__ void NegationKernel(float* out, const float* in,
@@ -150,8 +150,8 @@ namespace nz::krnl {
         }
     }
 
-    void Negation(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const unsigned long long n) {
-        NegationKernel<<<gridDim, blockDim>>>(out, in, n);
+    void Negation(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(NegationKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void
@@ -167,8 +167,8 @@ namespace nz::krnl {
         }
     }
 
-    void Recip(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const unsigned long long n) {
-        RecipKernel<<<gridDim, blockDim>>>(out, in, n);
+    void Recip(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(RecipKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void RectifiedLinearUnitKernel(float* out, const float* in, const unsigned long long n) {
@@ -178,9 +178,9 @@ namespace nz::krnl {
         }
     }
 
-    void RectifiedLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void RectifiedLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                              const unsigned long long n) {
-        RectifiedLinearUnitKernel<<<gridDim, blockDim>>>(out, in, n);
+        StreamManager<float>::Instance().submit(RectifiedLinearUnitKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void ReLUBackwardKernel(float* A_grad, const float* A,
@@ -191,9 +191,9 @@ namespace nz::krnl {
         }
     }
 
-    void ReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+    void ReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* A, float* B_grad,
                       const unsigned long long n) {
-        ReLUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n);
+        StreamManager<float>::Instance().submit(ReLUBackwardKernel, gridDim, blockDim, 0, A_grad, A, B_grad, n);
     }
 
     __global__ void SigmoidKernel(float* out, const float* in,
@@ -204,9 +204,9 @@ namespace nz::krnl {
         }
     }
 
-    void Sigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void Sigmoid(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                  const unsigned long long n) {
-        SigmoidKernel<<<gridDim, blockDim>>>(out, in, n);
+        StreamManager<float>::Instance().submit(SigmoidKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void SigmoidBackwardKernel(float* A_grad, const float* B,
@@ -218,9 +218,9 @@ namespace nz::krnl {
         }
     }
 
-    void SigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* B, const float* B_grad,
+    void SigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* B, float* B_grad,
                          const unsigned long long n) {
-        SigmoidBackwardKernel<<<gridDim, blockDim>>>(A_grad, B, B_grad, n);
+        StreamManager<float>::Instance().submit(SigmoidBackwardKernel, gridDim, blockDim, 0, A_grad, B, B_grad, n);
     }
 
     __global__ void TanhKernel(float* out, const float* in, unsigned long long n) {
@@ -230,9 +230,9 @@ namespace nz::krnl {
         }
     }
 
-    void Tanh(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void Tanh(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
               const unsigned long long n) {
-        TanhKernel<<<gridDim, blockDim>>>(out, in, n);
+        StreamManager<float>::Instance().submit(TanhKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void TanhBackwardKernel(float* A_grad, const float* B,
@@ -243,9 +243,9 @@ namespace nz::krnl {
         }
     }
 
-    void TanhBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* B, const float* B_grad,
+    void TanhBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* B, float* B_grad,
                       const unsigned long long n) {
-        TanhBackwardKernel<<<gridDim, blockDim>>>(A_grad, B, B_grad, n);
+        StreamManager<float>::Instance().submit(TanhBackwardKernel, gridDim, blockDim, 0, A_grad, B, B_grad, n);
     }
 
     __global__ void LeakyReLUKernel(float* out, const float* in,
@@ -256,9 +256,9 @@ namespace nz::krnl {
         }
     }
 
-    void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void LeakyReLU(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                    const unsigned long long n, const float alpha) {
-        LeakyReLUKernel<<<gridDim, blockDim>>>(out, in, n, alpha);
+        StreamManager<float>::Instance().submit(LeakyReLUKernel, gridDim, blockDim, 0, out, in, n, alpha);
     }
 
     __global__ void LeakyReLUBackwardKernel(float* A_grad, const float* A,
@@ -271,9 +271,9 @@ namespace nz::krnl {
         }
     }
 
-    void LeakyReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+    void LeakyReLUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* A, float* B_grad,
                            const unsigned long long n, const float alpha) {
-        LeakyReLUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha);
+        StreamManager<float>::Instance().submit(LeakyReLUBackwardKernel, gridDim, blockDim, 0, A_grad, A, B_grad, n, alpha);
     }
 
     __global__ void
@@ -284,9 +284,9 @@ namespace nz::krnl {
         }
     }
 
-    void Swish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void Swish(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                const unsigned long long n) {
-        SwishKernel<<<gridDim, blockDim>>>(out, in, n);
+        StreamManager<float>::Instance().submit(SwishKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void SwishBackwardKernel(float* A_grad, const float* A,
@@ -299,9 +299,9 @@ namespace nz::krnl {
         }
     }
 
-    void SwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B,
-                       const float* B_grad, const unsigned long long n) {
-        SwishBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B, B_grad, n);
+    void SwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* A, float* B,
+                       float* B_grad, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(SwishBackwardKernel, gridDim, blockDim, 0, A_grad, A, B, B_grad, n);
     }
 
     __global__ void ExponentialLinearUnitKernel(float* out, const float* in, const unsigned long long n,
@@ -312,9 +312,9 @@ namespace nz::krnl {
         }
     }
 
-    void ExponentialLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void ExponentialLinearUnit(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                                const unsigned long long n, const float alpha) {
-        ExponentialLinearUnitKernel<<<gridDim, blockDim>>>(out, in, n, alpha);
+        StreamManager<float>::Instance().submit(ExponentialLinearUnitKernel, gridDim, blockDim, 0, out, in, n, alpha);
     }
 
     __global__ void ELUBackwardKernel(float* A_grad, const float* A,
@@ -328,9 +328,9 @@ namespace nz::krnl {
         }
     }
 
-    void ELUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+    void ELUBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* A, float* B_grad,
                      const unsigned long long n, const float alpha) {
-        ELUBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha);
+        StreamManager<float>::Instance().submit(ELUBackwardKernel, gridDim, blockDim, 0, A_grad, A, B_grad, n, alpha);
     }
 
     __global__ void HardSigmoidKernel(float* out, const float* in,
@@ -343,9 +343,9 @@ namespace nz::krnl {
         }
     }
 
-    void HardSigmoid(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void HardSigmoid(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                      const unsigned long long n, const float alpha, const float beta) {
-        HardSigmoidKernel<<<gridDim, blockDim>>>(out, in, n, alpha, beta);
+        StreamManager<float>::Instance().submit(HardSigmoidKernel, gridDim, blockDim, 0, out, in, n, alpha, beta);
     }
 
     __global__ void HardSigmoidBackwardKernel(float* A_grad, const float* A,
@@ -364,10 +364,10 @@ namespace nz::krnl {
         }
     }
 
-    void HardSigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A,
-                             const float* B_grad,
+    void HardSigmoidBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* A,
+                             float* B_grad,
                              const unsigned long long n, const float alpha, const float beta) {
-        HardSigmoidBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha, beta);
+        StreamManager<float>::Instance().submit(HardSigmoidBackwardKernel, gridDim, blockDim, 0, A_grad, A, B_grad, n, alpha, beta);
     }
 
     __inline__ __device__ float LiteHardSigmoid(float x, float alpha, float beta) {
@@ -384,9 +384,9 @@ namespace nz::krnl {
         }
     }
 
-    void HardSwish(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void HardSwish(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                    const unsigned long long n, const float alpha, const float beta) {
-        HardSwishKernel<<<gridDim, blockDim>>>(out, in, n, alpha, beta);
+        StreamManager<float>::Instance().submit(HardSwishKernel, gridDim, blockDim, 0, out, in, n, alpha, beta);
     }
 
     __global__ void HardSwishBackwardKernel(float* A_grad, const float* A,
@@ -401,9 +401,9 @@ namespace nz::krnl {
         }
     }
 
-    void HardSwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, const float* A, const float* B_grad,
+    void HardSwishBackward(const dim3 gridDim, const dim3 blockDim, float* A_grad, float* A, float* B_grad,
                            const unsigned long long n, const float alpha, const float beta) {
-        HardSwishBackwardKernel<<<gridDim, blockDim>>>(A_grad, A, B_grad, n, alpha, beta);
+        StreamManager<float>::Instance().submit(HardSwishBackwardKernel, gridDim, blockDim, 0, A_grad, A, B_grad, n, alpha, beta);
     }
 
     __inline__ __device__ float warpReduce(float localSum) {
@@ -449,9 +449,9 @@ namespace nz::krnl {
     }
 
     void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
-                      const float* g_data,
+                      float* g_data,
                       const unsigned long long n) {
-        SummationExpKernel<<<gridDim, blockDim, sharedMemSize>>>(out, g_data, n);
+        StreamManager<float>::Instance().submit(SummationExpKernel, gridDim, blockDim, sharedMemSize, out, g_data, n);
     }
 
     __global__ void SoftmaxKernel(float* out, const float* in,
@@ -462,9 +462,9 @@ namespace nz::krnl {
         }
     }
 
-    void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const float exp_sum_of_input,
+    void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const float exp_sum_of_input,
                  const unsigned long long n) {
-        SoftmaxKernel<<<gridDim, blockDim>>>(out, in, exp_sum_of_input, n);
+        StreamManager<float>::Instance().submit(SoftmaxKernel, gridDim, blockDim, 0, out, in, exp_sum_of_input, n);
     }
 
     __global__ void SoftmaxJacobianKernel(float* out, const float* in,
@@ -483,9 +483,9 @@ namespace nz::krnl {
         }
     }
 
-    void SoftmaxJacobian(const dim3 gridDim, const dim3 blockDim, float* out, const float* in,
+    void SoftmaxJacobian(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
                          const unsigned long long n) {
-        SoftmaxJacobianKernel<<<gridDim, blockDim>>>(out, in, n);
+        StreamManager<float>::Instance().submit(SoftmaxJacobianKernel, gridDim, blockDim, 0, out, in, n);
     }
 
     __global__ void MeanSquaredErrorKernel(float* out, const float* predict, const float* real,
@@ -525,8 +525,8 @@ namespace nz::krnl {
     }
 
     void MeanSquaredError(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
-                          const float* predict, const float* real, const unsigned long long n) {
-        MeanSquaredErrorKernel<<<gridDim, blockDim, sharedMemSize>>>(out, predict, real, n);
+                          float* predict, float* real, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(MeanSquaredErrorKernel, gridDim, blockDim, sharedMemSize, out, predict, real, n);
     }
 
     __global__ void MSEBackwardKernel(float* out, const float* predict,
@@ -537,9 +537,9 @@ namespace nz::krnl {
         }
     }
 
-    void MSEBackward(const dim3 gridDim, const dim3 blockDim, float* out, const float* predict,
-                     const float* real, const unsigned long long n) {
-        MSEBackwardKernel<<<gridDim, blockDim>>>(out, predict, real, n);
+    void MSEBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* predict,
+                     float* real, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(MSEBackwardKernel, gridDim, blockDim, 0, out, predict, real, n);
     }
 
     __global__ void StochasticGradientDescentKernel(float* data, const float* grad, const float lr,
@@ -550,9 +550,9 @@ namespace nz::krnl {
         }
     }
 
-    void StochasticGradientDescent(const dim3 gridDim, const dim3 blockDim, float* data, const float* grad,
+    void StochasticGradientDescent(const dim3 gridDim, const dim3 blockDim, float* data, float* grad,
                                    const float lr, const unsigned long long n) {
-        StochasticGradientDescentKernel<<<gridDim, blockDim>>>(data, grad, lr, n);
+        StreamManager<float>::Instance().submit(StochasticGradientDescentKernel, gridDim, blockDim, 0, data, grad, lr, n);
     }
 
     __global__ void BinaryCrossEntropyKernel(float* out, const float* predict, const float* real,
@@ -594,8 +594,8 @@ namespace nz::krnl {
     }
 
     void BinaryCrossEntropy(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
-                            const float* predict, const float* real, const unsigned long long n) {
-        BinaryCrossEntropyKernel<<<gridDim, blockDim, sharedMemSize>>>(out, predict, real, n);
+                            float* predict, float* real, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(BinaryCrossEntropyKernel, gridDim, blockDim, sharedMemSize, out, predict, real, n);
     }
 
     __global__ void BCEBackwardKernel(float* out, const float* predict,
@@ -607,9 +607,9 @@ namespace nz::krnl {
         }
     }
 
-    void BCEBackward(const dim3 gridDim, const dim3 blockDim, float* out, const float* predict,
-                     const float* real, const unsigned long long n) {
-        BCEBackwardKernel<<<gridDim, blockDim>>>(out, predict, real, n);
+    void BCEBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* predict,
+                     float* real, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(BCEBackwardKernel, gridDim, blockDim, 0, out, predict, real, n);
     }
 
     __global__ void MomentumKernel(float* output, const float* grad,
@@ -621,9 +621,9 @@ namespace nz::krnl {
         }
     }
 
-    void Momentum(const dim3 gridDim, const dim3 blockDim, float* output, const float* grad, const float* velocity,
+    void Momentum(const dim3 gridDim, const dim3 blockDim, float* output, float* grad, float* velocity,
                   const float beta, const unsigned long long n) {
-        MomentumKernel<<<gridDim, blockDim>>>(output, grad, velocity, beta, n);
+        StreamManager<float>::Instance().submit(MomentumKernel, gridDim, blockDim, 0, output, grad, velocity, beta, n);
     }
 
     __global__ void AdaGradKernel(float* data, float* G, const float* grad, const float lr, const float eps,
@@ -637,9 +637,9 @@ namespace nz::krnl {
         G[idx] = temp;
     }
 
-    void AdaGrad(const dim3 gridDim, const dim3 blockDim, float* data, float* G, const float* grad, const float lr,
+    void AdaGrad(const dim3 gridDim, const dim3 blockDim, float* data, float* G, float* grad, const float lr,
                  const float eps, const unsigned long long n) {
-        AdaGradKernel<<<gridDim, blockDim>>>(data, G, grad, lr, eps, n);
+        StreamManager<float>::Instance().submitDualOut(AdaGradKernel, gridDim, blockDim, 0, data, G, grad, lr, eps, n);
     }
 
     __global__ void RMSpropKernel(float* data, float* v, const float* grad, const float lr, const float beta,
@@ -653,9 +653,9 @@ namespace nz::krnl {
         v[idx] = temp;
     }
 
-    void RMSprop(const dim3 gridDim, const dim3 blockDim, float* data, float* v, const float* grad, const float lr,
+    void RMSprop(const dim3 gridDim, const dim3 blockDim, float* data, float* v, float* grad, const float lr,
                  const float beta, const float eps, const unsigned long long n) {
-        RMSpropKernel<<<gridDim, blockDim>>>(data, v, grad, lr, beta, eps, n);
+        StreamManager<float>::Instance().submitDualOut(RMSpropKernel, gridDim, blockDim, 0, data, v, grad, lr, beta, eps, n);
     }
 
     __global__ void AdamKernel(float* data, float* m, float* v, const float* grad, const float lr, const float beta1,
@@ -673,10 +673,10 @@ namespace nz::krnl {
         v[idx] = v_temp;
     }
 
-    void Adam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* v, const float* grad,
+    void Adam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* v, float* grad,
               const float lr, const float beta1, const float beta2, const float eps, const int t,
               const unsigned long long n) {
-        AdamKernel<<<gridDim, blockDim>>>(data, m, v, grad, lr, beta1, beta2, eps, t, n);
+        StreamManager<float>::Instance().submitTripleOut(AdamKernel, gridDim, blockDim, 0, data, m, v, grad, lr, beta1, beta2, eps, t, n);
     }
 
     __global__ void NAdamKernel(float* data, float* m, float* m_modified, float* v, const float* grad, const float lr,
@@ -698,9 +698,9 @@ namespace nz::krnl {
     }
 
     void NAdam(const dim3 gridDim, const dim3 blockDim, float* data, float* m, float* m_modified, float* v,
-               const float* grad, const float lr, const float beta1, const float beta2, const float eps, const int t,
+               float* grad, const float lr, const float beta1, const float beta2, const float eps, const int t,
                const unsigned long long n) {
-        NAdamKernel<<<gridDim, blockDim>>>(data, m, m_modified, v, grad, lr, beta1, beta2, eps, t, n);
+        StreamManager<float>::Instance().submitQuadOut(NAdamKernel, gridDim, blockDim, 0, data, m, m_modified, v, grad, lr, beta1, beta2, eps, t, n);
     }
 
     __global__ void AdaDeltaKernel(float* data, float* acc_delta, float* acc_grad, const float* grad,
@@ -719,8 +719,8 @@ namespace nz::krnl {
     }
 
     void AdaDelta(const dim3 gridDim, const dim3 blockDim, float* data, float* acc_delta, float* acc_grad,
-                  const float* grad, const float rho, const float eps, const unsigned long long n) {
-        AdaDeltaKernel<<<gridDim, blockDim>>>(data, acc_delta, acc_grad, grad, rho, eps, n);
+                  float* grad, const float rho, const float eps, const unsigned long long n) {
+        StreamManager<float>::Instance().submitTripleOut(AdaDeltaKernel, gridDim, blockDim, 0, data, acc_delta, acc_grad, grad, rho, eps, n);
     }
 
     __global__ void GeneralMatrixMulTensorKernel(float* C, const half* A, const half* B, const unsigned long long m,
@@ -770,7 +770,7 @@ namespace nz::krnl {
         }
     }
 
-    void TensorCoreGEMM(const float* A, const float* B, float* C, const unsigned long long M,
+    void TensorCoreGEMM(float* A, float* B, float* C, const unsigned long long M,
                         const unsigned long long N, const unsigned long long K) {
         const unsigned long long m = CEIL(M);
         const unsigned long long k = CEIL(K);
@@ -778,24 +778,21 @@ namespace nz::krnl {
         half* padded_A;
         half* padded_B;
         float* padded_C;
-        cudaMalloc(reinterpret_cast<void**>(&padded_A), m * k * sizeof(half));
-        cudaMalloc(reinterpret_cast<void**>(&padded_B), k * n * sizeof(half));
-        cudaMalloc(reinterpret_cast<void**>(&padded_C), m * n * sizeof(float));
-        cudaMemset(padded_C, 0, m * n * sizeof(float));
-        Padding<<<(m * k + 256 - 1) / 256, 256>>>(padded_A, A, M, K, m, k);
-        Padding<<<(k * n + 256 - 1) / 256, 256>>>(padded_B, B, K, N, k, n);
-        cudaDeviceSynchronize();
+        StreamManager<float>::Instance().malloc(&padded_A, m * k * sizeof(half));
+        StreamManager<float>::Instance().malloc(&padded_B, k * n * sizeof(half));
+        StreamManager<float>::Instance().malloc(&padded_C, m * n * sizeof(float));
+        StreamManager<float>::Instance().memset(padded_C, 0, m * n * sizeof(float));
+        StreamManager<float>::Instance().submit(Padding, dim3((m * k + 256 - 1) / 256), dim3(256), 0, padded_A, A, M, K, m, k);
+        StreamManager<float>::Instance().submit(Padding, dim3((k * n + 256 - 1) / 256), dim3(256), 0, padded_B, B, K, N, k, n);
         const unsigned long long tiles = (m * n) >> 8;
         dim3 block(256);
         const unsigned int warpPerBlock = block.x / 32;
         dim3 grid((tiles + warpPerBlock - 1) / warpPerBlock);
-        GeneralMatrixMulTensorKernel<<<grid, block>>>(padded_C, padded_A, padded_B, m, n, k);
-        cudaDeviceSynchronize();
-        Cutting<<<(m * n + 256 - 1) / 256, 256>>>(C, padded_C, M, N, m, n);
-        cudaDeviceSynchronize();
-        cudaFree(padded_A);
-        cudaFree(padded_B);
-        cudaFree(padded_C);
+        StreamManager<float>::Instance().submit(GeneralMatrixMulTensorKernel, grid, block, 0, padded_C, padded_A, padded_B, m, n, k);
+        StreamManager<float>::Instance().submit(Cutting, dim3((m * n + 256 - 1) / 256), dim3(256), 0, C, padded_C, M, N, m, n);
+        StreamManager<float>::Instance().freeAsync(padded_A);
+        StreamManager<float>::Instance().freeAsync(padded_B);
+        StreamManager<float>::Instance().freeAsync(padded_C);
     }
 
     __global__ void FillKernel(float* data, const float value, const unsigned long long n) {
@@ -806,7 +803,7 @@ namespace nz::krnl {
     }
 
     void Fill(const dim3 gridDim, const dim3 blockDim, float* data, const float value, const unsigned long long n) {
-        FillKernel<<<gridDim, blockDim>>>(data, value, n);
+        StreamManager<float>::Instance().submit(FillKernel, gridDim, blockDim, 0, data, value, n);
     }
 
     __global__ void HadamardProductKernel(float* out, const float* in1, const float* in2, const unsigned long long n) {
@@ -816,9 +813,9 @@ namespace nz::krnl {
         }
     }
 
-    void HadamardProduct(const dim3 gridDim, const dim3 blockDim, float* out, const float* in1, const float* in2,
+    void HadamardProduct(const dim3 gridDim, const dim3 blockDim, float* out, float* in1, float* in2,
                          const unsigned long long n) {
-        HadamardProductKernel<<<gridDim, blockDim>>>(out, in1, in2, n);
+        StreamManager<float>::Instance().submit(HadamardProductKernel, gridDim, blockDim, 0, out, in1, in2, n);
     }
 
     __global__ void ElementwiseDivideKernel(float* out, const float* in1, const float* in2,
@@ -829,9 +826,9 @@ namespace nz::krnl {
         }
     }
 
-    void ElementwiseDivide(const dim3 gridDim, const dim3 blockDim, float* out, const float* in1, const float* in2,
+    void ElementwiseDivide(const dim3 gridDim, const dim3 blockDim, float* out, float* in1, float* in2,
                            const unsigned long long n) {
-        ElementwiseDivideKernel<<<gridDim, blockDim>>>(out, in1, in2, n);
+        StreamManager<float>::Instance().submit(ElementwiseDivideKernel, gridDim, blockDim, 0, out, in1, in2, n);
     }
 
     __global__ void SummationKernel(float* out, const float* in, const unsigned long long n) {
@@ -863,7 +860,7 @@ namespace nz::krnl {
     }
 
     void Summation(const dim3 gridDim, const dim3 blockDim, const unsigned long long sharedMemSize, float* out,
-                   const float* in, const unsigned long long n) {
-        SummationKernel<<<gridDim, blockDim, sharedMemSize>>>(out, in, n);
+                   float* in, const unsigned long long n) {
+        StreamManager<float>::Instance().submit(SummationKernel, gridDim, blockDim, sharedMemSize, out, in, n);
     }
 }
