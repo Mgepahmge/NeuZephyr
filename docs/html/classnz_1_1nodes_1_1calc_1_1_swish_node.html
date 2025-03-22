@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -124,12 +124,12 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Swish activation function node in a computational graph. </p>
-<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_swish_node.html" title="Represents a Swish activation function node in a computational graph.">SwishNode</a></code> class applies the Swish activation function to the input tensor. The Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">Swish</a>(x) = x / (1 + exp(-x))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a5d16dbfa0fdad676c5eecd502aa312a3"><div class="ttname"><a href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">nz::krnl::Swish</a></div><div class="ttdeci">void Swish(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00284">OperationKernels.cu:284</a></div></div>
+<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_swish_node.html" title="Represents a Swish activation function node in a computational graph.">SwishNode</a></code> class applies the Swish activation function to the input tensor. The Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">Swish</a>(x) = x / (1 + exp(-x))</div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a997aa5460fd64fadf9b701fbf73e3fb2"><div class="ttname"><a href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">nz::krnl::Swish</a></div><div class="ttdeci">void Swish(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00287">OperationKernels.cu:287</a></div></div>
 </div><!-- fragment --><p> It is a smooth, non-monotonic activation function that often outperforms ReLU in deep learning tasks.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Swish activation function element-wise to the input tensor, blending the input with its sigmoid output.</li>
-<li><b>Backward Pass</b>: Computes the gradient of the loss with respect to the input tensor using the derivative of the Swish function: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">Swish</a><span class="stringliteral">&#39;(x) = Sigmoid(x) + x * Sigmoid(x) * (1 - Sigmoid(x))</span></div>
+<li><b>Backward Pass</b>: Computes the gradient of the loss with respect to the input tensor using the derivative of the Swish function: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">Swish</a><span class="stringliteral">&#39;(x) = Sigmoid(x) + x * Sigmoid(x) * (1 - Sigmoid(x))</span></div>
 </div><!-- fragment --></li>
 <li><b>Shape Preservation</b>: The output tensor has the same shape as the input tensor.</li>
 <li><b>Gradient Management</b>: Automatically tracks gradients if required by the input tensor.</li>
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md56"></a>
+<h3><a class="anchor" id="autotoc_md58"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using SwishNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -153,8 +153,8 @@ Usage Example:</h3>
 <div class="line">swish_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *swish_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_html_a20f471bd6a03cf6d72d4e37eaba9fbb7"><div class="ttname"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">nz::nodes::calc::SwishNode::SwishNode</a></div><div class="ttdeci">SwishNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SwishNode for applying the Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00368">Nodes.cu:368</a></div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward</a> pass. </dd>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_html_a20f471bd6a03cf6d72d4e37eaba9fbb7"><div class="ttname"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">nz::nodes::calc::SwishNode::SwishNode</a></div><div class="ttdeci">SwishNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SwishNode for applying the Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00369">Nodes.cu:369</a></div></div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
@@ -199,7 +199,7 @@ Usage Example:</h3>
 <li>The node's type is set to "Swish" to reflect its operation.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>The Swish activation function is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">Swish</a>(x) = x / (1 + exp(-x))</div>
+<li>The Swish activation function is defined as: <div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">Swish</a>(x) = x / (1 + exp(-x))</div>
 </div><!-- fragment --></li>
 <li>This node supports automatic gradient tracking if the input tensor requires gradients.</li>
 </ul>
@@ -210,7 +210,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00368">368</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00369">369</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ Usage Example:</h3>
 </div><div class="memdoc">
 
 <p>Backward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_swish_node.html" title="Represents a Swish activation function node in a computational graph.">SwishNode</a></code> to compute gradients. </p>
-<p>The <code><a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the Swish activation function. The gradient computation is based on the formula: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">Swish</a><span class="stringliteral">&#39;(x) = Sigmoid(x) + x * Sigmoid(x) * (1 - Sigmoid(x))</span></div>
+<p>The <code><a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward()</a></code> method computes the gradient of the loss with respect to the input tensor by applying the derivative of the Swish activation function. The gradient computation is based on the formula: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">Swish</a><span class="stringliteral">&#39;(x) = Sigmoid(x) + x * Sigmoid(x) * (1 - Sigmoid(x))</span></div>
 </div><!-- fragment --><p> where <code>Sigmoid(x) = 1 / (1 + exp(-x))</code>.</p>
 <ul>
 <li>A CUDA kernel (<code>SwishBackward</code>) is launched to compute the gradients in parallel on the GPU.</li>
@@ -251,21 +251,25 @@ Usage Example:</h3>
 <li>The shape of the gradient tensor matches that of the input tensor.</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward</a> pass.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00381">381</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00382">382</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_swish_node_a55758c143f9a941d24abc58a43ae5e9d_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_swish_node_a55758c143f9a941d24abc58a43ae5e9d_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_swish_node_a55758c143f9a941d24abc58a43ae5e9d_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_a55758c143f9a941d24abc58a43ae5e9d_cgraph">
-<area shape="rect" title="Backward pass for the SwishNode to compute gradients." alt="" coords="5,5,191,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a1c31fba26003ca607eb484f3ff66701c" title="Kernel function to compute the gradient of the Swish activation during backpropagation." alt="" coords="239,13,405,40"/>
-<area shape="poly" title=" " alt="" coords="191,24,223,24,223,29,191,29"/>
+<area shape="rect" title="Backward pass for the SwishNode to compute gradients." alt="" coords="5,39,191,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a6c5a4b54442aab42df5afe8688e71596" title="Kernel function to compute the gradient of the Swish activation during backpropagation." alt="" coords="239,47,405,73"/>
+<area shape="poly" title=" " alt="" coords="191,57,223,57,223,63,191,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="453,5,638,48"/>
+<area shape="poly" title=" " alt="" coords="405,45,437,40,438,45,406,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="453,72,638,115"/>
+<area shape="poly" title=" " alt="" coords="406,70,438,75,437,80,405,75"/>
 </map>
 </div>
 
@@ -295,7 +299,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Forward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_swish_node.html" title="Represents a Swish activation function node in a computational graph.">SwishNode</a></code> to apply the Swish activation function. </p>
-<p>The <code><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a></code> method applies the Swish activation function element-wise to the input tensor. The result is stored in the <code>output</code> tensor. The Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3">Swish</a>(x) = x / (1 + exp(-x))</div>
+<p>The <code><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a></code> method applies the Swish activation function element-wise to the input tensor. The result is stored in the <code>output</code> tensor. The Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">Swish</a>(x) = x / (1 + exp(-x))</div>
 </div><!-- fragment --><ul>
 <li>A CUDA kernel (<code>Swish</code>) is launched to compute the activation function in parallel on the GPU.</li>
 <li>The grid and block dimensions are dynamically calculated based on the size of the <code>output</code> tensor to optimize GPU performance.</li>
@@ -307,15 +311,19 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00375">375</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00376">376</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_swish_node_ab0fbf5a4d05c0df96b8aaffab36d92db_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_swish_node_ab0fbf5a4d05c0df96b8aaffab36d92db_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_swish_node_ab0fbf5a4d05c0df96b8aaffab36d92db_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_ab0fbf5a4d05c0df96b8aaffab36d92db_cgraph">
-<area shape="rect" title="Forward pass for the SwishNode to apply the Swish activation function." alt="" coords="5,5,191,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3" title="Kernel function to apply the Swish activation function on the GPU." alt="" coords="239,13,347,40"/>
-<area shape="poly" title=" " alt="" coords="191,24,223,24,223,29,191,29"/>
+<area shape="rect" title="Forward pass for the SwishNode to apply the Swish activation function." alt="" coords="5,39,191,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2" title="Kernel function to apply the Swish activation function on the GPU." alt="" coords="239,47,347,73"/>
+<area shape="poly" title=" " alt="" coords="191,57,223,57,223,63,191,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="395,5,580,48"/>
+<area shape="poly" title=" " alt="" coords="347,48,379,43,380,48,348,53"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="395,72,580,115"/>
+<area shape="poly" title=" " alt="" coords="348,67,380,72,379,77,347,72"/>
 </map>
 </div>
 

@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -124,8 +124,8 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Hard Swish activation function node in a computational graph. </p>
-<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_swish_node.html" title="Represents a Hard Swish activation function node in a computational graph.">HardSwishNode</a></code> class applies the Hard Swish activation function to the input tensor. The Hard Swish function is a computationally efficient approximation of the Swish function and is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a6c18d8a2b6ddeeeb83cea014829864ad"><div class="ttname"><a href="namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad">nz::krnl::HardSwish</a></div><div class="ttdeci">void HardSwish(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00384">OperationKernels.cu:384</a></div></div>
+<p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_swish_node.html" title="Represents a Hard Swish activation function node in a computational graph.">HardSwishNode</a></code> class applies the Hard Swish activation function to the input tensor. The Hard Swish function is a computationally efficient approximation of the Swish function and is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_aef9c028ed356b5684e103639bb23bcf0"><div class="ttname"><a href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">nz::krnl::HardSwish</a></div><div class="ttdeci">void HardSwish(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00387">OperationKernels.cu:387</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> and <code>beta</code> control the slope and offset of the linear part of the function.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Hard Swish activation function element-wise to the input tensor, blending the input with a clipped linear function.</li>
@@ -139,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md59"></a>
+<h3><a class="anchor" id="autotoc_md61"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using HardSwishNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -152,8 +152,8 @@ Usage Example:</h3>
 <div class="line">hard_swish_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *hard_swish_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_html_a014a289c458494bf3bf02f266c129205"><div class="ttname"><a href="#a014a289c458494bf3bf02f266c129205">nz::nodes::calc::HardSwishNode::HardSwishNode</a></div><div class="ttdeci">HardSwishNode(Node *input, Tensor::value_type alpha=1.0f, Tensor::value_type beta=0.5f)</div><div class="ttdoc">Constructor to initialize a HardSwishNode for applying the Hard Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00437">Nodes.cu:437</a></div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#afd48643b49c76a9c38b0bfc0c4a502f1" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function.">forward()</a> for the Hard <a class="el" href="namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#afd48643b49c76a9c38b0bfc0c4a502f1" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function.">forward</a> pass. </dd>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_html_a014a289c458494bf3bf02f266c129205"><div class="ttname"><a href="#a014a289c458494bf3bf02f266c129205">nz::nodes::calc::HardSwishNode::HardSwishNode</a></div><div class="ttdeci">HardSwishNode(Node *input, Tensor::value_type alpha=1.0f, Tensor::value_type beta=0.5f)</div><div class="ttdoc">Constructor to initialize a HardSwishNode for applying the Hard Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00438">Nodes.cu:438</a></div></div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#afd48643b49c76a9c38b0bfc0c4a502f1" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function.">forward()</a> for the Hard <a class="el" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#afd48643b49c76a9c38b0bfc0c4a502f1" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#ace2cc92220449c5425a75d8e7f35ff42" title="Backward pass for the HardSwishNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#ace2cc92220449c5425a75d8e7f35ff42" title="Backward pass for the HardSwishNode to compute gradients.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
@@ -203,7 +203,7 @@ Usage Example:</h3>
   </table>
   </dd>
 </dl>
-<p>The Hard Swish activation function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
+<p>The Hard Swish activation function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
 </div><!-- fragment --><p>Key operations performed by the constructor:</p><ul>
 <li>Adds the input node to the <code>inputs</code> vector, establishing the connection in the computational graph.</li>
 <li>Determines if gradient tracking is required based on the input tensor's <code>requiresGrad</code> property.</li>
@@ -223,7 +223,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00437">437</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00438">438</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Usage Example:</h3>
 
 <p>Backward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_swish_node.html" title="Represents a Hard Swish activation function node in a computational graph.">HardSwishNode</a></code> to compute gradients. </p>
 <p>This method implements the backward pass of the Hard Swish activation function. It computes the gradient of the loss with respect to the input by applying the derivative of the Hard Swish function to the incoming gradient.</p>
-<p>The derivative of the Hard Swish function is: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad">HardSwish</a><span class="stringliteral">&#39;(x) = (2 * alpha * x + beta) * min(max(alpha * x + beta, 0), 1) +</span></div>
+<p>The derivative of the Hard Swish function is: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">HardSwish</a><span class="stringliteral">&#39;(x) = (2 * alpha * x + beta) * min(max(alpha * x + beta, 0), 1) +</span></div>
 <div class="line"><span class="stringliteral">                max(0, min(1, alpha * x + beta)) +</span></div>
 <div class="line"><span class="stringliteral">                x * (alpha * (x &gt; -beta/alpha) * (x &lt; (1-beta)/alpha))</span></div>
 </div><!-- fragment --><p> where <code>alpha</code> and <code>beta</code> are the parameters that control the shape of the function.</p>
@@ -285,15 +285,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00452">452</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00453">453</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_hard_swish_node_ace2cc92220449c5425a75d8e7f35ff42_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_ace2cc92220449c5425a75d8e7f35ff42_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_ace2cc92220449c5425a75d8e7f35ff42_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_ace2cc92220449c5425a75d8e7f35ff42_cgraph">
-<area shape="rect" title="Backward pass for the HardSwishNode to compute gradients." alt="" coords="5,5,188,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a293918c6c59bd44f5f0c94b5791202f7" title="Kernel function to compute the gradient of the Hard Swish activation during backpropagation." alt="" coords="236,13,430,40"/>
-<area shape="poly" title=" " alt="" coords="188,24,220,24,220,29,188,29"/>
+<area shape="rect" title="Backward pass for the HardSwishNode to compute gradients." alt="" coords="5,39,188,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a455365870d43ff26687a731d15c4cdff" title="Kernel function to compute the gradient of the Hard Swish activation during backpropagation." alt="" coords="236,47,430,73"/>
+<area shape="poly" title=" " alt="" coords="188,57,220,57,220,63,188,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="478,5,663,48"/>
+<area shape="poly" title=" " alt="" coords="430,44,462,39,463,44,431,49"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="478,72,663,115"/>
+<area shape="poly" title=" " alt="" coords="431,71,463,76,462,81,430,76"/>
 </map>
 </div>
 
@@ -324,7 +328,7 @@ Here is the call graph for this function:</div>
 
 <p>Forward pass for the <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_swish_node.html" title="Represents a Hard Swish activation function node in a computational graph.">HardSwishNode</a></code> to apply the Hard Swish activation function. </p>
 <p>This method implements the forward pass of the Hard Swish activation function. It applies the Hard Swish operation element-wise to the input tensor and stores the result in the output tensor.</p>
-<p>The Hard Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
+<p>The Hard Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
 </div><!-- fragment --><p> where <code>alpha</code> and <code>beta</code> are parameters that control the shape of the function.</p>
 <p>Key operations:</p><ul>
 <li>Configures CUDA execution parameters (grid and block dimensions) for parallel processing.</li>
@@ -349,15 +353,19 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00446">446</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00447">447</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_hard_swish_node_afd48643b49c76a9c38b0bfc0c4a502f1_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_afd48643b49c76a9c38b0bfc0c4a502f1_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_afd48643b49c76a9c38b0bfc0c4a502f1_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_hard_swish_node_afd48643b49c76a9c38b0bfc0c4a502f1_cgraph">
-<area shape="rect" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function." alt="" coords="5,5,188,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a6c18d8a2b6ddeeeb83cea014829864ad" title="Kernel function to apply the Hard Swish activation function on the GPU." alt="" coords="236,13,372,40"/>
-<area shape="poly" title=" " alt="" coords="188,24,220,24,220,29,188,29"/>
+<area shape="rect" title="Forward pass for the HardSwishNode to apply the Hard Swish activation function." alt="" coords="5,39,188,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0" title="Kernel function to apply the Hard Swish activation function on the GPU." alt="" coords="236,47,372,73"/>
+<area shape="poly" title=" " alt="" coords="188,57,220,57,220,63,188,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="420,5,605,48"/>
+<area shape="poly" title=" " alt="" coords="372,47,404,41,405,47,373,52"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="420,72,605,115"/>
+<area shape="poly" title=" " alt="" coords="373,68,405,73,404,79,372,73"/>
 </map>
 </div>
 

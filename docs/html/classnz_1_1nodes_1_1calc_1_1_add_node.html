@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
 <li>During the backward pass, the gradient of the output is distributed equally to both inputs.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md45"></a>
+<h3><a class="anchor" id="autotoc_md47"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example 1: Creating and using an AddNode</span></div>
 <div class="line">InputNode input1({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create the first input node with shape {3, 3}</span></div>
@@ -150,7 +150,7 @@ Usage Example:</h3>
 <div class="line">add_node.backward();  <span class="comment">// Perform the backward pass: propagate gradients</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *add_node.output &lt;&lt; std::endl;  <span class="comment">// Print the output tensor</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_add_node_html_abf5d0c2b9827bfb8fd1f3a004db80175"><div class="ttname"><a href="#abf5d0c2b9827bfb8fd1f3a004db80175">nz::nodes::calc::AddNode::AddNode</a></div><div class="ttdeci">AddNode(Node *input_left, Node *input_right)</div><div class="ttdoc">Constructor to initialize an AddNode with two input nodes for element-wise addition.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00076">Nodes.cu:76</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_add_node_html_abf5d0c2b9827bfb8fd1f3a004db80175"><div class="ttname"><a href="#abf5d0c2b9827bfb8fd1f3a004db80175">nz::nodes::calc::AddNode::AddNode</a></div><div class="ttdeci">AddNode(Node *input_left, Node *input_right)</div><div class="ttdoc">Constructor to initialize an AddNode with two input nodes for element-wise addition.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00077">Nodes.cu:77</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#adcbcffc97ede105ec64c7360377b9af3" title="Forward pass for the AddNode to perform element-wise addition.">forward()</a> for the <a class="el" href="#adcbcffc97ede105ec64c7360377b9af3" title="Forward pass for the AddNode to perform element-wise addition.">forward</a> pass computation method. </dd>
 <dd>
 <a class="el" href="#aacd0de4600132791c8da7860dba3e43c" title="Backward pass for the AddNode to propagate gradients.">backward()</a> for the <a class="el" href="#aacd0de4600132791c8da7860dba3e43c" title="Backward pass for the AddNode to propagate gradients.">backward</a> pass gradient propagation method.</dd></dl>
@@ -202,7 +202,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00076">76</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00077">77</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -246,7 +246,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00094">94</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00095">95</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_add_node_aacd0de4600132791c8da7860dba3e43c_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_add_node_aacd0de4600132791c8da7860dba3e43c_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_add_node_aacd0de4600132791c8da7860dba3e43c_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_add_node_aacd0de4600132791c8da7860dba3e43c_cgraph">
+<area shape="rect" title="Backward pass for the AddNode to propagate gradients." alt="" coords="5,39,178,81"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="226,5,411,48"/>
+<area shape="poly" title=" " alt="" coords="178,45,210,40,210,45,179,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="226,72,411,115"/>
+<area shape="poly" title=" " alt="" coords="179,70,210,75,210,80,178,75"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -288,15 +300,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00087">87</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00088">88</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_add_node_adcbcffc97ede105ec64c7360377b9af3_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_add_node_adcbcffc97ede105ec64c7360377b9af3_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_add_node_adcbcffc97ede105ec64c7360377b9af3_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_add_node_adcbcffc97ede105ec64c7360377b9af3_cgraph">
-<area shape="rect" title="Forward pass for the AddNode to perform element&#45;wise addition." alt="" coords="5,5,178,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#ac24c370f0323c789136d1c2e1fd00137" title="Kernel function to perform matrix addition on GPU." alt="" coords="226,13,357,40"/>
-<area shape="poly" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
+<area shape="rect" title="Forward pass for the AddNode to perform element&#45;wise addition." alt="" coords="5,39,178,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a91159bb65d34c90ea5e2aa24e6000b67" title="Kernel function to perform matrix addition on GPU." alt="" coords="226,47,357,73"/>
+<area shape="poly" title=" " alt="" coords="178,57,210,57,210,63,178,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="405,5,590,48"/>
+<area shape="poly" title=" " alt="" coords="357,47,389,42,390,47,358,52"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="405,72,590,115"/>
+<area shape="poly" title=" " alt="" coords="358,68,390,73,389,78,357,73"/>
 </map>
 </div>
 

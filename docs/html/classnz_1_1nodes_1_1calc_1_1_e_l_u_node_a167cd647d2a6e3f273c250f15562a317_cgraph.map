@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::ELUNode::backward" name="nz::nodes::calc::ELUNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the ELUNode to compute gradients." alt="" coords="5,5,181,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a60576f05d988d55c4ed32faf22b71605" title="Kernel function to compute the gradient of the ELU activation during backpropagation." alt="" coords="229,13,385,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,24,213,24,213,29,181,29"/>
+<area shape="rect" id="Node000001" title="Backward pass for the ELUNode to compute gradients." alt="" coords="5,39,181,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#aee8ca471aa260bd1fca5b1797e229f9f" title="Kernel function to compute the gradient of the ELU activation during backpropagation." alt="" coords="229,47,385,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,57,213,57,213,63,181,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="433,5,618,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="385,45,417,41,418,46,386,51"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="433,72,618,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="386,69,418,74,417,79,385,75"/>
 </map>

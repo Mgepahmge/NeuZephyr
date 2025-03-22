@@ -1,5 +1,18 @@
 <map id="nz::nodes::calc::SubNode::backward" name="nz::nodes::calc::SubNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,5,178,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ac4e4b8e2415062632b49dd77694b0974" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="226,13,350,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
+<area shape="rect" id="Node000001" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,123,178,165"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="226,5,411,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,120,224,64,249,52,252,57,227,69,129,125"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="459,127,644,169"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,119,225,108,318,100,411,108,469,120,468,125,411,113,318,106,226,113,167,125"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="226,123,411,165"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="178,141,210,141,210,147,178,147"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="226,189,411,232"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="167,163,230,182,228,187,165,168"/>
+<area shape="rect" id="Node000007" href="$namespacenz_1_1krnl.html#af7069a420e81babb49b1bc009333d053" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="256,256,380,283"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,164,166,203,227,242,242,248,240,253,224,246,163,208,114,168"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="459,5,644,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,24,443,24,443,29,411,29"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="380,253,410,242,464,211,511,177,514,182,467,215,412,246,382,258"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="459,248,644,291"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="381,267,444,267,444,272,381,272"/>
 </map>

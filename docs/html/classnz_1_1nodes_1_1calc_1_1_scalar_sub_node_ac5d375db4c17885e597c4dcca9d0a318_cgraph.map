@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::ScalarSubNode::forward" name="nz::nodes::calc::ScalarSubNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the ScalarSubNode to perform scalar subtraction." alt="" coords="5,5,184,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#adcbfa84211bb6cac845f1dc94e59ec19" title="Kernel function to add a scalar to each element of a matrix on the GPU." alt="" coords="232,13,364,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,24,216,24,216,29,184,29"/>
+<area shape="rect" id="Node000001" title="Forward pass for the ScalarSubNode to perform scalar subtraction." alt="" coords="5,39,184,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a56f84e531825be8b2b0974c2488eb765" title="Kernel function to add a scalar to each element of a matrix on the GPU." alt="" coords="232,47,364,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,57,216,57,216,63,184,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="412,5,597,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="364,47,396,41,397,47,365,52"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="412,72,597,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,68,397,73,396,79,364,73"/>
 </map>

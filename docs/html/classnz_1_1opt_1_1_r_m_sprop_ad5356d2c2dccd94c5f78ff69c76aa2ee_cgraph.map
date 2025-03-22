@@ -1,9 +1,14 @@
 <map id="nz::opt::RMSprop::step" name="nz::opt::RMSprop::step">
-<area shape="rect" id="Node000001" title="Performs a single optimization step using the RMSprop algorithm." alt="" coords="5,31,163,57"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="211,5,347,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,31,195,27,196,32,163,36"/>
-<area shape="rect" id="Node000004" href="$namespacenz_1_1krnl.html#a02ea9559eff9305923d9f4cd2c562e1e" title="Kernel function to apply RMSprop optimization." alt="" coords="215,56,342,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,52,200,56,199,62,163,57"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="395,5,543,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,16,380,16,380,21,347,21"/>
+<area shape="rect" id="Node000001" title="Performs a single optimization step using the RMSprop algorithm." alt="" coords="5,55,163,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="211,29,347,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,55,195,51,196,56,163,60"/>
+<area shape="rect" id="Node000006" href="$namespacenz_1_1krnl.html#aaf3c9cca114d003130ffa4354b4a24de" title="Kernel function to apply RMSprop optimization." alt="" coords="395,80,522,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="163,71,380,85,380,91,163,76"/>
+<area shape="rect" id="Node000003" href="$namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="414,29,503,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="348,40,399,40,399,45,348,45"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="570,72,756,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="504,51,561,65,559,70,503,56"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="570,5,756,48"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="504,37,555,32,555,38,504,42"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="523,91,554,91,554,96,523,96"/>
 </map>

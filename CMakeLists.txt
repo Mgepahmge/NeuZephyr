@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
-project(NeuZephyr VERSION 0.3.0 LANGUAGES CUDA CXX)
+project(NeuZephyr VERSION 0.4 LANGUAGES CUDA CXX)
 
 # Find CUDA
 find_package(CUDAToolkit REQUIRED)

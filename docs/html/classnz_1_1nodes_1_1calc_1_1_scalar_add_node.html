@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
 <li>A warning is issued indicating that scalar operations do not support saving to files, and users are encouraged to use matrix operations for model persistence.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md49"></a>
+<h3><a class="anchor" id="autotoc_md51"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using ScalarAddNode for scalar addition</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -209,7 +209,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00200">200</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00201">201</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -254,7 +254,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00216">216</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00217">217</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_scalar_add_node_a453eed787a8161b36410bef2ba8b0a75_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_scalar_add_node_a453eed787a8161b36410bef2ba8b0a75_cgraph" alt=""/></div>
+<map name="aclassnz_1_1nodes_1_1calc_1_1_scalar_add_node_a453eed787a8161b36410bef2ba8b0a75_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_add_node_a453eed787a8161b36410bef2ba8b0a75_cgraph">
+<area shape="rect" title="Backward pass for the ScalarAddNode to propagate gradients." alt="" coords="5,39,184,81"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="232,5,417,48"/>
+<area shape="poly" title=" " alt="" coords="184,44,216,40,216,45,185,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="232,72,417,115"/>
+<area shape="poly" title=" " alt="" coords="185,70,216,75,216,80,184,76"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -299,15 +311,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00210">210</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00211">211</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_scalar_add_node_ad1162e693cd13ee6e9e4f7cab27e4a31_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_scalar_add_node_ad1162e693cd13ee6e9e4f7cab27e4a31_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_scalar_add_node_ad1162e693cd13ee6e9e4f7cab27e4a31_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_add_node_ad1162e693cd13ee6e9e4f7cab27e4a31_cgraph">
-<area shape="rect" title="Forward pass for the ScalarAddNode to perform scalar addition." alt="" coords="5,5,184,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#adcbfa84211bb6cac845f1dc94e59ec19" title="Kernel function to add a scalar to each element of a matrix on the GPU." alt="" coords="232,13,364,40"/>
-<area shape="poly" title=" " alt="" coords="184,24,216,24,216,29,184,29"/>
+<area shape="rect" title="Forward pass for the ScalarAddNode to perform scalar addition." alt="" coords="5,39,184,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a56f84e531825be8b2b0974c2488eb765" title="Kernel function to add a scalar to each element of a matrix on the GPU." alt="" coords="232,47,364,73"/>
+<area shape="poly" title=" " alt="" coords="184,57,216,57,216,63,184,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="412,5,597,48"/>
+<area shape="poly" title=" " alt="" coords="364,47,396,41,397,47,365,52"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="412,72,597,115"/>
+<area shape="poly" title=" " alt="" coords="365,68,397,73,396,79,364,73"/>
 </map>
 </div>
 

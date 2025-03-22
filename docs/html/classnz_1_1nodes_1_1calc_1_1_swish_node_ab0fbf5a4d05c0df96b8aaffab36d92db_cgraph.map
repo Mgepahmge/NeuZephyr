@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::SwishNode::forward" name="nz::nodes::calc::SwishNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the SwishNode to apply the Swish activation function." alt="" coords="5,5,191,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a5d16dbfa0fdad676c5eecd502aa312a3" title="Kernel function to apply the Swish activation function on the GPU." alt="" coords="239,13,347,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,24,223,24,223,29,191,29"/>
+<area shape="rect" id="Node000001" title="Forward pass for the SwishNode to apply the Swish activation function." alt="" coords="5,39,191,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2" title="Kernel function to apply the Swish activation function on the GPU." alt="" coords="239,47,347,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,57,223,57,223,63,191,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="395,5,580,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,48,379,43,380,48,348,53"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="395,72,580,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="348,67,380,72,379,77,347,72"/>
 </map>

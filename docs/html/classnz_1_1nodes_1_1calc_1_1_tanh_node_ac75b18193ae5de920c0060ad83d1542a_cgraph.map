@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::TanhNode::backward" name="nz::nodes::calc::TanhNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the TanhNode to compute gradients." alt="" coords="5,5,183,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ae292654b15c72e5de76584d3f3a11817" title="Kernel function to compute the gradient of the Tanh activation during backpropagation." alt="" coords="231,13,389,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,24,215,24,215,29,183,29"/>
+<area shape="rect" id="Node000001" title="Backward pass for the TanhNode to compute gradients." alt="" coords="5,39,183,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a90d501e72361b7341f36394af0f27c74" title="Kernel function to compute the gradient of the Tanh activation during backpropagation." alt="" coords="231,47,389,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,57,215,57,215,63,183,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="437,5,622,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="389,45,421,40,422,46,390,51"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="437,72,622,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="390,69,422,74,421,80,389,75"/>
 </map>

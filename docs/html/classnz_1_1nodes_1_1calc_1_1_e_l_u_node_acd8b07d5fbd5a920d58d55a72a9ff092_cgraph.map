@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::ELUNode::forward" name="nz::nodes::calc::ELUNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the ELUNode to apply the ELU activation function." alt="" coords="5,5,181,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a76bae8401d19501237cb390fb6f6e11a" title="Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU." alt="" coords="229,13,428,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,24,213,24,213,29,181,29"/>
+<area shape="rect" id="Node000001" title="Forward pass for the ELUNode to apply the ELU activation function." alt="" coords="5,39,181,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a0e82aca250b46ac8ded8cae8936d7e38" title="Kernel function to apply the Exponential Linear Unit (ELU) activation function on the GPU." alt="" coords="229,47,428,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,57,213,57,213,63,181,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="476,5,661,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="428,44,460,39,461,44,429,49"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="476,72,661,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="429,71,461,76,460,81,428,76"/>
 </map>

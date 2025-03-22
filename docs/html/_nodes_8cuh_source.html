@@ -91,7 +91,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> print(std::ostream&amp; os) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordtype">void</span> dataInject(<span class="keyword">const</span> Tensor::value_type* data, <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordtype">void</span> dataInject(Tensor::value_type* data, <span class="keywordtype">bool</span> grad = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt;</div>
 <div class="foldopen" id="foldopen00278" data-start="{" data-end="}">
@@ -119,7 +119,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span> </div>
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>            <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&amp; tensor);</div>
 <div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
-<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>            <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a>(<span class="keyword">const</span> Tensor::shape_type&amp; shape, <span class="keyword">const</span> Tensor::value_type* data,</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>            <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a>(<span class="keyword">const</span> Tensor::shape_type&amp; shape, Tensor::value_type* data,</div>
 <div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                               <span class="keywordtype">bool</span> requires_grad = <span class="keyword">false</span>, <span class="keywordtype">bool</span> host = <span class="keyword">false</span>);</div>
 <div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> </div>
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>            <span class="keyword">explicit</span> <a class="code hl_class" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a>(<span class="keyword">const</span> Tensor::shape_type&amp; shape, <span class="keyword">const</span> std::initializer_list&lt;Tensor::value_type&gt;&amp; data,</div>

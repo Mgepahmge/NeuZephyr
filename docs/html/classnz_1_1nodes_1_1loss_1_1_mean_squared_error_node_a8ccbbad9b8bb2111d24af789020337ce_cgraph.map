@@ -1,5 +1,9 @@
 <map id="nz::nodes::loss::MeanSquaredErrorNode::backward" name="nz::nodes::loss::MeanSquaredErrorNode::backward">
-<area shape="rect" id="Node000001" title="Computes the backward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,5,204,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ac8b897372ef72573098d23f19c887f86" title="Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation." alt="" coords="252,13,411,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,24,236,24,236,29,204,29"/>
+<area shape="rect" id="Node000001" title="Computes the backward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,39,204,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ae77920db6adf79a17dbfb1dbf1ab5656" title="Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation." alt="" coords="252,47,411,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,57,236,57,236,63,204,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="459,5,644,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,45,443,40,444,46,412,51"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="459,72,644,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="412,69,444,74,443,80,411,75"/>
 </map>

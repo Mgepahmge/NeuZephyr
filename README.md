@@ -122,22 +122,28 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 
 ## Changelog
 
-### v0.1.0 - Initial Release
+### v0.4 - CUDA Stream Management Enhancement
+- Added CUDA Stream Manager to automatically distribute CUDA operations across multiple streams, enabling asynchronous execution and improved concurrency.
+- Unified stream-aware APIs for seamless integration with existing Tensor and MappedTensor classes, ensuring backward compatibility.
+- Optimized dependency resolution to intelligently track and synchronize inter-stream operations, minimizing synchronization overhead.
+- Preserved explicit stream control for advanced users requiring fine-grained parallelism management (e.g., custom kernel launches).
+
+### v0.3 - Memory Management Upgrade
+- Added MappedTensor class using CUDA zero-copy memory (ideal for frequent host-side data access in non-compute-intensive scenarios).
+- Unified APIs between MappedTensor and original Tensor class (using CUDA global memory) for consistent interfaces.
+- Preserved high-performance Tensor implementation (recommended for compute-intensive workloads).
+- Optimized memory mapping mechanisms to reduce host-device transfer overhead.
+
+### v0.2 - Performance Optimization
+- Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.
+- Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.
+- Further fine-tuned matrix operations for increased efficiency.
+
+### v0.1 - Initial Release
 - First release of NeuZephyr.
 - Supported basic matrix operations (tensor multiplication, addition, etc.).
 - Implemented most common activation functions (ReLU, Sigmoid, Tanh, etc.).
 - Added basic optimizers (SGD, Adam).
 - Implemented a linear layer for neural networks.
 - Supported common loss functions (Mean Squared Error, Cross-Entropy, etc.).
-
-### v0.2.0 - Performance Optimization
-- Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.
-- Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.
-- Further fine-tuned matrix operations for increased efficiency.
-
-### v0.3.0 - Memory Management Upgrade
-- Added MappedTensor class using CUDA zero-copy memory (ideal for frequent host-side data access in non-compute-intensive scenarios).
-- Unified APIs between MappedTensor and original Tensor class (using CUDA global memory) for consistent interfaces.
-- Preserved high-performance Tensor implementation (recommended for compute-intensive workloads).
-- Optimized memory mapping mechanisms to reduce host-device transfer overhead.
 

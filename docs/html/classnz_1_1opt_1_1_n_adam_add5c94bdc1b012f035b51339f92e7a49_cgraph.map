@@ -1,9 +1,14 @@
 <map id="nz::opt::NAdam::step" name="nz::opt::NAdam::step">
-<area shape="rect" id="Node000001" title="Performs a single optimization step using the NAdam algorithm." alt="" coords="5,31,152,57"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="200,5,336,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,32,184,27,185,32,152,37"/>
-<area shape="rect" id="Node000004" href="$namespacenz_1_1krnl.html#a04cc89e77f54501bd5434503a1a63493" title="Kernel function to apply NAdam optimization." alt="" coords="210,56,326,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,51,195,57,194,62,152,56"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="384,5,532,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="336,16,369,16,369,21,336,21"/>
+<area shape="rect" id="Node000001" title="Performs a single optimization step using the NAdam algorithm." alt="" coords="5,55,152,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="200,29,336,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,56,184,51,185,56,152,61"/>
+<area shape="rect" id="Node000006" href="$namespacenz_1_1krnl.html#ada94b8c5c6e6d72132face63a3305624" title="Kernel function to apply NAdam optimization." alt="" coords="384,80,500,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="152,70,369,86,368,91,152,76"/>
+<area shape="rect" id="Node000003" href="$namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="398,29,487,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="337,40,382,40,382,45,337,45"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="548,72,734,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="488,51,541,65,540,70,486,56"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="548,5,734,48"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="487,36,533,33,533,38,487,42"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="501,91,533,91,533,96,501,96"/>
 </map>

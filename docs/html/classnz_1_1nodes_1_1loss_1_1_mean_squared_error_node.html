@@ -128,9 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac340bd5a932808333e08e8bf24d53039 inherit pub_methods_classnz_1_1nodes_1_1io_1_1_output_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, gradient, and loss of the node.  <br /></td></tr>
 <tr class="separator:ac340bd5a932808333e08e8bf24d53039 inherit pub_methods_classnz_1_1nodes_1_1io_1_1_output_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classnz_1_1nodes_1_1_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classnz_1_1nodes_1_1_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classnz_1_1nodes_1_1_node.html">nz::nodes::Node</a></td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -157,7 +157,7 @@ Public Member Functions</h2></td></tr>
 <li>The gradients are stored in the <code>grad</code> attribute of the input tensors during the backward pass.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md61"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using MeanSquaredErrorNode in a computational graph</span></div>
 <div class="line">InputNode input1({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create the first input node with shape {3, 3}</span></div>
@@ -173,7 +173,7 @@ Usage Example:</h3>
 <div class="line">mse_node.backward();  <span class="comment">// Perform the backward pass and compute gradients</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;MSE Loss: &quot;</span> &lt;&lt; mse_node.getLoss() &lt;&lt; std::endl;  <span class="comment">// Print the computed MSE loss</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_html_ac9e098d63556329314c7389b779169b6"><div class="ttname"><a href="#ac9e098d63556329314c7389b779169b6">nz::nodes::loss::MeanSquaredErrorNode::MeanSquaredErrorNode</a></div><div class="ttdeci">MeanSquaredErrorNode(Node *input1, Node *input2)</div><div class="ttdoc">Constructor to initialize a MeanSquaredErrorNode for computing the Mean Squared Error (MSE) loss.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00499">Nodes.cu:499</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_html_ac9e098d63556329314c7389b779169b6"><div class="ttname"><a href="#ac9e098d63556329314c7389b779169b6">nz::nodes::loss::MeanSquaredErrorNode::MeanSquaredErrorNode</a></div><div class="ttdeci">MeanSquaredErrorNode(Node *input1, Node *input2)</div><div class="ttdoc">Constructor to initialize a MeanSquaredErrorNode for computing the Mean Squared Error (MSE) loss.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00501">Nodes.cu:501</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae81d6afb059f76617ea034032c12ec13" title="Computes the forward pass of the Mean Squared Error (MSE) loss function.">forward()</a> for the Mean Squared Error computation in the <a class="el" href="#ae81d6afb059f76617ea034032c12ec13" title="Computes the forward pass of the Mean Squared Error (MSE) loss function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a8ccbbad9b8bb2111d24af789020337ce" title="Computes the backward pass of the Mean Squared Error (MSE) loss function.">backward()</a> for gradient computation in the <a class="el" href="#a8ccbbad9b8bb2111d24af789020337ce" title="Computes the backward pass of the Mean Squared Error (MSE) loss function.">backward</a> pass.</dd></dl>
@@ -240,7 +240,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/07 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00499">499</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00501">501</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -289,15 +289,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00525">525</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00528">528</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_a8ccbbad9b8bb2111d24af789020337ce_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_a8ccbbad9b8bb2111d24af789020337ce_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_a8ccbbad9b8bb2111d24af789020337ce_cgraph" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_a8ccbbad9b8bb2111d24af789020337ce_cgraph">
-<area shape="rect" title="Computes the backward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,5,204,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#ac8b897372ef72573098d23f19c887f86" title="Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation." alt="" coords="252,13,411,40"/>
-<area shape="poly" title=" " alt="" coords="204,24,236,24,236,29,204,29"/>
+<area shape="rect" title="Computes the backward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,39,204,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#ae77920db6adf79a17dbfb1dbf1ab5656" title="Kernel function to compute the gradient of the Mean Squared Error (MSE) loss for backpropagation." alt="" coords="252,47,411,73"/>
+<area shape="poly" title=" " alt="" coords="204,57,236,57,236,63,204,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="459,5,644,48"/>
+<area shape="poly" title=" " alt="" coords="411,45,443,40,444,46,412,51"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="459,72,644,115"/>
+<area shape="poly" title=" " alt="" coords="412,69,444,74,443,80,411,75"/>
 </map>
 </div>
 
@@ -346,15 +350,29 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00508">508</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00510">510</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_ae81d6afb059f76617ea034032c12ec13_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_ae81d6afb059f76617ea034032c12ec13_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_ae81d6afb059f76617ea034032c12ec13_cgraph" id="aclassnz_1_1nodes_1_1loss_1_1_mean_squared_error_node_ae81d6afb059f76617ea034032c12ec13_cgraph">
-<area shape="rect" title="Computes the forward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,5,204,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a6ac88757669475405e9b11280a54e947" title="Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values." alt="" coords="252,13,432,40"/>
-<area shape="poly" title=" " alt="" coords="204,24,236,24,236,29,204,29"/>
+<area shape="rect" title="Computes the forward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,144,204,187"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="252,5,437,48"/>
+<area shape="poly" title=" " alt="" coords="133,141,186,104,250,64,274,52,276,57,253,69,189,108,136,146"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="485,48,670,91"/>
+<area shape="poly" title=" " alt="" coords="203,143,469,88,470,94,204,148"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="485,132,670,175"/>
+<area shape="poly" title=" " alt="" coords="204,160,252,159,469,153,469,159,252,164,204,165"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="252,173,437,216"/>
+<area shape="poly" title=" " alt="" coords="204,175,237,179,236,184,204,180"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#af76ce6a930db4def5ceb51350af72f3c" title="Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values." alt="" coords="254,240,434,267"/>
+<area shape="poly" title=" " alt="" coords="153,185,253,225,275,233,273,238,251,231,151,190"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="252,291,437,333"/>
+<area shape="poly" title=" " alt="" coords="131,185,185,230,253,276,263,282,261,286,250,281,181,235,127,189"/>
+<area shape="poly" title=" " alt="" coords="438,41,470,47,469,52,437,46"/>
+<area shape="poly" title=" " alt="" coords="402,237,436,226,483,204,526,180,529,185,485,209,438,230,404,242"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="485,232,670,275"/>
+<area shape="poly" title=" " alt="" coords="435,251,469,251,469,256,435,256"/>
 </map>
 </div>
 

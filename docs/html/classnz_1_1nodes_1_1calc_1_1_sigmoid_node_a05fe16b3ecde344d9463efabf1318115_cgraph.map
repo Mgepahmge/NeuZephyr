@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::SigmoidNode::backward" name="nz::nodes::calc::SigmoidNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the SigmoidNode to compute gradients." alt="" coords="5,5,171,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a65ca09a71042bdbf1434f2f37e95797b" title="Kernel function to compute the gradient of the Sigmoid activation during backpropagation." alt="" coords="219,13,396,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,24,203,24,203,29,171,29"/>
+<area shape="rect" id="Node000001" title="Backward pass for the SigmoidNode to compute gradients." alt="" coords="5,39,171,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#aff1f9f1bf9fb677024bd2b565fab9801" title="Kernel function to compute the gradient of the Sigmoid activation during backpropagation." alt="" coords="219,47,396,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,57,203,57,203,63,171,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="444,5,629,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="396,44,428,40,429,45,397,50"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="444,72,629,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="397,70,429,75,428,80,396,76"/>
 </map>

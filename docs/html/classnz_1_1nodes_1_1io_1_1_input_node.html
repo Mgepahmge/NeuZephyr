@@ -104,9 +104,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad3c9b52eaaff63ea2e47bf5bea6e342c" id="r_ad3c9b52eaaff63ea2e47bf5bea6e342c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3c9b52eaaff63ea2e47bf5bea6e342c">InputNode</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;tensor)</td></tr>
 <tr class="memdesc:ad3c9b52eaaff63ea2e47bf5bea6e342c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize an <code><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html" title="Represents an input node in a computational graph.">InputNode</a></code> with an existing <code>Tensor</code>.  <br /></td></tr>
 <tr class="separator:ad3c9b52eaaff63ea2e47bf5bea6e342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9494ae86a5462ab38d05a7f57af0efb" id="r_ad9494ae86a5462ab38d05a7f57af0efb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9494ae86a5462ab38d05a7f57af0efb">InputNode</a> (const Tensor::shape_type &amp;shape, const Tensor::value_type *data, bool requires_grad=false, bool host=false)</td></tr>
-<tr class="memdesc:ad9494ae86a5462ab38d05a7f57af0efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html" title="Represents an input node in a computational graph.">InputNode</a> object with specified tensor shape, data, gradient requirement, and data location.  <br /></td></tr>
-<tr class="separator:ad9494ae86a5462ab38d05a7f57af0efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7092655e4fa2edee102018c327aa4995" id="r_a7092655e4fa2edee102018c327aa4995"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7092655e4fa2edee102018c327aa4995">InputNode</a> (const Tensor::shape_type &amp;shape, Tensor::value_type *data, bool requires_grad=false, bool host=false)</td></tr>
+<tr class="memdesc:a7092655e4fa2edee102018c327aa4995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html" title="Represents an input node in a computational graph.">InputNode</a> object with specified tensor shape, data, gradient requirement, and data location.  <br /></td></tr>
+<tr class="separator:a7092655e4fa2edee102018c327aa4995"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39a051c8a6b250b024fbd98feb959c63" id="r_a39a051c8a6b250b024fbd98feb959c63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39a051c8a6b250b024fbd98feb959c63">InputNode</a> (const Tensor::shape_type &amp;shape, const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool requires_grad=false)</td></tr>
 <tr class="memdesc:a39a051c8a6b250b024fbd98feb959c63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html" title="Represents an input node in a computational graph.">InputNode</a> object with a specified tensor shape, initializer list data, and gradient requirement.  <br /></td></tr>
 <tr class="separator:a39a051c8a6b250b024fbd98feb959c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,9 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <li>This class is designed to be used as the starting point of a computational graph, where other nodes depend on the input data provided by this node.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md43"></a>
+<h3><a class="anchor" id="autotoc_md45"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example 1: Creating an InputNode with a specific shape</span></div>
 <div class="line">Tensor::shape_type shape = {3, 3};  <span class="comment">// Define a 3x3 tensor</span></div>
@@ -163,9 +163,9 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line"><span class="comment">// In the network, this node will pass the data to subsequent nodes during forward propagation.</span></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00292">Tensor.cu:292</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aaba025895b2c8b69de8d36c73c74929e"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00283">Tensor.cu:283</a></div></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1io_1_1_input_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1io_1_1_input_node.html">nz::nodes::io::InputNode</a></div><div class="ttdoc">Represents an input node in a computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l00437">Nodes.cuh:437</a></div></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1io_1_1_input_node_html_a217dbf39ca3882f5e514357f72f29458"><div class="ttname"><a href="#a217dbf39ca3882f5e514357f72f29458">nz::nodes::io::InputNode::InputNode</a></div><div class="ttdeci">InputNode(const Tensor::shape_type &amp;shape, bool requires_grad=false)</div><div class="ttdoc">Constructor to initialize an InputNode with a specified shape and gradient requirement.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00021">Nodes.cu:21</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1io_1_1_input_node_html_a217dbf39ca3882f5e514357f72f29458"><div class="ttname"><a href="#a217dbf39ca3882f5e514357f72f29458">nz::nodes::io::InputNode::InputNode</a></div><div class="ttdeci">InputNode(const Tensor::shape_type &amp;shape, bool requires_grad=false)</div><div class="ttdoc">Constructor to initialize an InputNode with a specified shape and gradient requirement.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00022">Nodes.cu:22</a></div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
@@ -216,7 +216,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00021">21</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00022">22</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -260,12 +260,12 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00026">26</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00027">27</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
-<a id="ad9494ae86a5462ab38d05a7f57af0efb" name="ad9494ae86a5462ab38d05a7f57af0efb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9494ae86a5462ab38d05a7f57af0efb">&#9670;&#160;</a></span>InputNode() <span class="overload">[3/4]</span></h2>
+<a id="a7092655e4fa2edee102018c327aa4995" name="a7092655e4fa2edee102018c327aa4995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7092655e4fa2edee102018c327aa4995">&#9670;&#160;</a></span>InputNode() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +281,7 @@ Usage Example:</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Tensor::value_type *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+          <td class="paramtype">Tensor::value_type *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -340,7 +340,7 @@ Usage Example:</h3>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00031">31</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00032">32</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -416,7 +416,7 @@ Usage Example:</h3>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00037">37</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00038">38</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -458,7 +458,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00046">46</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00047">47</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -499,7 +499,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00043">43</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00044">44</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>

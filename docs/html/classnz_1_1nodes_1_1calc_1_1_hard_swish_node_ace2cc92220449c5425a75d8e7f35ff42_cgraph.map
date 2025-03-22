@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::HardSwishNode::backward" name="nz::nodes::calc::HardSwishNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the HardSwishNode to compute gradients." alt="" coords="5,5,188,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a293918c6c59bd44f5f0c94b5791202f7" title="Kernel function to compute the gradient of the Hard Swish activation during backpropagation." alt="" coords="236,13,430,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,24,220,24,220,29,188,29"/>
+<area shape="rect" id="Node000001" title="Backward pass for the HardSwishNode to compute gradients." alt="" coords="5,39,188,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a455365870d43ff26687a731d15c4cdff" title="Kernel function to compute the gradient of the Hard Swish activation during backpropagation." alt="" coords="236,47,430,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,57,220,57,220,63,188,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="478,5,663,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,44,462,39,463,44,431,49"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="478,72,663,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="431,71,463,76,462,81,430,76"/>
 </map>

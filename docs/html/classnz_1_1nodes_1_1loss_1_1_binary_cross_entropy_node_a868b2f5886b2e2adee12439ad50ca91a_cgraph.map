@@ -1,5 +1,9 @@
 <map id="nz::nodes::loss::BinaryCrossEntropyNode::backward" name="nz::nodes::loss::BinaryCrossEntropyNode::backward">
-<area shape="rect" id="Node000001" title="Computes the gradients of the Binary Cross&#45;Entropy (BCE) loss with respect to the inputs during the b..." alt="" coords="5,5,196,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a8d32b374b22c0bd3f507d5c5ed8aeca6" title="Kernel function to compute the gradient of Binary Cross Entropy (BCE) loss for backpropagation." alt="" coords="244,13,402,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,24,228,24,228,29,196,29"/>
+<area shape="rect" id="Node000001" title="Computes the gradients of the Binary Cross&#45;Entropy (BCE) loss with respect to the inputs during the b..." alt="" coords="5,39,196,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a1fc3d553947a5cad87f29989f9d9465d" title="Kernel function to compute the gradient of Binary Cross Entropy (BCE) loss for backpropagation." alt="" coords="244,47,402,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,57,228,57,228,63,196,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="450,5,635,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="402,45,434,40,435,46,403,51"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="450,72,635,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="403,69,435,74,434,80,402,75"/>
 </map>

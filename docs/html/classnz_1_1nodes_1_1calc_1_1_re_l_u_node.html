@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
 <li>Gradients are efficiently computed using CUDA kernels.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md52"></a>
+<h3><a class="anchor" id="autotoc_md54"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using ReLUNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -150,7 +150,7 @@ Usage Example:</h3>
 <div class="line">relu_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *relu_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_html_a78a8e2e5cf13d31956e2367d923efa53"><div class="ttname"><a href="#a78a8e2e5cf13d31956e2367d923efa53">nz::nodes::calc::ReLUNode::ReLUNode</a></div><div class="ttdeci">ReLUNode(Node *input)</div><div class="ttdoc">Constructor to initialize a ReLUNode for applying the ReLU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00281">Nodes.cu:281</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_html_a78a8e2e5cf13d31956e2367d923efa53"><div class="ttname"><a href="#a78a8e2e5cf13d31956e2367d923efa53">nz::nodes::calc::ReLUNode::ReLUNode</a></div><div class="ttdeci">ReLUNode(Node *input)</div><div class="ttdoc">Constructor to initialize a ReLUNode for applying the ReLU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00282">Nodes.cu:282</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae8e78ee766f1e4845c6a110464e077f7" title="Forward pass for the ReLUNode to apply the ReLU activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1data.html#a9bcee9a75db3d824b92ed17a59711428" title="Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.">ReLU</a> activation computation in the <a class="el" href="#ae8e78ee766f1e4845c6a110464e077f7" title="Forward pass for the ReLUNode to apply the ReLU activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#af06dd1eadec4b3616c7c9e655820b1b8" title="Backward pass for the ReLUNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#af06dd1eadec4b3616c7c9e655820b1b8" title="Backward pass for the ReLUNode to compute gradients.">backward</a> pass.</dd></dl>
@@ -206,7 +206,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00281">281</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00282">282</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -256,15 +256,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00294">294</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00295">295</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_re_l_u_node_af06dd1eadec4b3616c7c9e655820b1b8_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_af06dd1eadec4b3616c7c9e655820b1b8_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_af06dd1eadec4b3616c7c9e655820b1b8_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_af06dd1eadec4b3616c7c9e655820b1b8_cgraph">
-<area shape="rect" title="Backward pass for the ReLUNode to compute gradients." alt="" coords="5,5,189,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#ae0a11355c95bb213319f035c77f405f0" title="Kernel function to compute the gradient of the ReLU activation during backpropagation." alt="" coords="237,13,401,40"/>
-<area shape="poly" title=" " alt="" coords="189,24,221,24,221,29,189,29"/>
+<area shape="rect" title="Backward pass for the ReLUNode to compute gradients." alt="" coords="5,39,189,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a4ddfc808de99fe831e74a3bd3f9bbdaf" title="Kernel function to compute the gradient of the ReLU activation during backpropagation." alt="" coords="237,47,401,73"/>
+<area shape="poly" title=" " alt="" coords="189,57,221,57,221,63,189,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="449,5,634,48"/>
+<area shape="poly" title=" " alt="" coords="401,45,433,40,434,45,402,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="449,72,634,115"/>
+<area shape="poly" title=" " alt="" coords="402,70,434,75,433,80,401,75"/>
 </map>
 </div>
 
@@ -311,15 +315,19 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00288">288</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00289">289</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_re_l_u_node_ae8e78ee766f1e4845c6a110464e077f7_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_ae8e78ee766f1e4845c6a110464e077f7_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_ae8e78ee766f1e4845c6a110464e077f7_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_re_l_u_node_ae8e78ee766f1e4845c6a110464e077f7_cgraph">
-<area shape="rect" title="Forward pass for the ReLUNode to apply the ReLU activation function." alt="" coords="5,5,189,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#af7a6c276ed33c218e97f4e41c50f5ede" title="Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU." alt="" coords="237,13,420,40"/>
-<area shape="poly" title=" " alt="" coords="189,24,221,24,221,29,189,29"/>
+<area shape="rect" title="Forward pass for the ReLUNode to apply the ReLU activation function." alt="" coords="5,39,189,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a8855f411733f7de29d013f4ad40096c9" title="Kernel function to apply the Rectified Linear Unit (ReLU) activation on the GPU." alt="" coords="237,47,420,73"/>
+<area shape="poly" title=" " alt="" coords="189,57,221,57,221,63,189,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="468,5,653,48"/>
+<area shape="poly" title=" " alt="" coords="420,44,452,40,453,45,421,49"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="468,72,653,115"/>
+<area shape="poly" title=" " alt="" coords="421,71,453,75,452,80,420,76"/>
 </map>
 </div>
 

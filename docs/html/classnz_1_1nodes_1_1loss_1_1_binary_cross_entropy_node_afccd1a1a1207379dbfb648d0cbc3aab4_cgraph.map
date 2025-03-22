@@ -1,5 +1,19 @@
 <map id="nz::nodes::loss::BinaryCrossEntropyNode::forward" name="nz::nodes::loss::BinaryCrossEntropyNode::forward">
-<area shape="rect" id="Node000001" title="Computes the Binary Cross&#45;Entropy (BCE) loss in the forward pass." alt="" coords="5,5,196,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#aa8ac93615d2263e015c2677953a77a3d" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="244,13,433,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,24,228,24,228,29,196,29"/>
+<area shape="rect" id="Node000001" title="Computes the Binary Cross&#45;Entropy (BCE) loss in the forward pass." alt="" coords="5,144,196,187"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#abf927faf0950fbc215564c67b8ac57be" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="244,64,433,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,141,243,100,265,93,267,98,245,105,148,146"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="481,5,666,48"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="119,142,171,93,205,69,243,50,298,32,356,22,413,17,465,17,466,22,413,23,357,28,299,38,245,54,208,73,174,97,123,146"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="246,115,431,157"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="196,151,230,147,231,152,196,156"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="481,156,666,199"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="196,165,244,167,466,172,465,178,244,172,196,171"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="246,232,431,275"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="162,185,265,224,263,229,160,190"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="246,299,431,341"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="124,185,176,234,210,261,245,284,254,289,252,294,242,289,206,265,173,238,120,189"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,61,465,47,466,52,404,66"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="481,72,666,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="434,81,466,83,465,89,433,86"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="432,150,466,156,465,161,431,155"/>
 </map>

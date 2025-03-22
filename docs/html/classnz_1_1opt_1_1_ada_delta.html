@@ -133,7 +133,7 @@ Public Member Functions</h2></td></tr>
 <li>Ensure that the model parameters have been properly initialized, and gradients are computed before calling this method.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md69"></a>
+<h3><a class="anchor" id="autotoc_md71"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1opt_1_1_ada_delta.html">AdaDelta</a> optimizer(0.95); <span class="comment">// rho = 0.95</span></div>
 <div class="line">graph.update(&amp;optimizer); <span class="comment">// Suppose &quot;graph&quot; is a computation graph waiting for gradient updates.</span></div>
@@ -190,7 +190,7 @@ Nodes::Node for the class representing model parameters.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/07 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00133">133</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00134">134</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
 
 </div>
 </div>
@@ -241,25 +241,30 @@ Nodes::Node for the class representing model parameters.</dd></dl>
 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7bf0e669daf70a8de09d3e1c9cb8bc5c" title="Constructs an AdaDelta optimizer with a specified decay rate.">AdaDelta::AdaDelta()</a> Constructor for initializing optimizer parameters </dd>
 <dd>
-<a class="el" href="namespacenz_1_1krnl.html#a8d18897fad679e1ceb29c2f9ebfffb0b" title="Kernel function to apply AdaDelta optimization.">krnl::AdaDelta</a> CUDA kernel implementing the <a class="el" href="classnz_1_1opt_1_1_ada_delta.html" title="AdaDelta optimizer for deep learning models.">AdaDelta</a> update rule</dd></dl>
+<a class="el" href="namespacenz_1_1krnl.html#a1f71726879c2d6a9d790522cdc1576e1" title="Kernel function to apply AdaDelta optimization.">krnl::AdaDelta</a> CUDA kernel implementing the <a class="el" href="classnz_1_1opt_1_1_ada_delta.html" title="AdaDelta optimizer for deep learning models.">AdaDelta</a> update rule</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/07 </dd></dl>
 
 <p>Implements <a class="el" href="classnz_1_1opt_1_1_optimizer.html#a826381abaaf29dbebade7cfd38b266e4">nz::opt::Optimizer</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00137">137</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00138">138</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1opt_1_1_ada_delta_a0d24bd903517823f9607160d2e8207a1_cgraph.png" border="0" usemap="#aclassnz_1_1opt_1_1_ada_delta_a0d24bd903517823f9607160d2e8207a1_cgraph" alt=""/></div>
 <map name="aclassnz_1_1opt_1_1_ada_delta_a0d24bd903517823f9607160d2e8207a1_cgraph" id="aclassnz_1_1opt_1_1_ada_delta_a0d24bd903517823f9607160d2e8207a1_cgraph">
-<area shape="rect" title="Performs a single optimization step using the AdaDelta algorithm." alt="" coords="5,31,162,57"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a8d18897fad679e1ceb29c2f9ebfffb0b" title="Kernel function to apply AdaDelta optimization." alt="" coords="215,5,341,32"/>
-<area shape="poly" title=" " alt="" coords="162,31,199,26,199,32,163,36"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="210,56,346,83"/>
-<area shape="poly" title=" " alt="" coords="163,52,195,56,194,61,162,57"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="394,56,542,83"/>
-<area shape="poly" title=" " alt="" coords="346,67,379,67,379,72,346,72"/>
+<area shape="rect" title="Performs a single optimization step using the AdaDelta algorithm." alt="" coords="5,39,162,65"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a1f71726879c2d6a9d790522cdc1576e1" title="Kernel function to apply AdaDelta optimization." alt="" coords="394,13,520,40"/>
+<area shape="poly" title=" " alt="" coords="162,44,378,29,378,35,162,49"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="210,64,346,91"/>
+<area shape="poly" title=" " alt="" coords="163,60,195,64,194,69,162,65"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="568,5,754,48"/>
+<area shape="poly" title=" " alt="" coords="520,24,553,24,553,29,520,29"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="412,64,502,91"/>
+<area shape="poly" title=" " alt="" coords="346,75,397,75,397,80,346,80"/>
+<area shape="poly" title=" " alt="" coords="501,64,558,50,559,55,503,69"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="568,72,754,115"/>
+<area shape="poly" title=" " alt="" coords="502,78,553,82,553,87,502,83"/>
 </map>
 </div>
 

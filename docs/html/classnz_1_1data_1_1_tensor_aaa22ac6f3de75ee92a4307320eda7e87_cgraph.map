@@ -1,5 +1,9 @@
 <map id="nz::data::Tensor::operator*" name="nz::data::Tensor::operator*">
-<area shape="rect" id="Node000001" title="Performs matrix multiplication of two tensors (matrices) and returns the result." alt="" coords="5,5,181,32"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a33d3b5cd440afb3c6557515247b5b680" title="Kernel function to perform single&#45;precision matrix multiplication on GPU using CUDA cores." alt="" coords="229,5,403,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,16,213,16,213,21,181,21"/>
+<area shape="rect" id="Node000001" title="Performs matrix multiplication of two tensors (matrices) and returns the result." alt="" coords="5,47,181,73"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a6d79f34a712e1bb45d5fedeb110e5ede" title="Kernel function to perform single&#45;precision matrix multiplication on GPU using CUDA cores." alt="" coords="229,47,403,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,57,213,57,213,63,181,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="451,5,636,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,45,435,40,436,45,404,50"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="451,72,636,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="404,70,436,75,435,80,403,75"/>
 </map>

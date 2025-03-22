@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -125,8 +125,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements the Softmax activation function as a node in a neural network computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_softmax_node.html" title="Implements the Softmax activation function as a node in a neural network computational graph.">SoftmaxNode</a></code> class applies the Softmax activation function to the input tensor, transforming it into a probability distribution. This node is commonly used as the final layer in classification networks to convert raw scores into probabilities.</p>
-<p>The Softmax function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_af2da66c855055532571077c3f0db0425"><div class="ttname"><a href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425">nz::krnl::Softmax</a></div><div class="ttdeci">void Softmax(const dim3 gridDim, const dim3 blockDim, float *out, const float *in, const float exp_sum_of_input, const unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Softmax function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00462">OperationKernels.cu:462</a></div></div>
+<p>The Softmax function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_aade67dae6bd25594a21229715e31b90a"><div class="ttname"><a href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a">nz::krnl::Softmax</a></div><div class="ttdeci">void Softmax(dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Softmax function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00465">OperationKernels.cu:465</a></div></div>
 </div><!-- fragment --><p> where x_i is the i-th element of the input vector and the sum is over all elements j.</p>
 <p>Key features and characteristics:</p><ul>
 <li><b>Probability Output</b>: Transforms input into a probability distribution where all elements sum to 1.</li>
@@ -157,10 +157,10 @@ Public Member Functions</h2></td></tr>
 <li>For very large inputs, consider using LogSoftmax for improved numerical stability.</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> computation in the <a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward</a> pass. </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> computation in the <a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#aa991e3bde7a3a5edbee62fab1cabba23" title="Performs the backward pass of the Softmax operation.">backward()</a> for gradient computation in the <a class="el" href="#aa991e3bde7a3a5edbee62fab1cabba23" title="Performs the backward pass of the Softmax operation.">backward</a> pass.</dd></dl>
-<h3><a class="anchor" id="autotoc_md60"></a>
+<h3><a class="anchor" id="autotoc_md62"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Creating a Softmax node in a neural network</span></div>
 <div class="line">InputNode input({1, 5}, <span class="keyword">true</span>);  <span class="comment">// Input node with shape {1, 5}</span></div>
@@ -175,7 +175,7 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Backward pass for gradient computation</span></div>
 <div class="line">softmax.backward();</div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_html_a6bd70cb3436435bac2055e86dfdb078b"><div class="ttname"><a href="#a6bd70cb3436435bac2055e86dfdb078b">nz::nodes::calc::SoftmaxNode::SoftmaxNode</a></div><div class="ttdeci">SoftmaxNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SoftmaxNode for applying the Softmax activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00461">Nodes.cu:461</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_html_a6bd70cb3436435bac2055e86dfdb078b"><div class="ttname"><a href="#a6bd70cb3436435bac2055e86dfdb078b">nz::nodes::calc::SoftmaxNode::SoftmaxNode</a></div><div class="ttdeci">SoftmaxNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SoftmaxNode for applying the Softmax activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00462">Nodes.cu:462</a></div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/5 </dd></dl>
 
@@ -212,7 +212,7 @@ Usage Example:</h3>
   </table>
   </dd>
 </dl>
-<p>The Softmax activation function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
+<p>The Softmax activation function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
 </div><!-- fragment --><p> where x_i is the i-th element of the input vector and the sum is over all elements j.</p>
 <p>Key operations performed by the constructor:</p><ul>
 <li>Initializes the <code>sum</code> member variable to 0, which may be used in future computations.</li>
@@ -228,13 +228,13 @@ Usage Example:</h3>
 <li>The <code>sum</code> variable initialized here may be used for optimizations in the forward or backward passes.</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward()</a> for the implementation of the <a class="el" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> computation in the <a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward</a> pass. </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward()</a> for the implementation of the <a class="el" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> computation in the <a class="el" href="#a93f7d936ff487db8e7dceb6ee0cdc38e" title="Performs the forward pass of the Softmax operation.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#aa991e3bde7a3a5edbee62fab1cabba23" title="Performs the backward pass of the Softmax operation.">backward()</a> for the gradient computation in the <a class="el" href="#aa991e3bde7a3a5edbee62fab1cabba23" title="Performs the backward pass of the Softmax operation.">backward</a> pass.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023/12/06 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00461">461</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00462">462</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -296,7 +296,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00488">488</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00490">490</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -307,10 +307,22 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="142,70,220,41,242,34,244,39,222,47,144,75"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="232,56,390,83"/>
 <area shape="poly" title=" " alt="" coords="173,82,216,77,216,83,173,88"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a7aa8960ce34fdfd2f7ebbb5762bec2e4" title="Kernel function to compute the Jacobian of the Softmax function." alt="" coords="224,107,398,133"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a4375738c83ef892783abc210578e5b39" title="Kernel function to compute the Jacobian of the Softmax function." alt="" coords="224,107,398,133"/>
 <area shape="poly" title=" " alt="" coords="173,102,209,106,208,111,173,107"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#afaaec3e0398823e64710a8474ff1dcd5" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="221,157,401,184"/>
-<area shape="poly" title=" " alt="" coords="144,114,222,143,244,150,242,155,220,148,142,119"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#aa84aa2397f4f5a09a96bef76726e46f0" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="221,165,401,192"/>
+<area shape="poly" title=" " alt="" coords="147,114,222,143,259,157,257,162,220,148,145,119"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="449,99,634,141"/>
+<area shape="poly" title=" " alt="" coords="398,117,433,117,433,123,398,123"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="449,32,634,75"/>
+<area shape="poly" title=" " alt="" coords="361,103,400,92,452,77,454,82,402,97,362,109"/>
+<area shape="poly" title=" " alt="" coords="366,162,439,143,441,148,367,167"/>
+<area shape="poly" title=" " alt="" coords="362,162,399,143,414,129,423,115,432,100,447,85,454,80,457,85,451,89,436,103,427,117,418,132,403,148,364,167"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="449,165,634,208"/>
+<area shape="poly" title=" " alt="" coords="401,179,434,180,433,186,401,184"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="449,232,634,275"/>
+<area shape="poly" title=" " alt="" coords="355,190,460,224,458,229,354,195"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="449,299,634,341"/>
+<area shape="poly" title=" " alt="" coords="328,190,380,236,414,261,450,284,460,290,458,294,448,289,411,266,376,240,324,194"/>
 </map>
 </div>
 
@@ -352,7 +364,7 @@ Here is the call graph for this function:</div>
 </ul>
 </li>
 </ol>
-<p>The Softmax function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
+<p>The Softmax function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
 </div><!-- fragment --><p> where x_i is the i-th element of the input vector and the sum is over all elements j.</p>
 <p>Key operations:</p><ul>
 <li>CUDA kernel setup for parallel computation.</li>
@@ -368,7 +380,7 @@ Here is the call graph for this function:</div>
 <li>The final output is stored in the node's output tensor.</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> CUDA kernel for the implementation of the final <a class="el" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> computation. </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> CUDA kernel for the implementation of the final <a class="el" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a" title="Kernel function to apply the Softmax function on the GPU.">Softmax</a> computation. </dd>
 <dd>
 <a class="el" href="#aa991e3bde7a3a5edbee62fab1cabba23" title="Performs the backward pass of the Softmax operation.">backward()</a> for the corresponding <a class="el" href="#aa991e3bde7a3a5edbee62fab1cabba23" title="Performs the backward pass of the Softmax operation.">backward</a> pass implementation.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
@@ -376,17 +388,33 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00469">469</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00470">470</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph">
-<area shape="rect" title="Performs the forward pass of the Softmax operation." alt="" coords="5,23,173,65"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#af2da66c855055532571077c3f0db0425" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="241,5,362,32"/>
-<area shape="poly" title=" " alt="" coords="173,31,225,25,226,30,174,37"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a8ab711742ea831cdf1fb86824d17e25f" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="221,56,382,83"/>
-<area shape="poly" title=" " alt="" coords="174,51,206,55,205,61,173,57"/>
+<area shape="rect" title="Performs the forward pass of the Softmax operation." alt="" coords="5,165,173,208"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="221,5,406,48"/>
+<area shape="poly" title=" " alt="" coords="108,163,156,115,219,64,239,53,242,57,222,69,160,119,112,167"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="454,35,639,77"/>
+<area shape="poly" title=" " alt="" coords="147,162,220,137,438,78,440,84,221,143,149,167"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="454,149,639,192"/>
+<area shape="poly" title=" " alt="" coords="173,165,220,159,333,154,438,158,438,164,333,160,221,164,173,171"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="221,275,406,317"/>
+<area shape="poly" title=" " alt="" coords="125,206,170,233,222,260,235,266,232,271,220,265,168,238,122,211"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="221,341,406,384"/>
+<area shape="poly" title=" " alt="" coords="107,207,154,266,186,299,222,327,229,332,227,336,219,332,183,303,150,270,103,210"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="253,224,374,251"/>
+<area shape="poly" title=" " alt="" coords="173,203,238,218,237,223,172,208"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a44ddd6d20d352731eb43142bcdf48b2e" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="233,173,394,200"/>
+<area shape="poly" title=" " alt="" coords="173,184,217,184,217,189,173,189"/>
+<area shape="poly" title=" " alt="" coords="407,36,439,40,438,45,406,41"/>
+<area shape="poly" title=" " alt="" coords="365,221,405,209,457,194,459,199,407,215,366,226"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="454,216,639,259"/>
+<area shape="poly" title=" " alt="" coords="374,235,438,235,438,240,374,240"/>
+<area shape="poly" title=" " alt="" coords="394,179,438,175,439,181,394,184"/>
+<area shape="poly" title=" " alt="" coords="379,198,439,211,438,216,378,203"/>
 </map>
 </div>
 

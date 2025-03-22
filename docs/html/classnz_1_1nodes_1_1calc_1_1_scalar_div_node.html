@@ -111,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a687ee9c34eb61f8f28caa201ca42696e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a687ee9c34eb61f8f28caa201ca42696e">print</a> (std::ostream &amp;os) const</td></tr>
 <tr class="memdesc:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the type, data, and gradient of the node.  <br /></td></tr>
 <tr class="separator:a687ee9c34eb61f8f28caa201ca42696e inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a7d2c36560f68c28e655ca242da5b2097"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a7d2c36560f68c28e655ca242da5b2097">dataInject</a> (const Tensor::value_type *data, bool grad=false) const</td></tr>
-<tr class="memdesc:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
-<tr class="separator:a7d2c36560f68c28e655ca242da5b2097 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a9b85913e12422bb4ac2fff483427bb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a9b85913e12422bb4ac2fff483427bb47">dataInject</a> (Tensor::value_type *data, bool grad=false) const</td></tr>
+<tr class="memdesc:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data into a relevant tensor object, optionally setting its gradient requirement.  <br /></td></tr>
+<tr class="separator:a9b85913e12422bb4ac2fff483427bb47 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node" id="r_a609f1730085dd1d31e0ddcbbae48a065"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
 <tr class="memitem:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1_node.html#a609f1730085dd1d31e0ddcbbae48a065">dataInject</a> (Iterator begin, Iterator end, const bool grad=false) const</td></tr>
 <tr class="memdesc:a609f1730085dd1d31e0ddcbbae48a065 inherit pub_methods_classnz_1_1nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects data from an iterator range into the output tensor of the InputNode, optionally setting its gradient requirement.  <br /></td></tr>
@@ -138,7 +138,7 @@ Public Member Functions</h2></td></tr>
 <li>A warning is issued indicating that scalar operations do not support saving to files, and users are encouraged to use matrix operations for model persistence.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md48"></a>
+<h3><a class="anchor" id="autotoc_md50"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using ScalarDivNode for scalar division</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -223,7 +223,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00173">173</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00174">174</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -269,15 +269,19 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00192">192</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00193">193</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_scalar_div_node_a9b72dc5618e8e11790756c91116719e4_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_a9b72dc5618e8e11790756c91116719e4_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_a9b72dc5618e8e11790756c91116719e4_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_a9b72dc5618e8e11790756c91116719e4_cgraph">
-<area shape="rect" title="Backward pass for the ScalarDivNode to propagate gradients." alt="" coords="5,5,181,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a5836f2ff0444a53b8ae60e8fee4b01ac" title="Kernel function to perform scalar division on the GPU." alt="" coords="229,13,358,40"/>
-<area shape="poly" title=" " alt="" coords="181,24,213,24,213,29,181,29"/>
+<area shape="rect" title="Backward pass for the ScalarDivNode to propagate gradients." alt="" coords="5,39,181,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a27bc4025be4253d5fffae2bf1b43b3af" title="Kernel function to perform scalar division on the GPU." alt="" coords="229,47,358,73"/>
+<area shape="poly" title=" " alt="" coords="181,57,213,57,213,63,181,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="406,5,591,48"/>
+<area shape="poly" title=" " alt="" coords="358,47,390,42,391,47,359,52"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="406,72,591,115"/>
+<area shape="poly" title=" " alt="" coords="359,68,391,73,390,78,358,73"/>
 </map>
 </div>
 
@@ -324,15 +328,19 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00186">186</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00187">187</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_scalar_div_node_a4728d1f10d35d7e71b11acd32ee1a26d_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_a4728d1f10d35d7e71b11acd32ee1a26d_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_a4728d1f10d35d7e71b11acd32ee1a26d_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_scalar_div_node_a4728d1f10d35d7e71b11acd32ee1a26d_cgraph">
-<area shape="rect" title="Forward pass for the ScalarDivNode to perform scalar division." alt="" coords="5,5,181,48"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a5836f2ff0444a53b8ae60e8fee4b01ac" title="Kernel function to perform scalar division on the GPU." alt="" coords="229,13,358,40"/>
-<area shape="poly" title=" " alt="" coords="181,24,213,24,213,29,181,29"/>
+<area shape="rect" title="Forward pass for the ScalarDivNode to perform scalar division." alt="" coords="5,39,181,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a27bc4025be4253d5fffae2bf1b43b3af" title="Kernel function to perform scalar division on the GPU." alt="" coords="229,47,358,73"/>
+<area shape="poly" title=" " alt="" coords="181,57,213,57,213,63,181,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="406,5,591,48"/>
+<area shape="poly" title=" " alt="" coords="358,47,390,42,391,47,359,52"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="406,72,591,115"/>
+<area shape="poly" title=" " alt="" coords="359,68,391,73,390,78,358,73"/>
 </map>
 </div>
 

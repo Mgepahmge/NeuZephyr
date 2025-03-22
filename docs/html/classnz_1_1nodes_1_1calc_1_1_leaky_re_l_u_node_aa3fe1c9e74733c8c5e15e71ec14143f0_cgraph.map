@@ -1,5 +1,9 @@
 <map id="nz::nodes::calc::LeakyReLUNode::backward" name="nz::nodes::calc::LeakyReLUNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the LeakyReLUNode to compute gradients." alt="" coords="5,5,176,48"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a932eaf573ea612466b51a74260c4dc4c" title="Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation." alt="" coords="224,13,423,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
+<area shape="rect" id="Node000001" title="Backward pass for the LeakyReLUNode to compute gradients." alt="" coords="5,39,176,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a7eade95ddcf48141d69bb19803b22d51" title="Kernel function to compute the gradient of the Leaky ReLU activation during backpropagation." alt="" coords="224,47,423,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,57,208,57,208,63,176,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="471,5,656,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="423,44,455,39,456,44,424,49"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="471,72,656,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="424,71,456,76,455,81,423,76"/>
 </map>

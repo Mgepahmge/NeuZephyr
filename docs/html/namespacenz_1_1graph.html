@@ -85,9 +85,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae69fc8042f6dedeff293ab270f9c2baa" id="r_ae69fc8042f6dedeff293ab270f9c2baa"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae69fc8042f6dedeff293ab270f9c2baa">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> &amp;graph)</td></tr>
 <tr class="memdesc:ae69fc8042f6dedeff293ab270f9c2baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the stream insertion operator to print the details of the computational graph.  <br /></td></tr>
 <tr class="separator:ae69fc8042f6dedeff293ab270f9c2baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0aff2032efe9d3f5b3e1967695dc7e68" id="r_a0aff2032efe9d3f5b3e1967695dc7e68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0aff2032efe9d3f5b3e1967695dc7e68">CreateNode</a> (<a class="el" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const std::vector&lt; int &gt; &amp;shape, const float *data, const bool requires_grad, const float *grad)</td></tr>
-<tr class="memdesc:a0aff2032efe9d3f5b3e1967695dc7e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and adds a node to the computational graph based on the specified type.  <br /></td></tr>
-<tr class="separator:a0aff2032efe9d3f5b3e1967695dc7e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c053dd4775367f905822ff67e2e7b9b" id="r_a0c053dd4775367f905822ff67e2e7b9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c053dd4775367f905822ff67e2e7b9b">CreateNode</a> (<a class="el" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const std::vector&lt; int &gt; &amp;shape, float *data, const bool requires_grad, float *grad)</td></tr>
+<tr class="memdesc:a0c053dd4775367f905822ff67e2e7b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and adds a node to the computational graph based on the specified type.  <br /></td></tr>
+<tr class="separator:a0c053dd4775367f905822ff67e2e7b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains classes and functions for managing and executing computation graphs in deep learning workflows. </p>
@@ -104,8 +104,8 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge(<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a0aff2032efe9d3f5b3e1967695dc7e68" name="a0aff2032efe9d3f5b3e1967695dc7e68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0aff2032efe9d3f5b3e1967695dc7e68">&#9670;&#160;</a></span>CreateNode()</h2>
+<a id="a0c053dd4775367f905822ff67e2e7b9b" name="a0c053dd4775367f905822ff67e2e7b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c053dd4775367f905822ff67e2e7b9b">&#9670;&#160;</a></span>CreateNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,7 +138,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -148,7 +148,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>&#160;)</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>grad</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -180,15 +180,15 @@ Functions</h2></td></tr>
 <li>Some node types, such as "ScalarMul", "ScalarDiv", "ScalarAdd", and "ScalarSub", are not supported and will throw a runtime error.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md73"></a>
+<h3><a class="anchor" id="autotoc_md81"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> graph;</div>
 <div class="line">std::vector&lt;int&gt; pre = {0, 1};  <span class="comment">// Specify the input nodes for the current node</span></div>
 <div class="line">std::vector&lt;int&gt; shape = {3, 3};  <span class="comment">// Specify the shape of the output tensor</span></div>
 <div class="line"><span class="keywordtype">float</span> data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f};  <span class="comment">// Example data</span></div>
-<div class="line"><a class="code hl_function" href="#a0aff2032efe9d3f5b3e1967695dc7e68">CreateNode</a>(&amp;graph, <span class="stringliteral">&quot;Add&quot;</span>, <span class="stringliteral">&quot;add_node&quot;</span>, pre, shape, data, <span class="keyword">true</span>, <span class="keyword">nullptr</span>);  <span class="comment">// Create an &quot;Add&quot; node</span></div>
+<div class="line"><a class="code hl_function" href="#a0c053dd4775367f905822ff67e2e7b9b">CreateNode</a>(&amp;graph, <span class="stringliteral">&quot;Add&quot;</span>, <span class="stringliteral">&quot;add_node&quot;</span>, pre, shape, data, <span class="keyword">true</span>, <span class="keyword">nullptr</span>);  <span class="comment">// Create an &quot;Add&quot; node</span></div>
 <div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html"><div class="ttname"><a href="classnz_1_1graph_1_1_compute_graph.html">nz::graph::ComputeGraph</a></div><div class="ttdoc">Represents a computational graph, which manages nodes and the computation flow.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cuh_source.html#l00224">ComputeGraph.cuh:224</a></div></div>
-<div class="ttc" id="anamespacenz_1_1graph_html_a0aff2032efe9d3f5b3e1967695dc7e68"><div class="ttname"><a href="#a0aff2032efe9d3f5b3e1967695dc7e68">nz::graph::CreateNode</a></div><div class="ttdeci">void CreateNode(ComputeGraph *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const std::vector&lt; int &gt; &amp;shape, const float *data, const bool requires_grad, const float *grad)</div><div class="ttdoc">Creates and adds a node to the computational graph based on the specified type.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00108">ComputeGraph.cu:108</a></div></div>
+<div class="ttc" id="anamespacenz_1_1graph_html_a0c053dd4775367f905822ff67e2e7b9b"><div class="ttname"><a href="#a0c053dd4775367f905822ff67e2e7b9b">nz::graph::CreateNode</a></div><div class="ttdeci">void CreateNode(ComputeGraph *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const std::vector&lt; int &gt; &amp;shape, float *data, const bool requires_grad, float *grad)</div><div class="ttdoc">Creates and adds a node to the computational graph based on the specified type.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00108">ComputeGraph.cu:108</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">ComputeGraph</a> for more details on <a class="el" href="namespacenz_1_1graph.html" title="Contains classes and functions for managing and executing computation graphs in deep learning workflo...">graph</a> structure and node management. </dd>
 <dd>
 <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">nodes::Node</a> for information on individual node types and their operations.</dd></dl>

@@ -133,7 +133,7 @@ Public Member Functions</h2></td></tr>
 <li>Ensure that the model parameters have been properly initialized, and gradients are computed before calling this method.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md67"></a>
+<h3><a class="anchor" id="autotoc_md69"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1opt_1_1_adam.html">Adam</a> optimizer(0.001, 0.9, 0.999);</div>
 <div class="line">graph.update(&amp;optimizer); <span class="comment">// Suppose &quot;graph&quot; is a computation graph waiting for gradient updates.</span></div>
@@ -202,7 +202,7 @@ Nodes::Node for the class representing model parameters.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/07 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00076">76</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00077">77</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
 
 </div>
 </div>
@@ -257,19 +257,24 @@ Nodes::Node for the class representing model parameters.</dd></dl>
 
 <p>Implements <a class="el" href="classnz_1_1opt_1_1_optimizer.html#a826381abaaf29dbebade7cfd38b266e4">nz::opt::Optimizer</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00083">83</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_optimizer_8cu_source.html#l00084">84</a> of file <a class="el" href="_optimizer_8cu_source.html">Optimizer.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1opt_1_1_adam_aa7fc73a17f092e104d5284d2556a1a98_cgraph.png" border="0" usemap="#aclassnz_1_1opt_1_1_adam_aa7fc73a17f092e104d5284d2556a1a98_cgraph" alt=""/></div>
 <map name="aclassnz_1_1opt_1_1_adam_aa7fc73a17f092e104d5284d2556a1a98_cgraph" id="aclassnz_1_1opt_1_1_adam_aa7fc73a17f092e104d5284d2556a1a98_cgraph">
-<area shape="rect" title="Performs a single optimization step using the Adam algorithm." alt="" coords="5,31,142,57"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#af867be3ad4ff2028ae16857a368054f2" title="Kernel function to apply Adam optimization." alt="" coords="205,5,311,32"/>
-<area shape="poly" title=" " alt="" coords="142,32,189,25,190,31,142,37"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,56,326,83"/>
-<area shape="poly" title=" " alt="" coords="142,51,174,55,174,60,142,56"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="374,56,522,83"/>
-<area shape="poly" title=" " alt="" coords="326,67,359,67,359,72,326,72"/>
+<area shape="rect" title="Performs a single optimization step using the Adam algorithm." alt="" coords="5,39,142,65"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a2b9ab840eeb0e74f4b78277a046b3a07" title="Kernel function to apply Adam optimization." alt="" coords="374,13,480,40"/>
+<area shape="poly" title=" " alt="" coords="142,44,358,29,359,34,142,50"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,64,326,91"/>
+<area shape="poly" title=" " alt="" coords="142,59,174,63,174,68,142,64"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="528,5,714,48"/>
+<area shape="poly" title=" " alt="" coords="481,24,513,24,513,29,481,29"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="382,64,472,91"/>
+<area shape="poly" title=" " alt="" coords="326,75,367,75,367,80,326,80"/>
+<area shape="poly" title=" " alt="" coords="472,63,522,50,523,55,473,68"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="528,72,714,115"/>
+<area shape="poly" title=" " alt="" coords="473,78,513,82,513,87,472,84"/>
 </map>
 </div>
 

@@ -1,5 +1,11 @@
 <map id="nz::data::Tensor::printGrad" name="nz::data::Tensor::printGrad">
-<area shape="rect" id="Node000001" title="Prints the gradient values of the tensor to an output stream." alt="" coords="5,5,182,32"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="230,5,378,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,16,214,16,214,21,182,21"/>
+<area shape="rect" id="Node000001" title="Prints the gradient values of the tensor to an output stream." alt="" coords="5,97,182,124"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="248,5,396,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,94,169,68,229,42,249,34,251,39,231,46,171,73,121,99"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="230,56,415,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,95,214,90,215,96,183,100"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="230,123,415,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="183,121,215,126,214,131,182,126"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="230,189,415,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="122,122,231,175,245,181,243,186,229,180,120,127"/>
 </map>
