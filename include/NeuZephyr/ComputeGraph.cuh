@@ -237,7 +237,7 @@ namespace nz::graph {
         friend DL_API std::ostream& operator<<(std::ostream& os, ComputeGraph& graph);
         friend DL_API void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name,
                                       std::vector<int> pre,
-                                      const std::vector<int>& shape, float* data, bool requires_grad,
+                                      const Tensor::shape_type& shape, float* data, bool requires_grad,
                                       float* grad);
 
         /// @name Constructors and Destructors
