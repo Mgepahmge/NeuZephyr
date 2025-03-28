@@ -441,7 +441,7 @@ namespace nz::krnl {
     }
 
     __global__ void SummationExpKernel(float* out, const float* g_data,
-                                       const unsigned long long n) {
+                                       const unsigned long long n, const size_t offset) {
         extern __shared__ float sdata[];
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long tid = threadIdx.x;
@@ -449,7 +449,7 @@ namespace nz::krnl {
         const unsigned long long laneIdx = tid % WARP_SIZE;
         float localSum = 0.0f;
         if (idx < n) {
-            localSum = __expf(g_data[idx]);
+            localSum = __expf(g_data[idx + offset]);
         }
         else {
             localSum = 0.0f;
@@ -475,21 +475,21 @@ namespace nz::krnl {
 
     void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
                       float* g_data,
-                      const unsigned long long n) {
-        StreamManager<float>::Instance().submit(SummationExpKernel, gridDim, blockDim, sharedMemSize, out, g_data, n);
+                      const unsigned long long n, const size_t offset) {
+        StreamManager<float>::Instance().submit(SummationExpKernel, gridDim, blockDim, sharedMemSize, out, g_data, n, offset);
     }
 
     __global__ void SoftmaxKernel(float* out, const float* in,
-                                  const float exp_sum_of_input, const unsigned long long n) {
+                                  const float exp_sum_of_input, const unsigned long long n, const size_t offset) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx < n) {
-            out[idx] = __expf(in[idx]) / exp_sum_of_input;
+            out[idx + offset] = __expf(in[idx + offset]) / exp_sum_of_input;
         }
     }
 
     void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const float exp_sum_of_input,
-                 const unsigned long long n) {
-        StreamManager<float>::Instance().submit(SoftmaxKernel, gridDim, blockDim, 0, out, in, exp_sum_of_input, n);
+                 const unsigned long long n, const size_t offset) {
+        StreamManager<float>::Instance().submit(SoftmaxKernel, gridDim, blockDim, 0, out, in, exp_sum_of_input, n, offset);
     }
 
     __global__ void SoftmaxJacobianKernel(float* out, const float* in,
@@ -874,7 +874,7 @@ namespace nz::krnl {
                                                 offset_o, offset_1, offset_2);
     }
 
-    __global__ void SummationKernel(float* out, const float* in, const unsigned long long n) {
+    __global__ void SummationKernel(float* out, const float* in, const unsigned long long n, const size_t offset) {
         extern __shared__ float sdata[];
         const unsigned long long tid = threadIdx.x;
         const unsigned long long idx = blockDim.x * blockIdx.x + threadIdx.x;
@@ -882,7 +882,7 @@ namespace nz::krnl {
         const unsigned long long laneIdx = tid % WARP_SIZE;
         float localSum = 0.0f;
         if (idx < n) {
-            localSum = in[idx];
+            localSum = in[idx + offset];
         }
         __syncthreads();
         localSum = warpReduce(localSum);
@@ -903,7 +903,7 @@ namespace nz::krnl {
     }
 
     void Summation(const dim3 gridDim, const dim3 blockDim, const unsigned long long sharedMemSize, float* out,
-                   float* in, const unsigned long long n) {
-        StreamManager<float>::Instance().submit(SummationKernel, gridDim, blockDim, sharedMemSize, out, in, n);
+                   float* in, const unsigned long long n, const size_t offset) {
+        StreamManager<float>::Instance().submit(SummationKernel, gridDim, blockDim, sharedMemSize, out, in, n, offset);
     }
 }

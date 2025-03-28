@@ -549,10 +549,11 @@ namespace nz::krnl {
      * @param out Pointer to the output array where the summation of exponentials will be stored
      * @param g_data Pointer to the input array elements
      * @param n The number of elements in the input array
+     * @param offset
      */
     void SummationExp(dim3 gridDim, dim3 blockDim, size_t sharedMemSize, float* out,
                       float* g_data,
-                      unsigned long long n);
+                      unsigned long long n, size_t offset = 0);
 
     /**
      * @brief Kernel function to apply the Softmax function on the GPU
@@ -567,9 +568,10 @@ namespace nz::krnl {
      * @param in Pointer to the input array elements
      * @param exp_sum_of_input The sum of the exponentials of the input array elements
      * @param n The number of elements in the input and output arrays
+     * @param offset
      */
     void Softmax(dim3 gridDim, dim3 blockDim, float* out, float* in, float exp_sum_of_input,
-                 unsigned long long n);
+                 unsigned long long n, size_t offset = 0);
 
     /**
      * @brief Kernel function to compute the Jacobian of the Softmax function
@@ -868,11 +870,12 @@ namespace nz::krnl {
      * @param out Pointer to the output array
      * @param in Pointer to the input array
      * @param n The number of elements in the arrays
+     * @param offset
      *
      * @note This function is used for computing the element-wise summation of two arrays.
      */
     void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float* out, float* in,
-                   unsigned long long n);
+                   unsigned long long n, size_t offset = 0);
 #endif
 }
 

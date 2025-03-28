@@ -1136,6 +1136,45 @@ namespace nz::data {
         [[nodiscard]] value_type sum() const;
 
         /**
+         * @brief Calculate the sum of elements in a specific batch and channel of a MappedTensor.
+         *
+         * @param batch The index of the batch. Memory flow: host-to-host (used for index calculation on the host side).
+         * @param channel The index of the channel. Memory flow: host-to-host (used for index calculation on the host side).
+         *
+         * @return The sum of elements in the specified batch and channel of the MappedTensor.
+         *
+         * This function first validates the provided `batch` and `channel` indices. If they are out of the valid range of the MappedTensor's shape, it throws a `std::invalid_argument` exception. Then, it calculates the size of the region to be summed. It allocates pinned host memory for intermediate results using `cudaMallocHost`. After that, it determines the offset in the MappedTensor's data based on the `batch` and `channel` indices. The `krnl::Summation` kernel is launched to perform the partial summation. Finally, it sums up all the intermediate results on the host, frees the allocated pinned host memory, and returns the final sum.
+         *
+         * **Memory Management Strategy**:
+         * - Pinned host memory for `dData` is allocated using `cudaMallocHost` and freed using `cuStrm::StreamManager<value_type>::Instance().freeHost`.
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws a `std::invalid_argument` exception if the provided `batch` or `channel` indices are out of the valid range of the MappedTensor's shape.
+         * - CUDA memory allocation operations may return error codes indicating failures. It is assumed that the calling code or the CUDA runtime will handle these errors appropriately.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `_shape` member of the `MappedTensor` class to get the shape information and strides.
+         * - Uses the `krnl::Summation` kernel to perform the partial summation.
+         * - Relies on `cuStrm::StreamManager<value_type>::Instance()` for freeing the pinned host memory.
+         *
+         * @throws std::invalid_argument If the provided `batch` or `channel` indices are out of the valid range of the MappedTensor's shape.
+         *
+         * @note
+         * - Ensure that the provided `batch` and `channel` indices are within the valid range of the MappedTensor's shape to avoid exceptions.
+         * - Be aware of potential CUDA errors during memory allocation operations and handle them appropriately in the calling code.
+         *
+         * @code
+         * ```cpp
+         * MappedTensor mappedTensor; // Assume MappedTensor is properly initialized
+         * size_t batch = 0;
+         * size_t channel = 1;
+         * MappedTensor::value_type sumResult = mappedTensor.sum(batch, channel);
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type sum(size_t batch, size_t channel) const;
+
+        /**
          * @brief Calculate the sum of the exponential values of all elements in the MappedTensor.
          *
          * @return The sum of the exponential values of all elements in the MappedTensor as a value of type `MappedTensor::value_type`.
@@ -1168,6 +1207,8 @@ namespace nz::data {
          * @endcode
          */
         [[nodiscard]] value_type expSum() const;
+
+        [[nodiscard]] value_type expSum(size_t batch, size_t channel) const;
 
         /**
          * @brief Synchronizes the gradient data if gradient computation is required.

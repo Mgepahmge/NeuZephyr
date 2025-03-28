@@ -39,6 +39,7 @@
 #include <stdexcept>
 #include <vector>
 #include "dl_export.cuh"
+#include "Dimension.cuh"
 
 /**
  * @namespace nz::data
@@ -134,7 +135,7 @@ namespace nz::data {
     public:
         using size_type = unsigned long long;
         using value_type = float;
-        using shape_type = std::vector<int>;
+        using shape_type = Dimension;
 
         friend DL_API std::ostream& operator<<(std::ostream& os, const Tensor& tensor);
         friend DL_API std::istream& operator>>(std::istream& is, const Tensor& tensor);
@@ -925,6 +926,46 @@ namespace nz::data {
         [[nodiscard]] value_type sum() const;
 
         /**
+         * @brief Computes the sum of elements in a specific batch and channel of a Tensor.
+         *
+         * @param batch The batch index. This value should be within the valid range of the Tensor's batch dimension. Memory flow: host - to - device (used for index calculation on the host side).
+         * @param channel The channel index. This value should be within the valid range of the Tensor's channel dimension. Memory flow: host - to - device (used for index calculation on the host side).
+         *
+         * @return The sum of elements in the specified batch and channel of the Tensor.
+         *
+         * This function calculates the sum of elements in a particular batch and channel of a Tensor. First, it checks if the provided `batch` and `channel` indices are valid. If not, it throws a `std::invalid_argument` exception. Then, it calculates the size of the region to be summed based on the Tensor's shape. It allocates device memory for intermediate results and host memory to receive the intermediate results from the device. It determines the offset in the Tensor's data based on the `batch` and `channel` indices. The `krnl::Summation` kernel is then launched to perform the partial summation on the device. After that, the intermediate results are copied from the device to the host. Finally, the function sums up all the intermediate results on the host, frees the allocated host and device memory, and returns the final sum.
+         *
+         * **Memory Management Strategy**:
+         * - On the host side, an array `hData` of size `grid.x` is dynamically allocated using `new[]` and later freed using `delete[]`.
+         * - On the device side, memory for `dData` is allocated using `cuStrm::StreamManager<value_type>::Instance().malloc` and freed using `cuStrm::StreamManager<value_type>::Instance().free`.
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws a `std::invalid_argument` exception if the provided `batch` or `channel` indices are out of the valid range of the Tensor's shape.
+         * - The CUDA memory allocation, copying, and kernel launch operations may return error codes indicating failures. It is assumed that the calling code or the CUDA runtime will handle these errors appropriately.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `_shape` member of the `Tensor` class to get the shape information and strides.
+         * - Uses the `krnl::Summation` kernel to perform the partial summation on the device.
+         * - Relies on `cuStrm::StreamManager<value_type>::Instance()` for CUDA memory management (malloc, memcpy, free) operations.
+         *
+         * @throws std::invalid_argument If the provided `batch` or `channel` indices are out of the valid range of the Tensor's shape.
+         *
+         * @note
+         * - Ensure that the provided `batch` and `channel` indices are within the valid range of the Tensor's shape to avoid exceptions.
+         * - The CUDA operations such as memory allocation, copying, and kernel launch have their own error handling mechanisms. The calling code should be prepared to handle potential CUDA errors.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor; // Assume Tensor is properly initialized
+         * Tensor::size_type batch = 0;
+         * Tensor::size_type channel = 1;
+         * Tensor::value_type sumResult = tensor.sum(batch, channel);
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type sum(size_type batch, size_type channel) const;
+
+        /**
          * @brief Compute the sum of the exponential values of all elements in the Tensor.
          *
          * @return The sum of the exponential values of all elements in the Tensor as a value of type `Tensor::value_type`.
@@ -957,6 +998,50 @@ namespace nz::data {
          * @endcode
          */
         [[nodiscard]] value_type expSum() const;
+
+        /**
+         * @brief Computes the sum of exponential values of elements in a specific batch and channel of a Tensor.
+         *
+         * @param batch The batch index. Memory flow: host - to - device (used for index calculation on the host side).
+         * @param channel The channel index. Memory flow: host - to - device (used for index calculation on the host side).
+         *
+         * @return The sum of exponential values of elements in the specified batch and channel of the Tensor.
+         *
+         * This function calculates the sum of the exponential values of elements within a particular batch and channel of a Tensor. First, it validates the provided `batch` and `channel` indices. If they are out of the valid range of the Tensor's shape, it throws a `std::invalid_argument` exception.
+         *
+         * After validation, it computes the size of the region to be processed based on the Tensor's shape. It then allocates device memory for intermediate results (`dData`) and host memory (`hData`) to receive the computed values from the device. The offset in the Tensor's data is determined according to the `batch` and `channel` indices.
+         *
+         * The `krnl::SummationExp` kernel is launched to compute the exponential of each element and perform partial summation on the device. The intermediate results are then copied from the device to the host. Finally, the function sums up all the intermediate results on the host, frees the allocated host and device memory, and returns the final sum.
+         *
+         * **Memory Management Strategy**:
+         * - On the host side, an array `hData` of size `grid.x` is dynamically allocated using `new[]` and later freed using `delete[]`.
+         * - On the device side, memory for `dData` is allocated using `cuStrm::StreamManager<value_type>::Instance().malloc` and freed using `cuStrm::StreamManager<value_type>::Instance().free`.
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws a `std::invalid_argument` exception if the provided `batch` or `channel` indices are out of the valid range of the Tensor's shape.
+         * - The CUDA memory allocation, copying, and kernel launch operations may return error codes indicating failures. It is assumed that the calling code or the CUDA runtime will handle these errors appropriately.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `_shape` member of the `Tensor` class to get the shape information and strides.
+         * - Uses the `krnl::SummationExp` kernel to perform the exponential calculation and partial summation on the device.
+         * - Relies on `cuStrm::StreamManager<value_type>::Instance()` for CUDA memory management (malloc, memcpy, free) operations.
+         *
+         * @throws std::invalid_argument If the provided `batch` or `channel` indices are out of the valid range of the Tensor's shape.
+         *
+         * @note
+         * - Ensure that the provided `batch` and `channel` indices are within the valid range of the Tensor's shape to avoid exceptions.
+         * - Be aware of potential CUDA errors during memory allocation, copying, and kernel launch operations and handle them appropriately in the calling code.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor; // Assume Tensor is properly initialized
+         * size_t batch = 0;
+         * size_t channel = 1;
+         * Tensor::value_type expSumResult = tensor.expSum(batch, channel);
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type expSum(size_t batch, size_t channel) const;
 
         /**
          * @brief Synchronize the tensor data by waiting for all CUDA stream write operations to complete.

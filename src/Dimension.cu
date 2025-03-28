@@ -79,6 +79,21 @@ namespace nz::data {
         }
     }
 
+    const size_t& Dimension::operator[](const size_t i) const {
+        switch (i) {
+        case 0:
+            return n;
+        case 1:
+            return c;
+        case 2:
+            return h;
+        case 3:
+            return w;
+        default:
+            throw std::out_of_range("Index out of range");
+        }
+    }
+
     bool Dimension::operator==(const Dimension& other) const {
         return n == other.n && c == other.c && h == other.h && w == other.w;
     }

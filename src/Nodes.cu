@@ -110,7 +110,7 @@ namespace nz::nodes {
             inputs.push_back(input_left);
             inputs.push_back(input_right);
             bool requires_grad = input_left->output->requiresGrad() || input_right->output->requiresGrad();
-            Tensor::shape_type shape = {input_left->output->shape()[0], input_right->output->shape()[1]};
+            Tensor::shape_type shape = {1, 1, input_left->output->shape()[2], input_right->output->shape()[3]};
             output = std::make_shared<Tensor>(shape, requires_grad);
             type = "MatMul";
         }
@@ -488,7 +488,7 @@ namespace nz::nodes {
         }
 
         void SoftmaxNode::backward() {
-            const Tensor jacobian(std::vector<int>({output->shape()[0], output->shape()[0]}), false);
+            const Tensor jacobian(output->shape(), false);
             const dim3 block(16, 16);
             const dim3 grid((output->shape()[0] + block.x - 1) / block.x, (output->shape()[0] + block.y - 1) / block.y);
             SoftmaxJacobian(grid, block, jacobian.data(), output->data(), output->size());

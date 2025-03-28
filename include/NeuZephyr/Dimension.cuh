@@ -86,6 +86,8 @@ namespace nz::data {
 
         [[nodiscard]] size_t& operator[](size_t i);
 
+        [[nodiscard]] const size_t& operator[](size_t i) const;
+
         bool operator==(const Dimension& other) const;
 
         [[nodiscard]] bool isBroadcastCompatible(const Dimension& other) const;

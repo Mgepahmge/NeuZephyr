@@ -106,7 +106,7 @@ namespace nz::graph {
      * 2024/12/09
      */
     void CreateNode(ComputeGraph* graph, const std::string& type, const std::string& name, std::vector<int> pre,
-                    const std::vector<int>& shape, float* data, const bool requires_grad, float* grad) {
+                    const Tensor::shape_type& shape, float* data, const bool requires_grad, float* grad) {
         if (type == "Input") {
             auto* inputNode = new InputNode(shape, requires_grad);
             inputNode->output->dataInject(data);
@@ -651,7 +651,7 @@ namespace nz::graph {
         std::string name;
         std::vector<int> pre;
         std::vector<int> post;
-        std::vector<int> shape;
+        Tensor::shape_type shape;
         float* data = nullptr;
         bool requires_grad = false;
         float* grad = nullptr;
@@ -725,7 +725,6 @@ namespace nz::graph {
                 continue;
             }
             if (line.find("\"shape\": ") != std::string::npos && reading_node) {
-                shape.clear();
                 std::string pattern = "\"shape\": ";
                 size_t startPos = line.find(pattern);
                 startPos += pattern.length();
@@ -734,8 +733,10 @@ namespace nz::graph {
                 std::string shape_str = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
                 std::stringstream ss(shape_str);
                 int val;
+                auto index = 0;
                 while (ss >> val) {
-                    shape.push_back(val);
+                    shape[index] = val;
+                    index++;
                     if (ss.peek() == ',') {
                         ss.ignore();
                     }

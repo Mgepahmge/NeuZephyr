@@ -527,6 +527,27 @@ namespace nz::data {
         CHECK(cudaMallocHost(&dData, grid.x * sizeof(value_type)));
         krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
         value_type result = 0;
+        cuStrm::StreamManager<value_type>::Instance().syncData(dData);
+        for (auto i = 0; i < grid.x; ++i) {
+            result += dData[i];
+        }
+        cuStrm::StreamManager<value_type>::Instance().freeHost(dData);
+        return result;
+    }
+
+    MappedTensor::value_type MappedTensor::sum(const size_t batch, const size_t channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
+        const auto size = _shape[2] * _shape[3];
+        const dim3 block(256);
+        const dim3 grid((size + block.x - 1) / block.x);
+        value_type* dData;
+        cudaMallocHost(&dData, grid.x * sizeof(value_type));
+        const auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, size, offset);
+        cuStrm::StreamManager<value_type>::Instance().syncData(dData);
+        value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += dData[i];
         }
@@ -540,6 +561,27 @@ namespace nz::data {
         value_type* dData;
         CHECK(cudaMallocHost(&dData, grid.x * sizeof(value_type)));
         krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
+        cuStrm::StreamManager<value_type>::Instance().syncData(dData);
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += dData[i];
+        }
+        cuStrm::StreamManager<value_type>::Instance().freeHost(dData);
+        return result;
+    }
+
+    MappedTensor::value_type MappedTensor::expSum(const size_t batch, const size_t channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
+        const auto size = _shape[2] * _shape[3];
+        const dim3 block(256);
+        const dim3 grid((size + block.x - 1) / block.x);
+        value_type* dData;
+        cudaMallocHost(&dData, grid.x * sizeof(value_type));
+        const auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, size, offset);
+        cuStrm::StreamManager<value_type>::Instance().syncData(dData);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += dData[i];

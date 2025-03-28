@@ -85,12 +85,12 @@ namespace nz::data {
 
     // Constructors
     Tensor::Tensor() :
-        _size(0), _shape({0, 0}), _data(nullptr), _grad(nullptr), _requires_grad(false) {
+        _size(0), _shape({0, 0, 0, 0}), _data(nullptr), _grad(nullptr), _requires_grad(false) {
     }
 
     Tensor::Tensor(const shape_type& shape, const bool requires_grad) // NOLINT(*-pro-type-member-init)
         :
-        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
+        _size(shape.size()), _shape(shape), _requires_grad(requires_grad) {
         cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
         if (_requires_grad) {
             cuStrm::StreamManager<value_type>::Instance().malloc(&_grad, _size * sizeof(value_type));
@@ -101,7 +101,7 @@ namespace nz::data {
     }
 
     Tensor::Tensor(const shape_type& shape, value_type* data, const bool requires_grad, const bool host) :
-        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
+        _size(shape.size()), _shape(shape), _requires_grad(requires_grad) {
         cuStrm::StreamManager<value_type>::Instance().malloc(&_data, _size * sizeof(value_type));
         if (host) {
             cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
@@ -120,7 +120,7 @@ namespace nz::data {
     }
 
     Tensor::Tensor(const shape_type& shape, const std::initializer_list<value_type>& data, const bool requires_grad) :
-        _size(shape[0] * shape[1]), _shape(shape), _requires_grad(requires_grad) {
+        _size(shape.size()), _shape(shape), _requires_grad(requires_grad) {
         if (std::distance(data.begin(), data.end()) < _size) {
             throw std::invalid_argument("Initializer list size is less than the tensor size.");
         }
@@ -158,13 +158,15 @@ namespace nz::data {
     }
 
     Tensor::Tensor(Tensor&& other) noexcept(false):
-        _size(other._size), _shape(std::move(other._shape)), _requires_grad(other._requires_grad) {
+        _size(other._size), _shape(other._shape), _requires_grad(other._requires_grad) {
         _data = other._data;
         if (_requires_grad) {
             _grad = other._grad;
         }
         other._data = nullptr;
         other._grad = nullptr;
+        other._size = 0;
+        other._shape = {0, 0, 0, 0};
     }
 
     Tensor& Tensor::operator=(const Tensor& other) {
@@ -189,7 +191,7 @@ namespace nz::data {
     Tensor& Tensor::operator=(Tensor&& other) noexcept(false) {
         if (this != &other) {
             _size = other._size;
-            _shape = std::move(other._shape);
+            _shape = other._shape;
             cuStrm::StreamManager<value_type>::Instance().free(_data);
             _data = other._data;
             other._data = nullptr;
@@ -198,6 +200,8 @@ namespace nz::data {
                 _grad = other._grad;
                 other._grad = nullptr;
             }
+            other._size = 0;
+            other._shape = {0, 0, 0, 0};
         }
         return *this;
     }
@@ -244,13 +248,25 @@ namespace nz::data {
         cuStrm::StreamManager<value_type>::Instance().memcpy(data, _data, _size * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
         cuStrm::StreamManager<value_type>::Instance().syncData(data);
-        for (size_type i = 0; i < _shape[0]; ++i) {
-            const auto it = data + i * _shape[1];
-            const auto end_it = it + _shape[1];
-            os << "[";
-            std::copy(it, end_it, output_iterator);
-            os << "]";
-            os << std::endl;
+        const auto& n = _shape.N();
+        const auto& c = _shape.C();
+        const auto& h = _shape.H();
+        const auto& w = _shape.W();
+        for (auto ni = 0; ni < n; ++ni) {
+            os << "n=" << ni << " [\n";
+            for (auto ci = 0; ci < c; ++ci) {
+                os << "  c=" << ci << " [\n";
+                for (auto hi = 0; hi < h; ++hi) {
+                    const auto offset = ni * _shape.getStride(0) + ci * _shape.getStride(1) + hi * _shape.getStride(2);
+                    const auto* begin = data + offset;
+                    const auto* end = begin + w;
+                    os << "    [";
+                    std::copy(begin, end, output_iterator);
+                    os << "]\n";
+                }
+                os << "  ]\n";
+            }
+            os << "]\n\n";
         }
         free(data);
         return os;
@@ -293,44 +309,78 @@ namespace nz::data {
     }
 
     Tensor Tensor::operator+(const Tensor& other) const {
-        if (_shape != other._shape) {
-            throw std::invalid_argument("Tensor shapes do not match");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.
+            W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        Tensor result(_shape, _requires_grad);
-        const dim3 block(256);
-        const dim3 grid((_size + block.x - 1) / block.x);
-        krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);
-
+        Tensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1
+                    ? _shape.getStride(1)
+                    : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (
+                    other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                const dim3 block(512);
+                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+                krnl::MatrixAdd(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC,
+                                offsetA, offsetB);
+            }
+        }
         return result;
     }
 
     Tensor Tensor::operator-(const Tensor& other) const {
-        if (_shape != other._shape) {
-            throw std::invalid_argument("Tensor shapes do not match");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.
+            W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        Tensor result(_shape, _requires_grad);
-        const dim3 block(256);
-        const dim3 grid((_size + block.x - 1) / block.x);
-        krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);
-
+        Tensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1
+                    ? _shape.getStride(1)
+                    : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (
+                    other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                const dim3 block(512);
+                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+                krnl::MatrixSub(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC,
+                                offsetA, offsetB);
+            }
+        }
         return result;
     }
 
     Tensor Tensor::operator*(const Tensor& other) const {
-        if (_shape[1] != other._shape[0]) {
-            throw std::invalid_argument("Matrix shapes do not match");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.W() != other._shape.H()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        Tensor result({_shape[0], other._shape[1]}, _requires_grad);
+        Tensor result({
+                          std::max(_shape.N(), other._shape.N()), std::max(_shape.C(), other._shape.C()), _shape.H(),
+                          other._shape.W()
+                      }, _requires_grad || other._requires_grad);
         const dim3 block(TILE_SIZE, TILE_SIZE);
-        const dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
-        krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],
-                               _shape[1]);
-
+        const dim3 grid((result._shape[3] + block.x - 1) / block.x, (result._shape[2] + block.y - 1) / block.y);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1
+                    ? _shape.getStride(1)
+                    : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (
+                    other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape.H(), other._shape.W(),
+                                       _shape.W(), offsetC, offsetA, offsetB);
+            }
+        }
         return result;
     }
 
     void Tensor::reshape(const shape_type& shape) {
-        const size_type size = shape[0] * shape[1];
+        const size_type size = shape.size();
         if (size != _size) {
             WARN("Reshaping to a different size will cause data loss");
         }
@@ -358,32 +408,42 @@ namespace nz::data {
 
     void Tensor::transpose() {
         const dim3 block(TILE_SIZE, TILE_SIZE);
-        const dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
+        const dim3 grid((_shape[2] + block.x - 1) / block.x, (_shape[3] + block.y - 1) / block.y);
         value_type* temp;
-        cuStrm::StreamManager<value_type>::Instance().malloc(&temp, _size * sizeof(value_type));
-        krnl::Transpose(grid, block, _data, temp, _shape[0], _shape[1]);
-
-        cuStrm::StreamManager<value_type>::Instance().free(_data);
+        CHECK(cudaMalloc(&temp, _size * sizeof(value_type)));
+        for (auto i = 0; i < _shape[0]; i += 1) {
+            for (auto j = 0; j < _shape[1]; j += 1) {
+                const auto offset = i * _shape.getStride(0) + j * _shape.getStride(1);
+                krnl::Transpose(grid, block, _data, temp, _shape[2], _shape[3], offset);
+            }
+        }
+        cuStrm::StreamManager<value_type>::Instance().freeAsync(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
-            cuStrm::StreamManager<value_type>::Instance().malloc(&tempGrad, _size * sizeof(value_type));
-            krnl::Transpose(grid, block, _grad, tempGrad, _shape[0], _shape[1]);
-
-            cuStrm::StreamManager<value_type>::Instance().free(_grad);
+            CHECK(cudaMalloc(&tempGrad, _size * sizeof(value_type)));
+            for (auto i = 0; i < _shape[0]; i += 1) {
+                for (auto j = 0; j < _shape[1]; j += 1) {
+                    const auto offset = i * _shape.getStride(0) + j * _shape.getStride(1);
+                    krnl::Transpose(grid, block, _grad, temp, _shape[2], _shape[3], offset);
+                }
+            }
+            cuStrm::StreamManager<value_type>::Instance().freeAsync(_grad);
             _grad = tempGrad;
         }
-        std::swap(_shape[0], _shape[1]);
+        std::swap(_shape[2], _shape[3]);
     }
 
     void Tensor::setData(const shape_type& position, const value_type value) const {
-        if (position[0] >= _shape[0] || position[1] >= _shape[1]) {
+        if (position[0] >= _shape[0] || position[1] >= _shape[1] || position[2] >= _shape[2] || position[3] >= _shape[
+            3]) {
             throw std::invalid_argument("Invalid position");
         }
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
         cuStrm::StreamManager<value_type>::Instance().memcpy(data, _data, _size * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
-        data[position[0] * _shape[1] + position[1]] = value;
+        data[position[0] * _shape.getStride(0) + position[1] * _shape.getStride(1) + position[2] * _shape.getStride(2) +
+            position[3] * _shape.getStride(3)] = value;
         cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
                                                              cudaMemcpyHostToDevice);
         free(data);
@@ -410,13 +470,26 @@ namespace nz::data {
                                                              cudaMemcpyDeviceToHost);
         const std::ostream_iterator<value_type> output_iterator(os, " ");
         cuStrm::StreamManager<value_type>::Instance().syncData(data);
-        for (int i = 0; i < _shape[0]; ++i) {
-            const auto it = data + i * _shape[1];
-            const auto it_end = it + _shape[1];
-            os << "[";
-            std::copy(it, it_end, output_iterator);
-            os << "]";
-            os << std::endl;
+        const auto& n = _shape.N();
+        const auto& c = _shape.C();
+        const auto& h = _shape.H();
+        const auto& w = _shape.W();
+
+        for (auto ni = 0; ni < n; ++ni) {
+            os << "n=" << ni << " [\n";
+            for (auto ci = 0; ci < c; ++ci) {
+                os << "  c=" << ci << " [\n";
+                for (auto hi = 0; hi < h; ++hi) {
+                    const auto offset = ni * _shape.getStride(0) + ci * _shape.getStride(1) + hi * _shape.getStride(2);
+                    const auto* begin = data + offset;
+                    const auto* end = begin + w;
+                    os << "    [";
+                    std::copy(begin, end, output_iterator);
+                    os << "]\n";
+                }
+                os << "  ]\n";
+            }
+            os << "]\n\n";
         }
         free(data);
         return os;
@@ -427,7 +500,6 @@ namespace nz::data {
         const dim3 block(256);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::Negation(grid, block, result._data, _data, _size);
-
         return result;
     }
 
@@ -460,6 +532,29 @@ namespace nz::data {
         return result;
     }
 
+    Tensor::value_type Tensor::sum(const size_type batch, const size_type channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
+        const auto size = _shape[2] * _shape[3];
+        const dim3 block(256);
+        const dim3 grid((size + block.x - 1) / block.x);
+        value_type* dData;
+        auto* hData = new value_type[grid.x];
+        cuStrm::StreamManager<value_type>::Instance().malloc(&dData, grid.x * sizeof(value_type));
+        const auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, size, offset);
+        cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += hData[i];
+        }
+        delete[] hData;
+        cuStrm::StreamManager<value_type>::Instance().free(dData);
+        return result;
+    }
+
     Tensor::value_type Tensor::expSum() const {
         const dim3 block(256);
         const dim3 grid((_size + block.x - 1) / block.x);
@@ -467,6 +562,29 @@ namespace nz::data {
         auto* hData = new value_type[grid.x];
         cuStrm::StreamManager<value_type>::Instance().malloc(&dData, grid.x * sizeof(value_type));
         krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
+        cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
+                                                             cudaMemcpyDeviceToHost);
+        value_type result = 0;
+        for (auto i = 0; i < grid.x; ++i) {
+            result += hData[i];
+        }
+        delete[] hData;
+        cuStrm::StreamManager<value_type>::Instance().free(dData);
+        return result;
+    }
+
+    Tensor::value_type Tensor::expSum(const size_t batch, const size_t channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
+        const auto size = _shape[2] * _shape[3];
+        const dim3 block(256);
+        const dim3 grid((size + block.x - 1) / block.x);
+        value_type* dData;
+        auto* hData = new value_type[grid.x];
+        cuStrm::StreamManager<value_type>::Instance().malloc(&dData, grid.x * sizeof(value_type));
+        const auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, size, offset);
         cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
         value_type result = 0;
