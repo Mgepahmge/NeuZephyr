@@ -129,8 +129,12 @@ namespace nz::krnl {
      * @param b Pointer to the second input matrix elements stored as a one-dimensional array
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
+     * @param offset_c
+     * @param offset_a
+     * @param offset_b
      */
-    void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c, unsigned long long n);
+    void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c, unsigned long long n, size_t offset_c = 0,
+                   size_t offset_a = 0, size_t offset_b = 0);
 
     /**
      * @brief Kernel function to perform matrix subtraction on GPU
@@ -144,9 +148,12 @@ namespace nz::krnl {
      * @param b Pointer to the second input matrix elements stored as a one-dimensional array
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
      * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
+     * @param offset_c
+     * @param offset_a
+     * @param offset_b
      */
     void MatrixSub(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
-                   unsigned long long n);
+                   unsigned long long n, size_t offset_c = 0, size_t offset_a = 0, size_t offset_b = 0);
 
     /**
      * @brief Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores
@@ -164,11 +171,17 @@ namespace nz::krnl {
      * @param M The number of rows in matrix A and matrix C
      * @param N The number of columns in matrix B and matrix C
      * @param K The number of columns in matrix A and rows in matrix B
+     * @param offset_c
+     * @param offset_a
+     * @param offset_b
      */
     void GeneralMatrixMul(dim3 gridDim, dim3 blockDim, float* A, float* B, float* C,
                           unsigned long long M,
                           unsigned long long N,
-                          unsigned long long K);
+                          unsigned long long K,
+                          size_t offset_c = 0,
+                          size_t offset_a = 0,
+                          size_t offset_b = 0);
 
     /**
      * @brief Kernel function to transpose a matrix on the GPU
@@ -182,10 +195,12 @@ namespace nz::krnl {
      * @param d_B Pointer to the output matrix where the transposed result will be stored
      * @param rows The number of rows in the input matrix
      * @param cols The number of columns in the input matrix
+     * @param offset The offset within the input and output arrays
      */
     void Transpose(dim3 gridDim, dim3 blockDim, float* d_A, float* d_B,
                    unsigned int rows,
-                   unsigned int cols);
+                   unsigned int cols,
+                   size_t offset = 0);
 
     /**
      * @brief Kernel function to perform scalar multiplication on the GPU
@@ -799,10 +814,11 @@ namespace nz::krnl {
      * @param data Pointer to the data array that will be filled
      * @param value The value to fill the array with
      * @param n The number of elements in the data array
+     * @param offset
      *
      * @note This function is used for initializing the data array with a given value.
      */
-    void Fill(dim3 gridDim, dim3 blockDim, float* data, float value, unsigned long long n);
+    void Fill(dim3 gridDim, dim3 blockDim, float* data, float value, unsigned long long n, size_t offset = 0);
 
     /**
      * @brief Kernel function to perform element-wise Hadamard product of two arrays
@@ -832,11 +848,14 @@ namespace nz::krnl {
      * @param in1 Pointer to the first input array
      * @param in2 Pointerto the second input array
      * @param n The number of elements in the arrays
+     * @param offset_o
+     * @param offset_1
+     * @param offset_2
      *
      * @note This function is used for computing the element-wise division of two arrays.
      */
     void ElementwiseDivide(dim3 gridDim, dim3 blockDim, float* out, float* in1, float* in2,
-                           unsigned long long n);
+                           unsigned long long n, size_t offset_o = 0, size_t offset_1 = 0, size_t offset_2 = 0);
 
     /**
      * @brief Kernel function to perform element-wise summation of two arrays
@@ -852,7 +871,8 @@ namespace nz::krnl {
      *
      * @note This function is used for computing the element-wise summation of two arrays.
      */
-    void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float* out, float* in, unsigned long long n);
+    void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float* out, float* in,
+                   unsigned long long n);
 #endif
 }
 

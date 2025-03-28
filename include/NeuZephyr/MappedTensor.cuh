@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <vector>
 #include "dl_export.cuh"
+#include "Dimension.cuh"
 
 namespace nz::data {
     /**
@@ -66,7 +67,7 @@ namespace nz::data {
     public:
         using size_type = unsigned long long;
         using value_type = float;
-        using shape_type = std::vector<int>;
+        using shape_type = Dimension;
         using iterator = value_type*;
 
         friend DL_API std::ostream& operator<<(std::ostream& os, const MappedTensor& tensor);
@@ -862,6 +863,8 @@ namespace nz::data {
          * @endcode
          */
         void fill(value_type value, bool isGrad = false) const;
+
+        void fillMatrix(value_type value, size_type batch, size_type channels, bool isGrad = false);
 
         /**
          * @brief Transpose the MappedTensor and its gradients (if required).

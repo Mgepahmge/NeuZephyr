@@ -85,7 +85,7 @@ namespace nz::data {
     }
 
     MappedTensor::MappedTensor(const shape_type& shape, bool requires_grad) : _shape(shape),
-                                                                              _size(shape[0] * shape[1]),
+                                                                              _size(shape.size()),
                                                                               _requires_grad(requires_grad) {
         CHECK(cudaMallocHost(&_data, _size * sizeof(value_type)));
         if (requires_grad) {
@@ -96,7 +96,7 @@ namespace nz::data {
         }
     }
 
-    MappedTensor::MappedTensor() : MappedTensor({0, 0}, false) {
+    MappedTensor::MappedTensor() : MappedTensor({0, 0, 0, 0}, false) {
         _data = nullptr;
         _grad = nullptr;
     }
@@ -111,7 +111,7 @@ namespace nz::data {
     }
 
     MappedTensor::MappedTensor(MappedTensor&& other) noexcept {
-        _shape = std::move(other._shape);
+        _shape = other._shape;
         _size = other._size;
         _requires_grad = other._requires_grad;
         _data = other._data;
@@ -120,7 +120,7 @@ namespace nz::data {
         other._grad = nullptr;
         other._size = 0;
         other._requires_grad = false;
-        other._shape = {0, 0};
+        other._shape = {0, 0, 0, 0};
     }
 
     MappedTensor& MappedTensor::operator=(const MappedTensor& other) {
@@ -160,7 +160,7 @@ namespace nz::data {
             if (_requires_grad && _grad) {
                 cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             }
-            _shape = std::move(other._shape);
+            _shape = other._shape;
             _size = other._size;
             _requires_grad = other._requires_grad;
             _data = other._data;
@@ -169,7 +169,7 @@ namespace nz::data {
             other._grad = nullptr;
             other._size = 0;
             other._requires_grad = false;
-            other._shape = {0, 0};
+            other._shape = {0, 0, 0, 0};
             return *this;
         }
         return *this;
@@ -223,32 +223,7 @@ namespace nz::data {
     }
 
     void MappedTensor::setShape(const shape_type& shape) {
-        value_type* temp;
-        CHECK(cudaMallocHost(&temp, shape[0] * shape[1] * sizeof(value_type)));
-        cuStrm::StreamManager<value_type>::Instance().memset(temp, 0, shape[0] * shape[1] * sizeof(value_type));
-        cuStrm::StreamManager<value_type>::Instance().memcpy(temp, _data,
-                                                             (_size < (shape[0] * shape[1])
-                                                                  ? _size
-                                                                  : shape[0] * shape[1]) * sizeof(value_type)
-                                                             ,
-                                                             cudaMemcpyDeviceToDevice);
-        cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
-        _data = temp;
-        if (_requires_grad) {
-            value_type* tempGrad;
-            CHECK(cudaMallocHost(&tempGrad, shape[0] * shape[1] * sizeof(value_type)));
-            cuStrm::StreamManager<value_type>::Instance().memset(tempGrad, 0, shape[0] * shape[1] * sizeof(value_type));
-            cuStrm::StreamManager<value_type>::Instance().memcpy(tempGrad, _grad,
-                                                                 (_size < (shape[0] * shape[1])
-                                                                      ? _size
-                                                                      : shape[0] * shape[1]) * sizeof(
-                                                                     value_type),
-                                                                 cudaMemcpyDeviceToDevice);
-            cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
-            _grad = tempGrad;
-        }
-        _shape = shape;
-        _size = shape[0] * shape[1];
+        _shape.reshape(shape);
     }
 
     void MappedTensor::dataInject(float* data, const size_type size, const bool isGrad) const {
@@ -285,15 +260,30 @@ namespace nz::data {
     std::ostream& MappedTensor::print(std::ostream& os) const {
         const std::ostream_iterator<value_type> oit(os, " ");
         syncData();
-        for (auto i = 0; i < _shape[0]; i++) {
-            const auto begin = _data + i * _shape[1];
-            const auto end = begin + _shape[1];
-            os << "[" << std::flush;
-            std::copy(begin, end, oit);
-            os << "]" << std::endl;
+        const auto& n = _shape.N();
+        const auto& c = _shape.C();
+        const auto& h = _shape.H();
+        const auto& w = _shape.W();
+
+        for (auto ni = 0; ni < n; ++ni) {
+            os << "n=" << ni << " [\n";
+            for (auto ci = 0; ci < c; ++ci) {
+                os << "  c=" << ci << " [\n";
+                for (auto hi = 0; hi < h; ++hi) {
+                    const auto offset = ni * _shape.getStride(0) + ci * _shape.getStride(1) + hi * _shape.getStride(2);
+                    const auto* begin = _data + offset;
+                    const auto* end = begin + w;
+                    os << "    [";
+                    std::copy(begin, end, oit);
+                    os << "]\n";
+                }
+                os << "  ]\n";
+            }
+            os << "]\n\n";
         }
         return os;
     }
+
 
     std::ostream& MappedTensor::printGrad(std::ostream& os) const {
         if (!_requires_grad) {
@@ -301,12 +291,26 @@ namespace nz::data {
         }
         const std::ostream_iterator<value_type> oit(os, " ");
         syncGrad();
-        for (auto i = 0; i < _shape[0]; i++) {
-            const auto begin = _grad + i * _shape[1];
-            const auto end = begin + _shape[1];
-            os << "[" << std::flush;
-            std::copy(begin, end, oit);
-            os << "]" << std::endl;
+        const auto& n = _shape.N();
+        const auto& c = _shape.C();
+        const auto& h = _shape.H();
+        const auto& w = _shape.W();
+
+        for (auto ni = 0; ni < n; ++ni) {
+            os << "n=" << ni << " [\n";
+            for (auto ci = 0; ci < c; ++ci) {
+                os << "  c=" << ci << " [\n";
+                for (auto hi = 0; hi < h; ++hi) {
+                    const auto offset = ni * _shape.getStride(0) + ci * _shape.getStride(1) + hi * _shape.getStride(2);
+                    const auto* begin = _grad + offset;
+                    const auto* end = begin + w;
+                    os << "    [";
+                    std::copy(begin, end, oit);
+                    os << "]\n";
+                }
+                os << "  ]\n";
+            }
+            os << "]\n\n";
         }
         return os;
     }
@@ -333,7 +337,7 @@ namespace nz::data {
     }
 
     void MappedTensor::reshape(const shape_type& shape) {
-        const size_type newSize = shape[0] * shape[1];
+        const size_type newSize = shape.size();
         if (newSize != _size) {
             WARN("Reshaping to a different size will cause data loss");
         }
@@ -388,75 +392,121 @@ namespace nz::data {
         krnl::Fill(grid, block, isGrad ? _grad : _data, value, _size);
     }
 
+    void MappedTensor::fillMatrix(value_type value, size_type batch, size_type channels, bool isGrad) {
+        if (batch >= _shape[0] || channels >= _shape[1]) {
+            throw std::invalid_argument("Invalid batch or channels");
+        }
+        const dim3 block(512);
+        const dim3 grid((_shape[2] * _shape[3] + block.x - 1) / block.x);
+        const auto offset = batch * _shape.getStride(0) + channels * _shape.getStride(1);
+        krnl::Fill(grid, block, (isGrad ? _grad : _data ), value, _shape[2] * _shape[3], offset);
+    }
+
     void MappedTensor::transpose() {
         const dim3 block(TILE_SIZE, TILE_SIZE);
-        const dim3 grid((_shape[0] + block.x - 1) / block.x, (_shape[1] + block.y - 1) / block.y);
+        const dim3 grid((_shape[2] + block.x - 1) / block.x, (_shape[3] + block.y - 1) / block.y);
         value_type* temp;
         CHECK(cudaMallocHost(&temp, _size * sizeof(value_type)));
-        krnl::Transpose(grid, block, _data, temp, _shape[0], _shape[1]);
+        for (auto i = 0; i < _shape[0]; i += 1) {
+            for (auto j = 0; j < _shape[1]; j += 1) {
+                const auto offset = i * _shape.getStride(0) + j * _shape.getStride(1);
+                krnl::Transpose(grid, block, _data, temp, _shape[2], _shape[3], offset);
+            }
+        }
         cuStrm::StreamManager<value_type>::Instance().freeHost(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
             CHECK(cudaMallocHost(&tempGrad, _size * sizeof(value_type)));
-            krnl::Transpose(grid, block, _grad, tempGrad, _shape[0], _shape[1]);
-            CHECK(cudaDeviceSynchronize());
+            for (auto i = 0; i < _shape[0]; i += 1) {
+                for (auto j = 0; j < _shape[1]; j += 1) {
+                    const auto offset = i * _shape.getStride(0) + j * _shape.getStride(1);
+                    krnl::Transpose(grid, block, _grad, temp, _shape[2], _shape[3], offset);
+                }
+            }
             cuStrm::StreamManager<value_type>::Instance().freeHost(_grad);
             _grad = tempGrad;
         }
-        std::swap(_shape[0], _shape[1]);
+        std::swap(_shape[2], _shape[3]);
     }
 
     MappedTensor MappedTensor::operator+(const MappedTensor& other) const {
-        if (_shape != other._shape) {
-            throw std::invalid_argument("Shapes must be equal.");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        const MappedTensor result(_shape, _requires_grad || other._requires_grad);
-        const dim3 block(512);
-        const dim3 grid((_size + block.x - 1) / block.x);
-        krnl::MatrixAdd(grid, block, _data, other._data, result._data, _size);
+        MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                const dim3 block(512);
+                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+                krnl::MatrixAdd(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
+            }
+        }
         return result;
     }
 
     MappedTensor MappedTensor::operator-(const MappedTensor& other) const {
-        if (_shape != other._shape) {
-            throw std::invalid_argument("Shapes must be equal.");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        const MappedTensor result(_shape, _requires_grad || other._requires_grad);
-        const dim3 block(512);
-        const dim3 grid((_size + block.x - 1) / block.x);
-        krnl::MatrixSub(grid, block, _data, other._data, result._data, _size);
+        MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                const dim3 block(512);
+                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+                krnl::MatrixSub(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
+            }
+        }
         return result;
     }
 
     MappedTensor MappedTensor::operator*(const MappedTensor& other) const {
-        if (_shape[1] != other._shape[0]) {
-            throw std::invalid_argument("Matrix shapes do not match");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.W() != other._shape.H()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        MappedTensor result({_shape[0], other._shape[1]}, _requires_grad);
+        MappedTensor result({std::max(_shape.N(), other._shape.N()), std::max(_shape.C(), other._shape.C()), _shape.H(), other._shape.W()}, _requires_grad || other._requires_grad);
         const dim3 block(TILE_SIZE, TILE_SIZE);
-        const dim3 grid((result._shape[1] + block.x - 1) / block.x, (result._shape[0] + block.y - 1) / block.y);
-        krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape[0], other._shape[1],
-                               _shape[1]);
+        const dim3 grid((result._shape[3] + block.x - 1) / block.x, (result._shape[2] + block.y - 1) / block.y);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape.H(), other._shape.W(), _shape.W(), offsetC, offsetA, offsetB);
+            }
+        }
         return result;
     }
 
     MappedTensor MappedTensor::operator-() const {
+        MappedTensor result(_shape, _requires_grad);
         const dim3 block(512);
         const dim3 grid((_size + block.x - 1) / block.x);
-        MappedTensor result(_shape, _requires_grad);
         krnl::Negation(grid, block, result._data, _data, _size);
         return result;
     }
 
     MappedTensor MappedTensor::operator/(const MappedTensor& other) const {
-        if (_shape != other._shape) {
-            throw std::invalid_argument("Shapes must be equal.");
+        if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
-        const dim3 block(512);
-        const dim3 grid((_size + block.x - 1) / block.x);
-        MappedTensor result(_shape, _requires_grad);
-        krnl::ElementwiseDivide(grid, block, result._data, _data, other._data, _size);
+        MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
+        for (auto i = 0; i < result._shape[0]; i++) {
+            for (auto j = 0; j < result._shape[1]; j++) {
+                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
+                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
+                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
+                const dim3 block(512);
+                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+                krnl::ElementwiseDivide(grid, block, result._data, _data, other._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
+            }
+        }
         return result;
     }
 
