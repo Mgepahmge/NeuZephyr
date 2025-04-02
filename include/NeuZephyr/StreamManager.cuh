@@ -709,6 +709,131 @@ namespace nz::cuStrm {
             curandDestroyGenerator(gen);
         }
 
+        /**
+        * @brief Acquires CUDA stream from pool using round-robin scheduling
+        *
+        * This function:
+        * 1. Locks access to stream queue with mutex for thread safety
+        * 2. Retrieves next available stream ID from front of queue
+        * 3. Rotates queue by moving front element to end (FIFO rotation)
+        * 4. Returns corresponding CUDA stream from preallocated pool
+        *
+        * @note
+        * - Thread Safety: Protected by mutex for concurrent access
+        * - Stream Pool: Requires pre-initialized stream pool and queue
+        * - Fair Scheduling: Round-robin prevents stream starvation
+        * - Stream Lifetime: Streams remain owned by pool manager
+        *
+        * @warning
+        * - Pool Capacity: Fixed stream count may lead to saturation
+        * - No Stream Creation: Assumes streams already initialized
+        * - Queue State: Undefined behavior if called before pool initialization
+        * - Thread Blocking: Mutex contention may impact performance at scale
+        *
+        * @code
+        * // Typical usage pattern:
+        * cudaStream_t stream = manager.getStream();
+        * kernel<<<blocks, threads, 0, stream>>>(...);
+        * cudaStreamSynchronize(stream);
+        * @endcode
+        *
+        * @see cudaStreamCreate, cudaStreamSynchronize, std::lock_guard
+        */
+        cudaStream_t getStream() {
+            std::lock_guard<std::mutex> lock(mtx);
+            const auto id = streamQueue.front();
+            streamQueue.pop();
+            streamQueue.push(id);
+            return streamPool[id];
+        }
+
+        /**
+        * @brief Synchronizes CUDA stream execution until data writes complete
+        *
+        * @tparam T Data type (inferred from pointer)
+        * @param data Device memory pointer with pending write operations
+        * @param stream CUDA stream to apply synchronization constraints
+        *
+        * This function:
+        * 1. Retrieves all CUDA events associated with write operations on target data
+        * 2. Applies stream wait operations for each pending write event
+        * 3. Ensures subsequent stream operations execute only after data writes complete
+        *
+        * @note
+        * - Event Lifetime: Events remain owned by event pool until explicitly released
+        * - Write Synchronization: Only affects write-type CUDA events for this data
+        * - Thread Safety: Requires external synchronization for concurrent data access
+        * - Pointer Association: Data pointer must match previous async operation records
+        *
+        * @warning
+        * - Event Pool Validity: Undefined behavior if event pool not initialized
+        * - Data Ownership: Incorrect pointers may wait on unrelated operations
+        * - Stream State: Target stream must be valid and not destroyed
+        * - Partial Completion: Does NOT guarantee host-side data readiness
+        *
+        * @code
+        * // Typical producer-consumer pattern:
+        * asyncWrite(d_data, host_buffer, writeStream);  // Records write event
+        * streamWait(d_data, computeStream);  // Make compute wait
+        * processData<<<..., computeStream>>>(d_data);  // Safe access
+        * @endcode
+        *
+        * @see cudaStreamWaitEvent, cudaEventRecord, EventPool
+        */
+        void streamWait(T* data, cudaStream_t stream) {
+            for (const auto e : eventPool->getEvents(data)) {
+                cudaStreamWaitEvent(stream, e, 0);
+            }
+        }
+
+        void streamWait(half* data, cudaStream_t stream) {
+            for (const auto e : eventPool->getEvents(data)) {
+                cudaStreamWaitEvent(stream, e, 0);
+            }
+        }
+
+        /**
+        * @brief Records write completion event for asynchronous data operations
+        *
+        * @tparam T Data type (inferred from pointer)
+        * @param data Device memory pointer tracking write completion
+        * @param stream CUDA stream where write operation occurred
+        *
+        * This method:
+        * 1. Creates CUDA event through event pool
+        * 2. Records event on specified stream at current execution point
+        * 3. Registers automatic cleanup callback upon event completion
+        * 4. Associates event with target data for dependency tracking
+        *
+        * @note
+        * - Event Lifetime: Managed by event pool with automatic recycling
+        * - Write Tracking: Enables cross-stream synchronization via streamWait()
+        * - Thread Safety: Requires external synchronization for concurrent data access
+        * - Stream Ordering: Captures all preceding operations in the stream
+        *
+        * @warning
+        * - Event Pool Initialization: Must be properly initialized before use
+        * - Data Ownership: Pointer must match subsequent synchronization calls
+        * - Stream Validity: Target stream must be active during recording
+        * - Host Visibility: Does NOT guarantee host memory consistency
+        *
+        * @code
+        * // Typical asynchronous write pattern:
+        * cudaMemcpyAsync(devPtr, hostPtr, size, cudaMemcpyHostToDevice, stream);
+        * recordData(devPtr, stream);  // Bookmark write completion
+        * streamWait(devPtr, computeStream);  // Enforce dependency
+        * @endcode
+        *
+        * @see cudaEventRecord, cudaStreamAddCallback, EventPool::recordData
+        */
+        void recordData(T* data, cudaStream_t stream) {
+            eventPool->recordData(stream, data);
+        }
+
+        void recordData(half* data, cudaStream_t stream) {
+            eventPool->recordData(stream, data);
+        }
+
     private:
         std::vector<cudaStream_t> streamPool;
         std::queue<int> streamQueue;
@@ -724,26 +849,6 @@ namespace nz::cuStrm {
                 cudaStreamCreateWithFlags(&stream, cudaStreamNonBlocking);
                 streamPool.push_back(stream);
                 streamQueue.push(i);
-            }
-        }
-
-        cudaStream_t getStream() {
-            std::lock_guard<std::mutex> lock(mtx);
-            const auto id = streamQueue.front();
-            streamQueue.pop();
-            streamQueue.push(id);
-            return streamPool[id];
-        }
-
-        void streamWait(T* data, cudaStream_t stream) {
-            for (const auto e : eventPool->getEvents(data)) {
-                cudaStreamWaitEvent(stream, e, 0);
-            }
-        }
-
-        void streamWait(half* data, cudaStream_t stream) {
-            for (const auto e : eventPool->getEvents(data)) {
-                cudaStreamWaitEvent(stream, e, 0);
             }
         }
     };
