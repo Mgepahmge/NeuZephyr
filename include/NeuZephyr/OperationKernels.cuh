@@ -45,6 +45,7 @@
  */
 #ifndef OPERATIONKERNELS_CUH
 #define OPERATIONKERNELS_CUH
+#include <vector>
 
 /**
  * @namespace nz::krnl
@@ -135,6 +136,10 @@ namespace nz::krnl {
      */
     void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c, unsigned long long n, size_t offset_c = 0,
                    size_t offset_a = 0, size_t offset_b = 0);
+
+    void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
+                   unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
+                   const std::vector<size_t>& offset_b);
 
     /**
      * @brief Kernel function to perform matrix subtraction on GPU

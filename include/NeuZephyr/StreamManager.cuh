@@ -567,6 +567,27 @@ namespace nz::cuStrm {
             eventPool->recordData(stream, odata4);
         }
 
+        template <typename F, typename... Args>
+        void submitParallel(F func, dim3 grid, dim3 block, size_t shared, T* odata, T* idata1, T* idata2,
+                            const std::vector<size_t>& offset_o,
+                            const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2, Args... args) {
+            if (offset_o.size() != offset_i1.size() || offset_o.size() != offset_i2.size()) {
+                throw std::invalid_argument("Size of offset is not uniform");
+            }
+            std::vector<cudaStream_t> streams;
+            for (size_t i = 0; i < offset_o.size(); ++i) {
+                cudaStream_t stream = getStream();
+                streams.push_back(stream);
+                streamWait(idata1, stream);
+                streamWait(idata2, stream);
+                streamWait(odata, stream);
+                func<<<grid, block, shared, stream>>>(odata, idata1, idata2, args..., offset_o[i], offset_i1[i], offset_i2[i]);
+            }
+            for (auto stream : streams) {
+                eventPool->recordData(stream, odata);
+            }
+        }
+
         /**
          * @brief Synchronizes all CUDA streams in the stream pool by blocking the host thread
          *

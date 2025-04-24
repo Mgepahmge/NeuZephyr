@@ -28,6 +28,13 @@ namespace nz::krnl {
                                                 offset_b);
     }
 
+    void MatrixAdd(const dim3 gridDim, const dim3 blockDim, float* a, float* b, float* c,
+                   const unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
+                   const std::vector<size_t>& offset_b) {
+        StreamManager<float>::Instance().submitParallel(MatrixAddKernel, gridDim, blockDim, 0, c, a, b, offset_c,
+                                                        offset_a, offset_b, n);
+    }
+
     __global__ void MatrixSubKernel(float* c, const float* a, const float* b,
                                     const unsigned long long n,
                                     const size_t offset_c,
@@ -476,7 +483,8 @@ namespace nz::krnl {
     void SummationExp(const dim3 gridDim, const dim3 blockDim, const size_t sharedMemSize, float* out,
                       float* g_data,
                       const unsigned long long n, const size_t offset) {
-        StreamManager<float>::Instance().submit(SummationExpKernel, gridDim, blockDim, sharedMemSize, out, g_data, n, offset);
+        StreamManager<float>::Instance().submit(SummationExpKernel, gridDim, blockDim, sharedMemSize, out, g_data, n,
+                                                offset);
     }
 
     __global__ void SoftmaxKernel(float* out, const float* in,
@@ -489,7 +497,8 @@ namespace nz::krnl {
 
     void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const float exp_sum_of_input,
                  const unsigned long long n, const size_t offset) {
-        StreamManager<float>::Instance().submit(SoftmaxKernel, gridDim, blockDim, 0, out, in, exp_sum_of_input, n, offset);
+        StreamManager<float>::Instance().submit(SoftmaxKernel, gridDim, blockDim, 0, out, in, exp_sum_of_input, n,
+                                                offset);
     }
 
     __global__ void SoftmaxJacobianKernel(float* out, const float* in,

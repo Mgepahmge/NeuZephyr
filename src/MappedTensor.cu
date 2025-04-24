@@ -435,16 +435,19 @@ namespace nz::data {
             throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
         MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
+        const dim3 block(512);
+        const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
         for (auto i = 0; i < result._shape[0]; i++) {
             for (auto j = 0; j < result._shape[1]; j++) {
-                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
-                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
-                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
-                const dim3 block(512);
-                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
-                krnl::MatrixAdd(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
+                offsetC.push_back(i * result._shape.getStride(0) + j * result._shape.getStride(1));
+                offsetA.push_back(i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0));
+                offsetB.push_back(i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0));
             }
         }
+        krnl::MatrixAdd(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
         return result;
     }
 
