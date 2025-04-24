@@ -54,6 +54,13 @@ namespace nz::krnl {
                                                 offset_b);
     }
 
+    void MatrixSub(const dim3 gridDim, const dim3 blockDim, float* a, float* b, float* c,
+               const unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
+               const std::vector<size_t>& offset_b) {
+        StreamManager<float>::Instance().submitParallel(MatrixSubKernel, gridDim, blockDim, 0, c, a, b, offset_c,
+                                                        offset_a, offset_b, n);
+    }
+
     __global__ void GeneralMatrixMulKernel(float* C, const float* A, const float* B,
                                            const unsigned long long M,
                                            const unsigned long long N,
@@ -101,6 +108,17 @@ namespace nz::krnl {
                           const size_t offset_b) {
         StreamManager<float>::Instance().submit(GeneralMatrixMulKernel, gridDim, blockDim, 0, C, A, B, M, N, K,
                                                 offset_c, offset_a, offset_b);
+    }
+
+    void GeneralMatrixMul(const dim3 gridDim, const dim3 blockDim, float* A, float* B, float* C,
+                      const unsigned long long M,
+                      const unsigned long long N,
+                      const unsigned long long K,
+                      const std::vector<size_t>& offset_c,
+                      const std::vector<size_t>& offset_a,
+                      const std::vector<size_t>& offset_b) {
+        StreamManager<float>::Instance().submitParallel(GeneralMatrixMulKernel, gridDim, blockDim, 0, C, A, B,
+                                                offset_c, offset_a, offset_b, M, N, K);
     }
 
     __global__ void TransposeKernel(float* d_B, const float* d_A,
@@ -881,6 +899,14 @@ namespace nz::krnl {
                            const size_t offset_2) {
         StreamManager<float>::Instance().submit(ElementwiseDivideKernel, gridDim, blockDim, 0, out, in1, in2, n,
                                                 offset_o, offset_1, offset_2);
+    }
+
+    void ElementwiseDivide(const dim3 gridDim, const dim3 blockDim, float* out, float* in1, float* in2,
+                       const unsigned long long n, const std::vector<size_t>& offset_o,
+                       const std::vector<size_t>& offset_1,
+                       const std::vector<size_t>& offset_2) {
+        StreamManager<float>::Instance().submitParallel(ElementwiseDivideKernel, gridDim, blockDim, 0, out, in1, in2,
+                                                offset_o, offset_1, offset_2, n);
     }
 
     __global__ void SummationKernel(float* out, const float* in, const unsigned long long n, const size_t offset) {

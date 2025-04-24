@@ -149,6 +149,8 @@ namespace nz::krnl {
      * of large datasets. It takes two input arrays of floats and stores their difference
      * in a third array.
      *
+     * @param gridDim
+     * @param blockDim
      * @param a Pointer to the first input matrix elements stored as a one-dimensional array
      * @param b Pointer to the second input matrix elements stored as a one-dimensional array
      * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
@@ -159,6 +161,10 @@ namespace nz::krnl {
      */
     void MatrixSub(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
                    unsigned long long n, size_t offset_c = 0, size_t offset_a = 0, size_t offset_b = 0);
+
+    void MatrixSub(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
+           unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
+           const std::vector<size_t>& offset_b);
 
     /**
      * @brief Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores
@@ -187,6 +193,14 @@ namespace nz::krnl {
                           size_t offset_c = 0,
                           size_t offset_a = 0,
                           size_t offset_b = 0);
+
+    void GeneralMatrixMul(dim3 gridDim, dim3 blockDim, float* A, float* B, float* C,
+                  unsigned long long M,
+                  unsigned long long N,
+                  unsigned long long K,
+                  const std::vector<size_t>& offset_c,
+                  const std::vector<size_t>& offset_a,
+                  const std::vector<size_t>& offset_b);
 
     /**
      * @brief Kernel function to transpose a matrix on the GPU
@@ -863,6 +877,11 @@ namespace nz::krnl {
      */
     void ElementwiseDivide(dim3 gridDim, dim3 blockDim, float* out, float* in1, float* in2,
                            unsigned long long n, size_t offset_o = 0, size_t offset_1 = 0, size_t offset_2 = 0);
+
+    void ElementwiseDivide(dim3 gridDim, dim3 blockDim, float* out, float* in1, float* in2,
+                       unsigned long long n, const std::vector<size_t>& offset_o,
+                       const std::vector<size_t>& offset_1,
+                       const std::vector<size_t>& offset_2);
 
     /**
      * @brief Kernel function to perform element-wise summation of two arrays

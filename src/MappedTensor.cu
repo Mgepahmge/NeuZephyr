@@ -455,17 +455,20 @@ namespace nz::data {
         if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.W()) {
             throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
+        const dim3 block(512);
+        const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
         MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
         for (auto i = 0; i < result._shape[0]; i++) {
             for (auto j = 0; j < result._shape[1]; j++) {
-                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
-                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
-                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
-                const dim3 block(512);
-                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
-                krnl::MatrixSub(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
+                offsetC.push_back(i * result._shape.getStride(0) + j * result._shape.getStride(1));
+                offsetA.push_back(i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0));
+                offsetB.push_back(i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0));
             }
         }
+        krnl::MatrixSub(grid, block, _data, other._data, result._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
         return result;
     }
 
@@ -476,14 +479,17 @@ namespace nz::data {
         MappedTensor result({std::max(_shape.N(), other._shape.N()), std::max(_shape.C(), other._shape.C()), _shape.H(), other._shape.W()}, _requires_grad || other._requires_grad);
         const dim3 block(TILE_SIZE, TILE_SIZE);
         const dim3 grid((result._shape[3] + block.x - 1) / block.x, (result._shape[2] + block.y - 1) / block.y);
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
         for (auto i = 0; i < result._shape[0]; i++) {
             for (auto j = 0; j < result._shape[1]; j++) {
-                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
-                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
-                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
-                krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape.H(), other._shape.W(), _shape.W(), offsetC, offsetA, offsetB);
+                offsetC.push_back(i * result._shape.getStride(0) + j * result._shape.getStride(1));
+                offsetA.push_back(i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0));
+                offsetB.push_back(i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0));
             }
         }
+        krnl::GeneralMatrixMul(grid, block, _data, other._data, result._data, _shape.H(), other._shape.W(), _shape.W(), offsetC, offsetA, offsetB);
         return result;
     }
 
@@ -499,17 +505,20 @@ namespace nz::data {
         if (!_shape.isBroadcastCompatible(other._shape) || _shape.H() != other._shape.H() || _shape.W() != other._shape.W()) {
             throw std::invalid_argument("Shapes are not broadcast compatible.");
         }
+        const dim3 block(512);
+        const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
         MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
         for (auto i = 0; i < result._shape[0]; i++) {
             for (auto j = 0; j < result._shape[1]; j++) {
-                const auto offsetC = i * result._shape.getStride(0) + j * result._shape.getStride(1);
-                const auto offsetA = i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0);
-                const auto offsetB = i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0);
-                const dim3 block(512);
-                const dim3 grid((_shape.H() * _shape.W() + block.x - 1) / block.x);
-                krnl::ElementwiseDivide(grid, block, result._data, _data, other._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
+                offsetC.push_back(i * result._shape.getStride(0) + j * result._shape.getStride(1));
+                offsetA.push_back(i * (_shape.N() > 1 ? _shape.getStride(0) : 0) + j * (_shape.C() > 1 ? _shape.getStride(1) : 0));
+                offsetB.push_back(i * (other._shape.N() > 1 ? other._shape.getStride(0) : 0) + j * (other._shape.C() > 1 ? other._shape.getStride(1) : 0));
             }
         }
+        krnl::ElementwiseDivide(grid, block, result._data, _data, other._data, _shape.H() * _shape.W(), offsetC, offsetA, offsetB);
         return result;
     }
 
