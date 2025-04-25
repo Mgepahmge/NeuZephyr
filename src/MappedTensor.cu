@@ -387,6 +387,10 @@ namespace nz::data {
     }
 
     void MappedTensor::fill(const value_type value, const bool isGrad) const {
+        if (isGrad && !_requires_grad) {
+            throw std::invalid_argument(
+                "Gradient filling is not allowed for tensors that do not require gradients.");
+        }
         const dim3 block(512);
         const dim3 grid((_size + block.x - 1) / block.x);
         krnl::Fill(grid, block, isGrad ? _grad : _data, value, _size);
@@ -395,6 +399,10 @@ namespace nz::data {
     void MappedTensor::fillMatrix(value_type value, size_type batch, size_type channels, bool isGrad) {
         if (batch >= _shape[0] || channels >= _shape[1]) {
             throw std::invalid_argument("Invalid batch or channels");
+        }
+        if (isGrad && !_requires_grad) {
+            throw std::invalid_argument(
+                "Gradient filling is not allowed for tensors that do not require gradients.");
         }
         const dim3 block(512);
         const dim3 grid((_shape[2] * _shape[3] + block.x - 1) / block.x);

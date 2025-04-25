@@ -612,6 +612,7 @@ namespace nz::data {
          *
          * @param value The value to which all elements of the tensor will be set. This value is
          *              copied to every element in the tensor's data.
+         * @param isGrad A boolean flag indicating whether to fill the gradients or the data. If true, gradients are filled; otherwise, data is filled (host-to-device).
          *
          * @note
          * - This function does not deallocate the memory; it only sets the values in the tensor's data to the specified value.
@@ -625,29 +626,11 @@ namespace nz::data {
          * ```
          * @endcode
          */
-        void fill(value_type value) const;
+        void fill(value_type value, bool isGrad = false) const;
 
-        /**
-         * @brief Fills the tensor's gradient data with a specified value.
-         *
-         * This function sets all elements in the tensor's gradient data to the specified value.
-         * It uses the `cudaMemset` function to fill the GPU memory allocated for the gradient with
-         * the provided value. This is typically used to initialize or reset the gradients before or
-         * after backpropagation in neural network training.
-         *
-         * @param value The value to which all elements of the tensor's gradient will be set. This value is
-         *              copied to every element in the tensor's gradient data.
-         *
-         * @note
-         * - This function does not deallocate the gradient memory; it only sets the values in the tensor's gradient data to the specified value.
-         * - The tensor must have been created with `requires_grad` set to `true`, otherwise the gradient memory will not be allocated, and calling this function will not have any effect.
-         *
-         * @code
-         * Tensor tensor({2, 3}, true);  // Create a tensor with gradient support
-         * tensor.fillGrad(0.0f);        // Set all gradient values to 0.0f
-         * @endcode
-         */
-        void fillGrad(value_type value) const;
+
+        void fillMatrix(value_type value, size_type batch, size_type channels, bool isGrad = false);
+
 
         /**
          * @brief Reshapes the tensor to the specified shape.
@@ -840,6 +823,8 @@ namespace nz::data {
          * @endcode
          */
         Tensor operator*(const Tensor& other) const;
+
+        Tensor operator/(const Tensor& other) const;
 
         /**
          * @brief Negates all elements of the tensor and returns the result.

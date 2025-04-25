@@ -59,7 +59,7 @@ namespace nz::nodes {
 
         void OutputNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                inputs[0]->output->fillGrad(1);
+                inputs[0]->output->fill(1, true);
             }
         }
 
