@@ -519,6 +519,24 @@ namespace nz::krnl {
                                                 offset);
     }
 
+    void Softmax(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const std::vector<float>& exp_sum_of_input,
+             const unsigned long long n, const std::vector<size_t>& offset) {
+        if (exp_sum_of_input.size() != offset.size()) {
+            throw std::runtime_error("exp_sum_of_input and offset must have the same size");
+        }
+        std::vector<cudaStream_t> streams;
+        for (auto i = 0; i < exp_sum_of_input.size(); i++) {
+            auto stream = StreamManager<float>::Instance().getStream();
+            StreamManager<float>::Instance().streamWait(out, stream);
+            StreamManager<float>::Instance().streamWait(in, stream);
+            streams.push_back(stream);
+            SoftmaxKernel<<<gridDim, blockDim, 0, stream>>>(out, in, exp_sum_of_input[i], n, offset[i]);
+        }
+        for (auto stream : streams) {
+            StreamManager<float>::Instance().recordData(out, stream);
+        }
+    }
+
     __global__ void SoftmaxJacobianKernel(float* out, const float* in,
                                           const unsigned long long n) {
         unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;

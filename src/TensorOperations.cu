@@ -54,7 +54,7 @@ namespace nz::data {
         krnl::HardSwish(grid, block, output, input, size, alpha, beta);
     }
 
-    void iSoftmax(float* output, float* input, const float sum, const unsigned long long size, const size_t offset) {
+    void iSoftmax(float* output, float* input, const std::vector<float>& sum, const unsigned long long size, const std::vector<size_t>& offset) {
         const dim3 block(BLOCKSIZE);
         const dim3 grid((size + BLOCKSIZE - 1) / BLOCKSIZE);
         krnl::Softmax(grid, block, output, input, sum, size, offset);

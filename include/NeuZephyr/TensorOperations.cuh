@@ -314,7 +314,7 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iSoftmax(float* output, float* input, float sum, unsigned long long size, size_t offset = 0);
+    DL_API void iSoftmax(float* output, float* input, const std::vector<float>& sum, unsigned long long size, const std::vector<size_t>& offset);
 
     /**
      * @brief Compute the softmax function for a given input of type T.
@@ -352,12 +352,15 @@ namespace nz::data {
     T Softmax(T input) {
         T result(input.shape(), input.requiresGrad());
         auto size = input.shape()[2] * input.shape()[3];
+        std::vector<size_t> offset;
+        std::vector<float> sum;
         for (auto i = 0; i < input.shape()[0]; i++) {
             for (auto j = 0; j < input.shape()[1]; j++) {
-                auto offset = i * input.shape().getStride(0) + j * input.shape().getStride(1);
-                iSoftmax(result.data(), input.data(), input.expSum(i, j), size, offset);
+                offset.push_back(i * input.shape().getStride(0) + j * input.shape().getStride(1));
+                sum.push_back(input.expSum(i, j));
             }
         }
+        iSoftmax(result.data(), input.data(), sum, size, offset);
         return result;
     }
 

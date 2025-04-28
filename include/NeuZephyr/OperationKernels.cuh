@@ -592,6 +592,9 @@ namespace nz::krnl {
     void Softmax(dim3 gridDim, dim3 blockDim, float* out, float* in, float exp_sum_of_input,
                  unsigned long long n, size_t offset = 0);
 
+    void Softmax(dim3 gridDim, dim3 blockDim, float* out, float* in, const std::vector<float>& exp_sum_of_input,
+             unsigned long long n, const std::vector<size_t>& offset);
+
     /**
      * @brief Kernel function to compute the Jacobian of the Softmax function
      *
