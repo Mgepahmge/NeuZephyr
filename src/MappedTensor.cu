@@ -436,6 +436,7 @@ namespace nz::data {
             _grad = tempGrad;
         }
         std::swap(_shape[2], _shape[3]);
+        _shape.updateStride();
     }
 
     MappedTensor MappedTensor::operator+(const MappedTensor& other) const {

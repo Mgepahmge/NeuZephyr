@@ -133,6 +133,13 @@ namespace nz::data {
         return result;
     }
 
+    void Dimension::updateStride() {
+        stride[0] = c * h * w;
+        stride[1] = h * w;
+        stride[2] = w;
+        stride[3] = 1;
+    }
+
     std::ostream& operator<<(std::ostream& os, const Dimension& dim) {
         os << dim.n << " " << dim.c << " " << dim.h << " " << dim.w;
         return os;

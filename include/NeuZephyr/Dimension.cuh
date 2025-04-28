@@ -98,6 +98,8 @@ namespace nz::data {
 
         [[nodiscard]] Dimension Broadcast(const Dimension& other) const;
 
+        void updateStride();
+
     private:
         size_t n;
         size_t c;

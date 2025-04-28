@@ -474,6 +474,7 @@ namespace nz::data {
             _grad = tempGrad;
         }
         std::swap(_shape[2], _shape[3]);
+        _shape.updateStride();
     }
 
     void Tensor::setData(const shape_type& position, const value_type value) const {
