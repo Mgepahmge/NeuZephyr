@@ -452,24 +452,20 @@ namespace nz::data {
         const dim3 block(TILE_SIZE, TILE_SIZE);
         const dim3 grid((_shape[2] + block.x - 1) / block.x, (_shape[3] + block.y - 1) / block.y);
         value_type* temp;
+        std::vector<size_t> offset;
         CHECK(cudaMalloc(&temp, _size * sizeof(value_type)));
         for (auto i = 0; i < _shape[0]; i += 1) {
             for (auto j = 0; j < _shape[1]; j += 1) {
-                const auto offset = i * _shape.getStride(0) + j * _shape.getStride(1);
-                krnl::Transpose(grid, block, _data, temp, _shape[2], _shape[3], offset);
+                offset.push_back(i * _shape.getStride(0) + j * _shape.getStride(1));
             }
         }
+        krnl::Transpose(grid, block, _data, temp, _shape[2], _shape[3], offset);
         cuStrm::StreamManager<value_type>::Instance().freeAsync(_data);
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
             CHECK(cudaMalloc(&tempGrad, _size * sizeof(value_type)));
-            for (auto i = 0; i < _shape[0]; i += 1) {
-                for (auto j = 0; j < _shape[1]; j += 1) {
-                    const auto offset = i * _shape.getStride(0) + j * _shape.getStride(1);
-                    krnl::Transpose(grid, block, _grad, temp, _shape[2], _shape[3], offset);
-                }
-            }
+            krnl::Transpose(grid, block, _grad, tempGrad, _shape[2], _shape[3], offset);
             cuStrm::StreamManager<value_type>::Instance().freeAsync(_grad);
             _grad = tempGrad;
         }

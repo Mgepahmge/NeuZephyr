@@ -150,6 +150,13 @@ namespace nz::krnl {
         StreamManager<float>::Instance().submit(TransposeKernel, gridDim, blockDim, 0, d_B, d_A, rows, cols, offset);
     }
 
+    void Transpose(const dim3 gridDim, const dim3 blockDim, float* d_A, float* d_B,
+               const unsigned int rows,
+               const unsigned int cols,
+               const std::vector<size_t>& offset) {
+        StreamManager<float>::Instance().submitParallel(TransposeKernel, gridDim, blockDim, 0, d_B, d_A, offset, rows, cols);
+    }
+
     __global__ void ScalarMulKernel(float* out, const float* in, const float num,
                                     const unsigned long long n) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;

@@ -221,6 +221,11 @@ namespace nz::krnl {
                    unsigned int cols,
                    size_t offset = 0);
 
+    void Transpose(dim3 gridDim, dim3 blockDim, float* d_A, float* d_B,
+           unsigned int rows,
+           unsigned int cols,
+           const std::vector<size_t>& offset);
+
     /**
      * @brief Kernel function to perform scalar multiplication on the GPU
      *

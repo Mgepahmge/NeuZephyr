@@ -581,7 +581,25 @@ namespace nz::cuStrm {
                 streamWait(idata1, stream);
                 streamWait(idata2, stream);
                 streamWait(odata, stream);
-                func<<<grid, block, shared, stream>>>(odata, idata1, idata2, args..., offset_o[i], offset_i1[i], offset_i2[i]);
+                func<<<grid, block, shared, stream>>>(odata, idata1, idata2, args..., offset_o[i], offset_i1[i],
+                                                      offset_i2[i]);
+            }
+            for (auto stream : streams) {
+                eventPool->recordData(stream, odata);
+            }
+        }
+
+        template <typename F, typename... Args>
+        void submitParallel(F func, dim3 grid, dim3 block, size_t shared, T* odata, T* idata1,
+                            const std::vector<size_t>& offset_o,
+                            Args... args) {
+            std::vector<cudaStream_t> streams;
+            for (unsigned long long i : offset_o) {
+                cudaStream_t stream = getStream();
+                streams.push_back(stream);
+                streamWait(idata1, stream);
+                streamWait(odata, stream);
+                func<<<grid, block, shared, stream>>>(odata, idata1, args..., i);
             }
             for (auto stream : streams) {
                 eventPool->recordData(stream, odata);
