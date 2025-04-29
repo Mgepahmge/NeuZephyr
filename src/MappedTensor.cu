@@ -465,6 +465,34 @@ namespace nz::data {
         return result;
     }
 
+    bool MappedTensor::operator==(const MappedTensor& other) const {
+        if (_requires_grad != other._requires_grad) {
+            return false;
+        }
+        if (_shape != other._shape) {
+            return false;
+        }
+        this->sync();
+        other.sync();
+        for (auto i = 0; i < _size; i++) {
+            if (_data[i] != other._data[i]) {
+                return false;
+            }
+        }
+        if (_requires_grad) {
+            for (auto i = 0; i < _size; i++) {
+                if (_grad[i] != other._grad[i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    bool MappedTensor::operator!=(const MappedTensor& other) const {
+        return !(*this == other);
+    }
+
     MappedTensor MappedTensor::operator/(const MappedTensor& other) const {
         MappedTensor result(_shape.Broadcast(other._shape), _requires_grad || other._requires_grad);
         tensorElementwiseDivide(result, *this, other);

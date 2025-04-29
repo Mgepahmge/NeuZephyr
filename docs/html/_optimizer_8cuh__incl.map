@@ -8,12 +8,19 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="175,157,151,192,146,189,171,154"/>
 <area shape="rect" id="Node000005" href="$_tensor_8cuh.html" title="Definition of the Tensor class for GPU&#45;based tensor operations." alt="" coords="190,203,275,229"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="193,154,217,189,213,192,188,157"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="63,277,124,304"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="210,232,133,272,130,267,207,228"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="148,277,226,304"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="227,231,205,265,201,263,222,228"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="250,277,308,304"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="243,228,265,263,261,266,238,231"/>
-<area shape="rect" id="Node000009" href="$dl__export_8cuh_source.html" title=" " alt="" coords="332,277,432,304"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="260,227,343,268,341,272,257,232"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="83,277,144,304"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="213,232,149,271,146,267,210,228"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="105,352,184,379"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="227,231,162,340,157,337,223,228"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="208,352,265,379"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="236,230,238,336,233,337,230,230"/>
+<area shape="rect" id="Node000009" href="$dl__export_8cuh_source.html" title=" " alt="" coords="384,352,484,379"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="277,222,335,240,366,256,393,275,415,305,429,336,424,338,411,308,389,279,363,260,333,245,275,227"/>
+<area shape="rect" id="Node000010" href="$_dimension_8cuh_source.html" title=" " alt="" coords="270,277,379,304"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="250,228,299,266,295,270,247,232"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="294,307,191,348,189,343,292,302"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="311,307,265,344,262,340,307,302"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="345,302,404,341,401,346,342,307"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="289,352,360,379"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="327,305,327,336,322,336,322,305"/>
 </map>

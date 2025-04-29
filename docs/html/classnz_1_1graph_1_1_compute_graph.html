@@ -86,7 +86,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6397db45a249af6389dd3f7548b5aa0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">ComputeGraph</a> class.  <br /></td></tr>
 <tr class="separator:a6397db45a249af6389dd3f7548b5aa0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Graph Builders</div></td></tr>
-<tr class="memitem:a75a4b72c93448c8617a7af41cc471897" id="r_a75a4b72c93448c8617a7af41cc471897"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a> (const Tensor::shape_type &amp;shape, bool requires_grad=false, const std::string &amp;name=&quot;default&quot;)</td></tr>
+<tr class="memitem:a75a4b72c93448c8617a7af41cc471897" id="r_a75a4b72c93448c8617a7af41cc471897"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75a4b72c93448c8617a7af41cc471897">addInput</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;shape, bool requires_grad=false, const std::string &amp;name=&quot;default&quot;)</td></tr>
 <tr class="memdesc:a75a4b72c93448c8617a7af41cc471897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an input node to the computational graph.  <br /></td></tr>
 <tr class="separator:a75a4b72c93448c8617a7af41cc471897"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86b54a014876f245d64c524dc70075ea" id="r_a86b54a014876f245d64c524dc70075ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86b54a014876f245d64c524dc70075ea">addInput</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;tensor, const std::string &amp;name=&quot;default&quot;)</td></tr>
@@ -95,10 +95,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8ab70380135ecdeb3652b76c2bf2766c" id="r_a8ab70380135ecdeb3652b76c2bf2766c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ab70380135ecdeb3652b76c2bf2766c">addInput</a> (<a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *input, const std::string &amp;name=&quot;default&quot;)</td></tr>
 <tr class="memdesc:a8ab70380135ecdeb3652b76c2bf2766c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an existing <code>InputNode</code> to the computational graph.  <br /></td></tr>
 <tr class="separator:a8ab70380135ecdeb3652b76c2bf2766c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab75d30dc8133099118f60bdd07284f01" id="r_ab75d30dc8133099118f60bdd07284f01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab75d30dc8133099118f60bdd07284f01">addInput</a> (const Tensor::shape_type &amp;shape, Tensor::value_type *data, bool requires_grad, bool host, const std::string &amp;name=&quot;default&quot;)</td></tr>
+<tr class="memitem:ab75d30dc8133099118f60bdd07284f01" id="r_ab75d30dc8133099118f60bdd07284f01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab75d30dc8133099118f60bdd07284f01">addInput</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;shape, Tensor::value_type *data, bool requires_grad, bool host, const std::string &amp;name=&quot;default&quot;)</td></tr>
 <tr class="memdesc:ab75d30dc8133099118f60bdd07284f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an input node to the computation graph and returns a pointer to the newly created InputNode.  <br /></td></tr>
 <tr class="separator:ab75d30dc8133099118f60bdd07284f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ef35c2707abf965e7badf00850fb747" id="r_a3ef35c2707abf965e7badf00850fb747"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ef35c2707abf965e7badf00850fb747">addInput</a> (const Tensor::shape_type &amp;shape, const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool requires_grad, const std::string &amp;name=&quot;default&quot;)</td></tr>
+<tr class="memitem:a3ef35c2707abf965e7badf00850fb747" id="r_a3ef35c2707abf965e7badf00850fb747"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ef35c2707abf965e7badf00850fb747">addInput</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;shape, const std::initializer_list&lt; Tensor::value_type &gt; &amp;data, bool requires_grad, const std::string &amp;name=&quot;default&quot;)</td></tr>
 <tr class="memdesc:a3ef35c2707abf965e7badf00850fb747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an InputNode to the <a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">ComputeGraph</a> using a std::initializer_list for data and returns a pointer to the created node.  <br /></td></tr>
 <tr class="separator:a3ef35c2707abf965e7badf00850fb747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ce9a271dcea6cc2b9490cd815ee53ed" id="r_a5ce9a271dcea6cc2b9490cd815ee53ed"><td class="memTemplParams" colspan="2">template&lt;typename NodeType &gt; </td></tr>
@@ -191,9 +191,9 @@ Friends</h2></td></tr>
 <tr class="memitem:a25cf602885275406f8fe60a5077308a8" id="r_a25cf602885275406f8fe60a5077308a8"><td class="memItemLeft" align="right" valign="top">DL_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25cf602885275406f8fe60a5077308a8">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> &amp;graph)</td></tr>
 <tr class="memdesc:a25cf602885275406f8fe60a5077308a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the stream insertion operator to print the details of the computational graph.  <br /></td></tr>
 <tr class="separator:a25cf602885275406f8fe60a5077308a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb88d3daf87f8d09d405ef2d2d134c02" id="r_adb88d3daf87f8d09d405ef2d2d134c02"><td class="memItemLeft" align="right" valign="top">DL_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb88d3daf87f8d09d405ef2d2d134c02">CreateNode</a> (<a class="el" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const std::vector&lt; int &gt; &amp;shape, float *data, bool requires_grad, float *grad)</td></tr>
-<tr class="memdesc:adb88d3daf87f8d09d405ef2d2d134c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and adds a node to the computational graph based on the specified type.  <br /></td></tr>
-<tr class="separator:adb88d3daf87f8d09d405ef2d2d134c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11f567efba2c857e64a88c411c5e6c54" id="r_a11f567efba2c857e64a88c411c5e6c54"><td class="memItemLeft" align="right" valign="top">DL_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11f567efba2c857e64a88c411c5e6c54">CreateNode</a> (<a class="el" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;shape, float *data, bool requires_grad, float *grad)</td></tr>
+<tr class="memdesc:a11f567efba2c857e64a88c411c5e6c54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and adds a node to the computational graph based on the specified type.  <br /></td></tr>
+<tr class="separator:a11f567efba2c857e64a88c411c5e6c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a computational graph, which manages nodes and the computation flow. </p>
@@ -320,7 +320,7 @@ Usage Example:</h3>
 <div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_a75a4b72c93448c8617a7af41cc471897"><div class="ttname"><a href="#a75a4b72c93448c8617a7af41cc471897">nz::graph::ComputeGraph::addInput</a></div><div class="ttdeci">InputNode * addInput(const Tensor::shape_type &amp;shape, bool requires_grad=false, const std::string &amp;name=&quot;default&quot;)</div><div class="ttdoc">Adds an input node to the computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00302">ComputeGraph.cu:302</a></div></div>
 <div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_a90e4737107c4ec96a1a95022daa6de2f"><div class="ttname"><a href="#a90e4737107c4ec96a1a95022daa6de2f">nz::graph::ComputeGraph::randomizeAll</a></div><div class="ttdeci">void randomizeAll() const</div><div class="ttdoc">Randomizes the output tensors of all input nodes in the computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00457">ComputeGraph.cu:457</a></div></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1io_1_1_input_node_html_a4ba34603676c094723409d9e6b770976"><div class="ttname"><a href="classnz_1_1nodes_1_1io_1_1_input_node.html#a4ba34603676c094723409d9e6b770976">nz::nodes::io::InputNode::forward</a></div><div class="ttdeci">void forward() override</div><div class="ttdoc">Forward pass for the InputNode.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00044">Nodes.cu:44</a></div></div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a2b9ab840eeb0e74f4b78277a046b3a07"><div class="ttname"><a href="namespacenz_1_1krnl.html#a2b9ab840eeb0e74f4b78277a046b3a07">nz::krnl::Adam</a></div><div class="ttdeci">void Adam(dim3 gridDim, dim3 blockDim, float *data, float *m, float *v, float *grad, float lr, float beta1, float beta2, float eps, int t, unsigned long long n)</div><div class="ttdoc">Kernel function to apply Adam optimization.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00676">OperationKernels.cu:676</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a2b9ab840eeb0e74f4b78277a046b3a07"><div class="ttname"><a href="namespacenz_1_1krnl.html#a2b9ab840eeb0e74f4b78277a046b3a07">nz::krnl::Adam</a></div><div class="ttdeci">void Adam(dim3 gridDim, dim3 blockDim, float *data, float *m, float *v, float *grad, float lr, float beta1, float beta2, float eps, int t, unsigned long long n)</div><div class="ttdoc">Kernel function to apply Adam optimization.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00757">OperationKernels.cu:757</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0c5a596f38e6d7e8c1c78e19b9b56167" title="Performs forward propagation on the computational graph.">forward()</a> for the <a class="el" href="#a0c5a596f38e6d7e8c1c78e19b9b56167" title="Performs forward propagation on the computational graph.">forward</a> pass computation method. </dd>
 <dd>
 <a class="el" href="#adfcad402fe85084ddbb4f8b6415adc05" title="Performs backward propagation on the computational graph.">backward()</a> for the <a class="el" href="#adfcad402fe85084ddbb4f8b6415adc05" title="Performs backward propagation on the computational graph.">backward</a> pass gradient propagation method.</dd></dl>
@@ -440,7 +440,7 @@ Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> input_tensor({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Example tensor</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> graph;</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a>* input = graph.addInput(input_tensor, <span class="stringliteral">&quot;input_node&quot;</span>);</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00133">Tensor.cuh:133</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00134">Tensor.cuh:134</a></div></div>
 <div class="ttc" id="aclassnz_1_1nodes_1_1io_1_1_input_node_html"><div class="ttname"><a href="classnz_1_1nodes_1_1io_1_1_input_node.html">nz::nodes::io::InputNode</a></div><div class="ttdoc">Represents an input node in a computational graph.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cuh_source.html#l00437">Nodes.cuh:437</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html" title="Represents an input node in a computational graph.">nodes::io::InputNode</a> for the class definition of the input node.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
@@ -459,7 +459,7 @@ Usage Example:</h3>
         <tr>
           <td class="memname"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> * nz::graph::ComputeGraph::addInput </td>
           <td>(</td>
-          <td class="paramtype">const Tensor::shape_type &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -511,7 +511,7 @@ Usage Example:</h3>
         <tr>
           <td class="memname"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> * nz::graph::ComputeGraph::addInput </td>
           <td>(</td>
-          <td class="paramtype">const Tensor::shape_type &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -582,7 +582,7 @@ Usage Example:</h3>
         <tr>
           <td class="memname"><a class="el" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> * nz::graph::ComputeGraph::addInput </td>
           <td>(</td>
-          <td class="paramtype">const Tensor::shape_type &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1012,7 +1012,7 @@ Usage Example:</h3>
 <div class="line"><span class="comment">// Assuming graph has nodes added and a valid node pointer &quot;inputNode&quot;</span></div>
 <div class="line">graph.<a class="code hl_function" href="#ae732145241d1da547219a3e8b95a04ee">fill</a>(inputNode, 0.0);  <span class="comment">// Fills the output tensor of &quot;inputNode&quot; with 0.0</span></div>
 <div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_ae732145241d1da547219a3e8b95a04ee"><div class="ttname"><a href="#ae732145241d1da547219a3e8b95a04ee">nz::graph::ComputeGraph::fill</a></div><div class="ttdeci">void fill(const std::string &amp;name, Tensor::value_type val)</div><div class="ttdoc">Fills the output tensor of a specified node with a given value.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00465">ComputeGraph.cu:465</a></div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value.">Tensor::fill()</a> for the method that fills the tensor with a specific value.</dd></dl>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1data_1_1_tensor.html#ad220de56b18c404611f07f2290cd7e9d" title="Fills the tensor&#39;s data with a specified value.">Tensor::fill()</a> for the method that fills the tensor with a specific value.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/09 </dd></dl>
 
@@ -1059,7 +1059,7 @@ Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> graph;</div>
 <div class="line"><span class="comment">// Assuming graph has nodes added and a node named &quot;input_1&quot;</span></div>
 <div class="line">graph.<a class="code hl_function" href="#ae732145241d1da547219a3e8b95a04ee">fill</a>(<span class="stringliteral">&quot;input_1&quot;</span>, 0.0);  <span class="comment">// Fills the output tensor of &quot;input_1&quot; with 0.0</span></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value.">Tensor::fill()</a> for the method that fills the tensor with a specific value.</dd></dl>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1data_1_1_tensor.html#ad220de56b18c404611f07f2290cd7e9d" title="Fills the tensor&#39;s data with a specified value.">Tensor::fill()</a> for the method that fills the tensor with a specific value.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/09 </dd></dl>
 
@@ -1096,7 +1096,7 @@ Usage Example:</h3>
 <div class="line"><span class="comment">// Assuming graph has input nodes added</span></div>
 <div class="line">graph.<a class="code hl_function" href="#adf21c05c4515016d34d5fc7d639b9e40">fillAll</a>(0.0);  <span class="comment">// Fills the output tensors of all input nodes with 0.0</span></div>
 <div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_adf21c05c4515016d34d5fc7d639b9e40"><div class="ttname"><a href="#adf21c05c4515016d34d5fc7d639b9e40">nz::graph::ComputeGraph::fillAll</a></div><div class="ttdeci">void fillAll(Tensor::value_type val) const</div><div class="ttdoc">Fills the output tensors of all input nodes with a given value.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00483">ComputeGraph.cu:483</a></div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value.">Tensor::fill()</a> for the method that fills the tensor of a specific node with a value.</dd></dl>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1data_1_1_tensor.html#ad220de56b18c404611f07f2290cd7e9d" title="Fills the tensor&#39;s data with a specified value.">Tensor::fill()</a> for the method that fills the tensor of a specific node with a value.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/09 </dd></dl>
 
@@ -1335,6 +1335,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="177,91,209,91,209,96,177,96"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="225,139,410,181"/>
 <area shape="poly" title=" " alt="" coords="166,113,228,131,227,136,165,118"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="458,39,643,81"/>
+<area shape="poly" title=" " alt="" coords="410,77,442,73,443,78,411,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="458,105,643,148"/>
+<area shape="poly" title=" " alt="" coords="411,104,443,109,442,114,410,109"/>
 </map>
 </div>
 
@@ -1535,9 +1539,9 @@ Usage Example:</h3>
 <div class="line">std::string nodesListStr = graph.<a class="code hl_function" href="#a1e5d98f57514c6f7a539de2776f48c5d">nodesList</a>();</div>
 <div class="line">std::cout &lt;&lt; nodesListStr &lt;&lt; std::endl;</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_a1e5d98f57514c6f7a539de2776f48c5d"><div class="ttname"><a href="#a1e5d98f57514c6f7a539de2776f48c5d">nz::graph::ComputeGraph::nodesList</a></div><div class="ttdeci">std::string nodesList()</div><div class="ttdoc">Generates a formatted string representing the list of nodes in the ComputeGraph.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00811">ComputeGraph.cu:811</a></div></div>
+<div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_a1e5d98f57514c6f7a539de2776f48c5d"><div class="ttname"><a href="#a1e5d98f57514c6f7a539de2776f48c5d">nz::graph::ComputeGraph::nodesList</a></div><div class="ttdeci">std::string nodesList()</div><div class="ttdoc">Generates a formatted string representing the list of nodes in the ComputeGraph.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00812">ComputeGraph.cu:812</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_compute_graph_8cu_source.html#l00811">811</a> of file <a class="el" href="_compute_graph_8cu_source.html">ComputeGraph.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_compute_graph_8cu_source.html#l00812">812</a> of file <a class="el" href="_compute_graph_8cu_source.html">ComputeGraph.cu</a>.</p>
 
 </div>
 </div>
@@ -1586,7 +1590,7 @@ Node for the base class of all <a class="el" href="namespacenz_1_1nodes.html" ti
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/09 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_compute_graph_8cu_source.html#l00807">807</a> of file <a class="el" href="_compute_graph_8cu_source.html">ComputeGraph.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_compute_graph_8cu_source.html#l00808">808</a> of file <a class="el" href="_compute_graph_8cu_source.html">ComputeGraph.cu</a>.</p>
 
 </div>
 </div>
@@ -1859,6 +1863,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="177,91,209,91,209,96,177,96"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="225,139,410,181"/>
 <area shape="poly" title=" " alt="" coords="166,113,228,131,227,136,165,118"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="458,39,643,81"/>
+<area shape="poly" title=" " alt="" coords="410,77,442,73,443,78,411,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="458,105,643,148"/>
+<area shape="poly" title=" " alt="" coords="411,104,443,109,442,114,410,109"/>
 </map>
 </div>
 
@@ -2122,8 +2130,8 @@ Usage Example:</h3>
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Symbol Documentation</h2>
-<a id="adb88d3daf87f8d09d405ef2d2d134c02" name="adb88d3daf87f8d09d405ef2d2d134c02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb88d3daf87f8d09d405ef2d2d134c02">&#9670;&#160;</a></span>CreateNode</h2>
+<a id="a11f567efba2c857e64a88c411c5e6c54" name="a11f567efba2c857e64a88c411c5e6c54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11f567efba2c857e64a88c411c5e6c54">&#9670;&#160;</a></span>CreateNode</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2154,7 +2162,7 @@ Usage Example:</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2206,14 +2214,14 @@ Usage Example:</h3>
 <li>Some node types, such as "ScalarMul", "ScalarDiv", "ScalarAdd", and "ScalarSub", are not supported and will throw a runtime error.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md81"></a>
+<h3><a class="anchor" id="autotoc_md84"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1graph_1_1_compute_graph.html">ComputeGraph</a> graph;</div>
 <div class="line">std::vector&lt;int&gt; pre = {0, 1};  <span class="comment">// Specify the input nodes for the current node</span></div>
 <div class="line">std::vector&lt;int&gt; shape = {3, 3};  <span class="comment">// Specify the shape of the output tensor</span></div>
 <div class="line"><span class="keywordtype">float</span> data[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f};  <span class="comment">// Example data</span></div>
-<div class="line"><a class="code hl_friend" href="#adb88d3daf87f8d09d405ef2d2d134c02">CreateNode</a>(&amp;graph, <span class="stringliteral">&quot;Add&quot;</span>, <span class="stringliteral">&quot;add_node&quot;</span>, pre, shape, data, <span class="keyword">true</span>, <span class="keyword">nullptr</span>);  <span class="comment">// Create an &quot;Add&quot; node</span></div>
-<div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_adb88d3daf87f8d09d405ef2d2d134c02"><div class="ttname"><a href="#adb88d3daf87f8d09d405ef2d2d134c02">nz::graph::ComputeGraph::CreateNode</a></div><div class="ttdeci">friend DL_API void CreateNode(ComputeGraph *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const std::vector&lt; int &gt; &amp;shape, float *data, bool requires_grad, float *grad)</div><div class="ttdoc">Creates and adds a node to the computational graph based on the specified type.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00108">ComputeGraph.cu:108</a></div></div>
+<div class="line"><a class="code hl_friend" href="#a11f567efba2c857e64a88c411c5e6c54">CreateNode</a>(&amp;graph, <span class="stringliteral">&quot;Add&quot;</span>, <span class="stringliteral">&quot;add_node&quot;</span>, pre, shape, data, <span class="keyword">true</span>, <span class="keyword">nullptr</span>);  <span class="comment">// Create an &quot;Add&quot; node</span></div>
+<div class="ttc" id="aclassnz_1_1graph_1_1_compute_graph_html_a11f567efba2c857e64a88c411c5e6c54"><div class="ttname"><a href="#a11f567efba2c857e64a88c411c5e6c54">nz::graph::ComputeGraph::CreateNode</a></div><div class="ttdeci">friend DL_API void CreateNode(ComputeGraph *graph, const std::string &amp;type, const std::string &amp;name, std::vector&lt; int &gt; pre, const Tensor::shape_type &amp;shape, float *data, bool requires_grad, float *grad)</div><div class="ttdoc">Creates and adds a node to the computational graph based on the specified type.</div><div class="ttdef"><b>Definition</b> <a href="_compute_graph_8cu_source.html#l00108">ComputeGraph.cu:108</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">ComputeGraph</a> for more details on <a class="el" href="namespacenz_1_1graph.html" title="Contains classes and functions for managing and executing computation graphs in deep learning workflo...">graph</a> structure and node management. </dd>
 <dd>
 <a class="el" href="classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph.">nodes::Node</a> for information on individual node types and their operations.</dd></dl>

@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Hard Swish activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_swish_node.html" title="Represents a Hard Swish activation function node in a computational graph.">HardSwishNode</a></code> class applies the Hard Swish activation function to the input tensor. The Hard Swish function is a computationally efficient approximation of the Swish function and is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">HardSwish</a>(x) = x * max(0, min(1, alpha * x + beta))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_aef9c028ed356b5684e103639bb23bcf0"><div class="ttname"><a href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">nz::krnl::HardSwish</a></div><div class="ttdeci">void HardSwish(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00387">OperationKernels.cu:387</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_aef9c028ed356b5684e103639bb23bcf0"><div class="ttname"><a href="namespacenz_1_1krnl.html#aef9c028ed356b5684e103639bb23bcf0">nz::krnl::HardSwish</a></div><div class="ttdeci">void HardSwish(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00443">OperationKernels.cu:443</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> and <code>beta</code> control the slope and offset of the linear part of the function.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Hard Swish activation function element-wise to the input tensor, blending the input with a clipped linear function.</li>
@@ -139,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md61"></a>
+<h3><a class="anchor" id="autotoc_md64"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using HardSwishNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -298,6 +298,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="430,44,462,39,463,44,431,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="478,72,663,115"/>
 <area shape="poly" title=" " alt="" coords="431,71,463,76,462,81,430,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="711,39,897,81"/>
+<area shape="poly" title=" " alt="" coords="663,77,695,73,696,78,664,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="711,105,897,148"/>
+<area shape="poly" title=" " alt="" coords="664,104,696,109,695,114,663,109"/>
 </map>
 </div>
 
@@ -366,6 +370,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="372,47,404,41,405,47,373,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="420,72,605,115"/>
 <area shape="poly" title=" " alt="" coords="373,68,405,73,404,79,372,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="653,39,839,81"/>
+<area shape="poly" title=" " alt="" coords="605,77,637,73,638,78,606,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="653,105,839,148"/>
+<area shape="poly" title=" " alt="" coords="606,104,638,109,637,114,605,109"/>
 </map>
 </div>
 

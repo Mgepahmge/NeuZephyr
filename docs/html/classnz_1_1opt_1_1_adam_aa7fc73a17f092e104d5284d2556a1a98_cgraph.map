@@ -2,13 +2,17 @@
 <area shape="rect" id="Node000001" title="Performs a single optimization step using the Adam algorithm." alt="" coords="5,39,142,65"/>
 <area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a2b9ab840eeb0e74f4b78277a046b3a07" title="Kernel function to apply Adam optimization." alt="" coords="374,13,480,40"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,44,358,29,359,34,142,50"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,64,326,91"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#ad220de56b18c404611f07f2290cd7e9d" title="Fills the tensor&#39;s data with a specified value." alt="" coords="190,64,326,91"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,59,174,63,174,68,142,64"/>
 <area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="528,5,714,48"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="481,24,513,24,513,29,481,29"/>
-<area shape="rect" id="Node000005" href="$namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="382,64,472,91"/>
+<area shape="rect" id="Node000005" href="$namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value." alt="" coords="382,64,472,91"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="326,75,367,75,367,80,326,80"/>
 <area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="472,63,522,50,523,55,473,68"/>
 <area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="528,72,714,115"/>
 <area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="473,78,513,82,513,87,472,84"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="762,39,947,81"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="714,77,746,73,746,78,715,83"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="762,105,947,148"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="715,104,746,109,746,114,714,109"/>
 </map>

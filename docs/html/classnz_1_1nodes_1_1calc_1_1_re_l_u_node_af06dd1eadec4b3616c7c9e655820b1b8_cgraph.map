@@ -6,4 +6,8 @@
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,45,433,40,434,45,402,50"/>
 <area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="449,72,634,115"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="402,70,434,75,433,80,401,75"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="682,39,868,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="634,77,666,73,667,78,635,83"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="682,105,868,148"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="635,104,667,109,666,114,634,109"/>
 </map>

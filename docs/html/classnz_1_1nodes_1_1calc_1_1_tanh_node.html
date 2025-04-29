@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a hyperbolic tangent (tanh) activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_tanh_node.html" title="Represents a hyperbolic tangent (tanh) activation function node in a computational graph.">TanhNode</a></code> class applies the hyperbolic tangent (tanh) activation function to the input tensor. The tanh function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#aeb7d10939b25508e0b5db1fe44f4b467">Tanh</a>(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_aeb7d10939b25508e0b5db1fe44f4b467"><div class="ttname"><a href="namespacenz_1_1krnl.html#aeb7d10939b25508e0b5db1fe44f4b467">nz::krnl::Tanh</a></div><div class="ttdeci">void Tanh(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Tanh activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00233">OperationKernels.cu:233</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_aeb7d10939b25508e0b5db1fe44f4b467"><div class="ttname"><a href="namespacenz_1_1krnl.html#aeb7d10939b25508e0b5db1fe44f4b467">nz::krnl::Tanh</a></div><div class="ttdeci">void Tanh(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Tanh activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00287">OperationKernels.cu:287</a></div></div>
 </div><!-- fragment --><p> It maps input values to the range (-1, 1) and is commonly used in neural networks for non-linear activation.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the tanh activation function element-wise to the input tensor, mapping values to the range (-1, 1).</li>
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md56"></a>
+<h3><a class="anchor" id="autotoc_md59"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using TanhNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -269,6 +269,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="389,45,421,40,422,46,390,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="437,72,622,115"/>
 <area shape="poly" title=" " alt="" coords="390,69,422,74,421,80,389,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="670,39,856,81"/>
+<area shape="poly" title=" " alt="" coords="622,77,654,73,655,78,623,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="670,105,856,148"/>
+<area shape="poly" title=" " alt="" coords="623,104,655,109,654,114,622,109"/>
 </map>
 </div>
 
@@ -324,6 +328,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="331,49,363,43,364,48,332,54"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="379,72,564,115"/>
 <area shape="poly" title=" " alt="" coords="332,66,364,72,363,77,331,71"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="612,39,798,81"/>
+<area shape="poly" title=" " alt="" coords="564,77,596,73,597,78,565,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="612,105,798,148"/>
+<area shape="poly" title=" " alt="" coords="565,104,597,109,596,114,564,109"/>
 </map>
 </div>
 

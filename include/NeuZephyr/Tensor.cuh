@@ -853,6 +853,76 @@ namespace nz::data {
         Tensor operator-() const;
 
         /**
+         * @brief Checks if two Tensor objects are equal.
+         *
+         * @param other The other Tensor object to compare with. Memory flow: device - to - host (data is copied from device to host for comparison).
+         *
+         * @return Returns true if the two Tensor objects are equal, false otherwise.
+         *
+         * This function compares two Tensor objects for equality. First, it checks if the `_requires_grad` flags of the two Tensors are the same. If they differ, the function immediately returns false. Then, it compares the shapes of the two Tensors. If the shapes are not equal, the function also returns false.
+         *
+         * After that, it allocates host memory for temporary storage of the data from the device memory of both Tensors. It copies the data from the device to the host and compares each element one by one. If any element in the data differs, it frees the allocated host memory and returns false.
+         *
+         * If the `_requires_grad` flag is set to true, it repeats the same process for the gradients of the Tensors. If any element in the gradients differs, it frees the allocated host memory and returns false.
+         *
+         * Finally, if all comparisons pass, it frees the allocated host memory and returns true.
+         *
+         * **Memory Management Strategy**:
+         * - Two arrays `temp` and `temp_other` of size `_size` are dynamically allocated on the host using `new[]`. They are freed using `delete[]` either when a difference is found or at the end of the function.
+         *
+         * **Exception Handling Mechanism**:
+         * - The CUDA memory copy operations (`cudaMemcpy`) may return error codes indicating failures. It is assumed that the calling code or the CUDA runtime will handle these errors appropriately.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `_requires_grad`, `_shape`, `_size`, `_data`, and `_grad` members of the `Tensor` class.
+         * - Uses CUDA memory copy operations (`cudaMemcpy`) to transfer data from device to host.
+         *
+         * @note
+         * - Be aware of potential CUDA errors during memory copy operations and handle them appropriately in the calling code.
+         * - The function has a time complexity of O(n), where n is the number of elements in the Tensor, due to the element - by - element comparison.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor1; // Assume Tensor1 is properly initialized
+         * Tensor tensor2; // Assume Tensor2 is properly initialized
+         * bool isEqual = tensor1 == tensor2;
+         * ```
+         * @endcode
+         */
+        bool operator==(const Tensor& other) const;
+
+        /**
+         * @brief Checks if two Tensor objects are not equal.
+         *
+         * @param other The other Tensor object to compare with. Memory flow: device - to - host (the comparison in the `operator==` function may involve data transfer from device to host).
+         *
+         * @return Returns true if the two Tensor objects are not equal, false otherwise.
+         *
+         * This function checks the inequality of two Tensor objects. It simply negates the result of the `operator==` function. So, it relies on the implementation of the `operator==` to determine the equality of the two Tensors.
+         *
+         * **Memory Management Strategy**:
+         * - All memory management related to the comparison is handled by the `operator==` function. This function itself does not allocate or free any memory.
+         *
+         * **Exception Handling Mechanism**:
+         * - Any exceptions that may occur during the comparison are handled by the `operator==` function. This function does not have its own exception handling mechanism.
+         *
+         * **Relationship with Other Components**:
+         * - Depends entirely on the `operator==` function of the `Tensor` class.
+         *
+         * @note
+         * - The time complexity of this function is the same as that of the `operator==` function, which is O(n) where n is the number of elements in the Tensor.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor1; // Assume Tensor1 is properly initialized
+         * Tensor tensor2; // Assume Tensor2 is properly initialized
+         * bool isNotEqual = tensor1 != tensor2;
+         * ```
+         * @endcode
+         */
+        bool operator!=(const Tensor& other) const;
+
+        /**
          * @brief Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.
          *
          * This function computes the reciprocal (1/x) of each element in the tensor and stores the results

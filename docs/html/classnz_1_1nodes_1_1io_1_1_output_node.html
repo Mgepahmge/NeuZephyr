@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <li>The backward pass simply sets the gradient to 1, which is appropriate for the output layer of a neural network where the loss gradient is propagated back.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md46"></a>
+<h3><a class="anchor" id="autotoc_md49"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1nodes_1_1io_1_1_input_node.html">InputNode</a> input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3} and requires gradients</span></div>
 <div class="line">input.output-&gt;fill(1.0f);  <span class="comment">// Fill the input tensor with 1.0</span></div>

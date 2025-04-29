@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_leaky_re_l_u_node.html" title="Represents a Leaky Rectified Linear Unit (LeakyReLU) activation function node in a computational grap...">LeakyReLUNode</a></code> class applies the Leaky ReLU activation function to the input tensor. Unlike the standard ReLU, Leaky ReLU allows a small, non-zero gradient for negative input values. The function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a04246c5218530f789a0ed4811b7ef3f3">LeakyReLU</a>(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
 <div class="line">               alpha * x, <span class="keywordflow">if</span> x &lt;= 0</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a04246c5218530f789a0ed4811b7ef3f3"><div class="ttname"><a href="namespacenz_1_1krnl.html#a04246c5218530f789a0ed4811b7ef3f3">nz::krnl::LeakyReLU</a></div><div class="ttdeci">void LeakyReLU(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.01f)</div><div class="ttdoc">Kernel function to apply the Leaky ReLU activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00259">OperationKernels.cu:259</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a04246c5218530f789a0ed4811b7ef3f3"><div class="ttname"><a href="namespacenz_1_1krnl.html#a04246c5218530f789a0ed4811b7ef3f3">nz::krnl::LeakyReLU</a></div><div class="ttdeci">void LeakyReLU(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.01f)</div><div class="ttdoc">Kernel function to apply the Leaky ReLU activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00313">OperationKernels.cu:313</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> is a small constant that determines the slope for negative values.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Leaky ReLU activation function element-wise to the input tensor. Positive values remain unchanged, while negative values are scaled by <code>alpha</code>.</li>
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md57"></a>
+<h3><a class="anchor" id="autotoc_md60"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using LeakyReLUNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -278,6 +278,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="423,44,455,39,456,44,424,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="471,72,656,115"/>
 <area shape="poly" title=" " alt="" coords="424,71,456,76,455,81,423,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="704,39,890,81"/>
+<area shape="poly" title=" " alt="" coords="656,77,688,73,689,78,657,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="704,105,890,148"/>
+<area shape="poly" title=" " alt="" coords="657,104,689,109,688,114,656,109"/>
 </map>
 </div>
 
@@ -333,6 +337,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="365,46,397,41,398,46,366,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="413,72,598,115"/>
 <area shape="poly" title=" " alt="" coords="366,68,398,74,397,79,365,74"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="646,39,832,81"/>
+<area shape="poly" title=" " alt="" coords="598,77,630,73,631,78,599,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="646,105,832,148"/>
+<area shape="poly" title=" " alt="" coords="599,104,631,109,630,114,598,109"/>
 </map>
 </div>
 

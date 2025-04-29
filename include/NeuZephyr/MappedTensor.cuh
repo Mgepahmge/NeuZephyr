@@ -1038,6 +1038,76 @@ namespace nz::data {
         MappedTensor operator-() const;
 
         /**
+         * @brief Checks if two MappedTensor objects are equal.
+         *
+         * @param other The other MappedTensor object to compare with. Memory flow: direct access from host memory.
+         *
+         * @return Returns true if the two MappedTensor objects are equal, false otherwise.
+         *
+         * This function compares two MappedTensor objects for equality. First, it checks if the `_requires_grad` flags of the two MappedTensors are the same. If they differ, the function immediately returns false. Then, it compares the shapes of the two MappedTensors. If the shapes are not equal, the function also returns false.
+         *
+         * After that, it compares each element of the data arrays of the two MappedTensors one by one. If any element in the data differs, it returns false.
+         *
+         * If the `_requires_grad` flag is set to true, it repeats the same process for the gradients of the MappedTensors. If any element in the gradients differs, it returns false.
+         *
+         * Finally, if all comparisons pass, it returns true.
+         *
+         * **Memory Management Strategy**:
+         * - This function does not allocate or free any memory. It directly accesses the `_data` and `_grad` arrays of the MappedTensor objects.
+         *
+         * **Exception Handling Mechanism**:
+         * - This function does not have a specific exception handling mechanism. It assumes that the `_data` and `_grad` arrays are properly initialized and have the correct size.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `_requires_grad`, `_shape`, `_size`, `_data`, and `_grad` members of the `MappedTensor` class.
+         *
+         * @note
+         * - Ensure that the `_data` and `_grad` arrays of the MappedTensor objects are properly initialized before calling this function.
+         * - The function has a time complexity of O(n), where n is the number of elements in the MappedTensor, due to the element - by - element comparison.
+         *
+         * @code
+         * ```cpp
+         * MappedTensor tensor1; // Assume MappedTensor1 is properly initialized
+         * MappedTensor tensor2; // Assume MappedTensor2 is properly initialized
+         * bool isEqual = tensor1 == tensor2;
+         * ```
+         * @endcode
+         */
+        bool operator==(const MappedTensor& other) const;
+
+        /**
+         * @brief Checks if two MappedTensor objects are not equal.
+         *
+         * @param other The other MappedTensor object to compare with. Memory flow: direct access from host memory (as the underlying `operator==` function accesses data in host memory).
+         *
+         * @return Returns true if the two MappedTensor objects are not equal, false otherwise.
+         *
+         * This function determines the non - equality of two MappedTensor objects. It achieves this by negating the result of the `operator==` function. Thus, its behavior is entirely dependent on the implementation of the `operator==` function for MappedTensor.
+         *
+         * **Memory Management Strategy**:
+         * - This function does not allocate or free any memory. All memory - related operations are handled by the `operator==` function.
+         *
+         * **Exception Handling Mechanism**:
+         * - Any exceptions that may occur during the comparison are handled by the `operator==` function. This function does not have its own exception - handling logic.
+         *
+         * **Relationship with Other Components**:
+         * - It depends solely on the `operator==` function of the `MappedTensor` class.
+         *
+         * @note
+         * - The time complexity of this function is the same as that of the `operator==` function, which is O(n), where n is the number of elements in the MappedTensor.
+         * - Ensure that the `operator==` function of `MappedTensor` is correctly implemented, as this function relies on it for the comparison.
+         *
+         * @code
+         * ```cpp
+         * MappedTensor tensor1; // Assume MappedTensor1 is properly initialized
+         * MappedTensor tensor2; // Assume MappedTensor2 is properly initialized
+         * bool isNotEqual = tensor1 != tensor2;
+         * ```
+         * @endcode
+         */
+        bool operator!=(const MappedTensor& other) const;
+
+        /**
          * @brief Perform element-wise division between two MappedTensors.
          *
          * @param other The MappedTensor to divide the current MappedTensor by (host-to-host).

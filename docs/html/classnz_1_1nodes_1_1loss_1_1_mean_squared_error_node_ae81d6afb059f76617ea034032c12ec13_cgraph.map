@@ -1,19 +1,26 @@
 <map id="nz::nodes::loss::MeanSquaredErrorNode::forward" name="nz::nodes::loss::MeanSquaredErrorNode::forward">
-<area shape="rect" id="Node000001" title="Computes the forward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,144,204,187"/>
+<area shape="rect" id="Node000001" title="Computes the forward pass of the Mean Squared Error (MSE) loss function." alt="" coords="5,152,204,195"/>
 <area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="252,5,437,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,141,186,104,250,64,274,52,276,57,253,69,189,108,136,146"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="485,48,670,91"/>
-<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="203,143,469,88,470,94,204,148"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="485,132,670,175"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="204,160,252,159,469,153,469,159,252,164,204,165"/>
-<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="252,173,437,216"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="204,175,237,179,236,184,204,180"/>
-<area shape="rect" id="Node000006" href="$namespacenz_1_1krnl.html#af76ce6a930db4def5ceb51350af72f3c" title="Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values." alt="" coords="254,240,434,267"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="153,185,253,225,275,233,273,238,251,231,151,190"/>
-<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="252,291,437,333"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="131,185,185,230,253,276,263,282,261,286,250,281,181,235,127,189"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="438,41,470,47,469,52,437,46"/>
-<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="402,237,436,226,483,204,526,180,529,185,485,209,438,230,404,242"/>
-<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="485,232,670,275"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="435,251,469,251,469,256,435,256"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,149,184,108,250,64,273,53,275,57,253,69,187,112,134,154"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="485,35,670,77"/>
+<area shape="poly" id="edge14_Node000001_Node000003" title=" " alt="" coords="148,149,197,128,251,108,363,82,469,65,470,70,364,87,252,113,199,132,150,154"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="485,181,670,224"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="204,177,470,193,469,199,204,182"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="252,123,437,165"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="204,159,236,155,237,160,204,164"/>
+<area shape="rect" id="Node000007" href="$namespacenz_1_1krnl.html#af76ce6a930db4def5ceb51350af72f3c" title="Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values." alt="" coords="254,240,434,267"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="171,193,288,232,287,237,170,198"/>
+<area shape="rect" id="Node000010" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="485,315,670,357"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="131,193,184,236,217,258,253,276,306,295,362,310,470,327,469,332,361,315,305,300,251,281,215,263,181,241,127,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="438,36,470,40,469,45,437,41"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="718,248,904,291"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="437,136,491,136,551,140,612,150,671,167,702,181,730,198,778,235,775,240,727,202,699,185,669,172,611,155,550,146,491,141,437,141"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="409,237,469,224,470,229,410,242"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="485,248,670,291"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="435,257,469,259,469,265,435,262"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="671,267,703,267,703,272,671,272"/>
+<area shape="rect" id="Node000009" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="718,315,904,357"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="655,289,720,307,718,312,654,294"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="654,312,718,293,720,298,655,317"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="671,333,703,333,703,339,671,339"/>
 </map>

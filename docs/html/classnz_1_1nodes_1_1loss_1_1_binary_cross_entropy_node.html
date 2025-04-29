@@ -158,7 +158,7 @@ Public Member Functions</h2></td></tr>
 <li>The gradients are stored in the <code>grad</code> attribute of the output tensor during the backward pass.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md64"></a>
+<h3><a class="anchor" id="autotoc_md67"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using BinaryCrossEntropyNode in a computational graph</span></div>
 <div class="line">InputNode input1({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create the first input node (predicted probabilities)</span></div>
@@ -301,6 +301,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="402,45,434,40,435,46,403,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="450,72,635,115"/>
 <area shape="poly" title=" " alt="" coords="403,69,435,74,434,80,402,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="683,39,869,81"/>
+<area shape="poly" title=" " alt="" coords="635,77,667,73,668,78,636,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="683,105,869,148"/>
+<area shape="poly" title=" " alt="" coords="636,104,668,109,667,114,635,109"/>
 </map>
 </div>
 
@@ -357,23 +361,30 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1loss_1_1_binary_cross_entropy_node_afccd1a1a1207379dbfb648d0cbc3aab4_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1loss_1_1_binary_cross_entropy_node_afccd1a1a1207379dbfb648d0cbc3aab4_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1loss_1_1_binary_cross_entropy_node_afccd1a1a1207379dbfb648d0cbc3aab4_cgraph" id="aclassnz_1_1nodes_1_1loss_1_1_binary_cross_entropy_node_afccd1a1a1207379dbfb648d0cbc3aab4_cgraph">
-<area shape="rect" title="Computes the Binary Cross&#45;Entropy (BCE) loss in the forward pass." alt="" coords="5,144,196,187"/>
+<area shape="rect" title="Computes the Binary Cross&#45;Entropy (BCE) loss in the forward pass." alt="" coords="5,132,196,175"/>
 <area shape="rect" href="namespacenz_1_1krnl.html#abf927faf0950fbc215564c67b8ac57be" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="244,64,433,91"/>
-<area shape="poly" title=" " alt="" coords="145,141,243,100,265,93,267,98,245,105,148,146"/>
+<area shape="poly" title=" " alt="" coords="169,129,279,93,280,98,171,134"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="481,5,666,48"/>
-<area shape="poly" title=" " alt="" coords="119,142,171,93,205,69,243,50,298,32,356,22,413,17,465,17,466,22,413,23,357,28,299,38,245,54,208,73,174,97,123,146"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="246,115,431,157"/>
-<area shape="poly" title=" " alt="" coords="196,151,230,147,231,152,196,156"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="481,156,666,199"/>
-<area shape="poly" title=" " alt="" coords="196,165,244,167,466,172,465,178,244,172,196,171"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="246,232,431,275"/>
-<area shape="poly" title=" " alt="" coords="162,185,265,224,263,229,160,190"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="246,299,431,341"/>
-<area shape="poly" title=" " alt="" coords="124,185,176,234,210,261,245,284,254,289,252,294,242,289,206,265,173,238,120,189"/>
+<area shape="poly" title=" " alt="" coords="122,129,174,87,207,66,243,50,298,34,356,24,465,18,466,23,357,29,300,39,245,54,210,71,177,91,126,133"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="246,216,431,259"/>
+<area shape="poly" title=" " alt="" coords="164,173,262,208,261,213,162,178"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="481,209,666,252"/>
+<area shape="poly" title=" " alt="" coords="197,164,433,201,466,207,465,212,433,207,196,169"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="246,283,431,325"/>
+<area shape="poly" title=" " alt="" coords="125,173,177,220,210,246,245,268,254,273,252,278,242,273,207,250,174,225,121,177"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="481,139,666,181"/>
+<area shape="poly" title=" " alt="" coords="196,152,465,156,465,161,196,157"/>
 <area shape="poly" title=" " alt="" coords="403,61,465,47,466,52,404,66"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="481,72,666,115"/>
 <area shape="poly" title=" " alt="" coords="434,81,466,83,465,89,433,86"/>
-<area shape="poly" title=" " alt="" coords="432,150,466,156,465,161,431,155"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="714,139,900,181"/>
+<area shape="poly" title=" " alt="" coords="651,113,716,131,714,136,650,118"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="714,72,900,115"/>
+<area shape="poly" title=" " alt="" coords="667,91,699,91,699,96,667,96"/>
+<area shape="poly" title=" " alt="" coords="432,232,465,231,465,236,432,237"/>
+<area shape="poly" title=" " alt="" coords="431,303,486,300,545,293,607,280,665,262,695,247,724,229,771,190,775,194,727,233,698,252,667,266,608,285,546,298,486,305,432,308"/>
+<area shape="poly" title=" " alt="" coords="667,157,699,157,699,163,667,163"/>
+<area shape="poly" title=" " alt="" coords="650,136,714,117,716,122,651,141"/>
 </map>
 </div>
 

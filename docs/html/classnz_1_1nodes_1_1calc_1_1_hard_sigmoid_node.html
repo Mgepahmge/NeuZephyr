@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Hard Sigmoid activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_sigmoid_node.html" title="Represents a Hard Sigmoid activation function node in a computational graph.">HardSigmoidNode</a></code> class applies the Hard Sigmoid activation function to the input tensor. The Hard Sigmoid function is a computationally efficient approximation of the sigmoid function and is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a52e449285e560185378234aecaf2f87c">HardSigmoid</a>(x) = max(0, min(1, alpha * x + beta))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a52e449285e560185378234aecaf2f87c"><div class="ttname"><a href="namespacenz_1_1krnl.html#a52e449285e560185378234aecaf2f87c">nz::krnl::HardSigmoid</a></div><div class="ttdeci">void HardSigmoid(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00346">OperationKernels.cu:346</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a52e449285e560185378234aecaf2f87c"><div class="ttname"><a href="namespacenz_1_1krnl.html#a52e449285e560185378234aecaf2f87c">nz::krnl::HardSigmoid</a></div><div class="ttdeci">void HardSigmoid(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00401">OperationKernels.cu:401</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> and <code>beta</code> control the slope and offset, respectively.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Hard Sigmoid activation function element-wise to the input tensor, mapping values to the range [0, 1] with linear interpolation.</li>
@@ -141,7 +141,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md60"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using HardSigmoidNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -284,6 +284,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="451,43,484,39,485,44,452,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="500,72,685,115"/>
 <area shape="poly" title=" " alt="" coords="452,71,485,76,484,81,451,77"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="733,39,919,81"/>
+<area shape="poly" title=" " alt="" coords="685,77,717,73,718,78,686,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="733,105,919,148"/>
+<area shape="poly" title=" " alt="" coords="686,104,718,109,717,114,685,109"/>
 </map>
 </div>
 
@@ -342,6 +346,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="394,46,426,41,427,46,395,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="442,72,627,115"/>
 <area shape="poly" title=" " alt="" coords="395,69,427,74,426,79,394,74"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="675,39,861,81"/>
+<area shape="poly" title=" " alt="" coords="627,77,659,73,660,78,628,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="675,105,861,148"/>
+<area shape="poly" title=" " alt="" coords="628,104,660,109,659,114,627,109"/>
 </map>
 </div>
 

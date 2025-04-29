@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Sigmoid activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_sigmoid_node.html" title="Represents a Sigmoid activation function node in a computational graph.">SigmoidNode</a></code> class applies the Sigmoid activation function to the input tensor. The Sigmoid function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a21bbbcf6d97bfaccc828ce7736814bd4">Sigmoid</a>(x) = 1 / (1 + exp(-x))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a21bbbcf6d97bfaccc828ce7736814bd4"><div class="ttname"><a href="namespacenz_1_1krnl.html#a21bbbcf6d97bfaccc828ce7736814bd4">nz::krnl::Sigmoid</a></div><div class="ttdeci">void Sigmoid(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00207">OperationKernels.cu:207</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a21bbbcf6d97bfaccc828ce7736814bd4"><div class="ttname"><a href="namespacenz_1_1krnl.html#a21bbbcf6d97bfaccc828ce7736814bd4">nz::krnl::Sigmoid</a></div><div class="ttdeci">void Sigmoid(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00261">OperationKernels.cu:261</a></div></div>
 </div><!-- fragment --><p> It is commonly used in neural networks for binary classification tasks or as a gating mechanism in recurrent networks.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Sigmoid activation function element-wise to the input tensor, mapping values to the range (0, 1).</li>
@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <li>Efficient GPU computations are performed for both forward and backward passes.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md55"></a>
+<h3><a class="anchor" id="autotoc_md58"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Example: Using SigmoidNode in a computational graph</span></div>
 <div class="line">InputNode input({3, 3}, <span class="keyword">true</span>);  <span class="comment">// Create an input node with shape {3, 3}</span></div>
@@ -269,6 +269,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="396,44,428,40,429,45,397,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="444,72,629,115"/>
 <area shape="poly" title=" " alt="" coords="397,70,429,75,428,80,396,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="677,39,863,81"/>
+<area shape="poly" title=" " alt="" coords="629,77,661,73,662,78,630,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="677,105,863,148"/>
+<area shape="poly" title=" " alt="" coords="630,104,662,109,661,114,629,109"/>
 </map>
 </div>
 
@@ -324,6 +328,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="338,47,370,42,371,47,339,53"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="386,72,571,115"/>
 <area shape="poly" title=" " alt="" coords="339,67,371,73,370,78,338,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="619,39,805,81"/>
+<area shape="poly" title=" " alt="" coords="571,77,603,73,604,78,572,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="619,105,805,148"/>
+<area shape="poly" title=" " alt="" coords="572,104,604,109,603,114,571,109"/>
 </map>
 </div>
 

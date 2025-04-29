@@ -1,18 +1,25 @@
 <map id="nz::nodes::calc::SubNode::backward" name="nz::nodes::calc::SubNode::backward">
-<area shape="rect" id="Node000001" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,123,178,165"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="226,5,411,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,120,224,64,249,52,252,57,227,69,129,125"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="459,127,644,169"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,119,225,108,318,100,411,108,469,120,468,125,411,113,318,106,226,113,167,125"/>
-<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="226,123,411,165"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="178,141,210,141,210,147,178,147"/>
-<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="226,189,411,232"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="167,163,230,182,228,187,165,168"/>
-<area shape="rect" id="Node000007" href="$namespacenz_1_1krnl.html#af7069a420e81babb49b1bc009333d053" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="256,256,380,283"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,164,166,203,227,242,242,248,240,253,224,246,163,208,114,168"/>
+<area shape="rect" id="Node000001" title="Backward pass for the SubNode to propagate gradients." alt="" coords="5,131,178,173"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="226,12,411,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,128,224,76,257,60,259,64,227,81,133,132"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="459,72,644,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="178,132,225,124,443,99,444,105,226,129,178,137"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="226,252,411,295"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="133,171,227,223,263,242,260,247,224,228,130,176"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="459,205,644,248"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="179,166,226,175,444,209,443,214,225,180,178,171"/>
+<area shape="rect" id="Node000009" href="$namespacenz_1_1krnl.html#af7069a420e81babb49b1bc009333d053" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="256,139,380,165"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="178,149,241,149,241,155,178,155"/>
 <area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="459,5,644,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,24,443,24,443,29,411,29"/>
-<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="380,253,410,242,464,211,511,177,514,182,467,215,412,246,382,258"/>
-<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="459,248,644,291"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="381,267,444,267,444,272,381,272"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,28,443,27,444,32,412,33"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="692,205,878,248"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,272,523,268,644,257,688,249,689,255,645,263,523,274,411,277"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="645,224,677,224,677,229,645,229"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="692,139,878,181"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="628,202,692,184,694,189,629,207"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="374,136,449,116,450,122,375,141"/>
+<area shape="rect" id="Node000010" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="459,139,644,181"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="381,151,444,154,444,159,381,157"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="629,179,694,198,692,203,628,184"/>
+<area shape="poly" id="edge13_Node000010_Node000008" title=" " alt="" coords="645,157,677,157,677,163,645,163"/>
 </map>

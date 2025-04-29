@@ -129,7 +129,7 @@ Public Member Functions</h2></td></tr>
 <li>Ensure that the model parameters have been properly initialized, and gradients are computed before calling this method.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md69"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1opt_1_1_momentum.html">Momentum</a> optimizer(0.01, 0.9);</div>
 <div class="line">graph.update(&amp;optimizer); <span class="comment">// Suppose &quot;graph&quot; is a computation graph waiting for gradient updates;</span></div>
@@ -247,32 +247,39 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1opt_1_1_momentum_a9b8d15dc85293840cbd19e27a6bb52a6_cgraph.png" border="0" usemap="#aclassnz_1_1opt_1_1_momentum_a9b8d15dc85293840cbd19e27a6bb52a6_cgraph" alt=""/></div>
 <map name="aclassnz_1_1opt_1_1_momentum_a9b8d15dc85293840cbd19e27a6bb52a6_cgraph" id="aclassnz_1_1opt_1_1_momentum_a9b8d15dc85293840cbd19e27a6bb52a6_cgraph">
-<area shape="rect" title="Performs a single optimization step using the Momentum algorithm." alt="" coords="5,155,173,181"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="245,53,382,80"/>
-<area shape="poly" title=" " alt="" coords="113,152,161,125,220,96,253,83,255,88,222,101,164,130,115,157"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="687,45,873,88"/>
-<area shape="poly" title=" " alt="" coords="97,153,116,127,143,94,179,63,220,39,280,19,344,8,408,3,472,4,593,18,692,38,691,44,592,23,472,9,409,9,345,13,282,25,222,44,182,67,147,98,120,130,101,156"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="221,205,406,248"/>
-<area shape="poly" title=" " alt="" coords="144,179,215,198,214,204,142,185"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="221,272,406,315"/>
-<area shape="poly" title=" " alt="" coords="108,180,158,217,222,258,233,263,231,268,219,262,155,222,105,184"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="221,339,406,381"/>
-<area shape="poly" title=" " alt="" coords="100,181,147,249,182,289,222,325,229,329,226,333,219,329,178,293,142,252,96,184"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a273ef3023442a864f1028becaf236bae" title="Kernel function to apply Momentum optimization." alt="" coords="478,104,615,131"/>
-<area shape="poly" title=" " alt="" coords="173,156,220,151,462,124,463,129,221,156,173,161"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#aeec286d5351eee7061e151470adb4eef" title="Kernel function to perform Stochastic Gradient Descent (SGD) optimization." alt="" coords="455,155,638,197"/>
-<area shape="poly" title=" " alt="" coords="173,167,439,172,439,177,173,172"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="502,53,591,80"/>
-<area shape="poly" title=" " alt="" coords="382,64,487,64,487,69,382,69"/>
-<area shape="poly" title=" " alt="" coords="592,64,672,64,672,69,592,69"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="687,112,873,155"/>
-<area shape="poly" title=" " alt="" coords="592,76,640,90,692,105,691,110,639,95,591,81"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="454,221,639,264"/>
-<area shape="poly" title=" " alt="" coords="407,230,439,233,438,238,406,236"/>
-<area shape="poly" title=" " alt="" coords="611,101,671,88,672,93,612,106"/>
-<area shape="poly" title=" " alt="" coords="616,119,672,123,672,129,616,125"/>
-<area shape="poly" title=" " alt="" coords="615,152,638,141,652,130,661,120,671,109,686,98,695,93,698,97,689,102,675,113,665,123,656,134,641,145,618,157"/>
-<area shape="poly" title=" " alt="" coords="638,157,671,151,672,156,639,162"/>
+<area shape="rect" title="Performs a single optimization step using the Momentum algorithm." alt="" coords="5,181,173,208"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#ad220de56b18c404611f07f2290cd7e9d" title="Fills the tensor&#39;s data with a specified value." alt="" coords="245,236,382,263"/>
+<area shape="poly" title=" " alt="" coords="147,206,242,229,240,234,146,211"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="687,115,873,157"/>
+<area shape="poly" title=" " alt="" coords="120,178,167,160,220,143,336,115,428,101,521,100,640,108,672,112,672,117,639,113,521,105,428,107,337,120,221,148,169,165,122,183"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="221,341,406,384"/>
+<area shape="poly" title=" " alt="" coords="103,206,152,260,185,292,222,320,241,332,238,336,219,325,182,296,148,264,99,210"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="221,5,406,48"/>
+<area shape="poly" title=" " alt="" coords="99,179,148,125,182,93,219,64,238,53,241,58,222,69,185,97,152,129,103,183"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="687,248,873,291"/>
+<area shape="poly" title=" " alt="" coords="108,206,156,241,188,259,221,272,280,286,340,295,461,302,575,297,672,286,672,291,575,302,461,307,339,300,279,291,220,277,186,264,154,246,105,211"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a273ef3023442a864f1028becaf236bae" title="Kernel function to apply Momentum optimization." alt="" coords="478,123,615,149"/>
+<area shape="poly" title=" " alt="" coords="173,180,220,173,462,143,463,148,221,179,173,185"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#aeec286d5351eee7061e151470adb4eef" title="Kernel function to perform Stochastic Gradient Descent (SGD) optimization." alt="" coords="455,173,638,216"/>
+<area shape="poly" title=" " alt="" coords="173,192,439,192,439,197,173,197"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value." alt="" coords="502,240,591,267"/>
+<area shape="poly" title=" " alt="" coords="382,248,487,250,487,255,382,253"/>
+<area shape="poly" title=" " alt="" coords="591,244,615,237,638,226,653,212,661,198,670,183,686,167,692,163,695,167,689,171,674,186,666,200,657,215,641,230,617,242,592,249"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="687,181,873,224"/>
+<area shape="poly" title=" " alt="" coords="591,241,671,223,673,229,593,246"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="921,181,1106,224"/>
+<area shape="poly" title=" " alt="" coords="873,200,905,200,905,205,873,205"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="921,248,1106,291"/>
+<area shape="poly" title=" " alt="" coords="858,222,922,241,921,246,856,227"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="454,341,639,384"/>
+<area shape="poly" title=" " alt="" coords="406,360,438,360,438,365,406,365"/>
+<area shape="poly" title=" " alt="" coords="407,23,506,27,624,39,751,62,813,79,874,100,932,132,980,169,977,173,929,136,872,105,812,84,750,67,623,44,505,33,406,28"/>
+<area shape="poly" title=" " alt="" coords="856,245,921,226,922,231,858,250"/>
+<area shape="poly" title=" " alt="" coords="873,267,905,267,905,272,873,272"/>
+<area shape="poly" title=" " alt="" coords="616,133,672,133,672,139,616,139"/>
+<area shape="poly" title=" " alt="" coords="599,147,640,159,692,174,691,179,639,164,598,152"/>
+<area shape="poly" title=" " alt="" coords="633,170,677,159,678,164,635,175"/>
+<area shape="poly" title=" " alt="" coords="639,195,672,196,672,202,638,200"/>
 </map>
 </div>
 

@@ -469,6 +469,46 @@ namespace nz::data {
         return result;
     }
 
+    bool Tensor::operator==(const Tensor& other) const {
+        if (_requires_grad != other._requires_grad) {
+            return false;
+        }
+        if (_shape != other._shape) {
+            return false;
+        }
+        this->sync();
+        other.sync();
+        auto* temp = new value_type[_size];
+        auto* temp_other = new value_type[_size];
+        cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+        cudaMemcpy(temp_other, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+        for (auto i = 0; i < _size; i++) {
+            if (temp[i] != temp_other[i]) {
+                delete[] temp;
+                delete[] temp_other;
+                return false;
+            }
+        }
+        if (_requires_grad) {
+            cudaMemcpy(temp, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+            cudaMemcpy(temp_other, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+            for (auto i = 0; i < _size; i++) {
+                if (temp[i] != temp_other[i]) {
+                    delete[] temp;
+                    delete[] temp_other;
+                    return false;
+                }
+            }
+        }
+        delete[] temp;
+        delete[] temp_other;
+        return true;
+    }
+
+    bool Tensor::operator!=(const Tensor& other) const {
+        return !(*this == other);
+    }
+
     void Tensor::recip() const {
         value_type* data;
         cuStrm::StreamManager<value_type>::Instance().malloc(&data, _size * sizeof(value_type));

@@ -75,18 +75,18 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a91159bb65d34c90ea5e2aa24e6000b67" id="r_a91159bb65d34c90ea5e2aa24e6000b67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91159bb65d34c90ea5e2aa24e6000b67">MatrixAdd</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n)</td></tr>
-<tr class="memdesc:a91159bb65d34c90ea5e2aa24e6000b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix addition on GPU.  <br /></td></tr>
-<tr class="separator:a91159bb65d34c90ea5e2aa24e6000b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab734a94d5e3a554abc268b9e51d14d99" id="r_ab734a94d5e3a554abc268b9e51d14d99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab734a94d5e3a554abc268b9e51d14d99">MatrixSub</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n)</td></tr>
-<tr class="memdesc:ab734a94d5e3a554abc268b9e51d14d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix subtraction on GPU.  <br /></td></tr>
-<tr class="separator:ab734a94d5e3a554abc268b9e51d14d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d79f34a712e1bb45d5fedeb110e5ede" id="r_a6d79f34a712e1bb45d5fedeb110e5ede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d79f34a712e1bb45d5fedeb110e5ede">GeneralMatrixMul</a> (dim3 gridDim, dim3 blockDim, float *A, float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</td></tr>
-<tr class="memdesc:a6d79f34a712e1bb45d5fedeb110e5ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores.  <br /></td></tr>
-<tr class="separator:a6d79f34a712e1bb45d5fedeb110e5ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab60755999eaf6e6cd99e65a73890f50c" id="r_ab60755999eaf6e6cd99e65a73890f50c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab60755999eaf6e6cd99e65a73890f50c">Transpose</a> (dim3 gridDim, dim3 blockDim, float *d_A, float *d_B, unsigned int rows, unsigned int cols)</td></tr>
-<tr class="memdesc:ab60755999eaf6e6cd99e65a73890f50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to transpose a matrix on the GPU.  <br /></td></tr>
-<tr class="separator:ab60755999eaf6e6cd99e65a73890f50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97cda6dfc6545efaee2b686eed9ae766" id="r_a97cda6dfc6545efaee2b686eed9ae766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97cda6dfc6545efaee2b686eed9ae766">MatrixAdd</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n, size_t offset_c=0, size_t offset_a=0, size_t offset_b=0)</td></tr>
+<tr class="memdesc:a97cda6dfc6545efaee2b686eed9ae766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix addition on GPU.  <br /></td></tr>
+<tr class="separator:a97cda6dfc6545efaee2b686eed9ae766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad18a2b0efc0cdfc9cb861396ad4da53f" id="r_ad18a2b0efc0cdfc9cb861396ad4da53f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad18a2b0efc0cdfc9cb861396ad4da53f">MatrixSub</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n, size_t offset_c=0, size_t offset_a=0, size_t offset_b=0)</td></tr>
+<tr class="memdesc:ad18a2b0efc0cdfc9cb861396ad4da53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix subtraction on GPU.  <br /></td></tr>
+<tr class="separator:ad18a2b0efc0cdfc9cb861396ad4da53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae30a6e1de69588aa0c6eb8a5b8e6e826" id="r_ae30a6e1de69588aa0c6eb8a5b8e6e826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae30a6e1de69588aa0c6eb8a5b8e6e826">GeneralMatrixMul</a> (dim3 gridDim, dim3 blockDim, float *A, float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K, size_t offset_c=0, size_t offset_a=0, size_t offset_b=0)</td></tr>
+<tr class="memdesc:ae30a6e1de69588aa0c6eb8a5b8e6e826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores.  <br /></td></tr>
+<tr class="separator:ae30a6e1de69588aa0c6eb8a5b8e6e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe3f38f788c735b7eb718443eb0fd094" id="r_afe3f38f788c735b7eb718443eb0fd094"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe3f38f788c735b7eb718443eb0fd094">Transpose</a> (dim3 gridDim, dim3 blockDim, float *d_A, float *d_B, unsigned int rows, unsigned int cols, size_t offset=0)</td></tr>
+<tr class="memdesc:afe3f38f788c735b7eb718443eb0fd094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to transpose a matrix on the GPU.  <br /></td></tr>
+<tr class="separator:afe3f38f788c735b7eb718443eb0fd094"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af716524e248c61f3dce227d8ef6e34" id="r_a5af716524e248c61f3dce227d8ef6e34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5af716524e248c61f3dce227d8ef6e34">ScalarMul</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, float num, unsigned long long n)</td></tr>
 <tr class="memdesc:a5af716524e248c61f3dce227d8ef6e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform scalar multiplication on the GPU.  <br /></td></tr>
 <tr class="separator:a5af716524e248c61f3dce227d8ef6e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,12 +150,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a455365870d43ff26687a731d15c4cdff" id="r_a455365870d43ff26687a731d15c4cdff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a455365870d43ff26687a731d15c4cdff">HardSwishBackward</a> (dim3 gridDim, dim3 blockDim, float *A_grad, float *A, float *B_grad, unsigned long long n, float alpha=0.2f, float beta=0.5f)</td></tr>
 <tr class="memdesc:a455365870d43ff26687a731d15c4cdff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Hard Swish activation during backpropagation.  <br /></td></tr>
 <tr class="separator:a455365870d43ff26687a731d15c4cdff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44ddd6d20d352731eb43142bcdf48b2e" id="r_a44ddd6d20d352731eb43142bcdf48b2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ddd6d20d352731eb43142bcdf48b2e">SummationExp</a> (dim3 gridDim, dim3 blockDim, size_t sharedMemSize, float *out, float *g_data, unsigned long long n)</td></tr>
-<tr class="memdesc:a44ddd6d20d352731eb43142bcdf48b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the summation of exponentials of each element in the input array.  <br /></td></tr>
-<tr class="separator:a44ddd6d20d352731eb43142bcdf48b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aade67dae6bd25594a21229715e31b90a" id="r_aade67dae6bd25594a21229715e31b90a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aade67dae6bd25594a21229715e31b90a">Softmax</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n)</td></tr>
-<tr class="memdesc:aade67dae6bd25594a21229715e31b90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Softmax function on the GPU.  <br /></td></tr>
-<tr class="separator:aade67dae6bd25594a21229715e31b90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51a5ff3c8cc2c3051fddf32de294b467" id="r_a51a5ff3c8cc2c3051fddf32de294b467"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51a5ff3c8cc2c3051fddf32de294b467">SummationExp</a> (dim3 gridDim, dim3 blockDim, size_t sharedMemSize, float *out, float *g_data, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:a51a5ff3c8cc2c3051fddf32de294b467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the summation of exponentials of each element in the input array.  <br /></td></tr>
+<tr class="separator:a51a5ff3c8cc2c3051fddf32de294b467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbafc409d57fa0a9d78ecac5bf7b10a3" id="r_adbafc409d57fa0a9d78ecac5bf7b10a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbafc409d57fa0a9d78ecac5bf7b10a3">Softmax</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:adbafc409d57fa0a9d78ecac5bf7b10a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Softmax function on the GPU.  <br /></td></tr>
+<tr class="separator:adbafc409d57fa0a9d78ecac5bf7b10a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4375738c83ef892783abc210578e5b39" id="r_a4375738c83ef892783abc210578e5b39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4375738c83ef892783abc210578e5b39">SoftmaxJacobian</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</td></tr>
 <tr class="memdesc:a4375738c83ef892783abc210578e5b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the Jacobian of the Softmax function.  <br /></td></tr>
 <tr class="separator:a4375738c83ef892783abc210578e5b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,18 +195,18 @@ Functions</h2></td></tr>
 <tr class="memitem:aa84aa2397f4f5a09a96bef76726e46f0" id="r_aa84aa2397f4f5a09a96bef76726e46f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa84aa2397f4f5a09a96bef76726e46f0">TensorCoreGEMM</a> (float *A, float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</td></tr>
 <tr class="memdesc:aa84aa2397f4f5a09a96bef76726e46f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform fast matrix multiplication using Tensor Cores with half-precision (FP16) support.  <br /></td></tr>
 <tr class="separator:aa84aa2397f4f5a09a96bef76726e46f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c8d5892bd795b00c76203e1155b0780" id="r_a7c8d5892bd795b00c76203e1155b0780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c8d5892bd795b00c76203e1155b0780">Fill</a> (dim3 gridDim, dim3 blockDim, float *data, float value, unsigned long long n)</td></tr>
-<tr class="memdesc:a7c8d5892bd795b00c76203e1155b0780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to fill a data array with a given value.  <br /></td></tr>
-<tr class="separator:a7c8d5892bd795b00c76203e1155b0780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad136c8a6560a5305984ce0a31bea71bf" id="r_ad136c8a6560a5305984ce0a31bea71bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad136c8a6560a5305984ce0a31bea71bf">Fill</a> (dim3 gridDim, dim3 blockDim, float *data, float value, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:ad136c8a6560a5305984ce0a31bea71bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to fill a data array with a given value.  <br /></td></tr>
+<tr class="separator:ad136c8a6560a5305984ce0a31bea71bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ec4524fdefd3d771c72e77e94281c88" id="r_a8ec4524fdefd3d771c72e77e94281c88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ec4524fdefd3d771c72e77e94281c88">HadamardProduct</a> (dim3 gridDim, dim3 blockDim, float *out, float *in1, float *in2, unsigned long long n)</td></tr>
 <tr class="memdesc:a8ec4524fdefd3d771c72e77e94281c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise Hadamard product of two arrays.  <br /></td></tr>
 <tr class="separator:a8ec4524fdefd3d771c72e77e94281c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e04672b974841c0b1ae52775ee13106" id="r_a8e04672b974841c0b1ae52775ee13106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e04672b974841c0b1ae52775ee13106">ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, float *in1, float *in2, unsigned long long n)</td></tr>
-<tr class="memdesc:a8e04672b974841c0b1ae52775ee13106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
-<tr class="separator:a8e04672b974841c0b1ae52775ee13106"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0988b6f4f3ca65d98e8b00af6b4b534" id="r_aa0988b6f4f3ca65d98e8b00af6b4b534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0988b6f4f3ca65d98e8b00af6b4b534">Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, float *in, unsigned long long n)</td></tr>
-<tr class="memdesc:aa0988b6f4f3ca65d98e8b00af6b4b534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
-<tr class="separator:aa0988b6f4f3ca65d98e8b00af6b4b534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61cded4977bb2dc3720f7057cc2fb47" id="r_aa61cded4977bb2dc3720f7057cc2fb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa61cded4977bb2dc3720f7057cc2fb47">ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, float *in1, float *in2, unsigned long long n, size_t offset_o=0, size_t offset_1=0, size_t offset_2=0)</td></tr>
+<tr class="memdesc:aa61cded4977bb2dc3720f7057cc2fb47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
+<tr class="separator:aa61cded4977bb2dc3720f7057cc2fb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae846a65c2f5b83cd1b9fc61b877854" id="r_a1ae846a65c2f5b83cd1b9fc61b877854"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae846a65c2f5b83cd1b9fc61b877854">Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, float *in, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:a1ae846a65c2f5b83cd1b9fc61b877854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
+<tr class="separator:a1ae846a65c2f5b83cd1b9fc61b877854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-Performance CUDA Kernel Implementations for Tensor Computations. </p>
@@ -346,7 +346,7 @@ Optimization Algorithms</h2>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00721">721</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00804">804</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -425,7 +425,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00640">640</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00720">720</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -528,7 +528,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00676">676</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00757">757</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -595,7 +595,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00610">610</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00690">690</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -606,6 +606,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="164,45,196,40,196,46,165,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="212,72,397,115"/>
 <area shape="poly" title=" " alt="" coords="165,69,196,74,196,80,164,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="445,39,630,81"/>
+<area shape="poly" title=" " alt="" coords="397,77,429,73,430,78,398,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="445,105,630,148"/>
+<area shape="poly" title=" " alt="" coords="398,104,430,109,429,114,397,109"/>
 </map>
 </div>
 
@@ -670,7 +674,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00596">596</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00675">675</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -681,13 +685,17 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="195,44,227,39,228,45,196,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="243,72,428,115"/>
 <area shape="poly" title=" " alt="" coords="196,71,228,75,227,81,195,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="476,39,661,81"/>
+<area shape="poly" title=" " alt="" coords="428,77,460,73,461,78,429,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="476,105,661,148"/>
+<area shape="poly" title=" " alt="" coords="429,104,461,109,460,114,428,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a8e04672b974841c0b1ae52775ee13106" name="a8e04672b974841c0b1ae52775ee13106"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e04672b974841c0b1ae52775ee13106">&#9670;&#160;</a></span>ElementwiseDivide()</h2>
+<a id="aa61cded4977bb2dc3720f7057cc2fb47" name="aa61cded4977bb2dc3720f7057cc2fb47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61cded4977bb2dc3720f7057cc2fb47">&#9670;&#160;</a></span>ElementwiseDivide()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -720,7 +728,22 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_o</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_1</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_2</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -734,23 +757,30 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">out</td><td>Pointer to the output array </td></tr>
     <tr><td class="paramname">in1</td><td>Pointer to the first input array </td></tr>
     <tr><td class="paramname">in2</td><td>Pointerto the second input array </td></tr>
-    <tr><td class="paramname">n</td><td>The number of elements in the arrays</td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+    <tr><td class="paramname">offset_o</td><td></td></tr>
+    <tr><td class="paramname">offset_1</td><td></td></tr>
+    <tr><td class="paramname">offset_2</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise division of two arrays. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00829">829</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00921">921</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_a8e04672b974841c0b1ae52775ee13106_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a8e04672b974841c0b1ae52775ee13106_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_a8e04672b974841c0b1ae52775ee13106_cgraph" id="anamespacenz_1_1krnl_a8e04672b974841c0b1ae52775ee13106_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_aa61cded4977bb2dc3720f7057cc2fb47_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_aa61cded4977bb2dc3720f7057cc2fb47_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_aa61cded4977bb2dc3720f7057cc2fb47_cgraph" id="anamespacenz_1_1krnl_aa61cded4977bb2dc3720f7057cc2fb47_cgraph">
 <area shape="rect" title="Kernel function to perform element&#45;wise division of two arrays." alt="" coords="5,47,190,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="238,5,423,48"/>
 <area shape="poly" title=" " alt="" coords="189,44,222,40,222,45,190,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="238,72,423,115"/>
 <area shape="poly" title=" " alt="" coords="190,71,222,75,222,80,189,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="471,39,656,81"/>
+<area shape="poly" title=" " alt="" coords="423,77,455,73,456,78,424,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="471,105,656,148"/>
+<area shape="poly" title=" " alt="" coords="424,104,456,109,455,114,423,109"/>
 </map>
 </div>
 
@@ -815,7 +845,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00331">331</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00386">386</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -826,6 +856,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="162,45,194,41,195,46,163,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="210,72,395,115"/>
 <area shape="poly" title=" " alt="" coords="163,69,195,74,194,79,162,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="443,39,628,81"/>
+<area shape="poly" title=" " alt="" coords="395,77,427,73,428,78,396,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="443,105,628,148"/>
+<area shape="poly" title=" " alt="" coords="396,104,428,109,427,114,395,109"/>
 </map>
 </div>
 
@@ -884,7 +918,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00315">315</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00370">370</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -895,13 +929,17 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="205,44,237,39,237,44,205,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="253,72,438,115"/>
 <area shape="poly" title=" " alt="" coords="205,71,237,76,237,81,205,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="486,39,671,81"/>
+<area shape="poly" title=" " alt="" coords="438,77,470,73,471,78,439,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="486,105,671,148"/>
+<area shape="poly" title=" " alt="" coords="439,104,471,109,470,114,438,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a7c8d5892bd795b00c76203e1155b0780" name="a7c8d5892bd795b00c76203e1155b0780"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c8d5892bd795b00c76203e1155b0780">&#9670;&#160;</a></span>Fill()</h2>
+<a id="ad136c8a6560a5305984ce0a31bea71bf" name="ad136c8a6560a5305984ce0a31bea71bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad136c8a6560a5305984ce0a31bea71bf">&#9670;&#160;</a></span>Fill()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -929,7 +967,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -942,30 +985,35 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration </td></tr>
     <tr><td class="paramname">data</td><td>Pointer to the data array that will be filled </td></tr>
     <tr><td class="paramname">value</td><td>The value to fill the array with </td></tr>
-    <tr><td class="paramname">n</td><td>The number of elements in the data array</td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the data array </td></tr>
+    <tr><td class="paramname">offset</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for initializing the data array with a given value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00805">805</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00893">893</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_a7c8d5892bd795b00c76203e1155b0780_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a7c8d5892bd795b00c76203e1155b0780_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_a7c8d5892bd795b00c76203e1155b0780_cgraph" id="anamespacenz_1_1krnl_a7c8d5892bd795b00c76203e1155b0780_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_ad136c8a6560a5305984ce0a31bea71bf_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_ad136c8a6560a5305984ce0a31bea71bf_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_ad136c8a6560a5305984ce0a31bea71bf_cgraph" id="anamespacenz_1_1krnl_ad136c8a6560a5305984ce0a31bea71bf_cgraph">
 <area shape="rect" title="Kernel function to fill a data array with a given value." alt="" coords="5,47,95,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="143,5,328,48"/>
 <area shape="poly" title=" " alt="" coords="95,49,127,44,128,49,96,55"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="143,72,328,115"/>
 <area shape="poly" title=" " alt="" coords="96,65,128,71,127,76,95,71"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="376,39,561,81"/>
+<area shape="poly" title=" " alt="" coords="328,77,360,73,361,78,329,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="376,105,561,148"/>
+<area shape="poly" title=" " alt="" coords="329,104,361,109,360,114,328,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a6d79f34a712e1bb45d5fedeb110e5ede" name="a6d79f34a712e1bb45d5fedeb110e5ede"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d79f34a712e1bb45d5fedeb110e5ede">&#9670;&#160;</a></span>GeneralMatrixMul()</h2>
+<a id="ae30a6e1de69588aa0c6eb8a5b8e6e826" name="ae30a6e1de69588aa0c6eb8a5b8e6e826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae30a6e1de69588aa0c6eb8a5b8e6e826">&#9670;&#160;</a></span>GeneralMatrixMul()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1008,7 +1056,22 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>K</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>K</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_c</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_a</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_b</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1025,21 +1088,28 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">M</td><td>The number of rows in matrix A and matrix C </td></tr>
     <tr><td class="paramname">N</td><td>The number of columns in matrix B and matrix C </td></tr>
     <tr><td class="paramname">K</td><td>The number of columns in matrix A and rows in matrix B </td></tr>
+    <tr><td class="paramname">offset_c</td><td></td></tr>
+    <tr><td class="paramname">offset_a</td><td></td></tr>
+    <tr><td class="paramname">offset_b</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00072">72</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00102">102</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_a6d79f34a712e1bb45d5fedeb110e5ede_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a6d79f34a712e1bb45d5fedeb110e5ede_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_a6d79f34a712e1bb45d5fedeb110e5ede_cgraph" id="anamespacenz_1_1krnl_a6d79f34a712e1bb45d5fedeb110e5ede_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_ae30a6e1de69588aa0c6eb8a5b8e6e826_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_ae30a6e1de69588aa0c6eb8a5b8e6e826_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_ae30a6e1de69588aa0c6eb8a5b8e6e826_cgraph" id="anamespacenz_1_1krnl_ae30a6e1de69588aa0c6eb8a5b8e6e826_cgraph">
 <area shape="rect" title="Kernel function to perform single&#45;precision matrix multiplication on GPU using CUDA cores." alt="" coords="5,47,180,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="228,5,413,48"/>
 <area shape="poly" title=" " alt="" coords="180,45,212,40,213,45,181,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="228,72,413,115"/>
 <area shape="poly" title=" " alt="" coords="181,70,213,75,212,80,180,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="461,39,646,81"/>
+<area shape="poly" title=" " alt="" coords="413,77,445,73,446,78,414,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="461,105,646,148"/>
+<area shape="poly" title=" " alt="" coords="414,104,446,109,445,114,413,109"/>
 </map>
 </div>
 
@@ -1099,7 +1169,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise Hadamard product of two arrays. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00816">816</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00905">905</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1110,6 +1180,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="183,44,215,40,215,45,183,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="231,72,416,115"/>
 <area shape="poly" title=" " alt="" coords="183,70,215,75,215,80,183,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="464,39,649,81"/>
+<area shape="poly" title=" " alt="" coords="416,77,448,73,449,78,417,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="464,105,649,148"/>
+<area shape="poly" title=" " alt="" coords="417,104,449,109,448,114,416,109"/>
 </map>
 </div>
 
@@ -1174,7 +1248,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00346">346</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00401">401</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1185,6 +1259,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="153,46,185,41,186,46,154,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="201,72,386,115"/>
 <area shape="poly" title=" " alt="" coords="154,69,186,74,185,79,153,74"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="434,39,619,81"/>
+<area shape="poly" title=" " alt="" coords="386,77,418,73,419,78,387,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="434,105,619,148"/>
+<area shape="poly" title=" " alt="" coords="387,104,419,109,418,114,386,109"/>
 </map>
 </div>
 
@@ -1255,7 +1333,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00367">367</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00422">422</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1266,6 +1344,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="210,43,243,39,243,44,211,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="259,72,444,115"/>
 <area shape="poly" title=" " alt="" coords="211,71,243,76,243,81,210,77"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="492,39,677,81"/>
+<area shape="poly" title=" " alt="" coords="444,77,476,73,477,78,445,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="492,105,677,148"/>
+<area shape="poly" title=" " alt="" coords="445,104,477,109,476,114,444,109"/>
 </map>
 </div>
 
@@ -1330,7 +1412,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00387">387</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00443">443</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1341,6 +1423,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="141,47,174,41,175,47,142,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="190,72,375,115"/>
 <area shape="poly" title=" " alt="" coords="142,68,175,73,174,79,141,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="423,39,608,81"/>
+<area shape="poly" title=" " alt="" coords="375,77,407,73,408,78,376,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="423,105,608,148"/>
+<area shape="poly" title=" " alt="" coords="376,104,408,109,407,114,375,109"/>
 </map>
 </div>
 
@@ -1411,7 +1497,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00404">404</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00460">460</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1422,6 +1508,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="200,44,232,39,233,44,201,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="248,72,433,115"/>
 <area shape="poly" title=" " alt="" coords="201,71,233,76,232,81,200,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="481,39,666,81"/>
+<area shape="poly" title=" " alt="" coords="433,77,465,73,466,78,434,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="481,105,666,148"/>
+<area shape="poly" title=" " alt="" coords="434,104,466,109,465,114,433,109"/>
 </map>
 </div>
 
@@ -1480,7 +1570,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00259">259</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00313">313</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1491,6 +1581,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="146,46,179,41,180,46,147,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="195,72,380,115"/>
 <area shape="poly" title=" " alt="" coords="147,68,180,74,179,79,146,74"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="428,39,613,81"/>
+<area shape="poly" title=" " alt="" coords="380,77,412,73,413,78,381,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="428,105,613,148"/>
+<area shape="poly" title=" " alt="" coords="381,104,413,109,412,114,380,109"/>
 </map>
 </div>
 
@@ -1555,7 +1649,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00274">274</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00328">328</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1566,13 +1660,17 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="205,44,237,39,237,44,205,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="253,72,438,115"/>
 <area shape="poly" title=" " alt="" coords="205,71,237,76,237,81,205,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="486,39,671,81"/>
+<area shape="poly" title=" " alt="" coords="438,77,470,73,471,78,439,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="486,105,671,148"/>
+<area shape="poly" title=" " alt="" coords="439,104,471,109,470,114,438,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a91159bb65d34c90ea5e2aa24e6000b67" name="a91159bb65d34c90ea5e2aa24e6000b67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91159bb65d34c90ea5e2aa24e6000b67">&#9670;&#160;</a></span>MatrixAdd()</h2>
+<a id="a97cda6dfc6545efaee2b686eed9ae766" name="a97cda6dfc6545efaee2b686eed9ae766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97cda6dfc6545efaee2b686eed9ae766">&#9670;&#160;</a></span>MatrixAdd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1605,7 +1703,22 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_c</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_a</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_b</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1620,28 +1733,35 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">b</td><td>Pointer to the second input matrix elements stored as a one-dimensional array </td></tr>
     <tr><td class="paramname">c</td><td>Pointer to the output matrix where the result will be stored, allocated by the caller </td></tr>
     <tr><td class="paramname">n</td><td>The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n) </td></tr>
+    <tr><td class="paramname">offset_c</td><td></td></tr>
+    <tr><td class="paramname">offset_a</td><td></td></tr>
+    <tr><td class="paramname">offset_b</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00019">19</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00025">25</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_a91159bb65d34c90ea5e2aa24e6000b67_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a91159bb65d34c90ea5e2aa24e6000b67_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_a91159bb65d34c90ea5e2aa24e6000b67_cgraph" id="anamespacenz_1_1krnl_a91159bb65d34c90ea5e2aa24e6000b67_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_a97cda6dfc6545efaee2b686eed9ae766_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a97cda6dfc6545efaee2b686eed9ae766_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a97cda6dfc6545efaee2b686eed9ae766_cgraph" id="anamespacenz_1_1krnl_a97cda6dfc6545efaee2b686eed9ae766_cgraph">
 <area shape="rect" title="Kernel function to perform matrix addition on GPU." alt="" coords="5,47,137,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="185,5,370,48"/>
 <area shape="poly" title=" " alt="" coords="136,47,169,42,169,47,137,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="185,72,370,115"/>
 <area shape="poly" title=" " alt="" coords="137,68,169,73,169,78,136,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="418,39,603,81"/>
+<area shape="poly" title=" " alt="" coords="370,77,402,73,403,78,371,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="418,105,603,148"/>
+<area shape="poly" title=" " alt="" coords="371,104,403,109,402,114,370,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ab734a94d5e3a554abc268b9e51d14d99" name="ab734a94d5e3a554abc268b9e51d14d99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab734a94d5e3a554abc268b9e51d14d99">&#9670;&#160;</a></span>MatrixSub()</h2>
+<a id="ad18a2b0efc0cdfc9cb861396ad4da53f" name="ad18a2b0efc0cdfc9cb861396ad4da53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18a2b0efc0cdfc9cb861396ad4da53f">&#9670;&#160;</a></span>MatrixSub()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1674,7 +1794,22 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_c</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_a</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset_b</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1683,25 +1818,34 @@ Here is the call graph for this function:</div>
 <p>This function is designed to execute matrix subtraction using CUDA technology, leveraging parallel computing capabilities of the GPU for efficient processing of large datasets. It takes two input arrays of floats and stores their difference in a third array.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">gridDim</td><td></td></tr>
+    <tr><td class="paramname">blockDim</td><td></td></tr>
     <tr><td class="paramname">a</td><td>Pointer to the first input matrix elements stored as a one-dimensional array </td></tr>
     <tr><td class="paramname">b</td><td>Pointer to the second input matrix elements stored as a one-dimensional array </td></tr>
     <tr><td class="paramname">c</td><td>Pointer to the output matrix where the result will be stored, allocated by the caller </td></tr>
     <tr><td class="paramname">n</td><td>The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n) </td></tr>
+    <tr><td class="paramname">offset_c</td><td></td></tr>
+    <tr><td class="paramname">offset_a</td><td></td></tr>
+    <tr><td class="paramname">offset_b</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00032">32</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00049">49</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_ab734a94d5e3a554abc268b9e51d14d99_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_ab734a94d5e3a554abc268b9e51d14d99_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_ab734a94d5e3a554abc268b9e51d14d99_cgraph" id="anamespacenz_1_1krnl_ab734a94d5e3a554abc268b9e51d14d99_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_ad18a2b0efc0cdfc9cb861396ad4da53f_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_ad18a2b0efc0cdfc9cb861396ad4da53f_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_ad18a2b0efc0cdfc9cb861396ad4da53f_cgraph" id="anamespacenz_1_1krnl_ad18a2b0efc0cdfc9cb861396ad4da53f_cgraph">
 <area shape="rect" title="Kernel function to perform matrix subtraction on GPU." alt="" coords="5,47,137,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="185,5,370,48"/>
 <area shape="poly" title=" " alt="" coords="136,47,169,42,169,47,137,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="185,72,370,115"/>
 <area shape="poly" title=" " alt="" coords="137,68,169,73,169,78,136,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="418,39,603,81"/>
+<area shape="poly" title=" " alt="" coords="370,77,402,73,403,78,371,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="418,105,603,148"/>
+<area shape="poly" title=" " alt="" coords="371,104,403,109,402,114,370,109"/>
 </map>
 </div>
 
@@ -1766,7 +1910,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00527">527</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00604">604</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1777,6 +1921,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="185,44,218,40,219,45,186,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="234,72,419,115"/>
 <area shape="poly" title=" " alt="" coords="186,70,219,75,218,80,185,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="467,39,652,81"/>
+<area shape="poly" title=" " alt="" coords="419,77,451,73,452,78,420,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="467,105,652,148"/>
+<area shape="poly" title=" " alt="" coords="420,104,452,109,451,114,419,109"/>
 </map>
 </div>
 
@@ -1841,7 +1989,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00624">624</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00704">704</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1852,6 +2000,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="143,46,175,41,176,47,143,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="191,72,376,115"/>
 <area shape="poly" title=" " alt="" coords="143,68,176,73,175,79,143,74"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="424,39,609,81"/>
+<area shape="poly" title=" " alt="" coords="376,77,408,73,409,78,377,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="424,105,609,148"/>
+<area shape="poly" title=" " alt="" coords="377,104,409,109,408,114,376,109"/>
 </map>
 </div>
 
@@ -1910,7 +2062,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00540">540</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00618">618</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1921,6 +2073,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="165,45,197,40,198,46,165,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="213,72,398,115"/>
 <area shape="poly" title=" " alt="" coords="165,69,198,74,197,80,165,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="446,39,631,81"/>
+<area shape="poly" title=" " alt="" coords="398,77,430,73,431,78,399,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="446,105,631,148"/>
+<area shape="poly" title=" " alt="" coords="399,104,431,109,430,114,398,109"/>
 </map>
 </div>
 
@@ -2021,7 +2177,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00700">700</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00782">782</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2082,7 +2238,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00153">153</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00207">207</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2093,6 +2249,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="130,47,162,42,163,47,130,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="178,72,363,115"/>
 <area shape="poly" title=" " alt="" coords="130,68,163,73,162,78,130,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="411,39,596,81"/>
+<area shape="poly" title=" " alt="" coords="363,77,395,73,396,78,364,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="411,105,596,148"/>
+<area shape="poly" title=" " alt="" coords="364,104,396,109,395,114,363,109"/>
 </map>
 </div>
 
@@ -2145,7 +2305,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00170">170</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00224">224</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2156,6 +2316,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="112,48,144,43,145,48,113,54"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="160,72,345,115"/>
 <area shape="poly" title=" " alt="" coords="113,66,145,72,144,77,112,72"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="393,39,578,81"/>
+<area shape="poly" title=" " alt="" coords="345,77,377,73,378,78,346,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="393,105,578,148"/>
+<area shape="poly" title=" " alt="" coords="346,104,378,109,377,114,345,109"/>
 </map>
 </div>
 
@@ -2208,7 +2372,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00181">181</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00235">235</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2219,6 +2383,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="189,44,221,40,221,45,189,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="237,72,422,115"/>
 <area shape="poly" title=" " alt="" coords="189,71,221,75,221,80,189,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="470,39,655,81"/>
+<area shape="poly" title=" " alt="" coords="422,77,454,73,455,78,423,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="470,105,655,148"/>
+<area shape="poly" title=" " alt="" coords="423,104,455,109,454,114,422,109"/>
 </map>
 </div>
 
@@ -2277,7 +2445,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00194">194</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00248">248</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2288,6 +2456,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="170,45,202,40,203,45,171,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="218,72,403,115"/>
 <area shape="poly" title=" " alt="" coords="171,70,203,75,202,80,170,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="451,39,636,81"/>
+<area shape="poly" title=" " alt="" coords="403,77,435,73,436,78,404,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="451,105,636,148"/>
+<area shape="poly" title=" " alt="" coords="404,104,436,109,435,114,403,109"/>
 </map>
 </div>
 
@@ -2364,7 +2536,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00656">656</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00736">736</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2431,7 +2603,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00140">140</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00194">194</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2442,6 +2614,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="138,47,170,41,171,47,138,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="186,72,371,115"/>
 <area shape="poly" title=" " alt="" coords="138,68,171,73,170,79,138,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="419,39,604,81"/>
+<area shape="poly" title=" " alt="" coords="371,77,403,73,404,78,372,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="419,105,604,148"/>
+<area shape="poly" title=" " alt="" coords="372,104,404,109,403,114,371,109"/>
 </map>
 </div>
 
@@ -2500,7 +2676,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00127">127</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00181">181</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2511,6 +2687,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="134,47,167,42,168,47,135,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="183,72,368,115"/>
 <area shape="poly" title=" " alt="" coords="135,68,168,73,167,78,134,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="416,39,601,81"/>
+<area shape="poly" title=" " alt="" coords="368,77,400,73,401,78,369,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="416,105,601,148"/>
+<area shape="poly" title=" " alt="" coords="369,104,401,109,400,114,368,109"/>
 </map>
 </div>
 
@@ -2569,7 +2749,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00114">114</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00168">168</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2580,6 +2760,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="136,47,168,42,169,47,137,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="184,72,369,115"/>
 <area shape="poly" title=" " alt="" coords="137,68,169,73,168,78,136,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="417,39,602,81"/>
+<area shape="poly" title=" " alt="" coords="369,77,401,73,402,78,370,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="417,105,602,148"/>
+<area shape="poly" title=" " alt="" coords="370,104,402,109,401,114,369,109"/>
 </map>
 </div>
 
@@ -2632,7 +2816,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00207">207</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00261">261</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2643,6 +2827,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="125,47,157,42,158,47,126,53"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="173,72,358,115"/>
 <area shape="poly" title=" " alt="" coords="126,67,158,73,157,78,125,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="406,39,591,81"/>
+<area shape="poly" title=" " alt="" coords="358,77,390,73,391,78,359,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="406,105,591,148"/>
+<area shape="poly" title=" " alt="" coords="359,104,391,109,390,114,358,109"/>
 </map>
 </div>
 
@@ -2701,7 +2889,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00221">221</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00275">275</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2712,13 +2900,17 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="183,44,215,40,215,45,183,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="231,72,416,115"/>
 <area shape="poly" title=" " alt="" coords="183,70,215,75,215,80,183,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="464,39,649,81"/>
+<area shape="poly" title=" " alt="" coords="416,77,448,73,449,78,417,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="464,105,649,148"/>
+<area shape="poly" title=" " alt="" coords="417,104,449,109,448,114,416,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aade67dae6bd25594a21229715e31b90a" name="aade67dae6bd25594a21229715e31b90a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aade67dae6bd25594a21229715e31b90a">&#9670;&#160;</a></span>Softmax()</h2>
+<a id="adbafc409d57fa0a9d78ecac5bf7b10a3" name="adbafc409d57fa0a9d78ecac5bf7b10a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbafc409d57fa0a9d78ecac5bf7b10a3">&#9670;&#160;</a></span>Softmax()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2751,7 +2943,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2766,21 +2963,26 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">in</td><td>Pointer to the input array elements </td></tr>
     <tr><td class="paramname">exp_sum_of_input</td><td>The sum of the exponentials of the input array elements </td></tr>
     <tr><td class="paramname">n</td><td>The number of elements in the input and output arrays </td></tr>
+    <tr><td class="paramname">offset</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00465">465</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00523">523</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_aade67dae6bd25594a21229715e31b90a_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_aade67dae6bd25594a21229715e31b90a_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_aade67dae6bd25594a21229715e31b90a_cgraph" id="anamespacenz_1_1krnl_aade67dae6bd25594a21229715e31b90a_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_adbafc409d57fa0a9d78ecac5bf7b10a3_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_adbafc409d57fa0a9d78ecac5bf7b10a3_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_adbafc409d57fa0a9d78ecac5bf7b10a3_cgraph" id="anamespacenz_1_1krnl_adbafc409d57fa0a9d78ecac5bf7b10a3_cgraph">
 <area shape="rect" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="5,47,127,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="175,5,360,48"/>
 <area shape="poly" title=" " alt="" coords="126,47,159,42,159,47,127,53"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="175,72,360,115"/>
 <area shape="poly" title=" " alt="" coords="127,67,159,73,159,78,126,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="408,39,593,81"/>
+<area shape="poly" title=" " alt="" coords="360,77,392,73,393,78,361,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="408,105,593,148"/>
+<area shape="poly" title=" " alt="" coords="361,104,393,109,392,114,360,109"/>
 </map>
 </div>
 
@@ -2833,7 +3035,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00486">486</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00563">563</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2844,6 +3046,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="179,45,211,40,212,45,179,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="227,72,412,115"/>
 <area shape="poly" title=" " alt="" coords="179,70,212,75,211,80,179,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="460,39,645,81"/>
+<area shape="poly" title=" " alt="" coords="412,77,444,73,445,78,413,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="460,105,645,148"/>
+<area shape="poly" title=" " alt="" coords="413,104,445,109,444,114,412,109"/>
 </map>
 </div>
 
@@ -2900,7 +3106,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00553">553</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00631">631</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2911,13 +3117,17 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="189,44,221,40,221,45,189,49"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="237,72,422,115"/>
 <area shape="poly" title=" " alt="" coords="189,71,221,75,221,80,189,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="470,39,655,81"/>
+<area shape="poly" title=" " alt="" coords="422,77,454,73,455,78,423,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="470,105,655,148"/>
+<area shape="poly" title=" " alt="" coords="423,104,455,109,454,114,422,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aa0988b6f4f3ca65d98e8b00af6b4b534" name="aa0988b6f4f3ca65d98e8b00af6b4b534"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0988b6f4f3ca65d98e8b00af6b4b534">&#9670;&#160;</a></span>Summation()</h2>
+<a id="a1ae846a65c2f5b83cd1b9fc61b877854" name="a1ae846a65c2f5b83cd1b9fc61b877854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae846a65c2f5b83cd1b9fc61b877854">&#9670;&#160;</a></span>Summation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2950,7 +3160,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2964,30 +3179,35 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">sharedMemSize</td><td>The size of the shared memory buffer </td></tr>
     <tr><td class="paramname">out</td><td>Pointer to the output array </td></tr>
     <tr><td class="paramname">in</td><td>Pointer to the input array </td></tr>
-    <tr><td class="paramname">n</td><td>The number of elements in the arrays</td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the arrays </td></tr>
+    <tr><td class="paramname">offset</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise summation of two arrays. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00862">862</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00965">965</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_aa0988b6f4f3ca65d98e8b00af6b4b534_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_aa0988b6f4f3ca65d98e8b00af6b4b534_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_aa0988b6f4f3ca65d98e8b00af6b4b534_cgraph" id="anamespacenz_1_1krnl_aa0988b6f4f3ca65d98e8b00af6b4b534_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_a1ae846a65c2f5b83cd1b9fc61b877854_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a1ae846a65c2f5b83cd1b9fc61b877854_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a1ae846a65c2f5b83cd1b9fc61b877854_cgraph" id="anamespacenz_1_1krnl_a1ae846a65c2f5b83cd1b9fc61b877854_cgraph">
 <area shape="rect" title="Kernel function to perform element&#45;wise summation of two arrays." alt="" coords="5,47,144,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="192,5,377,48"/>
 <area shape="poly" title=" " alt="" coords="144,46,176,41,177,46,145,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="192,72,377,115"/>
 <area shape="poly" title=" " alt="" coords="145,68,177,74,176,79,144,74"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="425,39,610,81"/>
+<area shape="poly" title=" " alt="" coords="377,77,409,73,410,78,378,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="425,105,610,148"/>
+<area shape="poly" title=" " alt="" coords="378,104,410,109,409,114,377,109"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a44ddd6d20d352731eb43142bcdf48b2e" name="a44ddd6d20d352731eb43142bcdf48b2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44ddd6d20d352731eb43142bcdf48b2e">&#9670;&#160;</a></span>SummationExp()</h2>
+<a id="a51a5ff3c8cc2c3051fddf32de294b467" name="a51a5ff3c8cc2c3051fddf32de294b467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51a5ff3c8cc2c3051fddf32de294b467">&#9670;&#160;</a></span>SummationExp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3020,7 +3240,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3035,21 +3260,26 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">out</td><td>Pointer to the output array where the summation of exponentials will be stored </td></tr>
     <tr><td class="paramname">g_data</td><td>Pointer to the input array elements </td></tr>
     <tr><td class="paramname">n</td><td>The number of elements in the input array </td></tr>
+    <tr><td class="paramname">offset</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00451">451</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00508">508</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_a44ddd6d20d352731eb43142bcdf48b2e_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a44ddd6d20d352731eb43142bcdf48b2e_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_a44ddd6d20d352731eb43142bcdf48b2e_cgraph" id="anamespacenz_1_1krnl_a44ddd6d20d352731eb43142bcdf48b2e_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_a51a5ff3c8cc2c3051fddf32de294b467_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a51a5ff3c8cc2c3051fddf32de294b467_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a51a5ff3c8cc2c3051fddf32de294b467_cgraph" id="anamespacenz_1_1krnl_a51a5ff3c8cc2c3051fddf32de294b467_cgraph">
 <area shape="rect" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="5,47,167,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="215,5,400,48"/>
 <area shape="poly" title=" " alt="" coords="166,45,199,40,200,46,167,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="215,72,400,115"/>
 <area shape="poly" title=" " alt="" coords="167,69,200,74,199,80,166,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="448,39,633,81"/>
+<area shape="poly" title=" " alt="" coords="400,77,432,73,433,78,401,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="448,105,633,148"/>
+<area shape="poly" title=" " alt="" coords="401,104,433,109,432,114,400,109"/>
 </map>
 </div>
 
@@ -3102,7 +3332,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00287">287</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00342">342</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3113,6 +3343,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="113,48,146,43,147,48,114,53"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="162,72,347,115"/>
 <area shape="poly" title=" " alt="" coords="114,67,147,72,146,77,113,72"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="395,39,580,81"/>
+<area shape="poly" title=" " alt="" coords="347,77,379,73,380,78,348,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="395,105,580,148"/>
+<area shape="poly" title=" " alt="" coords="348,104,380,109,379,114,347,109"/>
 </map>
 </div>
 
@@ -3177,7 +3411,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00302">302</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00357">357</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3188,6 +3422,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="172,45,204,40,205,45,173,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="220,72,405,115"/>
 <area shape="poly" title=" " alt="" coords="173,70,205,75,204,80,172,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="453,39,638,81"/>
+<area shape="poly" title=" " alt="" coords="405,77,437,73,438,78,406,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="453,105,638,148"/>
+<area shape="poly" title=" " alt="" coords="406,104,438,109,437,114,405,109"/>
 </map>
 </div>
 
@@ -3240,7 +3478,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00233">233</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00287">287</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3251,6 +3489,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="106,49,138,43,139,48,107,54"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="154,72,339,115"/>
 <area shape="poly" title=" " alt="" coords="107,66,139,72,138,77,106,71"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="387,39,572,81"/>
+<area shape="poly" title=" " alt="" coords="339,77,371,73,372,78,340,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="387,105,572,148"/>
+<area shape="poly" title=" " alt="" coords="340,104,372,109,371,114,339,109"/>
 </map>
 </div>
 
@@ -3309,7 +3551,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00246">246</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00300">300</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3320,6 +3562,10 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="164,45,196,40,196,46,165,51"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="212,72,397,115"/>
 <area shape="poly" title=" " alt="" coords="165,69,196,74,196,80,164,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="445,39,630,81"/>
+<area shape="poly" title=" " alt="" coords="397,77,429,73,430,78,398,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="445,105,630,148"/>
+<area shape="poly" title=" " alt="" coords="398,104,430,109,429,114,397,109"/>
 </map>
 </div>
 
@@ -3379,30 +3625,39 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The matrices A and B are assumed to be padded to the nearest multiple of 16 for efficient computation. After the computation, the resulting matrix C will be cropped back to the original dimensions (M x N). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00773">773</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00857">857</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacenz_1_1krnl_aa84aa2397f4f5a09a96bef76726e46f0_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_aa84aa2397f4f5a09a96bef76726e46f0_cgraph" alt=""/></div>
 <map name="anamespacenz_1_1krnl_aa84aa2397f4f5a09a96bef76726e46f0_cgraph" id="anamespacenz_1_1krnl_aa84aa2397f4f5a09a96bef76726e46f0_cgraph">
 <area shape="rect" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="5,147,186,173"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="234,5,419,48"/>
-<area shape="poly" title=" " alt="" coords="111,144,163,102,232,58,243,52,246,57,235,62,166,107,114,148"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="234,72,419,115"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="234,72,419,115"/>
 <area shape="poly" title=" " alt="" coords="144,143,235,117,236,122,145,149"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="234,139,419,181"/>
-<area shape="poly" title=" " alt="" coords="186,157,218,157,218,163,186,163"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="234,205,419,248"/>
-<area shape="poly" title=" " alt="" coords="145,171,236,198,235,203,144,177"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="234,272,419,315"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="234,272,419,315"/>
 <area shape="poly" title=" " alt="" coords="114,172,166,213,235,258,246,263,243,268,232,262,163,218,111,176"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="234,5,419,48"/>
+<area shape="poly" title=" " alt="" coords="111,144,163,102,232,58,243,52,246,57,235,62,166,107,114,148"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="234,139,419,181"/>
+<area shape="poly" title=" " alt="" coords="186,157,218,157,218,163,186,163"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="234,205,419,248"/>
+<area shape="poly" title=" " alt="" coords="145,171,236,198,235,203,144,177"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="467,72,652,115"/>
+<area shape="poly" title=" " alt="" coords="419,91,451,91,451,96,419,96"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="467,139,652,181"/>
+<area shape="poly" title=" " alt="" coords="404,113,468,131,467,136,402,118"/>
+<area shape="poly" title=" " alt="" coords="404,46,468,65,467,70,402,51"/>
+<area shape="poly" title=" " alt="" coords="402,136,467,117,468,122,404,141"/>
+<area shape="poly" title=" " alt="" coords="419,157,451,157,451,163,419,163"/>
+<area shape="poly" title=" " alt="" coords="399,202,417,191,432,175,441,159,449,142,465,125,471,121,474,125,469,129,454,145,445,161,437,178,421,195,402,207"/>
+<area shape="poly" title=" " alt="" coords="402,202,467,184,468,189,404,207"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ab60755999eaf6e6cd99e65a73890f50c" name="ab60755999eaf6e6cd99e65a73890f50c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab60755999eaf6e6cd99e65a73890f50c">&#9670;&#160;</a></span>Transpose()</h2>
+<a id="afe3f38f788c735b7eb718443eb0fd094" name="afe3f38f788c735b7eb718443eb0fd094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe3f38f788c735b7eb718443eb0fd094">&#9670;&#160;</a></span>Transpose()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3435,7 +3690,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>cols</em></span>&#160;)</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>cols</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3450,21 +3710,26 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">d_B</td><td>Pointer to the output matrix where the transposed result will be stored </td></tr>
     <tr><td class="paramname">rows</td><td>The number of rows in the input matrix </td></tr>
     <tr><td class="paramname">cols</td><td>The number of columns in the input matrix </td></tr>
+    <tr><td class="paramname">offset</td><td>The offset within the input and output arrays </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00100">100</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00146">146</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacenz_1_1krnl_ab60755999eaf6e6cd99e65a73890f50c_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_ab60755999eaf6e6cd99e65a73890f50c_cgraph" alt=""/></div>
-<map name="anamespacenz_1_1krnl_ab60755999eaf6e6cd99e65a73890f50c_cgraph" id="anamespacenz_1_1krnl_ab60755999eaf6e6cd99e65a73890f50c_cgraph">
+<div class="center"><img src="namespacenz_1_1krnl_afe3f38f788c735b7eb718443eb0fd094_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_afe3f38f788c735b7eb718443eb0fd094_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_afe3f38f788c735b7eb718443eb0fd094_cgraph" id="anamespacenz_1_1krnl_afe3f38f788c735b7eb718443eb0fd094_cgraph">
 <area shape="rect" title="Kernel function to transpose a matrix on the GPU." alt="" coords="5,47,139,73"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="187,5,372,48"/>
 <area shape="poly" title=" " alt="" coords="139,47,171,41,172,47,140,52"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="187,72,372,115"/>
 <area shape="poly" title=" " alt="" coords="140,68,172,73,171,79,139,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="420,39,605,81"/>
+<area shape="poly" title=" " alt="" coords="372,77,404,73,405,78,373,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="420,105,605,148"/>
+<area shape="poly" title=" " alt="" coords="373,104,405,109,404,114,372,109"/>
 </map>
 </div>
 

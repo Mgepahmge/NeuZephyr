@@ -72,7 +72,18 @@ $(function(){ initResizable(false); });
 
 <p>CUDA Kernel Definitions for High-Performance Tensor Operations.  
 <a href="#details">More...</a></p>
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for OperationKernels.cuh:</div>
+<div class="dyncontent">
+<div class="center"><img src="_operation_kernels_8cuh__incl.png" border="0" usemap="#a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuh" alt=""/></div>
+<map name="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuh" id="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuh">
+<area shape="rect" title="CUDA Kernel Definitions for High&#45;Performance Tensor Operations." alt="" coords="5,5,208,80"/>
+<area shape="rect" title=" " alt="" coords="78,128,135,155"/>
+<area shape="poly" title=" " alt="" coords="109,80,109,112,104,112,104,80"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_operation_kernels_8cuh__dep__incl.png" border="0" usemap="#a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_operation_kernels_8cuhdep" alt=""/></div>
@@ -107,18 +118,18 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a91159bb65d34c90ea5e2aa24e6000b67" id="r_a91159bb65d34c90ea5e2aa24e6000b67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a91159bb65d34c90ea5e2aa24e6000b67">nz::krnl::MatrixAdd</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n)</td></tr>
-<tr class="memdesc:a91159bb65d34c90ea5e2aa24e6000b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix addition on GPU.  <br /></td></tr>
-<tr class="separator:a91159bb65d34c90ea5e2aa24e6000b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab734a94d5e3a554abc268b9e51d14d99" id="r_ab734a94d5e3a554abc268b9e51d14d99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#ab734a94d5e3a554abc268b9e51d14d99">nz::krnl::MatrixSub</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n)</td></tr>
-<tr class="memdesc:ab734a94d5e3a554abc268b9e51d14d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix subtraction on GPU.  <br /></td></tr>
-<tr class="separator:ab734a94d5e3a554abc268b9e51d14d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d79f34a712e1bb45d5fedeb110e5ede" id="r_a6d79f34a712e1bb45d5fedeb110e5ede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a6d79f34a712e1bb45d5fedeb110e5ede">nz::krnl::GeneralMatrixMul</a> (dim3 gridDim, dim3 blockDim, float *A, float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</td></tr>
-<tr class="memdesc:a6d79f34a712e1bb45d5fedeb110e5ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores.  <br /></td></tr>
-<tr class="separator:a6d79f34a712e1bb45d5fedeb110e5ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab60755999eaf6e6cd99e65a73890f50c" id="r_ab60755999eaf6e6cd99e65a73890f50c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#ab60755999eaf6e6cd99e65a73890f50c">nz::krnl::Transpose</a> (dim3 gridDim, dim3 blockDim, float *d_A, float *d_B, unsigned int rows, unsigned int cols)</td></tr>
-<tr class="memdesc:ab60755999eaf6e6cd99e65a73890f50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to transpose a matrix on the GPU.  <br /></td></tr>
-<tr class="separator:ab60755999eaf6e6cd99e65a73890f50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97cda6dfc6545efaee2b686eed9ae766" id="r_a97cda6dfc6545efaee2b686eed9ae766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a97cda6dfc6545efaee2b686eed9ae766">nz::krnl::MatrixAdd</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n, size_t offset_c=0, size_t offset_a=0, size_t offset_b=0)</td></tr>
+<tr class="memdesc:a97cda6dfc6545efaee2b686eed9ae766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix addition on GPU.  <br /></td></tr>
+<tr class="separator:a97cda6dfc6545efaee2b686eed9ae766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad18a2b0efc0cdfc9cb861396ad4da53f" id="r_ad18a2b0efc0cdfc9cb861396ad4da53f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#ad18a2b0efc0cdfc9cb861396ad4da53f">nz::krnl::MatrixSub</a> (dim3 gridDim, dim3 blockDim, float *a, float *b, float *c, unsigned long long n, size_t offset_c=0, size_t offset_a=0, size_t offset_b=0)</td></tr>
+<tr class="memdesc:ad18a2b0efc0cdfc9cb861396ad4da53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform matrix subtraction on GPU.  <br /></td></tr>
+<tr class="separator:ad18a2b0efc0cdfc9cb861396ad4da53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae30a6e1de69588aa0c6eb8a5b8e6e826" id="r_ae30a6e1de69588aa0c6eb8a5b8e6e826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#ae30a6e1de69588aa0c6eb8a5b8e6e826">nz::krnl::GeneralMatrixMul</a> (dim3 gridDim, dim3 blockDim, float *A, float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K, size_t offset_c=0, size_t offset_a=0, size_t offset_b=0)</td></tr>
+<tr class="memdesc:ae30a6e1de69588aa0c6eb8a5b8e6e826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores.  <br /></td></tr>
+<tr class="separator:ae30a6e1de69588aa0c6eb8a5b8e6e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe3f38f788c735b7eb718443eb0fd094" id="r_afe3f38f788c735b7eb718443eb0fd094"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#afe3f38f788c735b7eb718443eb0fd094">nz::krnl::Transpose</a> (dim3 gridDim, dim3 blockDim, float *d_A, float *d_B, unsigned int rows, unsigned int cols, size_t offset=0)</td></tr>
+<tr class="memdesc:afe3f38f788c735b7eb718443eb0fd094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to transpose a matrix on the GPU.  <br /></td></tr>
+<tr class="separator:afe3f38f788c735b7eb718443eb0fd094"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af716524e248c61f3dce227d8ef6e34" id="r_a5af716524e248c61f3dce227d8ef6e34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a5af716524e248c61f3dce227d8ef6e34">nz::krnl::ScalarMul</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, float num, unsigned long long n)</td></tr>
 <tr class="memdesc:a5af716524e248c61f3dce227d8ef6e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform scalar multiplication on the GPU.  <br /></td></tr>
 <tr class="separator:a5af716524e248c61f3dce227d8ef6e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,12 +193,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a455365870d43ff26687a731d15c4cdff" id="r_a455365870d43ff26687a731d15c4cdff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a455365870d43ff26687a731d15c4cdff">nz::krnl::HardSwishBackward</a> (dim3 gridDim, dim3 blockDim, float *A_grad, float *A, float *B_grad, unsigned long long n, float alpha=0.2f, float beta=0.5f)</td></tr>
 <tr class="memdesc:a455365870d43ff26687a731d15c4cdff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of the Hard Swish activation during backpropagation.  <br /></td></tr>
 <tr class="separator:a455365870d43ff26687a731d15c4cdff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44ddd6d20d352731eb43142bcdf48b2e" id="r_a44ddd6d20d352731eb43142bcdf48b2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a44ddd6d20d352731eb43142bcdf48b2e">nz::krnl::SummationExp</a> (dim3 gridDim, dim3 blockDim, size_t sharedMemSize, float *out, float *g_data, unsigned long long n)</td></tr>
-<tr class="memdesc:a44ddd6d20d352731eb43142bcdf48b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the summation of exponentials of each element in the input array.  <br /></td></tr>
-<tr class="separator:a44ddd6d20d352731eb43142bcdf48b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aade67dae6bd25594a21229715e31b90a" id="r_aade67dae6bd25594a21229715e31b90a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#aade67dae6bd25594a21229715e31b90a">nz::krnl::Softmax</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n)</td></tr>
-<tr class="memdesc:aade67dae6bd25594a21229715e31b90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Softmax function on the GPU.  <br /></td></tr>
-<tr class="separator:aade67dae6bd25594a21229715e31b90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51a5ff3c8cc2c3051fddf32de294b467" id="r_a51a5ff3c8cc2c3051fddf32de294b467"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467">nz::krnl::SummationExp</a> (dim3 gridDim, dim3 blockDim, size_t sharedMemSize, float *out, float *g_data, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:a51a5ff3c8cc2c3051fddf32de294b467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the summation of exponentials of each element in the input array.  <br /></td></tr>
+<tr class="separator:a51a5ff3c8cc2c3051fddf32de294b467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbafc409d57fa0a9d78ecac5bf7b10a3" id="r_adbafc409d57fa0a9d78ecac5bf7b10a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#adbafc409d57fa0a9d78ecac5bf7b10a3">nz::krnl::Softmax</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:adbafc409d57fa0a9d78ecac5bf7b10a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to apply the Softmax function on the GPU.  <br /></td></tr>
+<tr class="separator:adbafc409d57fa0a9d78ecac5bf7b10a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4375738c83ef892783abc210578e5b39" id="r_a4375738c83ef892783abc210578e5b39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a4375738c83ef892783abc210578e5b39">nz::krnl::SoftmaxJacobian</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</td></tr>
 <tr class="memdesc:a4375738c83ef892783abc210578e5b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the Jacobian of the Softmax function.  <br /></td></tr>
 <tr class="separator:a4375738c83ef892783abc210578e5b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,18 +238,18 @@ Functions</h2></td></tr>
 <tr class="memitem:aa84aa2397f4f5a09a96bef76726e46f0" id="r_aa84aa2397f4f5a09a96bef76726e46f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#aa84aa2397f4f5a09a96bef76726e46f0">nz::krnl::TensorCoreGEMM</a> (float *A, float *B, float *C, unsigned long long M, unsigned long long N, unsigned long long K)</td></tr>
 <tr class="memdesc:aa84aa2397f4f5a09a96bef76726e46f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform fast matrix multiplication using Tensor Cores with half-precision (FP16) support.  <br /></td></tr>
 <tr class="separator:aa84aa2397f4f5a09a96bef76726e46f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c8d5892bd795b00c76203e1155b0780" id="r_a7c8d5892bd795b00c76203e1155b0780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780">nz::krnl::Fill</a> (dim3 gridDim, dim3 blockDim, float *data, float value, unsigned long long n)</td></tr>
-<tr class="memdesc:a7c8d5892bd795b00c76203e1155b0780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to fill a data array with a given value.  <br /></td></tr>
-<tr class="separator:a7c8d5892bd795b00c76203e1155b0780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad136c8a6560a5305984ce0a31bea71bf" id="r_ad136c8a6560a5305984ce0a31bea71bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf">nz::krnl::Fill</a> (dim3 gridDim, dim3 blockDim, float *data, float value, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:ad136c8a6560a5305984ce0a31bea71bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to fill a data array with a given value.  <br /></td></tr>
+<tr class="separator:ad136c8a6560a5305984ce0a31bea71bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ec4524fdefd3d771c72e77e94281c88" id="r_a8ec4524fdefd3d771c72e77e94281c88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a8ec4524fdefd3d771c72e77e94281c88">nz::krnl::HadamardProduct</a> (dim3 gridDim, dim3 blockDim, float *out, float *in1, float *in2, unsigned long long n)</td></tr>
 <tr class="memdesc:a8ec4524fdefd3d771c72e77e94281c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise Hadamard product of two arrays.  <br /></td></tr>
 <tr class="separator:a8ec4524fdefd3d771c72e77e94281c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e04672b974841c0b1ae52775ee13106" id="r_a8e04672b974841c0b1ae52775ee13106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a8e04672b974841c0b1ae52775ee13106">nz::krnl::ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, float *in1, float *in2, unsigned long long n)</td></tr>
-<tr class="memdesc:a8e04672b974841c0b1ae52775ee13106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
-<tr class="separator:a8e04672b974841c0b1ae52775ee13106"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0988b6f4f3ca65d98e8b00af6b4b534" id="r_aa0988b6f4f3ca65d98e8b00af6b4b534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#aa0988b6f4f3ca65d98e8b00af6b4b534">nz::krnl::Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, float *in, unsigned long long n)</td></tr>
-<tr class="memdesc:aa0988b6f4f3ca65d98e8b00af6b4b534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
-<tr class="separator:aa0988b6f4f3ca65d98e8b00af6b4b534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61cded4977bb2dc3720f7057cc2fb47" id="r_aa61cded4977bb2dc3720f7057cc2fb47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#aa61cded4977bb2dc3720f7057cc2fb47">nz::krnl::ElementwiseDivide</a> (dim3 gridDim, dim3 blockDim, float *out, float *in1, float *in2, unsigned long long n, size_t offset_o=0, size_t offset_1=0, size_t offset_2=0)</td></tr>
+<tr class="memdesc:aa61cded4977bb2dc3720f7057cc2fb47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise division of two arrays.  <br /></td></tr>
+<tr class="separator:aa61cded4977bb2dc3720f7057cc2fb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae846a65c2f5b83cd1b9fc61b877854" id="r_a1ae846a65c2f5b83cd1b9fc61b877854"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenz_1_1krnl.html#a1ae846a65c2f5b83cd1b9fc61b877854">nz::krnl::Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, float *in, unsigned long long n, size_t offset=0)</td></tr>
+<tr class="memdesc:a1ae846a65c2f5b83cd1b9fc61b877854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
+<tr class="separator:a1ae846a65c2f5b83cd1b9fc61b877854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>CUDA Kernel Definitions for High-Performance Tensor Operations. </p>

@@ -128,7 +128,7 @@ Public Member Functions</h2></td></tr>
 <li>The <code>epsilon</code> term ensures numerical stability when dividing by the sum of squared gradients.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md67"></a>
+<h3><a class="anchor" id="autotoc_md70"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1opt_1_1_ada_grad.html">AdaGrad</a> optimizer(0.01);</div>
 <div class="line">graph.update(&amp;optimizer) <span class="comment">// Suppose &quot;graph&quot; is a computation graph waiting for gradient updates;</span></div>
@@ -243,15 +243,19 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Performs a single optimization step using the AdaGrad algorithm." alt="" coords="5,39,159,65"/>
 <area shape="rect" href="namespacenz_1_1krnl.html#a1e915bd4a354938d8bc2d09be00eae76" title="Kernel function to apply AdaGrad optimization." alt="" coords="391,13,514,40"/>
 <area shape="poly" title=" " alt="" coords="159,44,376,29,376,35,159,49"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aaba025895b2c8b69de8d36c73c74929e" title="Fills the tensor&#39;s data with a specified value." alt="" coords="207,64,343,91"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#ad220de56b18c404611f07f2290cd7e9d" title="Fills the tensor&#39;s data with a specified value." alt="" coords="207,64,343,91"/>
 <area shape="poly" title=" " alt="" coords="159,59,192,64,191,69,159,65"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="562,5,748,48"/>
 <area shape="poly" title=" " alt="" coords="515,24,547,24,547,29,515,29"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="408,64,497,91"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value." alt="" coords="408,64,497,91"/>
 <area shape="poly" title=" " alt="" coords="343,75,393,75,393,80,343,80"/>
 <area shape="poly" title=" " alt="" coords="497,64,552,50,553,55,498,69"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="562,72,748,115"/>
 <area shape="poly" title=" " alt="" coords="498,78,547,82,547,87,498,84"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="796,39,981,81"/>
+<area shape="poly" title=" " alt="" coords="748,77,780,73,780,78,749,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="796,105,981,148"/>
+<area shape="poly" title=" " alt="" coords="749,104,780,109,780,114,748,109"/>
 </map>
 </div>
 
