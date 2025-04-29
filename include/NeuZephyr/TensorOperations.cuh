@@ -314,7 +314,8 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iSoftmax(float* output, float* input, const std::vector<float>& sum, unsigned long long size, const std::vector<size_t>& offset);
+    DL_API void iSoftmax(float* output, float* input, const std::vector<float>& sum, unsigned long long size,
+                         const std::vector<size_t>& offset);
 
     /**
      * @brief Compute the softmax function for a given input of type T.
@@ -707,6 +708,117 @@ namespace nz::data {
         result.recip();
         iScalarMul(result.data(), result.data(), lhs, result.size());
         return result;
+    }
+
+    DL_API void iMatrixAdd(float* out, float* in1, float* in2, size_t n, const std::vector<size_t>& offset_o,
+                           const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, void>
+    tensorMatrixAdd(T& out, const T& lhs, const T& rhs) {
+        if (!lhs.shape().isBroadcastCompatible(rhs.shape()) || lhs.shape().H() != rhs.shape().H() || lhs.shape().W() !=
+            rhs.shape().
+                W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
+        }
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
+        const size_t n = lhs.shape().H() * lhs.shape().W();
+        for (auto i = 0; i < out.shape()[0]; i++) {
+            for (auto j = 0; j < out.shape()[1]; j++) {
+                offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
+                offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
+                    ? lhs.shape().getStride(1)
+                    : 0));
+                offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
+                    rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
+            }
+        }
+        iMatrixAdd(out.data(), lhs.data(), rhs.data(), n, offsetC, offsetA, offsetB);
+    }
+
+    DL_API void iMatrixSub(float* out, float* in1, float* in2, size_t n, const std::vector<size_t>& offset_o,
+                           const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, void>
+    tensorMatrixSub(T& out, const T& lhs, const T& rhs) {
+        if (!lhs.shape().isBroadcastCompatible(rhs.shape()) || lhs.shape().H() != rhs.shape().H() || lhs.shape().W() !=
+            rhs.shape().
+                W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
+        }
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
+        const size_t n = lhs.shape().H() * lhs.shape().W();
+        for (auto i = 0; i < out.shape()[0]; i++) {
+            for (auto j = 0; j < out.shape()[1]; j++) {
+                offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
+                offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
+                    ? lhs.shape().getStride(1)
+                    : 0));
+                offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
+                    rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
+            }
+        }
+        iMatrixSub(out.data(), lhs.data(), rhs.data(), n, offsetC, offsetA, offsetB);
+    }
+
+    DL_API void iElementwiseDivide(float* out, float* in1, float* in2, size_t n, const std::vector<size_t>& offset_o,
+                                   const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, void>
+    tensorElementwiseDivide(T& out, const T& lhs, const T& rhs) {
+        if (!lhs.shape().isBroadcastCompatible(rhs.shape()) || lhs.shape().H() != rhs.shape().H() || lhs.shape().W() !=
+            rhs.shape().
+                W()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
+        }
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
+        const size_t n = lhs.shape().H() * lhs.shape().W();
+        for (auto i = 0; i < out.shape()[0]; i++) {
+            for (auto j = 0; j < out.shape()[1]; j++) {
+                offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
+                offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
+                    ? lhs.shape().getStride(1)
+                    : 0));
+                offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
+                    rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
+            }
+        }
+        iElementwiseDivide(out.data(), lhs.data(), rhs.data(), n, offsetC, offsetA, offsetB);
+    }
+
+    DL_API void iGeneralMatrixMul(float* A, float* B, float* C, size_t M, size_t N, size_t K,
+                                  const std::vector<size_t>& offsetC, const std::vector<size_t>& offsetA,
+                                  const std::vector<size_t>& offsetB);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, void>
+    tensorGeneralMatrixMul(T& out, const T& lhs, const T& rhs) {
+        if (!lhs.shape().isBroadcastCompatible(rhs.shape()) || lhs.shape().W() != rhs.shape().H()) {
+            throw std::invalid_argument("Shapes are not broadcast compatible.");
+        }
+        std::vector<size_t> offsetC;
+        std::vector<size_t> offsetA;
+        std::vector<size_t> offsetB;
+        for (auto i = 0; i < out.shape()[0]; i++) {
+            for (auto j = 0; j < out.shape()[1]; j++) {
+                offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
+                offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
+                    ? lhs.shape().getStride(1)
+                    : 0));
+                offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
+                    rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
+            }
+        }
+        iGeneralMatrixMul(lhs.data(), rhs.data(), out.data(), lhs.shape().H(), rhs.shape().W(), lhs.shape().W(),
+                          offsetC, offsetA, offsetB);
     }
 }
 #endif //TENSOROPERATIONS_CUH
