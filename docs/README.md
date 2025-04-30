@@ -36,14 +36,17 @@ For a detailed guide on how to use the `ComputeGraphh` class, please refer to th
    cd NeuZephyr
    ```
 
-2. Create a build directory and compile the project using CMake:
+2. Build and install the project using CMake (Release mode):
    ```bash
    mkdir build
    cd build
-   cmake ..
-   make
-   sudo make install
+   cmake -DCMAKE_BUILD_TYPE=Release ..
+   cmake --build . --config Release
+   sudo cmake --install .  # Omit 'sudo' on Windows
    ```
+   **Add to PATH** (Windows):
+   After installation, add `<INSTALL_DIR>/NeuZephyr/bin` to your system's `PATH` environment variable.
+
 
 3. Use `NeuZephyr` in your CMake project:
    ```cmake
