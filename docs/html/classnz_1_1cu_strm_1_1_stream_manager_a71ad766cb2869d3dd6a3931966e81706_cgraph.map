@@ -1,0 +1,7 @@
+<map id="nz::cuStrm::StreamManager::memset" name="nz::cuStrm::StreamManager::memset">
+<area shape="rect" id="Node000001" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="5,39,191,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="239,5,424,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,44,223,39,223,45,192,49"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="239,72,424,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,71,223,75,223,81,191,76"/>
+</map>

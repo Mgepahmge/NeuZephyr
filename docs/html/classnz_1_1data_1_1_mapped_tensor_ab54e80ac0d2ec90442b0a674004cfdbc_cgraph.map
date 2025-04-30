@@ -1,0 +1,21 @@
+<map id="nz::data::MappedTensor::printGrad" name="nz::data::MappedTensor::printGrad">
+<area shape="rect" id="Node000001" title="Print the gradient of the tensor in a matrix&#45;like format to an output stream." alt="" coords="5,56,167,99"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,56,390,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,75,214,75,214,80,167,80"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="662,115,824,157"/>
+<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="161,97,215,108,331,122,447,130,647,135,647,140,447,135,330,127,214,113,160,102"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,5,405,32"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="166,54,241,34,243,39,168,59"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="453,52,614,95"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,73,437,72,437,78,391,79"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="662,48,824,91"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="615,69,647,69,647,74,615,74"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="608,93,656,107,654,112,607,98"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="872,48,1057,91"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="824,67,856,67,856,72,824,72"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="872,115,1057,157"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="817,89,877,107,876,112,815,94"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="815,112,876,93,877,98,817,117"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="824,133,856,133,856,139,824,139"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="368,30,439,47,437,53,367,35"/>
+</map>

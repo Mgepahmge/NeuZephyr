@@ -1,0 +1,5 @@
+<map id="nz::data::MappedTensor::setShape" name="nz::data::MappedTensor::setShape">
+<area shape="rect" id="Node000001" title="Sets a new shape for the MappedTensor and adjusts its data and gradient memory accordingly." alt="" coords="5,5,167,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b" title="Retrieves the shape of the MappedTensor." alt="" coords="215,5,376,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,24,199,24,199,29,167,29"/>
+</map>

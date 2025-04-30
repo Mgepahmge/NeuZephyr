@@ -1,0 +1,9 @@
+<map id="nz::data::Tensor::Tensor" name="nz::data::Tensor::Tensor">
+<area shape="rect" id="Node000001" title="Constructor that initializes a Tensor with the specified shape." alt="" coords="5,47,168,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="216,5,401,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,45,200,40,200,46,169,50"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="216,72,401,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,70,200,74,200,80,168,75"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="449,72,634,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="401,91,433,91,433,96,401,96"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="nz::data::Tensor::fillGrad" name="nz::data::Tensor::fillGrad">
+<area shape="rect" id="Node000001" title="Fills the tensor&#39;s gradient data with a specified value." alt="" coords="5,47,170,73"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a7c8d5892bd795b00c76203e1155b0780" title="Kernel function to fill a data array with a given value." alt="" coords="218,47,307,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,57,202,57,202,63,170,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="355,5,540,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="307,49,339,44,340,49,308,55"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="355,72,540,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="308,65,340,71,339,76,307,71"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="nz::data::Tensor::print" name="nz::data::Tensor::print">
+<area shape="rect" id="Node000001" title="Prints the tensor data to an output stream." alt="" coords="5,97,154,124"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="220,5,368,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,94,146,68,201,42,220,35,222,40,203,46,148,73,104,99"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="202,56,387,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="153,97,186,91,187,97,154,102"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="202,123,387,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="154,120,187,125,186,130,153,125"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="202,189,387,232"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="105,122,203,175,216,181,214,186,201,180,102,127"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="435,89,620,132"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="387,128,419,123,420,129,388,133"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="435,156,620,199"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="388,155,420,159,419,165,387,160"/>
+</map>

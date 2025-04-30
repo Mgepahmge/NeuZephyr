@@ -1,0 +1,7 @@
+<map id="nz::data::Tensor::setData" name="nz::data::Tensor::setData">
+<area shape="rect" id="Node000001" title="Sets a specific element of the tensor&#39;s data to a given value using an initializer list for position." alt="" coords="5,5,175,32"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#ae2cee8a54e65497113afd0c4f85dc02c" title="Sets a specific element of the tensor&#39;s data to a given value." alt="" coords="223,5,392,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,16,207,16,207,21,175,21"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="440,5,588,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,16,424,16,424,21,392,21"/>
+</map>

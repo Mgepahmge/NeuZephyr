@@ -1,0 +1,11 @@
+<map id="nz::nodes::calc::AddNode::backward" name="nz::nodes::calc::AddNode::backward">
+<area shape="rect" id="Node000001" title="Backward pass for the AddNode to propagate gradients." alt="" coords="5,39,178,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="226,5,411,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,45,210,40,210,45,179,50"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="226,72,411,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,70,210,75,210,80,178,75"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="459,39,644,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="411,77,443,73,444,78,412,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="459,105,644,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="412,104,444,109,443,114,411,109"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="nz::data::MappedTensor::operator&#45;" name="nz::data::MappedTensor::operator&#45;">
+<area shape="rect" id="Node000001" title="Perform element&#45;wise negation on the MappedTensor." alt="" coords="5,39,167,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#af7069a420e81babb49b1bc009333d053" title="Kernel function to negate each element of a matrix on the GPU." alt="" coords="215,47,339,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,57,199,57,199,63,167,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="387,5,572,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="339,47,371,42,372,47,340,52"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="387,72,572,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="340,68,372,73,371,78,339,73"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="620,39,806,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="572,77,604,73,605,78,573,83"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="620,105,806,148"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="573,104,605,109,604,114,572,109"/>
+</map>

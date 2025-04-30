@@ -1,0 +1,5 @@
+<map id="nz::cuStrm::StreamManager::freeHost" name="nz::cuStrm::StreamManager::freeHost">
+<area shape="rect" id="Node000001" title="Frees the pinned host memory pointed to by the given pointer." alt="" coords="5,5,191,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="239,5,424,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,24,223,24,223,29,191,29"/>
+</map>

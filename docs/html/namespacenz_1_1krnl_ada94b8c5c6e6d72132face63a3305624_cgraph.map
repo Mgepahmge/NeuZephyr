@@ -1,0 +1,5 @@
+<map id="nz::krnl::NAdam" name="nz::krnl::NAdam">
+<area shape="rect" id="Node000001" title="Kernel function to apply NAdam optimization." alt="" coords="5,13,122,40"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="170,5,355,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,24,154,24,154,29,122,29"/>
+</map>

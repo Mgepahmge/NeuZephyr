@@ -1,0 +1,7 @@
+<map id="nz::data::Tensor::syncData" name="nz::data::Tensor::syncData">
+<area shape="rect" id="Node000001" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="5,47,185,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="233,5,418,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,44,217,40,217,45,185,50"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="233,72,418,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,70,217,75,217,80,185,76"/>
+</map>

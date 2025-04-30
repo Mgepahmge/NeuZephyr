@@ -1,0 +1,7 @@
+<map id="nz::krnl::MatrixAdd" name="nz::krnl::MatrixAdd">
+<area shape="rect" id="Node000001" title="Kernel function to perform matrix addition on GPU." alt="" coords="5,47,137,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="185,5,370,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,47,169,42,169,47,137,52"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="185,72,370,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,68,169,73,169,78,136,73"/>
+</map>

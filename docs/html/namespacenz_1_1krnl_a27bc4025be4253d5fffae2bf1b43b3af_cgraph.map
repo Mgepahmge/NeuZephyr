@@ -1,0 +1,11 @@
+<map id="nz::krnl::ScalarDiv" name="nz::krnl::ScalarDiv">
+<area shape="rect" id="Node000001" title="Kernel function to perform scalar division on the GPU." alt="" coords="5,47,135,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="183,5,368,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,47,167,42,168,47,135,52"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="183,72,368,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,68,168,73,167,78,134,73"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="416,39,601,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="368,77,400,73,401,78,369,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="416,105,601,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="369,104,401,109,400,114,368,109"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="nz::krnl::Softmax" name="nz::krnl::Softmax">
+<area shape="rect" id="Node000001" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="5,47,127,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="175,5,360,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,47,159,42,159,47,127,53"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="175,72,360,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,67,159,73,159,78,126,73"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="408,39,593,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="360,77,392,73,393,78,361,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="408,105,593,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="361,104,393,109,392,114,360,109"/>
+</map>

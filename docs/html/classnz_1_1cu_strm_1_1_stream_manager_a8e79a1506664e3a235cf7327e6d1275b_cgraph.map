@@ -1,0 +1,5 @@
+<map id="nz::cuStrm::StreamManager::~StreamManager" name="nz::cuStrm::StreamManager::~StreamManager">
+<area shape="rect" id="Node000001" title="Destructor for the StreamManager class." alt="" coords="5,5,191,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193" title="Synchronizes all CUDA streams in the stream pool by blocking the host thread." alt="" coords="239,5,424,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,24,223,24,223,29,191,29"/>
+</map>

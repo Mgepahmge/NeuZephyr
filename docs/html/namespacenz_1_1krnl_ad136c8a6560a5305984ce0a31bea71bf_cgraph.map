@@ -1,0 +1,11 @@
+<map id="nz::krnl::Fill" name="nz::krnl::Fill">
+<area shape="rect" id="Node000001" title="Kernel function to fill a data array with a given value." alt="" coords="5,47,95,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="143,5,328,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,49,127,44,128,49,96,55"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="143,72,328,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="96,65,128,71,127,76,95,71"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="376,39,561,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="328,77,360,73,361,78,329,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="376,105,561,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="329,104,361,109,360,114,328,109"/>
+</map>

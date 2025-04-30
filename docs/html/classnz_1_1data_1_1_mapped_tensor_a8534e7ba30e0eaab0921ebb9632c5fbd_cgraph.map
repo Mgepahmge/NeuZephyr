@@ -1,0 +1,5 @@
+<map id="nz::data::MappedTensor::MappedTensor" name="nz::data::MappedTensor::MappedTensor">
+<area shape="rect" id="Node000001" title="Construct a new MappedTensor object with the given shape and gradient requirement." alt="" coords="5,5,167,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="215,13,373,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,24,199,24,199,29,167,29"/>
+</map>

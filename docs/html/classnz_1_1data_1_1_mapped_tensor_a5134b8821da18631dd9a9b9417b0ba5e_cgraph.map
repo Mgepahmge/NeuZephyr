@@ -1,0 +1,13 @@
+<map id="nz::data::MappedTensor::sync" name="nz::data::MappedTensor::sync">
+<area shape="rect" id="Node000001" title="Synchronizes the tensor data and its gradient." alt="" coords="5,39,167,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="215,5,376,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,44,199,39,200,45,168,50"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="215,72,376,115"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="168,70,200,75,199,81,167,76"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="424,5,609,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,24,408,24,408,29,376,29"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="424,72,609,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="369,46,430,64,428,70,367,51"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="367,69,428,50,430,56,369,74"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="376,91,408,91,408,96,376,96"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="nz::data::Tensor::clear" name="nz::data::Tensor::clear">
+<area shape="rect" id="Node000001" title="Clears the tensor&#39;s data by setting all elements to zero." alt="" coords="5,47,157,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="205,5,390,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,46,188,41,189,46,157,51"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="205,72,390,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,69,189,74,188,79,157,74"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="438,39,623,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="390,77,422,73,423,78,391,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="438,105,623,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="391,104,423,109,422,114,390,109"/>
+</map>

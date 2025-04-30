@@ -1,0 +1,11 @@
+<map id="nz::krnl::Swish" name="nz::krnl::Swish">
+<area shape="rect" id="Node000001" title="Kernel function to apply the Swish activation function on the GPU." alt="" coords="5,47,114,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="162,5,347,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,48,146,43,147,48,114,53"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="162,72,347,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,67,147,72,146,77,113,72"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="395,39,580,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="347,77,379,73,380,78,348,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="395,105,580,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="348,104,380,109,379,114,347,109"/>
+</map>

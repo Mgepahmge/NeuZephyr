@@ -1,0 +1,9 @@
+<map id="nz::data::Tensor::operator=" name="nz::data::Tensor::operator=">
+<area shape="rect" id="Node000001" title="Move assignment operator for Tensor." alt="" coords="5,47,184,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="232,5,417,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,44,216,40,216,45,185,50"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="232,72,417,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,70,216,75,216,80,184,76"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="465,5,650,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="417,24,449,24,449,29,417,29"/>
+</map>

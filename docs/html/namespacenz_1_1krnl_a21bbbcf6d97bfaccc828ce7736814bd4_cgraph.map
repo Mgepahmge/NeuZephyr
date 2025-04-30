@@ -1,0 +1,11 @@
+<map id="nz::krnl::Sigmoid" name="nz::krnl::Sigmoid">
+<area shape="rect" id="Node000001" title="Kernel function to apply the Sigmoid activation function on the GPU." alt="" coords="5,47,125,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="173,5,358,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,47,157,42,158,47,126,53"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="173,72,358,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,67,158,73,157,78,125,73"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="406,39,591,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="358,77,390,73,391,78,359,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="406,105,591,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="359,104,391,109,390,114,358,109"/>
+</map>

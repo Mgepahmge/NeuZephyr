@@ -1,0 +1,15 @@
+<map id="nz::data::MappedTensor::end" name="nz::data::MappedTensor::end">
+<area shape="rect" id="Node000001" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="5,47,196,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="244,39,405,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,57,228,57,228,63,196,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="453,5,614,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="405,44,437,39,438,45,406,50"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="453,72,614,115"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="406,70,438,75,437,81,405,76"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="662,5,848,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="615,24,647,24,647,29,615,29"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="662,72,848,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="607,46,668,64,666,70,606,51"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="606,69,666,50,668,56,607,74"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="615,91,647,91,647,96,615,96"/>
+</map>

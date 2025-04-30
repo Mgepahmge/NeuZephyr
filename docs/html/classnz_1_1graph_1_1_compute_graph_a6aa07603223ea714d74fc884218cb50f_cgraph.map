@@ -1,0 +1,13 @@
+<map id="nz::graph::ComputeGraph::save" name="nz::graph::ComputeGraph::save">
+<area shape="rect" id="Node000001" title="Saves the current computational graph to a JSON file." alt="" coords="5,72,177,115"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="225,5,410,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,69,227,50,228,56,166,74"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="225,72,410,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,91,209,91,209,96,177,96"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="225,139,410,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="166,113,228,131,227,136,165,118"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="458,39,643,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="410,77,442,73,443,78,411,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="458,105,643,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="411,104,443,109,442,114,410,109"/>
+</map>

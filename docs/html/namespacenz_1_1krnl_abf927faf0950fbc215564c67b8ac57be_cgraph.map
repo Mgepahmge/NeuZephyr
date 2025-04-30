@@ -1,0 +1,11 @@
+<map id="nz::krnl::BinaryCrossEntropy" name="nz::krnl::BinaryCrossEntropy">
+<area shape="rect" id="Node000001" title="Kernel function to compute the Binary Cross Entropy (BCE) loss between predicted and real values." alt="" coords="5,47,195,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="243,5,428,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,44,227,39,228,45,196,49"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="243,72,428,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,71,228,75,227,81,195,76"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="476,39,661,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="428,77,460,73,461,78,429,83"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="476,105,661,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="429,104,461,109,460,114,428,109"/>
+</map>
