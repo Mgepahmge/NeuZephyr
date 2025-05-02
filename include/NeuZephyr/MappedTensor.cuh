@@ -864,6 +864,54 @@ namespace nz::data {
          */
         void fill(value_type value, bool isGrad = false) const;
 
+        /**
+         * @brief Fills a specific matrix within the MappedTensor with a given value.
+         *
+         * This function fills a particular matrix in the MappedTensor, specified by the batch and channel indices, with the provided value.
+         * It can also fill the gradient matrix if the tensor requires gradients and the `isGrad` flag is set to `true`.
+         *
+         * @param value The value to fill the matrix with. Memory flow: host-to-function, as it is passed from the calling code to the function.
+         * @param batch The batch index. Memory flow: host-to-function, as it is passed from the calling code to the function.
+         * @param channels The channel index. Memory flow: host-to-function, as it is passed from the calling code to the function.
+         * @param isGrad A boolean flag indicating whether to fill the gradient matrix. Memory flow: host-to-function, as it is passed from the calling code to the function.
+         *
+         * @return None
+         *
+         * **Memory Management Strategy**:
+         * - This function does not allocate or free any dynamic memory. It only modifies the existing data or gradient buffer of the MappedTensor.
+         *
+         * **Exception Handling Mechanism**:
+         * - If the provided batch or channel indices are out of bounds, the function throws an `std::invalid_argument` exception.
+         * - If the `isGrad` flag is `true` but the tensor does not require gradients, the function throws an `std::invalid_argument` exception.
+         *
+         * **Relationship with Other Components**:
+         * - This function depends on the `krnl::Fill` CUDA kernel to perform the actual filling operation on the device.
+         *
+         * @throws std::invalid_argument If the provided batch or channel indices are out of bounds, or if gradient filling is attempted on a tensor that does not require gradients.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the matrix (`_shape[2] * _shape[3]`). This is because the CUDA kernel needs to process each element.
+         * - Ensure that the `krnl::Fill` CUDA kernel is correctly implemented.
+         * - This function involves CUDA operations, so it requires a CUDA - enabled environment.
+         *
+         * @warning
+         * - Incorrect usage of CUDA functions may lead to memory access errors or other CUDA - related issues.
+         *
+         * @code
+         * ```cpp
+         * MappedTensor tensor;
+         * MappedTensor::value_type value = 1.0;
+         * MappedTensor::size_type batch = 0;
+         * MappedTensor::size_type channels = 1;
+         * bool isGrad = false;
+         * try {
+         *     tensor.fillMatrix(value, batch, channels, isGrad);
+         * } catch (const std::invalid_argument& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         void fillMatrix(value_type value, size_type batch, size_type channels, bool isGrad = false);
 
         /**
@@ -1278,6 +1326,53 @@ namespace nz::data {
          */
         [[nodiscard]] value_type expSum() const;
 
+        /**
+         * @brief Computes the sum of exponential values for a given batch and channel in the MappedTensor.
+         *
+         * This function calculates the sum of exponential values for a specific batch and channel within the MappedTensor.
+         * It first checks if the provided batch and channel indices are valid. If so, it launches a CUDA kernel to perform
+         * the exponential summation and then aggregates the partial results on the host.
+         *
+         * @param batch The batch index. Memory flow: host-to-function, as the value is passed from the calling code to the function.
+         * @param channel The channel index. Memory flow: host-to-function, as the value is passed from the calling code to the function.
+         *
+         * @return The sum of exponential values for the specified batch and channel. Memory flow: function-to-host, as the result is returned from the function to the calling code.
+         *
+         * **Memory Management Strategy**:
+         * - The function allocates host memory for the intermediate results using `cudaMallocHost`. This memory is managed by the CUDA runtime.
+         * - After aggregating the results, the allocated host memory is freed using `cuStrm::StreamManager<value_type>::Instance().freeHost`.
+         *
+         * **Exception Handling Mechanism**:
+         * - If the provided batch or channel indices are out of bounds, the function throws an `std::invalid_argument` exception.
+         *
+         * **Relationship with Other Components**:
+         * - This function depends on the `krnl::SummationExp` CUDA kernel to perform the exponential summation on the device.
+         * - It also relies on the `cuStrm::StreamManager<value_type>` to synchronize data and free host memory.
+         *
+         * @throws std::invalid_argument If the provided batch or channel indices are out of bounds.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of grid blocks (`grid.x`). This is due to the loop that aggregates the partial results.
+         * - Ensure that the CUDA kernel `krnl::SummationExp` is correctly implemented and that the `cuStrm::StreamManager<value_type>` functions work as expected.
+         * - This function involves CUDA operations, so it requires a CUDA - enabled environment.
+         *
+         * @warning
+         * - Incorrect usage of CUDA functions may lead to memory leaks or other CUDA - related errors.
+         *
+         * @code
+         * ```cpp
+         * MappedTensor tensor;
+         * size_t batch = 0;
+         * size_t channel = 1;
+         * try {
+         *     MappedTensor::value_type result = tensor.expSum(batch, channel);
+         *     // Use the result
+         * } catch (const std::invalid_argument& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] value_type expSum(size_t batch, size_t channel) const;
 
         /**

@@ -714,6 +714,49 @@ namespace nz::data {
     DL_API void iMatrixAdd(float* out, float* in1, float* in2, size_t n, const std::vector<size_t>& offset_o,
                            const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2);
 
+    /**
+     * @brief Performs matrix addition operation on tensors with broadcast compatibility.
+     *
+     * This function is a template function that adds two tensors `lhs` and `rhs` and stores the result in `out`.
+     * It only accepts tensor types for which `is_valid_tensor_type<T>::value` is `true`. The shapes of the input tensors
+     * must be broadcast compatible, and the height and width dimensions must match.
+     *
+     * @tparam T The tensor type. This type must satisfy `is_valid_tensor_type<T>::value`.
+     * @param out The output tensor where the result of the addition will be stored. Memory flow: host-to-function (for reference), function-to-host (modifies the object).
+     * @param lhs The left-hand side tensor of the addition. Memory flow: host-to-function.
+     * @param rhs The right-hand side tensor of the addition. Memory flow: host-to-function.
+     *
+     * @return None
+     *
+     * **Memory Management Strategy**:
+     * - This function does not allocate or free any additional memory for the tensors. It only uses local `std::vector` objects (`offsetC`, `offsetA`, `offsetB`) to store offset values, and these vectors are automatically managed by their destructors.
+     *
+     * **Exception Handling Mechanism**:
+     * - Throws `std::invalid_argument` if the shapes of `lhs` and `rhs` are not broadcast compatible or if their height and width dimensions do not match.
+     *
+     * **Relationship with Other Components**:
+     * - Depends on the `shape()` method of the tensor type `T` to access shape information, including broadcast compatibility, height, width, number of batches, number of channels, and strides.
+     * - Relies on the `iMatrixAdd` function to perform the actual matrix addition operation.
+     *
+     * @throws std::invalid_argument When the shapes of `lhs` and `rhs` are not broadcast compatible or their height and width dimensions do not match.
+     *
+     * @note
+     * - The time complexity of this function is O(m * n), where m is the product of the batch and channel dimensions of the output tensor (`out.shape()[0] * out.shape()[1]`), and n is the number of elements in a single matrix (`lhs.shape().H() * lhs.shape().W()`).
+     *
+     * @code
+     * ```cpp
+     * // Assume we have a valid tensor type Tensor
+     * Tensor out;
+     * Tensor lhs;
+     * Tensor rhs;
+     * try {
+     *     tensorMatrixAdd(out, lhs, rhs);
+     * } catch (const std::invalid_argument& e) {
+     *     std::cerr << e.what() << std::endl;
+     * }
+     * ```
+     * @endcode
+     */
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, void>
     tensorMatrixAdd(T& out, const T& lhs, const T& rhs) {
@@ -742,6 +785,49 @@ namespace nz::data {
     DL_API void iMatrixSub(float* out, float* in1, float* in2, size_t n, const std::vector<size_t>& offset_o,
                            const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2);
 
+    /**
+     * @brief Performs matrix subtraction operation on tensors with broadcast compatibility.
+     *
+     * This template function subtracts the tensor `rhs` from the tensor `lhs` and stores the result in the tensor `out`.
+     * It is only enabled for types `T` that satisfy `is_valid_tensor_type<T>::value`. The shapes of the input tensors
+     * must be broadcast compatible, and their height and width dimensions must match.
+     *
+     * @tparam T The tensor type, which must meet the condition `is_valid_tensor_type<T>::value`.
+     * @param out The output tensor that will hold the result of the subtraction. Memory flow: host-to-function (reference), function-to-host (modified).
+     * @param lhs The left-hand side tensor in the subtraction operation. Memory flow: host-to-function.
+     * @param rhs The right-hand side tensor in the subtraction operation. Memory flow: host-to-function.
+     *
+     * @return None
+     *
+     * **Memory Management Strategy**:
+     * - The function does not allocate or free memory for the tensors themselves. It creates local `std::vector` objects (`offsetC`, `offsetA`, `offsetB`) to store offset values. These vectors are automatically managed by their destructors.
+     *
+     * **Exception Handling Mechanism**:
+     * - Throws `std::invalid_argument` if the shapes of `lhs` and `rhs` are not broadcast compatible or if their height and width dimensions do not match.
+     *
+     * **Relationship with Other Components**:
+     * - Depends on the `shape()` method of the tensor type `T` to obtain shape information, such as broadcast compatibility, height, width, batch size, channel count, and strides.
+     * - Relies on the `iMatrixSub` function to perform the actual matrix subtraction.
+     *
+     * @throws std::invalid_argument When the shapes of `lhs` and `rhs` are not broadcast compatible or their height and width dimensions do not match.
+     *
+     * @note
+     * - The time complexity of this function is O(m * n), where m is the product of the batch and channel dimensions of the output tensor (`out.shape()[0] * out.shape()[1]`), and n is the number of elements in a single matrix (`lhs.shape().H() * lhs.shape().W()`).
+     *
+     * @code
+     * ```cpp
+     * // Assume we have a valid tensor type Tensor
+     * Tensor out;
+     * Tensor lhs;
+     * Tensor rhs;
+     * try {
+     *     tensorMatrixSub(out, lhs, rhs);
+     * } catch (const std::invalid_argument& e) {
+     *     std::cerr << e.what() << std::endl;
+     * }
+     * ```
+     * @endcode
+     */
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, void>
     tensorMatrixSub(T& out, const T& lhs, const T& rhs) {
@@ -770,6 +856,48 @@ namespace nz::data {
     DL_API void iElementwiseDivide(float* out, float* in1, float* in2, size_t n, const std::vector<size_t>& offset_o,
                                    const std::vector<size_t>& offset_i1, const std::vector<size_t>& offset_i2);
 
+    /**
+     * @brief Performs element - wise division operation on tensors with broadcast compatibility.
+     *
+     * This template function divides each element of the tensor `lhs` by the corresponding element of the tensor `rhs` and stores the result in the tensor `out`.
+     * It is only enabled for types `T` that satisfy `is_valid_tensor_type<T>::value`. The shapes of the input tensors must be broadcast compatible, and their height and width dimensions must match.
+     *
+     * @tparam T The tensor type, which must satisfy `is_valid_tensor_type<T>::value`.
+     * @param out The output tensor where the result of the element - wise division will be stored. Memory flow: host - to - function (reference), function - to - host (modified).
+     * @param lhs The left - hand side tensor in the division operation. Memory flow: host - to - function.
+     * @param rhs The right - hand side tensor in the division operation. Memory flow: host - to - function.
+     *
+     * @return None
+     *
+     * **Memory Management Strategy**:
+     * - The function does not allocate or free memory for the tensors. It creates local `std::vector` objects (`offsetC`, `offsetA`, `offsetB`) to store offset values. These vectors are automatically managed by their destructors.
+     *
+     * **Exception Handling Mechanism**:
+     * - Throws `std::invalid_argument` if the shapes of `lhs` and `rhs` are not broadcast compatible or if their height and width dimensions do not match.
+     *
+     * **Relationship with Other Components**:
+     * - Depends on the `shape()` method of the tensor type `T` to access shape information, including broadcast compatibility, height, width, batch size, channel count, and strides.
+     * - Relies on the `iElementwiseDivide` function to perform the actual element - wise division.
+     *
+     * @throws std::invalid_argument When the shapes of `lhs` and `rhs` are not broadcast compatible or their height and width dimensions do not match.
+     *
+     * @note
+     * - The time complexity of this function is O(m * n), where m is the product of the batch and channel dimensions of the output tensor (`out.shape()[0] * out.shape()[1]`), and n is the number of elements in a single matrix (`lhs.shape().H() * lhs.shape().W()`).
+     *
+     * @code
+     * ```cpp
+     * // Assume we have a valid tensor type Tensor
+     * Tensor out;
+     * Tensor lhs;
+     * Tensor rhs;
+     * try {
+     *     tensorElementwiseDivide(out, lhs, rhs);
+     * } catch (const std::invalid_argument& e) {
+     *     std::cerr << e.what() << std::endl;
+     * }
+     * ```
+     * @endcode
+     */
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, void>
     tensorElementwiseDivide(T& out, const T& lhs, const T& rhs) {
@@ -799,6 +927,49 @@ namespace nz::data {
                                   const std::vector<size_t>& offsetC, const std::vector<size_t>& offsetA,
                                   const std::vector<size_t>& offsetB);
 
+    /**
+     * @brief Performs general matrix multiplication on tensors with broadcast compatibility.
+     *
+     * This template function multiplies the tensor `lhs` by the tensor `rhs` and stores the result in the tensor `out`.
+     * It is only enabled for types `T` that satisfy `is_valid_tensor_type<T>::value`. The shapes of the input tensors
+     * must be broadcast compatible, and the width of `lhs` must be equal to the height of `rhs`.
+     *
+     * @tparam T The tensor type, which must satisfy `is_valid_tensor_type<T>::value`.
+     * @param out The output tensor that will hold the result of the matrix multiplication. Memory flow: host-to-function (reference), function-to-host (modified).
+     * @param lhs The left-hand side tensor in the matrix multiplication. Memory flow: host-to-function.
+     * @param rhs The right-hand side tensor in the matrix multiplication. Memory flow: host-to-function.
+     *
+     * @return None
+     *
+     * **Memory Management Strategy**:
+     * - The function does not allocate or free memory for the tensors themselves. It creates local `std::vector` objects (`offsetC`, `offsetA`, `offsetB`) to store offset values. These vectors are automatically managed by their destructors.
+     *
+     * **Exception Handling Mechanism**:
+     * - Throws `std::invalid_argument` if the shapes of `lhs` and `rhs` are not broadcast compatible or if the width of `lhs` is not equal to the height of `rhs`.
+     *
+     * **Relationship with Other Components**:
+     * - Depends on the `shape()` method of the tensor type `T` to obtain shape information, such as broadcast compatibility, height, width, batch size, channel count, and strides.
+     * - Relies on the `iGeneralMatrixMul` function to perform the actual matrix multiplication.
+     *
+     * @throws std::invalid_argument When the shapes of `lhs` and `rhs` are not broadcast compatible or the width of `lhs` is not equal to the height of `rhs`.
+     *
+     * @note
+     * - The time complexity of this function is O(m * k * n), where m is the height of `lhs`, k is the width of `lhs` (equal to the height of `rhs`), and n is the width of `rhs`.
+     *
+     * @code
+     * ```cpp
+     * // Assume we have a valid tensor type Tensor
+     * Tensor out;
+     * Tensor lhs;
+     * Tensor rhs;
+     * try {
+     *     tensorGeneralMatrixMul(out, lhs, rhs);
+     * } catch (const std::invalid_argument& e) {
+     *     std::cerr << e.what() << std::endl;
+     * }
+     * ```
+     * @endcode
+     */
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, void>
     tensorGeneralMatrixMul(T& out, const T& lhs, const T& rhs) {
@@ -824,6 +995,42 @@ namespace nz::data {
 
     DL_API void iTranspose(float* out, float* in, size_t rows, size_t cols, const std::vector<size_t>& offset);
 
+    /**
+     * @brief Transposes a tensor with a valid tensor type.
+     *
+     * This template function transposes the input tensor `in` and returns a new tensor `result`. It is only enabled for types `T` that satisfy `is_valid_tensor_type<T>::value`.
+     *
+     * @tparam T The tensor type, which must satisfy `is_valid_tensor_type<T>::value`.
+     * @param in The input tensor to be transposed. Memory flow: host - to - function.
+     *
+     * @return A new tensor `result` which is the transposed version of the input tensor `in`. Memory flow: function - to - host.
+     *
+     * **Memory Management Strategy**:
+     * - A new tensor `result` is created inside the function to store the transposed data. The memory for this tensor is managed by the tensor type `T` itself.
+     * - The function creates a local `std::vector` object `offset` to store offset values. This vector is automatically managed by its destructor.
+     *
+     * **Exception Handling Mechanism**:
+     * - This function does not throw any exceptions explicitly. However, exceptions may be thrown by the constructor of the tensor type `T` or the `iTranspose` function.
+     *
+     * **Relationship with Other Components**:
+     * - Depends on the `shape()` method of the tensor type `T` to access shape information, including dimensions and strides.
+     * - Relies on the `iTranspose` function to perform the actual transpose operation.
+     *
+     * @note
+     * - The time complexity of this function is O(m * n), where m is the product of the first two dimensions of the input tensor (`in.shape()[0] * in.shape()[1]`), and n is the product of the last two dimensions (`in.shape()[2] * in.shape()[3]`).
+     * - Ensure that the `iTranspose` function is correctly implemented and that the tensor types support the necessary shape and data access methods.
+     *
+     * @warning
+     * - Incorrect implementation of the `iTranspose` function may lead to incorrect results or runtime errors.
+     *
+     * @code
+     * ```cpp
+     * // Assume we have a valid tensor type Tensor
+     * Tensor in;
+     * Tensor transposed = transpose(in);
+     * ```
+     * @endcode
+     */
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, T>
     transpose(const T& in) {

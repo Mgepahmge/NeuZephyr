@@ -1,0 +1,5 @@
+<map id="nz::data::Dimension::reshape" name="nz::data::Dimension::reshape">
+<area shape="rect" id="Node000001" title="Attempts to reshape the current Dimension object to a new shape." alt="" coords="5,5,144,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object." alt="" coords="192,5,330,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,24,176,24,176,29,144,29"/>
+</map>

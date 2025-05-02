@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Hard Sigmoid activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_hard_sigmoid_node.html" title="Represents a Hard Sigmoid activation function node in a computational graph.">HardSigmoidNode</a></code> class applies the Hard Sigmoid activation function to the input tensor. The Hard Sigmoid function is a computationally efficient approximation of the sigmoid function and is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a52e449285e560185378234aecaf2f87c">HardSigmoid</a>(x) = max(0, min(1, alpha * x + beta))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a52e449285e560185378234aecaf2f87c"><div class="ttname"><a href="namespacenz_1_1krnl.html#a52e449285e560185378234aecaf2f87c">nz::krnl::HardSigmoid</a></div><div class="ttdeci">void HardSigmoid(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00401">OperationKernels.cu:401</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a52e449285e560185378234aecaf2f87c"><div class="ttname"><a href="namespacenz_1_1krnl.html#a52e449285e560185378234aecaf2f87c">nz::krnl::HardSigmoid</a></div><div class="ttdeci">void HardSigmoid(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n, float alpha=0.2f, float beta=0.5f)</div><div class="ttdoc">Kernel function to apply the Hard Sigmoid activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00402">OperationKernels.cu:402</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> and <code>beta</code> control the slope and offset, respectively.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Hard Sigmoid activation function element-wise to the input tensor, mapping values to the range [0, 1] with linear interpolation.</li>
@@ -154,7 +154,7 @@ Usage Example:</h3>
 <div class="line">hard_sigmoid_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *hard_sigmoid_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_hard_sigmoid_node_html_a9fad60d7a07f6296aa5ce13acd6511d2"><div class="ttname"><a href="#a9fad60d7a07f6296aa5ce13acd6511d2">nz::nodes::calc::HardSigmoidNode::HardSigmoidNode</a></div><div class="ttdeci">HardSigmoidNode(Node *input, Tensor::value_type alpha=0.2f, Tensor::value_type beta=0.5f)</div><div class="ttdoc">Constructor to initialize a HardSigmoidNode for applying the Hard Sigmoid activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00414">Nodes.cu:414</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_hard_sigmoid_node_html_a9fad60d7a07f6296aa5ce13acd6511d2"><div class="ttname"><a href="#a9fad60d7a07f6296aa5ce13acd6511d2">nz::nodes::calc::HardSigmoidNode::HardSigmoidNode</a></div><div class="ttdeci">HardSigmoidNode(Node *input, Tensor::value_type alpha=0.2f, Tensor::value_type beta=0.5f)</div><div class="ttdoc">Constructor to initialize a HardSigmoidNode for applying the Hard Sigmoid activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00422">Nodes.cu:422</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a97590995aa192807d96a856ee2bcd71f" title="Forward pass for the HardSigmoidNode to apply the Hard Sigmoid activation function.">forward()</a> for the Hard <a class="el" href="namespacenz_1_1krnl.html#a21bbbcf6d97bfaccc828ce7736814bd4" title="Kernel function to apply the Sigmoid activation function on the GPU.">Sigmoid</a> computation in the <a class="el" href="#a97590995aa192807d96a856ee2bcd71f" title="Forward pass for the HardSigmoidNode to apply the Hard Sigmoid activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#ad977c6a8c49252de4038f8ac08beed3c" title="Backward pass for the HardSigmoidNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#ad977c6a8c49252de4038f8ac08beed3c" title="Backward pass for the HardSigmoidNode to compute gradients.">backward</a> pass.</dd></dl>
@@ -223,7 +223,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00414">414</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00422">422</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -271,7 +271,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00429">429</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00437">437</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -333,7 +333,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00423">423</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00431">431</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

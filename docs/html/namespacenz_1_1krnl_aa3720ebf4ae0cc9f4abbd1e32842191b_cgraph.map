@@ -1,0 +1,5 @@
+<map id="nz::krnl::GeneralMatrixMul" name="nz::krnl::GeneralMatrixMul">
+<area shape="rect" id="Node000001" title="Kernel function to perform single&#45;precision matrix multiplication on GPU using CUDA cores." alt="" coords="5,13,180,40"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="228,5,413,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,24,212,24,212,29,180,29"/>
+</map>

@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a Swish activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_swish_node.html" title="Represents a Swish activation function node in a computational graph.">SwishNode</a></code> class applies the Swish activation function to the input tensor. The Swish function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">Swish</a>(x) = x / (1 + exp(-x))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_a997aa5460fd64fadf9b701fbf73e3fb2"><div class="ttname"><a href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">nz::krnl::Swish</a></div><div class="ttdeci">void Swish(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00342">OperationKernels.cu:342</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_a997aa5460fd64fadf9b701fbf73e3fb2"><div class="ttname"><a href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2">nz::krnl::Swish</a></div><div class="ttdeci">void Swish(dim3 gridDim, dim3 blockDim, float *out, float *in, unsigned long long n)</div><div class="ttdoc">Kernel function to apply the Swish activation function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00343">OperationKernels.cu:343</a></div></div>
 </div><!-- fragment --><p> It is a smooth, non-monotonic activation function that often outperforms ReLU in deep learning tasks.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the Swish activation function element-wise to the input tensor, blending the input with its sigmoid output.</li>
@@ -153,7 +153,7 @@ Usage Example:</h3>
 <div class="line">swish_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *swish_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_html_a20f471bd6a03cf6d72d4e37eaba9fbb7"><div class="ttname"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">nz::nodes::calc::SwishNode::SwishNode</a></div><div class="ttdeci">SwishNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SwishNode for applying the Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00369">Nodes.cu:369</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_swish_node_html_a20f471bd6a03cf6d72d4e37eaba9fbb7"><div class="ttname"><a href="#a20f471bd6a03cf6d72d4e37eaba9fbb7">nz::nodes::calc::SwishNode::SwishNode</a></div><div class="ttdeci">SwishNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SwishNode for applying the Swish activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00377">Nodes.cu:377</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1krnl.html#a997aa5460fd64fadf9b701fbf73e3fb2" title="Kernel function to apply the Swish activation function on the GPU.">Swish</a> computation in the <a class="el" href="#ab0fbf5a4d05c0df96b8aaffab36d92db" title="Forward pass for the SwishNode to apply the Swish activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#a55758c143f9a941d24abc58a43ae5e9d" title="Backward pass for the SwishNode to compute gradients.">backward</a> pass.</dd></dl>
@@ -210,7 +210,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00369">369</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00377">377</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -257,7 +257,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00382">382</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00390">390</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -315,7 +315,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00376">376</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00384">384</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

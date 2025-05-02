@@ -126,7 +126,7 @@ namespace nz::data {
         if (!isBroadcastCompatible(other)) {
             throw std::invalid_argument("Dimensions are not broadcast compatible");
         }
-        Dimension result({0 ,0, 0, 0});
+        Dimension result({0, 0, 0, 0});
         for (auto i = 0; i < 4; i++) {
             result[i] = std::max(this->getDims()[i], other.getDims()[i]);
         }

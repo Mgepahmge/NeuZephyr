@@ -1,13 +1,23 @@
 <map id="nz::data::MappedTensor::printGrad" name="nz::data::MappedTensor::printGrad">
-<area shape="rect" id="Node000001" title="Print the gradient of the tensor in a matrix&#45;like format to an output stream." alt="" coords="5,56,167,99"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,56,390,99"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,75,214,75,214,80,167,80"/>
+<area shape="rect" id="Node000001" title="Print the gradient of the tensor in a matrix&#45;like format to an output stream." alt="" coords="5,195,167,237"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,5,390,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,193,143,127,176,90,213,58,220,54,223,58,216,62,179,94,147,130,102,196"/>
 <area shape="rect" id="Node000007" href="$classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="662,115,824,157"/>
-<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="161,97,215,108,331,122,447,130,647,135,647,140,447,135,330,127,214,113,160,102"/>
-<area shape="rect" id="Node000008" href="$classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,5,405,32"/>
-<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="166,54,241,34,243,39,168,59"/>
+<area shape="poly" id="edge15_Node000001_Node000007" title=" " alt="" coords="127,192,168,173,214,159,329,139,446,129,555,126,647,128,647,133,555,132,446,134,330,144,215,164,170,178,129,197"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1data_1_1_dimension.html#ae1e87c4a462dd60e02821aa27ffc7e09" title="Retrieves the value of the &#39;c&#39; dimension." alt="" coords="232,173,388,200"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="167,203,216,196,217,202,168,208"/>
+<area shape="rect" id="Node000009" href="$classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,72,405,99"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="109,192,155,153,213,115,242,102,244,107,216,120,158,158,112,196"/>
+<area shape="rect" id="Node000010" href="$classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="241,224,379,267"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="168,224,226,232,225,237,167,229"/>
+<area shape="rect" id="Node000011" href="$classnz_1_1data_1_1_dimension.html#a7eb3acc882c48e775c418d97f709240f" title="Retrieves the value of the &#39;h&#39; dimension." alt="" coords="232,291,388,317"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="128,235,216,276,236,283,235,288,214,281,125,240"/>
+<area shape="rect" id="Node000012" href="$classnz_1_1data_1_1_dimension.html#acc472e84b4c44f649f34b6fbb0eeacf7" title="Retrieves the value of the &#39;n&#39; dimension." alt="" coords="232,341,388,368"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="108,236,154,282,184,306,216,327,229,333,227,338,213,332,181,311,150,286,104,240"/>
+<area shape="rect" id="Node000013" href="$classnz_1_1data_1_1_dimension.html#a65773c675476dfea3f06b30f21ebbedd" title="Retrieves the value of the &#39;w&#39; dimension." alt="" coords="230,392,390,419"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="100,236,145,307,177,345,216,378,225,383,222,387,213,382,174,349,140,310,96,239"/>
 <area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="453,52,614,95"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,73,437,72,437,78,391,79"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,41,438,51,437,56,390,46"/>
 <area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="662,48,824,91"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="615,69,647,69,647,74,615,74"/>
 <area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="608,93,656,107,654,112,607,98"/>
@@ -17,5 +27,5 @@
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="817,89,877,107,876,112,815,94"/>
 <area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="815,112,876,93,877,98,817,117"/>
 <area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="824,133,856,133,856,139,824,139"/>
-<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="368,30,439,47,437,53,367,35"/>
+<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="405,78,437,76,437,81,406,83"/>
 </map>

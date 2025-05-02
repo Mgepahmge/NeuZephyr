@@ -1,0 +1,15 @@
+<map id="nz::data::Tensor::operator==" name="nz::data::Tensor::operator==">
+<area shape="rect" id="Node000001" title="Checks if two Tensor objects are equal." alt="" coords="5,47,192,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a0c150b841f02921eb7826a6e03d0267e" title="Synchronize both the tensor data and its gradient data." alt="" coords="240,47,391,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,57,224,57,224,63,192,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="439,21,618,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,48,423,45,424,50,392,54"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1data_1_1_tensor.html#af28425ddc9bee1f75fd923a0de68c37b" title="Synchronize the gradient data of the tensor if gradient computation is required." alt="" coords="439,72,618,99"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="392,66,424,70,423,75,391,72"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="666,5,852,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="619,29,651,28,651,33,619,34"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="666,72,852,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="585,46,658,65,657,70,583,51"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="583,69,657,50,658,55,585,74"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="619,86,651,87,651,92,619,91"/>
+</map>

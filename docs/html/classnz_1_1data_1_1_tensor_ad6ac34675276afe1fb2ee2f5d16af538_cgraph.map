@@ -1,0 +1,12 @@
+<map id="nz::data::Tensor::operator/" name="nz::data::Tensor::operator/">
+<area shape="rect" id="Node000001" title="Performs element&#45;wise division between two Tensors." alt="" coords="5,47,180,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#ab4f9f0cec97b8e579b62ccb37975de3c" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension." alt="" coords="252,5,390,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,45,236,36,237,42,180,50"/>
+<area shape="rect" id="Node000005" href="$namespacenz_1_1data.html#a1da5cd018533919ed5a750b14c7d6d71" title="Performs element &#45; wise division operation on tensors with broadcast compatibility." alt="" coords="228,72,415,115"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="180,70,213,75,212,80,180,75"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="675,5,814,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,22,463,20,627,20,660,21,660,26,627,25,463,25,391,27"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_dimension.html#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="463,35,627,77"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="391,33,448,41,447,46,390,38"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="627,41,659,36,660,42,628,47"/>
+</map>

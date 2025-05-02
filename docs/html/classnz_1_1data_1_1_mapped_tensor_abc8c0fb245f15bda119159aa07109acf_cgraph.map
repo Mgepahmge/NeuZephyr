@@ -1,0 +1,21 @@
+<map id="nz::data::MappedTensor::expSum" name="nz::data::MappedTensor::expSum">
+<area shape="rect" id="Node000001" title="Computes the sum of exponential values for a given batch and channel in the MappedTensor." alt="" coords="5,115,167,157"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab6803232b9c08d9282b16322a6c7b8a9" title="Frees the pinned host memory pointed to by the given pointer." alt="" coords="215,5,400,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,112,213,64,239,52,242,57,216,69,127,117"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="448,48,633,91"/>
+<area shape="poly" id="edge10_Node000001_Node000003" title=" " alt="" coords="167,122,432,82,433,88,167,127"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="448,132,633,175"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,136,433,147,433,152,167,142"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1data_1_1_mapped_tensor.html#aa144f9f3b76741e5d3fb3b5df3cc3b42" title="Retrieves the total number of elements in the MappedTensor." alt="" coords="227,173,388,216"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="168,155,212,167,211,172,166,160"/>
+<area shape="rect" id="Node000006" href="$namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="227,240,388,267"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="114,156,159,192,216,226,231,232,229,237,213,230,156,196,110,160"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,41,433,47,432,52,400,46"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="365,237,399,226,446,204,489,180,492,185,448,209,401,230,367,242"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="448,232,633,275"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="388,251,433,251,433,256,388,256"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="681,199,867,241"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="633,237,665,233,666,238,634,243"/>
+<area shape="rect" id="Node000009" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="681,265,867,308"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="634,264,666,269,665,274,633,269"/>
+</map>

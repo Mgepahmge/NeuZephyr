@@ -1,0 +1,15 @@
+<map id="nz::data::MappedTensor::operator==" name="nz::data::MappedTensor::operator==">
+<area shape="rect" id="Node000001" title="Checks if two MappedTensor objects are equal." alt="" coords="5,39,167,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="215,39,376,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,57,199,57,199,63,167,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="424,5,585,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,44,408,39,409,45,377,50"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="424,72,585,115"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="377,70,409,75,408,81,376,76"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="633,5,819,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="586,24,618,24,618,29,586,29"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="633,72,819,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="578,46,639,64,637,70,577,51"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="577,69,637,50,639,56,578,74"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="586,91,618,91,618,96,586,96"/>
+</map>

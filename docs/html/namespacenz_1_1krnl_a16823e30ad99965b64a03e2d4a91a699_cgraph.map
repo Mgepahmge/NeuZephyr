@@ -1,0 +1,5 @@
+<map id="nz::krnl::Transpose" name="nz::krnl::Transpose">
+<area shape="rect" id="Node000001" title="Kernel function to transpose a matrix on the GPU." alt="" coords="5,13,139,40"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="187,5,372,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,24,171,24,171,29,139,29"/>
+</map>

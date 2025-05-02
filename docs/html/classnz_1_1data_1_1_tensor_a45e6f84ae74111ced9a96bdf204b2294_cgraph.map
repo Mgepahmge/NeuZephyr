@@ -1,18 +1,21 @@
 <map id="nz::data::Tensor::transpose" name="nz::data::Tensor::transpose">
-<area shape="rect" id="Node000001" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="5,84,186,111"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="415,5,600,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,81,233,69,400,41,401,46,234,75,171,86"/>
-<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="415,139,600,181"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="169,109,234,120,400,144,400,149,233,125,168,114"/>
-<area shape="rect" id="Node000006" href="$namespacenz_1_1krnl.html#afe3f38f788c735b7eb718443eb0fd094" title="Kernel function to transpose a matrix on the GPU." alt="" coords="234,84,367,111"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="186,95,218,95,218,100,186,100"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="648,72,834,115"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="585,46,650,65,648,70,584,51"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="648,5,834,48"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="601,24,633,24,633,29,601,29"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="348,109,421,131,419,136,346,114"/>
-<area shape="rect" id="Node000007" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="415,72,600,115"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="367,93,399,93,399,98,368,99"/>
-<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="601,91,633,91,633,96,601,96"/>
-<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="584,69,648,50,650,55,585,74"/>
+<area shape="rect" id="Node000001" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="5,109,186,136"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="467,60,652,103"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,112,451,88,452,94,186,117"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="467,193,652,236"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="129,134,178,153,234,171,346,192,452,205,451,210,345,197,233,176,176,158,127,139"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="234,5,419,48"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="129,106,258,52,260,57,131,111"/>
+<area shape="rect" id="Node000007" href="$namespacenz_1_1krnl.html#afe3f38f788c735b7eb718443eb0fd094" title="Kernel function to transpose a matrix on the GPU." alt="" coords="260,135,393,161"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="186,130,245,136,244,142,185,135"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="700,60,886,103"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="653,79,685,79,685,84,653,84"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="700,127,886,169"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="637,101,702,119,700,124,636,106"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="420,26,531,32,653,45,696,53,695,59,652,51,531,37,419,31"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="377,159,468,186,467,191,375,165"/>
+<area shape="rect" id="Node000008" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="467,127,652,169"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="393,145,451,145,451,151,393,151"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="636,124,700,105,702,110,637,129"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="653,145,685,145,685,151,653,151"/>
 </map>

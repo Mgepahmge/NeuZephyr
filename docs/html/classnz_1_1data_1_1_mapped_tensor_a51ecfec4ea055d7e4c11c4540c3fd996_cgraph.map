@@ -1,9 +1,12 @@
 <map id="nz::data::MappedTensor::operator/" name="nz::data::MappedTensor::operator/">
 <area shape="rect" id="Node000001" title="Perform element&#45;wise division between two MappedTensors." alt="" coords="5,39,167,81"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a8e04672b974841c0b1ae52775ee13106" title="Kernel function to perform element&#45;wise division of two arrays." alt="" coords="215,47,399,73"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,57,199,57,199,63,167,63"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="447,5,632,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="399,44,431,40,432,45,400,49"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="447,72,632,115"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="400,71,432,75,431,80,399,76"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#ab4f9f0cec97b8e579b62ccb37975de3c" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension." alt="" coords="239,5,378,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,45,224,37,224,42,168,51"/>
+<area shape="rect" id="Node000005" href="$namespacenz_1_1data.html#a1da5cd018533919ed5a750b14c7d6d71" title="Performs element &#45; wise division operation on tensors with broadcast compatibility." alt="" coords="215,72,402,115"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="168,69,199,74,199,80,167,75"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="662,5,801,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="378,22,450,20,614,20,647,21,647,26,614,25,450,25,378,27"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_dimension.html#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="450,35,614,77"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="378,33,435,41,434,46,377,38"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="614,41,646,36,647,42,615,47"/>
 </map>

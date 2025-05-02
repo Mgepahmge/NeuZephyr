@@ -156,6 +156,26 @@ Functions</h2></td></tr>
 <tr class="memitem:a275956a1088d701845f4599da84cdc84"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a275956a1088d701845f4599da84cdc84">operator/</a> (const float lhs, T &amp;rhs)</td></tr>
 <tr class="memdesc:a275956a1088d701845f4599da84cdc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the division operator to divide a scalar float by a tensor of type T.  <br /></td></tr>
 <tr class="separator:a275956a1088d701845f4599da84cdc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf4ac2437dd67698684169bebb225d4" id="r_a8cf4ac2437dd67698684169bebb225d4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8cf4ac2437dd67698684169bebb225d4"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8cf4ac2437dd67698684169bebb225d4">tensorMatrixAdd</a> (T &amp;out, const T &amp;lhs, const T &amp;rhs)</td></tr>
+<tr class="memdesc:a8cf4ac2437dd67698684169bebb225d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs matrix addition operation on tensors with broadcast compatibility.  <br /></td></tr>
+<tr class="separator:a8cf4ac2437dd67698684169bebb225d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7503b6894e8052ed54eb169550d135c0" id="r_a7503b6894e8052ed54eb169550d135c0"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7503b6894e8052ed54eb169550d135c0"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7503b6894e8052ed54eb169550d135c0">tensorMatrixSub</a> (T &amp;out, const T &amp;lhs, const T &amp;rhs)</td></tr>
+<tr class="memdesc:a7503b6894e8052ed54eb169550d135c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs matrix subtraction operation on tensors with broadcast compatibility.  <br /></td></tr>
+<tr class="separator:a7503b6894e8052ed54eb169550d135c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1da5cd018533919ed5a750b14c7d6d71" id="r_a1da5cd018533919ed5a750b14c7d6d71"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1da5cd018533919ed5a750b14c7d6d71"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1da5cd018533919ed5a750b14c7d6d71">tensorElementwiseDivide</a> (T &amp;out, const T &amp;lhs, const T &amp;rhs)</td></tr>
+<tr class="memdesc:a1da5cd018533919ed5a750b14c7d6d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs element - wise division operation on tensors with broadcast compatibility.  <br /></td></tr>
+<tr class="separator:a1da5cd018533919ed5a750b14c7d6d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a166a472b887c45fde9e5815f072234" id="r_a5a166a472b887c45fde9e5815f072234"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a5a166a472b887c45fde9e5815f072234"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5a166a472b887c45fde9e5815f072234">tensorGeneralMatrixMul</a> (T &amp;out, const T &amp;lhs, const T &amp;rhs)</td></tr>
+<tr class="memdesc:a5a166a472b887c45fde9e5815f072234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs general matrix multiplication on tensors with broadcast compatibility.  <br /></td></tr>
+<tr class="separator:a5a166a472b887c45fde9e5815f072234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d64dd271e9a2e50682e733bd14ec19" id="r_ac8d64dd271e9a2e50682e733bd14ec19"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac8d64dd271e9a2e50682e733bd14ec19"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac8d64dd271e9a2e50682e733bd14ec19">transpose</a> (const T &amp;in)</td></tr>
+<tr class="memdesc:ac8d64dd271e9a2e50682e733bd14ec19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transposes a tensor with a valid tensor type.  <br /></td></tr>
+<tr class="separator:ac8d64dd271e9a2e50682e733bd14ec19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af967fb10a908c374d8378ac7ef22779c" id="r_af967fb10a908c374d8378ac7ef22779c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af967fb10a908c374d8378ac7ef22779c">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> &amp;tensor)</td></tr>
 <tr class="memdesc:af967fb10a908c374d8378ac7ef22779c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the &lt;&lt; operator to print a <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> object to an output stream.  <br /></td></tr>
 <tr class="separator:af967fb10a908c374d8378ac7ef22779c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,9 +250,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a5e6656db9844fdb33add8afa7c0ceb8a">ELU</a>(input, 0.5f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a5e6656db9844fdb33add8afa7c0ceb8a"><div class="ttname"><a href="#a5e6656db9844fdb33add8afa7c0ceb8a">nz::data::ELU</a></div><div class="ttdeci">T ELU(T input, const float alpha=1.0f)</div><div class="ttdoc">Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00233">TensorOperations.cuh:233</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a5e6656db9844fdb33add8afa7c0ceb8a"><div class="ttname"><a href="#a5e6656db9844fdb33add8afa7c0ceb8a">nz::data::ELU</a></div><div class="ttdeci">T ELU(T input, const float alpha=1.0f)</div><div class="ttdoc">Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00234">TensorOperations.cuh:234</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00233">233</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00234">234</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -291,9 +311,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a836b8388aba110fd9130757ef743597a">HardSigmoid</a>(input, 0.3f, 0.6f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a836b8388aba110fd9130757ef743597a"><div class="ttname"><a href="#a836b8388aba110fd9130757ef743597a">nz::data::HardSigmoid</a></div><div class="ttdeci">T HardSigmoid(T input, const float alpha=0.2f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00272">TensorOperations.cuh:272</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a836b8388aba110fd9130757ef743597a"><div class="ttname"><a href="#a836b8388aba110fd9130757ef743597a">nz::data::HardSigmoid</a></div><div class="ttdeci">T HardSigmoid(T input, const float alpha=0.2f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00273">TensorOperations.cuh:273</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00272">272</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00273">273</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -352,9 +372,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a07ab6e69dbefd62eae7058c9136aea2a">HardSwish</a>(input, 0.4f, 0.7f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a07ab6e69dbefd62eae7058c9136aea2a"><div class="ttname"><a href="#a07ab6e69dbefd62eae7058c9136aea2a">nz::data::HardSwish</a></div><div class="ttdeci">T HardSwish(T input, const float alpha=0.5f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00311">TensorOperations.cuh:311</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a07ab6e69dbefd62eae7058c9136aea2a"><div class="ttname"><a href="#a07ab6e69dbefd62eae7058c9136aea2a">nz::data::HardSwish</a></div><div class="ttdeci">T HardSwish(T input, const float alpha=0.5f, const float beta=0.5f)</div><div class="ttdoc">Apply the Hard Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00312">TensorOperations.cuh:312</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00311">311</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00312">312</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -407,9 +427,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a65ebd7e32d0d942bffdcd1665def151e">LeakyReLU</a>(input, 0.02f);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a65ebd7e32d0d942bffdcd1665def151e"><div class="ttname"><a href="#a65ebd7e32d0d942bffdcd1665def151e">nz::data::LeakyReLU</a></div><div class="ttdeci">T LeakyReLU(T input, const float alpha=0.01f)</div><div class="ttdoc">Apply the Leaky Rectified Linear Unit (Leaky ReLU) activation function element-wise to an input tenso...</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00159">TensorOperations.cuh:159</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a65ebd7e32d0d942bffdcd1665def151e"><div class="ttname"><a href="#a65ebd7e32d0d942bffdcd1665def151e">nz::data::LeakyReLU</a></div><div class="ttdeci">T LeakyReLU(T input, const float alpha=0.01f)</div><div class="ttdoc">Apply the Leaky Rectified Linear Unit (Leaky ReLU) activation function element-wise to an input tenso...</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00160">TensorOperations.cuh:160</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00159">159</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00160">160</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -468,7 +488,7 @@ template&lt;typename T &gt; </div>
 <div class="line">```</div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00134">Tensor.cuh:134</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00620">620</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00621">621</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -526,7 +546,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor * 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00578">578</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00579">579</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -584,7 +604,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f + tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00452">452</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00453">453</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -642,7 +662,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor + 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00410">410</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00411">411</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -700,7 +720,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f - tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00536">536</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00537">537</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -758,7 +778,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor - 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00494">494</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00495">495</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -817,7 +837,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = 2.0f / tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00706">706</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00707">707</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -876,7 +896,7 @@ template&lt;typename T &gt; </div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = tensor / 2.0f;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00663">663</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00664">664</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1116,9 +1136,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a9bcee9a75db3d824b92ed17a59711428">ReLU</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00047">TensorOperations.cuh:47</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00048">TensorOperations.cuh:48</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00047">47</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00048">48</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1165,9 +1185,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a0740e60918114b0a4d7c88d09aeb8f88">Sigmoid</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a0740e60918114b0a4d7c88d09aeb8f88"><div class="ttname"><a href="#a0740e60918114b0a4d7c88d09aeb8f88">nz::data::Sigmoid</a></div><div class="ttdeci">T Sigmoid(T input)</div><div class="ttdoc">Apply the sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00084">TensorOperations.cuh:84</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a0740e60918114b0a4d7c88d09aeb8f88"><div class="ttname"><a href="#a0740e60918114b0a4d7c88d09aeb8f88">nz::data::Sigmoid</a></div><div class="ttdeci">T Sigmoid(T input)</div><div class="ttdoc">Apply the sigmoid activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00085">TensorOperations.cuh:85</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00084">84</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00085">85</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1218,9 +1238,9 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="comment">// Assume input is filled with some values</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a> result = <a class="code hl_function" href="#ad6092c1138e5093c07ec00c12c72314a">Softmax</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_ad6092c1138e5093c07ec00c12c72314a"><div class="ttname"><a href="#ad6092c1138e5093c07ec00c12c72314a">nz::data::Softmax</a></div><div class="ttdeci">T Softmax(T input)</div><div class="ttdoc">Compute the softmax function for a given input of type T.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00353">TensorOperations.cuh:353</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_ad6092c1138e5093c07ec00c12c72314a"><div class="ttname"><a href="#ad6092c1138e5093c07ec00c12c72314a">nz::data::Softmax</a></div><div class="ttdeci">T Softmax(T input)</div><div class="ttdoc">Compute the softmax function for a given input of type T.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00354">TensorOperations.cuh:354</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00353">353</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00354">354</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1267,9 +1287,9 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a42cbe5a414e4212ee7a26b0a66ce08a4">Swish</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a42cbe5a414e4212ee7a26b0a66ce08a4"><div class="ttname"><a href="#a42cbe5a414e4212ee7a26b0a66ce08a4">nz::data::Swish</a></div><div class="ttdeci">T Swish(T input)</div><div class="ttdoc">Apply the Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00195">TensorOperations.cuh:195</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a42cbe5a414e4212ee7a26b0a66ce08a4"><div class="ttname"><a href="#a42cbe5a414e4212ee7a26b0a66ce08a4">nz::data::Swish</a></div><div class="ttdeci">T Swish(T input)</div><div class="ttdoc">Apply the Swish activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00196">TensorOperations.cuh:196</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00195">195</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00196">196</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>
@@ -1316,9 +1336,392 @@ template&lt;typename T &gt; </div>
 <div class="line">nz::data::T input(shape, <span class="keyword">true</span>);</div>
 <div class="line">nz::data::T output = <a class="code hl_function" href="#a56c9ff66e41ae568a2fec83708c4dd85">Tanh</a>(input);</div>
 <div class="line">```</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a56c9ff66e41ae568a2fec83708c4dd85"><div class="ttname"><a href="#a56c9ff66e41ae568a2fec83708c4dd85">nz::data::Tanh</a></div><div class="ttdeci">T Tanh(T input)</div><div class="ttdoc">Apply the hyperbolic tangent (tanh) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00121">TensorOperations.cuh:121</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a56c9ff66e41ae568a2fec83708c4dd85"><div class="ttname"><a href="#a56c9ff66e41ae568a2fec83708c4dd85">nz::data::Tanh</a></div><div class="ttdeci">T Tanh(T input)</div><div class="ttdoc">Apply the hyperbolic tangent (tanh) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00122">TensorOperations.cuh:122</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00121">121</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00122">122</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+
+</div>
+</div>
+<a id="a1da5cd018533919ed5a750b14c7d6d71" name="a1da5cd018533919ed5a750b14c7d6d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1da5cd018533919ed5a750b14c7d6d71">&#9670;&#160;</a></span>tensorElementwiseDivide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; nz::data::tensorElementwiseDivide </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs element - wise division operation on tensors with broadcast compatibility. </p>
+<p>This template function divides each element of the tensor <code>lhs</code> by the corresponding element of the tensor <code>rhs</code> and stores the result in the tensor <code>out</code>. It is only enabled for types <code>T</code> that satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. The shapes of the input tensors must be broadcast compatible, and their height and width dimensions must match.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The tensor type, which must satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output tensor where the result of the element - wise division will be stored. Memory flow: host - to - function (reference), function - to - host (modified). </td></tr>
+    <tr><td class="paramname">lhs</td><td>The left - hand side tensor in the division operation. Memory flow: host - to - function. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The right - hand side tensor in the division operation. Memory flow: host - to - function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>The function does not allocate or free memory for the tensors. It creates local <code>std::vector</code> objects (<code>offsetC</code>, <code>offsetA</code>, <code>offsetB</code>) to store offset values. These vectors are automatically managed by their destructors.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Throws <code>std::invalid_argument</code> if the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or if their height and width dimensions do not match.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on the <code>shape()</code> method of the tensor type <code>T</code> to access shape information, including broadcast compatibility, height, width, batch size, channel count, and strides.</li>
+<li>Relies on the <code>iElementwiseDivide</code> function to perform the actual element - wise division.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or their height and width dimensions do not match.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m * n), where m is the product of the batch and channel dimensions of the output tensor (<code>out.shape()[0] * out.shape()[1]</code>), and n is the number of elements in a single matrix (<code>lhs.shape().H() * lhs.shape().W()</code>).</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="comment">// Assume we have a valid tensor type Tensor</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> out;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> lhs;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> rhs;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_function" href="#a1da5cd018533919ed5a750b14c7d6d71">tensorElementwiseDivide</a>(out, lhs, rhs);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+<div class="ttc" id="anamespacenz_1_1data_html_a1da5cd018533919ed5a750b14c7d6d71"><div class="ttname"><a href="#a1da5cd018533919ed5a750b14c7d6d71">nz::data::tensorElementwiseDivide</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; tensorElementwiseDivide(T &amp;out, const T &amp;lhs, const T &amp;rhs)</div><div class="ttdoc">Performs element - wise division operation on tensors with broadcast compatibility.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00903">TensorOperations.cuh:903</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00903">903</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+
+</div>
+</div>
+<a id="a5a166a472b887c45fde9e5815f072234" name="a5a166a472b887c45fde9e5815f072234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a166a472b887c45fde9e5815f072234">&#9670;&#160;</a></span>tensorGeneralMatrixMul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; nz::data::tensorGeneralMatrixMul </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs general matrix multiplication on tensors with broadcast compatibility. </p>
+<p>This template function multiplies the tensor <code>lhs</code> by the tensor <code>rhs</code> and stores the result in the tensor <code>out</code>. It is only enabled for types <code>T</code> that satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. The shapes of the input tensors must be broadcast compatible, and the width of <code>lhs</code> must be equal to the height of <code>rhs</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The tensor type, which must satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output tensor that will hold the result of the matrix multiplication. Memory flow: host-to-function (reference), function-to-host (modified). </td></tr>
+    <tr><td class="paramname">lhs</td><td>The left-hand side tensor in the matrix multiplication. Memory flow: host-to-function. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The right-hand side tensor in the matrix multiplication. Memory flow: host-to-function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>The function does not allocate or free memory for the tensors themselves. It creates local <code>std::vector</code> objects (<code>offsetC</code>, <code>offsetA</code>, <code>offsetB</code>) to store offset values. These vectors are automatically managed by their destructors.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Throws <code>std::invalid_argument</code> if the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or if the width of <code>lhs</code> is not equal to the height of <code>rhs</code>.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on the <code>shape()</code> method of the tensor type <code>T</code> to obtain shape information, such as broadcast compatibility, height, width, batch size, channel count, and strides.</li>
+<li>Relies on the <code>iGeneralMatrixMul</code> function to perform the actual matrix multiplication.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or the width of <code>lhs</code> is not equal to the height of <code>rhs</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m * k * n), where m is the height of <code>lhs</code>, k is the width of <code>lhs</code> (equal to the height of <code>rhs</code>), and n is the width of <code>rhs</code>.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="comment">// Assume we have a valid tensor type Tensor</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> out;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> lhs;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> rhs;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_function" href="#a5a166a472b887c45fde9e5815f072234">tensorGeneralMatrixMul</a>(out, lhs, rhs);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+<div class="ttc" id="anamespacenz_1_1data_html_a5a166a472b887c45fde9e5815f072234"><div class="ttname"><a href="#a5a166a472b887c45fde9e5815f072234">nz::data::tensorGeneralMatrixMul</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; tensorGeneralMatrixMul(T &amp;out, const T &amp;lhs, const T &amp;rhs)</div><div class="ttdoc">Performs general matrix multiplication on tensors with broadcast compatibility.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00975">TensorOperations.cuh:975</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00975">975</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+
+</div>
+</div>
+<a id="a8cf4ac2437dd67698684169bebb225d4" name="a8cf4ac2437dd67698684169bebb225d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cf4ac2437dd67698684169bebb225d4">&#9670;&#160;</a></span>tensorMatrixAdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; nz::data::tensorMatrixAdd </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs matrix addition operation on tensors with broadcast compatibility. </p>
+<p>This function is a template function that adds two tensors <code>lhs</code> and <code>rhs</code> and stores the result in <code>out</code>. It only accepts tensor types for which <code>is_valid_tensor_type&lt;T&gt;::value</code> is <code>true</code>. The shapes of the input tensors must be broadcast compatible, and the height and width dimensions must match.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The tensor type. This type must satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output tensor where the result of the addition will be stored. Memory flow: host-to-function (for reference), function-to-host (modifies the object). </td></tr>
+    <tr><td class="paramname">lhs</td><td>The left-hand side tensor of the addition. Memory flow: host-to-function. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The right-hand side tensor of the addition. Memory flow: host-to-function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any additional memory for the tensors. It only uses local <code>std::vector</code> objects (<code>offsetC</code>, <code>offsetA</code>, <code>offsetB</code>) to store offset values, and these vectors are automatically managed by their destructors.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Throws <code>std::invalid_argument</code> if the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or if their height and width dimensions do not match.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on the <code>shape()</code> method of the tensor type <code>T</code> to access shape information, including broadcast compatibility, height, width, number of batches, number of channels, and strides.</li>
+<li>Relies on the <code>iMatrixAdd</code> function to perform the actual matrix addition operation.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or their height and width dimensions do not match.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m * n), where m is the product of the batch and channel dimensions of the output tensor (<code>out.shape()[0] * out.shape()[1]</code>), and n is the number of elements in a single matrix (<code>lhs.shape().H() * lhs.shape().W()</code>).</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="comment">// Assume we have a valid tensor type Tensor</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> out;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> lhs;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> rhs;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_function" href="#a8cf4ac2437dd67698684169bebb225d4">tensorMatrixAdd</a>(out, lhs, rhs);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+<div class="ttc" id="anamespacenz_1_1data_html_a8cf4ac2437dd67698684169bebb225d4"><div class="ttname"><a href="#a8cf4ac2437dd67698684169bebb225d4">nz::data::tensorMatrixAdd</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; tensorMatrixAdd(T &amp;out, const T &amp;lhs, const T &amp;rhs)</div><div class="ttdoc">Performs matrix addition operation on tensors with broadcast compatibility.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00762">TensorOperations.cuh:762</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00762">762</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+
+</div>
+</div>
+<a id="a7503b6894e8052ed54eb169550d135c0" name="a7503b6894e8052ed54eb169550d135c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7503b6894e8052ed54eb169550d135c0">&#9670;&#160;</a></span>tensorMatrixSub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; nz::data::tensorMatrixSub </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>lhs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs matrix subtraction operation on tensors with broadcast compatibility. </p>
+<p>This template function subtracts the tensor <code>rhs</code> from the tensor <code>lhs</code> and stores the result in the tensor <code>out</code>. It is only enabled for types <code>T</code> that satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. The shapes of the input tensors must be broadcast compatible, and their height and width dimensions must match.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The tensor type, which must meet the condition <code>is_valid_tensor_type&lt;T&gt;::value</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output tensor that will hold the result of the subtraction. Memory flow: host-to-function (reference), function-to-host (modified). </td></tr>
+    <tr><td class="paramname">lhs</td><td>The left-hand side tensor in the subtraction operation. Memory flow: host-to-function. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The right-hand side tensor in the subtraction operation. Memory flow: host-to-function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>The function does not allocate or free memory for the tensors themselves. It creates local <code>std::vector</code> objects (<code>offsetC</code>, <code>offsetA</code>, <code>offsetB</code>) to store offset values. These vectors are automatically managed by their destructors.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Throws <code>std::invalid_argument</code> if the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or if their height and width dimensions do not match.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on the <code>shape()</code> method of the tensor type <code>T</code> to obtain shape information, such as broadcast compatibility, height, width, batch size, channel count, and strides.</li>
+<li>Relies on the <code>iMatrixSub</code> function to perform the actual matrix subtraction.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the shapes of <code>lhs</code> and <code>rhs</code> are not broadcast compatible or their height and width dimensions do not match.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m * n), where m is the product of the batch and channel dimensions of the output tensor (<code>out.shape()[0] * out.shape()[1]</code>), and n is the number of elements in a single matrix (<code>lhs.shape().H() * lhs.shape().W()</code>).</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="comment">// Assume we have a valid tensor type Tensor</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> out;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> lhs;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> rhs;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_function" href="#a7503b6894e8052ed54eb169550d135c0">tensorMatrixSub</a>(out, lhs, rhs);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+<div class="ttc" id="anamespacenz_1_1data_html_a7503b6894e8052ed54eb169550d135c0"><div class="ttname"><a href="#a7503b6894e8052ed54eb169550d135c0">nz::data::tensorMatrixSub</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, void &gt; tensorMatrixSub(T &amp;out, const T &amp;lhs, const T &amp;rhs)</div><div class="ttdoc">Performs matrix subtraction operation on tensors with broadcast compatibility.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00833">TensorOperations.cuh:833</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l00833">833</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
+
+</div>
+</div>
+<a id="ac8d64dd271e9a2e50682e733bd14ec19" name="ac8d64dd271e9a2e50682e733bd14ec19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8d64dd271e9a2e50682e733bd14ec19">&#9670;&#160;</a></span>transpose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; nz::data::transpose </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>in</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transposes a tensor with a valid tensor type. </p>
+<p>This template function transposes the input tensor <code>in</code> and returns a new tensor <code>result</code>. It is only enabled for types <code>T</code> that satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The tensor type, which must satisfy <code>is_valid_tensor_type&lt;T&gt;::value</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The input tensor to be transposed. Memory flow: host - to - function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new tensor <code>result</code> which is the transposed version of the input tensor <code>in</code>. Memory flow: function - to - host.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>A new tensor <code>result</code> is created inside the function to store the transposed data. The memory for this tensor is managed by the tensor type <code>T</code> itself.</li>
+<li>The function creates a local <code>std::vector</code> object <code>offset</code> to store offset values. This vector is automatically managed by its destructor.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions explicitly. However, exceptions may be thrown by the constructor of the tensor type <code>T</code> or the <code>iTranspose</code> function.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on the <code>shape()</code> method of the tensor type <code>T</code> to access shape information, including dimensions and strides.</li>
+<li>Relies on the <code>iTranspose</code> function to perform the actual transpose operation.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m * n), where m is the product of the first two dimensions of the input tensor (<code>in.shape()[0] * in.shape()[1]</code>), and n is the product of the last two dimensions (<code>in.shape()[2] * in.shape()[3]</code>).</li>
+<li>Ensure that the <code>iTranspose</code> function is correctly implemented and that the tensor types support the necessary shape and data access methods.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>Incorrect implementation of the <code>iTranspose</code> function may lead to incorrect results or runtime errors.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="comment">// Assume we have a valid tensor type Tensor</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> in;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> transposed = <a class="code hl_function" href="#ac8d64dd271e9a2e50682e733bd14ec19">transpose</a>(in);</div>
+<div class="line">```</div>
+<div class="ttc" id="anamespacenz_1_1data_html_ac8d64dd271e9a2e50682e733bd14ec19"><div class="ttname"><a href="#ac8d64dd271e9a2e50682e733bd14ec19">nz::data::transpose</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; transpose(const T &amp;in)</div><div class="ttdoc">Transposes a tensor with a valid tensor type.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l01036">TensorOperations.cuh:1036</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_operations_8cuh_source.html#l01036">1036</a> of file <a class="el" href="_tensor_operations_8cuh_source.html">TensorOperations.cuh</a>.</p>
 
 </div>
 </div>

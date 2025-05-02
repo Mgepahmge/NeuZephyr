@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Represents an Exponential Linear Unit (ELU) activation function node in a computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_e_l_u_node.html" title="Represents an Exponential Linear Unit (ELU) activation function node in a computational graph.">ELUNode</a></code> class applies the Exponential Linear Unit (ELU) activation function to the input tensor. The ELU function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1data.html#a5e6656db9844fdb33add8afa7c0ceb8a">ELU</a>(x) = x, <span class="keywordflow">if</span> x &gt; 0</div>
 <div class="line">         alpha * (exp(x) - 1), <span class="keywordflow">if</span> x &lt;= 0</div>
-<div class="ttc" id="anamespacenz_1_1data_html_a5e6656db9844fdb33add8afa7c0ceb8a"><div class="ttname"><a href="namespacenz_1_1data.html#a5e6656db9844fdb33add8afa7c0ceb8a">nz::data::ELU</a></div><div class="ttdeci">T ELU(T input, const float alpha=1.0f)</div><div class="ttdoc">Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00233">TensorOperations.cuh:233</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a5e6656db9844fdb33add8afa7c0ceb8a"><div class="ttname"><a href="namespacenz_1_1data.html#a5e6656db9844fdb33add8afa7c0ceb8a">nz::data::ELU</a></div><div class="ttdeci">T ELU(T input, const float alpha=1.0f)</div><div class="ttdoc">Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00234">TensorOperations.cuh:234</a></div></div>
 </div><!-- fragment --><p> where <code>alpha</code> controls the value for negative inputs and smoothens the curve.</p>
 <p>Key features:</p><ul>
 <li><b>Forward Pass</b>: Applies the ELU activation function element-wise to the input tensor. Positive values remain unchanged, while negative values are scaled exponentially with <code>alpha</code>.</li>
@@ -155,7 +155,7 @@ Usage Example:</h3>
 <div class="line">elu_node.backward();  <span class="comment">// Propagate gradients in the backward pass</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *elu_node.output &lt;&lt; std::endl;  <span class="comment">// Print the result</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_e_l_u_node_html_a1dc0572d0688d2e65912b367286ac6ad"><div class="ttname"><a href="#a1dc0572d0688d2e65912b367286ac6ad">nz::nodes::calc::ELUNode::ELUNode</a></div><div class="ttdeci">ELUNode(Node *input, Tensor::value_type alpha=1.0f)</div><div class="ttdoc">Constructor to initialize an ELUNode for applying the ELU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00391">Nodes.cu:391</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_e_l_u_node_html_a1dc0572d0688d2e65912b367286ac6ad"><div class="ttname"><a href="#a1dc0572d0688d2e65912b367286ac6ad">nz::nodes::calc::ELUNode::ELUNode</a></div><div class="ttdeci">ELUNode(Node *input, Tensor::value_type alpha=1.0f)</div><div class="ttdoc">Constructor to initialize an ELUNode for applying the ELU activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00399">Nodes.cu:399</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#acd8b07d5fbd5a920d58d55a72a9ff092" title="Forward pass for the ELUNode to apply the ELU activation function.">forward()</a> for the <a class="el" href="namespacenz_1_1data.html#a5e6656db9844fdb33add8afa7c0ceb8a" title="Apply the Exponential Linear Unit (ELU) activation function element-wise to an input tensor.">ELU</a> computation in the <a class="el" href="#acd8b07d5fbd5a920d58d55a72a9ff092" title="Forward pass for the ELUNode to apply the ELU activation function.">forward</a> pass. </dd>
 <dd>
 <a class="el" href="#a167cd647d2a6e3f273c250f15562a317" title="Backward pass for the ELUNode to compute gradients.">backward()</a> for gradient computation in the <a class="el" href="#a167cd647d2a6e3f273c250f15562a317" title="Backward pass for the ELUNode to compute gradients.">backward</a> pass.</dd></dl>
@@ -219,7 +219,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/05 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00391">391</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00399">399</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -268,7 +268,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00405">405</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00413">413</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -331,7 +331,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00399">399</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00407">407</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

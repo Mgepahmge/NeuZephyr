@@ -15,7 +15,7 @@ namespace nz::opt {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
         StochasticGradientDescent(grid, block, input->output->data(), input->output->grad(), learning_rate,
-                                                   input->output->size());
+                                  input->output->size());
     }
 
     Momentum::Momentum(Tensor::value_type learning_rate, Tensor::value_type beta) {
@@ -34,10 +34,12 @@ namespace nz::opt {
         const dim3 block(256);
         const dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::Momentum(grid, block, temp, input->output->grad(), velocity[input].data(), beta,
-                                           input->output->size());
-        cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(velocity[input].data(), temp, input->output->size() * sizeof(float), cudaMemcpyDeviceToDevice);
+                       input->output->size());
+        cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(velocity[input].data(), temp,
+                                                                     input->output->size() * sizeof(float),
+                                                                     cudaMemcpyDeviceToDevice);
         StochasticGradientDescent(grid, block, input->output->data(), velocity[input].data(), learning_rate,
-                                                   input->output->size());
+                                  input->output->size());
         cuStrm::StreamManager<Tensor::value_type>::Instance().free(temp);
     }
 
@@ -54,7 +56,7 @@ namespace nz::opt {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::AdaGrad(grid, block, input->output->data(), gss[input].data(), input->output->grad(),
-                                          learning_rate, epsilon, input->output->size());
+                      learning_rate, epsilon, input->output->size());
     }
 
     RMSprop::RMSprop(Tensor::value_type learning_rate, Tensor::value_type decay_rate) {
@@ -71,7 +73,7 @@ namespace nz::opt {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::RMSprop(grid, block, input->output->data(), v[input].data(), input->output->grad(), learning_rate,
-                                          decay_rate, epsilon, input->output->size());
+                      decay_rate, epsilon, input->output->size());
     }
 
     Adam::Adam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {
@@ -96,7 +98,7 @@ namespace nz::opt {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::Adam(grid, block, input->output->data(), m[input].data(), v[input].data(), input->output->grad(),
-                                       learning_rate, beta1, beta2, epsilon, it, input->output->size());
+                   learning_rate, beta1, beta2, epsilon, it, input->output->size());
     }
 
     NAdam::NAdam(Tensor::value_type learning_rate, Tensor::value_type beta1, Tensor::value_type beta2) {
@@ -126,9 +128,9 @@ namespace nz::opt {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::NAdam(grid, block, input->output->data(), m[input].data(), m_modified[input].data(),
-                                        v[input].data(),
-                                        input->output->grad(), learning_rate, beta1, beta2, epsilon, it,
-                                        input->output->size());
+                    v[input].data(),
+                    input->output->grad(), learning_rate, beta1, beta2, epsilon, it,
+                    input->output->size());
     }
 
     AdaDelta::AdaDelta(Tensor::value_type rho) {
@@ -149,7 +151,7 @@ namespace nz::opt {
         dim3 block(256);
         dim3 grid((input->output->size() + block.x - 1) / block.x);
         krnl::AdaDelta(grid, block, input->output->data(), acc_delta[input].data(), acc_grad[input].data(),
-                                           input->output->grad(), learning_rate, epsilon,
-                                           input->output->size());
+                       input->output->grad(), learning_rate, epsilon,
+                       input->output->size());
     }
 } // opt

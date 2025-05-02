@@ -1,9 +1,13 @@
 <map id="nz::data::Tensor::operator*" name="nz::data::Tensor::operator*">
-<area shape="rect" id="Node000001" title="Performs matrix multiplication of two tensors (matrices) and returns the result." alt="" coords="5,47,181,73"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a6d79f34a712e1bb45d5fedeb110e5ede" title="Kernel function to perform single&#45;precision matrix multiplication on GPU using CUDA cores." alt="" coords="229,47,403,73"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,57,213,57,213,63,181,63"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="451,5,636,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,45,435,40,436,45,404,50"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="451,72,636,115"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="404,70,436,75,435,80,403,75"/>
+<area shape="rect" id="Node000001" title="Performs matrix multiplication of two tensors (matrices) and returns the result." alt="" coords="5,107,181,133"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#ae1e87c4a462dd60e02821aa27ffc7e09" title="Retrieves the value of the &#39;c&#39; dimension." alt="" coords="258,5,414,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,104,164,73,228,42,249,34,250,39,230,46,166,77,116,109"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_dimension.html#a7eb3acc882c48e775c418d97f709240f" title="Retrieves the value of the &#39;h&#39; dimension." alt="" coords="258,56,414,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,103,253,84,254,89,161,109"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_dimension.html#acc472e84b4c44f649f34b6fbb0eeacf7" title="Retrieves the value of the &#39;n&#39; dimension." alt="" coords="258,107,414,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,117,242,117,242,123,181,123"/>
+<area shape="rect" id="Node000005" href="$namespacenz_1_1data.html#a5a166a472b887c45fde9e5815f072234" title="Performs general matrix multiplication on tensors with broadcast compatibility." alt="" coords="229,157,443,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,131,254,151,253,156,160,137"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1data_1_1_dimension.html#a65773c675476dfea3f06b30f21ebbedd" title="Retrieves the value of the &#39;w&#39; dimension." alt="" coords="256,208,416,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="116,131,166,163,230,194,250,201,249,206,228,198,164,167,113,136"/>
 </map>

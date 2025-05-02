@@ -307,7 +307,8 @@ namespace nz::data {
         krnl::Fill(grid, block, isGrad ? _grad : _data, value, _size);
     }
 
-    void Tensor::fillMatrix(const value_type value, const size_type batch, const size_type channels, const bool isGrad) {
+    void Tensor::fillMatrix(const value_type value, const size_type batch, const size_type channels,
+                            const bool isGrad) {
         if (batch >= _shape[0] || channels >= _shape[1]) {
             throw std::invalid_argument("Invalid batch or channels");
         }
@@ -318,7 +319,7 @@ namespace nz::data {
         const dim3 block(512);
         const dim3 grid((_shape[2] * _shape[3] + block.x - 1) / block.x);
         const auto offset = batch * _shape.getStride(0) + channels * _shape.getStride(1);
-        krnl::Fill(grid, block, (isGrad ? _grad : _data ), value, _shape[2] * _shape[3], offset);
+        krnl::Fill(grid, block, (isGrad ? _grad : _data), value, _shape[2] * _shape[3], offset);
     }
 
     Tensor Tensor::operator+(const Tensor& other) const {
@@ -380,7 +381,7 @@ namespace nz::data {
         const dim3 grid((_shape[2] + block.x - 1) / block.x, (_shape[3] + block.y - 1) / block.y);
         value_type* temp;
         std::vector<size_t> offset;
-        CHECK(cudaMalloc(&temp, _size * sizeof(value_type)));
+        cuStrm::StreamManager<float>::Instance().malloc(&temp, _size * sizeof(value_type));
         for (auto i = 0; i < _shape[0]; i += 1) {
             for (auto j = 0; j < _shape[1]; j += 1) {
                 offset.push_back(i * _shape.getStride(0) + j * _shape.getStride(1));
@@ -391,7 +392,7 @@ namespace nz::data {
         _data = temp;
         if (_requires_grad) {
             value_type* tempGrad;
-            CHECK(cudaMalloc(&tempGrad, _size * sizeof(value_type)));
+            cuStrm::StreamManager<float>::Instance().malloc(&tempGrad, _size * sizeof(value_type));
             krnl::Transpose(grid, block, _grad, tempGrad, _shape[2], _shape[3], offset);
             cuStrm::StreamManager<value_type>::Instance().freeAsync(_grad);
             _grad = tempGrad;

@@ -1,0 +1,15 @@
+<map id="nz::data::Tensor::fillMatrix" name="nz::data::Tensor::fillMatrix">
+<area shape="rect" id="Node000001" title="Fill a specific matrix slice within the Tensor with a given value." alt="" coords="5,76,178,103"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value." alt="" coords="250,47,340,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,74,234,66,235,71,178,80"/>
+<area shape="rect" id="Node000007" href="$classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="226,97,364,140"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="178,99,211,104,210,109,178,104"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="412,5,597,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,50,397,41,397,46,341,56"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="412,72,597,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="341,64,397,74,397,79,340,70"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="645,39,831,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="597,77,629,73,630,78,598,83"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="645,105,831,148"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="598,104,630,109,629,114,597,109"/>
+</map>

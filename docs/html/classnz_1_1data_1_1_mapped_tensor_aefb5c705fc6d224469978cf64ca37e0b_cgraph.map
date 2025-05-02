@@ -1,5 +1,9 @@
 <map id="nz::data::MappedTensor::setShape" name="nz::data::MappedTensor::setShape">
-<area shape="rect" id="Node000001" title="Sets a new shape for the MappedTensor and adjusts its data and gradient memory accordingly." alt="" coords="5,5,167,48"/>
-<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b" title="Retrieves the shape of the MappedTensor." alt="" coords="215,5,376,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,24,199,24,199,29,167,29"/>
+<area shape="rect" id="Node000001" title="Sets a new shape for the MappedTensor and adjusts its data and gradient memory accordingly." alt="" coords="5,39,167,81"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#accb260af17b2e888268e1a7d3cdccc71" title="Attempts to reshape the current Dimension object to a new shape." alt="" coords="226,5,364,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,44,211,37,211,43,168,50"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b" title="Retrieves the shape of the MappedTensor." alt="" coords="215,72,376,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,70,200,75,199,81,167,76"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_dimension.html#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object." alt="" coords="424,5,562,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="365,24,409,24,409,29,365,29"/>
 </map>

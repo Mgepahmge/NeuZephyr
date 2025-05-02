@@ -1,0 +1,5 @@
+<map id="nz::data::Dimension::isBroadcastCompatible" name="nz::data::Dimension::isBroadcastCompatible">
+<area shape="rect" id="Node000001" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="5,5,170,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="218,5,356,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,24,202,24,202,29,170,29"/>
+</map>

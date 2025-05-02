@@ -161,6 +161,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acf793cf0d23af29076d18cd46a6d19cf" id="r_acf793cf0d23af29076d18cd46a6d19cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf793cf0d23af29076d18cd46a6d19cf">fill</a> (value_type value, bool isGrad=false) const</td></tr>
 <tr class="memdesc:acf793cf0d23af29076d18cd46a6d19cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the data or gradients of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> with a given value.  <br /></td></tr>
 <tr class="separator:acf793cf0d23af29076d18cd46a6d19cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0422426fcdfec736a3773414670472a9" id="r_a0422426fcdfec736a3773414670472a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0422426fcdfec736a3773414670472a9">fillMatrix</a> (value_type value, size_type batch, size_type channels, bool isGrad=false)</td></tr>
+<tr class="memdesc:a0422426fcdfec736a3773414670472a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a specific matrix within the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> with a given value.  <br /></td></tr>
+<tr class="separator:a0422426fcdfec736a3773414670472a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae0e7076636cd708762f57f10f03952" id="r_afae0e7076636cd708762f57f10f03952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afae0e7076636cd708762f57f10f03952">transpose</a> ()</td></tr>
 <tr class="memdesc:afae0e7076636cd708762f57f10f03952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transpose the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> and its gradients (if required).  <br /></td></tr>
 <tr class="separator:afae0e7076636cd708762f57f10f03952"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,6 +201,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad4b349b1cbc2fef18f4b450f4d11377a" id="r_ad4b349b1cbc2fef18f4b450f4d11377a"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4b349b1cbc2fef18f4b450f4d11377a">expSum</a> () const</td></tr>
 <tr class="memdesc:ad4b349b1cbc2fef18f4b450f4d11377a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the sum of the exponential values of all elements in the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>.  <br /></td></tr>
 <tr class="separator:ad4b349b1cbc2fef18f4b450f4d11377a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc8c0fb245f15bda119159aa07109acf" id="r_abc8c0fb245f15bda119159aa07109acf"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc8c0fb245f15bda119159aa07109acf">expSum</a> (size_t batch, size_t channel) const</td></tr>
+<tr class="memdesc:abc8c0fb245f15bda119159aa07109acf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sum of exponential values for a given batch and channel in the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>.  <br /></td></tr>
+<tr class="separator:abc8c0fb245f15bda119159aa07109acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9d1b0fa71f9bb7686cc26ae7b32be8d" id="r_af9d1b0fa71f9bb7686cc26ae7b32be8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">syncGrad</a> () const</td></tr>
 <tr class="memdesc:af9d1b0fa71f9bb7686cc26ae7b32be8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronizes the gradient data if gradient computation is required.  <br /></td></tr>
 <tr class="separator:af9d1b0fa71f9bb7686cc26ae7b32be8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,7 +269,7 @@ Usage Example:</h3>
 <div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a></div><div class="ttdoc">A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cuh_source.html#l00066">MappedTensor.cuh:66</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00134">Tensor.cuh:134</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cuh_source.html#l00009">Dimension.cuh:9</a></div></div>
-<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="namespacenz_1_1data.html#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00047">TensorOperations.cuh:47</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="namespacenz_1_1data.html#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00048">TensorOperations.cuh:48</a></div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><ul>
 <li><b>Memory Characteristics</b>: Zero-copy memory typically offers higher allocation latency but unified access</li>
 <li><b>Concurrency Considerations</b>: Ensure proper synchronization between host/device accesses</li>
@@ -1057,7 +1063,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ad4b349b1cbc2fef18f4b450f4d11377a" name="ad4b349b1cbc2fef18f4b450f4d11377a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4b349b1cbc2fef18f4b450f4d11377a">&#9670;&#160;</a></span>expSum()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4b349b1cbc2fef18f4b450f4d11377a">&#9670;&#160;</a></span>expSum() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1109,9 +1115,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Assume mapped_tensor is filled with some values</span></div>
 <div class="line">nz::data::MappedTensor::value_type exp_sum_result = mapped_tensor.<a class="code hl_function" href="#ad4b349b1cbc2fef18f4b450f4d11377a">expSum</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ad4b349b1cbc2fef18f4b450f4d11377a"><div class="ttname"><a href="#ad4b349b1cbc2fef18f4b450f4d11377a">nz::data::MappedTensor::expSum</a></div><div class="ttdeci">value_type expSum() const</div><div class="ttdoc">Calculate the sum of the exponential values of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00545">MappedTensor.cu:545</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ad4b349b1cbc2fef18f4b450f4d11377a"><div class="ttname"><a href="#ad4b349b1cbc2fef18f4b450f4d11377a">nz::data::MappedTensor::expSum</a></div><div class="ttdeci">value_type expSum() const</div><div class="ttdoc">Calculate the sum of the exponential values of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00547">MappedTensor.cu:547</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00545">545</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00547">547</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1134,6 +1140,112 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="633,187,665,182,666,187,634,192"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="681,215,867,257"/>
 <area shape="poly" title=" " alt="" coords="634,213,666,218,665,223,633,219"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abc8c0fb245f15bda119159aa07109acf" name="abc8c0fb245f15bda119159aa07109acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc8c0fb245f15bda119159aa07109acf">&#9670;&#160;</a></span>expSum() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MappedTensor::value_type nz::data::MappedTensor::expSum </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the sum of exponential values for a given batch and channel in the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>. </p>
+<p>This function calculates the sum of exponential values for a specific batch and channel within the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>. It first checks if the provided batch and channel indices are valid. If so, it launches a CUDA kernel to perform the exponential summation and then aggregates the partial results on the host.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">batch</td><td>The batch index. Memory flow: host-to-function, as the value is passed from the calling code to the function. </td></tr>
+    <tr><td class="paramname">channel</td><td>The channel index. Memory flow: host-to-function, as the value is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The sum of exponential values for the specified batch and channel. Memory flow: function-to-host, as the result is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>The function allocates host memory for the intermediate results using <code>cudaMallocHost</code>. This memory is managed by the CUDA runtime.</li>
+<li>After aggregating the results, the allocated host memory is freed using <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a>&lt;value_type&gt;::Instance().freeHost</code>.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the provided batch or channel indices are out of bounds, the function throws an <code>std::invalid_argument</code> exception.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This function depends on the <code><a class="el" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array.">krnl::SummationExp</a></code> CUDA kernel to perform the exponential summation on the device.</li>
+<li>It also relies on the <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a>&lt;value_type&gt;</code> to synchronize data and free host memory.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>If the provided batch or channel indices are out of bounds.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the number of grid blocks (<code>grid.x</code>). This is due to the loop that aggregates the partial results.</li>
+<li>Ensure that the CUDA kernel <code><a class="el" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array.">krnl::SummationExp</a></code> is correctly implemented and that the <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a>&lt;value_type&gt;</code> functions work as expected.</li>
+<li>This function involves CUDA operations, so it requires a CUDA - enabled environment.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>Incorrect usage of CUDA functions may lead to memory leaks or other CUDA - related errors.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> tensor;</div>
+<div class="line"><span class="keywordtype">size_t</span> batch = 0;</div>
+<div class="line"><span class="keywordtype">size_t</span> channel = 1;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    MappedTensor::value_type result = tensor.expSum(batch, channel);</div>
+<div class="line">    <span class="comment">// Use the result</span></div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00562">562</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_abc8c0fb245f15bda119159aa07109acf_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_abc8c0fb245f15bda119159aa07109acf_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_abc8c0fb245f15bda119159aa07109acf_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_abc8c0fb245f15bda119159aa07109acf_cgraph">
+<area shape="rect" title="Computes the sum of exponential values for a given batch and channel in the MappedTensor." alt="" coords="5,115,167,157"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab6803232b9c08d9282b16322a6c7b8a9" title="Frees the pinned host memory pointed to by the given pointer." alt="" coords="215,5,400,48"/>
+<area shape="poly" title=" " alt="" coords="124,112,213,64,239,52,242,57,216,69,127,117"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="448,48,633,91"/>
+<area shape="poly" title=" " alt="" coords="167,122,432,82,433,88,167,127"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="448,132,633,175"/>
+<area shape="poly" title=" " alt="" coords="167,136,433,147,433,152,167,142"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#aa144f9f3b76741e5d3fb3b5df3cc3b42" title="Retrieves the total number of elements in the MappedTensor." alt="" coords="227,173,388,216"/>
+<area shape="poly" title=" " alt="" coords="168,155,212,167,211,172,166,160"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="227,240,388,267"/>
+<area shape="poly" title=" " alt="" coords="114,156,159,192,216,226,231,232,229,237,213,230,156,196,110,160"/>
+<area shape="poly" title=" " alt="" coords="401,41,433,47,432,52,400,46"/>
+<area shape="poly" title=" " alt="" coords="365,237,399,226,446,204,489,180,492,185,448,209,401,230,367,242"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="448,232,633,275"/>
+<area shape="poly" title=" " alt="" coords="388,251,433,251,433,256,388,256"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="681,199,867,241"/>
+<area shape="poly" title=" " alt="" coords="633,237,665,233,666,238,634,243"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="681,265,867,308"/>
+<area shape="poly" title=" " alt="" coords="634,264,666,269,665,274,633,269"/>
 </map>
 </div>
 
@@ -1207,6 +1319,110 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a0422426fcdfec736a3773414670472a9" name="a0422426fcdfec736a3773414670472a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0422426fcdfec736a3773414670472a9">&#9670;&#160;</a></span>fillMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::data::MappedTensor::fillMatrix </td>
+          <td>(</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>channels</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isGrad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fills a specific matrix within the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a> with a given value. </p>
+<p>This function fills a particular matrix in the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>, specified by the batch and channel indices, with the provided value. It can also fill the gradient matrix if the tensor requires gradients and the <code>isGrad</code> flag is set to <code>true</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to fill the matrix with. Memory flow: host-to-function, as it is passed from the calling code to the function. </td></tr>
+    <tr><td class="paramname">batch</td><td>The batch index. Memory flow: host-to-function, as it is passed from the calling code to the function. </td></tr>
+    <tr><td class="paramname">channels</td><td>The channel index. Memory flow: host-to-function, as it is passed from the calling code to the function. </td></tr>
+    <tr><td class="paramname">isGrad</td><td>A boolean flag indicating whether to fill the gradient matrix. Memory flow: host-to-function, as it is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only modifies the existing data or gradient buffer of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the provided batch or channel indices are out of bounds, the function throws an <code>std::invalid_argument</code> exception.</li>
+<li>If the <code>isGrad</code> flag is <code>true</code> but the tensor does not require gradients, the function throws an <code>std::invalid_argument</code> exception.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This function depends on the <code><a class="el" href="namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value.">krnl::Fill</a></code> CUDA kernel to perform the actual filling operation on the device.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>If the provided batch or channel indices are out of bounds, or if gradient filling is attempted on a tensor that does not require gradients.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the number of elements in the matrix (<code>_shape[2] * _shape[3]</code>). This is because the CUDA kernel needs to process each element.</li>
+<li>Ensure that the <code><a class="el" href="namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value.">krnl::Fill</a></code> CUDA kernel is correctly implemented.</li>
+<li>This function involves CUDA operations, so it requires a CUDA - enabled environment.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>Incorrect usage of CUDA functions may lead to memory access errors or other CUDA - related issues.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> tensor;</div>
+<div class="line">MappedTensor::value_type value = 1.0;</div>
+<div class="line">MappedTensor::size_type batch = 0;</div>
+<div class="line">MappedTensor::size_type channels = 1;</div>
+<div class="line"><span class="keywordtype">bool</span> isGrad = <span class="keyword">false</span>;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    tensor.fillMatrix(value, batch, channels, isGrad);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00400">400</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a0422426fcdfec736a3773414670472a9_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a0422426fcdfec736a3773414670472a9_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_a0422426fcdfec736a3773414670472a9_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a0422426fcdfec736a3773414670472a9_cgraph">
+<area shape="rect" title="Fills a specific matrix within the MappedTensor with a given value." alt="" coords="5,68,167,111"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#ad136c8a6560a5305984ce0a31bea71bf" title="Kernel function to fill a data array with a given value." alt="" coords="239,47,328,73"/>
+<area shape="poly" title=" " alt="" coords="167,75,223,66,224,71,168,80"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="215,97,353,140"/>
+<area shape="poly" title=" " alt="" coords="168,99,200,104,199,109,167,104"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="401,5,586,48"/>
+<area shape="poly" title=" " alt="" coords="329,50,386,41,386,46,330,56"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="401,72,586,115"/>
+<area shape="poly" title=" " alt="" coords="330,64,386,74,386,79,329,70"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="634,39,820,81"/>
+<area shape="poly" title=" " alt="" coords="586,77,618,73,619,78,587,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="634,105,820,148"/>
+<area shape="poly" title=" " alt="" coords="587,104,619,109,618,114,586,109"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a96696ca7de5d5d3b7e0ba834a80d541d" name="a96696ca7de5d5d3b7e0ba834a80d541d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96696ca7de5d5d3b7e0ba834a80d541d">&#9670;&#160;</a></span>operator!=()</h2>
 
@@ -1251,7 +1467,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keywordtype">bool</span> isNotEqual = tensor1 != tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00490">490</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00492">492</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1305,6 +1521,24 @@ Here is the call graph for this function:</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00451">451</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a7a6bc3862735542300e7f3ecd2df887f_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a7a6bc3862735542300e7f3ecd2df887f_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_a7a6bc3862735542300e7f3ecd2df887f_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a7a6bc3862735542300e7f3ecd2df887f_cgraph">
+<area shape="rect" title="Perform matrix multiplication between two MappedTensors." alt="" coords="5,99,167,141"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#ae1e87c4a462dd60e02821aa27ffc7e09" title="Retrieves the value of the &#39;c&#39; dimension." alt="" coords="244,5,400,32"/>
+<area shape="poly" title=" " alt="" coords="116,96,161,68,214,42,234,34,236,39,216,46,164,72,119,100"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a7eb3acc882c48e775c418d97f709240f" title="Retrieves the value of the &#39;h&#39; dimension." alt="" coords="244,56,400,83"/>
+<area shape="poly" title=" " alt="" coords="166,100,241,84,242,89,167,105"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#acc472e84b4c44f649f34b6fbb0eeacf7" title="Retrieves the value of the &#39;n&#39; dimension." alt="" coords="244,107,400,133"/>
+<area shape="poly" title=" " alt="" coords="167,117,228,117,228,123,167,123"/>
+<area shape="rect" href="namespacenz_1_1data.html#a5a166a472b887c45fde9e5815f072234" title="Performs general matrix multiplication on tensors with broadcast compatibility." alt="" coords="215,157,429,184"/>
+<area shape="poly" title=" " alt="" coords="167,135,242,151,241,156,166,140"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a65773c675476dfea3f06b30f21ebbedd" title="Retrieves the value of the &#39;w&#39; dimension." alt="" coords="242,208,402,235"/>
+<area shape="poly" title=" " alt="" coords="119,140,164,168,216,194,236,201,234,206,214,198,161,172,116,144"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1357,6 +1591,23 @@ Here is the call graph for this function:</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00439">439</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a42529629ec686811b950f50b84cffd62_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a42529629ec686811b950f50b84cffd62_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_a42529629ec686811b950f50b84cffd62_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a42529629ec686811b950f50b84cffd62_cgraph">
+<area shape="rect" title="Perform element&#45;wise addition between two MappedTensors." alt="" coords="5,35,167,77"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#ab4f9f0cec97b8e579b62ccb37975de3c" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension." alt="" coords="231,5,370,48"/>
+<area shape="poly" title=" " alt="" coords="166,42,215,36,216,41,167,48"/>
+<area shape="rect" href="namespacenz_1_1data.html#a8cf4ac2437dd67698684169bebb225d4" title="Performs matrix addition operation on tensors with broadcast compatibility." alt="" coords="215,72,386,99"/>
+<area shape="poly" title=" " alt="" coords="167,64,199,69,199,74,166,70"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="646,5,785,48"/>
+<area shape="poly" title=" " alt="" coords="370,22,434,20,598,20,631,21,631,26,598,25,434,25,370,27"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="434,35,598,77"/>
+<area shape="poly" title=" " alt="" coords="370,33,419,40,418,45,369,39"/>
+<area shape="poly" title=" " alt="" coords="598,41,630,36,631,42,599,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1471,6 +1722,23 @@ Here is the call graph for this function:</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00445">445</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_ab1346540c19b9ab6f416514cd2164c8b_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_ab1346540c19b9ab6f416514cd2164c8b_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_ab1346540c19b9ab6f416514cd2164c8b_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_ab1346540c19b9ab6f416514cd2164c8b_cgraph">
+<area shape="rect" title="Perform element&#45;wise subtraction between two MappedTensors." alt="" coords="5,35,167,77"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#ab4f9f0cec97b8e579b62ccb37975de3c" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension." alt="" coords="231,5,370,48"/>
+<area shape="poly" title=" " alt="" coords="166,42,215,36,216,41,167,48"/>
+<area shape="rect" href="namespacenz_1_1data.html#a7503b6894e8052ed54eb169550d135c0" title="Performs matrix subtraction operation on tensors with broadcast compatibility." alt="" coords="215,72,386,99"/>
+<area shape="poly" title=" " alt="" coords="167,64,199,69,199,74,166,70"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="646,5,785,48"/>
+<area shape="poly" title=" " alt="" coords="370,22,434,20,598,20,631,21,631,26,598,25,434,25,370,27"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="434,35,598,77"/>
+<area shape="poly" title=" " alt="" coords="370,33,419,40,418,45,369,39"/>
+<area shape="poly" title=" " alt="" coords="598,41,630,36,631,42,599,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1523,7 +1791,24 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> result = tensor1 / tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00494">494</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00496">496</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a51ecfec4ea055d7e4c11c4540c3fd996_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a51ecfec4ea055d7e4c11c4540c3fd996_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_a51ecfec4ea055d7e4c11c4540c3fd996_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a51ecfec4ea055d7e4c11c4540c3fd996_cgraph">
+<area shape="rect" title="Perform element&#45;wise division between two MappedTensors." alt="" coords="5,39,167,81"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#ab4f9f0cec97b8e579b62ccb37975de3c" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension." alt="" coords="239,5,378,48"/>
+<area shape="poly" title=" " alt="" coords="167,45,224,37,224,42,168,51"/>
+<area shape="rect" href="namespacenz_1_1data.html#a1da5cd018533919ed5a750b14c7d6d71" title="Performs element &#45; wise division operation on tensors with broadcast compatibility." alt="" coords="215,72,402,115"/>
+<area shape="poly" title=" " alt="" coords="168,69,199,74,199,80,167,75"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="662,5,801,48"/>
+<area shape="poly" title=" " alt="" coords="378,22,450,20,614,20,647,21,647,26,614,25,450,25,378,27"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="450,35,614,77"/>
+<area shape="poly" title=" " alt="" coords="378,33,435,41,434,46,377,38"/>
+<area shape="poly" title=" " alt="" coords="614,41,646,36,647,42,615,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1693,6 +1978,26 @@ Here is the call graph for this function:</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00468">468</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a79064970ec839800d23d8fc890e0d1f9_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a79064970ec839800d23d8fc890e0d1f9_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_mapped_tensor_a79064970ec839800d23d8fc890e0d1f9_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a79064970ec839800d23d8fc890e0d1f9_cgraph">
+<area shape="rect" title="Checks if two MappedTensor objects are equal." alt="" coords="5,39,167,81"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="215,39,376,81"/>
+<area shape="poly" title=" " alt="" coords="167,57,199,57,199,63,167,63"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="424,5,585,48"/>
+<area shape="poly" title=" " alt="" coords="376,44,408,39,409,45,377,50"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="424,72,585,115"/>
+<area shape="poly" title=" " alt="" coords="377,70,409,75,408,81,376,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="633,5,819,48"/>
+<area shape="poly" title=" " alt="" coords="586,24,618,24,618,29,586,29"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="633,72,819,115"/>
+<area shape="poly" title=" " alt="" coords="578,46,639,64,637,70,577,51"/>
+<area shape="poly" title=" " alt="" coords="577,69,637,50,639,56,578,74"/>
+<area shape="poly" title=" " alt="" coords="586,91,618,91,618,96,586,96"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1787,25 +2092,35 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a8a42265d7c9f964c41ff43e9d8dc7bf7_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a8a42265d7c9f964c41ff43e9d8dc7bf7_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_mapped_tensor_a8a42265d7c9f964c41ff43e9d8dc7bf7_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a8a42265d7c9f964c41ff43e9d8dc7bf7_cgraph">
-<area shape="rect" title="Print the tensor data in a matrix&#45;like format to an output stream." alt="" coords="5,56,167,99"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,115,390,157"/>
-<area shape="poly" title=" " alt="" coords="168,96,215,108,213,114,166,101"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="662,5,824,48"/>
-<area shape="poly" title=" " alt="" coords="167,57,214,49,331,38,447,30,647,24,647,30,448,36,331,43,215,55,168,62"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,64,405,91"/>
-<area shape="poly" title=" " alt="" coords="167,75,199,75,199,80,167,80"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="453,68,614,111"/>
-<area shape="poly" title=" " alt="" coords="390,117,437,107,438,112,392,122"/>
-<area shape="poly" title=" " alt="" coords="607,65,654,50,656,55,608,70"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="662,72,824,115"/>
-<area shape="poly" title=" " alt="" coords="615,88,647,89,647,94,615,94"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="872,5,1057,48"/>
-<area shape="poly" title=" " alt="" coords="824,24,856,24,856,29,824,29"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="872,72,1057,115"/>
-<area shape="poly" title=" " alt="" coords="817,46,877,64,876,70,815,51"/>
-<area shape="poly" title=" " alt="" coords="815,69,876,50,877,56,817,74"/>
-<area shape="poly" title=" " alt="" coords="824,91,856,91,856,96,824,96"/>
-<area shape="poly" title=" " alt="" coords="406,80,437,82,437,87,405,85"/>
+<area shape="rect" title="Print the tensor data in a matrix&#45;like format to an output stream." alt="" coords="5,214,167,256"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,75,390,118"/>
+<area shape="poly" title=" " alt="" coords="107,211,153,169,213,127,223,122,226,127,216,132,157,173,110,215"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="662,16,824,59"/>
+<area shape="poly" title=" " alt="" coords="94,212,110,177,136,135,170,93,191,75,213,61,267,37,323,20,382,10,440,5,552,6,647,16,647,22,552,11,440,10,382,15,325,26,269,42,216,65,194,79,174,97,140,138,115,179,98,214"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#ae1e87c4a462dd60e02821aa27ffc7e09" title="Retrieves the value of the &#39;c&#39; dimension." alt="" coords="232,192,388,219"/>
+<area shape="poly" title=" " alt="" coords="167,222,216,215,217,220,168,227"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,142,405,168"/>
+<area shape="poly" title=" " alt="" coords="133,211,214,178,236,170,238,176,216,183,135,215"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="241,243,379,286"/>
+<area shape="poly" title=" " alt="" coords="168,243,226,251,225,256,167,248"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a7eb3acc882c48e775c418d97f709240f" title="Retrieves the value of the &#39;h&#39; dimension." alt="" coords="232,310,388,336"/>
+<area shape="poly" title=" " alt="" coords="128,254,216,295,236,302,235,307,214,300,125,259"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#acc472e84b4c44f649f34b6fbb0eeacf7" title="Retrieves the value of the &#39;n&#39; dimension." alt="" coords="232,360,388,387"/>
+<area shape="poly" title=" " alt="" coords="108,255,154,301,184,325,216,346,229,352,227,357,213,351,181,330,150,305,104,258"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a65773c675476dfea3f06b30f21ebbedd" title="Retrieves the value of the &#39;w&#39; dimension." alt="" coords="230,411,390,438"/>
+<area shape="poly" title=" " alt="" coords="100,255,145,325,177,364,216,397,225,402,222,406,213,401,174,368,140,329,96,258"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="453,79,614,122"/>
+<area shape="poly" title=" " alt="" coords="391,95,437,96,437,101,391,100"/>
+<area shape="poly" title=" " alt="" coords="607,76,654,61,656,66,608,81"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="662,83,824,126"/>
+<area shape="poly" title=" " alt="" coords="615,99,647,100,647,105,615,104"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="872,16,1057,59"/>
+<area shape="poly" title=" " alt="" coords="824,35,856,35,856,40,824,40"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="872,83,1057,126"/>
+<area shape="poly" title=" " alt="" coords="817,57,877,75,876,80,815,62"/>
+<area shape="poly" title=" " alt="" coords="815,80,876,61,877,66,817,85"/>
+<area shape="poly" title=" " alt="" coords="824,102,856,102,856,107,824,107"/>
+<area shape="poly" title=" " alt="" coords="367,138,437,121,439,126,368,144"/>
 </map>
 </div>
 
@@ -1860,15 +2175,25 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_ab54e80ac0d2ec90442b0a674004cfdbc_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_ab54e80ac0d2ec90442b0a674004cfdbc_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_mapped_tensor_ab54e80ac0d2ec90442b0a674004cfdbc_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_ab54e80ac0d2ec90442b0a674004cfdbc_cgraph">
-<area shape="rect" title="Print the gradient of the tensor in a matrix&#45;like format to an output stream." alt="" coords="5,56,167,99"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,56,390,99"/>
-<area shape="poly" title=" " alt="" coords="167,75,214,75,214,80,167,80"/>
+<area shape="rect" title="Print the gradient of the tensor in a matrix&#45;like format to an output stream." alt="" coords="5,195,167,237"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ad76dcba2cd22c53b8c4815da113dcb56" title="Returns an iterator pointing to the first element of the MappedTensor." alt="" coords="229,5,390,48"/>
+<area shape="poly" title=" " alt="" coords="98,193,143,127,176,90,213,58,220,54,223,58,216,62,179,94,147,130,102,196"/>
 <area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#af9d1b0fa71f9bb7686cc26ae7b32be8d" title="Synchronizes the gradient data if gradient computation is required." alt="" coords="662,115,824,157"/>
-<area shape="poly" title=" " alt="" coords="161,97,215,108,331,122,447,130,647,135,647,140,447,135,330,127,214,113,160,102"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,5,405,32"/>
-<area shape="poly" title=" " alt="" coords="166,54,241,34,243,39,168,59"/>
+<area shape="poly" title=" " alt="" coords="127,192,168,173,214,159,329,139,446,129,555,126,647,128,647,133,555,132,446,134,330,144,215,164,170,178,129,197"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#ae1e87c4a462dd60e02821aa27ffc7e09" title="Retrieves the value of the &#39;c&#39; dimension." alt="" coords="232,173,388,200"/>
+<area shape="poly" title=" " alt="" coords="167,203,216,196,217,202,168,208"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ac01f432f0ef9b7279630b5b35bc609e0" title="Returns an iterator pointing to the past &#45; the &#45; end element of the MappedTensor." alt="" coords="215,72,405,99"/>
+<area shape="poly" title=" " alt="" coords="109,192,155,153,213,115,242,102,244,107,216,120,158,158,112,196"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="241,224,379,267"/>
+<area shape="poly" title=" " alt="" coords="168,224,226,232,225,237,167,229"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a7eb3acc882c48e775c418d97f709240f" title="Retrieves the value of the &#39;h&#39; dimension." alt="" coords="232,291,388,317"/>
+<area shape="poly" title=" " alt="" coords="128,235,216,276,236,283,235,288,214,281,125,240"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#acc472e84b4c44f649f34b6fbb0eeacf7" title="Retrieves the value of the &#39;n&#39; dimension." alt="" coords="232,341,388,368"/>
+<area shape="poly" title=" " alt="" coords="108,236,154,282,184,306,216,327,229,333,227,338,213,332,181,311,150,286,104,240"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a65773c675476dfea3f06b30f21ebbedd" title="Retrieves the value of the &#39;w&#39; dimension." alt="" coords="230,392,390,419"/>
+<area shape="poly" title=" " alt="" coords="100,236,145,307,177,345,216,378,225,383,222,387,213,382,174,349,140,310,96,239"/>
 <area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#a5134b8821da18631dd9a9b9417b0ba5e" title="Synchronizes the tensor data and its gradient." alt="" coords="453,52,614,95"/>
-<area shape="poly" title=" " alt="" coords="391,73,437,72,437,78,391,79"/>
+<area shape="poly" title=" " alt="" coords="392,41,438,51,437,56,390,46"/>
 <area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#ae133d08d4505a30c6bd34e4a7a311f9e" title="Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish." alt="" coords="662,48,824,91"/>
 <area shape="poly" title=" " alt="" coords="615,69,647,69,647,74,615,74"/>
 <area shape="poly" title=" " alt="" coords="608,93,656,107,654,112,607,98"/>
@@ -1878,7 +2203,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="817,89,877,107,876,112,815,94"/>
 <area shape="poly" title=" " alt="" coords="815,112,876,93,877,98,817,117"/>
 <area shape="poly" title=" " alt="" coords="824,133,856,133,856,139,824,139"/>
-<area shape="poly" title=" " alt="" coords="368,30,439,47,437,53,367,35"/>
+<area shape="poly" title=" " alt="" coords="405,78,437,76,437,81,406,83"/>
 </map>
 </div>
 
@@ -1986,7 +2311,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.recip();</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00500">500</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00502">502</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2110,25 +2435,27 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_a54d785fecf6466bd442989545ead6de4_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_a54d785fecf6466bd442989545ead6de4_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_mapped_tensor_a54d785fecf6466bd442989545ead6de4_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_a54d785fecf6466bd442989545ead6de4_cgraph">
-<area shape="rect" title="Reshape the MappedTensor to a new shape." alt="" coords="5,139,167,181"/>
+<area shape="rect" title="Reshape the MappedTensor to a new shape." alt="" coords="5,172,167,215"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab6803232b9c08d9282b16322a6c7b8a9" title="Frees the pinned host memory pointed to by the given pointer." alt="" coords="215,5,400,48"/>
-<area shape="poly" title=" " alt="" coords="108,136,155,97,213,58,224,52,226,57,216,62,158,101,112,140"/>
+<area shape="poly" title=" " alt="" coords="101,170,147,115,179,84,213,58,221,53,224,58,216,62,182,88,151,118,105,173"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="215,72,400,115"/>
-<area shape="poly" title=" " alt="" coords="158,136,219,117,220,122,160,141"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="215,205,400,248"/>
-<area shape="poly" title=" " alt="" coords="160,179,220,198,219,203,158,184"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="215,139,400,181"/>
-<area shape="poly" title=" " alt="" coords="167,157,199,157,199,163,167,163"/>
+<area shape="poly" title=" " alt="" coords="124,169,214,124,227,118,230,123,216,129,127,174"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="215,139,400,181"/>
+<area shape="poly" title=" " alt="" coords="166,179,199,174,200,179,167,184"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="215,205,400,248"/>
+<area shape="poly" title=" " alt="" coords="167,203,200,208,199,213,166,208"/>
 <area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b" title="Retrieves the shape of the MappedTensor." alt="" coords="227,272,388,315"/>
-<area shape="poly" title=" " alt="" coords="112,180,158,219,216,258,226,263,224,268,213,262,155,223,108,184"/>
+<area shape="poly" title=" " alt="" coords="127,213,216,258,230,263,227,268,214,262,124,217"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object." alt="" coords="238,339,376,381"/>
+<area shape="poly" title=" " alt="" coords="105,214,151,268,182,298,216,324,226,330,223,335,213,329,179,302,147,272,101,217"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="448,5,633,48"/>
 <area shape="poly" title=" " alt="" coords="400,24,432,24,432,29,400,29"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="448,205,633,248"/>
-<area shape="poly" title=" " alt="" coords="400,224,432,224,432,229,400,229"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="448,139,633,181"/>
-<area shape="poly" title=" " alt="" coords="383,202,448,184,449,189,385,207"/>
 <area shape="poly" title=" " alt="" coords="385,179,449,198,448,203,383,184"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="448,139,633,181"/>
 <area shape="poly" title=" " alt="" coords="400,157,432,157,432,163,400,163"/>
+<area shape="poly" title=" " alt="" coords="400,224,432,224,432,229,400,229"/>
+<area shape="poly" title=" " alt="" coords="383,202,448,184,449,189,385,207"/>
 </map>
 </div>
 
@@ -2253,9 +2580,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_mapped_tensor_aefb5c705fc6d224469978cf64ca37e0b_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_mapped_tensor_aefb5c705fc6d224469978cf64ca37e0b_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_mapped_tensor_aefb5c705fc6d224469978cf64ca37e0b_cgraph" id="aclassnz_1_1data_1_1_mapped_tensor_aefb5c705fc6d224469978cf64ca37e0b_cgraph">
-<area shape="rect" title="Sets a new shape for the MappedTensor and adjusts its data and gradient memory accordingly." alt="" coords="5,5,167,48"/>
-<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b" title="Retrieves the shape of the MappedTensor." alt="" coords="215,5,376,48"/>
-<area shape="poly" title=" " alt="" coords="167,24,199,24,199,29,167,29"/>
+<area shape="rect" title="Sets a new shape for the MappedTensor and adjusts its data and gradient memory accordingly." alt="" coords="5,39,167,81"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#accb260af17b2e888268e1a7d3cdccc71" title="Attempts to reshape the current Dimension object to a new shape." alt="" coords="226,5,364,48"/>
+<area shape="poly" title=" " alt="" coords="167,44,211,37,211,43,168,50"/>
+<area shape="rect" href="classnz_1_1data_1_1_mapped_tensor.html#abf8ddc60a224bc676dd0fad40ad2f43b" title="Retrieves the shape of the MappedTensor." alt="" coords="215,72,376,115"/>
+<area shape="poly" title=" " alt="" coords="168,70,200,75,199,81,167,76"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object." alt="" coords="424,5,562,48"/>
+<area shape="poly" title=" " alt="" coords="365,24,409,24,409,29,365,29"/>
 </map>
 </div>
 
@@ -2398,9 +2729,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Assume mapped_tensor is filled with some values</span></div>
 <div class="line">nz::data::MappedTensor::value_type sum_result = mapped_tensor.<a class="code hl_function" href="#afabf30bc35435f1101a61afa77b026ad">sum</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_afabf30bc35435f1101a61afa77b026ad"><div class="ttname"><a href="#afabf30bc35435f1101a61afa77b026ad">nz::data::MappedTensor::sum</a></div><div class="ttdeci">value_type sum() const</div><div class="ttdoc">Calculate the sum of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00510">MappedTensor.cu:510</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_afabf30bc35435f1101a61afa77b026ad"><div class="ttname"><a href="#afabf30bc35435f1101a61afa77b026ad">nz::data::MappedTensor::sum</a></div><div class="ttdeci">value_type sum() const</div><div class="ttdoc">Calculate the sum of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00512">MappedTensor.cu:512</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00510">510</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00512">512</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2495,7 +2826,7 @@ Here is the call graph for this function:</div>
 <div class="line">MappedTensor::value_type sumResult = mappedTensor.<a class="code hl_function" href="#afabf30bc35435f1101a61afa77b026ad">sum</a>(batch, channel);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00525">525</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00527">527</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2559,9 +2890,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> mappedTensor;</div>
 <div class="line">mappedTensor.<a class="code hl_function" href="#a5134b8821da18631dd9a9b9417b0ba5e">sync</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_a5134b8821da18631dd9a9b9417b0ba5e"><div class="ttname"><a href="#a5134b8821da18631dd9a9b9417b0ba5e">nz::data::MappedTensor::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronizes the tensor data and its gradient.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00590">MappedTensor.cu:590</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_a5134b8821da18631dd9a9b9417b0ba5e"><div class="ttname"><a href="#a5134b8821da18631dd9a9b9417b0ba5e">nz::data::MappedTensor::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronizes the tensor data and its gradient.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00592">MappedTensor.cu:592</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00590">590</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00592">592</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2617,9 +2948,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> mappedTensor;</div>
 <div class="line">mappedTensor.<a class="code hl_function" href="#ae133d08d4505a30c6bd34e4a7a311f9e">syncData</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ae133d08d4505a30c6bd34e4a7a311f9e"><div class="ttname"><a href="#ae133d08d4505a30c6bd34e4a7a311f9e">nz::data::MappedTensor::syncData</a></div><div class="ttdeci">void syncData() const</div><div class="ttdoc">Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00586">MappedTensor.cu:586</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ae133d08d4505a30c6bd34e4a7a311f9e"><div class="ttname"><a href="#ae133d08d4505a30c6bd34e4a7a311f9e">nz::data::MappedTensor::syncData</a></div><div class="ttdeci">void syncData() const</div><div class="ttdoc">Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00588">MappedTensor.cu:588</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00586">586</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00588">588</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2663,9 +2994,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> mappedTensor;</div>
 <div class="line">mappedTensor.<a class="code hl_function" href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">syncGrad</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_af9d1b0fa71f9bb7686cc26ae7b32be8d"><div class="ttname"><a href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">nz::data::MappedTensor::syncGrad</a></div><div class="ttdeci">void syncGrad() const</div><div class="ttdoc">Synchronizes the gradient data if gradient computation is required.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00580">MappedTensor.cu:580</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_af9d1b0fa71f9bb7686cc26ae7b32be8d"><div class="ttname"><a href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">nz::data::MappedTensor::syncGrad</a></div><div class="ttdeci">void syncGrad() const</div><div class="ttdoc">Synchronizes the gradient data if gradient computation is required.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00582">MappedTensor.cu:582</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00580">580</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00582">582</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

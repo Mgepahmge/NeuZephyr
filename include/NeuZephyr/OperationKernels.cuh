@@ -137,6 +137,24 @@ namespace nz::krnl {
     void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c, unsigned long long n, size_t offset_c = 0,
                    size_t offset_a = 0, size_t offset_b = 0);
 
+    /**
+     * @brief Kernel function to perform matrix addition on GPU
+     *
+     * This function is designed to execute matrix addition using CUDA technology,
+     * leveraging parallel computing capabilities of the GPU for efficient processing
+     * of large datasets. It takes two input arrays of floats and stores their sum
+     * in a third array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param a Pointer to the first input matrix elements stored as a one-dimensional array
+     * @param b Pointer to the second input matrix elements stored as a one-dimensional array
+     * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
+     * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
+     * @param offset_c
+     * @param offset_a
+     * @param offset_b
+     */
     void MatrixAdd(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
                    unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
                    const std::vector<size_t>& offset_b);
@@ -162,9 +180,27 @@ namespace nz::krnl {
     void MatrixSub(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
                    unsigned long long n, size_t offset_c = 0, size_t offset_a = 0, size_t offset_b = 0);
 
+    /**
+     * @brief Kernel function to perform matrix subtraction on GPU
+     *
+     * This function is designed to execute matrix subtraction using CUDA technology,
+     * leveraging parallel computing capabilities of the GPU for efficient processing
+     * of large datasets. It takes two input arrays of floats and stores their difference
+     * in a third array.
+     *
+     * @param gridDim
+     * @param blockDim
+     * @param a Pointer to the first input matrix elements stored as a one-dimensional array
+     * @param b Pointer to the second input matrix elements stored as a one-dimensional array
+     * @param c Pointer to the output matrix where the result will be stored, allocated by the caller
+     * @param n The size of the matrix, representing the number of elements along one dimension (for a square matrix, total elements are n*n)
+     * @param offset_c
+     * @param offset_a
+     * @param offset_b
+     */
     void MatrixSub(dim3 gridDim, dim3 blockDim, float* a, float* b, float* c,
-           unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
-           const std::vector<size_t>& offset_b);
+                   unsigned long long n, const std::vector<size_t>& offset_c, const std::vector<size_t>& offset_a,
+                   const std::vector<size_t>& offset_b);
 
     /**
      * @brief Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores
@@ -194,13 +230,33 @@ namespace nz::krnl {
                           size_t offset_a = 0,
                           size_t offset_b = 0);
 
+    /**
+     * @brief Kernel function to perform single-precision matrix multiplication on GPU using CUDA cores
+     *
+     * This function is designed to execute general matrix multiplication using CUDA technology,
+     * leveraging the parallel computing capabilities of the GPU for efficient processing
+     * of large datasets. It performs single-precision (FP32) matrix multiplication on the CUDA cores,
+     * taking two input arrays of floats and storing their product in a third array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param A Pointer to the first input matrix elements stored as a one-dimensional array
+     * @param B Pointer to the second input matrix elements stored as a one-dimensional array
+     * @param C Pointer to the output matrix where the result will be stored, allocated by the caller
+     * @param M The number of rows in matrix A and matrix C
+     * @param N The number of columns in matrix B and matrix C
+     * @param K The number of columns in matrix A and rows in matrix B
+     * @param offset_c
+     * @param offset_a
+     * @param offset_b
+     */
     void GeneralMatrixMul(dim3 gridDim, dim3 blockDim, float* A, float* B, float* C,
-                  unsigned long long M,
-                  unsigned long long N,
-                  unsigned long long K,
-                  const std::vector<size_t>& offset_c,
-                  const std::vector<size_t>& offset_a,
-                  const std::vector<size_t>& offset_b);
+                          unsigned long long M,
+                          unsigned long long N,
+                          unsigned long long K,
+                          const std::vector<size_t>& offset_c,
+                          const std::vector<size_t>& offset_a,
+                          const std::vector<size_t>& offset_b);
 
     /**
      * @brief Kernel function to transpose a matrix on the GPU
@@ -221,10 +277,24 @@ namespace nz::krnl {
                    unsigned int cols,
                    size_t offset = 0);
 
+    /**
+     * @brief Kernel function to transpose a matrix on the GPU
+     *
+     * This function performs the transposition of a matrix on the GPU, swapping rows and columns.
+     * The resulting transposed matrix is stored in the output array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration
+     * @param d_A Pointer to the input matrix elements stored as a one-dimensional array
+     * @param d_B Pointer to the output matrix where the transposed result will be stored
+     * @param rows The number of rows in the input matrix
+     * @param cols The number of columns in the input matrix
+     * @param offset The offset within the input and output arrays
+     */
     void Transpose(dim3 gridDim, dim3 blockDim, float* d_A, float* d_B,
-           unsigned int rows,
-           unsigned int cols,
-           const std::vector<size_t>& offset);
+                   unsigned int rows,
+                   unsigned int cols,
+                   const std::vector<size_t>& offset);
 
     /**
      * @brief Kernel function to perform scalar multiplication on the GPU
@@ -598,7 +668,7 @@ namespace nz::krnl {
                  unsigned long long n, size_t offset = 0);
 
     void Softmax(dim3 gridDim, dim3 blockDim, float* out, float* in, const std::vector<float>& exp_sum_of_input,
-             unsigned long long n, const std::vector<size_t>& offset);
+                 unsigned long long n, const std::vector<size_t>& offset);
 
     /**
      * @brief Kernel function to compute the Jacobian of the Softmax function
@@ -887,9 +957,9 @@ namespace nz::krnl {
                            unsigned long long n, size_t offset_o = 0, size_t offset_1 = 0, size_t offset_2 = 0);
 
     void ElementwiseDivide(dim3 gridDim, dim3 blockDim, float* out, float* in1, float* in2,
-                       unsigned long long n, const std::vector<size_t>& offset_o,
-                       const std::vector<size_t>& offset_1,
-                       const std::vector<size_t>& offset_2);
+                           unsigned long long n, const std::vector<size_t>& offset_o,
+                           const std::vector<size_t>& offset_1,
+                           const std::vector<size_t>& offset_2);
 
     /**
      * @brief Kernel function to perform element-wise summation of two arrays

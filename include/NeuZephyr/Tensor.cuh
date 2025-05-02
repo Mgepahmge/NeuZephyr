@@ -628,7 +628,56 @@ namespace nz::data {
          */
         void fill(value_type value, bool isGrad = false) const;
 
-
+        /**
+         * @brief Fill a specific matrix slice within the Tensor with a given value.
+         *
+         * This method allows users to populate a particular matrix slice of the Tensor (specified by batch and channels)
+         * with a provided value. It also supports filling the gradient matrix if the Tensor requires gradient computation
+         * and the `isGrad` flag is set.
+         *
+         * @param value The value used to fill the matrix slice. Memory flow: host-to-function, passed from the calling code.
+         * @param batch The index of the batch. Memory flow: host-to-function, passed from the calling code.
+         * @param channels The index of the channels. Memory flow: host-to-function, passed from the calling code.
+         * @param isGrad A boolean indicating whether to fill the gradient matrix. Memory flow: host-to-function, passed from the calling code.
+         *
+         * @return None
+         *
+         * **Memory Management Strategy**:
+         * - This function does not allocate or free any additional memory. It operates on the existing `_data` or `_grad` buffer of the Tensor.
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws `std::invalid_argument` if the provided `batch` or `channels` indices are out of bounds.
+         * - Throws `std::invalid_argument` if `isGrad` is `true` but the Tensor does not require gradient computation.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `_shape` object to access tensor shape information and calculate offsets.
+         * - Relies on the `krnl::Fill` CUDA kernel to perform the actual filling operation.
+         *
+         * @throws std::invalid_argument When `batch` or `channels` are out of bounds or when trying to fill gradients of a non - gradient - requiring Tensor.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the matrix slice (`_shape[2] * _shape[3]`).
+         * - Ensure that the `krnl::Fill` CUDA kernel is properly implemented and the CUDA environment is set up correctly.
+         * - Verify that the `_shape` object provides accurate shape and stride information.
+         *
+         * @warning
+         * - Incorrect CUDA kernel usage may lead to runtime errors or undefined behavior.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * Tensor::value_type fillValue = 2.0;
+         * Tensor::size_type batchIndex = 0;
+         * Tensor::size_type channelIndex = 1;
+         * bool fillGrad = false;
+         * try {
+         *     tensor.fillMatrix(fillValue, batchIndex, channelIndex, fillGrad);
+         * } catch (const std::invalid_argument& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         void fillMatrix(value_type value, size_type batch, size_type channels, bool isGrad = false);
 
 
@@ -824,6 +873,41 @@ namespace nz::data {
          */
         Tensor operator*(const Tensor& other) const;
 
+        /**
+         * @brief Performs element-wise division between two Tensors.
+         *
+         * This function overloads the division operator to perform element-wise division between the current Tensor and another Tensor.
+         * It broadcasts the shapes of the two Tensors if necessary and creates a new Tensor to store the result.
+         *
+         * @param other The Tensor to divide the current Tensor by. Memory flow: host-to-function, as the object is passed from the calling code to the function.
+         *
+         * @return A new Tensor containing the result of the element-wise division. Memory flow: function-to-host, as the result is returned from the function to the calling code.
+         *
+         * **Memory Management Strategy**:
+         * - A new Tensor object `result` is created within the function to store the result of the division. The memory for this Tensor is managed automatically by its constructor and destructor.
+         *
+         * **Exception Handling Mechanism**:
+         * - This function does not explicitly throw exceptions. However, the `_shape.Broadcast` method or the `tensorElementwiseDivide` function may throw exceptions if there are issues with shape broadcasting or the division operation.
+         *
+         * **Relationship with Other Components**:
+         * - This function depends on the `_shape.Broadcast` method to handle shape broadcasting between the two Tensors.
+         * - It also relies on the `tensorElementwiseDivide` function to perform the actual element-wise division operation.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the resulting Tensor after broadcasting. This is because the `tensorElementwiseDivide` function needs to process each element.
+         * - Ensure that the `_shape.Broadcast` method and the `tensorElementwiseDivide` function are correctly implemented.
+         *
+         * @warning
+         * - Division by zero may occur if the `other` Tensor contains zero elements, which can lead to undefined behavior.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor1;
+         * Tensor tensor2;
+         * Tensor result = tensor1 / tensor2;
+         * ```
+         * @endcode
+         */
         Tensor operator/(const Tensor& other) const;
 
         /**

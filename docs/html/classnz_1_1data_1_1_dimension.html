@@ -67,6 +67,7 @@ $(function(){ initResizable(false); });
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classnz_1_1data_1_1_dimension-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">nz::data::Dimension Class Reference</div></div>
 </div><!--header-->
@@ -74,6 +75,70 @@ $(function(){ initResizable(false); });
 
 <p>Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.  
  <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a360a9064ac2b18e772c5a29fb00b4bef" id="r_a360a9064ac2b18e772c5a29fb00b4bef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a360a9064ac2b18e772c5a29fb00b4bef">Dimension</a> (size_t n, size_t c, size_t h, size_t w)</td></tr>
+<tr class="memdesc:a360a9064ac2b18e772c5a29fb00b4bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object with specified dimensions and calculates the corresponding strides.  <br /></td></tr>
+<tr class="separator:a360a9064ac2b18e772c5a29fb00b4bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df1b2cd16082899004e176232c16931" id="r_a2df1b2cd16082899004e176232c16931"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df1b2cd16082899004e176232c16931">Dimension</a> ()</td></tr>
+<tr class="memdesc:a2df1b2cd16082899004e176232c16931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object with default dimensions.  <br /></td></tr>
+<tr class="separator:a2df1b2cd16082899004e176232c16931"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad858ce257510952b2579dd24a735a5dd" id="r_ad858ce257510952b2579dd24a735a5dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad858ce257510952b2579dd24a735a5dd">Dimension</a> (const std::vector&lt; size_t &gt; &amp;dims)</td></tr>
+<tr class="memdesc:ad858ce257510952b2579dd24a735a5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object using a vector of dimensions.  <br /></td></tr>
+<tr class="separator:ad858ce257510952b2579dd24a735a5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d99db633c5164ef77596a9888c7f26" id="r_ab5d99db633c5164ef77596a9888c7f26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5d99db633c5164ef77596a9888c7f26">Dimension</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;other)</td></tr>
+<tr class="memdesc:ab5d99db633c5164ef77596a9888c7f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor for the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class.  <br /></td></tr>
+<tr class="separator:ab5d99db633c5164ef77596a9888c7f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b478beb331b058783f7bab2574946d7" id="r_a8b478beb331b058783f7bab2574946d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b478beb331b058783f7bab2574946d7">operator=</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;other)</td></tr>
+<tr class="memdesc:a8b478beb331b058783f7bab2574946d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the assignment operator for the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class.  <br /></td></tr>
+<tr class="separator:a8b478beb331b058783f7bab2574946d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073622bb031999163987ccf77f8edfb2" id="r_a073622bb031999163987ccf77f8edfb2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a073622bb031999163987ccf77f8edfb2">size</a> () const</td></tr>
+<tr class="memdesc:a073622bb031999163987ccf77f8edfb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the total number of elements in the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.  <br /></td></tr>
+<tr class="separator:a073622bb031999163987ccf77f8edfb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4831fea5aaf7dbad3578d3fa8e55aef1" id="r_a4831fea5aaf7dbad3578d3fa8e55aef1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4831fea5aaf7dbad3578d3fa8e55aef1">getStride</a> (size_t i) const</td></tr>
+<tr class="memdesc:a4831fea5aaf7dbad3578d3fa8e55aef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the stride value at a specified index within the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.  <br /></td></tr>
+<tr class="separator:a4831fea5aaf7dbad3578d3fa8e55aef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4133f0142396fc574d750b30c5c6ea10" id="r_a4133f0142396fc574d750b30c5c6ea10"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4133f0142396fc574d750b30c5c6ea10">getDims</a> () const</td></tr>
+<tr class="memdesc:a4133f0142396fc574d750b30c5c6ea10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the dimensions of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object as a std::vector.  <br /></td></tr>
+<tr class="separator:a4133f0142396fc574d750b30c5c6ea10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc472e84b4c44f649f34b6fbb0eeacf7" id="r_acc472e84b4c44f649f34b6fbb0eeacf7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc472e84b4c44f649f34b6fbb0eeacf7">N</a> () const</td></tr>
+<tr class="memdesc:acc472e84b4c44f649f34b6fbb0eeacf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the value of the 'n' dimension.  <br /></td></tr>
+<tr class="separator:acc472e84b4c44f649f34b6fbb0eeacf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1e87c4a462dd60e02821aa27ffc7e09" id="r_ae1e87c4a462dd60e02821aa27ffc7e09"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1e87c4a462dd60e02821aa27ffc7e09">C</a> () const</td></tr>
+<tr class="memdesc:ae1e87c4a462dd60e02821aa27ffc7e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the value of the 'c' dimension.  <br /></td></tr>
+<tr class="separator:ae1e87c4a462dd60e02821aa27ffc7e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb3acc882c48e775c418d97f709240f" id="r_a7eb3acc882c48e775c418d97f709240f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eb3acc882c48e775c418d97f709240f">H</a> () const</td></tr>
+<tr class="memdesc:a7eb3acc882c48e775c418d97f709240f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the value of the 'h' dimension.  <br /></td></tr>
+<tr class="separator:a7eb3acc882c48e775c418d97f709240f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65773c675476dfea3f06b30f21ebbedd" id="r_a65773c675476dfea3f06b30f21ebbedd"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65773c675476dfea3f06b30f21ebbedd">W</a> () const</td></tr>
+<tr class="memdesc:a65773c675476dfea3f06b30f21ebbedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the value of the 'w' dimension.  <br /></td></tr>
+<tr class="separator:a65773c675476dfea3f06b30f21ebbedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8baf9c3d929b2ee15d63df21411e0a39" id="r_a8baf9c3d929b2ee15d63df21411e0a39"><td class="memItemLeft" align="right" valign="top">size_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8baf9c3d929b2ee15d63df21411e0a39">operator[]</a> (size_t i)</td></tr>
+<tr class="memdesc:a8baf9c3d929b2ee15d63df21411e0a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the subscript operator to access the dimensions of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.  <br /></td></tr>
+<tr class="separator:a8baf9c3d929b2ee15d63df21411e0a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00710656d75e55896cb1a9692322ed17" id="r_a00710656d75e55896cb1a9692322ed17"><td class="memItemLeft" align="right" valign="top">const size_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00710656d75e55896cb1a9692322ed17">operator[]</a> (size_t i) const</td></tr>
+<tr class="memdesc:a00710656d75e55896cb1a9692322ed17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the subscript operator to access the dimensions of the const <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.  <br /></td></tr>
+<tr class="separator:a00710656d75e55896cb1a9692322ed17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66fe169a51a7131c75c56d5a9c7f2e41" id="r_a66fe169a51a7131c75c56d5a9c7f2e41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66fe169a51a7131c75c56d5a9c7f2e41">operator==</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;other) const</td></tr>
+<tr class="memdesc:a66fe169a51a7131c75c56d5a9c7f2e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects for equality.  <br /></td></tr>
+<tr class="separator:a66fe169a51a7131c75c56d5a9c7f2e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a478ed242c20f8f99f9dffcd8eb9b3f52" id="r_a478ed242c20f8f99f9dffcd8eb9b3f52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a478ed242c20f8f99f9dffcd8eb9b3f52">isBroadcastCompatible</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;other) const</td></tr>
+<tr class="memdesc:a478ed242c20f8f99f9dffcd8eb9b3f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object is broadcast compatible with another <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.  <br /></td></tr>
+<tr class="separator:a478ed242c20f8f99f9dffcd8eb9b3f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accb260af17b2e888268e1a7d3cdccc71" id="r_accb260af17b2e888268e1a7d3cdccc71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accb260af17b2e888268e1a7d3cdccc71">reshape</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;newShape)</td></tr>
+<tr class="memdesc:accb260af17b2e888268e1a7d3cdccc71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to reshape the current <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object to a new shape.  <br /></td></tr>
+<tr class="separator:accb260af17b2e888268e1a7d3cdccc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04c92c6f65b5c6c407f7ceb06e6a20bb" id="r_a04c92c6f65b5c6c407f7ceb06e6a20bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04c92c6f65b5c6c407f7ceb06e6a20bb">operator!=</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;other) const</td></tr>
+<tr class="memdesc:a04c92c6f65b5c6c407f7ceb06e6a20bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the '!=' operator to compare two <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects for inequality.  <br /></td></tr>
+<tr class="separator:a04c92c6f65b5c6c407f7ceb06e6a20bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f9f0cec97b8e579b62ccb37975de3c" id="r_ab4f9f0cec97b8e579b62ccb37975de3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4f9f0cec97b8e579b62ccb37975de3c">Broadcast</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;other) const</td></tr>
+<tr class="memdesc:ab4f9f0cec97b8e579b62ccb37975de3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs broadcasting between two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects and returns the resulting <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code>.  <br /></td></tr>
+<tr class="separator:ab4f9f0cec97b8e579b62ccb37975de3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9411eaf723c07a17b949d97f5ced79d" id="r_ad9411eaf723c07a17b949d97f5ced79d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9411eaf723c07a17b949d97f5ced79d">updateStride</a> ()</td></tr>
+<tr class="memdesc:ad9411eaf723c07a17b949d97f5ced79d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the stride values of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.  <br /></td></tr>
+<tr class="separator:ad9411eaf723c07a17b949d97f5ced79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions. </p>
 <p>This class is designed to handle and manipulate multi - dimensional shapes commonly encountered in deep learning applications. It provides various methods for creating, comparing, reshaping, and broadcasting dimensions. The class uses four size_t variables (<code>n</code>, <code>c</code>, <code>h</code>, <code>w</code>) to store the dimensions and an array <code>stride</code> to store the corresponding strides.</p>
@@ -87,10 +152,10 @@ Key Features:</h3>
 <ul>
 <li><b>Initialization</b>: Supports multiple ways of initializing a <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object, including direct specification of <code>n</code>, <code>c</code>, <code>h</code>, <code>w</code>, using a <code>std::vector&lt;size_t&gt;</code>, and copy construction.</li>
 <li><b>Stream Operators</b>: Overloads the <code>&lt;&lt;</code> and <code>&gt;&gt;</code> operators for easy input and output of <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects.</li>
-<li><b>Accessors</b>: Provides methods to access individual dimensions (<code>N()</code>, <code>C()</code>, <code>H()</code>, <code>W()</code>), the number of elements (<code>size()</code>), strides (<code>getStride()</code>), and all dimensions as a <code>std::vector&lt;size_t&gt;</code> (<code>getDims()</code>).</li>
+<li><b>Accessors</b>: Provides methods to access individual dimensions (<code><a class="el" href="#acc472e84b4c44f649f34b6fbb0eeacf7" title="Retrieves the value of the &#39;n&#39; dimension.">N()</a></code>, <code><a class="el" href="#ae1e87c4a462dd60e02821aa27ffc7e09" title="Retrieves the value of the &#39;c&#39; dimension.">C()</a></code>, <code><a class="el" href="#a7eb3acc882c48e775c418d97f709240f" title="Retrieves the value of the &#39;h&#39; dimension.">H()</a></code>, <code><a class="el" href="#a65773c675476dfea3f06b30f21ebbedd" title="Retrieves the value of the &#39;w&#39; dimension.">W()</a></code>), the number of elements (<code><a class="el" href="#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object.">size()</a></code>), strides (<code><a class="el" href="#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object.">getStride()</a></code>), and all dimensions as a <code>std::vector&lt;size_t&gt;</code> (<code><a class="el" href="#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector.">getDims()</a></code>).</li>
 <li><b>Comparison</b>: Overloads the <code>==</code> and <code>!=</code> operators to compare two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects for equality.</li>
-<li><b>Broadcast Compatibility</b>: Offers a method <code>isBroadcastCompatible()</code> to check if two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects can be broadcasted to each other, and a <code>Broadcast()</code> method to perform the actual broadcasting.</li>
-<li><b>Reshaping</b>: Provides a <code>reshape()</code> method to change the shape of the <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object.</li>
+<li><b>Broadcast Compatibility</b>: Offers a method <code><a class="el" href="#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object.">isBroadcastCompatible()</a></code> to check if two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects can be broadcasted to each other, and a <code><a class="el" href="#ab4f9f0cec97b8e579b62ccb37975de3c" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension.">Broadcast()</a></code> method to perform the actual broadcasting.</li>
+<li><b>Reshaping</b>: Provides a <code><a class="el" href="#accb260af17b2e888268e1a7d3cdccc71" title="Attempts to reshape the current Dimension object to a new shape.">reshape()</a></code> method to change the shape of the <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md38"></a>
 Usage Example:</h3>
@@ -119,7 +184,1175 @@ Usage Example:</h3>
 <dl class="section date"><dt>Date</dt><dd>2024/07/11 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_dimension_8cuh_source.html#l00057">57</a> of file <a class="el" href="_dimension_8cuh_source.html">Dimension.cuh</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a360a9064ac2b18e772c5a29fb00b4bef" name="a360a9064ac2b18e772c5a29fb00b4bef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a360a9064ac2b18e772c5a29fb00b4bef">&#9670;&#160;</a></span>Dimension() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nz::data::Dimension::Dimension </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>w</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object with specified dimensions and calculates the corresponding strides. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>The batch size dimension. Memory flow: host-to-object, as the value is passed from the calling code to the object's member variable. </td></tr>
+    <tr><td class="paramname">c</td><td>The channel dimension. Memory flow: host-to-object, as the value is passed from the calling code to the object's member variable. </td></tr>
+    <tr><td class="paramname">h</td><td>The height dimension. Memory flow: host-to-object, as the value is passed from the calling code to the object's member variable. </td></tr>
+    <tr><td class="paramname">w</td><td>The width dimension. Memory flow: host-to-object, as the value is passed from the calling code to the object's member variable.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None. This is a constructor, so it doesn't return a value.</dd></dl>
+<p>This constructor initializes a <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object with the provided batch size (<code>n</code>), channel count (<code>c</code>), height (<code>h</code>), and width (<code>w</code>). It then calculates the strides for each dimension based on these values. The stride for a dimension represents the number of elements to skip in the underlying data array to move to the next element along that dimension.</p>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This constructor does not allocate or free any dynamic memory. It simply initializes member variables of the <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>There is no specific exception handling in this constructor. It assumes that the input values (<code>n</code>, <code>c</code>, <code>h</code>, <code>w</code>) are valid non - negative <code>size_t</code> values.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The constructed <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object can be used by other parts of the system that rely on the concept of multi - dimensional data layout, such as tensor manipulation functions.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Ensure that the input values (<code>n</code>, <code>c</code>, <code>h</code>, <code>w</code>) are non - negative <code>size_t</code> values, as negative values may lead to undefined behavior.</li>
+<li>The time complexity of this constructor is O(1) since it performs a fixed number of arithmetic operations regardless of the input values.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim(2, 3, 4, 5);</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00005">5</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a2df1b2cd16082899004e176232c16931" name="a2df1b2cd16082899004e176232c16931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df1b2cd16082899004e176232c16931">&#9670;&#160;</a></span>Dimension() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nz::data::Dimension::Dimension </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object with default dimensions. </p>
+<p>This constructor initializes a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object with default values for batch size (n = 1), channel count (c = 1), height (h = 1), and width (w = 1). It achieves this by delegating the initialization to the four - parameter constructor of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a default constructor, so it does not take any parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None. This is a constructor, so it does not return a value.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This constructor does not allocate or free any dynamic memory. The memory management is handled by the four - parameter constructor it delegates to.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Any exceptions that may occur during the initialization are handled by the four - parameter constructor. This default constructor does not have its own exception - handling logic.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>It provides a convenient way to create a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object with default values, which can be used as a starting point in other parts of the system that rely on the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this constructor is O(1) because it simply calls another constructor with fixed arguments.</li>
+<li>Ensure that the four - parameter constructor of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class is correctly implemented, as this constructor depends on it.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> defaultDim;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00012">12</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="ad858ce257510952b2579dd24a735a5dd" name="ad858ce257510952b2579dd24a735a5dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad858ce257510952b2579dd24a735a5dd">&#9670;&#160;</a></span>Dimension() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nz::data::Dimension::Dimension </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dims</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object using a vector of dimensions. </p>
+<p>This constructor initializes a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object by extracting the first four elements from the provided vector of <code>size_t</code> values. It then delegates the actual initialization to the four - parameter constructor of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dims</td><td>A reference to a std::vector&lt;size_t&gt; containing the dimensions. Memory flow: host - to - object, as the values from the vector are used to initialize the object's member variables.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None. This is a constructor, so it does not return a value.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This constructor does not allocate or free any dynamic memory. It only accesses the elements of the input vector and delegates the memory management to the four - parameter constructor.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the input vector <code>dims</code> has less than four elements, accessing <code>dims[0]</code>, <code>dims[1]</code>, <code>dims[2]</code>, or <code>dims[3]</code> will result in undefined behavior. The four - parameter constructor may also throw exceptions if the input values are invalid. This constructor does not have its own exception - handling logic.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>It provides a convenient way to create a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object when the dimensions are stored in a vector. Other parts of the system that generate or manipulate dimensions in vector form can use this constructor.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Ensure that the input vector <code>dims</code> contains at least four elements to avoid undefined behavior.</li>
+<li>The time complexity of this constructor is O(1) because it performs a fixed number of operations regardless of the size of the input vector.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>Accessing elements of the vector without checking its size can lead to undefined behavior.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line">std::vector&lt;size_t&gt; dims = {2, 3, 4, 5};</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim(dims);</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00015">15</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="ab5d99db633c5164ef77596a9888c7f26" name="ab5d99db633c5164ef77596a9888c7f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5d99db633c5164ef77596a9888c7f26">&#9670;&#160;</a></span>Dimension() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nz::data::Dimension::Dimension </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor for the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class. </p>
+<p>This constructor creates a new <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object by copying the dimensions from an existing <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. It delegates the actual initialization to the four - parameter constructor of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A reference to an existing <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object from which the dimensions will be copied. Memory flow: object - to - object, as the values from the existing object are used to initialize the new object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None. This is a constructor, so it does not return a value.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This constructor does not allocate or free any dynamic memory. It simply copies the member variables of the existing object and delegates the memory management to the four - parameter constructor.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Any exceptions that may occur during the initialization are handled by the four - parameter constructor. This copy constructor does not have its own exception - handling logic.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>It provides a standard way to create a copy of a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object, which can be useful in scenarios such as passing objects by value or creating backups.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this constructor is O(1) because it performs a fixed number of operations regardless of the state of the input object.</li>
+<li>Ensure that the four - parameter constructor of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class is correctly implemented, as this constructor depends on it.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> original(1, 2, 3, 4);</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> copy(original);</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00018">18</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab4f9f0cec97b8e579b62ccb37975de3c" name="ab4f9f0cec97b8e579b62ccb37975de3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f9f0cec97b8e579b62ccb37975de3c">&#9670;&#160;</a></span>Broadcast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> nz::data::Dimension::Broadcast </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs broadcasting between two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects and returns the resulting <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code>. </p>
+<p>This function checks if the current <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object and the provided <code>other</code> <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object are broadcast compatible. If they are, it creates a new <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object where each dimension is the maximum of the corresponding dimensions of the two input <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects. Otherwise, it throws an <code>std::invalid_argument</code> exception.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A constant reference to another <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object to perform broadcasting with. Memory flow: host-to-function, as the object is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object representing the result of the broadcasting operation. Memory flow: function-to-host, as the result is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function creates a new <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object (<code>result</code>) on the stack. The object is automatically destroyed when it goes out of scope.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the dimensions are not broadcast compatible, this function throws an <code>std::invalid_argument</code> exception.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This function relies on the <code>isBroadcastCompatible</code> method to check the compatibility of the dimensions. It is useful in scenarios where element-wise operations between tensors of different shapes are required, such as in deep learning frameworks.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>If the dimensions are not broadcast compatible.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(4) = O(1) because it iterates over a fixed number (4) of dimensions.</li>
+<li>Ensure that the <code>isBroadcastCompatible</code> method is correctly implemented and that the <code>getDims</code> method returns the appropriate dimension values.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim1;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim2;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> result = dim1.<a class="code hl_function" href="#ab4f9f0cec97b8e579b62ccb37975de3c">Broadcast</a>(dim2);</div>
+<div class="line">    <span class="comment">// Use the result</span></div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_ab4f9f0cec97b8e579b62ccb37975de3c"><div class="ttname"><a href="#ab4f9f0cec97b8e579b62ccb37975de3c">nz::data::Dimension::Broadcast</a></div><div class="ttdeci">Dimension Broadcast(const Dimension &amp;other) const</div><div class="ttdoc">Performs broadcasting between two Dimension objects and returns the resulting Dimension.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00125">Dimension.cu:125</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00125">125</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_dimension_ab4f9f0cec97b8e579b62ccb37975de3c_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_dimension_ab4f9f0cec97b8e579b62ccb37975de3c_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_dimension_ab4f9f0cec97b8e579b62ccb37975de3c_cgraph" id="aclassnz_1_1data_1_1_dimension_ab4f9f0cec97b8e579b62ccb37975de3c_cgraph">
+<area shape="rect" title="Performs broadcasting between two Dimension objects and returns the resulting Dimension." alt="" coords="5,5,144,48"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="404,5,542,48"/>
+<area shape="poly" title=" " alt="" coords="144,21,192,20,356,20,389,21,388,26,356,25,192,25,144,27"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a478ed242c20f8f99f9dffcd8eb9b3f52" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="192,35,356,77"/>
+<area shape="poly" title=" " alt="" coords="144,34,176,39,176,44,144,39"/>
+<area shape="poly" title=" " alt="" coords="356,41,388,36,389,42,357,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae1e87c4a462dd60e02821aa27ffc7e09" name="ae1e87c4a462dd60e02821aa27ffc7e09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1e87c4a462dd60e02821aa27ffc7e09">&#9670;&#160;</a></span>C()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t nz::data::Dimension::C </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the value of the 'c' dimension. </p>
+<p>This function is used to obtain the value of the 'c' dimension from the current object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a member function, so it operates on the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>size_t</code> value representing the 'c' dimension. Memory flow: function-to-host, as the value is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It simply returns a value from the object's internal state.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The returned 'c' value can be used in other parts of the program for calculations related to the data layout or for passing to other functions that require this dimension information.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a simple value retrieval.</li>
+<li>Ensure that the 'c' dimension has been properly initialized before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line"><span class="keywordtype">size_t</span> cValue = dim.<a class="code hl_function" href="#ae1e87c4a462dd60e02821aa27ffc7e09">C</a>();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;c value: &quot;</span> &lt;&lt; cValue &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_ae1e87c4a462dd60e02821aa27ffc7e09"><div class="ttname"><a href="#ae1e87c4a462dd60e02821aa27ffc7e09">nz::data::Dimension::C</a></div><div class="ttdeci">size_t C() const</div><div class="ttdoc">Retrieves the value of the 'c' dimension.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00055">Dimension.cu:55</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00055">55</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a4133f0142396fc574d750b30c5c6ea10" name="a4133f0142396fc574d750b30c5c6ea10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4133f0142396fc574d750b30c5c6ea10">&#9670;&#160;</a></span>getDims()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; size_t &gt; nz::data::Dimension::getDims </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the dimensions of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object as a std::vector. </p>
+<p>This function creates and returns a std::vector containing the four dimensions (n, c, h, w) of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a member function, so it operates on the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A std::vector&lt;size_t&gt; containing the dimensions (n, c, h, w) of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. The memory for the vector is allocated on the heap, and ownership of the vector is transferred to the caller.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>The function allocates memory on the heap for the std::vector and its elements. The caller is responsible for managing the lifetime of the returned vector. When the vector goes out of scope, its destructor will automatically free the allocated memory.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function may throw a std::bad_alloc exception if there is not enough memory available to allocate the std::vector.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The returned vector can be used in other parts of the program for further calculations or to pass the dimensions to other functions.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::bad_alloc</td><td>If there is not enough memory to allocate the std::vector.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it creates a vector with a fixed number of elements (4 in this case).</li>
+<li>Ensure that the dimensions (n, c, h, w) are in the correct state before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim(1, 2, 3, 4);</div>
+<div class="line">std::vector&lt;size_t&gt; dimensions = dim.getDims();</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> dim : dimensions) {</div>
+<div class="line">    std::cout &lt;&lt; dim &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">}</div>
+<div class="line">std::cout &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00047">47</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a4831fea5aaf7dbad3578d3fa8e55aef1" name="a4831fea5aaf7dbad3578d3fa8e55aef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4831fea5aaf7dbad3578d3fa8e55aef1">&#9670;&#160;</a></span>getStride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t nz::data::Dimension::getStride </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>i</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the stride value at a specified index within the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. </p>
+<p>This function checks if the given index is within the valid range using the <code>checkIndex</code> function. If the index is valid, it returns the corresponding stride value; otherwise, it throws an <code>std::out_of_range</code> exception.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The index of the stride value to retrieve. Memory flow: host-to-function, as the index value is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>size_t</code> value representing the stride at the specified index.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only accesses the existing <code>stride</code> array within the object.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the index <code>i</code> is out of range (i.e., <code>checkIndex(i)</code> returns <code>false</code>), the function throws an <code>std::out_of_range</code> exception with the message "Index out of range".</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This function depends on the <code>checkIndex</code> function to validate the index. The retrieved stride value can be used in other parts of the program for memory access calculations or other operations related to the data layout.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::out_of_range</td><td>If the provided index <code>i</code> is out of the valid range.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a constant number of operations (index check and array access).</li>
+<li>Ensure that the <code>checkIndex</code> function is correctly implemented to accurately validate the index.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>Incorrectly passing an out-of-range index will result in an exception being thrown, which may cause the program to terminate if not properly handled.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <span class="keywordtype">size_t</span> strideValue = dim.getStride(2);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::out_of_range&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00040">40</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a7eb3acc882c48e775c418d97f709240f" name="a7eb3acc882c48e775c418d97f709240f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb3acc882c48e775c418d97f709240f">&#9670;&#160;</a></span>H()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t nz::data::Dimension::H </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the value of the 'h' dimension. </p>
+<p>This function is used to obtain the value of the 'h' dimension from the current object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a member function, so it operates on the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>size_t</code> value representing the 'h' dimension. Memory flow: function-to-host, as the value is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It simply returns a value from the object's internal state.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The returned 'h' value can be used in other parts of the program for calculations related to the data layout or for passing to other functions that require this dimension information.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a simple value retrieval.</li>
+<li>Ensure that the 'h' dimension has been properly initialized before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line"><span class="keywordtype">size_t</span> hValue = dim.<a class="code hl_function" href="#a7eb3acc882c48e775c418d97f709240f">H</a>();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;h value: &quot;</span> &lt;&lt; hValue &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_a7eb3acc882c48e775c418d97f709240f"><div class="ttname"><a href="#a7eb3acc882c48e775c418d97f709240f">nz::data::Dimension::H</a></div><div class="ttdeci">size_t H() const</div><div class="ttdoc">Retrieves the value of the 'h' dimension.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00059">Dimension.cu:59</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00059">59</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a478ed242c20f8f99f9dffcd8eb9b3f52" name="a478ed242c20f8f99f9dffcd8eb9b3f52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a478ed242c20f8f99f9dffcd8eb9b3f52">&#9670;&#160;</a></span>isBroadcastCompatible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nz::data::Dimension::isBroadcastCompatible </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if the current <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object is broadcast compatible with another <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. </p>
+<p>This function determines whether the dimensions of two objects can be broadcast together according to the broadcasting rules. For each of the first two dimensions, it checks if the dimensions are equal or if one of them is 1. If all checks pass for the first two dimensions, the objects are considered broadcast compatible.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A constant reference to another <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object to compare with. Memory flow: host-to-function, as the object is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A boolean value indicating whether the two <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects are broadcast compatible. Memory flow: function-to-host, as the result is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only accesses the existing dimensions of the objects.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances. It assumes that the <code><a class="el" href="#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector.">getDims()</a></code> method of both objects returns valid dimension arrays.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This function is useful in operations where broadcasting of dimensions is required, such as in element-wise operations between tensors with different dimensions. It can be used to validate if the dimensions of two tensors can be broadcast before performing the actual operation.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it iterates over a fixed number (2) of dimensions.</li>
+<li>Ensure that both <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects have valid dimensions before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim1;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim2;</div>
+<div class="line"><span class="keywordtype">bool</span> isCompatible = dim1.<a class="code hl_function" href="#a478ed242c20f8f99f9dffcd8eb9b3f52">isBroadcastCompatible</a>(dim2);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Are dimensions broadcast compatible? &quot;</span> &lt;&lt; (isCompatible ? <span class="stringliteral">&quot;Yes&quot;</span> : <span class="stringliteral">&quot;No&quot;</span>) &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_a478ed242c20f8f99f9dffcd8eb9b3f52"><div class="ttname"><a href="#a478ed242c20f8f99f9dffcd8eb9b3f52">nz::data::Dimension::isBroadcastCompatible</a></div><div class="ttdeci">bool isBroadcastCompatible(const Dimension &amp;other) const</div><div class="ttdoc">Checks if the current Dimension object is broadcast compatible with another Dimension object.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00101">Dimension.cu:101</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00101">101</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_dimension_a478ed242c20f8f99f9dffcd8eb9b3f52_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_dimension_a478ed242c20f8f99f9dffcd8eb9b3f52_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_dimension_a478ed242c20f8f99f9dffcd8eb9b3f52_cgraph" id="aclassnz_1_1data_1_1_dimension_a478ed242c20f8f99f9dffcd8eb9b3f52_cgraph">
+<area shape="rect" title="Checks if the current Dimension object is broadcast compatible with another Dimension object." alt="" coords="5,5,170,48"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4133f0142396fc574d750b30c5c6ea10" title="Retrieves the dimensions of the Dimension object as a std::vector." alt="" coords="218,5,356,48"/>
+<area shape="poly" title=" " alt="" coords="170,24,202,24,202,29,170,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acc472e84b4c44f649f34b6fbb0eeacf7" name="acc472e84b4c44f649f34b6fbb0eeacf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc472e84b4c44f649f34b6fbb0eeacf7">&#9670;&#160;</a></span>N()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t nz::data::Dimension::N </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the value of the 'n' dimension. </p>
+<p>This function is used to obtain the value of the 'n' dimension from the current object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a member function, so it operates on the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>size_t</code> value representing the 'n' dimension. Memory flow: function-to-host, as the value is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It simply returns a value from the object's internal state.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The returned 'n' value can be used in other parts of the program for calculations related to the data layout or for passing to other functions that require this dimension information.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a simple value retrieval.</li>
+<li>Ensure that the 'n' dimension has been properly initialized before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line"><span class="keywordtype">size_t</span> nValue = dim.<a class="code hl_function" href="#acc472e84b4c44f649f34b6fbb0eeacf7">N</a>();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;n value: &quot;</span> &lt;&lt; nValue &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_acc472e84b4c44f649f34b6fbb0eeacf7"><div class="ttname"><a href="#acc472e84b4c44f649f34b6fbb0eeacf7">nz::data::Dimension::N</a></div><div class="ttdeci">size_t N() const</div><div class="ttdoc">Retrieves the value of the 'n' dimension.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00051">Dimension.cu:51</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00051">51</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a04c92c6f65b5c6c407f7ceb06e6a20bb" name="a04c92c6f65b5c6c407f7ceb06e6a20bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04c92c6f65b5c6c407f7ceb06e6a20bb">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nz::data::Dimension::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloads the '!=' operator to compare two <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects for inequality. </p>
+<p>This function determines whether the current <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object is not equal to another <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. It achieves this by negating the result of the equality comparison ('==') between the two objects.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A constant reference to another <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object to compare with. Memory flow: host-to-function, as the object is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A boolean value indicating whether the two <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects are not equal. Memory flow: function-to-host, as the result is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only performs a comparison operation on the existing objects.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances. It assumes that the '==' operator for <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects is properly defined and does not throw exceptions.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This operator overload is useful in scenarios where inequality checks are required, such as in conditional statements or sorting algorithms. It provides a convenient way to compare two <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function depends on the implementation of the '==' operator for <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects. If the '==' operator has a time complexity of O(k), then this function also has a time complexity of O(k).</li>
+<li>Ensure that the '==' operator for <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects is correctly implemented before using this '!=' operator.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim1;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim2;</div>
+<div class="line"><span class="keywordflow">if</span> (dim1 != dim2) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The two dimensions are not equal.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">else</span> {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The two dimensions are equal.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00121">121</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a8b478beb331b058783f7bab2574946d7" name="a8b478beb331b058783f7bab2574946d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b478beb331b058783f7bab2574946d7">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp; nz::data::Dimension::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloads the assignment operator for the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class. </p>
+<p>This function assigns the values of an existing <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object to the current object. It first checks for self - assignment to avoid unnecessary operations. If the objects are different, it copies the dimensions and strides from the source object to the current object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A reference to an existing <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object whose values will be assigned to the current object. Memory flow: object - to - object, as the values from the existing object are copied to the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the current <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object after the assignment.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only copies the member variables of the source object to the current object.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions. It performs simple member - variable assignments, which are generally safe operations.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>It allows for the assignment of one <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object to another, which is useful in scenarios such as updating the state of an object or in algorithms that involve the manipulation of <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> objects.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a fixed number of operations regardless of the state of the input object.</li>
+<li>Ensure that the member variables <code>n</code>, <code>c</code>, <code>h</code>, <code>w</code>, and <code>stride</code> in the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> class are correctly defined and accessible.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> source(1, 2, 3, 4);</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> target;</div>
+<div class="line">target = source;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00021">21</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a66fe169a51a7131c75c56d5a9c7f2e41" name="a66fe169a51a7131c75c56d5a9c7f2e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66fe169a51a7131c75c56d5a9c7f2e41">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nz::data::Dimension::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects for equality. </p>
+<p>This function checks if all corresponding dimensions (n, c, h, w) of the current <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object are equal to those of another <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A constant reference to another <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object to compare with. Memory flow: host-to-function, as the object is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A boolean value indicating whether the two <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects are equal. Memory flow: function-to-host, as the result is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only performs comparison operations on the member variables of the objects.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This operator can be used in conditional statements, loops, or other parts of the program where equality comparison of <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects is required, such as in data validation or sorting algorithms.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a fixed number of comparison operations.</li>
+<li>Ensure that both <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects are properly initialized before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim1;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim2;</div>
+<div class="line"><span class="keywordtype">bool</span> areEqual = dim1 == dim2;</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Are dimensions equal? &quot;</span> &lt;&lt; (areEqual ? <span class="stringliteral">&quot;Yes&quot;</span> : <span class="stringliteral">&quot;No&quot;</span>) &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00097">97</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a8baf9c3d929b2ee15d63df21411e0a39" name="a8baf9c3d929b2ee15d63df21411e0a39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8baf9c3d929b2ee15d63df21411e0a39">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t &amp; nz::data::Dimension::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>i</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overloads the subscript operator to access the dimensions of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. </p>
+<p>This non - const version of the subscript operator allows for both accessing and modifying the dimensions of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>A <code>size_t</code> value representing the index of the dimension to access. Memory flow: host - to - function, as the index is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to a <code>size_t</code> representing the requested dimension. Memory flow: function - to - host, as a reference to the internal dimension is returned to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It simply returns a reference to an existing member variable.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the provided index <code>i</code> is not in the range <code>[0, 3]</code>, a <code>std::out_of_range</code> exception is thrown.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This operator can be used in expressions where direct access or modification of the dimensions is required, such as in loops for iterating over dimensions or in calculations involving specific dimensions.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::out_of_range</td><td>If the index <code>i</code> is not in the range <code>[0, 3]</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a simple switch statement to return the appropriate dimension.</li>
+<li>Ensure that the index <code>i</code> is in the valid range <code>[0, 3]</code> to avoid exceptions.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line">dim[0] = 10; <span class="comment">// Modify the &#39;n&#39; dimension</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Modified n dimension: &quot;</span> &lt;&lt; dim[0] &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00067">67</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a00710656d75e55896cb1a9692322ed17" name="a00710656d75e55896cb1a9692322ed17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00710656d75e55896cb1a9692322ed17">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const size_t &amp; nz::data::Dimension::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>i</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overloads the subscript operator to access the dimensions of the const <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. </p>
+<p>This const version of the subscript operator allows for read - only access to the dimensions of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>A <code>size_t</code> value representing the index of the dimension to access. Memory flow: host - to - function, as the index is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A const reference to a <code>size_t</code> representing the requested dimension. Memory flow: function - to - host, as a const reference to the internal dimension is returned to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It simply returns a const reference to an existing member variable.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>If the provided index <code>i</code> is not in the range <code>[0, 3]</code>, a <code>std::out_of_range</code> exception is thrown.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This operator can be used in expressions where read - only access to the dimensions of a const <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object is required, such as in functions that take a const reference to a <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::out_of_range</td><td>If the index <code>i</code> is not in the range <code>[0, 3]</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a simple switch statement to return the appropriate dimension.</li>
+<li>Ensure that the index <code>i</code> is in the valid range <code>[0, 3]</code> to avoid exceptions.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><span class="keyword">const</span> <a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line"><span class="keywordtype">size_t</span> value = dim[1]; <span class="comment">// Access the &#39;c&#39; dimension</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Value of c dimension: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00082">82</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="accb260af17b2e888268e1a7d3cdccc71" name="accb260af17b2e888268e1a7d3cdccc71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accb260af17b2e888268e1a7d3cdccc71">&#9670;&#160;</a></span>reshape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nz::data::Dimension::reshape </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnz_1_1data_1_1_dimension.html">Dimension</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>newShape</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to reshape the current <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object to a new shape. </p>
+<p>This function checks if the size of the new shape is equal to the size of the current <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object. If they are equal, it updates the current object's dimensions (n, c, h, w) to match the new shape and returns <code>true</code>. Otherwise, it does not modify the current object and returns <code>false</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newShape</td><td>A constant reference to a <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object representing the new shape. Memory flow: host-to-function, as the object is passed from the calling code to the function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A boolean value indicating whether the reshape operation was successful. Memory flow: function-to-host, as the result is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only modifies the member variables of the current <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances. It simply returns <code>false</code> if the reshape is not possible.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>This function can be used in scenarios where the shape of a data structure needs to be changed, such as in tensor reshaping operations. It ensures that the total number of elements remains the same after the reshape.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a fixed number of operations.</li>
+<li>Ensure that the <code><a class="el" href="#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object.">size()</a></code> method of both <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> objects returns valid sizes before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> currentDim;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> newDim;</div>
+<div class="line"><span class="keywordtype">bool</span> success = currentDim.<a class="code hl_function" href="#accb260af17b2e888268e1a7d3cdccc71">reshape</a>(newDim);</div>
+<div class="line"><span class="keywordflow">if</span> (success) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Reshape operation was successful.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">else</span> {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Reshape operation failed.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_accb260af17b2e888268e1a7d3cdccc71"><div class="ttname"><a href="#accb260af17b2e888268e1a7d3cdccc71">nz::data::Dimension::reshape</a></div><div class="ttdeci">bool reshape(const Dimension &amp;newShape)</div><div class="ttdoc">Attempts to reshape the current Dimension object to a new shape.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00110">Dimension.cu:110</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00110">110</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_dimension_accb260af17b2e888268e1a7d3cdccc71_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_dimension_accb260af17b2e888268e1a7d3cdccc71_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_dimension_accb260af17b2e888268e1a7d3cdccc71_cgraph" id="aclassnz_1_1data_1_1_dimension_accb260af17b2e888268e1a7d3cdccc71_cgraph">
+<area shape="rect" title="Attempts to reshape the current Dimension object to a new shape." alt="" coords="5,5,144,48"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object." alt="" coords="192,5,330,48"/>
+<area shape="poly" title=" " alt="" coords="144,24,176,24,176,29,144,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a073622bb031999163987ccf77f8edfb2" name="a073622bb031999163987ccf77f8edfb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a073622bb031999163987ccf77f8edfb2">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t nz::data::Dimension::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates the total number of elements in the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. </p>
+<p>This function computes the product of the four dimensions (<code>n</code>, <code>c</code>, <code>h</code>, <code>w</code>) of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object, which represents the total number of elements.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a member function, so it operates on the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>size_t</code> value representing the total number of elements in the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It only performs a simple arithmetic operation on the member variables of the object.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions. The multiplication operation is a basic arithmetic operation and is assumed to be safe within the range of <code>size_t</code>.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The result of this function can be used in other parts of the program to allocate memory, iterate over elements, or perform other operations that depend on the total number of elements in the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a fixed number of arithmetic operations.</li>
+<li>Ensure that the member variables <code>n</code>, <code>c</code>, <code>h</code>, and <code>w</code> are non - negative to avoid unexpected results.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim(2, 3, 4, 5);</div>
+<div class="line"><span class="keywordtype">size_t</span> totalElements = dim.size();</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00036">36</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="ad9411eaf723c07a17b949d97f5ced79d" name="ad9411eaf723c07a17b949d97f5ced79d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9411eaf723c07a17b949d97f5ced79d">&#9670;&#160;</a></span>updateStride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::data::Dimension::updateStride </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the stride values of the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. </p>
+<p>This function calculates and assigns new stride values based on the current values of c, h, and w in the <a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a> object. The stride values are used to determine the memory layout and access pattern for multi - dimensional data.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function only modifies the existing member variable <code>stride</code> of the <code><a class="el" href="classnz_1_1data_1_1_dimension.html" title="Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.">Dimension</a></code> object. It does not allocate or free any dynamic memory.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances. It assumes that the member variables <code>c</code>, <code>h</code>, and <code>w</code> are properly initialized.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The updated stride values are likely used in other parts of the program for accessing multi - dimensional data efficiently. For example, in tensor operations or data access routines.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) as it involves a fixed number of arithmetic operations.</li>
+<li>Ensure that the member variables <code>c</code>, <code>h</code>, and <code>w</code> are correctly initialized before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line">dim.<a class="code hl_function" href="#ad9411eaf723c07a17b949d97f5ced79d">updateStride</a>();</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_ad9411eaf723c07a17b949d97f5ced79d"><div class="ttname"><a href="#ad9411eaf723c07a17b949d97f5ced79d">nz::data::Dimension::updateStride</a></div><div class="ttdeci">void updateStride()</div><div class="ttdoc">Updates the stride values of the Dimension object.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00136">Dimension.cu:136</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00136">136</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<a id="a65773c675476dfea3f06b30f21ebbedd" name="a65773c675476dfea3f06b30f21ebbedd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65773c675476dfea3f06b30f21ebbedd">&#9670;&#160;</a></span>W()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t nz::data::Dimension::W </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the value of the 'w' dimension. </p>
+<p>This function is used to obtain the value of the 'w' dimension from the current object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None.</td><td>This is a member function, so it operates on the current object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>size_t</code> value representing the 'w' dimension. Memory flow: function-to-host, as the value is returned from the function to the calling code.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>This function does not allocate or free any dynamic memory. It simply returns a value from the object's internal state.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>This function does not throw any exceptions under normal circumstances.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>The returned 'w' value can be used in other parts of the program for calculations related to the data layout or for passing to other functions that require this dimension information.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(1) because it performs a simple value retrieval.</li>
+<li>Ensure that the 'w' dimension has been properly initialized before calling this function.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Dimension</a> dim;</div>
+<div class="line"><span class="keywordtype">size_t</span> wValue = dim.<a class="code hl_function" href="#a65773c675476dfea3f06b30f21ebbedd">W</a>();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;w value: &quot;</span> &lt;&lt; wValue &lt;&lt; std::endl;</div>
+<div class="line">```</div>
+<div class="ttc" id="aclassnz_1_1data_1_1_dimension_html_a65773c675476dfea3f06b30f21ebbedd"><div class="ttname"><a href="#a65773c675476dfea3f06b30f21ebbedd">nz::data::Dimension::W</a></div><div class="ttdeci">size_t W() const</div><div class="ttdoc">Retrieves the value of the 'w' dimension.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cu_source.html#l00063">Dimension.cu:63</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_dimension_8cu_source.html#l00063">63</a> of file <a class="el" href="_dimension_8cu_source.html">Dimension.cu</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/include/NeuZephyr/<a class="el" href="_dimension_8cuh_source.html">Dimension.cuh</a></li>
 <li>D:/Users/Mgepahmge/Documents/C Program/NeuZephyr/src/<a class="el" href="_dimension_8cu_source.html">Dimension.cu</a></li>
 </ul>
