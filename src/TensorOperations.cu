@@ -109,6 +109,11 @@ namespace nz::data {
         krnl::GeneralMatrixMul(grid, block, A, B, C, M, N, K, offsetC, offsetA, offsetB);
     }
 
+    void iTensorCoreGEMM(float* A, float* B, float* C, const Dimension& shapeA, const Dimension& shapeB,
+        const Dimension& shapeC) {
+        krnl::TensorCoreGEMMParallel(A, B, C, shapeA, shapeB, shapeC);
+    }
+
     void iTranspose(float* out, float* in, const size_t rows, const size_t cols, const std::vector<size_t>& offset) {
         const dim3 block(TILE_SIZE, TILE_SIZE);
         const dim3 grid((rows + block.x - 1) / block.x, (cols + block.y - 1) / block.y);

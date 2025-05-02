@@ -116,7 +116,8 @@ namespace nz::nodes {
                                 j * (inputs[0]->output->shape()[1] > 1 ? inputs[0]->output->shape().getStride(1) : 0));
                         }
                     }
-                    gradCopy(grid, block, inputs[0]->output->grad(), output->grad(), output->shape()[2] * output->shape()[3], offset_o, offset_i);
+                    gradCopy(grid, block, inputs[0]->output->grad(), output->grad(),
+                             output->shape()[2] * output->shape()[3], offset_o, offset_i);
                 }
             }
             if (inputs[1]->output->requiresGrad()) {
@@ -138,19 +139,25 @@ namespace nz::nodes {
                                 j * (inputs[1]->output->shape()[1] > 1 ? inputs[1]->output->shape().getStride(1) : 0));
                         }
                     }
-                    gradCopy(grid, block, inputs[1]->output->grad(), output->grad(), output->shape()[2] * output->shape()[3], offset_o, offset_i);
+                    gradCopy(grid, block, inputs[1]->output->grad(), output->grad(),
+                             output->shape()[2] * output->shape()[3], offset_o, offset_i);
                 }
             }
         }
 
         MatMulNode::MatMulNode(Node* input_left, Node* input_right) {
-            if (input_left->output->shape()[1] != input_right->output->shape()[0]) {
-                throw std::invalid_argument("Shape of left and right input must be the same.");
+            if (!input_left->output->shape().isBroadcastCompatible(input_right->output->shape()) || input_left->output->
+                shape().W() != input_right->output->shape().H()) {
+                throw std::invalid_argument("Shapes are not broadcast compatible.");
             }
             inputs.push_back(input_left);
             inputs.push_back(input_right);
             bool requires_grad = input_left->output->requiresGrad() || input_right->output->requiresGrad();
-            Tensor::shape_type shape = {1, 1, input_left->output->shape()[2], input_right->output->shape()[3]};
+            Tensor::shape_type shape = {
+                std::max(input_left->output->shape()[0], input_right->output->shape()[0]),
+                std::max(input_left->output->shape()[1], input_right->output->shape()[1]),
+                input_left->output->shape()[2], input_right->output->shape()[3]
+            };
             output = std::make_shared<Tensor>(shape, requires_grad);
             type = "MatMul";
         }
@@ -158,7 +165,7 @@ namespace nz::nodes {
         void MatMulNode::forward() {
             // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
             TensorCoreGEMM(inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
-                           inputs[0]->output->shape()[0], inputs[1]->output->shape()[1], inputs[0]->output->shape()[1]);
+                           inputs[0]->output->shape()[2], inputs[1]->output->shape()[3], inputs[0]->output->shape()[3]);
         }
 
         void MatMulNode::backward() {

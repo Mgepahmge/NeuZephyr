@@ -3,6 +3,7 @@
 #include "dl_export.cuh"
 #include "Tensor.cuh"
 #include "MappedTensor.cuh"
+#include "OperationKernels.cuh"
 #include "utils.cuh"
 #define BLOCKSIZE 512
 
@@ -991,6 +992,14 @@ namespace nz::data {
         }
         iGeneralMatrixMul(lhs.data(), rhs.data(), out.data(), lhs.shape().H(), rhs.shape().W(), lhs.shape().W(),
                           offsetC, offsetA, offsetB);
+    }
+
+    DL_API void iTensorCoreGEMM(float* A, float* B, float* C, const Dimension& shapeA, const Dimension& shapeB, const Dimension& shapeC);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, void>
+    GEMMTensorCore(T& out, const T& lhs, const T& rhs) {
+        iTensorCoreGEMM(lhs.data(), rhs.data(), out.data(), lhs.shape(), rhs.shape(), out.shape());
     }
 
     DL_API void iTranspose(float* out, float* in, size_t rows, size_t cols, const std::vector<size_t>& offset);

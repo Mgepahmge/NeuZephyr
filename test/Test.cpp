@@ -694,3 +694,48 @@ TEST(NodesBasic, AddBackwardNormal) {
     EXPECT_EQ(*inputData.output, expectedGradInput);
     EXPECT_EQ(*Weights.output, expectedGradWeights);
 }
+
+TEST(TensorCore, TensorCoreGEMMTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t m = 2;
+    const size_t k = 3;
+    const size_t p = 2;
+
+    Tensor tensor1({n, 1, m, k});
+    Tensor tensor2({1, c, k, p});
+
+    std::vector<float> data1 = {
+        // batch 0, channel 0
+        1.0f, 2.0f, 3.0f, // row 0
+        4.0f, 5.0f, 6.0f, // row 1
+
+        // batch 1, channel 0
+        7.0f, 8.0f, 9.0f, // row 0
+        10.0f, 11.0f, 12.0f // row 1
+    };
+    tensor1.dataInject(data1.begin(), data1.end());
+
+    std::vector<float> data2 = {
+        // batch 0, channel 0
+        1.0f, 2.0f, // row 0
+        3.0f, 4.0f, // row 1
+        5.0f, 6.0f, // row 2
+
+        // batch 0, channel 1
+        7.0f, 8.0f, // row 0
+        9.0f, 10.0f, // row 1
+        11.0f, 12.0f, // row 2
+
+        // batch 0, channel 2
+        13.0f, 14.0f, // row 0
+        15.0f, 16.0f, // row 1
+        17.0f, 18.0f // row 2
+    };
+    tensor2.dataInject(data2.begin(), data2.end());
+
+    auto result1 = tensor1 * tensor2;
+    Tensor result2({n,c, m, p});
+    GEMMTensorCore(result2, tensor1, tensor2);
+    EXPECT_EQ(result1, result2);
+}

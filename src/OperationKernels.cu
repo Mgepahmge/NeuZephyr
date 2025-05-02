@@ -1,6 +1,7 @@
 #include "NeuZephyr/OperationKernels.cuh"
 #include "NeuZephyr/utils.cuh"
 #include "NeuZephyr/StreamManager.cuh"
+#include "NeuZephyr/Dimension.cuh"
 #include <cuda_runtime.h>
 #include <cuda_fp16.h>
 #include <mma.h>
@@ -810,7 +811,10 @@ namespace nz::krnl {
     }
 
     __global__ void GeneralMatrixMulTensorKernel(float* C, const half* A, const half* B, const unsigned long long m,
-                                                 const unsigned long long n, const unsigned long long k) {
+                                                 const unsigned long long n, const unsigned long long k,
+                                                 size_t offset_c = 0,
+                                                 size_t offset_a = 0,
+                                                 size_t offset_b = 0) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long warpIdx = idx / warpSize;
         const unsigned long long blockM = m / MMA;
@@ -823,36 +827,38 @@ namespace nz::krnl {
         fill_fragment(C_frag, 0.0f);
         if (rowA < blockM && colB < blockN) {
             for (int i = 0; i < k / MMA; i++) {
-                load_matrix_sync(A_frag, A + rowA * k * MMA + i * MMA, k);
-                load_matrix_sync(B_frag, B + colB * MMA + i * n * MMA, n);
+                load_matrix_sync(A_frag, A + offset_a + rowA * k * MMA + i * MMA, k);
+                load_matrix_sync(B_frag, B + offset_b + colB * MMA + i * n * MMA, n);
                 mma_sync(C_frag, A_frag, B_frag, C_frag);
             }
-            store_matrix_sync(C + rowA * n * MMA + colB * MMA, C_frag, n, nvcuda::wmma::mem_row_major);
+            store_matrix_sync(C + offset_c + rowA * n * MMA + colB * MMA, C_frag, n, nvcuda::wmma::mem_row_major);
         }
     }
 
     __global__ void Padding(half* out, const float* in, const unsigned long long M, const unsigned long long N,
-                            const unsigned long long m, const unsigned long long n) {
+                            const unsigned long long m, const unsigned long long n, size_t offset_o = 0,
+                            size_t offset_i = 0) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long row = idx / n;
         const unsigned long long col = idx % n;
         if (row < m && col < n) {
             if (row < M && col < N) {
-                out[row * n + col] = __float2half(in[row * N + col]);
+                out[row * n + col + offset_o] = __float2half(in[row * N + col + offset_i]);
             }
             else {
-                out[row * n + col] = __float2half(0.0f);
+                out[row * n + col + offset_o] = __float2half(0.0f);
             }
         }
     }
 
     __global__ void Cutting(float* out, const float* in, const unsigned long long M, const unsigned long long N,
-                            const unsigned long long m, const unsigned long long n) {
+                            const unsigned long long m, const unsigned long long n, size_t offset_o = 0,
+                            size_t offset_i = 0) {
         const unsigned long long idx = blockIdx.x * blockDim.x + threadIdx.x;
         const unsigned long long row = idx / n;
         const unsigned long long col = idx % n;
         if (row < M && col < N) {
-            out[row * N + col] = in[row * n + col];
+            out[row * N + col + offset_o] = in[row * n + col + offset_i];
         }
     }
 
@@ -869,17 +875,127 @@ namespace nz::krnl {
         StreamManager<float>::Instance().malloc(&padded_C, m * n * sizeof(float));
         StreamManager<float>::Instance().memset(padded_C, 0, m * n * sizeof(float));
         StreamManager<float>::Instance().submit(Padding, dim3((m * k + 256 - 1) / 256), dim3(256), 0, padded_A, A, M, K,
-                                                m, k);
+                                                m, k, 0, 0);
         StreamManager<float>::Instance().submit(Padding, dim3((k * n + 256 - 1) / 256), dim3(256), 0, padded_B, B, K, N,
-                                                k, n);
+                                                k, n, 0, 0);
         const unsigned long long tiles = (m * n) >> 8;
         dim3 block(256);
         const unsigned int warpPerBlock = block.x / 32;
         dim3 grid((tiles + warpPerBlock - 1) / warpPerBlock);
         StreamManager<float>::Instance().submit(GeneralMatrixMulTensorKernel, grid, block, 0, padded_C, padded_A,
-                                                padded_B, m, n, k);
+                                                padded_B, m, n, k, 0, 0, 0);
         StreamManager<float>::Instance().submit(Cutting, dim3((m * n + 256 - 1) / 256), dim3(256), 0, C, padded_C, M, N,
-                                                m, n);
+                                                m, n, 0, 0);
+        StreamManager<float>::Instance().freeAsync(padded_A);
+        StreamManager<float>::Instance().freeAsync(padded_B);
+        StreamManager<float>::Instance().freeAsync(padded_C);
+    }
+
+    void TensorCoreGEMMParallel(float* A, float* B, float* C,
+                        const data::Dimension& A_shape,
+                        const data::Dimension& B_shape,
+                        const data::Dimension& C_shape) {
+        const size_t M = A_shape.H();
+        const size_t N = B_shape.W();
+        const size_t K = A_shape.W();
+        const size_t m = CEIL(M);
+        const size_t n = CEIL(N);
+        const size_t k = CEIL(K);
+        const auto padded_A_shape = data::Dimension(A_shape.N(), A_shape.C(), m, k);
+        const auto padded_B_shape = data::Dimension(B_shape.N(), B_shape.C(), k, n);
+        const auto padded_C_shape = data::Dimension(C_shape.N(), C_shape.C(), m, n);
+        half* padded_A;
+        half* padded_B;
+        float* padded_C;
+        StreamManager<float>::Instance().malloc(&padded_A, padded_A_shape.size() * sizeof(half));
+        StreamManager<float>::Instance().malloc(&padded_B, padded_B_shape.size() * sizeof(half));
+        StreamManager<float>::Instance().malloc(&padded_C, padded_C_shape.size() * sizeof(float));
+        StreamManager<float>::Instance().memset(padded_C, 0, padded_C_shape.size() * sizeof(float));
+        std::vector<size_t> offset1;
+        std::vector<size_t> offset2;
+        for (auto i = 0; i < A_shape.N(); i++) {
+            for (auto j = 0; j < A_shape.C(); j++) {
+                offset1.push_back(i * A_shape.getStride(0) + j * A_shape.getStride(1));
+                offset2.push_back(i * padded_A_shape.getStride(0) + j * padded_A_shape.getStride(1));
+            }
+        }
+        std::vector<cudaStream_t> streams;
+        for (auto i = 0; i < offset1.size(); i++) {
+            cudaStream_t stream = StreamManager<float>::Instance().getStream();
+            streams.push_back(stream);
+            StreamManager<float>::Instance().streamWait(A, stream);
+            StreamManager<float>::Instance().streamWait(padded_A, stream);
+            Padding<<<dim3((m * k + 256 - 1) / 256), dim3(256), 0, stream>>>(padded_A, A, M, K, m, k, offset2[i], offset1[i]);
+        }
+        for (auto stream : streams) {
+            StreamManager<float>::Instance().recordData(padded_A, stream);
+        }
+        offset1.clear();
+        offset2.clear();
+        streams.clear();
+        for (auto i = 0; i < B_shape.N(); i++) {
+            for (auto j = 0; j < B_shape.C(); j++) {
+                offset1.push_back(i * B_shape.getStride(0) + j * B_shape.getStride(1));
+                offset2.push_back(i * padded_B_shape.getStride(0) + j * padded_B_shape.getStride(1));
+            }
+        }
+        for (auto i = 0; i < offset1.size(); i++) {
+            cudaStream_t stream = StreamManager<float>::Instance().getStream();
+            streams.push_back(stream);
+            StreamManager<float>::Instance().streamWait(B, stream);
+            StreamManager<float>::Instance().streamWait(padded_B, stream);
+            Padding<<<dim3((k * n + 256 - 1) / 256), dim3(256), 0, stream>>>(padded_B, B, K, N, k, n, offset2[i], offset1[i]);
+        }
+        for (auto stream : streams) {
+            StreamManager<float>::Instance().recordData(padded_B, stream);
+        }
+        offset1.clear();
+        offset2.clear();
+        streams.clear();
+        std::vector<size_t> offset3;
+        for (auto i = 0;i < padded_C_shape[0]; i++) {
+            for (auto j = 0; j < padded_C_shape[1]; j++) {
+                offset3.push_back(i * padded_C_shape.getStride(0) + j * padded_C_shape.getStride(1));
+                offset1.push_back(i * (padded_A_shape[0] > 1 ? padded_A_shape.getStride(0) : 0) +
+                    j * (padded_A_shape[1] > 1 ? padded_A_shape.getStride(1) : 0));
+                offset2.push_back(i * (padded_B_shape[0] > 1 ? padded_B_shape.getStride(0) : 0) +
+                    j * (padded_B_shape[1] > 1 ? padded_B_shape.getStride(1) : 0));
+            }
+        }
+        const unsigned long long tiles = (m * n) >> 8;
+        dim3 block(256);
+        const unsigned int warpPerBlock = block.x / 32;
+        dim3 grid((tiles + warpPerBlock - 1) / warpPerBlock);
+        for (auto i = 0; i < offset3.size(); i++) {
+            cudaStream_t stream = StreamManager<float>::Instance().getStream();
+            streams.push_back(stream);
+            StreamManager<float>::Instance().streamWait(padded_C, stream);
+            StreamManager<float>::Instance().streamWait(padded_A, stream);
+            StreamManager<float>::Instance().streamWait(padded_B, stream);
+            GeneralMatrixMulTensorKernel<<<grid, block, 0, stream>>>(padded_C, padded_A, padded_B, m, n, k,  offset3[i], offset1[i], offset2[i]);
+        }
+        for (auto stream : streams) {
+            StreamManager<float>::Instance().recordData(padded_C, stream);
+        }
+        offset1.clear();
+        offset2.clear();
+        streams.clear();
+        for (auto i = 0; i < C_shape.N(); i++) {
+            for (auto j = 0; j < C_shape.C(); j++) {
+                offset1.push_back(i * C_shape.getStride(0) + j * C_shape.getStride(1));
+                offset2.push_back(i * padded_C_shape.getStride(0) + j * padded_C_shape.getStride(1));
+            }
+        }
+        for (auto i = 0; i < offset1.size(); i++) {
+            cudaStream_t stream = StreamManager<float>::Instance().getStream();
+            streams.push_back(stream);
+            StreamManager<float>::Instance().streamWait(C, stream);
+            StreamManager<float>::Instance().streamWait(padded_C, stream);
+            Cutting<<<dim3((n * m + 256 - 1) / 256), dim3(256), 0, stream>>>(C, padded_C, M, N, m, n, offset1[i], offset2[i]);
+        }
+        for (auto stream : streams) {
+            StreamManager<float>::Instance().recordData(C, stream);
+        }
         StreamManager<float>::Instance().freeAsync(padded_A);
         StreamManager<float>::Instance().freeAsync(padded_B);
         StreamManager<float>::Instance().freeAsync(padded_C);
