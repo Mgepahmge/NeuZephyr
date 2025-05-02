@@ -2,6 +2,7 @@
 #include "NeuZephyr/OperationKernels.cuh"
 #include "NeuZephyr/utils.cuh"
 #include "NeuZephyr/StreamManager.cuh"
+#include "NeuZephyr/TensorOperations.cuh"
 
 namespace nz::nodes {
     using namespace krnl;
@@ -76,33 +77,69 @@ namespace nz::nodes {
 
     namespace calc {
         AddNode::AddNode(Node* input_left, Node* input_right) {
-            if (input_left->output->shape() != input_right->output->shape()) {
-                throw std::invalid_argument("Shape of left and right input must be the same.");
+            if (!input_left->output->shape().isBroadcastCompatible(input_right->output->shape()) || input_left->output->
+                shape().H() != input_right->output->shape().H() || input_left->output->shape().W()
+                !=
+                input_right->output->shape().
+                             W()) {
+                throw std::invalid_argument("Shapes are not broadcast compatible.");
             }
             inputs.push_back(input_left);
             inputs.push_back(input_right);
             bool requires_grad = input_left->output->requiresGrad() || input_right->output->requiresGrad();
-            output = std::make_shared<Tensor>(input_left->output->shape(), requires_grad);
+            output = std::make_shared<Tensor>(input_left->output->shape().Broadcast(input_right->output->shape()),
+                                              requires_grad);
             type = "Add";
         }
 
         void AddNode::forward() {
-            const dim3 block(256);
-            const dim3 grid((output->size() + block.x - 1) / block.x);
-            MatrixAdd(grid, block, inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
-                      output->size());
+            tensorMatrixAdd(*output, *inputs[0]->output, *inputs[1]->output);
         }
 
         void AddNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(
-                    inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
-                    cudaMemcpyDeviceToDevice);
+                if (inputs[0]->output->shape() == output->shape()) {
+                    cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(
+                        inputs[0]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                        cudaMemcpyDeviceToDevice);
+                }
+                else {
+                    const dim3 block(BLOCKSIZE);
+                    const dim3 grid((output->shape()[2] * output->shape()[3] + BLOCKSIZE - 1) / BLOCKSIZE);
+                    std::vector<size_t> offset_o;
+                    std::vector<size_t> offset_i;
+                    for (auto i = 0; i < output->shape()[0]; i++) {
+                        for (auto j = 0; j < output->shape()[1]; j++) {
+                            offset_i.push_back(i * output->shape().getStride(0) + j * output->shape().getStride(1));
+                            offset_o.push_back(
+                                i * (inputs[0]->output->shape()[0] > 1 ? inputs[0]->output->shape().getStride(0) : 0) +
+                                j * (inputs[0]->output->shape()[1] > 1 ? inputs[0]->output->shape().getStride(1) : 0));
+                        }
+                    }
+                    gradCopy(grid, block, inputs[0]->output->grad(), output->grad(), output->shape()[2] * output->shape()[3], offset_o, offset_i);
+                }
             }
             if (inputs[1]->output->requiresGrad()) {
-                cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(
-                    inputs[1]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
-                    cudaMemcpyDeviceToDevice);
+                if (inputs[1]->output->shape() == output->shape()) {
+                    cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(
+                        inputs[1]->output->grad(), output->grad(), output->size() * sizeof(Tensor::value_type),
+                        cudaMemcpyDeviceToDevice);
+                }
+                else {
+                    const dim3 block(BLOCKSIZE);
+                    const dim3 grid((output->shape()[2] * output->shape()[3] + BLOCKSIZE - 1) / BLOCKSIZE);
+                    std::vector<size_t> offset_o;
+                    std::vector<size_t> offset_i;
+                    for (auto i = 0; i < output->shape()[0]; i++) {
+                        for (auto j = 0; j < output->shape()[1]; j++) {
+                            offset_i.push_back(i * output->shape().getStride(0) + j * output->shape().getStride(1));
+                            offset_o.push_back(
+                                i * (inputs[1]->output->shape()[0] > 1 ? inputs[1]->output->shape().getStride(0) : 0) +
+                                j * (inputs[1]->output->shape()[1] > 1 ? inputs[1]->output->shape().getStride(1) : 0));
+                        }
+                    }
+                    gradCopy(grid, block, inputs[1]->output->grad(), output->grad(), output->shape()[2] * output->shape()[3], offset_o, offset_i);
+                }
             }
         }
 

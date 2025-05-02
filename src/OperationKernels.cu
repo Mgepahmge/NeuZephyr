@@ -968,4 +968,30 @@ namespace nz::krnl {
                    float* in, const unsigned long long n, const size_t offset) {
         StreamManager<float>::Instance().submit(SummationKernel, gridDim, blockDim, sharedMemSize, out, in, n, offset);
     }
+
+    __global__ void gradCopyKernel(float* out, const float* in, const size_t n, const size_t offset_o,
+                                   const size_t offset_i) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx < n) {
+            out[idx + offset_o] += in[idx + offset_i];
+        }
+    }
+
+    void gradCopy(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t n,
+                  const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i) {
+        if (offset_o.size() != offset_i.size()) {
+            throw std::invalid_argument("offset size do not match");
+        }
+        std::vector<cudaStream_t> streams;
+        for (auto i = 0; i < offset_i.size(); i++) {
+            cudaStream_t stream = StreamManager<float>::Instance().getStream();
+            streams.push_back(stream);
+            StreamManager<float>::Instance().streamWait(out, stream);
+            StreamManager<float>::Instance().streamWait(in, stream);
+            gradCopyKernel<<<gridDim, blockDim, 0, stream>>>(out, in, n, offset_o[i], offset_i[i]);
+        }
+        for (auto stream : streams) {
+            StreamManager<float>::Instance().recordData(out, stream);
+        }
+    }
 }

@@ -978,6 +978,9 @@ namespace nz::krnl {
      */
     void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float* out, float* in,
                    unsigned long long n, size_t offset = 0);
+
+    void gradCopy(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
+                  const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
 #endif
 }
 
