@@ -108,4 +108,10 @@ namespace nz::data {
         const dim3 grid((N + block.x - 1) / block.x, (M + block.y - 1) / block.y);
         krnl::GeneralMatrixMul(grid, block, A, B, C, M, N, K, offsetC, offsetA, offsetB);
     }
+
+    void iTranspose(float* out, float* in, const size_t rows, const size_t cols, const std::vector<size_t>& offset) {
+        const dim3 block(TILE_SIZE, TILE_SIZE);
+        const dim3 grid((rows + block.x - 1) / block.x, (cols + block.y - 1) / block.y);
+        krnl::Transpose(grid, block, in, out, rows, cols, offset);
+    }
 }

@@ -2,6 +2,8 @@
 #include <Tensor.cuh>
 #include <MappedTensor.cuh>
 #include <random>
+
+#include "TensorOperations.cuh"
 using namespace nz::data;
 using namespace nz;
 
@@ -498,6 +500,86 @@ TEST(MappedTensorBasic, MappedTensorTransposeTest) {
     MappedTensor result = tensor;
 
     MappedTensor expected({n, c, w, h});
+    std::vector<float> expected_data(n * c * w * h);
+
+    for (size_t ni = 0; ni < n; ++ni) {
+        for (size_t ci = 0; ci < c; ++ci) {
+            for (size_t hi = 0; hi < h; ++hi) {
+                for (size_t wi = 0; wi < w; ++wi) {
+                    size_t idx_tensor = ((ni * c + ci) * h + hi) * w + wi;
+                    size_t idx_expected = ((ni * c + ci) * w + wi) * h + hi;
+
+                    expected_data[idx_expected] = data[idx_tensor];
+                }
+            }
+        }
+    }
+    expected.dataInject(expected_data.begin(), expected_data.end());
+
+    ASSERT_TRUE(result == expected);
+}
+
+TEST(TensorOperation, TransposeTestMapped) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    MappedTensor tensor({n, c, h, w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    std::vector<float> data(n * c * h * w);
+    for (size_t i = 0; i < data.size(); ++i) {
+        data[i] = dist(gen);
+    }
+    tensor.dataInject(data.begin(), data.end());
+
+    MappedTensor result = transpose(tensor);
+
+    MappedTensor expected({n, c, w, h});
+    std::vector<float> expected_data(n * c * w * h);
+
+    for (size_t ni = 0; ni < n; ++ni) {
+        for (size_t ci = 0; ci < c; ++ci) {
+            for (size_t hi = 0; hi < h; ++hi) {
+                for (size_t wi = 0; wi < w; ++wi) {
+                    size_t idx_tensor = ((ni * c + ci) * h + hi) * w + wi;
+                    size_t idx_expected = ((ni * c + ci) * w + wi) * h + hi;
+
+                    expected_data[idx_expected] = data[idx_tensor];
+                }
+            }
+        }
+    }
+    expected.dataInject(expected_data.begin(), expected_data.end());
+
+    ASSERT_TRUE(result == expected);
+}
+
+TEST(TensorOperation, TransposeTestNormal) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    Tensor tensor({n, c, h, w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    std::vector<float> data(n * c * h * w);
+    for (size_t i = 0; i < data.size(); ++i) {
+        data[i] = dist(gen);
+    }
+    tensor.dataInject(data.begin(), data.end());
+
+    Tensor result = transpose(tensor);
+
+    Tensor expected({n, c, w, h});
     std::vector<float> expected_data(n * c * w * h);
 
     for (size_t ni = 0; ni < n; ++ni) {

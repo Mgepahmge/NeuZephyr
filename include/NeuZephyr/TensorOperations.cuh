@@ -3,6 +3,7 @@
 #include "dl_export.cuh"
 #include "Tensor.cuh"
 #include "MappedTensor.cuh"
+#include "utils.cuh"
 #define BLOCKSIZE 512
 
 namespace nz::data {
@@ -729,8 +730,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -757,8 +758,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -785,8 +786,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -811,14 +812,30 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
         }
         iGeneralMatrixMul(lhs.data(), rhs.data(), out.data(), lhs.shape().H(), rhs.shape().W(), lhs.shape().W(),
                           offsetC, offsetA, offsetB);
+    }
+
+    DL_API void iTranspose(float* out, float* in, size_t rows, size_t cols, const std::vector<size_t>& offset);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    transpose(const T& in) {
+        T result({in.shape()[0], in.shape()[1], in.shape()[3], in.shape()[2]}, in.requiresGrad());
+        std::vector<size_t> offset;
+        for (auto i = 0; i < in.shape()[0]; i += 1) {
+            for (auto j = 0; j < in.shape()[1]; j += 1) {
+                offset.push_back(i * in.shape().getStride(0) + j * in.shape().getStride(1));
+            }
+        }
+        iTranspose(result.data(), in.data(), in.shape()[2], in.shape()[3], offset);
+        return result;
     }
 }
 #endif //TENSOROPERATIONS_CUH
