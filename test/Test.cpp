@@ -984,3 +984,35 @@ TEST(NodesBasic, SubBackwardNormal) {
     EXPECT_EQ(*inputData.output, expectedGradInput);
     EXPECT_EQ(*Weights.output, expectedGradWeights);
 }
+
+TEST(TensorBasic, TensorSoftmaxTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            float sum = 0.0f;
+            for (auto k = 0; k < h; k++) {
+                sum += std::exp(inputData[i * (c * h * w) + j * (h * w) + k]);
+            }
+            for (auto k = 0; k < h; k++) {
+                expectedData[i * (c * h * w) + j * (h * w) + k] = std::exp(inputData[i * (c * h * w) + j * (h * w) + k]) / sum;
+            }
+        }
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = Softmax(input);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
