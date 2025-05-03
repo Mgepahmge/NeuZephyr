@@ -46,7 +46,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T ReLU(T input) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    ReLU(T& input) {
         T result(input.shape(), input.requiresGrad());
         iRELU(result.data(), input.data(), input.size());
         return result;
@@ -83,7 +84,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T Sigmoid(T input) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    Sigmoid(T& input) {
         T result(input.shape(), input.requiresGrad());
         iSigmoid(result.data(), input.data(), input.size());
         return result;
@@ -120,7 +122,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T Tanh(T input) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    Tanh(T& input) {
         T result(input.shape(), input.requiresGrad());
         iTanh(result.data(), input.data(), input.size());
         return result;
@@ -158,7 +161,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T LeakyReLU(T input, const float alpha = 0.01f) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    LeakyReLU(T& input, const float alpha = 0.01f) {
         T result(input.shape(), input.requiresGrad());
         iLeakyReLU(result.data(), input.data(), input.size(), alpha);
         return result;
@@ -194,7 +198,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T Swish(T input) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    Swish(T& input) {
         T result(input.shape(), input.requiresGrad());
         iSwish(result.data(), input.data(), input.size());
         return result;
@@ -232,7 +237,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T ELU(T input, const float alpha = 1.0f) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    ELU(T& input, const float alpha = 1.0f) {
         T result(input.shape(), input.requiresGrad());
         iELU(result.data(), input.data(), input.size(), alpha);
         return result;
@@ -271,7 +277,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T HardSigmoid(T input, const float alpha = 0.2f, const float beta = 0.5f) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    HardSigmoid(T& input, const float alpha = 0.2f, const float beta = 0.5f) {
         T result(input.shape(), input.requiresGrad());
         iHardSigmoid(result.data(), input.data(), input.size(), alpha, beta);
         return result;
@@ -310,7 +317,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T HardSwish(T input, const float alpha = 0.5f, const float beta = 0.5f) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    HardSwish(T& input, const float alpha = 0.5f, const float beta = 0.5f) {
         T result(input.shape(), input.requiresGrad());
         iHardSwish(result.data(), input.data(), input.size(), alpha, beta);
         return result;
@@ -352,7 +360,8 @@ namespace nz::data {
      * @endcode
      */
     template <typename T>
-    T Softmax(T input) {
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    Softmax(T& input) {
         T result(input.shape(), input.requiresGrad());
         auto size = input.shape()[2] * input.shape()[3];
         std::vector<size_t> offset;
@@ -365,6 +374,21 @@ namespace nz::data {
         }
         iSoftmax(result.data(), input.data(), sum, size, offset);
         return result;
+    }
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, void>
+    Softmax(T& output, T& input) {
+        auto size = input.shape()[2] * input.shape()[3];
+        std::vector<size_t> offset;
+        std::vector<float> sum;
+        for (auto i = 0; i < input.shape()[0]; i++) {
+            for (auto j = 0; j < input.shape()[1]; j++) {
+                offset.push_back(i * input.shape().getStride(0) + j * input.shape().getStride(1));
+                sum.push_back(input.expSum(i, j));
+            }
+        }
+        iSoftmax(output.data(), input.data(), sum, size, offset);
     }
 
     DL_API void iScalarAdd(float* output, float* input, float scalar, unsigned long long size);
@@ -774,8 +798,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -845,8 +869,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -915,8 +939,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -984,8 +1008,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                    ? lhs.shape().getStride(1)
-                    : 0));
+                        ? lhs.shape().getStride(1)
+                        : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -1058,6 +1082,25 @@ namespace nz::data {
         if (in.requiresGrad()) {
             iTranspose(result.grad(), in.grad(), in.shape()[2], in.shape()[3], offset);
         }
+        return result;
+    }
+
+    DL_API void iSoftmaxJacobian(float* out, float* in, size_t n, const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    softmaxJacobian(const T& in) {
+        const size_t n = std::max(in.shape()[2], in.shape()[3]);
+        T result({in.shape()[0], in.shape()[1], n, n});
+        std::vector<size_t> offset_o;
+        std::vector<size_t> offset_i;
+        for (auto i = 0; i < in.shape()[0]; i++) {
+            for (auto j = 0; j < in.shape()[1]; j++) {
+                offset_o.push_back(i * result.shape().getStride(0) + j * result.shape().getStride(1));
+                offset_i.push_back(i * in.shape().getStride(0) + j * in.shape().getStride(1));
+            }
+        }
+        iSoftmaxJacobian(result.data(), in.data(), n, offset_o, offset_i);
         return result;
     }
 }

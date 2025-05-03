@@ -421,11 +421,32 @@ namespace nz::data {
         return _data;
     }
 
+    std::vector<Tensor::value_type> Tensor::hostData() const noexcept {
+        auto temp = new value_type[_size];
+        syncData();
+        cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+        std::vector result(temp, temp + _size);
+        delete[] temp;
+        return result;
+    }
+
     Tensor::value_type* Tensor::grad() const {
         if (!_requires_grad) {
             throw std::runtime_error("Tensor does not require gradients");
         }
         return _grad;
+    }
+
+    std::vector<Tensor::value_type> Tensor::hostGrad() const {
+        if (!_requires_grad) {
+            throw std::runtime_error("Tensor does not require gradients");
+        }
+        auto temp = new value_type[_size];
+        syncGrad();
+        cudaMemcpy(temp, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
+        std::vector result(temp, temp + _size);
+        delete[] temp;
+        return result;
     }
 
     std::ostream& Tensor::printGrad(std::ostream& os) const {

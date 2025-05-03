@@ -124,4 +124,11 @@ namespace nz::data {
         const dim3 grid((rows + block.x - 1) / block.x, (cols + block.y - 1) / block.y);
         krnl::Transpose(grid, block, in, out, rows, cols, offset);
     }
+
+    void iSoftmaxJacobian(float* out, float* in, const size_t n, const std::vector<size_t>& offset_o,
+        const std::vector<size_t>& offset_i) {
+        dim3 block(16, 16);
+        dim3 grid((n + block.x - 1) / block.x, (n + block.y - 1) / block.y);
+        krnl::SoftmaxJacobian(grid, block, out, in, n, offset_o, offset_i);
+    }
 }

@@ -606,6 +606,24 @@ namespace nz::cuStrm {
             }
         }
 
+        template <typename F, typename... Args>
+        void submitParallel(F func, dim3 grid, dim3 block, size_t shared, T* odata, T* idata1,
+                            const std::vector<size_t>& offset_o,
+                            const std::vector<size_t>& offset_i,
+                            Args... args) {
+            std::vector<cudaStream_t> streams;
+            for (auto i = 0; i < offset_o.size(); ++i) {
+                cudaStream_t stream = getStream();
+                streams.push_back(stream);
+                streamWait(idata1, stream);
+                streamWait(odata, stream);
+                func<<<grid, block, shared, stream>>>(odata, idata1, args..., offset_o[i], offset_i[i]);
+            }
+            for (auto stream : streams) {
+                eventPool->recordData(stream, odata);
+            }
+        }
+
         /**
          * @brief Synchronizes all CUDA streams in the stream pool by blocking the host thread
          *

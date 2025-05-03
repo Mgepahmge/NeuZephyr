@@ -365,6 +365,45 @@ namespace nz::data {
         [[nodiscard]] value_type* data() const noexcept;
 
         /**
+         * @brief Retrieves the tensor data from the device to the host and returns it as a std::vector.
+         *
+         * This member function is used to transfer the tensor data from the device memory to the host memory.
+         * It returns a `std::vector` containing the tensor data.
+         *
+         * @param None
+         *
+         * @return A `std::vector` of `Tensor::value_type` containing the tensor data. Memory flow: device - to - host.
+         *
+         * **Memory Management Strategy**:
+         * - A temporary array `temp` of size `_size` is dynamically allocated on the host using `new`.
+         * - After the data is copied from the device to the host using `cudaMemcpy`, a `std::vector` is constructed from the temporary array.
+         * - The temporary array `temp` is then deleted using `delete[]` to avoid memory leaks.
+         *
+         * **Exception Handling Mechanism**:
+         * - This function is marked as `noexcept`, meaning it does not throw any exceptions. However, if `cudaMemcpy` fails, it may lead to undefined behavior.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `syncData()` function to synchronize the data before the transfer.
+         * - Relies on `cudaMemcpy` to transfer data from the device to the host.
+         * - The internal member variables `_data` and `_size` are used to access the device data and its size.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the tensor (`_size`).
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function.
+         *
+         * @warning
+         * - If `cudaMemcpy` fails, the behavior of this function is undefined. Error checking for `cudaMemcpy` is not performed in this function.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * std::vector<Tensor::value_type> hostData = tensor.hostData();
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] std::vector<value_type> hostData() const noexcept;
+
+        /**
         * @brief Retrieves a pointer to the gradient data stored in GPU memory.
         *
         * @return A `value_type*` (pointer to float) pointing to the tensor's gradient data in GPU memory.
@@ -392,6 +431,53 @@ namespace nz::data {
         * @endcode
         */
         [[nodiscard]] value_type* grad() const;
+
+        /**
+         * @brief Retrieves the gradient data of the tensor from the device to the host and returns it as a std::vector.
+         *
+         * This member function transfers the gradient data of the tensor from the device memory to the host memory.
+         * It returns a `std::vector` containing the gradient data of the tensor.
+         *
+         * @param None
+         *
+         * @return A `std::vector` of `Tensor::value_type` containing the gradient data. Memory flow: device - to - host.
+         *
+         * **Memory Management Strategy**:
+         * - A temporary array `temp` of size `_size` is dynamically allocated on the host using `new`.
+         * - After the gradient data is copied from the device to the host using `cudaMemcpy`, a `std::vector` is constructed from the temporary array.
+         * - The temporary array `temp` is then deleted using `delete[]` to avoid memory leaks.
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws `std::runtime_error` if the tensor does not require gradients (`_requires_grad` is `false`).
+         * - If `cudaMemcpy` fails, it may lead to undefined behavior as error - checking for `cudaMemcpy` is not performed in this function.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the `syncGrad()` function to synchronize the gradient data before the transfer.
+         * - Relies on `cudaMemcpy` to transfer the gradient data from the device to the host.
+         * - The internal member variables `_grad` and `_size` are used to access the device gradient data and its size.
+         *
+         * @throws std::runtime_error When the tensor does not require gradients.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the tensor (`_size`).
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function.
+         * - Ensure that the tensor requires gradients before calling this function to avoid exceptions.
+         *
+         * @warning
+         * - If `cudaMemcpy` fails, the behavior of this function is undefined.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * try {
+         *     std::vector<Tensor::value_type> hostGrad = tensor.hostGrad();
+         * } catch (const std::runtime_error& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] std::vector<value_type> hostGrad() const;
 
         /**
          * @brief Injects data or gradient data into the tensor.

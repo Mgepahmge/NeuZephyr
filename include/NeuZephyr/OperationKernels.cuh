@@ -685,6 +685,9 @@ namespace nz::krnl {
     void SoftmaxJacobian(dim3 gridDim, dim3 blockDim, float* out, float* in,
                          unsigned long long n);
 
+    void SoftmaxJacobian(dim3 gridDim, dim3 blockDim, float* out, float* in,
+                         unsigned long long n, const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
+
     /**
      * @brief Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values
      *

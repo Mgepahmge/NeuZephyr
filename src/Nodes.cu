@@ -337,7 +337,7 @@ namespace nz::nodes {
                     }
                 }
                 NgradCopy(grid, block, inputs[1]->output->grad(), output->grad(),
-                         output->shape()[2] * output->shape()[3], offset_o, offset_i);
+                          output->shape()[2] * output->shape()[3], offset_o, offset_i);
             }
         }
 
@@ -522,7 +522,9 @@ namespace nz::nodes {
         }
 
         SoftmaxNode::SoftmaxNode(Node* input) {
-            sum = 0;
+            if (std::min(input->output->shape().H(), input->output->shape().W()) != 1) {
+                throw std::invalid_argument("SoftmaxNode: input must be 1D");
+            }
             inputs.push_back(input);
             bool requires_grad = input->output->requiresGrad();
             output = std::make_shared<Tensor>(input->output->shape(), requires_grad);
@@ -530,33 +532,19 @@ namespace nz::nodes {
         }
 
         void SoftmaxNode::forward() {
-            const dim3 block(256);
-            const dim3 grid((output->size() + block.x - 1) / block.x);
-            float* result;
-            cuStrm::StreamManager<Tensor::value_type>::Instance().malloc((float**)&result, grid.x * sizeof(float));
-            auto* result_host = static_cast<float*>(malloc(grid.x * sizeof(float)));
-            SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), result, inputs[0]->output->data(),
-                         output->size());
-            cuStrm::StreamManager<Tensor::value_type>::Instance().memcpy(
-                result_host, result, grid.x * sizeof(float), cudaMemcpyDeviceToHost);
-            cuStrm::StreamManager<Tensor::value_type>::Instance().syncData(result_host);
-            for (int i = 0; i < grid.x; i++) {
-                sum += result_host[i];
-            }
-            cuStrm::StreamManager<Tensor::value_type>::Instance().free(result);
-            free(result_host);
-            const dim3 block2(256);
-            const dim3 grid2((output->size() + block.x - 1) / block.x);
-            Softmax(grid2, block2, output->data(), inputs[0]->output->data(), sum, output->size());
+            Softmax(*output, *inputs[0]->output);
         }
 
         void SoftmaxNode::backward() {
-            const Tensor jacobian(output->shape(), false);
-            const dim3 block(16, 16);
-            const dim3 grid((output->shape()[0] + block.x - 1) / block.x, (output->shape()[0] + block.y - 1) / block.y);
-            SoftmaxJacobian(grid, block, jacobian.data(), output->data(), output->size());
-            TensorCoreGEMM(jacobian.data(), output->grad(), inputs[0]->output->grad(),
-                           jacobian.shape()[0], output->shape()[1], jacobian.shape()[1]);
+            auto jacobian = softmaxJacobian(*output);
+            if (output->shape()[2] > output->shape()[3]) {
+                TensorCoreGEMMParallel(jacobian.data(), output->grad(), inputs[0]->output->grad(), jacobian.shape(),
+                                       output->shape(), inputs[0]->output->shape());
+            }
+            else {
+                TensorCoreGEMMParallel(output->grad(), jacobian.data(), inputs[0]->output->grad(), output->shape(),
+                                       jacobian.shape(), inputs[0]->output->shape());
+            }
         }
     }
 

@@ -3150,7 +3150,6 @@ namespace nz::nodes {
          * @date 2024/12/5
          */
         class DL_API SoftmaxNode : public Node {
-            Tensor::value_type sum;
 
         public:
             /**
