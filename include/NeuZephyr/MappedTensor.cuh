@@ -357,6 +357,49 @@ namespace nz::data {
         [[nodiscard]] value_type* data() const noexcept;
 
         /**
+         * @brief Retrieves the gradient pointer of the MappedTensor.
+         *
+         * This member function is used to obtain the pointer to the gradient data of the MappedTensor.
+         * It can only be called if the tensor requires gradients.
+         *
+         * @param None
+         *
+         * @return A pointer to the gradient data of type `MappedTensor::value_type`. Memory flow: function - to - host.
+         *
+         * **Memory Management Strategy**:
+         * - The function does not allocate or free memory. It simply returns a pointer to the existing gradient data (`_grad`).
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws `std::invalid_argument` if the tensor does not require gradients (`_requires_grad` is `false`).
+         *
+         * **Relationship with Other Components**:
+         * - Depends on the internal member variable `_requires_grad` to determine if gradient access is allowed.
+         * - The returned pointer `_grad` is managed by the `MappedTensor` class.
+         *
+         * @throws std::invalid_argument When the tensor does not require gradients.
+         *
+         * @note
+         * - This function has a constant time complexity of O(1) as it only performs a simple check and returns a pointer.
+         * - Ensure that the tensor requires gradients before calling this function to avoid exceptions.
+         *
+         * @warning
+         * - Modifying the data pointed to by the returned pointer may affect the internal state of the `MappedTensor`.
+         *
+         * @code
+         * ```cpp
+         * MappedTensor tensor;
+         * try {
+         *     MappedTensor::value_type* gradPtr = tensor.grad();
+         *     // Do something with the gradient pointer
+         * } catch (const std::invalid_argument& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
+        [[nodiscard]] value_type* grad() const;
+
+        /**
          * @brief Retrieves the total number of elements in the MappedTensor.
          *
          * @return A value of type `size_type` (host-to-host) representing the total number of elements in the MappedTensor.

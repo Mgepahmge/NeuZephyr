@@ -739,3 +739,155 @@ TEST(TensorCore, TensorCoreGEMMTest) {
     GEMMTensorCore(result2, tensor1, tensor2);
     EXPECT_EQ(result1, result2);
 }
+
+TEST(NodeBasic, MatMulForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t m = 2;
+    const size_t k = 3;
+    const size_t p = 2;
+
+    InputNode input1({n ,1, m, k});
+    InputNode input2({1, c, k, p});
+
+    std::vector<float> data1 = {
+        // batch 0, channel 0
+        1.0f, 2.0f, 3.0f, // row 0
+        4.0f, 5.0f, 6.0f, // row 1
+
+        // batch 1, channel 0
+        7.0f, 8.0f, 9.0f, // row 0
+        10.0f, 11.0f, 12.0f // row 1
+    };
+    input1.dataInject(data1.begin(), data1.end());
+
+    std::vector<float> data2 = {
+        // batch 0, channel 0
+        1.0f, 2.0f, // row 0
+        3.0f, 4.0f, // row 1
+        5.0f, 6.0f, // row 2
+
+        // batch 0, channel 1
+        7.0f, 8.0f, // row 0
+        9.0f, 10.0f, // row 1
+        11.0f, 12.0f, // row 2
+
+        // batch 0, channel 2
+        13.0f, 14.0f, // row 0
+        15.0f, 16.0f, // row 1
+        17.0f, 18.0f // row 2
+    };
+    input2.dataInject(data2.begin(), data2.end());
+
+    MatMulNode mul(&input1, &input2);
+    mul.forward();
+
+    std::vector expected_data = {
+        // batch 0, channel 0
+        22.0f, 28.0f,
+        49.0f, 64.0f,
+        // batch 0, channel 1
+        58.0f, 64.0f,
+        139.0f, 154.0f,
+        // batch 0, channel 2
+        94.0f, 100.0f,
+        229.0f, 244.0f,
+        // batch 1, channel 0
+        76.0f, 100.0f,
+        103.0f, 136.0f,
+        // batch 1, channel 1
+        220.0f, 244.0f,
+        301.0f, 334.0f,
+        // batch 1, channel 2
+        364.0f, 388.0f,
+        499.0f, 532.0f
+    };
+    Tensor expected({n, c, m, p});
+    expected.dataInject(expected_data.begin(), expected_data.end());
+    EXPECT_EQ(*mul.output, expected);
+}
+
+TEST(NodeBasic, MatMulBackwardSpecial) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t m = 2;
+    const size_t k = 3;
+    const size_t p = 2;
+
+    InputNode input1({n ,1, m, k}, true);
+    InputNode input2({1, c, k, p}, true);
+    input1.output->fill(1);
+    input2.output->fill(1);
+    MatMulNode mul(&input1, &input2);
+    mul.output->fill(1, true);
+    mul.backward();
+    Tensor expected1({n, 1, m , k}, true);
+    Tensor expected2({1, c, k, p}, true);
+    expected1.fill(1);
+    expected1.fill(2 * c, true);
+    expected2.fill(1);
+    expected2.fill(2 * n, true);
+    EXPECT_EQ(expected1, *input1.output);
+    EXPECT_EQ(expected2, *input2.output);
+}
+
+TEST(NodeBasic, MatMulBackwardNormal) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t m = 2;
+    const size_t k = 3;
+    const size_t p = 2;
+
+    std::vector<float> Adata = {// batch0
+        /* channel0 */ 1,2,3,4,5,6,      // 2x3 = [[1,2,3],[4,5,6]]
+        /* channel1 */ 2,3,4,5,6,7,      // 2x3 = [[2,3,4],[5,6,7]]
+        /* channel2 */ 3,4,5,6,7,8,      // 2x3 = [[3,4,5],[6,7,8]]
+        // batch1（与batch0相同）
+        /* channel0 */ 1,2,3,4,5,6,
+        /* channel1 */ 2,3,4,5,6,7,
+        /* channel2 */ 3,4,5,6,7,8};
+
+    std::vector<float> Bdata = {
+        /* channel0 */ 1,4,2,5,3,6,
+        /* channel1 */ 2,5,3,6,4,7,      // 3x2 = [[2,5],[3,6],[4,7]]
+        /* channel2 */ 3,6,4,7,5,8};      // 3x2 = [[3,6],[4,7],[5,8]]
+
+    std::vector<float> Cgrad = {// batch0
+        1,1,1,1,  // channel0 (2x2)
+        1,1,1,1,  // channel1 (2x2)
+        1,1,1,1,  // channel2 (2x2)
+        // batch1 (same as batch0)
+        1,1,1,1,
+        1,1,1,1,
+        1,1,1,1};
+
+    std::vector<float> Agrad = {// batch0
+        /* channel0 */ 5, 7, 9, 5, 7 ,9,
+        /* channel1 */ 7, 9, 11, 7, 9, 11,
+        /* channel2 */ 9, 11, 13, 9, 11, 13,
+        // batch1
+        /* channel0 */ 5, 7, 9, 5, 7 ,9,
+        /* channel1 */ 7, 9, 11, 7, 9, 11,
+        /* channel2 */ 9, 11, 13, 9, 11, 13};
+
+    std::vector<float> Bgrad = {
+        /* channel0 */ 10,10,14,14,18,18,
+        /* channel1 */ 14,14,18,18,22,22,
+        /* channel2 */ 18,18,22,22,26,26};
+
+    InputNode input1({n ,c, m, k}, true);
+    InputNode input2({1, c, k, p}, true);
+    input1.dataInject(Adata.begin(), Adata.end());
+    input2.dataInject(Bdata.begin(), Bdata.end());
+    MatMulNode mul(&input1, &input2);
+    mul.output->dataInject(Cgrad.begin(), Cgrad.end(), true);
+    mul.backward();
+    Tensor expected1({n, c, m , k}, true);
+    Tensor expected2({1, c, k, p}, true);
+    expected1.dataInject(Adata.begin(), Adata.end());
+    expected1.dataInject(Agrad.begin(), Agrad.end(), true);
+    expected2.dataInject(Bdata.begin(), Bdata.end());
+    expected2.dataInject(Bgrad.begin(), Bgrad.end(), true);
+    EXPECT_EQ(expected1, *input1.output);
+    EXPECT_EQ(expected2, *input2.output);
+}

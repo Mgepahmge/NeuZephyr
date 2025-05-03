@@ -909,6 +909,11 @@ namespace nz::krnl {
                         const data::Dimension& B_shape,
                         const data::Dimension& C_shape);
 
+    void GEMMBackwardParallel(float* A, float* B, float* C,
+                        const data::Dimension& A_shape,
+                        const data::Dimension& B_shape,
+                        const data::Dimension& C_shape);
+
     /**
      * @brief Kernel function to fill a data array with a given value
      *

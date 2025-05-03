@@ -774,8 +774,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -845,8 +845,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -915,8 +915,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -984,8 +984,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -994,13 +994,17 @@ namespace nz::data {
                           offsetC, offsetA, offsetB);
     }
 
-    DL_API void iTensorCoreGEMM(float* A, float* B, float* C, const Dimension& shapeA, const Dimension& shapeB, const Dimension& shapeC);
+    DL_API void iTensorCoreGEMM(float* A, float* B, float* C, const Dimension& shapeA, const Dimension& shapeB,
+                                const Dimension& shapeC);
 
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, void>
     GEMMTensorCore(T& out, const T& lhs, const T& rhs) {
         iTensorCoreGEMM(lhs.data(), rhs.data(), out.data(), lhs.shape(), rhs.shape(), out.shape());
     }
+
+    DL_API void iGEMMBackward(float* A, float* B, float* C, const Dimension& shapeA, const Dimension& shapeB,
+                              const Dimension& shapeC);
 
     DL_API void iTranspose(float* out, float* in, size_t rows, size_t cols, const std::vector<size_t>& offset);
 
@@ -1051,6 +1055,9 @@ namespace nz::data {
             }
         }
         iTranspose(result.data(), in.data(), in.shape()[2], in.shape()[3], offset);
+        if (in.requiresGrad()) {
+            iTranspose(result.grad(), in.grad(), in.shape()[2], in.shape()[3], offset);
+        }
         return result;
     }
 }

@@ -203,6 +203,13 @@ namespace nz::data {
         return _data;
     }
 
+    MappedTensor::value_type* MappedTensor::grad() const {
+        if (!_requires_grad) {
+            throw std::invalid_argument("Gradient access is not allowed for tensors that do not require gradients.");
+        }
+        return _grad;
+    }
+
     MappedTensor::size_type MappedTensor::size() const noexcept {
         return _size;
     }

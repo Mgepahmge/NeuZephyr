@@ -163,34 +163,21 @@ namespace nz::nodes {
         }
 
         void MatMulNode::forward() {
-            // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
-            TensorCoreGEMM(inputs[0]->output->data(), inputs[1]->output->data(), output->data(),
-                           inputs[0]->output->shape()[2], inputs[1]->output->shape()[3], inputs[0]->output->shape()[3]);
+            GEMMTensorCore(*output, *inputs[0]->output, *inputs[1]->output);
         }
 
         void MatMulNode::backward() {
             // dA = dC * B^T
             if (inputs[0]->output->requiresGrad()) {
-                Tensor B_T(*inputs[1]->output); // B
-                B_T.transpose(); // B^T
-                TensorCoreGEMM(output->grad(),
-                               B_T.data(),
-                               inputs[0]->output->grad(),
-                               output->shape()[0],
-                               B_T.shape()[1],
-                               output->shape()[1]);
+                auto B_T = transpose(*inputs[1]->output);
+                iGEMMBackward(output->grad(), B_T.data(), inputs[0]->output->grad(), output->shape(), B_T.shape(),
+                              inputs[0]->output->shape());
             }
             // dB = A^T * dC
             if (inputs[1]->output->requiresGrad()) {
-                Tensor A_T(*inputs[0]->output); // A
-                A_T.transpose(); // A^T
-                // M = A.shape()[0] N = B.shape()[1], K = A.shape()[1]
-                TensorCoreGEMM(A_T.data(),
-                               output->grad(),
-                               inputs[1]->output->grad(),
-                               A_T.shape()[0],
-                               output->shape()[1],
-                               A_T.shape()[1]);
+                auto A_T = transpose(*inputs[0]->output);
+                iGEMMBackward(A_T.data(), output->grad(), inputs[1]->output->grad(), A_T.shape(), output->shape(),
+                              inputs[1]->output->shape());
             }
         }
 
