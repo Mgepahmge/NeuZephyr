@@ -479,17 +479,24 @@ namespace nz::data {
         if (_shape != other._shape) {
             return false;
         }
-        float epsilon = 1e-5;
+        constexpr value_type abs_epsilon = 1e-6f;
+        constexpr value_type rel_epsilon = 1e-5f;
         this->sync();
         other.sync();
         for (auto i = 0; i < _size; i++) {
-            if (_data[i] - other._data[i] > epsilon || other._data[i] - _data[i] > epsilon) {
+            const auto a = _data[i];
+            const auto b = other._data[i];
+            const auto diff = std::abs(a - b);
+            if (diff > std::max(rel_epsilon * std::max(std::abs(a), std::abs(b)), abs_epsilon)) {
                 return false;
             }
         }
         if (_requires_grad) {
             for (auto i = 0; i < _size; i++) {
-                if (_grad[i] - other._grad[i] > epsilon || other._grad[i] - _grad[i] > epsilon) {
+                const auto a = _grad[i];
+                const auto b = other._grad[i];
+                const auto diff = std::abs(a - b);
+                if (diff > std::max(rel_epsilon * std::max(std::abs(a), std::abs(b)), abs_epsilon)) {
                     return false;
                 }
             }
