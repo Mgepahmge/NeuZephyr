@@ -479,16 +479,17 @@ namespace nz::data {
         if (_shape != other._shape) {
             return false;
         }
+        float epsilon = 1e-5;
         this->sync();
         other.sync();
         for (auto i = 0; i < _size; i++) {
-            if (_data[i] != other._data[i]) {
+            if (_data[i] - other._data[i] > epsilon || other._data[i] - _data[i] > epsilon) {
                 return false;
             }
         }
         if (_requires_grad) {
             for (auto i = 0; i < _size; i++) {
-                if (_grad[i] != other._grad[i]) {
+                if (_grad[i] - other._grad[i] > epsilon || other._grad[i] - _grad[i] > epsilon) {
                     return false;
                 }
             }

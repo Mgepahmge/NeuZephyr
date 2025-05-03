@@ -477,6 +477,7 @@ namespace nz::data {
         if (_shape != other._shape) {
             return false;
         }
+        float epsilon = 1e-5;
         this->sync();
         other.sync();
         auto* temp = new value_type[_size];
@@ -484,7 +485,7 @@ namespace nz::data {
         cudaMemcpy(temp, _data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
         cudaMemcpy(temp_other, other._data, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
         for (auto i = 0; i < _size; i++) {
-            if (temp[i] != temp_other[i]) {
+            if (temp[i] - temp_other[i] > epsilon || temp_other[i] - temp[i] > epsilon) {
                 delete[] temp;
                 delete[] temp_other;
                 return false;
@@ -494,7 +495,7 @@ namespace nz::data {
             cudaMemcpy(temp, _grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
             cudaMemcpy(temp_other, other._grad, _size * sizeof(value_type), cudaMemcpyDeviceToHost);
             for (auto i = 0; i < _size; i++) {
-                if (temp[i] != temp_other[i]) {
+                if (temp[i] - temp_other[i] > epsilon || temp_other[i] - temp[i] > epsilon) {
                     delete[] temp;
                     delete[] temp_other;
                     return false;
