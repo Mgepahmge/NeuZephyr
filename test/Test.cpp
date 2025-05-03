@@ -1016,3 +1016,845 @@ TEST(TensorBasic, TensorSoftmaxTest) {
     expected.dataInject(expectedData.begin(), expectedData.end());
     EXPECT_EQ(expected, result);
 }
+
+TEST(TensorBasic, TensorReLUTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] > 0 ? inputData[i] : 0;
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = ReLU(input);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, ReLUForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] > 0 ? inputData[i] : 0;
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    ReLUNode result(&input);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, ReLUBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        expectedGrad[i] = inputData[i] > 0 ? grad[i] : 0;
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    ReLUNode result(&input);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorSigmoidTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = 1 / (1 + std::exp(-inputData[i]));
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = Sigmoid(input);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, SigmoidForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = 1 / (1 + std::exp(-inputData[i]));
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    SigmoidNode result(&input);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, SigmoidBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = 1 / (1 + std::exp(-inputData[i]));
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i] * outputData[i] * (1 - outputData[i]);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    SigmoidNode result(&input);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorTanhTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = (std::exp(inputData[i]) - std::exp(-inputData[i])) / (std::exp(inputData[i]) + std::exp(-inputData[i]));
+    }
+
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = Tanh(input);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, TanhForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = (std::exp(inputData[i]) - std::exp(-inputData[i])) / (std::exp(inputData[i]) + std::exp(-inputData[i]));
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    TanhNode result(&input);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, TanhBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 5;
+    const size_t w = 5;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = (std::exp(inputData[i]) - std::exp(-inputData[i])) / (std::exp(inputData[i]) + std::exp(-inputData[i]));
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i] * (1 - outputData[i] * outputData[i]);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    TanhNode result(&input);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorLeakyReLUTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.01f;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] > 0 ? inputData[i] : alpha * inputData[i];
+    }
+
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = LeakyReLU(input, alpha);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, LeakyReLUForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.01f;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] > 0 ? inputData[i] : alpha * inputData[i];
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    LeakyReLUNode result(&input, alpha);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, LeakyReLUBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.01f;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = inputData[i] > 0 ? inputData[i] : alpha * inputData[i];
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i] * (inputData[i] > 0 ? 1 : alpha);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    LeakyReLUNode result(&input, alpha);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorSwishTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] / (1 + std::exp(-inputData[i]));
+    }
+
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = Swish(input);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, SwishForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] / (1 + std::exp(-inputData[i]));
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    SwishNode result(&input);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, SwishBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = inputData[i] / (1 + std::exp(-inputData[i]));
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        expectedGrad[i] = outputData[i] * (1 - outputData[i]) * grad[i] + 1.0f / (1.0f + std::exp(-inputData[i]));
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    SwishNode result(&input);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorELUTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 1.0f;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] > 0 ? inputData[i] : alpha * (std::exp(inputData[i]) - 1);
+    }
+
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = ELU(input, alpha);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, ELUForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 1.0f;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] > 0 ? inputData[i] : alpha * (std::exp(inputData[i]) - 1);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    ELUNode result(&input, alpha);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, ELUBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 1.0f;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = inputData[i] > 0 ? inputData[i] : alpha * (std::exp(inputData[i]) - 1);
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        expectedGrad[i] = outputData[i] > 0 ? grad[i] : alpha * grad[i] * std::exp(inputData[i]);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    ELUNode result(&input, alpha);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorHardSigmoidTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.2f;
+    const float beta = 0.5f;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = std::min(std::max(alpha * inputData[i] + beta, 0.0f), 1.0f);
+    }
+
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = HardSigmoid(input, alpha, beta);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, HardSigmoidForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.2f;
+    const float beta = 0.5f;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = std::min(std::max(alpha * inputData[i] + beta, 0.0f), 1.0f);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    HardSigmoidNode result(&input, alpha, beta);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, HardSigmoidBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.2f;
+    const float beta = 0.5f;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = std::min(std::max(alpha * inputData[i] + beta, 0.0f), 1.0f);
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        const float x = inputData[i] * alpha + beta;
+        if (x > 0.0f && x < 1.0f) {
+            expectedGrad[i] = grad[i] * alpha;
+        } else {
+            expectedGrad[i] = 0.0f;
+        }
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    HardSigmoidNode result(&input, alpha, beta);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(TensorBasic, TensorHardSwishTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.5f;
+    const float beta = 0.5f;
+    Tensor input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] * std::min(std::max(inputData[i] * alpha + beta, 0.0f), 1.0f);
+    }
+
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = HardSwish(input, alpha, beta);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, HardSwishForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.5f;
+    const float beta = 0.5f;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] * std::min(std::max(inputData[i] * alpha + beta, 0.0f), 1.0f);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    HardSwishNode result(&input, alpha, beta);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, HardSwishBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 16;
+    const float alpha = 0.5f;
+    const float beta = 0.5f;
+    InputNode input({n, c, h, w}, true);
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> outputData(n*c*h*w);
+    std::vector<float> grad(n*c*h*w);
+    std::vector<float> expectedGrad(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0 ; i < inputData.size(); i++) {
+        outputData[i] = inputData[i] * std::min(std::max(inputData[i] * alpha + beta, 0.0f), 1.0f);
+    }
+    for (auto i = 0 ; i < grad.size(); i++) {
+        const float x = std::min(std::max(inputData[i] * alpha + beta, 0.0f), 1.0f);
+        expectedGrad[i] = x + grad[i] * inputData[i] * alpha * (1.0f - x);
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    HardSwishNode result(&input, alpha, beta);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(NodeBasic, SoftmaxForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+    InputNode input({n, c, h, w});
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            float sum = 0.0f;
+            for (auto k = 0; k < h; k++) {
+                sum += std::exp(inputData[i * (c * h * w) + j * (h * w) + k]);
+            }
+            for (auto k = 0; k < h; k++) {
+                expectedData[i * (c * h * w) + j * (h * w) + k] = std::exp(inputData[i * (c * h * w) + j * (h * w) + k]) / sum;
+            }
+        }
+    }
+    input.dataInject(inputData.begin(), inputData.end());
+    SoftmaxNode softmax(&input);
+    softmax.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *softmax.output);
+}
+
+TEST(TensorBasic, SoftmaxJacobianTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> outputData(n * c * h * h);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.0f, 1.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            const size_t offset_i = i * (c * h * w) + j * (h * w);
+            const size_t offset_o = i * (c * h * h) + j * (h * h);
+            for (auto x = 0; x < h; x++) {
+                for (auto y = 0; y < h; y++) {
+                    if (x == y) {
+                        outputData[offset_o + x * h + y] = inputData[x + offset_i] * (1 - inputData[x + offset_i]);
+                    } else {
+                        outputData[offset_o + x * h + y] = -inputData[x + offset_i] * inputData[y + offset_i];
+                    }
+                }
+            }
+        }
+    }
+    Tensor input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    auto output = softmaxJacobian(input);
+    Tensor expected({n, c, h, h});
+    expected.dataInject(outputData.begin(), outputData.end());
+    EXPECT_EQ(output, expected);
+}
+
+TEST(NodeBasic, SoftmaxBackwardRow) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> outputData(n * c * h * w);
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> jacobianData(n * c * h * h);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            float sum = 0.0f;
+            for (auto k = 0; k < h; k++) {
+                sum += std::exp(inputData[i * (c * h * w) + j * (h * w) + k]);
+            }
+            for (auto k = 0; k < h; k++) {
+                outputData[i * (c * h * w) + j * (h * w) + k] = std::exp(inputData[i * (c * h * w) + j * (h * w) + k]) / sum;
+            }
+        }
+    }
+
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            const size_t offset_i = i * (c * h * w) + j * (h * w);
+            const size_t offset_o = i * (c * h * h) + j * (h * h);
+            for (auto x = 0; x < h; x++) {
+                for (auto y = 0; y < h; y++) {
+                    if (x == y) {
+                        jacobianData[offset_o + x * h + y] = outputData[x + offset_i] * (1 - outputData[x + offset_i]);
+                    } else {
+                        jacobianData[offset_o + x * h + y] = -outputData[x + offset_i] * outputData[y + offset_i];
+                    }
+                }
+            }
+        }
+    }
+    MappedTensor jacobian({n, c, h, h});
+    MappedTensor outputGrad({n, c, h, w});
+    jacobian.dataInject(jacobianData.begin(), jacobianData.end());
+    outputGrad.dataInject(grad.begin(), grad.end());
+    MappedTensor inputGrad ({n, c, h, w});
+    GEMMTensorCore(inputGrad, jacobian, outputGrad);
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputGrad.begin(), inputGrad.end(), true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    InputNode input({n, c, h, w}, true);
+    input.dataInject(inputData.begin(), inputData.end());
+    SoftmaxNode softmax(&input);
+    softmax.forward();
+    softmax.output->dataInject(grad.begin(), grad.end(), true);
+    softmax.backward();
+    EXPECT_EQ(*input.output, expected);
+}
