@@ -891,3 +891,96 @@ TEST(NodeBasic, MatMulBackwardNormal) {
     EXPECT_EQ(expected1, *input1.output);
     EXPECT_EQ(expected2, *input2.output);
 }
+
+TEST(NodesBasic, SubForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    Tensor tensor1({n, 1, h, w});
+    Tensor tensor2({1, c, h, w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    std::vector<float> data1(n * 1 * h * w);
+    for (size_t i = 0; i < data1.size(); ++i) {
+        data1[i] = dist(gen);
+    }
+    tensor1.dataInject(data1.begin(), data1.end());
+
+    std::vector<float> data2(1 * c * h * w);
+    for (size_t i = 0; i < data2.size(); ++i) {
+        data2[i] = dist(gen);
+    }
+    tensor2.dataInject(data2.begin(), data2.end());
+
+    Tensor result = tensor1 - tensor2;
+    InputNode input1({n, 1, h, w});
+    InputNode input2({1, c, h, w});
+    input1.dataInject(data1.begin(), data1.end());
+    input2.dataInject(data2.begin(), data2.end());
+    SubNode sub(&input1, &input2);
+    sub.forward();
+    EXPECT_EQ(*sub.output, result);
+}
+
+TEST(NodesBasic, SubBackwardSpecial) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    InputNode input1({n, 1, h, w}, true);
+    InputNode input2({1, c, h, w}, true);
+    SubNode sub(&input1, &input2);
+    std::vector<float> subGrad(n * c * h * w, 1);
+    std::vector<float> grad1(n * 1 * h * w, 3);
+    std::vector<float> grad2(1 * c * h * w, -2);
+    sub.output->dataInject(subGrad.begin(), subGrad.end(), true);
+    sub.backward();
+    Tensor expectedGrad1({n, 1, h, w}, true);
+    Tensor expectedGrad2({1, c, h, w}, true);
+    expectedGrad1.dataInject(grad1.begin(), grad1.end(), true);
+    expectedGrad2.dataInject(grad2.begin(), grad2.end(), true);
+    EXPECT_EQ(*input1.output, expectedGrad1);
+    EXPECT_EQ(*input2.output, expectedGrad2);
+}
+
+TEST(NodesBasic, SubBackwardNormal) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    InputNode inputData({n, c, h, w}, true);
+    InputNode Weights({1, c, h, w}, true);
+    SubNode sub(&inputData, &Weights);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    std::vector<float> subGrad(n * c * h * w);
+    std::vector<float> weightsGrad(1 * c * h * w);
+    for (float & i : subGrad) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < c; i++) {
+        for (auto j = 0; j < h; j++) {
+            for (auto k = 0; k < w; k++) {
+                for (auto l =0; l <n; l++) {
+                    weightsGrad[i * (h * w) + j * w + k] -= subGrad[l * (c * h * w) +i * (h * w) + j * w + k];
+                }
+            }
+        }
+    }
+    sub.output->dataInject(subGrad.begin(), subGrad.end(), true);
+    sub.backward();
+    Tensor expectedGradInput({n, c, h, w}, true);
+    expectedGradInput.dataInject(subGrad.begin(), subGrad.end(), true);
+    Tensor expectedGradWeights({1, c, h, w}, true);
+    expectedGradWeights.dataInject(weightsGrad.begin(), weightsGrad.end(), true);
+    EXPECT_EQ(*inputData.output, expectedGradInput);
+    EXPECT_EQ(*Weights.output, expectedGradWeights);
+}
