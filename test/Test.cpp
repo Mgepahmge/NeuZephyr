@@ -10,6 +10,13 @@ using namespace nz::nodes::io;
 using namespace nz::nodes::loss;
 using namespace nz;
 
+/*
+ * Note: The NeuZephyr library uses a large number of CUDA internal functions in the CUDA Kernel to accelerate operations.
+ * However, the calculation precision of these internal functions is relatively poor.
+ * Although the author has tried their best to avoid this situation when designing the comparison method for two Tensors,
+ * some test cases still occasionally fail due to calculation precision issues.
+ */
+
 TEST(TensorBasic, TensorAdditionTest) {
     const size_t n = 2;
     const size_t c = 3;
@@ -1857,4 +1864,134 @@ TEST(NodeBasic, SoftmaxBackwardRow) {
     softmax.output->dataInject(grad.begin(), grad.end(), true);
     softmax.backward();
     EXPECT_EQ(*input.output, expected);
+}
+
+TEST(NodeLoss, MSEForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 5;
+
+    std::vector<float> predict(n * c * h * w);
+    std::vector<float> target(n * c * h * w);
+    float loss = 0.0f;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : predict) {
+        i = dist(gen);
+    }
+    for (auto& i : target) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < predict.size(); i++) {
+        loss += (predict[i] - target[i]) * (predict[i] - target[i]);
+    }
+    loss /= (n * c * h * w);
+    InputNode input1({n, c, h, w});
+    InputNode input2({n, c, h, w});
+    input1.dataInject(predict.begin(), predict.end());
+    input2.dataInject(target.begin(), target.end());
+    MeanSquaredErrorNode mse(&input1, &input2);
+    mse.forward();
+    EXPECT_NEAR(mse.getLoss(), loss, 1e-2);
+}
+
+TEST(NodeLoss, MSEBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 5;
+
+    std::vector<float> predict(n * c * h * w);
+    std::vector<float> target(n * c * h * w);
+    std::vector<float> grad(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : predict) {
+        i = dist(gen);
+    }
+    for (auto& i : target) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < predict.size(); i++) {
+        grad[i] = 2 * (predict[i] - target[i]) / (n * c * h * w);
+    }
+    InputNode input1({n, c, h, w}, true);
+    InputNode input2({n, c, h, w});
+    input1.dataInject(predict.begin(), predict.end());
+    input2.dataInject(target.begin(), target.end());
+    MeanSquaredErrorNode mse(&input1, &input2);
+    mse.forward();
+    mse.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(predict.begin(), predict.end());
+    expected.dataInject(grad.begin(), grad.end(), true);
+    EXPECT_EQ(*mse.output, expected);
+}
+
+TEST(NodeLoss, BCEForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 5;
+
+    std::vector<float> predict(n * c * h * w);
+    std::vector<float> target(n * c * h * w);
+    float loss = 0.0f;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+    for (auto& i : predict) {
+        i = dist(gen);
+    }
+    for (auto& i : target) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < predict.size(); i++) {
+        loss += -target[i] * std::log(predict[i]) - (1 - target[i]) * std::log(1 - predict[i]);
+    }
+    loss /= (n * c * h * w);
+    InputNode input1({n, c, h, w});
+    InputNode input2({n, c, h, w});
+    input1.dataInject(predict.begin(), predict.end());
+    input2.dataInject(target.begin(), target.end());
+    BinaryCrossEntropyNode mse(&input1, &input2);
+    mse.forward();
+    EXPECT_NEAR(mse.getLoss(), loss, 1e-2);
+}
+
+TEST(NodeLoss, BCEBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 5;
+
+    std::vector<float> predict(n * c * h * w);
+    std::vector<float> target(n * c * h * w);
+    std::vector<float> grad(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+    for (auto& i : predict) {
+        i = dist(gen);
+    }
+    for (auto& i : target) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < predict.size(); i++) {
+        grad[i] = ((predict[i] - target[i]) / (predict[i] * (1 - predict[i]))) / (n * c * h * w);
+    }
+    InputNode input1({n, c, h, w}, true);
+    InputNode input2({n, c, h, w});
+    input1.dataInject(predict.begin(), predict.end());
+    input2.dataInject(target.begin(), target.end());
+    BinaryCrossEntropyNode mse(&input1, &input2);
+    mse.forward();
+    mse.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(predict.begin(), predict.end());
+    expected.dataInject(grad.begin(), grad.end(), true);
+    EXPECT_EQ(*mse.output, expected);
 }

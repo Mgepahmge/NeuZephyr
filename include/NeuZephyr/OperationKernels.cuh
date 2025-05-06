@@ -686,7 +686,8 @@ namespace nz::krnl {
                          unsigned long long n);
 
     void SoftmaxJacobian(dim3 gridDim, dim3 blockDim, float* out, float* in,
-                         unsigned long long n, const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
+                         unsigned long long n, const std::vector<size_t>& offset_o,
+                         const std::vector<size_t>& offset_i);
 
     /**
      * @brief Kernel function to compute the Mean Squared Error (MSE) loss between predicted and real values
@@ -908,14 +909,14 @@ namespace nz::krnl {
                         unsigned long long N, unsigned long long K);
 
     void TensorCoreGEMMParallel(float* A, float* B, float* C,
-                        const data::Dimension& A_shape,
-                        const data::Dimension& B_shape,
-                        const data::Dimension& C_shape);
+                                const data::Dimension& A_shape,
+                                const data::Dimension& B_shape,
+                                const data::Dimension& C_shape);
 
     void GEMMBackwardParallel(float* A, float* B, float* C,
-                        const data::Dimension& A_shape,
-                        const data::Dimension& B_shape,
-                        const data::Dimension& C_shape);
+                              const data::Dimension& A_shape,
+                              const data::Dimension& B_shape,
+                              const data::Dimension& C_shape);
 
     /**
      * @brief Kernel function to fill a data array with a given value
@@ -997,7 +998,7 @@ namespace nz::krnl {
                   const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
 
     void NgradCopy(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t n,
-                  const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
+                   const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
 #endif
 }
 
