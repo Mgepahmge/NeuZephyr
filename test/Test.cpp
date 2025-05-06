@@ -2447,3 +2447,63 @@ TEST(OptimizerBasic, AdamTest) {
     expected.dataInject(grad.begin(), grad.end(), true);
     EXPECT_EQ(*input.output, expected);
 }
+
+TEST(OptimizerBasic, NAdamTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+    const float learningRate = 0.01f;
+    const float beta1 = 0.9f;
+    const float beta2 = 0.999f;
+    const float epsilon = 1e-6f;
+    int it = 0;
+
+    std::vector<float> data(n * c * h * w);
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+    std::vector<float> m(n * c * h * w, 0.0f);
+    std::vector<float> m_mod(n * c * h * w, 0.0f);
+    std::vector<float> v(n * c * h * w, 0.0f);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : data) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    it++;
+    for (auto i = 0; i < data.size(); i++) {
+        m[i] = beta1 * m[i] + (1 - beta1) * grad[i];
+        v[i] = beta2 * v[i] + (1 - beta2) * grad[i] * grad[i];
+        float modified_m = m[i] / (1 - std::pow(beta1, it));
+        float modified_v = v[i] / (1 - std::pow(beta2, it));
+        float modified_m_minus_1 = m_mod[i] * beta1 + (1 - beta1) * grad[i];
+        expectedData[i] = data[i] - (learningRate / (std::sqrt(modified_v) + epsilon)) * modified_m_minus_1;
+        m_mod[i] = modified_m;
+    }
+    it++;
+    for (auto i = 0; i < data.size(); i++) {
+        m[i] = beta1 * m[i] + (1 - beta1) * grad[i];
+        v[i] = beta2 * v[i] + (1 - beta2) * grad[i] * grad[i];
+        float modified_m = m[i] / (1 - std::pow(beta1, it));
+        float modified_v = v[i] / (1 - std::pow(beta2, it));
+        float modified_m_minus_1 = m_mod[i] * beta1 + (1 - beta1) * grad[i];
+        expectedData[i] = expectedData[i] - (learningRate / (std::sqrt(modified_v) + epsilon)) * modified_m_minus_1;
+        m_mod[i] = modified_m;
+    }
+    InputNode input({n, c, h, w}, true);
+    input.dataInject(data.begin(), data.end());
+    input.dataInject(grad.begin(), grad.end(), true);
+    opt::NAdam optimizer(learningRate, beta1, beta2);
+    optimizer.step(&input);
+    optimizer.step(&input);
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    expected.dataInject(grad.begin(), grad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
