@@ -2507,3 +2507,51 @@ TEST(OptimizerBasic, NAdamTest) {
     expected.dataInject(grad.begin(), grad.end(), true);
     EXPECT_EQ(*input.output, expected);
 }
+
+TEST(OptimizerBasic, AdaDeltaTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+    const float learningRate = 0.9f;
+    const float epsilon = 1e-6f;
+
+    std::vector<float> data(n * c * h * w);
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+    std::vector<float> acc(n * c * h * w, 0.0f);
+    std::vector<float> acc_grad(n * c * h * w, 0.0f);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : data) {
+        i = dist(gen);
+    }
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < data.size(); i++) {
+        acc_grad[i] = learningRate * acc_grad[i] + (1 - learningRate) * grad[i] * grad[i];
+        float theta = -grad[i] * std::sqrt(acc[i] + epsilon) / std::sqrt(acc_grad[i] + epsilon);
+        expectedData[i] = data[i] + theta;
+        acc[i] = learningRate * acc[i] + (1 - learningRate) * theta * theta;
+    }
+    for (auto i = 0; i < data.size(); i++) {
+        acc_grad[i] = learningRate * acc_grad[i] + (1 - learningRate) * grad[i] * grad[i];
+        float theta = -grad[i] * std::sqrt(acc[i] + epsilon) / std::sqrt(acc_grad[i] + epsilon);
+        expectedData[i] = expectedData[i] + theta;
+        acc[i] = learningRate * acc[i] + (1 - learningRate) * theta * theta;
+    }
+    InputNode input({n, c, h, w}, true);
+    input.dataInject(data.begin(), data.end());
+    input.dataInject(grad.begin(), grad.end(), true);
+    opt::AdaDelta optimizer(learningRate);
+    optimizer.step(&input);
+    optimizer.step(&input);
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    expected.dataInject(grad.begin(), grad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
