@@ -1995,3 +1995,231 @@ TEST(NodeLoss, BCEBackward) {
     expected.dataInject(grad.begin(), grad.end(), true);
     EXPECT_EQ(*mse.output, expected);
 }
+
+TEST(NodeBasic, ScalarAddForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    const float scalar = 2.0f;
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] + scalar;
+    }
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    ScalarAddNode result(&input, scalar);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, ScalarAddBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> expectedGrad(n * c * h * w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i];
+    }
+
+    InputNode input({n, c, h, w}, true);
+    const float scalar = 2.0f;
+    ScalarAddNode result(&input, scalar);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(NodeBasic, ScalarSubForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    const float scalar = 2.0f;
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] - scalar;
+    }
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    ScalarSubNode result(&input, scalar);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, ScalarSubBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> expectedGrad(n * c * h * w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i];
+    }
+
+    InputNode input({n, c, h, w}, true);
+    const float scalar = 2.0f;
+    ScalarSubNode result(&input, scalar);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(NodeBasic, ScalarMulForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    const float scalar = 2.0f;
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] * scalar;
+    }
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    ScalarMulNode result(&input, scalar);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, ScalarMulBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+    const float scalar = 2.0f;
+
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> expectedGrad(n * c * h * w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i] * scalar;
+    }
+
+    InputNode input({n, c, h, w}, true);
+    ScalarMulNode result(&input, scalar);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
+
+TEST(NodeBasic, ScalarDivForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    const float scalar = 2.0f;
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedData[i] = inputData[i] / scalar;
+    }
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    ScalarDivNode result(&input, scalar);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, ScalarDivBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 3;
+    const size_t w = 4;
+    const float scalar = 2.0f;
+
+    std::vector<float> grad(n * c * h * w);
+    std::vector<float> expectedGrad(n * c * h * w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : grad) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < grad.size(); i++) {
+        expectedGrad[i] = grad[i] / scalar;
+    }
+
+    InputNode input({n, c, h, w}, true);
+    ScalarDivNode result(&input, scalar);
+    result.output->dataInject(grad.begin(), grad.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(*input.output, expected);
+}
