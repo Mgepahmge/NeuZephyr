@@ -150,7 +150,7 @@ Usage Example:</h3>
 <div class="line">matmul_node.backward();  <span class="comment">// Perform the backward pass: propagate gradients</span></div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output: &quot;</span> &lt;&lt; *matmul_node.output &lt;&lt; std::endl;  <span class="comment">// Print the output tensor</span></div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_html_a493c723e88870bdc46c9b30b74b1e173"><div class="ttname"><a href="#a493c723e88870bdc46c9b30b74b1e173">nz::nodes::calc::MatMulNode::MatMulNode</a></div><div class="ttdeci">MatMulNode(Node *input_left, Node *input_right)</div><div class="ttdoc">Constructor to initialize a MatMulNode for matrix multiplication.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00109">Nodes.cu:109</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_html_a493c723e88870bdc46c9b30b74b1e173"><div class="ttname"><a href="#a493c723e88870bdc46c9b30b74b1e173">nz::nodes::calc::MatMulNode::MatMulNode</a></div><div class="ttdeci">MatMulNode(Node *input_left, Node *input_right)</div><div class="ttdoc">Constructor to initialize a MatMulNode for matrix multiplication.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00148">Nodes.cu:148</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4d1ec1a90036ff16358c5f83123bac67" title="Forward pass for the MatMulNode to perform matrix multiplication.">forward()</a> for the <a class="el" href="#a4d1ec1a90036ff16358c5f83123bac67" title="Forward pass for the MatMulNode to perform matrix multiplication.">forward</a> pass computation method. </dd>
 <dd>
 <a class="el" href="#ab644a874feb6a620ad31d37ca20525fd" title="Backward pass for the MatMulNode to propagate gradients.">backward()</a> for the <a class="el" href="#ab644a874feb6a620ad31d37ca20525fd" title="Backward pass for the MatMulNode to propagate gradients.">backward</a> pass gradient propagation method.</dd></dl>
@@ -203,7 +203,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/11/29 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00109">109</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00148">148</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -250,47 +250,15 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00127">127</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00169">169</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_mat_mul_node_ab644a874feb6a620ad31d37ca20525fd_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_ab644a874feb6a620ad31d37ca20525fd_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_ab644a874feb6a620ad31d37ca20525fd_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_ab644a874feb6a620ad31d37ca20525fd_cgraph">
-<area shape="rect" title="Backward pass for the MatMulNode to propagate gradients." alt="" coords="5,83,198,125"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="262,15,410,41"/>
-<area shape="poly" title=" " alt="" coords="161,80,245,51,269,44,270,49,246,56,163,85"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="257,65,415,92"/>
-<area shape="poly" title=" " alt="" coords="198,91,241,86,241,92,198,96"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#aa84aa2397f4f5a09a96bef76726e46f0" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="474,116,654,143"/>
-<area shape="poly" title=" " alt="" coords="198,107,458,121,458,126,198,112"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a45e6f84ae74111ced9a96bdf204b2294" title="Transposes the tensor by swapping its dimensions and rearranging the data." alt="" coords="246,167,426,193"/>
-<area shape="poly" title=" " alt="" coords="171,123,279,159,277,164,169,129"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="702,5,888,48"/>
-<area shape="poly" title=" " alt="" coords="590,113,701,58,715,52,717,57,703,62,592,118"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="702,272,888,315"/>
-<area shape="poly" title=" " alt="" coords="638,141,656,153,668,166,675,179,681,206,687,233,693,245,704,258,707,261,704,265,700,262,689,248,682,234,676,207,670,181,664,169,653,157,635,145"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="702,205,888,248"/>
-<area shape="poly" title=" " alt="" coords="628,141,656,152,680,172,704,191,713,196,711,201,701,196,677,176,653,157,625,146"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="702,72,888,115"/>
-<area shape="poly" title=" " alt="" coords="653,113,686,108,687,113,654,118"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="702,139,888,181"/>
-<area shape="poly" title=" " alt="" coords="655,139,688,143,687,148,654,144"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="936,139,1121,181"/>
-<area shape="poly" title=" " alt="" coords="871,46,889,58,906,75,914,92,922,109,937,125,943,128,940,133,934,129,918,112,909,95,901,78,886,62,868,51"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="936,72,1121,115"/>
-<area shape="poly" title=" " alt="" coords="873,46,937,65,936,70,871,51"/>
-<area shape="poly" title=" " alt="" coords="871,202,936,184,937,189,873,207"/>
-<area shape="poly" title=" " alt="" coords="873,113,937,131,936,136,871,118"/>
-<area shape="poly" title=" " alt="" coords="888,91,920,91,920,96,888,96"/>
-<area shape="poly" title=" " alt="" coords="888,157,920,157,920,163,888,163"/>
-<area shape="poly" title=" " alt="" coords="871,136,936,117,937,122,873,141"/>
-<area shape="poly" title=" " alt="" coords="357,164,408,133,473,102,582,67,686,42,688,48,583,72,475,106,411,137,359,168"/>
-<area shape="poly" title=" " alt="" coords="376,191,475,223,584,249,687,271,686,276,583,255,473,228,374,196"/>
-<area shape="poly" title=" " alt="" coords="405,191,474,203,584,213,687,220,687,225,583,219,474,208,404,197"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#afe3f38f788c735b7eb718443eb0fd094" title="Kernel function to transpose a matrix on the GPU." alt="" coords="498,167,631,193"/>
-<area shape="poly" title=" " alt="" coords="426,177,482,177,482,183,426,183"/>
-<area shape="poly" title=" " alt="" coords="588,192,640,224,704,258,716,263,714,268,701,262,637,228,585,196"/>
-<area shape="poly" title=" " alt="" coords="631,172,687,167,687,172,632,177"/>
+<area shape="rect" title="Backward pass for the MatMulNode to propagate gradients." alt="" coords="5,5,198,48"/>
+<area shape="rect" href="namespacenz_1_1data.html#ac8d64dd271e9a2e50682e733bd14ec19" title="Transposes a tensor with a valid tensor type." alt="" coords="246,13,379,40"/>
+<area shape="poly" title=" " alt="" coords="198,24,230,24,230,29,198,29"/>
 </map>
 </div>
 
@@ -334,36 +302,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00121">121</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_mat_mul_node_a4d1ec1a90036ff16358c5f83123bac67_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_a4d1ec1a90036ff16358c5f83123bac67_cgraph" alt=""/></div>
-<map name="aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_a4d1ec1a90036ff16358c5f83123bac67_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_mat_mul_node_a4d1ec1a90036ff16358c5f83123bac67_cgraph">
-<area shape="rect" title="Forward pass for the MatMulNode to perform matrix multiplication." alt="" coords="5,139,198,181"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#aa84aa2397f4f5a09a96bef76726e46f0" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="246,147,426,173"/>
-<area shape="poly" title=" " alt="" coords="198,157,230,157,230,163,198,163"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="474,72,659,115"/>
-<area shape="poly" title=" " alt="" coords="384,143,475,117,476,122,386,149"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="474,272,659,315"/>
-<area shape="poly" title=" " alt="" coords="355,172,407,213,475,258,486,263,484,268,473,262,403,218,351,176"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="474,5,659,48"/>
-<area shape="poly" title=" " alt="" coords="351,144,403,102,473,58,484,52,486,57,475,62,407,107,355,148"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="474,139,659,181"/>
-<area shape="poly" title=" " alt="" coords="426,157,458,157,458,163,426,163"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="474,205,659,248"/>
-<area shape="poly" title=" " alt="" coords="386,171,476,198,475,203,384,177"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="707,72,893,115"/>
-<area shape="poly" title=" " alt="" coords="660,91,692,91,692,96,660,96"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="707,139,893,181"/>
-<area shape="poly" title=" " alt="" coords="644,113,709,131,707,136,643,118"/>
-<area shape="poly" title=" " alt="" coords="644,46,709,65,707,70,643,51"/>
-<area shape="poly" title=" " alt="" coords="643,136,707,117,709,122,644,141"/>
-<area shape="poly" title=" " alt="" coords="660,157,692,157,692,163,660,163"/>
-<area shape="poly" title=" " alt="" coords="640,202,658,191,673,175,681,159,689,142,706,125,711,121,714,125,709,129,694,145,686,161,677,178,661,195,642,207"/>
-<area shape="poly" title=" " alt="" coords="643,202,707,184,709,189,644,207"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00165">165</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>

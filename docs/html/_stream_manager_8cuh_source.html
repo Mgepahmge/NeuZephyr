@@ -303,107 +303,125 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>            }</div>
 <div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>        }</div>
 <div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span> </div>
-<div class="foldopen" id="foldopen00653" data-start="{" data-end="}">
-<div class="line"><a id="l00653" name="l00653"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193">  653</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193">sync</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> s : streamPool) {</div>
-<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>                cudaStreamSynchronize(s);</div>
-<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>            }</div>
-<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>        }</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>        <span class="keywordtype">void</span> submitParallel(F func, dim3 grid, dim3 block, <span class="keywordtype">size_t</span> shared, T* odata, T* idata1,</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>                            <span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; offset_o,</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>                            <span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; offset_i,</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>                            Args... args) {</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>            std::vector&lt;cudaStream_t&gt; streams;</div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0; i &lt; offset_o.size(); ++i) {</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>                cudaStream_t stream = <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">getStream</a>();</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>                streams.push_back(stream);</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span>                <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(idata1, stream);</div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>                <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(odata, stream);</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>                func&lt;&lt;&lt;grid, block, shared, stream&gt;&gt;&gt;(odata, idata1, args..., offset_o[i], offset_i[i]);</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>            }</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> stream : streams) {</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>                eventPool-&gt;recordData(stream, odata);</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>            }</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>        }</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span> </div>
+<div class="foldopen" id="foldopen00671" data-start="{" data-end="}">
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193">  671</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193">sync</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> s : streamPool) {</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>                cudaStreamSynchronize(s);</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>            }</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>        }</div>
 </div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
-<div class="foldopen" id="foldopen00696" data-start="{" data-end="}">
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af">  696</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af">syncData</a>(T* data) {</div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>            eventPool-&gt;syncData(data);</div>
-<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>        }</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
+<div class="foldopen" id="foldopen00714" data-start="{" data-end="}">
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af">  714</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af">syncData</a>(T* data) {</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>            eventPool-&gt;syncData(data);</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>        }</div>
 </div>
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> </div>
-<div class="foldopen" id="foldopen00739" data-start="{" data-end="}">
-<div class="line"><a id="l00739" name="l00739"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#a731986c2c4ecd056562eaddadef46df8">  739</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a731986c2c4ecd056562eaddadef46df8">randomize</a>(T* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> seed, curandRngType_t rngType) {</div>
-<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>            cudaStream_t stream = <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">getStream</a>();</div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>            curandGenerator_t gen;</div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>            curandCreateGenerator(&amp;gen, rngType);</div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>            curandSetStream(gen, stream);</div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>            curandSetPseudoRandomGeneratorSeed(gen, seed);</div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>            <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(data, stream);</div>
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>            curandGenerateUniform(gen, data, size);</div>
-<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>            eventPool-&gt;recordData(stream, data);</div>
-<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>            curandDestroyGenerator(gen);</div>
-<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>        }</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span> </div>
+<div class="foldopen" id="foldopen00757" data-start="{" data-end="}">
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#a731986c2c4ecd056562eaddadef46df8">  757</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a731986c2c4ecd056562eaddadef46df8">randomize</a>(T* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> seed, curandRngType_t rngType) {</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>            cudaStream_t stream = <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">getStream</a>();</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>            curandGenerator_t gen;</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>            curandCreateGenerator(&amp;gen, rngType);</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>            curandSetStream(gen, stream);</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>            curandSetPseudoRandomGeneratorSeed(gen, seed);</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>            <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(data, stream);</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>            curandGenerateUniform(gen, data, size);</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>            eventPool-&gt;recordData(stream, data);</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>            curandDestroyGenerator(gen);</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>        }</div>
 </div>
-<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span> </div>
-<div class="foldopen" id="foldopen00781" data-start="{" data-end="}">
-<div class="line"><a id="l00781" name="l00781"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">  781</a></span>        cudaStream_t <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">getStream</a>() {</div>
-<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>            std::lock_guard&lt;std::mutex&gt; lock(mtx);</div>
-<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>            <span class="keyword">const</span> <span class="keyword">auto</span> <span class="keywordtype">id</span> = streamQueue.front();</div>
-<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>            streamQueue.pop();</div>
-<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>            streamQueue.push(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>            <span class="keywordflow">return</span> streamPool[id];</div>
-<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>        }</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> </div>
+<div class="foldopen" id="foldopen00799" data-start="{" data-end="}">
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">  799</a></span>        cudaStream_t <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">getStream</a>() {</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>            std::lock_guard&lt;std::mutex&gt; lock(mtx);</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>            <span class="keyword">const</span> <span class="keyword">auto</span> <span class="keywordtype">id</span> = streamQueue.front();</div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>            streamQueue.pop();</div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>            streamQueue.push(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>            <span class="keywordflow">return</span> streamPool[id];</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>        }</div>
 </div>
-<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
-<div class="foldopen" id="foldopen00822" data-start="{" data-end="}">
-<div class="line"><a id="l00822" name="l00822"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">  822</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(T* data, cudaStream_t stream) {</div>
-<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> e : eventPool-&gt;getEvents(data)) {</div>
-<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>                cudaStreamWaitEvent(stream, e, 0);</div>
-<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>            }</div>
-<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>        }</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
+<div class="foldopen" id="foldopen00840" data-start="{" data-end="}">
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">  840</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(T* data, cudaStream_t stream) {</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> e : eventPool-&gt;getEvents(data)) {</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>                cudaStreamWaitEvent(stream, e, 0);</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>            }</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>        }</div>
 </div>
-<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span> </div>
-<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(half* data, cudaStream_t stream) {</div>
-<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> e : eventPool-&gt;getEvents(data)) {</div>
-<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>                cudaStreamWaitEvent(stream, e, 0);</div>
-<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>            }</div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>        }</div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
-<div class="foldopen" id="foldopen00868" data-start="{" data-end="}">
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">  868</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">recordData</a>(T* data, cudaStream_t stream) {</div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>            eventPool-&gt;recordData(stream, data);</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>        }</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(half* data, cudaStream_t stream) {</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> e : eventPool-&gt;getEvents(data)) {</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>                cudaStreamWaitEvent(stream, e, 0);</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>            }</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>        }</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span> </div>
+<div class="foldopen" id="foldopen00886" data-start="{" data-end="}">
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno"><a class="line" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">  886</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">recordData</a>(T* data, cudaStream_t stream) {</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>            eventPool-&gt;recordData(stream, data);</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>        }</div>
 </div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span> </div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">recordData</a>(half* data, cudaStream_t stream) {</div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>            eventPool-&gt;recordData(stream, data);</div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>        }</div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span> </div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>        std::vector&lt;cudaStream_t&gt; streamPool;</div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>        std::queue&lt;int&gt; streamQueue;</div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>        std::shared_ptr&lt;EventPool&gt; eventPool;</div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>        uint32_t maxStream;</div>
-<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>        std::mutex mtx;</div>
-<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>        <span class="keyword">explicit</span> StreamManager(<span class="keyword">const</span> uint32_t maxStream = 16, <span class="keyword">const</span> uint32_t maxEvent = 128) :</div>
-<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>            eventPool(std::make_shared&lt;EventPool&gt;(maxEvent)), maxStream(maxStream) {</div>
-<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>            cudaFree(0);</div>
-<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>            <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; maxStream; ++i) {</div>
-<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>                cudaStream_t stream;</div>
-<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>                cudaStreamCreateWithFlags(&amp;stream, cudaStreamNonBlocking);</div>
-<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>                streamPool.push_back(stream);</div>
-<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>                streamQueue.push(i);</div>
-<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>            }</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span> </div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">recordData</a>(half* data, cudaStream_t stream) {</div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>            eventPool-&gt;recordData(stream, data);</div>
 <div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        }</div>
-<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>    };</div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span> </div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>        std::vector&lt;cudaStream_t&gt; streamPool;</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>        std::queue&lt;int&gt; streamQueue;</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>        std::shared_ptr&lt;EventPool&gt; eventPool;</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>        uint32_t maxStream;</div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>        std::mutex mtx;</div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span> </div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>        <span class="keyword">explicit</span> StreamManager(<span class="keyword">const</span> uint32_t maxStream = 16, <span class="keyword">const</span> uint32_t maxEvent = 128) :</div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>            eventPool(std::make_shared&lt;EventPool&gt;(maxEvent)), maxStream(maxStream) {</div>
+<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>            cudaFree(0);</div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>            <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; maxStream; ++i) {</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>                cudaStream_t stream;</div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>                cudaStreamCreateWithFlags(&amp;stream, cudaStreamNonBlocking);</div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>                streamPool.push_back(stream);</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>                streamQueue.push(i);</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>            }</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>        }</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>    };</div>
 </div>
-<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>}</div>
-<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span> </div>
-<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span><span class="preprocessor">#endif </span><span class="comment">//STREAMMANAGER_CUH</span></div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>}</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span> </div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span><span class="preprocessor">#endif </span><span class="comment">//STREAMMANAGER_CUH</span></div>
 <div class="ttc" id="a_event_pool_8cuh_html"><div class="ttname"><a href="_event_pool_8cuh.html">EventPool.cuh</a></div><div class="ttdoc">Definition of the EventPool class for managing CUDA events in multi-stream environments.</div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html">nz::cuStrm::StreamManager</a></div><div class="ttdoc">Centralized CUDA stream and resource management system with automatic dependency tracking.</div><div class="ttdef"><b>Definition</b> <a href="#l00131">StreamManager.cuh:131</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1084057ef6f5b2871c60702209bb4469"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469">nz::cuStrm::StreamManager::freeAsync</a></div><div class="ttdeci">void freeAsync(T *data)</div><div class="ttdoc">Asynchronously frees the CUDA device memory pointed to by the given pointer.</div><div class="ttdef"><b>Definition</b> <a href="#l00325">StreamManager.cuh:325</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1260d95d0eddf75b72700da07361a4bd"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">nz::cuStrm::StreamManager::recordData</a></div><div class="ttdeci">void recordData(T *data, cudaStream_t stream)</div><div class="ttdoc">Records write completion event for asynchronous data operations.</div><div class="ttdef"><b>Definition</b> <a href="#l00868">StreamManager.cuh:868</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1de1cf3aadea137faf90a2f9b4b7abe2"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">nz::cuStrm::StreamManager::getStream</a></div><div class="ttdeci">cudaStream_t getStream()</div><div class="ttdoc">Acquires CUDA stream from pool using round-robin scheduling.</div><div class="ttdef"><b>Definition</b> <a href="#l00781">StreamManager.cuh:781</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1260d95d0eddf75b72700da07361a4bd"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd">nz::cuStrm::StreamManager::recordData</a></div><div class="ttdeci">void recordData(T *data, cudaStream_t stream)</div><div class="ttdoc">Records write completion event for asynchronous data operations.</div><div class="ttdef"><b>Definition</b> <a href="#l00886">StreamManager.cuh:886</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1de1cf3aadea137faf90a2f9b4b7abe2"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2">nz::cuStrm::StreamManager::getStream</a></div><div class="ttdeci">cudaStream_t getStream()</div><div class="ttdoc">Acquires CUDA stream from pool using round-robin scheduling.</div><div class="ttdef"><b>Definition</b> <a href="#l00799">StreamManager.cuh:799</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a46ce59b45de432842454aadf00b93791"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791">nz::cuStrm::StreamManager::submit</a></div><div class="ttdeci">void submit(F func, dim3 grid, dim3 block, size_t shared, T *odata, T *idata, Args... args)</div><div class="ttdoc">Asynchronously submits a CUDA kernel with stream-ordered dependency management.</div><div class="ttdef"><b>Definition</b> <a href="#l00471">StreamManager.cuh:471</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a71ad766cb2869d3dd6a3931966e81706"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706">nz::cuStrm::StreamManager::memset</a></div><div class="ttdeci">void memset(T *data, const int value, const size_t count)</div><div class="ttdoc">Asynchronously sets a block of CUDA device memory to a specified value.</div><div class="ttdef"><b>Definition</b> <a href="#l00360">StreamManager.cuh:360</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a731986c2c4ecd056562eaddadef46df8"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a731986c2c4ecd056562eaddadef46df8">nz::cuStrm::StreamManager::randomize</a></div><div class="ttdeci">void randomize(T *data, size_t size, size_t seed, curandRngType_t rngType)</div><div class="ttdoc">Generates uniformly distributed random numbers on GPU using CURAND.</div><div class="ttdef"><b>Definition</b> <a href="#l00739">StreamManager.cuh:739</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a731986c2c4ecd056562eaddadef46df8"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a731986c2c4ecd056562eaddadef46df8">nz::cuStrm::StreamManager::randomize</a></div><div class="ttdeci">void randomize(T *data, size_t size, size_t seed, curandRngType_t rngType)</div><div class="ttdoc">Generates uniformly distributed random numbers on GPU using CURAND.</div><div class="ttdef"><b>Definition</b> <a href="#l00757">StreamManager.cuh:757</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a785cf34395067f425e032d9bd5e1fa20"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20">nz::cuStrm::StreamManager::free</a></div><div class="ttdeci">void free(T *data)</div><div class="ttdoc">Frees the CUDA device memory pointed to by the given pointer.</div><div class="ttdef"><b>Definition</b> <a href="#l00263">StreamManager.cuh:263</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a8e79a1506664e3a235cf7327e6d1275b"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a8e79a1506664e3a235cf7327e6d1275b">nz::cuStrm::StreamManager::~StreamManager</a></div><div class="ttdeci">~StreamManager()</div><div class="ttdoc">Destructor for the StreamManager class.</div><div class="ttdef"><b>Definition</b> <a href="#l00180">StreamManager.cuh:180</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a97f78a2d43f6e0508c82d4f3b629de96"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96">nz::cuStrm::StreamManager::malloc</a></div><div class="ttdeci">void malloc(T **data, const size_t size)</div><div class="ttdoc">Asynchronously allocates device memory for type-specific data with stream-ordered dependency tracking...</div><div class="ttdef"><b>Definition</b> <a href="#l00230">StreamManager.cuh:230</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_aa11ff4c21b003e5089f3cd65724b2193"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193">nz::cuStrm::StreamManager::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronizes all CUDA streams in the stream pool by blocking the host thread.</div><div class="ttdef"><b>Definition</b> <a href="#l00653">StreamManager.cuh:653</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_aa11ff4c21b003e5089f3cd65724b2193"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#aa11ff4c21b003e5089f3cd65724b2193">nz::cuStrm::StreamManager::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronizes all CUDA streams in the stream pool by blocking the host thread.</div><div class="ttdef"><b>Definition</b> <a href="#l00671">StreamManager.cuh:671</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_ab4b2eb422e0e1ee44bdfdc0eb94457ce"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce">nz::cuStrm::StreamManager::Instance</a></div><div class="ttdeci">static StreamManager &amp; Instance()</div><div class="ttdoc">Returns a reference to the singleton instance of the StreamManager.</div><div class="ttdef"><b>Definition</b> <a href="#l00154">StreamManager.cuh:154</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_ab6803232b9c08d9282b16322a6c7b8a9"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#ab6803232b9c08d9282b16322a6c7b8a9">nz::cuStrm::StreamManager::freeHost</a></div><div class="ttdeci">void freeHost(T *data)</div><div class="ttdoc">Frees the pinned host memory pointed to by the given pointer.</div><div class="ttdef"><b>Definition</b> <a href="#l00299">StreamManager.cuh:299</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_abe439fa00c0bd369c0b2345b095ed5af"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af">nz::cuStrm::StreamManager::syncData</a></div><div class="ttdeci">void syncData(T *data)</div><div class="ttdoc">Synchronizes host thread with completion events for a specific data object.</div><div class="ttdef"><b>Definition</b> <a href="#l00696">StreamManager.cuh:696</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_adb1078a67c6e38932d7d58c2adb05ec0"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">nz::cuStrm::StreamManager::streamWait</a></div><div class="ttdeci">void streamWait(T *data, cudaStream_t stream)</div><div class="ttdoc">Synchronizes CUDA stream execution until data writes complete.</div><div class="ttdef"><b>Definition</b> <a href="#l00822">StreamManager.cuh:822</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_abe439fa00c0bd369c0b2345b095ed5af"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af">nz::cuStrm::StreamManager::syncData</a></div><div class="ttdeci">void syncData(T *data)</div><div class="ttdoc">Synchronizes host thread with completion events for a specific data object.</div><div class="ttdef"><b>Definition</b> <a href="#l00714">StreamManager.cuh:714</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_adb1078a67c6e38932d7d58c2adb05ec0"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0">nz::cuStrm::StreamManager::streamWait</a></div><div class="ttdeci">void streamWait(T *data, cudaStream_t stream)</div><div class="ttdoc">Synchronizes CUDA stream execution until data writes complete.</div><div class="ttdef"><b>Definition</b> <a href="#l00840">StreamManager.cuh:840</a></div></div>
 <div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_afa38d5c6db0e6b48c8f74ce8ad0df2bc"><div class="ttname"><a href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc">nz::cuStrm::StreamManager::memcpy</a></div><div class="ttdeci">void memcpy(T *dst, T *src, const size_t size, const cudaMemcpyKind kind)</div><div class="ttdoc">Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin...</div><div class="ttdef"><b>Definition</b> <a href="#l00391">StreamManager.cuh:391</a></div></div>
 <div class="ttc" id="anamespacenz_1_1cu_strm_html"><div class="ttname"><a href="namespacenz_1_1cu_strm.html">nz::cuStrm</a></div><div class="ttdoc">Provides core components for CUDA stream and event lifecycle management in GPU computing environments...</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -113,6 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad72562ee8cad3196dc9ffbdd436f74a3" id="r_ad72562ee8cad3196dc9ffbdd436f74a3"><td class="memItemLeft" align="right" valign="top">value_type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad72562ee8cad3196dc9ffbdd436f74a3">data</a> () const noexcept</td></tr>
 <tr class="memdesc:ad72562ee8cad3196dc9ffbdd436f74a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a pointer to the underlying data array of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>.  <br /></td></tr>
 <tr class="separator:ad72562ee8cad3196dc9ffbdd436f74a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ee08c2ba51db828c54fa63549bd293" id="r_a91ee08c2ba51db828c54fa63549bd293"><td class="memItemLeft" align="right" valign="top">value_type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ee08c2ba51db828c54fa63549bd293">grad</a> () const</td></tr>
+<tr class="memdesc:a91ee08c2ba51db828c54fa63549bd293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the gradient pointer of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>.  <br /></td></tr>
+<tr class="separator:a91ee08c2ba51db828c54fa63549bd293"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa144f9f3b76741e5d3fb3b5df3cc3b42" id="r_aa144f9f3b76741e5d3fb3b5df3cc3b42"><td class="memItemLeft" align="right" valign="top">size_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa144f9f3b76741e5d3fb3b5df3cc3b42">size</a> () const noexcept</td></tr>
 <tr class="memdesc:aa144f9f3b76741e5d3fb3b5df3cc3b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the total number of elements in the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>.  <br /></td></tr>
 <tr class="separator:aa144f9f3b76741e5d3fb3b5df3cc3b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,11 +268,11 @@ Usage Example:</h3>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Seamless GPU computation</span></div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_function" href="namespacenz_1_1data.html#a9bcee9a75db3d824b92ed17a59711428">ReLU</a>(mtensor);  <span class="comment">// Works with existing Tensor operations</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = <a class="code hl_function" href="namespacenz_1_1data.html#a4706224f5e7c9a0cfe4c74983aaef1bd">ReLU</a>(mtensor);  <span class="comment">// Works with existing Tensor operations</span></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a></div><div class="ttdoc">A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cuh_source.html#l00066">MappedTensor.cuh:66</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00134">Tensor.cuh:134</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cuh_source.html#l00009">Dimension.cuh:9</a></div></div>
-<div class="ttc" id="anamespacenz_1_1data_html_a9bcee9a75db3d824b92ed17a59711428"><div class="ttname"><a href="namespacenz_1_1data.html#a9bcee9a75db3d824b92ed17a59711428">nz::data::ReLU</a></div><div class="ttdeci">T ReLU(T input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00048">TensorOperations.cuh:48</a></div></div>
+<div class="ttc" id="anamespacenz_1_1data_html_a4706224f5e7c9a0cfe4c74983aaef1bd"><div class="ttname"><a href="namespacenz_1_1data.html#a4706224f5e7c9a0cfe4c74983aaef1bd">nz::data::ReLU</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; ReLU(T &amp;input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00050">TensorOperations.cuh:50</a></div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><ul>
 <li><b>Memory Characteristics</b>: Zero-copy memory typically offers higher allocation latency but unified access</li>
 <li><b>Concurrency Considerations</b>: Ensure proper synchronization between host/device accesses</li>
@@ -332,7 +335,7 @@ Usage Example:</h3>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> tensor(<a class="code hl_function" href="#abf8ddc60a224bc676dd0fad40ad2f43b">shape</a>, <span class="keyword">true</span>);</div>
 <div class="line">```</div>
 <div class="ttc" id="aclassnz_1_1data_1_1_dimension_html"><div class="ttname"><a href="classnz_1_1data_1_1_dimension.html">nz::data::Dimension</a></div><div class="ttdoc">Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cuh_source.html#l00057">Dimension.cuh:57</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_abf8ddc60a224bc676dd0fad40ad2f43b"><div class="ttname"><a href="#abf8ddc60a224bc676dd0fad40ad2f43b">nz::data::MappedTensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00210">MappedTensor.cu:210</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_abf8ddc60a224bc676dd0fad40ad2f43b"><div class="ttname"><a href="#abf8ddc60a224bc676dd0fad40ad2f43b">nz::data::MappedTensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00217">MappedTensor.cu:217</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00088">88</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
@@ -644,7 +647,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.clear();</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00327">327</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00334">334</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -715,7 +718,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00331">331</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00338">338</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -825,7 +828,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.dataInject({1, 2, 3, 4, 5, 6}, <span class="keyword">false</span>);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00247">247</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00254">254</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -900,7 +903,7 @@ Here is the call graph for this function:</div>
 <div class="line">```</div>
 <div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ad72562ee8cad3196dc9ffbdd436f74a3"><div class="ttname"><a href="#ad72562ee8cad3196dc9ffbdd436f74a3">nz::data::MappedTensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the underlying data array of the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00202">MappedTensor.cu:202</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00230">230</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00237">237</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -996,7 +999,7 @@ template&lt;typename Iterator &gt; </div>
 <div class="line">tensor.dataInject(<a class="code hl_function" href="#ad72562ee8cad3196dc9ffbdd436f74a3">data</a>.begin(), <a class="code hl_function" href="#ad72562ee8cad3196dc9ffbdd436f74a3">data</a>.end(), <span class="keyword">false</span>);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cuh_source.html#l00547">547</a> of file <a class="el" href="_mapped_tensor_8cuh_source.html">MappedTensor.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cuh_source.html#l00590">590</a> of file <a class="el" href="_mapped_tensor_8cuh_source.html">MappedTensor.cuh</a>.</p>
 
 </div>
 </div>
@@ -1115,9 +1118,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Assume mapped_tensor is filled with some values</span></div>
 <div class="line">nz::data::MappedTensor::value_type exp_sum_result = mapped_tensor.<a class="code hl_function" href="#ad4b349b1cbc2fef18f4b450f4d11377a">expSum</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ad4b349b1cbc2fef18f4b450f4d11377a"><div class="ttname"><a href="#ad4b349b1cbc2fef18f4b450f4d11377a">nz::data::MappedTensor::expSum</a></div><div class="ttdeci">value_type expSum() const</div><div class="ttdoc">Calculate the sum of the exponential values of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00547">MappedTensor.cu:547</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ad4b349b1cbc2fef18f4b450f4d11377a"><div class="ttname"><a href="#ad4b349b1cbc2fef18f4b450f4d11377a">nz::data::MappedTensor::expSum</a></div><div class="ttdeci">value_type expSum() const</div><div class="ttdoc">Calculate the sum of the exponential values of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00562">MappedTensor.cu:562</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00547">547</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00562">562</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1221,7 +1224,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00562">562</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00577">577</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1297,7 +1300,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.fill(0.0f, <span class="keyword">true</span>);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00390">390</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00397">397</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1399,7 +1402,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00400">400</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00407">407</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1420,6 +1423,77 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="587,104,619,109,618,114,586,109"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a91ee08c2ba51db828c54fa63549bd293" name="a91ee08c2ba51db828c54fa63549bd293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ee08c2ba51db828c54fa63549bd293">&#9670;&#160;</a></span>grad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MappedTensor::value_type * nz::data::MappedTensor::grad </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the gradient pointer of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>. </p>
+<p>This member function is used to obtain the pointer to the gradient data of the <a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a>. It can only be called if the tensor requires gradients.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the gradient data of type <code>MappedTensor::value_type</code>. Memory flow: function - to - host.</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>The function does not allocate or free memory. It simply returns a pointer to the existing gradient data (<code>_grad</code>).</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Throws <code>std::invalid_argument</code> if the tensor does not require gradients (<code>_requires_grad</code> is <code>false</code>).</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on the internal member variable <code>_requires_grad</code> to determine if gradient access is allowed.</li>
+<li>The returned pointer <code>_grad</code> is managed by the <code><a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a></code> class.</li>
+</ul>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the tensor does not require gradients.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>This function has a constant time complexity of O(1) as it only performs a simple check and returns a pointer.</li>
+<li>Ensure that the tensor requires gradients before calling this function to avoid exceptions.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>Modifying the data pointed to by the returned pointer may affect the internal state of the <code><a class="el" href="classnz_1_1data_1_1_mapped_tensor.html" title="A class for representing multidimensional arrays in CUDA zero-copy memory, providing host-accessible ...">MappedTensor</a></code>.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> tensor;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    MappedTensor::value_type* gradPtr = tensor.grad();</div>
+<div class="line">    <span class="comment">// Do something with the gradient pointer</span></div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00206">206</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1541,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keywordtype">bool</span> isNotEqual = tensor1 != tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00492">492</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00507">507</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1520,7 +1594,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> result = tensor1 * tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00451">451</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00458">458</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1590,7 +1664,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> result = tensor1 + tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00439">439</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00446">446</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1651,7 +1725,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> negatedTensor = -tensor;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00460">460</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00467">467</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1721,7 +1795,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> result = tensor1 - tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00445">445</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00452">452</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1791,7 +1865,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">nz::data::MappedTensor</a> result = tensor1 / tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00496">496</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00511">511</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1977,7 +2051,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keywordtype">bool</span> isEqual = tensor1 == tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00468">468</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00475">475</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2045,7 +2119,7 @@ Here is the call graph for this function:</div>
 <div class="line">std::cout &lt;&lt; value &lt;&lt; std::endl;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00319">319</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00326">326</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2086,7 +2160,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.print(std::cout);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00261">261</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00268">268</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2169,7 +2243,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.printGrad(std::cout);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00289">289</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00296">296</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2267,7 +2341,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00367">367</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00374">374</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2311,7 +2385,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.recip();</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00502">502</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00517">517</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2429,7 +2503,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.reshape(newShape);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00340">340</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00347">347</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2507,7 +2581,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.setRequiresGrad(<span class="keyword">true</span>);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00214">214</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00221">221</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2574,7 +2648,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.setShape(newShape);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00226">226</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00233">233</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2630,7 +2704,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">nz::data::MappedTensor::shape_type</a> tensorShape = tensor.shape();</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00210">210</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00217">217</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2672,7 +2746,7 @@ Here is the call graph for this function:</div>
 <div class="line">nz::data::MappedTensor::size_type tensorSize = tensor.size();</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00206">206</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00213">213</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2729,9 +2803,9 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Assume mapped_tensor is filled with some values</span></div>
 <div class="line">nz::data::MappedTensor::value_type sum_result = mapped_tensor.<a class="code hl_function" href="#afabf30bc35435f1101a61afa77b026ad">sum</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_afabf30bc35435f1101a61afa77b026ad"><div class="ttname"><a href="#afabf30bc35435f1101a61afa77b026ad">nz::data::MappedTensor::sum</a></div><div class="ttdeci">value_type sum() const</div><div class="ttdoc">Calculate the sum of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00512">MappedTensor.cu:512</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_afabf30bc35435f1101a61afa77b026ad"><div class="ttname"><a href="#afabf30bc35435f1101a61afa77b026ad">nz::data::MappedTensor::sum</a></div><div class="ttdeci">value_type sum() const</div><div class="ttdoc">Calculate the sum of all elements in the MappedTensor.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00527">MappedTensor.cu:527</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00512">512</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00527">527</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2826,7 +2900,7 @@ Here is the call graph for this function:</div>
 <div class="line">MappedTensor::value_type sumResult = mappedTensor.<a class="code hl_function" href="#afabf30bc35435f1101a61afa77b026ad">sum</a>(batch, channel);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00527">527</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00542">542</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2890,9 +2964,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> mappedTensor;</div>
 <div class="line">mappedTensor.<a class="code hl_function" href="#a5134b8821da18631dd9a9b9417b0ba5e">sync</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_a5134b8821da18631dd9a9b9417b0ba5e"><div class="ttname"><a href="#a5134b8821da18631dd9a9b9417b0ba5e">nz::data::MappedTensor::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronizes the tensor data and its gradient.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00592">MappedTensor.cu:592</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_a5134b8821da18631dd9a9b9417b0ba5e"><div class="ttname"><a href="#a5134b8821da18631dd9a9b9417b0ba5e">nz::data::MappedTensor::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronizes the tensor data and its gradient.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00607">MappedTensor.cu:607</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00592">592</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00607">607</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2948,9 +3022,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> mappedTensor;</div>
 <div class="line">mappedTensor.<a class="code hl_function" href="#ae133d08d4505a30c6bd34e4a7a311f9e">syncData</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ae133d08d4505a30c6bd34e4a7a311f9e"><div class="ttname"><a href="#ae133d08d4505a30c6bd34e4a7a311f9e">nz::data::MappedTensor::syncData</a></div><div class="ttdeci">void syncData() const</div><div class="ttdoc">Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00588">MappedTensor.cu:588</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_ae133d08d4505a30c6bd34e4a7a311f9e"><div class="ttname"><a href="#ae133d08d4505a30c6bd34e4a7a311f9e">nz::data::MappedTensor::syncData</a></div><div class="ttdeci">void syncData() const</div><div class="ttdoc">Synchronizes the tensor data by waiting for all CUDA stream write operations on it to finish.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00603">MappedTensor.cu:603</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00588">588</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00603">603</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2994,9 +3068,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_mapped_tensor.html">MappedTensor</a> mappedTensor;</div>
 <div class="line">mappedTensor.<a class="code hl_function" href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">syncGrad</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_af9d1b0fa71f9bb7686cc26ae7b32be8d"><div class="ttname"><a href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">nz::data::MappedTensor::syncGrad</a></div><div class="ttdeci">void syncGrad() const</div><div class="ttdoc">Synchronizes the gradient data if gradient computation is required.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00582">MappedTensor.cu:582</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_mapped_tensor_html_af9d1b0fa71f9bb7686cc26ae7b32be8d"><div class="ttname"><a href="#af9d1b0fa71f9bb7686cc26ae7b32be8d">nz::data::MappedTensor::syncGrad</a></div><div class="ttdeci">void syncGrad() const</div><div class="ttdoc">Synchronizes the gradient data if gradient computation is required.</div><div class="ttdef"><b>Definition</b> <a href="_mapped_tensor_8cu_source.html#l00597">MappedTensor.cu:597</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00582">582</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00597">597</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3060,7 +3134,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.transpose();</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00414">414</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mapped_tensor_8cu_source.html#l00421">421</a> of file <a class="el" href="_mapped_tensor_8cu_source.html">MappedTensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

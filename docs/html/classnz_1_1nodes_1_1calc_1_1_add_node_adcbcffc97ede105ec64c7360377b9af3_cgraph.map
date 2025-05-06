@@ -1,13 +1,5 @@
 <map id="nz::nodes::calc::AddNode::forward" name="nz::nodes::calc::AddNode::forward">
-<area shape="rect" id="Node000001" title="Forward pass for the AddNode to perform element&#45;wise addition." alt="" coords="5,39,178,81"/>
-<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a97cda6dfc6545efaee2b686eed9ae766" title="Kernel function to perform matrix addition on GPU." alt="" coords="226,47,357,73"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,57,210,57,210,63,178,63"/>
-<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="405,5,590,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,47,389,42,390,47,358,52"/>
-<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="405,72,590,115"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,68,390,73,389,78,357,73"/>
-<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="638,39,824,81"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="590,77,622,73,623,78,591,83"/>
-<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="638,105,824,148"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="591,104,623,109,622,114,590,109"/>
+<area shape="rect" id="Node000001" title="Forward pass for the AddNode to perform element&#45;wise addition." alt="" coords="5,5,178,48"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1data.html#a8cf4ac2437dd67698684169bebb225d4" title="Performs matrix addition operation on tensors with broadcast compatibility." alt="" coords="226,13,397,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,24,210,24,210,29,178,29"/>
 </map>

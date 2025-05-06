@@ -137,6 +137,12 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 
 ## Changelog
 
+### v0.5 - High-Dimensional Tensor Infrastructure Overhaul
+- Upgraded core tensor infrastructure from 2D to **fourth-order tensor** representation, enabling native support for high-dimensional data structures.
+- Refactored core tensor modules (e.g., memory allocation, shape propagation) to align with the new four-dimensional paradigm while maintaining backward compatibility.
+- Optimized memory layout and access patterns for fourth-order tensors, improving cache utilization and computational efficiency.
+- Preserved low-dimensional tensor interfaces (2D/3D) via automatic view projection for scenarios requiring legacy dimensionality.
+
 ### v0.4 - CUDA Stream Management Enhancement
 - Added CUDA Stream Manager to automatically distribute CUDA operations across multiple streams, enabling asynchronous execution and improved concurrency.
 - Unified stream-aware APIs for seamless integration with existing Tensor and MappedTensor classes, ensuring backward compatibility.

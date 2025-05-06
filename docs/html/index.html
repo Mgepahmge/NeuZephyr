@@ -158,6 +158,14 @@ License</h3>
 <h2><a class="anchor" id="autotoc_md109"></a>
 Changelog</h2>
 <h3><a class="anchor" id="autotoc_md110"></a>
+v0.5 - High-Dimensional Tensor Infrastructure Overhaul</h3>
+<ul>
+<li>Upgraded core tensor infrastructure from 2D to <b>fourth-order tensor</b> representation, enabling native support for high-dimensional data structures.</li>
+<li>Refactored core tensor modules (e.g., memory allocation, shape propagation) to align with the new four-dimensional paradigm while maintaining backward compatibility.</li>
+<li>Optimized memory layout and access patterns for fourth-order tensors, improving cache utilization and computational efficiency.</li>
+<li>Preserved low-dimensional tensor interfaces (2D/3D) via automatic view projection for scenarios requiring legacy dimensionality.</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md111"></a>
 v0.4 - CUDA Stream Management Enhancement</h3>
 <ul>
 <li>Added CUDA Stream Manager to automatically distribute CUDA operations across multiple streams, enabling asynchronous execution and improved concurrency.</li>
@@ -165,7 +173,7 @@ v0.4 - CUDA Stream Management Enhancement</h3>
 <li>Optimized dependency resolution to intelligently track and synchronize inter-stream operations, minimizing synchronization overhead.</li>
 <li>Preserved explicit stream control for advanced users requiring fine-grained parallelism management (e.g., custom kernel launches).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md111"></a>
+<h3><a class="anchor" id="autotoc_md112"></a>
 v0.3 - Memory Management Upgrade</h3>
 <ul>
 <li>Added MappedTensor class using CUDA zero-copy memory (ideal for frequent host-side data access in non-compute-intensive scenarios).</li>
@@ -173,14 +181,14 @@ v0.3 - Memory Management Upgrade</h3>
 <li>Preserved high-performance Tensor implementation (recommended for compute-intensive workloads).</li>
 <li>Optimized memory mapping mechanisms to reduce host-device transfer overhead.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md112"></a>
+<h3><a class="anchor" id="autotoc_md113"></a>
 v0.2 - Performance Optimization</h3>
 <ul>
 <li>Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.</li>
 <li>Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.</li>
 <li>Further fine-tuned matrix operations for increased efficiency.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md113"></a>
+<h3><a class="anchor" id="autotoc_md114"></a>
 v0.1 - Initial Release</h3>
 <ul>
 <li>First release of NeuZephyr.</li>

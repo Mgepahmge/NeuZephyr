@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Implements the Softmax activation function as a node in a neural network computational graph. </p>
 <p>The <code><a class="el" href="classnz_1_1nodes_1_1calc_1_1_softmax_node.html" title="Implements the Softmax activation function as a node in a neural network computational graph.">SoftmaxNode</a></code> class applies the Softmax activation function to the input tensor, transforming it into a probability distribution. This node is commonly used as the final layer in classification networks to convert raw scores into probabilities.</p>
 <p>The Softmax function is defined as: </p><div class="fragment"><div class="line"><a class="code hl_function" href="namespacenz_1_1krnl.html#adbafc409d57fa0a9d78ecac5bf7b10a3">Softmax</a>(x_i) = exp(x_i) / sum(exp(x_j))</div>
-<div class="ttc" id="anamespacenz_1_1krnl_html_adbafc409d57fa0a9d78ecac5bf7b10a3"><div class="ttname"><a href="namespacenz_1_1krnl.html#adbafc409d57fa0a9d78ecac5bf7b10a3">nz::krnl::Softmax</a></div><div class="ttdeci">void Softmax(dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n, size_t offset=0)</div><div class="ttdoc">Kernel function to apply the Softmax function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00524">OperationKernels.cu:524</a></div></div>
+<div class="ttc" id="anamespacenz_1_1krnl_html_adbafc409d57fa0a9d78ecac5bf7b10a3"><div class="ttname"><a href="namespacenz_1_1krnl.html#adbafc409d57fa0a9d78ecac5bf7b10a3">nz::krnl::Softmax</a></div><div class="ttdeci">void Softmax(dim3 gridDim, dim3 blockDim, float *out, float *in, float exp_sum_of_input, unsigned long long n, size_t offset=0)</div><div class="ttdoc">Kernel function to apply the Softmax function on the GPU.</div><div class="ttdef"><b>Definition</b> <a href="_operation_kernels_8cu_source.html#l00525">OperationKernels.cu:525</a></div></div>
 </div><!-- fragment --><p> where x_i is the i-th element of the input vector and the sum is over all elements j.</p>
 <p>Key features and characteristics:</p><ul>
 <li><b>Probability Output</b>: Transforms input into a probability distribution where all elements sum to 1.</li>
@@ -175,7 +175,7 @@ Usage Example:</h3>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Backward pass for gradient computation</span></div>
 <div class="line">softmax.backward();</div>
-<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_html_a6bd70cb3436435bac2055e86dfdb078b"><div class="ttname"><a href="#a6bd70cb3436435bac2055e86dfdb078b">nz::nodes::calc::SoftmaxNode::SoftmaxNode</a></div><div class="ttdeci">SoftmaxNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SoftmaxNode for applying the Softmax activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00470">Nodes.cu:470</a></div></div>
+<div class="ttc" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_html_a6bd70cb3436435bac2055e86dfdb078b"><div class="ttname"><a href="#a6bd70cb3436435bac2055e86dfdb078b">nz::nodes::calc::SoftmaxNode::SoftmaxNode</a></div><div class="ttdeci">SoftmaxNode(Node *input)</div><div class="ttdoc">Constructor to initialize a SoftmaxNode for applying the Softmax activation function.</div><div class="ttdef"><b>Definition</b> <a href="_nodes_8cu_source.html#l00524">Nodes.cu:524</a></div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024/12/5 </dd></dl>
 
@@ -234,7 +234,7 @@ Usage Example:</h3>
 <dl class="section author"><dt>Author</dt><dd>Mgepahmge (<a href="https://github.com/Mgepahmge">https://github.com/Mgepahmge</a>)</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023/12/06 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00470">470</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00524">524</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -296,44 +296,7 @@ Usage Example:</h3>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a0a9ecbaa3d790ba38e8218aca7837fd0">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00499">499</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_softmax_node_aa991e3bde7a3a5edbee62fab1cabba23_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_softmax_node_aa991e3bde7a3a5edbee62fab1cabba23_cgraph" alt=""/></div>
-<map name="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_aa991e3bde7a3a5edbee62fab1cabba23_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_aa991e3bde7a3a5edbee62fab1cabba23_cgraph">
-<area shape="rect" title="Performs the backward pass of the Softmax operation." alt="" coords="5,73,173,116"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="237,5,385,32"/>
-<area shape="poly" title=" " alt="" coords="142,70,220,41,242,34,244,39,222,47,144,75"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#aade7b0c42622279888d755f4f7989aac" title="Retrieves the shape of the tensor." alt="" coords="232,56,390,83"/>
-<area shape="poly" title=" " alt="" coords="173,82,216,77,216,83,173,88"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a4375738c83ef892783abc210578e5b39" title="Kernel function to compute the Jacobian of the Softmax function." alt="" coords="224,107,398,133"/>
-<area shape="poly" title=" " alt="" coords="173,102,209,106,208,111,173,107"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#aa84aa2397f4f5a09a96bef76726e46f0" title="Kernel function to perform fast matrix multiplication using Tensor Cores with half&#45;precision (FP16) s..." alt="" coords="221,165,401,192"/>
-<area shape="poly" title=" " alt="" coords="147,114,222,143,259,157,257,162,220,148,145,119"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="449,32,634,75"/>
-<area shape="poly" title=" " alt="" coords="361,103,400,92,452,77,454,82,402,97,362,109"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="449,99,634,141"/>
-<area shape="poly" title=" " alt="" coords="398,117,433,117,433,123,398,123"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="682,232,868,275"/>
-<area shape="poly" title=" " alt="" coords="617,140,636,151,652,168,661,185,669,202,684,218,689,222,686,226,681,222,664,205,656,188,648,171,633,155,615,144"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="682,165,868,208"/>
-<area shape="poly" title=" " alt="" coords="619,139,684,158,682,163,618,144"/>
-<area shape="poly" title=" " alt="" coords="362,162,399,143,414,129,423,115,432,100,447,85,454,80,457,85,451,89,436,103,427,117,418,132,403,148,364,167"/>
-<area shape="poly" title=" " alt="" coords="366,162,439,143,441,148,367,167"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="449,165,634,208"/>
-<area shape="poly" title=" " alt="" coords="401,179,434,180,433,186,401,184"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="449,299,634,341"/>
-<area shape="poly" title=" " alt="" coords="328,190,380,236,414,261,450,284,460,290,458,294,448,289,411,266,376,240,324,194"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="449,232,634,275"/>
-<area shape="poly" title=" " alt="" coords="355,190,460,224,458,229,354,195"/>
-<area shape="poly" title=" " alt="" coords="619,206,684,225,682,230,618,211"/>
-<area shape="poly" title=" " alt="" coords="635,184,667,184,667,189,635,189"/>
-<area shape="poly" title=" " alt="" coords="618,296,682,277,684,282,619,301"/>
-<area shape="poly" title=" " alt="" coords="635,251,667,251,667,256,635,256"/>
-<area shape="poly" title=" " alt="" coords="618,229,682,210,684,215,619,234"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00538">538</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 
 </div>
 </div>
@@ -397,40 +360,23 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classnz_1_1nodes_1_1_node.html#a8a828c2e91a4aa2a9ab7b94554e4685b">nz::nodes::Node</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00478">478</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nodes_8cu_source.html#l00534">534</a> of file <a class="el" href="_nodes_8cu_source.html">Nodes.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph.png" border="0" usemap="#aclassnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph" alt=""/></div>
 <map name="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph" id="aclassnz_1_1nodes_1_1calc_1_1_softmax_node_a93f7d936ff487db8e7dceb6ee0cdc38e_cgraph">
-<area shape="rect" title="Performs the forward pass of the Softmax operation." alt="" coords="5,181,173,224"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="221,5,406,48"/>
-<area shape="poly" title=" " alt="" coords="105,179,153,123,184,92,219,64,238,53,241,58,222,69,188,96,157,127,109,183"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="454,64,639,107"/>
-<area shape="poly" title=" " alt="" coords="111,179,159,141,188,123,220,108,274,93,331,83,438,77,438,82,332,88,275,98,222,113,191,127,162,145,115,183"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="454,248,639,291"/>
-<area shape="poly" title=" " alt="" coords="119,222,165,252,193,266,221,276,276,287,332,290,387,289,438,285,439,290,387,295,332,296,275,292,220,281,191,271,163,257,116,227"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="221,123,406,165"/>
-<area shape="poly" title=" " alt="" coords="172,178,214,167,215,172,174,183"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="454,315,639,357"/>
-<area shape="poly" title=" " alt="" coords="114,222,161,262,190,281,222,296,275,313,331,325,438,335,438,340,331,330,274,318,220,301,188,285,158,266,110,226"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#adbafc409d57fa0a9d78ecac5bf7b10a3" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="253,240,374,267"/>
-<area shape="poly" title=" " alt="" coords="173,219,238,234,237,239,172,224"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="233,189,394,216"/>
-<area shape="poly" title=" " alt="" coords="173,200,217,200,217,205,173,205"/>
-<area shape="poly" title=" " alt="" coords="401,46,445,57,444,62,400,51"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="687,181,873,224"/>
-<area shape="poly" title=" " alt="" coords="407,145,518,152,640,167,682,175,681,180,639,172,518,158,406,150"/>
-<area shape="poly" title=" " alt="" coords="614,312,638,300,735,231,738,235,641,305,616,316"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="687,281,873,324"/>
-<area shape="poly" title=" " alt="" coords="639,320,671,315,672,321,640,325"/>
-<area shape="poly" title=" " alt="" coords="374,255,438,259,438,265,374,260"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="454,181,639,224"/>
-<area shape="poly" title=" " alt="" coords="373,238,438,223,439,229,375,243"/>
-<area shape="poly" title=" " alt="" coords="640,200,672,200,672,205,640,205"/>
-<area shape="poly" title=" " alt="" coords="612,222,640,234,723,272,721,276,638,238,610,227"/>
-<area shape="poly" title=" " alt="" coords="366,214,407,225,459,241,457,246,405,231,365,219"/>
-<area shape="poly" title=" " alt="" coords="394,200,439,200,439,205,394,205"/>
+<area shape="rect" title="Performs the forward pass of the Softmax operation." alt="" coords="5,39,173,81"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#adbafc409d57fa0a9d78ecac5bf7b10a3" title="Kernel function to apply the Softmax function on the GPU." alt="" coords="221,47,342,73"/>
+<area shape="poly" title=" " alt="" coords="173,57,205,57,205,63,173,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="390,5,575,48"/>
+<area shape="poly" title=" " alt="" coords="342,47,374,42,375,47,343,53"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="390,72,575,115"/>
+<area shape="poly" title=" " alt="" coords="343,67,375,73,374,78,342,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="623,39,809,81"/>
+<area shape="poly" title=" " alt="" coords="575,77,607,73,608,78,576,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="623,105,809,148"/>
+<area shape="poly" title=" " alt="" coords="576,104,608,109,607,114,575,109"/>
 </map>
 </div>
 

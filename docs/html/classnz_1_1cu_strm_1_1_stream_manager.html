@@ -576,7 +576,7 @@ template&lt;typename T &gt; </div>
 <div class="line">cudaStreamSynchronize(stream);</div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>cudaStreamCreate, cudaStreamSynchronize, std::lock_guard </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00781">781</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00799">799</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
 
 </div>
 </div>
@@ -949,7 +949,7 @@ template&lt;typename T &gt; </div>
 <div class="line">manager.syncData(d_data);  <span class="comment">// Wait for completion</span></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>curandCreateGenerator, curandGenerateUniform, eventPool </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00739">739</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00757">757</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1032,11 +1032,11 @@ template&lt;typename T &gt; </div>
 <div class="line">cudaMemcpyAsync(devPtr, hostPtr, size, cudaMemcpyHostToDevice, stream);</div>
 <div class="line"><a class="code hl_function" href="#a1260d95d0eddf75b72700da07361a4bd">recordData</a>(devPtr, stream);  <span class="comment">// Bookmark write completion</span></div>
 <div class="line"><a class="code hl_function" href="#adb1078a67c6e38932d7d58c2adb05ec0">streamWait</a>(devPtr, computeStream);  <span class="comment">// Enforce dependency</span></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1260d95d0eddf75b72700da07361a4bd"><div class="ttname"><a href="#a1260d95d0eddf75b72700da07361a4bd">nz::cuStrm::StreamManager::recordData</a></div><div class="ttdeci">void recordData(T *data, cudaStream_t stream)</div><div class="ttdoc">Records write completion event for asynchronous data operations.</div><div class="ttdef"><b>Definition</b> <a href="_stream_manager_8cuh_source.html#l00868">StreamManager.cuh:868</a></div></div>
-<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_adb1078a67c6e38932d7d58c2adb05ec0"><div class="ttname"><a href="#adb1078a67c6e38932d7d58c2adb05ec0">nz::cuStrm::StreamManager::streamWait</a></div><div class="ttdeci">void streamWait(T *data, cudaStream_t stream)</div><div class="ttdoc">Synchronizes CUDA stream execution until data writes complete.</div><div class="ttdef"><b>Definition</b> <a href="_stream_manager_8cuh_source.html#l00822">StreamManager.cuh:822</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_a1260d95d0eddf75b72700da07361a4bd"><div class="ttname"><a href="#a1260d95d0eddf75b72700da07361a4bd">nz::cuStrm::StreamManager::recordData</a></div><div class="ttdeci">void recordData(T *data, cudaStream_t stream)</div><div class="ttdoc">Records write completion event for asynchronous data operations.</div><div class="ttdef"><b>Definition</b> <a href="_stream_manager_8cuh_source.html#l00886">StreamManager.cuh:886</a></div></div>
+<div class="ttc" id="aclassnz_1_1cu_strm_1_1_stream_manager_html_adb1078a67c6e38932d7d58c2adb05ec0"><div class="ttname"><a href="#adb1078a67c6e38932d7d58c2adb05ec0">nz::cuStrm::StreamManager::streamWait</a></div><div class="ttdeci">void streamWait(T *data, cudaStream_t stream)</div><div class="ttdoc">Synchronizes CUDA stream execution until data writes complete.</div><div class="ttdef"><b>Definition</b> <a href="_stream_manager_8cuh_source.html#l00840">StreamManager.cuh:840</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>cudaEventRecord, cudaStreamAddCallback, <a class="el" href="classnz_1_1cu_strm_1_1_event_pool.html#a7cdb0eb8403303e52ad5cc5f6e2d0737" title="Record an event in a CUDA stream associated with a given data pointer.">EventPool::recordData</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00868">868</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00886">886</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
 
 </div>
 </div>
@@ -1108,7 +1108,7 @@ template&lt;typename T &gt; </div>
 <div class="line">processData&lt;&lt;&lt;..., computeStream&gt;&gt;&gt;(d_data);  <span class="comment">// Safe access</span></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>cudaStreamWaitEvent, cudaEventRecord, <a class="el" href="classnz_1_1cu_strm_1_1_event_pool.html" title="Internal event management system for CUDA stream synchronization (Part of StreamManager)">EventPool</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00822">822</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00840">840</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
 
 </div>
 </div>
@@ -1345,7 +1345,7 @@ template&lt;typename T &gt; </div>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd>cudaStreamSynchronize, <a class="el" href="#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream-ordered dependency management.">submit()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00653">653</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00671">671</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
 
 </div>
 </div>
@@ -1414,7 +1414,7 @@ template&lt;typename T &gt; </div>
 <div class="line">cudaMemcpy(host_result, result_data, ..., cudaMemcpyDeviceToHost);</div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream-ordered dependency management.">submit()</a>, eventPool </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00696">696</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_stream_manager_8cuh_source.html#l00714">714</a> of file <a class="el" href="_stream_manager_8cuh_source.html">StreamManager.cuh</a>.</p>
 
 </div>
 </div>
