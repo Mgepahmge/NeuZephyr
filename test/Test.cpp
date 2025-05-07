@@ -4,6 +4,7 @@
 #include <TensorOperations.cuh>
 #include <Nodes.cuh>
 #include <Optimizer.cuh>
+#include <ComputeGraph.cuh>
 using namespace nz::data;
 using namespace nz::nodes;
 using namespace nz::nodes::calc;
@@ -2554,4 +2555,61 @@ TEST(OptimizerBasic, AdaDeltaTest) {
     expected.dataInject(expectedData.begin(), expectedData.end());
     expected.dataInject(grad.begin(), grad.end(), true);
     EXPECT_EQ(*input.output, expected);
+}
+
+TEST(ComputeGraph, GraphForwardTest) {
+    graph::ComputeGraph graph;
+    InputNode input1({2, 3, 4, 5});
+    InputNode param1({1, 3, 5, 1});
+    InputNode param2({2, 3, 4, 1});
+    InputNode target({2, 3, 4, 1});
+    MatMulNode matmul(&input1, &param1);
+    ReLUNode relu(&matmul);
+    AddNode add(&relu, &param2);
+    MeanSquaredErrorNode mse(&add, &target);
+    MappedTensor input1Data({2, 3, 4, 5});
+    MappedTensor param1Data({1, 3, 5, 1});
+    MappedTensor param2Data({2, 3, 4, 1});
+    MappedTensor targetData({2, 3, 4, 1});
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : input1Data) {
+        i = dist(gen);
+    }
+    for (auto& i : param1Data) {
+        i = dist(gen);
+    }
+    for (auto& i : param2Data) {
+        i = dist(gen);
+    }
+    for (auto& i : targetData) {
+        i = dist(gen);
+    }
+    input1.dataInject(input1Data.begin(), input1Data.end());
+    param1.dataInject(param1Data.begin(), param1Data.end());
+    param2.dataInject(param2Data.begin(), param2Data.end());
+    target.dataInject(targetData.begin(), targetData.end());
+    MappedTensor mulResult({2, 3, 4, 1});
+    GEMMTensorCore(mulResult, input1Data, param1Data);
+    auto reluResult = ReLU(mulResult);
+    auto addResult = reluResult + param2Data;
+    float loss = 0.0f;
+    for (auto i = 0; i < addResult.size(); i++) {
+        loss += (addResult[i] - targetData[i]) * (addResult[i] - targetData[i]);
+    }
+    loss /= static_cast<float>(addResult.size());
+    graph.addNode(&input1);
+    graph.addNode(&param1);
+    graph.addNode(&param2);
+    graph.addNode(&target);
+    graph.addNode(&matmul);
+    graph.addNode(&relu);
+    graph.addNode(&add);
+    graph.addNode(&mse);
+    graph.forward();
+    Tensor expected({2, 3, 4, 1});
+    expected.dataInject(addResult.begin(), addResult.end());
+    EXPECT_EQ(expected, *add.output);
+    EXPECT_NEAR(loss, mse.getLoss(), 1e-2);
 }
