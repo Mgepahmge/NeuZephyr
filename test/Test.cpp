@@ -5,6 +5,7 @@
 #include <Nodes.cuh>
 #include <Optimizer.cuh>
 #include <ComputeGraph.cuh>
+#include <Model.cuh>
 using namespace nz::data;
 using namespace nz::nodes;
 using namespace nz::nodes::calc;
@@ -2612,4 +2613,107 @@ TEST(ComputeGraph, GraphForwardTest) {
     expected.dataInject(addResult.begin(), addResult.end());
     EXPECT_EQ(expected, *add.output);
     EXPECT_NEAR(loss, mse.getLoss(), 1e-2);
+}
+
+TEST(NodeBasic, ReshapeForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> data(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : data) {
+        i = dist(gen);
+    }
+    Tensor tensor({n, c, h, w});
+    InputNode input({n, c, h, w});
+    tensor.dataInject(data.begin(), data.end());
+    input.dataInject(data.begin(), data.end());
+    ReshapeNode result(&input, {n, 1, c*h*w, 1});
+    result.forward();
+    tensor.reshape({n, 1, c*h*w, 1});
+    EXPECT_EQ(tensor, *result.output);
+}
+
+TEST(NodeBasic, ReshapeBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> data(n*c*h*w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : data) {
+        i = dist(gen);
+    }
+    Tensor tensor({n, c, h, w}, true);
+    InputNode input({n, c, h, w}, true);
+    tensor.dataInject(data.begin(), data.end(), true);
+    ReshapeNode result(&input, {n, 1, c*h*w, 1});
+    result.dataInject(data.begin(), data.end(), true);
+    result.backward();
+    EXPECT_EQ(tensor, *input.output);
+}
+
+TEST(NodeBasic, ExpandForward) {
+    const size_t n = 10;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> input(1 * c * h * w);
+    std::vector<float> expected(n * c * h * w);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+    for (auto& i : input) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c * h * w; j++) {
+            expected[i * c * h * w + j] = input[j];
+        }
+    }
+    InputNode i({1, c, h, w});
+    i.dataInject(input.begin(), input.end());
+    ExpandNode result(&i, n);
+    result.forward();
+    Tensor expectedTensor({n, c, h, w});
+    expectedTensor.dataInject(expected.begin(), expected.end());
+    EXPECT_EQ(expectedTensor, *result.output);
+}
+
+TEST(NodeBasic, ExpandBackward) {
+    const size_t n = 10;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> input(n * c * h * w);
+    std::vector<float> expected(1 * c * h * w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+
+    for (auto& i : input) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c * h * w; j++) {
+            expected[j] += input[i * c * h * w + j];
+        }
+    }
+    InputNode i({1, c, h, w}, true);
+    ExpandNode result(&i, n);
+    result.dataInject(input.begin(), input.end(), true);
+    result.backward();
+    Tensor expectedTensor({1, c, h, w}, true);
+    expectedTensor.dataInject(expected.begin(), expected.end(), true);
+    EXPECT_EQ(expectedTensor, *i.output);
 }
