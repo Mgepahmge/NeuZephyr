@@ -1276,4 +1276,30 @@ namespace nz::krnl {
             StreamManager<float>::Instance().recordData(out, stream);
         }
     }
+
+    __global__ void ExpandKernel(float* out, const float* in, const size_t n, const size_t total) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= total) {
+            return;
+        }
+        out[idx] = in[idx % n];
+    }
+
+    void Expand(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const size_t n,
+                 const size_t total) {
+        StreamManager<float>::Instance().submit(ExpandKernel, gridDim, blockDim, 0, out, in, n, total);
+    }
+
+    __global__ void CompressKernel(float* out, const float* in, const size_t n, const size_t total) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= total) {
+            return;
+        }
+        atomicAdd(out + idx % n, in[idx]);
+    }
+
+    void Compress(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const size_t n,
+                  const size_t total) {
+        StreamManager<float>::Instance().submit(CompressKernel, gridDim, blockDim, 0, out, in, n, total);
+    }
 }

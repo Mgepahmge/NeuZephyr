@@ -997,8 +997,14 @@ namespace nz::krnl {
     void gradCopy(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
                   const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
 
-    void NgradCopy(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t n,
+    void NgradCopy(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
                    const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
+
+    void Expand(dim3 gridDim, dim3 blockDim, float* out, const float* in, size_t n,
+                size_t total);
+
+    void Compress(dim3 gridDim, dim3 blockDim, float* out, const float* in, size_t n,
+                  size_t total);
 #endif
 }
 

@@ -583,37 +583,22 @@ namespace nz::nodes {
         }
 
         void ExpandNode::forward() {
-            auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
+            const auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
                         inputs[0]->output->shape()[3];
-            auto* temp = new Tensor::value_type[size];
-            cuStrm::StreamManager<float>::Instance().memcpy(temp, inputs[0]->output->data(),
-                                                 size * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
-            cuStrm::StreamManager<float>::Instance().syncData(temp);
-            std::vector<float> temp2(newBatch * size);
-            for (int i = 0; i < newBatch; i++) {
-                for (int j = 0; j < size; j++) {
-                    temp2[i * size + j] = temp[j];
-                }
-            }
-            output->dataInject(temp2.begin(), temp2.end());
+            const auto total = size * newBatch;
+            const dim3 block(BLOCKSIZE);
+            const dim3 grid((total + block.x - 1) / block.x);
+            Expand(grid, block, output->data(), inputs[0]->output->data(), size, total);
         }
 
         void ExpandNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
+                const auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
                             inputs[0]->output->shape()[3];
-                auto* temp1 = new Tensor::value_type[size * newBatch];
-                cuStrm::StreamManager<float>::Instance().memcpy(temp1, output->grad(),
-                                                                size * newBatch * sizeof(Tensor::value_type),
-                                                                cudaMemcpyDeviceToHost);
-                cuStrm::StreamManager<float>::Instance().syncData(temp1);
-                std::vector<float> temp2(size);
-                for (int i = 0; i < newBatch; i++) {
-                    for (int j = 0; j < size; j++) {
-                        temp2[j] += temp1[i * size + j];
-                    }
-                }
-                inputs[0]->output->dataInject(temp2.begin(), temp2.end(), true);
+                const auto total = size * newBatch;
+                const dim3 block(BLOCKSIZE);
+                const dim3 grid((total + block.x - 1) / block.x);
+                Compress(grid, block, inputs[0]->output->grad(), output->grad(), size, total);
             }
         }
     }
