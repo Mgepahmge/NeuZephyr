@@ -208,9 +208,15 @@ namespace nz::data {
     }
 
     Tensor::~Tensor() noexcept(false) {
-        cuStrm::StreamManager<value_type>::Instance().free(_data);
+        if (_data != nullptr) {
+            cuStrm::StreamManager<value_type>::Instance().freeAsync(_data);
+            _data = nullptr;
+        }
         if (_requires_grad) {
-            cuStrm::StreamManager<value_type>::Instance().free(_grad);
+            if (_grad != nullptr) {
+                cuStrm::StreamManager<value_type>::Instance().freeAsync(_grad);
+                _grad = nullptr;
+            }
         }
     }
 
