@@ -2717,3 +2717,163 @@ TEST(NodeBasic, ExpandBackward) {
     expectedTensor.dataInject(expected.begin(), expected.end(), true);
     EXPECT_EQ(expectedTensor, *i.output);
 }
+
+class MSETestModel : public Model {
+public:
+    InputNode input;
+    InputNode target;
+
+    MSETestModel() : input({5, 3, 12, 1}, true), target({1, 3, 12, 1}) {
+        MSELoss(&input, &target);
+    }
+};
+
+TEST(Model, MSELossTest) {
+    const size_t n = 5;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+
+    MSETestModel model{};
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> targetData(1 * c * h * w);
+    std::vector<float> expectedGrad(n * c * h * w);
+    float expectedLoss = 0.0f;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : targetData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedLoss += (inputData[i] - targetData[i % targetData.size()]) * (inputData[i] - targetData[i % targetData.size()]);
+    }
+    expectedLoss /= static_cast<float>(inputData.size());
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedGrad[i] = (inputData[i] - targetData[i % targetData.size()]) * 2.0f / static_cast<float>(inputData.size());
+    }
+
+    model.input.dataInject(inputData.begin(), inputData.end());
+    model.target.dataInject(targetData.begin(), targetData.end());
+    model.forward();
+    Tensor expectedGradTensor({n, c, h, w}, true);
+    expectedGradTensor.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    expectedGradTensor.dataInject(inputData.begin(), inputData.end());
+    model.backward();
+
+    EXPECT_NEAR(expectedLoss, model.getLoss(), 1e-2);
+    EXPECT_EQ(expectedGradTensor, *model.input.output);
+}
+
+class BCETestModel : public Model {
+public:
+    InputNode input;
+    InputNode target;
+
+    BCETestModel() : input({5, 3, 12, 1}, true), target({1, 3, 12, 1}) {
+        BCELoss(&input, &target);
+    }
+};
+
+TEST(Model, BCELossTest) {
+    const size_t n = 5;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+
+    BCETestModel model{};
+
+    std::vector<float> inputData(n * c * h * w);
+    std::vector<float> targetData(1 * c * h * w);
+    std::vector<float> expectedGrad(n * c * h * w);
+    float expectedLoss = 0.0f;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : targetData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedLoss += -targetData[i % targetData.size()] * std::log(inputData[i]) - (1 - targetData[i % targetData.size()]) * std::log(1 - inputData[i]);
+    }
+    expectedLoss /= static_cast<float>(inputData.size());
+    for (auto i = 0; i < inputData.size(); i++) {
+        expectedGrad[i] = ((inputData[i] - targetData[i % targetData.size()]) / (inputData[i] * (1 - inputData[i]))) / static_cast<float>(inputData.size());
+    }
+
+    model.input.dataInject(inputData.begin(), inputData.end());
+    model.target.dataInject(targetData.begin(), targetData.end());
+    model.forward();
+    Tensor expectedGradTensor({n, c, h, w}, true);
+    expectedGradTensor.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    expectedGradTensor.dataInject(inputData.begin(), inputData.end());
+    model.backward();
+
+    EXPECT_NEAR(model.getLoss(), expectedLoss, 1e-2);
+    EXPECT_EQ(expectedGradTensor, *model.input.output);
+}
+
+class SGDTestModel : public Model {
+public:
+    InputNode input1;
+    InputNode input2;
+
+    SGDTestModel() : input1({5, 3, 12, 1}, true), input2({5, 3, 12, 1}) {
+        auto x = Add(&input1, &input2);
+    }
+};
+
+TEST(Model, SGDOptimize) {
+    const size_t n = 5;
+    const size_t c = 3;
+    const size_t h = 12;
+    const size_t w = 1;
+    const float lr = 0.01f;
+
+    std::vector<float> input1Data(n * c * h * w);
+    std::vector<float> input2Data(n * c * h * w);
+    std::vector<float> input1Gard(n * c * h * w);
+    std::vector<float> expectedData(n * c * h * w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : input1Data) {
+        i = dist(gen);
+    }
+    for (auto& i : input2Data) {
+        i = dist(gen);
+    }
+    for (auto& i : input1Gard) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < input1Data.size(); i++) {
+        expectedData[i] = input1Data[i] - lr * input1Gard[i];
+    }
+
+    SGDTestModel model{};
+    model.input1.dataInject(input1Data.begin(), input1Data.end());
+    model.input2.dataInject(input2Data.begin(), input2Data.end());
+    model.input1.dataInject(input1Gard.begin(), input1Gard.end(), true);
+
+    opt::SGD optimizer(lr);
+    model.update(&optimizer);
+
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    expected.dataInject(input1Gard.begin(), input1Gard.end(), true);
+
+    EXPECT_EQ(expected, *model.input1.output);
+}
