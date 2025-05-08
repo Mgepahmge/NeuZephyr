@@ -1453,6 +1453,8 @@ namespace nz::graph {
          */
         void update(Optimizer* optimizer) const;
 
+        bool inGraph(Node* node) const;
+
         /// @}
 
         /// @name File Managers

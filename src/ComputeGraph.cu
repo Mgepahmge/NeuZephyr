@@ -416,6 +416,7 @@ namespace nz::graph {
             throw std::runtime_error("Graph is not sorted");
         }
         if (outputNodes.size() == 1) {
+            outputNodes[0]->output->sync();
             for (auto it = sortedNodes.rbegin(); it != sortedNodes.rend(); ++it) {
                 (*it)->backward();
             }
@@ -543,6 +544,10 @@ namespace nz::graph {
                 optimizer->step(node);
             }
         }
+    }
+
+    bool ComputeGraph::inGraph(Node* node) const {
+        return std::find(nodes.begin(), nodes.end(), node) != nodes.end();
     }
 
     void ComputeGraph::save(const std::string& path) {
