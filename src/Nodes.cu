@@ -546,6 +546,76 @@ namespace nz::nodes {
                                        jacobian.shape(), inputs[0]->output->shape());
             }
         }
+
+        ReshapeNode::ReshapeNode(Node* input, const Tensor::shape_type& newShape) : newShape(newShape) {
+            if (input->output->shape().size() != newShape.size()) {
+                throw std::invalid_argument("ReshapeNode: input and new shape must have the same number of dimensions");
+            }
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(newShape, input->output->requiresGrad());
+            type = "Reshape";
+        }
+
+        void ReshapeNode::forward() {
+            cuStrm::StreamManager<float>::Instance().memcpy(output->data(), inputs[0]->output->data(),
+                                                            output->size() * sizeof(Tensor::value_type),
+                                                            cudaMemcpyDeviceToDevice);
+        }
+
+        void ReshapeNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                cuStrm::StreamManager<float>::Instance().memcpy(inputs[0]->output->grad(), output->grad(),
+                                                                output->size() * sizeof(Tensor::value_type),
+                                                                cudaMemcpyDeviceToDevice);
+            }
+        }
+
+        ExpandNode::ExpandNode(Node* input, const Tensor::size_type newBatch) : newBatch(newBatch) {
+            if (input->output->shape()[0] != 1) {
+                throw std::invalid_argument("ExpandNode: input must have batch size 1");
+            }
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type{
+                                                  newBatch, input->output->shape()[1], input->output->shape()[2],
+                                                  input->output->shape()[3]
+                                              }, input->output->requiresGrad());
+            type = "Expand";
+        }
+
+        void ExpandNode::forward() {
+            auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
+                        inputs[0]->output->shape()[3];
+            auto* temp = new Tensor::value_type[size];
+            cuStrm::StreamManager<float>::Instance().memcpy(temp, inputs[0]->output->data(),
+                                                 size * sizeof(Tensor::value_type), cudaMemcpyDeviceToHost);
+            cuStrm::StreamManager<float>::Instance().syncData(temp);
+            std::vector<float> temp2(newBatch * size);
+            for (int i = 0; i < newBatch; i++) {
+                for (int j = 0; j < size; j++) {
+                    temp2[i * size + j] = temp[j];
+                }
+            }
+            output->dataInject(temp2.begin(), temp2.end());
+        }
+
+        void ExpandNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
+                            inputs[0]->output->shape()[3];
+                auto* temp1 = new Tensor::value_type[size * newBatch];
+                cuStrm::StreamManager<float>::Instance().memcpy(temp1, output->grad(),
+                                                                size * newBatch * sizeof(Tensor::value_type),
+                                                                cudaMemcpyDeviceToHost);
+                cuStrm::StreamManager<float>::Instance().syncData(temp1);
+                std::vector<float> temp2(size);
+                for (int i = 0; i < newBatch; i++) {
+                    for (int j = 0; j < size; j++) {
+                        temp2[j] += temp1[i * size + j];
+                    }
+                }
+                inputs[0]->output->dataInject(temp2.begin(), temp2.end(), true);
+            }
+        }
     }
 
     namespace loss {

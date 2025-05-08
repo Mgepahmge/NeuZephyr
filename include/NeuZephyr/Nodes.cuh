@@ -3277,6 +3277,28 @@ namespace nz::nodes {
              */
             void backward() override;
         };
+
+        class DL_API ReshapeNode : public Node {
+        public:
+            Tensor::shape_type newShape;
+
+            ReshapeNode(Node* input, const Tensor::shape_type& newShape);
+
+            void forward() override;
+
+            void backward() override;
+        };
+
+        class DL_API ExpandNode : public Node {
+        public:
+            Tensor::size_type newBatch;
+
+            ExpandNode(Node* input, Tensor::size_type newBatch);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**
