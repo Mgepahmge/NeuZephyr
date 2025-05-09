@@ -131,4 +131,12 @@ namespace nz::data {
         dim3 grid((n + block.x - 1) / block.x, (n + block.y - 1) / block.y);
         krnl::SoftmaxJacobian(grid, block, out, in, n, offset_o, offset_i);
     }
+
+    void iImg2col(float* out, float* in, const size_t H_out, const size_t W_out, const size_t C, const size_t K_h,
+        const size_t K_w, const size_t stride, const size_t pad, const size_t H_in, const size_t W_in,
+        const size_t batch) {
+        const dim3 block(BLOCKSIZE);
+        const dim3 grid((H_out * W_out * C * K_h * K_w * batch + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::img2col(grid, block, out, in, H_out, W_out, C, K_h, K_w, stride, pad, H_in, W_in, batch);
+    }
 }

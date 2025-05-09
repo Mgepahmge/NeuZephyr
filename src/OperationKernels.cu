@@ -1285,7 +1285,7 @@ namespace nz::krnl {
         out[idx] = in[idx % n];
     }
 
-    void Expand(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const size_t n,
+    void Expand(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t n,
                  const size_t total) {
         StreamManager<float>::Instance().submit(ExpandKernel, gridDim, blockDim, 0, out, in, n, total);
     }
@@ -1298,8 +1298,36 @@ namespace nz::krnl {
         atomicAdd(out + idx % n, in[idx]);
     }
 
-    void Compress(const dim3 gridDim, const dim3 blockDim, float* out, const float* in, const size_t n,
+    void Compress(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t n,
                   const size_t total) {
         StreamManager<float>::Instance().submit(CompressKernel, gridDim, blockDim, 0, out, in, n, total);
+    }
+
+    __global__ void img2colKernel(float* out, const float* in, const size_t H_out, const size_t W_out, const size_t C,
+        const size_t K_h, const size_t K_w, const size_t stride, const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= H_out * W_out * C * K_h * K_w * batch) {
+            return;
+        }
+        const size_t fixedIdx = idx % (H_out * W_out * C * K_h * K_w);
+        const size_t currentBatch = idx / (H_out * W_out * C * K_h * K_w);
+        const size_t k = fixedIdx / (C * K_h * K_w);
+        const size_t m = fixedIdx % (C * K_h * K_w);
+        const size_t c = m / (K_h * K_w);
+        const long long h = (k / W_out) * stride - pad + (m % (K_h * K_w)) / K_w;
+        const long long w = (k % W_out) * stride - pad + m % K_w;
+        if (h >= 0 && h < H_in && w >= 0 && w < W_in) {
+            out[idx] = in[currentBatch * (C * H_in * W_in) + c * (H_in * W_in) + h * W_in + w];
+        }
+        else {
+            out[idx] = 0;
+        }
+    }
+
+    void img2col(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
+              const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
+              const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
+        StreamManager<float>::Instance().submit(img2colKernel, gridDim, blockDim, 0, out, in, H_out, W_out, C,
+                                                K_h, K_w, stride, pad, H_in, W_in, batch);
     }
 }

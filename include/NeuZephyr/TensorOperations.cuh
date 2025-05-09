@@ -798,8 +798,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -869,8 +869,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -939,8 +939,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -1008,8 +1008,8 @@ namespace nz::data {
             for (auto j = 0; j < out.shape()[1]; j++) {
                 offsetC.push_back(i * out.shape().getStride(0) + j * out.shape().getStride(1));
                 offsetA.push_back(i * (lhs.shape().N() > 1 ? lhs.shape().getStride(0) : 0) + j * (lhs.shape().C() > 1
-                        ? lhs.shape().getStride(1)
-                        : 0));
+                    ? lhs.shape().getStride(1)
+                    : 0));
                 offsetB.push_back(i * (rhs.shape().N() > 1 ? rhs.shape().getStride(0) : 0) + j * (
                     rhs.shape().C() > 1 ? rhs.shape().getStride(1) : 0));
             }
@@ -1085,7 +1085,8 @@ namespace nz::data {
         return result;
     }
 
-    DL_API void iSoftmaxJacobian(float* out, float* in, size_t n, const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
+    DL_API void iSoftmaxJacobian(float* out, float* in, size_t n, const std::vector<size_t>& offset_o,
+                                 const std::vector<size_t>& offset_i);
 
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, T>
@@ -1101,6 +1102,22 @@ namespace nz::data {
             }
         }
         iSoftmaxJacobian(result.data(), in.data(), n, offset_o, offset_i);
+        return result;
+    }
+
+    DL_API void iImg2col(float* out, float* in, const size_t H_out,
+                         const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
+                         const size_t pad, const size_t H_in, const size_t W_in, const size_t batch);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    tensorImg2col(const T& in, const size_t K_h, const size_t K_w, const size_t stride,
+                  const size_t pad) {
+        const size_t H_out = (in.shape().H() + 2 * pad - K_h) / stride + 1;
+        const size_t W_out = (in.shape().W() + 2 * pad - K_w) / stride + 1;
+        T result({in.shape()[0], 1, H_out * W_out, in.shape().C() * K_h * K_w});
+        iImg2col(result.data(), in.data(), H_out, W_out, in.shape().C(), K_h, K_w, stride, pad,
+                 in.shape().H(), in.shape().W(), in.shape()[0]);
         return result;
     }
 }
