@@ -3299,6 +3299,23 @@ namespace nz::nodes {
 
             void backward() override;
         };
+
+        class DL_API Img2ColNode : public Node {
+        public:
+            Tensor::size_type kernelHeight;
+            Tensor::size_type kernelWidth;
+            Tensor::size_type stride;
+            Tensor::size_type padding;
+            Tensor::size_type outputHeight;
+            Tensor::size_type outputWidth;
+
+            Img2ColNode(Node* input, Tensor::size_type kernelHeight, Tensor::size_type kernelWidth,
+                        Tensor::size_type stride, Tensor::size_type padding);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**

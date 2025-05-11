@@ -140,8 +140,16 @@ namespace nz::data {
         krnl::img2col(grid, block, out, in, H_out, W_out, C, K_h, K_w, stride, pad, H_in, W_in, batch);
     }
 
+    void iImg2colBackward(float* out, float* in, const size_t H_out, const size_t W_out, const size_t C,
+        const size_t K_h, const size_t K_w, const size_t stride, const size_t pad, const size_t H_in, const size_t W_in,
+        const size_t batch) {
+        const dim3 block(BLOCKSIZE);
+        const dim3 grid((H_out * W_out * C * K_h * K_w * batch + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::img2colBackward(grid, block, out, in, H_out, W_out, C, K_h, K_w, stride, pad, H_in, W_in, batch);
+    }
+
     void iCol2img(float* out, float* in, const size_t H_out, const size_t W_out, const size_t C_out,
-        const size_t batches) {
+                  const size_t batches) {
         const dim3 block(BLOCKSIZE);
         const dim3 grid((H_out * W_out * C_out * batches + BLOCKSIZE - 1) / BLOCKSIZE);
         krnl::col2img(grid, block, out, in, H_out, W_out, C_out, batches);

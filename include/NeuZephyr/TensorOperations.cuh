@@ -1109,6 +1109,10 @@ namespace nz::data {
                          const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
                          const size_t pad, const size_t H_in, const size_t W_in, const size_t batch);
 
+    DL_API void iImg2colBackward(float* out, float* in, const size_t H_out,
+              const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
+              const size_t pad, const size_t H_in, const size_t W_in, const size_t batch);
+
     template <typename T>
     std::enable_if_t<is_valid_tensor_type<T>::value, T>
     tensorImg2col(const T& in, const size_t K_h, const size_t K_w, const size_t stride,

@@ -2943,6 +2943,135 @@ TEST(TensorBasic, img2colTest) {
     EXPECT_EQ(expected, result);
 }
 
+TEST(NodeBasic, img2colForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t k_h = 3;
+    const size_t k_w = 3;
+    const size_t stride = 1;
+    const size_t pad = 1;
+    const size_t H_out = (h + 2 * pad - k_h) / stride + 1;
+    const size_t W_out = (w + 2 * pad - k_w) / stride + 1;
+
+    std::vector<float> inputData({n*c*h*w});
+    std::vector<float> expectedData({n*H_out*W_out*k_h*k_w*c});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+
+    for (size_t b = 0; b < n; ++b) {
+        for (size_t i = 0; i < H_out; ++i) {
+            for (size_t j = 0; j < W_out; ++j) {
+                const int h_start = static_cast<int>(i * stride) - pad;
+                const int w_start = static_cast<int>(j * stride) - pad;
+
+                for (size_t r = 0; r < k_h; ++r) {
+                    const int h_in = h_start + r;
+                    for (size_t s = 0; s < k_w; ++s) {
+                        const int w_in = w_start + s;
+                        for (size_t c_in = 0; c_in < c; ++c_in) {
+                            float val = 0.0f;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                const size_t input_idx =
+                                    b * (c * h * w) +
+                                    c_in * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                val = inputData[input_idx];
+                            }
+                            const size_t expected_idx =
+                                b * (H_out * W_out * k_h * k_w * c) +
+                                (i * W_out + j) * (k_h * k_w * c) +
+                                c_in * (k_h * k_w) +
+                                r * k_w +
+                                s;
+                            expectedData[expected_idx] = val;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    Img2ColNode result(&input, k_h, k_w, stride, pad);
+    result.forward();
+    Tensor expected({n, 1, H_out * W_out, k_h * k_w * c});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, img2colBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t k_h = 3;
+    const size_t k_w = 3;
+    const size_t stride = 1;
+    const size_t pad = 1;
+    const size_t H_out = (h + 2 * pad - k_h) / stride + 1;
+    const size_t W_out = (w + 2 * pad - k_w) / stride + 1;
+
+    std::vector<float> gradData({n*H_out*W_out*k_h*k_w*c});
+    std::vector<float> expectedGradData({n*c*h*w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : gradData) {
+        i = dist(gen);
+    }
+
+    for (size_t b = 0; b < n; ++b) {
+        for (size_t i = 0; i < H_out; ++i) {
+            for (size_t j = 0; j < W_out; ++j) {
+                const int h_start = static_cast<int>(i * stride) - pad;
+                const int w_start = static_cast<int>(j * stride) - pad;
+                for (size_t r = 0; r < k_h; ++r) {
+                    const int h_in = h_start + r;
+                    for (size_t s = 0; s < k_w; ++s) {
+                        const int w_in = w_start + s;
+                        for (size_t c_in = 0; c_in < c; ++c_in) {
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                const size_t input_idx =
+                                    b * (c * h * w) +
+                                    c_in * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                const size_t grad_idx =
+                                    b * (H_out * W_out * k_h * k_w * c) +
+                                    (i * W_out + j) * (k_h * k_w * c) +
+                                    c_in * (k_h * k_w) +
+                                    r * k_w +
+                                    s;
+                                expectedGradData[input_idx] += gradData[grad_idx];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    InputNode input({n, c, h, w}, true);
+    Img2ColNode result(&input, k_h, k_w, stride, pad);
+    result.dataInject(gradData.begin(), gradData.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedGradData.begin(), expectedGradData.end(), true);
+    EXPECT_EQ(expected, *input.output);
+}
+
 TEST(TenorBasic, col2imgTest) {
     const size_t n = 2;
     const size_t c = 3;

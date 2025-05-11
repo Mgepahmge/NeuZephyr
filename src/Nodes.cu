@@ -584,7 +584,7 @@ namespace nz::nodes {
 
         void ExpandNode::forward() {
             const auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
-                        inputs[0]->output->shape()[3];
+                inputs[0]->output->shape()[3];
             const auto total = size * newBatch;
             const dim3 block(BLOCKSIZE);
             const dim3 grid((total + block.x - 1) / block.x);
@@ -594,11 +594,44 @@ namespace nz::nodes {
         void ExpandNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
                 const auto size = inputs[0]->output->shape()[1] * inputs[0]->output->shape()[2] *
-                            inputs[0]->output->shape()[3];
+                    inputs[0]->output->shape()[3];
                 const auto total = size * newBatch;
                 const dim3 block(BLOCKSIZE);
                 const dim3 grid((total + block.x - 1) / block.x);
                 Compress(grid, block, inputs[0]->output->grad(), output->grad(), size, total);
+            }
+        }
+
+        Img2ColNode::Img2ColNode(Node* input, const Tensor::size_type kernelHeight, const Tensor::size_type kernelWidth,
+                                 const Tensor::size_type stride,
+                                 const Tensor::size_type padding) : kernelHeight(kernelHeight),
+                                                                    kernelWidth(kernelWidth),
+                                                                    stride(stride), padding(padding),
+                                                                    outputHeight(
+                                                                        (input->output->shape().H() + 2 * padding -
+                                                                            kernelHeight) / stride + 1),
+                                                                    outputWidth(
+                                                                        (input->output->shape().W() + 2 * padding -
+                                                                            kernelWidth) / stride + 1) {
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type{
+                                                  input->output->shape()[0], 1, outputHeight * outputWidth,
+                                                  kernelHeight * kernelWidth * input->output->shape()[1]
+                                              }, input->output->requiresGrad());
+            type = "Img2Col";
+        }
+
+        void Img2ColNode::forward() {
+            iImg2col(output->data(), inputs[0]->output->data(), outputHeight, outputWidth, inputs[0]->output->shape()[1],
+                kernelHeight, kernelWidth, stride, padding, inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
+                inputs[0]->output->shape()[0]);
+        }
+
+        void Img2ColNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                iImg2colBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth, inputs[0]->output->shape()[1],
+                kernelHeight, kernelWidth, stride, padding, inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
+                inputs[0]->output->shape()[0]);
             }
         }
     }
