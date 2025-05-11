@@ -1016,6 +1016,9 @@ namespace nz::krnl {
 
     void col2img(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
                  const size_t W_out, const size_t C_out, const size_t batches);
+
+    void col2imgBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
+                         const size_t W_out, const size_t C_out, const size_t batches);
 #endif
 }
 

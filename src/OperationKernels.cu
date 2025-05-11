@@ -570,8 +570,10 @@ namespace nz::krnl {
     }
 
     void SoftmaxJacobian(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
-                         const unsigned long long n, const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i) {
-        StreamManager<float>::Instance().submitParallel(SoftmaxJacobianKernel, gridDim, blockDim, 0, out, in, offset_o, offset_i, n);
+                         const unsigned long long n, const std::vector<size_t>& offset_o,
+                         const std::vector<size_t>& offset_i) {
+        StreamManager<float>::Instance().submitParallel(SoftmaxJacobianKernel, gridDim, blockDim, 0, out, in, offset_o,
+                                                        offset_i, n);
     }
 
     __global__ void MeanSquaredErrorKernel(float* out, const float* predict, const float* real,
@@ -1286,7 +1288,7 @@ namespace nz::krnl {
     }
 
     void Expand(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t n,
-                 const size_t total) {
+                const size_t total) {
         StreamManager<float>::Instance().submit(ExpandKernel, gridDim, blockDim, 0, out, in, n, total);
     }
 
@@ -1304,7 +1306,8 @@ namespace nz::krnl {
     }
 
     __global__ void img2colKernel(float* out, const float* in, const size_t H_out, const size_t W_out, const size_t C,
-        const size_t K_h, const size_t K_w, const size_t stride, const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
+                                  const size_t K_h, const size_t K_w, const size_t stride, const size_t pad,
+                                  const size_t H_in, const size_t W_in, const size_t batch) {
         const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= H_out * W_out * C * K_h * K_w * batch) {
             return;
@@ -1325,14 +1328,16 @@ namespace nz::krnl {
     }
 
     void img2col(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
-              const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
-              const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
+                 const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
+                 const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
         StreamManager<float>::Instance().submit(img2colKernel, gridDim, blockDim, 0, out, in, H_out, W_out, C,
                                                 K_h, K_w, stride, pad, H_in, W_in, batch);
     }
 
-    __global__ void img2colBackwardKernel(float* out, const float* in, const size_t H_out, const size_t W_out, const size_t C,
-    const size_t K_h, const size_t K_w, const size_t stride, const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
+    __global__ void img2colBackwardKernel(float* out, const float* in, const size_t H_out, const size_t W_out,
+                                          const size_t C,
+                                          const size_t K_h, const size_t K_w, const size_t stride, const size_t pad,
+                                          const size_t H_in, const size_t W_in, const size_t batch) {
         const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
         if (idx >= H_out * W_out * C * K_h * K_w * batch) {
             return;
@@ -1350,13 +1355,14 @@ namespace nz::krnl {
     }
 
     void img2colBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
-              const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
-              const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
+                         const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
+                         const size_t pad, const size_t H_in, const size_t W_in, const size_t batch) {
         StreamManager<float>::Instance().submit(img2colBackwardKernel, gridDim, blockDim, 0, out, in, H_out,
                                                 W_out, C, K_h, K_w, stride, pad, H_in, W_in, batch);
     }
 
-    __global__ void col2imgKernel(float* out, const float* in, const size_t H_out, const size_t W_out, const size_t C_out, const size_t batches) {
+    __global__ void col2imgKernel(float* out, const float* in, const size_t H_out, const size_t W_out,
+                                  const size_t C_out, const size_t batches) {
         const size_t idx = blockDim.x * blockIdx.x + threadIdx.x;
         if (idx >= H_out * W_out * C_out * batches) {
             return;
@@ -1373,5 +1379,25 @@ namespace nz::krnl {
                  const size_t W_out, const size_t C_out, const size_t batches) {
         StreamManager<float>::Instance().submit(col2imgKernel, gridDim, blockDim, 0, out, in, H_out, W_out, C_out,
                                                 batches);
+    }
+
+    __global__ void col2imgBackwardKernel(float* out, const float* in, const size_t H_out, const size_t W_out,
+                                          const size_t C_out, const size_t batches) {
+        const size_t idx = blockDim.x * blockIdx.x + threadIdx.x;
+        if (idx >= H_out * W_out * C_out * batches) {
+            return;
+        }
+        const size_t batch = idx / (C_out * H_out * W_out);
+        const size_t fixedIdx = idx % (C_out * H_out * W_out);
+        const size_t c = fixedIdx / (H_out * W_out);
+        const size_t h = (fixedIdx % (H_out * W_out)) / W_out;
+        const size_t w = (fixedIdx % (H_out * W_out)) % W_out;
+        out[batch * (C_out * H_out * W_out) + (h * W_out + w) * C_out + c] = in[idx];
+    }
+
+    void col2imgBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
+                         const size_t W_out, const size_t C_out, const size_t batches) {
+        StreamManager<float>::Instance().submit(col2imgBackwardKernel, gridDim, blockDim, 0, out, in, H_out, W_out,
+                                                C_out, batches);
     }
 }

@@ -622,17 +622,44 @@ namespace nz::nodes {
         }
 
         void Img2ColNode::forward() {
-            iImg2col(output->data(), inputs[0]->output->data(), outputHeight, outputWidth, inputs[0]->output->shape()[1],
-                kernelHeight, kernelWidth, stride, padding, inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
-                inputs[0]->output->shape()[0]);
+            iImg2col(output->data(), inputs[0]->output->data(), outputHeight, outputWidth,
+                     inputs[0]->output->shape()[1],
+                     kernelHeight, kernelWidth, stride, padding, inputs[0]->output->shape()[2],
+                     inputs[0]->output->shape()[3],
+                     inputs[0]->output->shape()[0]);
         }
 
         void Img2ColNode::backward() {
             if (inputs[0]->output->requiresGrad()) {
-                iImg2colBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth, inputs[0]->output->shape()[1],
-                kernelHeight, kernelWidth, stride, padding, inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
-                inputs[0]->output->shape()[0]);
+                iImg2colBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth,
+                                 inputs[0]->output->shape()[1],
+                                 kernelHeight, kernelWidth, stride, padding, inputs[0]->output->shape()[2],
+                                 inputs[0]->output->shape()[3],
+                                 inputs[0]->output->shape()[0]);
             }
+        }
+
+        Col2ImgNode::Col2ImgNode(Node* input, const Tensor::size_type outputHeight,
+                                 const Tensor::size_type outputWidth) : outputHeight(outputHeight),
+                                                                        outputWidth(outputWidth),
+                                                                        outputChannels(input->output->shape()[3]) {
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type(
+                input->output->shape()[0],
+                outputChannels,
+                outputHeight,
+                outputWidth), input->output->requiresGrad());
+            type = "Col2Img";
+        }
+
+        void Col2ImgNode::forward() {
+            iCol2img(output->data(), inputs[0]->output->data(), outputHeight, outputWidth, outputChannels,
+                inputs[0]->output->shape()[0]);
+        }
+
+        void Col2ImgNode::backward() {
+            iCol2imgBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth, outputChannels,
+                inputs[0]->output->shape()[0]);
         }
     }
 

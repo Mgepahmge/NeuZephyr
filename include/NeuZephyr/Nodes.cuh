@@ -3316,6 +3316,19 @@ namespace nz::nodes {
 
             void backward() override;
         };
+
+        class DL_API Col2ImgNode : public Node {
+        public:
+            Tensor::size_type outputHeight;
+            Tensor::size_type outputWidth;
+            Tensor::size_type outputChannels;
+
+            Col2ImgNode(Node* input, Tensor::size_type outputHeight, Tensor::size_type outputWidth);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**

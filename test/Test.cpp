@@ -3106,3 +3106,73 @@ TEST(TenorBasic, col2imgTest) {
     expected.dataInject(expectedData.begin(), expectedData.end());
     EXPECT_EQ(expected, result);
 }
+
+TEST(NodeBasic, col2imgForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> inputData({n*c*h*w});
+    std::vector<float> expectedData({n*c*h*w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            for (auto k = 0; k < h; k++) {
+                for (auto l = 0; l < w; l++) {
+                    expectedData[i * (c*h*w) + j * (h*w) + k * w + l] =
+                        inputData[i * (c*h*w) + (k * w + l) * c + j];
+                }
+            }
+        }
+    }
+
+    InputNode input({n ,1, h*w, c});
+    input.dataInject(inputData.begin(), inputData.end());
+    Col2ImgNode result(&input, h, w);
+    result.forward();
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, Col2imgBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> inputData({n*c*h*w});
+    std::vector<float> expectedData({n*c*h*w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            for (auto k = 0; k < h; k++) {
+                for (auto l = 0; l < w; l++) {
+                    expectedData[i * (c*h*w) + j * (h*w) + k * w + l] =
+                        inputData[i * (c*h*w) + (k * w + l) * c + j];
+                }
+            }
+        }
+    }
+
+    InputNode input({n, 1, h*w, c}, true);
+    Col2ImgNode result(&input, h, w);
+    result.dataInject(expectedData.begin(), expectedData.end(), true);
+    result.backward();
+    Tensor expected({n, 1, h*w, c}, true);
+    expected.dataInject(inputData.begin(), inputData.end(), true);
+    EXPECT_EQ(expected, *input.output);
+}

@@ -1142,5 +1142,7 @@ namespace nz::data {
         }
         return result;
     }
+
+    DL_API void iCol2imgBackward(float* out, float* in, size_t H_out, size_t W_out, size_t C_out, size_t batches);
 }
 #endif //TENSOROPERATIONS_CUH

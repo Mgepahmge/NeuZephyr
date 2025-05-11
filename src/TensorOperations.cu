@@ -154,4 +154,10 @@ namespace nz::data {
         const dim3 grid((H_out * W_out * C_out * batches + BLOCKSIZE - 1) / BLOCKSIZE);
         krnl::col2img(grid, block, out, in, H_out, W_out, C_out, batches);
     }
+
+    void iCol2imgBackward(float* out, float* in, size_t H_out, size_t W_out, size_t C_out, size_t batches) {
+        const dim3 block(BLOCKSIZE);
+        const dim3 grid((H_out * W_out * C_out * batches + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::col2imgBackward(grid, block, out, in, H_out, W_out, C_out, batches);
+    }
 }
