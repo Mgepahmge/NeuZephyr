@@ -2942,3 +2942,38 @@ TEST(TensorBasic, img2colTest) {
     expected.dataInject(expectedData.begin(), expectedData.end());
     EXPECT_EQ(expected, result);
 }
+
+TEST(TenorBasic, col2imgTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> inputData({n*c*h*w});
+    std::vector<float> expectedData({n*c*h*w});
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto i = 0; i < n; i++) {
+        for (auto j = 0; j < c; j++) {
+            for (auto k = 0; k < h; k++) {
+                for (auto l = 0; l < w; l++) {
+                    expectedData[i * (c*h*w) + j * (h*w) + k * w + l] =
+                        inputData[i * (c*h*w) + (k * w + l) * c + j];
+                }
+            }
+        }
+    }
+
+    Tensor input({n ,1, h*w, c});
+    input.dataInject(inputData.begin(), inputData.end());
+    auto result = tensorCol2img(input, h, w);
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}

@@ -1115,9 +1115,27 @@ namespace nz::data {
                   const size_t pad) {
         const size_t H_out = (in.shape().H() + 2 * pad - K_h) / stride + 1;
         const size_t W_out = (in.shape().W() + 2 * pad - K_w) / stride + 1;
-        T result({in.shape()[0], 1, H_out * W_out, in.shape().C() * K_h * K_w});
+        T result({in.shape()[0], 1, H_out * W_out, in.shape().C() * K_h * K_w}, in.requiresGrad());
         iImg2col(result.data(), in.data(), H_out, W_out, in.shape().C(), K_h, K_w, stride, pad,
                  in.shape().H(), in.shape().W(), in.shape()[0]);
+        if (in.requiresGrad()) {
+            iImg2col(result.grad(), in.grad(), H_out, W_out, in.shape().C(), K_h, K_w, stride, pad,
+                     in.shape().H(), in.shape().W(), in.shape()[0]);
+        }
+        return result;
+    }
+
+    DL_API void iCol2img(float* out, float* in, size_t H_out,
+                         size_t W_out, size_t C_out, size_t batches);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    tensorCol2img(const T& in, const size_t H_out, const size_t W_out) {
+        T result({in.shape()[0], in.shape()[3], H_out, W_out}, in.requiresGrad());
+        iCol2img(result.data(), in.data(), H_out, W_out, in.shape()[3], in.shape()[0]);
+        if (in.requiresGrad()) {
+            iCol2img(result.grad(), in.grad(), H_out, W_out, in.shape()[3], in.shape()[0]);
+        }
         return result;
     }
 }

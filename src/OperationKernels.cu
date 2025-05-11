@@ -1330,4 +1330,23 @@ namespace nz::krnl {
         StreamManager<float>::Instance().submit(img2colKernel, gridDim, blockDim, 0, out, in, H_out, W_out, C,
                                                 K_h, K_w, stride, pad, H_in, W_in, batch);
     }
+
+    __global__ void col2imgKernel(float* out, const float* in, const size_t H_out, const size_t W_out, const size_t C_out, const size_t batches) {
+        const size_t idx = blockDim.x * blockIdx.x + threadIdx.x;
+        if (idx >= H_out * W_out * C_out * batches) {
+            return;
+        }
+        const size_t batch = idx / (C_out * H_out * W_out);
+        const size_t fixedIdx = idx % (C_out * H_out * W_out);
+        const size_t c = fixedIdx / (H_out * W_out);
+        const size_t h = (fixedIdx % (H_out * W_out)) / W_out;
+        const size_t w = (fixedIdx % (H_out * W_out)) % W_out;
+        out[idx] = in[batch * (C_out * H_out * W_out) + (h * W_out + w) * C_out + c];
+    }
+
+    void col2img(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
+                 const size_t W_out, const size_t C_out, const size_t batches) {
+        StreamManager<float>::Instance().submit(col2imgKernel, gridDim, blockDim, 0, out, in, H_out, W_out, C_out,
+                                                batches);
+    }
 }
