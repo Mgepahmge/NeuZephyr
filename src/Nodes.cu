@@ -700,8 +700,8 @@ namespace nz::nodes {
         void GlobalAvgPoolNode::forward() {
             for (auto i = 0; i < inputs[0]->output->shape()[0]; i++) {
                 for (auto j = 0; j < inputs[0]->output->shape()[1]; j++) {
-                    output->fillMatrix(inputs[0]->output->sum(i, j) / (inputs[0]->output->shape()[2] *
-                        inputs[0]->output->shape()[3]), i, j);
+                    output->fillMatrix(inputs[0]->output->sum(i, j) / static_cast<float>((inputs[0]->output->shape()[2] *
+                        inputs[0]->output->shape()[3])), i, j);
                 }
             }
         }
@@ -710,6 +710,35 @@ namespace nz::nodes {
             if (inputs[0]->output->requiresGrad()) {
                 iGlobalAvgPoolBackward(inputs[0]->output->grad(), output->grad(), inputs[0]->output->shape()[0],
                     inputs[0]->output->shape()[1], inputs[0]->output->shape()[2], inputs[0]->output->shape()[3]);
+            }
+        }
+
+        MaxPoolingNode::MaxPoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+            Tensor::size_type padding) : poolSize(poolSize), stride(stride), padding(padding) {
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type{
+                input->output->shape()[0], input->output->shape()[1],
+                OUTPUT_DIM(input->output->shape()[2], poolSize, stride, padding),
+                OUTPUT_DIM(input->output->shape()[3], poolSize, stride, padding)
+            }, input->output->requiresGrad());
+            position = std::make_shared<Tensor>(Tensor::shape_type{
+                input->output->shape()[0], input->output->shape()[1],
+                OUTPUT_DIM(input->output->shape()[2], poolSize, stride, padding),
+                OUTPUT_DIM(input->output->shape()[3], poolSize, stride, padding)
+            }, false);
+        }
+
+        void MaxPoolingNode::forward() {
+            iMaxPooling(output->data(), position->data(), inputs[0]->output->data(), poolSize, stride, padding,
+                inputs[0]->output->shape()[0], inputs[0]->output->shape()[1], inputs[0]->output->shape()[2],
+                inputs[0]->output->shape()[3], output->shape()[2], output->shape()[3]);
+        }
+
+        void MaxPoolingNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                iMaxPoolingBackward(inputs[0]->output->grad(), position->data(), output->grad(), poolSize, stride, padding,
+                inputs[0]->output->shape()[0], inputs[0]->output->shape()[1], inputs[0]->output->shape()[2],
+                inputs[0]->output->shape()[3], output->shape()[2], output->shape()[3]);
             }
         }
     }

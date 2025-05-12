@@ -282,6 +282,17 @@ Node* nz::Model::GlobalAvgPool2d(Node* input) {
     return globalAvgPoolNode;
 }
 
+Node* nz::Model::MaxPool2d(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+    Tensor::size_type padding) {
+    if (!computeGraph.inGraph(input)) {
+        computeGraph.addNode(input);
+    }
+    auto* maxPoolNode = new calc::MaxPoolingNode(input, poolSize, stride, padding);
+    hiddenNodes.push_back(maxPoolNode);
+    computeGraph.addNode(maxPoolNode);
+    return maxPoolNode;
+}
+
 void nz::Model::MSELoss(Node* input, Node* target) {
     if (!computeGraph.inGraph(input)) {
         computeGraph.addNode(input);

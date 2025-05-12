@@ -3457,3 +3457,161 @@ TEST(NodeBasic, GlobalAvgPoolBackward) {
     expected.dataInject(expectedData.begin(), expectedData.end(), true);
     EXPECT_EQ(expected, *input.output);
 }
+
+TEST(NodeBasic, MaxPoolingForward) {
+const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t poolSize = 2;
+    const size_t stride = 2;
+    const size_t pad = 0;
+    const size_t H_out = (h + 2 * pad - poolSize) / stride + 1;
+    const size_t W_out = (w + 2 * pad - poolSize) / stride + 1;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*H_out*W_out);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < H_out; k++) {
+                for (size_t l = 0; l < W_out; l++) {
+                    const long long h_start = k * stride - pad;
+                    const long long w_start = l * stride - pad;
+                    float max = -1e20f;
+                    for (size_t r = 0; r < poolSize; r++) {
+                        const long long h_in = h_start + r;
+                        for (size_t s = 0; s < poolSize; s++) {
+                            const long long w_in = w_start + s;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                const size_t input_idx =
+                                    i * (c * h * w) +
+                                    j * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                if (inputData[input_idx] > max) {
+                                    max = inputData[input_idx];
+                                }
+                            }
+                        }
+                    }
+                    expectedData[i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l] = max == -1e20f ? 0.0f : max;
+                }
+            }
+        }
+    }
+
+    InputNode Input({n, c, h, w});
+    Input.dataInject(inputData.begin(), inputData.end());
+    MaxPoolingNode result(&Input, poolSize, stride, pad);
+    result.forward();
+    Tensor expected({n, c, H_out, W_out});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, MaxPoolingBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t poolSize = 2;
+    const size_t stride = 2;
+    const size_t pad = 0;
+    const size_t H_out = (h + 2 * pad - poolSize) / stride + 1;
+    const size_t W_out = (w + 2 * pad - poolSize) / stride + 1;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> gradData(n*c*H_out*W_out);
+    std::vector<float> expectedGrad(n*c*h*w, 0.0f);
+    std::vector<size_t> maxIdx(n*c*H_out*W_out);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : gradData) {
+        i = dist(gen);
+    }
+
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < H_out; k++) {
+                for (size_t l = 0; l < W_out; l++) {
+                    const long long h_start = k * stride - pad;
+                    const long long w_start = l * stride - pad;
+                    float max = -1e20f;
+                    size_t max_idx = 0;
+                    for (size_t r = 0; r < poolSize; r++) {
+                        const long long h_in = h_start + r;
+                        for (size_t s = 0; s < poolSize; s++) {
+                            const long long w_in = w_start + s;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                const size_t input_idx =
+                                    i * (c * h * w) +
+                                    j * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                if (inputData[input_idx] > max) {
+                                    max = inputData[input_idx];
+                                    max_idx = r * poolSize + s;
+                                }
+                            }
+                        }
+                    }
+                    maxIdx[i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l] = max_idx;
+                }
+            }
+        }
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < H_out; k++) {
+                for (size_t l = 0; l < W_out; l++) {
+                    const size_t outIdx = i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l;
+                    const long long h_start = k * stride - pad;
+                    const long long w_start = l * stride - pad;
+                    const long long h_in = h_start + maxIdx[outIdx] / poolSize;
+                    const long long w_in = w_start + maxIdx[outIdx] % poolSize;
+                    if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                        const size_t input_idx =
+                            i * (c * h * w) +
+                            j * (h * w) +
+                            h_in * w +
+                            w_in;
+                        expectedGrad[input_idx] += gradData[outIdx];
+                    }
+                }
+            }
+        }
+    }
+
+    InputNode input({n, c, h, w}, true);
+    MaxPoolingNode result(&input, poolSize, stride, pad);
+    input.dataInject(inputData.begin(), inputData.end());
+    result.dataInject(gradData.begin(), gradData.end(), true);
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
+    EXPECT_EQ(expected, *input.output);
+}

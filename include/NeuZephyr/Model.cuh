@@ -73,6 +73,9 @@ namespace nz {
 
         Node* GlobalAvgPool2d(Node* input);
 
+        Node* MaxPool2d(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+                        Tensor::size_type padding = 0);
+
         void MSELoss(Node* input, Node* target);
 
         void BCELoss(Node* input, Node* target);

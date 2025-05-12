@@ -3353,6 +3353,21 @@ namespace nz::nodes {
 
             void backward() override;
         };
+
+        class DL_API MaxPoolingNode : public Node {
+        public:
+            std::shared_ptr<Tensor> position;
+            Tensor::size_type poolSize;
+            Tensor::size_type stride;
+            Tensor::size_type padding;
+
+            MaxPoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+                               Tensor::size_type padding);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**

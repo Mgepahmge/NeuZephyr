@@ -1174,6 +1174,16 @@ namespace nz::data {
                                 size_t H_out, size_t W_out);
 
     DL_API void iGlobalAvgPoolBackward(float* output, float* in,
-        const size_t batches, const size_t channels, const size_t height, const size_t width);
+                                       size_t batches, size_t channels, size_t height, size_t width);
+
+    DL_API void iMaxPooling(float* output, float* position, float* input,
+                            size_t pool_size, size_t stride, size_t padding,
+                            size_t batches, size_t channels, size_t H_in, size_t W_in,
+                            size_t H_out, size_t W_out);
+
+    DL_API void iMaxPoolingBackward(float* output, float* position, float* input,
+                            size_t pool_size, size_t stride, size_t padding,
+                            size_t batches, size_t channels, size_t H_in, size_t W_in,
+                            size_t H_out, size_t W_out);
 }
 #endif //TENSOROPERATIONS_CUH

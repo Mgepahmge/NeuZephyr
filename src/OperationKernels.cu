@@ -1504,4 +1504,71 @@ namespace nz::krnl {
         StreamManager<float>::Instance().submit(GlobalAvgPoolBackwardKernel, gridDim, blockDim, 0, output, in,
             batches, channels, height, width);
     }
+
+    __global__ void MaxPoolingKernel(float* output, float* position, const float* input, const size_t pool_size, const size_t stride, const size_t padding,
+    const size_t batches, const size_t channels, const size_t H_in, const size_t W_in, const size_t H_out, const size_t W_out) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= batches * channels * H_out * W_out) {
+            return;
+        }
+        const size_t currentBatch = idx / (channels * H_out * W_out);
+        const size_t currentChannel = (idx % (channels * H_out * W_out)) / (H_out * W_out);
+        const size_t h = (idx % (H_out * W_out)) / W_out;
+        const size_t w = (idx % (H_out * W_out)) % W_out;
+        const long long h_start = h * stride - padding;
+        const long long w_start = w * stride - padding;
+        float max = -1e20f;
+        size_t maxIndex = 0;
+        for (long long i = 0; i < pool_size; i++) {
+            for (long long j = 0; j < pool_size; j++) {
+                const long long h_in = h_start + i;
+                const long long w_in = w_start + j;
+                if (h_in >= 0 && h_in < H_in && w_in >= 0 && w_in < W_in) {
+                    const float value = input[currentBatch * (channels * H_in * W_in) + currentChannel * (H_in * W_in) + h_in * W_in + w_in];
+                    if (value > max) {
+                        max = value;
+                        maxIndex = i * pool_size + j;
+                    }
+                }
+            }
+        }
+        output[idx] = max == -1e20f ? 0.0f : max;
+        position[idx] = (float)maxIndex;
+    }
+
+    void MaxPooling(const dim3 gridDim, const dim3 blockDim, float* output, float* position, float* input,
+        const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out) {
+        StreamManager<float>::Instance().submitDualOut(MaxPoolingKernel, gridDim, blockDim, 0, output, position, input,
+            pool_size, stride, padding, batches, channels, H_in, W_in, H_out, W_out);
+    }
+
+    __global__ void MaxPoolingBackwardKernel(float* output, const float* position, const float* input, const size_t pool_size, const size_t stride, const size_t padding,
+const size_t batches, const size_t channels, const size_t H_in, const size_t W_in, const size_t H_out, const size_t W_out) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= batches * channels * H_out * W_out) {
+            return;
+        }
+        const size_t currentBatch = idx / (channels * H_out * W_out);
+        const size_t currentChannel = (idx % (channels * H_out * W_out)) / (H_out * W_out);
+        const size_t h = (idx % (H_out * W_out)) / W_out;
+        const size_t w = (idx % (H_out * W_out)) % W_out;
+        const long long h_start = h * stride - padding;
+        const long long w_start = w * stride - padding;
+        const long long maxIndex = (long long)position[idx];
+        const long long h_in = h_start + maxIndex / pool_size;
+        const long long w_in = w_start + maxIndex % pool_size;
+        if (h_in >= 0 && h_in < H_in && w_in >= 0 && w_in < W_in) {
+            atomicAdd(output + currentBatch * (channels * H_in * W_in) + currentChannel * (H_in * W_in) + h_in * W_in + w_in, input[idx]);
+        }
+    }
+
+    void MaxPoolingBackward(const dim3 gridDim, const dim3 blockDim, float* output, float* position, float* input,
+        const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out) {
+        StreamManager<float>::Instance().submit(MaxPoolingBackwardKernel, gridDim, blockDim, 0, output, position, input,
+            pool_size, stride, padding, batches, channels, H_in, W_in, H_out, W_out);
+    }
 }

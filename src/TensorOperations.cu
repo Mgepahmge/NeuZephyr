@@ -183,4 +183,22 @@ namespace nz::data {
         dim3 grid((batches * channels * height * width + BLOCKSIZE - 1) / BLOCKSIZE);
         krnl::GlobalAvgPoolBackward(grid, block, output, in, batches, channels, height, width);
     }
+
+    void iMaxPooling(float* output, float* position, float* input, const size_t pool_size, const size_t stride,
+        const size_t padding, const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out) {
+        dim3 block(BLOCKSIZE);
+        dim3 grid((batches * channels * H_out * W_out + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::MaxPooling(grid, block, output, position, input, pool_size, stride, padding, batches, channels, H_in, W_in,
+            H_out, W_out);
+    }
+
+    void iMaxPoolingBackward(float* output, float* position, float* input, const size_t pool_size, const size_t stride,
+        const size_t padding, const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out) {
+        dim3 block(BLOCKSIZE);
+        dim3 grid((batches * channels * H_out * W_out + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::MaxPoolingBackward(grid, block, output, position, input, pool_size, stride, padding, batches, channels, H_in, W_in,
+            H_out, W_out);
+    }
 }
