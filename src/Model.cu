@@ -261,6 +261,27 @@ Node* nz::Model::Conv2d(Node* input, Tensor::size_type outChannels, Tensor::size
                    (input->output->shape().W() + 2 * padding - kernelWidth) / stride + 1);
 }
 
+Node* nz::Model::AvgPool2d(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+    Tensor::size_type padding) {
+        if (!computeGraph.inGraph(input)) {
+            computeGraph.addNode(input);
+        }
+        auto* avgPoolNode = new calc::AveragePoolingNode(input, poolSize, stride, padding);
+        hiddenNodes.push_back(avgPoolNode);
+        computeGraph.addNode(avgPoolNode);
+        return avgPoolNode;
+}
+
+Node* nz::Model::GlobalAvgPool2d(Node* input) {
+    if (!computeGraph.inGraph(input)) {
+        computeGraph.addNode(input);
+    }
+    auto* globalAvgPoolNode = new calc::GlobalAvgPoolNode(input);
+    hiddenNodes.push_back(globalAvgPoolNode);
+    computeGraph.addNode(globalAvgPoolNode);
+    return globalAvgPoolNode;
+}
+
 void nz::Model::MSELoss(Node* input, Node* target) {
     if (!computeGraph.inGraph(input)) {
         computeGraph.addNode(input);

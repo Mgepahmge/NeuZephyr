@@ -71,23 +71,14 @@ namespace nz {
         Node* AvgPool2d(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
                         Tensor::size_type padding = 0);
 
+        Node* GlobalAvgPool2d(Node* input);
+
         void MSELoss(Node* input, Node* target);
 
         void BCELoss(Node* input, Node* target);
 
         void defaultOutput(Node* input);
     };
-
-    inline Node* Model::AvgPool2d(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
-        Tensor::size_type padding) {
-        if (!computeGraph.inGraph(input)) {
-            computeGraph.addNode(input);
-        }
-        auto* avgPoolNode = new calc::AveragePoolingNode(input, poolSize, stride, padding);
-        hiddenNodes.push_back(avgPoolNode);
-        computeGraph.addNode(avgPoolNode);
-        return avgPoolNode;
-    }
 }
 
 

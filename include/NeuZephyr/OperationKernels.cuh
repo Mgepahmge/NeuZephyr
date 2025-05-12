@@ -1032,6 +1032,9 @@ namespace nz::krnl {
         const size_t pool_size, const size_t stride, const size_t padding,
         const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
         const size_t H_out, const size_t W_out);
+
+    void GlobalAvgPoolBackward(const dim3 gridDim, const dim3 blockDim, float* output, float* in,
+        const size_t batches, const size_t channels, const size_t height, const size_t width);
 #endif
 }
 

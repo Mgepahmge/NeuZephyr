@@ -3383,3 +3383,77 @@ TEST(NodeBasic, AveragePoolingBackward) {
     expected.dataInject(expectedData.begin(), expectedData.end(), true);
     EXPECT_EQ(expected, *Input.output);
 }
+
+TEST(NodeBasic, GlobalAvgPoolForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            float sum = 0.0f;
+            for (size_t k = 0; k < h; k++) {
+                for (size_t l = 0; l < w; l++) {
+                    sum += inputData[i * (c * h * w) + j * (h * w) + k * w + l];
+                }
+            }
+            expectedData[i * c + j] = sum / static_cast<float>(h * w);
+        }
+    }
+
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    GlobalAvgPoolNode result(&input);
+    result.forward();
+    Tensor expected({n, c, 1, 1});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, GlobalAvgPoolBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> gradData(n*c);
+    std::vector<float> expectedData(n*c*h*w);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(10.0f, 90.0f);
+
+    for (auto& i : gradData) {
+        i = dist(gen);
+    }
+
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < h; k++) {
+                for (size_t l = 0; l < w; l++) {
+                    expectedData[i * (c * h * w) + j * (h * w) + k * w + l] = gradData[i * c + j] / static_cast<float>(h * w);
+                }
+            }
+        }
+    }
+
+    InputNode input({n, c, h, w}, true);
+    GlobalAvgPoolNode result(&input);
+    result.dataInject(gradData.begin(), gradData.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedData.begin(), expectedData.end(), true);
+    EXPECT_EQ(expected, *input.output);
+}

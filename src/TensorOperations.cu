@@ -176,4 +176,11 @@ namespace nz::data {
         krnl::AveragePoolingBackward(grid, block, out, in, pool_size, stride, padding, batches, channels, H_in, W_in,
             H_out, W_out);
     }
+
+    void iGlobalAvgPoolBackward(float* output, float* in, const size_t batches, const size_t channels,
+        const size_t height, const size_t width) {
+        dim3 block(BLOCKSIZE);
+        dim3 grid((batches * channels * height * width + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::GlobalAvgPoolBackward(grid, block, output, in, batches, channels, height, width);
+    }
 }

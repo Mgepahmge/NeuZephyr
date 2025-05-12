@@ -658,8 +658,10 @@ namespace nz::nodes {
         }
 
         void Col2ImgNode::backward() {
-            iCol2imgBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth, outputChannels,
+            if (inputs[0]->output->requiresGrad()) {
+                iCol2imgBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth, outputChannels,
                 inputs[0]->output->shape()[0]);
+            }
         }
 
         AveragePoolingNode::AveragePoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
@@ -680,9 +682,35 @@ namespace nz::nodes {
         }
 
         void AveragePoolingNode::backward() {
-            iAveragePoolingBackward(inputs[0]->output->grad(), output->grad(), poolSize, stride, padding, inputs[0]->output->shape()[0],
+            if (inputs[0]->output->requiresGrad()) {
+                iAveragePoolingBackward(inputs[0]->output->grad(), output->grad(), poolSize, stride, padding, inputs[0]->output->shape()[0],
                 inputs[0]->output->shape()[1], inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
                 output->shape()[2], output->shape()[3]);
+            }
+        }
+
+        GlobalAvgPoolNode::GlobalAvgPoolNode(Node* input) {
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type{
+                input->output->shape()[0], input->output->shape()[1], 1, 1
+            }, input->output->requiresGrad());
+            type = "GlobalAvgPool";
+        }
+
+        void GlobalAvgPoolNode::forward() {
+            for (auto i = 0; i < inputs[0]->output->shape()[0]; i++) {
+                for (auto j = 0; j < inputs[0]->output->shape()[1]; j++) {
+                    output->fillMatrix(inputs[0]->output->sum(i, j) / (inputs[0]->output->shape()[2] *
+                        inputs[0]->output->shape()[3]), i, j);
+                }
+            }
+        }
+
+        void GlobalAvgPoolNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                iGlobalAvgPoolBackward(inputs[0]->output->grad(), output->grad(), inputs[0]->output->shape()[0],
+                    inputs[0]->output->shape()[1], inputs[0]->output->shape()[2], inputs[0]->output->shape()[3]);
+            }
         }
     }
 

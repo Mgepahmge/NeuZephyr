@@ -3343,6 +3343,16 @@ namespace nz::nodes {
 
             void backward() override;
         };
+
+        class DL_API GlobalAvgPoolNode : public Node {
+        public:
+
+            GlobalAvgPoolNode(Node* input);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**

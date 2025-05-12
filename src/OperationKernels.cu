@@ -1488,4 +1488,20 @@ namespace nz::krnl {
         StreamManager<float>::Instance().submit(AveragePoolingBackwardKernel, gridDim, blockDim, 0, out, in,
             pool_size, stride, padding, batches, channels, H_in, W_in, H_out, W_out);
     }
+
+    __global__ void GlobalAvgPoolBackwardKernel(float* output, const float* in, const size_t batches, const size_t channels, const size_t height, const size_t width) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= batches * channels * height * width) {
+            return;
+        }
+        const size_t currentBatch = idx / (channels * height * width);
+        const size_t currentChannel = (idx % (channels * height * width)) / (height * width);
+        output[idx] = in[currentBatch * channels + currentChannel] / (float)(height * width);
+    }
+
+    void GlobalAvgPoolBackward(const dim3 gridDim, const dim3 blockDim, float* output, float* in,
+        const size_t batches, const size_t channels, const size_t height, const size_t width) {
+        StreamManager<float>::Instance().submit(GlobalAvgPoolBackwardKernel, gridDim, blockDim, 0, output, in,
+            batches, channels, height, width);
+    }
 }
