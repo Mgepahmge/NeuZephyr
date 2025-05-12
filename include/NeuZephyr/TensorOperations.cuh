@@ -1144,5 +1144,33 @@ namespace nz::data {
     }
 
     DL_API void iCol2imgBackward(float* out, float* in, size_t H_out, size_t W_out, size_t C_out, size_t batches);
+
+    DL_API void iAveragePooling(float* out, float* in,
+                                size_t pool_size, size_t stride, size_t padding,
+                                size_t batches, size_t channels, size_t H_in, size_t W_in,
+                                size_t H_out, size_t W_out);
+
+    template <typename T>
+    std::enable_if_t<is_valid_tensor_type<T>::value, T>
+    tensorAveragePooling(const T& in, const size_t pool_size, const size_t stride,
+                          const size_t padding) {
+        const size_t H_out = OUTPUT_DIM(in.shape().H(), pool_size, stride, padding);
+        const size_t W_out = OUTPUT_DIM(in.shape().W(), pool_size, stride, padding);
+        T result({in.shape()[0], in.shape()[1], H_out, W_out}, in.requiresGrad());
+        iAveragePooling(result.data(), in.data(), pool_size, stride, padding,
+                        in.shape()[0], in.shape()[1], in.shape().H(), in.shape().W(),
+                        H_out, W_out);
+        if (in.requiresGrad()) {
+            iAveragePooling(result.grad(), in.grad(), pool_size, stride, padding,
+                            in.shape()[0], in.shape()[1], in.shape().H(), in.shape().W(),
+                            H_out, W_out);
+        }
+        return result;
+    }
+
+    DL_API void iAveragePoolingBackward(float* out, float* in,
+                                size_t pool_size, size_t stride, size_t padding,
+                                size_t batches, size_t channels, size_t H_in, size_t W_in,
+                                size_t H_out, size_t W_out);
 }
 #endif //TENSOROPERATIONS_CUH

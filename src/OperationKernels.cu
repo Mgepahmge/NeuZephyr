@@ -1400,4 +1400,92 @@ namespace nz::krnl {
         StreamManager<float>::Instance().submit(col2imgBackwardKernel, gridDim, blockDim, 0, out, in, H_out, W_out,
                                                 C_out, batches);
     }
+
+    __global__ void AveragePoolingKernel(float* out, const float* in, const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in, const size_t H_out, const size_t W_out) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= batches * channels * H_out * W_out) {
+            return;
+        }
+        const size_t currentBatch = idx / (channels * H_out * W_out);
+        const size_t currentChannel = (idx % (channels * H_out * W_out)) / (H_out * W_out);
+        const size_t h = (idx % (H_out * W_out)) / W_out;
+        const size_t w = (idx % (H_out * W_out)) % W_out;
+        const long long h_start = h * stride - padding;
+        const long long w_start = w * stride - padding;
+        out[idx] = 0.0f;
+        size_t count = 0;
+        for (long long i = 0; i < pool_size; i++) {
+            for (long long j = 0; j < pool_size; j++) {
+                const long long h_in = h_start + i;
+                const long long w_in = w_start + j;
+                if (h_in >= 0 && h_in < H_in && w_in >= 0 && w_in < W_in) {
+                    out[idx] += in[currentBatch * (channels * H_in * W_in) + currentChannel * (H_in * W_in) + h_in * W_in + w_in];
+                    count++;
+                }
+            }
+        }
+        out[idx] = count > 0 ? out[idx] / (float)count : 0.0f;
+    }
+
+    void AveragePooling(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
+        const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out) {
+        StreamManager<float>::Instance().submit(AveragePoolingKernel, gridDim, blockDim, 0, out, in,
+            pool_size, stride, padding, batches, channels, H_in, W_in, H_out, W_out);
+    }
+
+    __global__ void AveragePoolingBackwardKernel(float* out, const float* in, const size_t pool_size, const size_t stride, const size_t padding,
+    const size_t batches, const size_t channels, const size_t H_in, const size_t W_in, const size_t H_out, const size_t W_out) {
+        const size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+        if (idx >= batches * channels * H_out * W_out) {
+            return;
+        }
+        const size_t currentBatch = idx / (channels * H_out * W_out);
+        const size_t currentChannel = (idx % (channels * H_out * W_out)) / (H_out * W_out);
+        const size_t h = (idx % (H_out * W_out)) / W_out;
+        const size_t w = (idx % (H_out * W_out)) % W_out;
+        const long long h_start = h * stride - padding;
+        const long long w_start = w * stride - padding;
+        if (!padding) {
+            for (long long i = 0; i < pool_size; i++) {
+                for (long long j = 0; j < pool_size; j++) {
+                    const long long h_in = h_start + i;
+                    const long long w_in = w_start + j;
+                    if (h_in >= 0 && h_in < H_in && w_in >= 0 && w_in < W_in) {
+                        atomicAdd(out + currentBatch * (channels * H_in * W_in) + currentChannel * (H_in * W_in) + h_in * W_in + w_in, in[idx] / (float)(pool_size*pool_size));
+                    }
+                }
+            }
+        } else {
+            size_t count = 0;
+            for (long long i = 0; i < pool_size; i++) {
+                for (long long j = 0; j < pool_size; j++) {
+                    const long long h_in = h_start + i;
+                    const long long w_in = w_start + j;
+                    if (h_in >= 0 && h_in < H_in && w_in >= 0 && w_in < W_in) {
+                        count++;
+                    }
+                }
+            }
+            for (long long i = 0; i < pool_size; i++) {
+                for (long long j = 0; j < pool_size; j++) {
+                    const long long h_in = h_start + i;
+                    const long long w_in = w_start + j;
+                    if (h_in >= 0 && h_in < H_in && w_in >= 0 && w_in < W_in) {
+                        atomicAdd(out + currentBatch * (channels * H_in * W_in) + currentChannel * (H_in * W_in) + h_in * W_in + w_in, in[idx] / (float)count);
+                    }
+                }
+            }
+        }
+    }
+
+    void AveragePoolingBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
+        const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out) {
+        StreamManager<float>::Instance().submit(AveragePoolingBackwardKernel, gridDim, blockDim, 0, out, in,
+            pool_size, stride, padding, batches, channels, H_in, W_in, H_out, W_out);
+    }
 }

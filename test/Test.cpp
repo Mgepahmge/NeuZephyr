@@ -3176,3 +3176,210 @@ TEST(NodeBasic, Col2imgBackward) {
     expected.dataInject(inputData.begin(), inputData.end(), true);
     EXPECT_EQ(expected, *input.output);
 }
+
+TEST(TensorBasic, AveragePooling) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t poolSize = 2;
+    const size_t stride = 2;
+    const size_t pad = 0;
+    const size_t H_out = (h + 2 * pad - poolSize) / stride + 1;
+    const size_t W_out = (w + 2 * pad - poolSize) / stride + 1;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*H_out*W_out, 0.0f);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < H_out; k++) {
+                for (size_t l = 0; l < W_out; l++) {
+                    const long long h_start = k * stride - pad;
+                    const long long w_start = l * stride - pad;
+                    size_t count = 0;
+                    for (size_t r = 0; r < poolSize; r++) {
+                        const long long h_in = h_start + r;
+                        for (size_t s = 0; s < poolSize; s++) {
+                            const long long w_in = w_start + s;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                count++;
+                                const size_t input_idx =
+                                    i * (c * h * w) +
+                                    j * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                const size_t expected_idx =
+                                    i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l;
+                                expectedData[expected_idx] += inputData[input_idx];
+                            }
+                        }
+                    }
+                    expectedData[i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l] = count > 0 ? expectedData[i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l] / static_cast<float>(count) : 0;
+                }
+            }
+        }
+    }
+
+    Tensor Input ({n, c, h, w});
+    Input.dataInject(inputData.begin(), inputData.end());
+    auto result = tensorAveragePooling(Input, poolSize, stride, pad);
+    Tensor expected({n, c, H_out, W_out});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, result);
+}
+
+TEST(NodeBasic, AveragePoolingForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t poolSize = 2;
+    const size_t stride = 2;
+    const size_t pad = 0;
+    const size_t H_out = (h + 2 * pad - poolSize) / stride + 1;
+    const size_t W_out = (w + 2 * pad - poolSize) / stride + 1;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c*H_out*W_out, 0.0f);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < H_out; k++) {
+                for (size_t l = 0; l < W_out; l++) {
+                    const long long h_start = k * stride - pad;
+                    const long long w_start = l * stride - pad;
+                    size_t count = 0;
+                    for (size_t r = 0; r < poolSize; r++) {
+                        const long long h_in = h_start + r;
+                        for (size_t s = 0; s < poolSize; s++) {
+                            const long long w_in = w_start + s;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                count++;
+                                const size_t input_idx =
+                                    i * (c * h * w) +
+                                    j * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                const size_t expected_idx =
+                                    i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l;
+                                expectedData[expected_idx] += inputData[input_idx];
+                            }
+                        }
+                    }
+                    expectedData[i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l] = count > 0 ? expectedData[i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l] / static_cast<float>(count) : 0;
+                }
+            }
+        }
+    }
+
+    InputNode Input({n, c, h, w});
+    Input.dataInject(inputData.begin(), inputData.end());
+    AveragePoolingNode result(&Input, poolSize, stride, pad);
+    result.forward();
+    Tensor expected({n, c, H_out, W_out});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, AveragePoolingBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t poolSize = 2;
+    const size_t stride = 2;
+    const size_t pad = 0;
+    const size_t H_out = (h + 2 * pad - poolSize) / stride + 1;
+    const size_t W_out = (w + 2 * pad - poolSize) / stride + 1;
+
+    std::vector<float> gradData(n*c*H_out*W_out);
+    std::vector<float> expectedData(n*c*h*w, 0.0f);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.1f, 0.9f);
+
+    for (auto& i : gradData) {
+        i = dist(gen);
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            for (size_t k = 0; k < H_out; k++) {
+                for (size_t l = 0; l < W_out; l++) {
+                    const long long h_start = k * stride - pad;
+                    const long long w_start = l * stride - pad;
+                    size_t count = 0;
+                    for (size_t r = 0; r < poolSize; r++) {
+                        const long long h_in = h_start + r;
+                        for (size_t s = 0; s < poolSize; s++) {
+                            const long long w_in = w_start + s;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                count++;
+                            }
+                        }
+                    }
+                    for (size_t r = 0; r < poolSize; r++) {
+                        const long long h_in = h_start + r;
+                        for (size_t s = 0; s < poolSize; s++) {
+                            const long long w_in = w_start + s;
+                            if (h_in >= 0 && h_in < h && w_in >= 0 && w_in < w) {
+                                const size_t input_idx =
+                                    i * (c * h * w) +
+                                    j * (h * w) +
+                                    h_in * w +
+                                    w_in;
+                                const size_t expected_idx =
+                                    i * (c * H_out * W_out) +
+                                    j * (H_out * W_out) +
+                                    k * W_out +
+                                    l;
+                                expectedData[input_idx] += gradData[expected_idx] / static_cast<float>(count);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    InputNode Input({n, c, h, w}, true);
+    AveragePoolingNode result(&Input, poolSize, stride, pad);
+    result.dataInject(gradData.begin(), gradData.end(), true);
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedData.begin(), expectedData.end(), true);
+    EXPECT_EQ(expected, *Input.output);
+}

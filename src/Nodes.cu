@@ -661,6 +661,29 @@ namespace nz::nodes {
             iCol2imgBackward(inputs[0]->output->grad(), output->grad(), outputHeight, outputWidth, outputChannels,
                 inputs[0]->output->shape()[0]);
         }
+
+        AveragePoolingNode::AveragePoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+            Tensor::size_type padding) : poolSize(poolSize), stride(stride), padding(padding) {
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type{
+                input->output->shape()[0], input->output->shape()[1],
+                OUTPUT_DIM(input->output->shape()[2], poolSize, stride, padding),
+                OUTPUT_DIM(input->output->shape()[3], poolSize, stride, padding)
+            }, input->output->requiresGrad());
+            type = "AveragePooling";
+        }
+
+        void AveragePoolingNode::forward() {
+            iAveragePooling(output->data(), inputs[0]->output->data(), poolSize, stride, padding, inputs[0]->output->shape()[0],
+                inputs[0]->output->shape()[1], inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
+                output->shape()[2], output->shape()[3]);
+        }
+
+        void AveragePoolingNode::backward() {
+            iAveragePoolingBackward(inputs[0]->output->grad(), output->grad(), poolSize, stride, padding, inputs[0]->output->shape()[0],
+                inputs[0]->output->shape()[1], inputs[0]->output->shape()[2], inputs[0]->output->shape()[3],
+                output->shape()[2], output->shape()[3]);
+        }
     }
 
     namespace loss {

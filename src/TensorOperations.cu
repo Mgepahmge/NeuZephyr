@@ -160,4 +160,20 @@ namespace nz::data {
         const dim3 grid((H_out * W_out * C_out * batches + BLOCKSIZE - 1) / BLOCKSIZE);
         krnl::col2imgBackward(grid, block, out, in, H_out, W_out, C_out, batches);
     }
+
+    void iAveragePooling(float* out, float* in, const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in, const size_t H_out,
+        const size_t W_out) {
+        dim3 block(BLOCKSIZE);
+        dim3 grid((batches * channels * H_out * W_out + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::AveragePooling(grid, block, out, in, pool_size, stride, padding, batches, channels, H_in, W_in, H_out, W_out);
+    }
+
+    void iAveragePoolingBackward(float* out, float* in, const size_t pool_size, const size_t stride, const size_t padding, const size_t batches,
+        const size_t channels, const size_t H_in, const size_t W_in, const size_t H_out, const size_t W_out) {
+        dim3 block(BLOCKSIZE);
+        dim3 grid((batches * channels * H_out * W_out + BLOCKSIZE - 1) / BLOCKSIZE);
+        krnl::AveragePoolingBackward(grid, block, out, in, pool_size, stride, padding, batches, channels, H_in, W_in,
+            H_out, W_out);
+    }
 }

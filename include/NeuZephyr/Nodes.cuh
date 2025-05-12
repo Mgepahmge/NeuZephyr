@@ -3329,6 +3329,20 @@ namespace nz::nodes {
 
             void backward() override;
         };
+
+        class DL_API AveragePoolingNode : public Node {
+        public:
+            Tensor::size_type poolSize;
+            Tensor::size_type stride;
+            Tensor::size_type padding;
+
+            AveragePoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
+                               Tensor::size_type padding);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**

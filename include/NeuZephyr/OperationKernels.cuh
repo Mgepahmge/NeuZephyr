@@ -48,6 +48,9 @@
 #include <vector>
 #include "Dimension.cuh"
 
+#define OUTPUT_DIM(INPUT, KERNEL, STRIDE, PADDING) \
+( ((size_t)(INPUT) + 2*(size_t)(PADDING) - (size_t)(KERNEL)) / (size_t)(STRIDE) + 1 )
+
 /**
  * @namespace nz::krnl
  * @brief High-Performance CUDA Kernel Implementations for Tensor Computations
@@ -1019,6 +1022,16 @@ namespace nz::krnl {
 
     void col2imgBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
                          const size_t W_out, const size_t C_out, const size_t batches);
+
+    void AveragePooling(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
+        const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out);
+
+    void AveragePoolingBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
+        const size_t pool_size, const size_t stride, const size_t padding,
+        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
+        const size_t H_out, const size_t W_out);
 #endif
 }
 
