@@ -88,7 +88,8 @@ Node* nz::Model::Linear(Node* input, size_t outSize) {
     Node* shapedInput;
     if (input->output->shape()[2] != inputSize) {
         shapedInput = Reshape(input, {input->output->shape()[0], 1, inputSize, 1});
-    } else {
+    }
+    else {
         shapedInput = input;
     }
     auto mulParam = new io::InputNode({1, 1, outSize, inputSize}, true);
@@ -189,7 +190,8 @@ Node* nz::Model::Softmax(Node* input) {
     Node* reshapedInput;
     if (input->output->shape()[2] != size) {
         reshapedInput = Reshape(input, {batch, 1, size, 1});
-    } else {
+    }
+    else {
         reshapedInput = input;
     }
     auto* softmaxNode = new calc::SoftmaxNode(reshapedInput);
@@ -215,6 +217,48 @@ Node* nz::Model::TargetExpand(Node* input, const Tensor::shape_type& shape) {
     hiddenNodes.push_back(expandNode);
     computeGraph.addNode(expandNode);
     return expandNode;
+}
+
+Node* nz::Model::Img2Col(Node* input, const Tensor::size_type kernelHeight, const Tensor::size_type kernelWidth,
+                         const Tensor::size_type stride, const Tensor::size_type padding) {
+    if (!computeGraph.inGraph(input)) {
+        computeGraph.addNode(input);
+    }
+    auto* img2ColNode = new calc::Img2ColNode(input, kernelHeight, kernelWidth, stride, padding);
+    hiddenNodes.push_back(img2ColNode);
+    computeGraph.addNode(img2ColNode);
+    return img2ColNode;
+}
+
+Node* nz::Model::Col2Img(Node* input, Tensor::size_type outputHeight, Tensor::size_type outputWidth) {
+    if (!computeGraph.inGraph(input)) {
+        computeGraph.addNode(input);
+    }
+    auto* col2ImgNode = new calc::Col2ImgNode(input, outputHeight, outputWidth);
+    hiddenNodes.push_back(col2ImgNode);
+    computeGraph.addNode(col2ImgNode);
+    return col2ImgNode;
+}
+
+Node* nz::Model::Conv2d(Node* input, Tensor::size_type outChannels, Tensor::size_type kernelHeight,
+                        Tensor::size_type kernelWidth, Tensor::size_type stride, Tensor::size_type padding, bool bias) {
+    if (!computeGraph.inGraph(input)) {
+        computeGraph.addNode(input);
+    }
+    auto* convKernel = new io::InputNode({
+                                             input->output->shape().N(), 1,
+                                             input->output->shape().C() * kernelHeight * kernelWidth, outChannels
+                                         }, true);
+    convKernel->output->randomize();
+    hiddenNodes.push_back(convKernel);
+    computeGraph.addNode(convKernel);
+    auto inputCol = Img2Col(input, kernelHeight, kernelWidth, stride, padding);
+    auto resultCol = Mul(inputCol, convKernel);
+    if (bias) {
+        resultCol = Bias(resultCol);
+    }
+    return Col2Img(resultCol, (input->output->shape().H() + 2 * padding - kernelHeight) / stride + 1,
+                   (input->output->shape().W() + 2 * padding - kernelWidth) / stride + 1);
 }
 
 void nz::Model::MSELoss(Node* input, Node* target) {

@@ -20,10 +20,12 @@ namespace nz {
         void update(opt::Optimizer* optimizer) const;
 
         Tensor::value_type getLoss() const;
+
     private:
         std::vector<Node*> hiddenNodes;
 
         graph::ComputeGraph computeGraph;
+
     protected:
         Node* Add(Node* lhs, Node* rhs);
 
@@ -56,6 +58,15 @@ namespace nz {
         Node* Softmax(Node* input);
 
         Node* TargetExpand(Node* input, const Tensor::shape_type& shape);
+
+        Node* Img2Col(Node* input, Tensor::size_type kernelHeight, Tensor::size_type kernelWidth,
+                      Tensor::size_type stride, Tensor::size_type padding);
+
+        Node* Col2Img(Node* input, Tensor::size_type outputHeight, Tensor::size_type outputWidth);
+
+        Node* Conv2d(Node* input, Tensor::size_type outChannels, Tensor::size_type kernelHeight,
+                     Tensor::size_type kernelWidth,
+                     Tensor::size_type stride, Tensor::size_type padding, bool bias = true);
 
         void MSELoss(Node* input, Node* target);
 
