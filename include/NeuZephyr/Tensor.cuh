@@ -823,38 +823,59 @@ namespace nz::data {
         void transpose();
 
         /**
-         * @brief Sets a specific element of the tensor's data to a given value.
+         * @brief Sets the value of an element in the tensor or its gradient at a specified position.
          *
-         * This function modifies a specific element of the tensor's data stored in GPU memory.
-         * The element to be modified is specified by its position in the tensor's shape (given as a 2D index).
-         * The function first copies the tensor's data from GPU memory to host memory, modifies the specified element,
-         * and then copies the updated data back to the GPU memory.
+         * This member function allows you to set the value of a specific element in the tensor or its gradient.
+         * It first validates the position and the gradient setting based on the tensor's requirements.
          *
-         * @param position A `shape_type` (alias for `std::vector<int>`) representing the 2D index (row, column)
-         *                 of the element to modify.
-         * @param value The value to which the specified element will be set.
+         * @param position The position in the tensor where the value will be set. Memory location: host - to - device.
+         * @param value The value to be set at the specified position. Memory location: host - to - device.
+         * @param isGrad A boolean indicating whether to set the value in the gradient or the tensor data. Memory location: host - to - device.
          *
-         * This function performs the following steps:
-         * 1. It checks if the provided position is valid within the tensor's shape. If not, an exception is thrown.
-         * 2. It copies the tensor's data from GPU memory to host memory using `cudaMemcpy`.
-         * 3. It modifies the specified element at the given position in the tensor's data.
-         * 4. It copies the updated data back to the GPU memory.
+         * @return None
          *
-         * @throws std::invalid_argument If the provided position is out of bounds.
+         * **Memory Management Strategy**:
+         * - A temporary array `data` of size `_size` is allocated on the host using `malloc`.
+         * - The data from the device (either tensor data or gradient) is copied to the host using `cuStrm::StreamManager<value_type>::Instance().memcpy`.
+         * - After the value is set at the specified position in the host - side data, the updated data is copied back to the device.
+         * - The temporary array `data` is freed using `free` to avoid memory leaks.
+         *
+         * **Exception Handling Mechanism**:
+         * - Throws `std::invalid_argument` if the `position` is out of bounds of the tensor's shape.
+         * - Throws `std::invalid_argument` if `isGrad` is `true` but the tensor does not require gradients.
+         * - If any of the `cuStrm::StreamManager` operations fail, it may lead to undefined behavior as error - checking is not explicitly done in this function.
+         *
+         * **Relationship with Other Components**:
+         * - Depends on `cuStrm::StreamManager<value_type>::Instance()` for memory copying and data synchronization operations.
+         * - Relies on the `_shape` member variable to validate the position and calculate the index in the data array.
+         * - Uses the `_data` and `_grad` member variables to access the tensor data and its gradient.
+         *
+         * @throws std::invalid_argument When the position is out of bounds or when trying to set the gradient of a tensor that does not require gradients.
          *
          * @note
-         * - This function uses memory copying between host and device, which can introduce performance overhead.
-         * - The tensor's data is modified on the host first and then copied back to the GPU. This approach may not be
-         *   the most efficient for large tensors or frequent updates.
+         * - The time complexity of this function is O(n) due to the memory copying operations, where n is the number of elements in the tensor (`_size`).
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function.
+         * - Ensure that the `position` is within the valid range of the tensor's shape to avoid exceptions.
+         * - If setting the gradient, ensure that the tensor requires gradients.
+         *
+         * @warning
+         * - If any of the `cuStrm::StreamManager` operations fail, the behavior of this function is undefined.
          *
          * @code
          * ```cpp
-         * Tensor tensor({2, 3});  // Create a tensor with shape 2x3
-         * tensor.setData(std::vector<int>({1, 2}), 7.5f);  // Set the element at position (1, 2) to 7.5f
+         * Tensor tensor;
+         * Tensor::shape_type position = {0, 0, 0, 0};
+         * Tensor::value_type value = 1.0;
+         * bool isGrad = false;
+         * try {
+         *     tensor.setData(position, value, isGrad);
+         * } catch (const std::invalid_argument& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
          * ```
          * @endcode
          */
-        void setData(const shape_type& position, value_type value) const;
+        void setData(const shape_type& position, value_type value, bool isGrad = false) const;
 
         /// @}
 
@@ -1189,6 +1210,18 @@ namespace nz::data {
          * @endcode
          */
         [[nodiscard]] value_type sum(size_type batch, size_type channel) const;
+
+        [[nodiscard]] value_type max() const;
+
+        [[nodiscard]] value_type max(size_type batch, size_type channel) const;
+
+        [[nodiscard]] value_type min() const;
+
+        [[nodiscard]] value_type min(size_type batch, size_type channel) const;
+
+        [[nodiscard]] shape_type find(value_type value) const;
+
+        [[nodiscard]] shape_type find(value_type value, size_type batch, size_type channel) const;
 
         /**
          * @brief Compute the sum of the exponential values of all elements in the Tensor.

@@ -3615,3 +3615,216 @@ TEST(NodeBasic, MaxPoolingBackward) {
     expected.dataInject(expectedGrad.begin(), expectedGrad.end(), true);
     EXPECT_EQ(expected, *input.output);
 }
+
+TEST(TensorBasic, TensorMaxTestAll) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-100.0f, 100.0f);
+
+    std::vector<float> inputData(n*c*h*w);
+    float maxValue = std::numeric_limits<float>::min();
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+
+    for (auto i : inputData) {
+        if (i > maxValue) {
+            maxValue = i;
+        }
+    }
+
+    Tensor tensor({n, c, h, w});
+    tensor.dataInject(inputData.begin(), inputData.end());
+    EXPECT_NEAR(maxValue, tensor.max(), 1e-2f);
+}
+
+TEST(TensorBasic, TensorMaxTestOneMatrix) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t batch = 1;
+    const size_t channel = 1;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-100.0f, 100.0f);
+
+    std::vector<float> inputData(n*c*h*w);
+    float maxValue = std::numeric_limits<float>::min();
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+
+    const size_t offset = batch * (c * h * w) + channel * (h * w);
+    for (auto i = offset; i < offset + h*w; i++) {
+        if (inputData[i] > maxValue) {
+            maxValue = inputData[i];
+        }
+    }
+
+    Tensor tensor({n, c, h, w});
+    tensor.dataInject(inputData.begin(), inputData.end());
+    EXPECT_NEAR(maxValue, tensor.max(batch, channel), 1e-2f);
+}
+
+TEST(TensorBasic, TensorMinTestAll) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-100.0f, 100.0f);
+
+    std::vector<float> inputData(n*c*h*w);
+    float minValue = std::numeric_limits<float>::max();
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+
+    for (auto i : inputData) {
+        if (i < minValue) {
+            minValue = i;
+        }
+    }
+
+    Tensor tensor({n, c, h, w});
+    tensor.dataInject(inputData.begin(), inputData.end());
+    EXPECT_NEAR(minValue, tensor.min(), 1e-2f);
+}
+
+TEST(TensorBasic, TensorMinTestOneMatrix) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+    const size_t batch = 1;
+    const size_t channel = 1;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-100.0f, 100.0f);
+
+    std::vector<float> inputData(n*c*h*w);
+    float minValue = std::numeric_limits<float>::max();
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+
+    const size_t offset = batch * (c * h * w) + channel * (h * w);
+    for (auto i = offset; i < offset + h*w; i++) {
+        if (inputData[i] < minValue) {
+            minValue = inputData[i];
+        }
+    }
+
+    Tensor tensor({n, c, h, w});
+    tensor.dataInject(inputData.begin(), inputData.end());
+    EXPECT_NEAR(minValue, tensor.min(batch, channel), 1e-2f);
+}
+
+TEST(TensorBasic, FindDataTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    const size_t target_n = 1;
+    const size_t target_c = 1;
+    const size_t target_h = 2;
+    const size_t target_w = 2;
+
+    std::vector<float> inputData(n*c*h*w, 0.0f);
+
+    const auto idx = target_n * (c * h * w) + target_c * (h * w) + target_h * w + target_w;
+
+    inputData[idx] = 1.0f;
+
+    Tensor tensor({n, c, h, w});
+    tensor.dataInject(inputData.begin(), inputData.end());
+    EXPECT_EQ(Tensor::shape_type(target_n, target_c, target_h, target_w),
+              tensor.find(1.0f));
+}
+
+TEST(TensorBasic, FindDataOneMatrixTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    const size_t target_n = 1;
+    const size_t target_c = 1;
+    const size_t target_h = 2;
+    const size_t target_w = 2;
+
+    std::vector<float> inputData(n*c*h*w, 0.0f);
+
+    const auto idx = target_n * (c * h * w) + target_c * (h * w) + target_h * w + target_w;
+
+    inputData[idx] = 1.0f;
+
+    Tensor tensor({n, c, h, w});
+    tensor.dataInject(inputData.begin(), inputData.end());
+    EXPECT_EQ(Tensor::shape_type(target_n, target_c, target_h, target_w),
+              tensor.find(1.0f, target_n, target_c));
+    EXPECT_FALSE(Tensor::shape_type(target_n, target_c, target_h, target_w) == tensor.find(1.0f, 0, 0));
+}
+
+TEST(TensorBasic, TensorSetDataTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    const size_t target_n = 1;
+    const size_t target_c = 1;
+    const size_t target_h = 2;
+    const size_t target_w = 2;
+
+    std::vector<float> expectedData(n*c*h*w, 0.0f);
+
+    const auto idx = target_n * (c * h * w) + target_c * (h * w) + target_h * w + target_w;
+
+    expectedData[idx] = 1.0f;
+
+    Tensor tensor({n, c, h, w});
+    Tensor expected({n, c, h, w});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    tensor.setData({target_n, target_c, target_h, target_w}, 1.0f);
+    EXPECT_EQ(expected, tensor);
+}
+
+TEST(TensorBasic, TensorSetGradTest) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    const size_t target_n = 1;
+    const size_t target_c = 1;
+    const size_t target_h = 2;
+    const size_t target_w = 2;
+
+    std::vector<float> expectedData(n*c*h*w, 0.0f);
+
+    const auto idx = target_n * (c * h * w) + target_c * (h * w) + target_h * w + target_w;
+
+    expectedData[idx] = 1.0f;
+
+    Tensor tensor({n, c, h, w}, true);
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedData.begin(), expectedData.end(), true);
+    tensor.setData({target_n, target_c, target_h, target_w}, 1.0f, true);
+    EXPECT_EQ(expected, tensor);
+}

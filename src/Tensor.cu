@@ -407,18 +407,24 @@ namespace nz::data {
         _shape.updateStride();
     }
 
-    void Tensor::setData(const shape_type& position, const value_type value) const {
+    void Tensor::setData(const shape_type& position, const value_type value, const bool isGrad) const {
         if (position[0] >= _shape[0] || position[1] >= _shape[1] || position[2] >= _shape[2] || position[3] >= _shape[
             3]) {
             throw std::invalid_argument("Invalid position");
         }
+        if (isGrad && !_requires_grad) {
+            throw std::invalid_argument(
+                "Gradient setting is not allowed for tensors that do not require gradients.");
+        }
         auto* data = static_cast<value_type*>(malloc(_size * sizeof(value_type)));
-        cuStrm::StreamManager<value_type>::Instance().memcpy(data, _data, _size * sizeof(value_type),
+        cuStrm::StreamManager<value_type>::Instance().memcpy(data, isGrad ? _grad : _data, _size * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<value_type>::Instance().syncData(data);
         data[position[0] * _shape.getStride(0) + position[1] * _shape.getStride(1) + position[2] * _shape.getStride(2) +
             position[3] * _shape.getStride(3)] = value;
-        cuStrm::StreamManager<value_type>::Instance().memcpy(_data, data, _size * sizeof(value_type),
+        cuStrm::StreamManager<value_type>::Instance().memcpy(isGrad ? _grad : _data, data, _size * sizeof(value_type),
                                                              cudaMemcpyHostToDevice);
+        cuStrm::StreamManager<value_type>::Instance().syncData(isGrad ? _grad : _data);
         free(data);
     }
 
@@ -565,6 +571,7 @@ namespace nz::data {
         krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
         cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<value_type>::Instance().syncData(hData);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += hData[i];
@@ -588,6 +595,7 @@ namespace nz::data {
         krnl::Summation(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, size, offset);
         cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<value_type>::Instance().syncData(hData);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += hData[i];
@@ -595,6 +603,89 @@ namespace nz::data {
         delete[] hData;
         cuStrm::StreamManager<value_type>::Instance().free(dData);
         return result;
+    }
+
+    Tensor::value_type Tensor::max() const {
+        auto hData = hostData();
+        value_type result = std::numeric_limits<value_type>::min();
+        for (auto i = 0; i < _size; ++i) {
+            if (hData[i] > result) {
+                result = hData[i];
+            }
+        }
+        return result;
+    }
+
+    Tensor::value_type Tensor::max(const size_type batch, const size_type channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
+        const auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        auto hData = hostData();
+        value_type result = std::numeric_limits<value_type>::min();
+        for (auto i = 0; i < _shape[2] * _shape[3]; ++i) {
+            if (hData[offset + i] > result) {
+                result = hData[offset + i];
+            }
+        }
+        return result;
+    }
+
+    Tensor::value_type Tensor::min() const {
+        auto hData = hostData();
+        value_type result = std::numeric_limits<value_type>::max();
+        for (auto i = 0; i < _size; ++i) {
+            if (hData[i] < result) {
+                result = hData[i];
+            }
+        }
+        return result;
+    }
+
+    Tensor::value_type Tensor::min(const size_type batch, const size_type channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
+        const auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        auto hData = hostData();
+        value_type result = std::numeric_limits<value_type>::max();
+        for (auto i = 0; i < _shape[2] * _shape[3]; ++i) {
+            if (hData[offset + i] < result) {
+                result = hData[offset + i];
+            }
+        }
+        return result;
+    }
+
+    Tensor::shape_type Tensor::find(const value_type value) const {
+        auto hData = hostData();
+        auto index = 0;
+        for (auto i = 0; i < _size; ++i) {
+            if (hData[i] == value) {
+                index = i;
+                break;
+            }
+        }
+        auto n = index / (_shape[1] * _shape[2] * _shape[3]);
+        auto c = (index % (_shape[1] * _shape[2] * _shape[3])) / (_shape[2] * _shape[3]);
+        auto h = (index % (_shape[2] * _shape[3])) / _shape[3];
+        auto w = index % _shape[3];
+        return {n, c, h, w};
+    }
+
+    Tensor::shape_type Tensor::find(value_type value, size_type batch, size_type channel) const {
+        auto hData = hostData();
+        auto index = 0;
+        auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);
+        for (auto i = 0; i < _shape[2] * _shape[3]; ++i) {
+            if (hData[offset + i] == value) {
+                index = i;
+                break;
+            }
+        }
+        auto h = index / _shape[3];
+        auto w = index % _shape[3];
+        return {batch, channel, h, w};
     }
 
     Tensor::value_type Tensor::expSum() const {
@@ -606,6 +697,7 @@ namespace nz::data {
         krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, _size);
         cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<value_type>::Instance().syncData(hData);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += hData[i];
@@ -629,6 +721,7 @@ namespace nz::data {
         krnl::SummationExp(grid, block, block.x / WARP_SIZE * sizeof(float), dData, _data, size, offset);
         cuStrm::StreamManager<value_type>::Instance().memcpy(hData, dData, grid.x * sizeof(value_type),
                                                              cudaMemcpyDeviceToHost);
+        cuStrm::StreamManager<value_type>::Instance().syncData(hData);
         value_type result = 0;
         for (auto i = 0; i < grid.x; ++i) {
             result += hData[i];
