@@ -741,6 +741,35 @@ namespace nz::nodes {
                 inputs[0]->output->shape()[3], output->shape()[2], output->shape()[3]);
             }
         }
+
+        GlobalMaxPoolNode::GlobalMaxPoolNode(Node* input) {
+            inputs.push_back(input);
+            output = std::make_shared<Tensor>(Tensor::shape_type{
+                input->output->shape()[0], input->output->shape()[1], 1, 1
+            }, input->output->requiresGrad());
+            type = "GlobalMaxPool";
+        }
+
+        void GlobalMaxPoolNode::forward() {
+            for (auto i = 0; i < inputs[0]->output->shape()[0]; i++) {
+                for (auto j = 0; j < inputs[0]->output->shape()[1]; j++) {
+                    output->fillMatrix(inputs[0]->output->max(i, j), i, j);
+                }
+            }
+        }
+
+        void GlobalMaxPoolNode::backward() {
+            if (inputs[0]->output->requiresGrad()) {
+                const auto data = output->hostData();
+                const auto grad = output->hostGrad();
+                for (auto i = 0; i < inputs[0]->output->shape()[0]; i++) {
+                    for (auto j = 0; j < inputs[0]->output->shape()[1]; j++) {
+                        auto idx = i * inputs[0]->output->shape()[1] + j;
+                        inputs[0]->output->setData(inputs[0]->output->find(data[idx], i, j), grad[idx], true);
+                    }
+                }
+            }
+        }
     }
 
     namespace loss {

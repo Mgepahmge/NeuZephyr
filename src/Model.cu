@@ -293,6 +293,16 @@ Node* nz::Model::MaxPool2d(Node* input, Tensor::size_type poolSize, Tensor::size
     return maxPoolNode;
 }
 
+Node* nz::Model::GlobalMaxPool2d(Node* input) {
+    if (!computeGraph.inGraph(input)) {
+        computeGraph.addNode(input);
+    }
+    auto* globalMaxPoolNode = new calc::GlobalMaxPoolNode(input);
+    hiddenNodes.push_back(globalMaxPoolNode);
+    computeGraph.addNode(globalMaxPoolNode);
+    return globalMaxPoolNode;
+}
+
 void nz::Model::MSELoss(Node* input, Node* target) {
     if (!computeGraph.inGraph(input)) {
         computeGraph.addNode(input);

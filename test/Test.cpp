@@ -3828,3 +3828,99 @@ TEST(TensorBasic, TensorSetGradTest) {
     tensor.setData({target_n, target_c, target_h, target_w}, 1.0f, true);
     EXPECT_EQ(expected, tensor);
 }
+
+TEST(NodeBasic, GlobalMaxPoolForward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> expectedData(n*c);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-100.0f, 100.0f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            float max = std::numeric_limits<float>::min();
+            for (size_t k = 0; k < h; k++) {
+                for (size_t l = 0; l < w; l++) {
+                    if (inputData[i * (c * h * w) + j * (h * w) + k * w + l] > max) {
+                        max = inputData[i * (c * h * w) + j * (h * w) + k * w + l];
+                    }
+                }
+            }
+            expectedData[i * c + j] = max;
+        }
+    }
+
+    InputNode input({n, c, h, w});
+    input.dataInject(inputData.begin(), inputData.end());
+    GlobalMaxPoolNode result(&input);
+    result.forward();
+    Tensor expected({n, c, 1, 1});
+    expected.dataInject(expectedData.begin(), expectedData.end());
+    EXPECT_EQ(expected, *result.output);
+}
+
+TEST(NodeBasic, GlobalMaxPoolBackward) {
+    const size_t n = 2;
+    const size_t c = 3;
+    const size_t h = 4;
+    const size_t w = 5;
+
+    std::vector<float> inputData(n*c*h*w);
+    std::vector<float> gradData(n*c);
+    std::vector<float> expectedGradData(n*c*h*w, 0.0f);
+    std::vector<size_t> maxIdx(n*c);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(-100.0f, 100.0f);
+
+    for (auto& i : inputData) {
+        i = dist(gen);
+    }
+    for (auto& i : gradData) {
+        i = dist(gen);
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            float max = std::numeric_limits<float>::min();
+            size_t max_idx = 0;
+            for (size_t k = 0; k < h; k++) {
+                for (size_t l = 0; l < w; l++) {
+                    if (inputData[i * (c * h * w) + j * (h * w) + k * w + l] > max) {
+                        max = inputData[i * (c * h * w) + j * (h * w) + k * w + l];
+                        max_idx = k * w + l;
+                    }
+                }
+            }
+            maxIdx[i * c + j] = max_idx;
+        }
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < c; j++) {
+            const size_t outIdx = i * c + j;
+            const size_t h_idx = maxIdx[outIdx] / w;
+            const size_t w_idx = maxIdx[outIdx] % w;
+            expectedGradData[i * (c * h * w) + j * (h * w) + h_idx * w + w_idx] = gradData[outIdx];
+        }
+    }
+
+    InputNode input({n, c, h, w}, true);
+    GlobalMaxPoolNode result(&input);
+    result.dataInject(gradData.begin(), gradData.end(), true);
+    input.dataInject(inputData.begin(), inputData.end());
+    result.forward();
+    result.backward();
+    Tensor expected({n, c, h, w}, true);
+    expected.dataInject(expectedGradData.begin(), expectedGradData.end(), true);
+    expected.dataInject(inputData.begin(), inputData.end());
+    EXPECT_EQ(expected, *input.output);
+}

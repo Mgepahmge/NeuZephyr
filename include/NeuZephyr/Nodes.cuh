@@ -3368,6 +3368,16 @@ namespace nz::nodes {
 
             void backward() override;
         };
+
+        class DL_API GlobalMaxPoolNode : public Node {
+        public:
+
+            GlobalMaxPoolNode(Node* input);
+
+            void forward() override;
+
+            void backward() override;
+        };
     }
 
     /**
