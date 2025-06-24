@@ -1,0 +1,13 @@
+<map id="nz::data::Tensor::min" name="nz::data::Tensor::min">
+<area shape="rect" id="Node000001" title="Finds the minimum value in a specific batch and channel of the tensor." alt="" coords="5,43,150,69"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="217,5,355,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,43,200,36,201,41,151,48"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="198,72,374,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,64,183,68,182,73,150,69"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="422,72,601,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="374,83,406,83,406,88,374,88"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="649,31,835,73"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="601,70,633,65,634,70,602,75"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="649,97,835,140"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="602,96,634,100,633,106,601,101"/>
+</map>

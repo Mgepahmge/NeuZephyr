@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::AveragePoolingNode" name="nz::nodes::calc::AveragePoolingNode">
+<area shape="rect" id="Node000001" title="Implements average pooling operation for spatial downsampling in neural networks." alt="" coords="5,80,172,123"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="30,5,147,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,48,91,80,86,80,86,48"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::MaxPoolingNode" name="nz::nodes::calc::MaxPoolingNode">
+<area shape="rect" id="Node000001" title="Implements max pooling operation for spatial downsampling with feature preservation." alt="" coords="5,80,223,107"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="55,5,173,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,48,117,80,111,80,111,48"/>
+</map>

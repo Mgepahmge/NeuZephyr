@@ -1,0 +1,13 @@
+<map id="nz::nodes::calc::ExpandNode::backward" name="nz::nodes::calc::ExpandNode::backward">
+<area shape="rect" id="Node000001" title="Performs the backward propagation for the ExpandNode." alt="" coords="5,39,199,81"/>
+<area shape="rect" id="Node000002" href="$namespacenz_1_1krnl.html#a454a28ef0e22014efca1ede4e954db65" title="Compresses the input array into the output array with a specified total size." alt="" coords="247,47,379,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,57,231,57,231,63,199,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="427,5,612,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="379,47,411,41,412,47,380,52"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="427,72,612,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="380,68,412,73,411,79,379,73"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="660,39,846,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="612,77,644,73,645,78,613,83"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="660,105,846,148"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="613,104,645,109,644,114,612,109"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="nz::Model::update" name="nz::Model::update">
+<area shape="rect" id="Node000001" title="Applies parameter updates using attached optimization strategy." alt="" coords="5,47,131,73"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_tensor.html#a6fed8efad540a7621dd6640b2f2466d0" title="Resets the gradient data to zero." alt="" coords="179,47,355,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,57,163,57,163,63,131,63"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="403,5,588,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="355,44,387,40,388,45,356,50"/>
+<area shape="rect" id="Node000004" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a71ad766cb2869d3dd6a3931966e81706" title="Asynchronously sets a block of CUDA device memory to a specified value." alt="" coords="403,72,588,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="356,70,388,75,387,80,355,76"/>
+<area shape="rect" id="Node000005" href="$classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="636,39,822,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="588,77,620,73,621,78,589,83"/>
+<area shape="rect" id="Node000006" href="$classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="636,105,822,148"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="589,104,621,109,620,114,588,109"/>
+</map>

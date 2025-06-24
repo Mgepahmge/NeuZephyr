@@ -1,0 +1,5 @@
+<map id="nz::krnl::MaxPooling" name="nz::krnl::MaxPooling">
+<area shape="rect" id="Node000001" title="Kernel function to perform max pooling on the GPU." alt="" coords="5,13,146,40"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="194,5,379,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,24,178,24,178,29,146,29"/>
+</map>

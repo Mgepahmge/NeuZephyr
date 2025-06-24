@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::GlobalMaxPoolNode" name="nz::nodes::calc::GlobalMaxPoolNode">
+<area shape="rect" id="Node000001" title="Performs global max pooling operation across spatial dimensions of input tensor." alt="" coords="5,80,186,123"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="37,5,154,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,48,98,80,93,80,93,48"/>
+</map>

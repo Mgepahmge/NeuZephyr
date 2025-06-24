@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::ReshapeNode::ReshapeNode" name="nz::nodes::calc::ReshapeNode::ReshapeNode">
+<area shape="rect" id="Node000001" title="Constructs a ReshapeNode object to reshape the input tensor." alt="" coords="5,5,176,48"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1data_1_1_dimension.html#a073622bb031999163987ccf77f8edfb2" title="Calculates the total number of elements in the Dimension object." alt="" coords="224,5,362,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
+</map>

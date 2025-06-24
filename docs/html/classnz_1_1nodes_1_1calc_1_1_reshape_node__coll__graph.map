@@ -1,0 +1,7 @@
+<map id="nz::nodes::calc::ReshapeNode" name="nz::nodes::calc::ReshapeNode">
+<area shape="rect" id="Node000001" title="Implements tensor shape transformation within a neural network computational graph." alt="" coords="39,96,241,123"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="5,5,123,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,42,131,94,127,97,83,46"/>
+<area shape="rect" id="Node000003" href="$classnz_1_1data_1_1_dimension.html" title="Represents a multi &#45; dimensional shape, typically used in deep learning for tensor dimensions." alt="" coords="147,5,285,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,46,153,97,149,94,193,42"/>
+</map>

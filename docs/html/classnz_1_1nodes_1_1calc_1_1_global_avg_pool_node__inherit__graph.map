@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::GlobalAvgPoolNode" name="nz::nodes::calc::GlobalAvgPoolNode">
+<area shape="rect" id="Node000001" title="Performs global average pooling operation across spatial dimensions of input tensor." alt="" coords="5,80,184,123"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="36,5,153,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,48,97,80,92,80,92,48"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="nz::nodes::calc::ReshapeNode" name="nz::nodes::calc::ReshapeNode">
+<area shape="rect" id="Node000001" title="Implements tensor shape transformation within a neural network computational graph." alt="" coords="5,80,207,107"/>
+<area shape="rect" id="Node000002" href="$classnz_1_1nodes_1_1_node.html" title="Base class for nodes in a neural network or computational graph." alt="" coords="47,5,165,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,48,109,80,103,80,103,48"/>
+</map>
