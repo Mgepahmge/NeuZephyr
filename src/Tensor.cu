@@ -674,6 +674,9 @@ namespace nz::data {
     }
 
     Tensor::shape_type Tensor::find(value_type value, size_type batch, size_type channel) const {
+        if (batch >= _shape[0] || channel >= _shape[1]) {
+            throw std::invalid_argument("Invalid position");
+        }
         auto hData = hostData();
         auto index = 0;
         auto offset = batch * _shape.getStride(0) + channel * _shape.getStride(1);

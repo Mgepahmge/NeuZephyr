@@ -57,14 +57,26 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">NeuZephyr </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md85"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md132"></a>
 Welcome to NeuZephyr! 🎉</h1>
 <p>NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, designed to provide efficient GPU acceleration for deep learning model training and inference. Its goal is to help developers quickly implement deep learning models while maintaining an easy-to-use interface.</p>
-<p>If you're new to NeuZephyr and want to get started quickly, <b>the best place to begin is the documentation for the <code><a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">nz::graph::ComputeGraph</a></code> class</b>. The <code><a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">nz::graph::ComputeGraph</a></code> class allows you to define and manipulate the structure of your neural network, making it the foundation for both training and inference.</p>
-<p>Once you understand how to use the <b><a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">nz::graph::ComputeGraph</a></b>, you'll be able to easily integrate other features like Tensors, Nodes, Optimizers, and more into your models.</p>
-<p>For a detailed guide on how to use the <code>ComputeGraphh</code> class, please refer to the <b><code><a class="el" href="classnz_1_1graph_1_1_compute_graph.html" title="Represents a computational graph, which manages nodes and the computation flow.">nz::graph::ComputeGraph</a></code></b> class or its documentation.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md87"></a>
+<h1><a class="anchor" id="autotoc_md134"></a>
+NeuZephyr Quick Start Guide ✨</h1>
+<p>▌ <b>Core Starting Point</b> <br  />
+ 👉 Begin with the foundational <code><a class="el" href="classnz_1_1_model.html" title="Base class for constructing neural network models with automatic computation graph management.">nz::Model</a></code> class documentation! This class enables you to: <br  />
+ ‣ 🧱 <b>Define</b> neural network architectures <br  />
+ ‣ ⚙️ <b>Manipulate</b> model structures <br  />
+ ‣ 🚂 <b>Unify</b> training/inference workflows</p>
+<p>▌ <b>Seamless Expansion Path</b> <br  />
+ After mastering <code><a class="el" href="classnz_1_1_model.html" title="Base class for constructing neural network models with automatic computation graph management.">nz::Model</a></code>, effortlessly integrate: <br  />
+ │ <br  />
+ ├ 🔥 <b>Tensors</b> - Data representation <br  />
+ ├ 🧠 <b>Nodes</b> - Computational units <br  />
+ ├ 🎯 <b>Optimizers</b> - Learning strategies <br  />
+ └ ...and other advanced features!</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md136"></a>
 Features</h2>
 <ul>
 <li>Built on CUDA C for efficient GPU acceleration</li>
@@ -73,15 +85,15 @@ Features</h2>
 <li>C++ interface for seamless integration with other C++ projects</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md89"></a>
+<h2><a class="anchor" id="autotoc_md138"></a>
 Installation</h2>
-<h3><a class="anchor" id="autotoc_md90"></a>
+<h3><a class="anchor" id="autotoc_md139"></a>
 System Requirements</h3>
 <ul>
 <li>CUDA driver (Recommended version: CUDA 12 or higher)</li>
 <li>CMake 3.10 or higher (Recommended version: CMake3.18 or higher)</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md91"></a>
+<h3><a class="anchor" id="autotoc_md140"></a>
 Installation Steps</h3>
 <ol type="1">
 <li>Clone the project: <div class="fragment"><div class="line">git clone https://github.com/Mgepahmge/NeuZephyr.git</div>
@@ -97,7 +109,7 @@ Installation Steps</h3>
 <div class="line">target_link_libraries(your_project PRIVATE NeuZephyr::NeuZephyr)</div>
 </div><!-- fragment --></li>
 </ol>
-<h3><a class="anchor" id="autotoc_md92"></a>
+<h3><a class="anchor" id="autotoc_md141"></a>
 Dependencies</h3>
 <ul>
 <li><b>CUDA Driver</b>: A GPU with compute capability 7.0 or higher is required to support Tensor Cores. Tensor Cores are available on NVIDIA Volta, Turing, and Ampere architectures (e.g., V100, T4, A100, and others).</li>
@@ -105,24 +117,24 @@ Dependencies</h3>
 <li><b>CMake</b>: Version 3.18 or higher is required for building the project.</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md143"></a>
 Key Components</h2>
-<h3><a class="anchor" id="autotoc_md95"></a>
+<h3><a class="anchor" id="autotoc_md144"></a>
 Tensor: The Core Data Structure</h3>
 <p>A <b>Tensor</b> is the fundamental data structure in NeuZephyr. It represents multi-dimensional arrays of data, which are essential for storing and manipulating data in deep learning models. Tensors are used in all computations, including matrix operations, activation functions, and more.</p>
 <p>Tensors in NeuZephyr support a wide range of operations such as addition, multiplication, and broadcasting. The <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">nz::data::Tensor</a></code> class is designed to be efficient and is optimized for use with CUDA, ensuring that tensor operations are performed on the GPU for faster computation.</p>
 <p>For more detailed documentation on how to use the <code>Tensor</code> class, see the <code><a class="el" href="_tensor_8cuh.html" title="Definition of the Tensor class for GPU-based tensor operations.">Tensor.cuh</a></code> file.</p>
-<h3><a class="anchor" id="autotoc_md96"></a>
+<h3><a class="anchor" id="autotoc_md145"></a>
 Node: The Compute Graph Node</h3>
 <p>A <b>Node</b> in NeuZephyr represents a unit of computation in the computational graph. It can be an input/output (I/O) node, an operation node (such as matrix multiplication), or a loss function node (e.g., Mean Squared Error or Cross-Entropy). Nodes connect together to form a computational graph, which is used to define the flow of data and operations in a neural network.</p>
 <p>Nodes are defined within the <code><a class="el" href="namespacenz_1_1nodes.html" title="Contains classes and functionality for nodes in a neural network or computational graph.">nz::nodes</a></code> namespace. Each type of node has specific functionality, and they work together to perform the computations required for training and inference.</p>
 <p>For more detailed documentation on the different node types, refer to the <code><a class="el" href="_nodes_8cuh.html" title="Declaration of the Node class and various derived node classes for neural network operations.">Nodes.cuh</a></code> file or the <code><a class="el" href="namespacenz_1_1nodes.html" title="Contains classes and functionality for nodes in a neural network or computational graph.">nz::nodes</a></code> namespace documentation.</p>
-<h3><a class="anchor" id="autotoc_md97"></a>
+<h3><a class="anchor" id="autotoc_md146"></a>
 Optimizer: The Optimization Algorithm</h3>
 <p>An <b>Optimizer</b> is responsible for adjusting the parameters of the model (such as weights and biases) during training to minimize the loss function. NeuZephyr includes several commonly used optimizers, such as <b>Stochastic Gradient Descent (SGD)</b> and <b>Adam</b>.</p>
 <p>Optimizers play a crucial role in the training process, and different optimizers can be more suitable for different tasks. The <code><a class="el" href="namespacenz_1_1opt.html" title="Contains optimization algorithms for training deep learning models.">nz::opt</a></code> namespace contains classes for implementing various optimization algorithms.</p>
 <p>For detailed documentation on each optimizer and how to configure them, please refer to the <code><a class="el" href="_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models.">Optimizer.cuh</a></code> file or the <code><a class="el" href="namespacenz_1_1opt.html" title="Contains optimization algorithms for training deep learning models.">nz::opt</a></code> namespace documentation.</p>
-<h3><a class="anchor" id="autotoc_md98"></a>
+<h3><a class="anchor" id="autotoc_md147"></a>
 ComputeGraph: The Computational Graph</h3>
 <p>The <b>ComputeGraph</b> is the backbone of any deep learning model in NeuZephyr. It defines the structure of the neural network, including the layers, operations, and data flow. Each node in the graph represents a computation, and the connections between them define the execution order.</p>
 <p>If you are looking to build your own neural network using NeuZephyr, you will need to understand how to create and manipulate a <code>ComputeGraph</code>. This class allows you to define complex models and perform training or inference on them. It also handles automatic differentiation for backpropagation during training.</p>
@@ -131,14 +143,14 @@ ComputeGraph: The Computational Graph</h3>
 <p>For more detailed information, please refer to the corresponding header files or the documentation within each class/namespace. If you are new to NeuZephyr, we recommend starting with the <code>Tensor</code> and <code>ComputeGraph</code> documentation to get an understanding of how the core components work together.</p>
 <p>For further assistance, feel free to check the repository or reach out to the maintainers.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md101"></a>
+<h3><a class="anchor" id="autotoc_md150"></a>
 Notes</h3>
 <ul>
 <li>The library currently supports only CUDA environments and assumes that the CUDA driver and libraries are properly installed.</li>
 <li>Ensure that your GPU environment is compatible with the required CUDA version.</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md103"></a>
+<h3><a class="anchor" id="autotoc_md152"></a>
 Contact &amp; Additional Information</h3>
 <p>For inquiries, issues, or contributions, please contact:</p>
 <ul>
@@ -146,18 +158,18 @@ Contact &amp; Additional Information</h3>
 <li>GitHub Repository: <a href="https://github.com/Mgepahmge/NeuZephyr">https://github.com/Mgepahmge/NeuZephyr</a></li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md105"></a>
+<h3><a class="anchor" id="autotoc_md154"></a>
 Disclaimer</h3>
 <p>This project is provided strictly for learning and research purposes. It is not intended for production use or commercial deployment.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md107"></a>
+<h3><a class="anchor" id="autotoc_md156"></a>
 License</h3>
 <p>This project is licensed under the <b>MIT License</b>.</p>
 <p>See the <a href="https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE">LICENSE</a> file for details.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md109"></a>
+<h2><a class="anchor" id="autotoc_md158"></a>
 Changelog</h2>
-<h3><a class="anchor" id="autotoc_md110"></a>
+<h3><a class="anchor" id="autotoc_md159"></a>
 v0.5 - High-Dimensional Tensor Infrastructure Overhaul</h3>
 <ul>
 <li>Upgraded core tensor infrastructure from 2D to <b>fourth-order tensor</b> representation, enabling native support for high-dimensional data structures.</li>
@@ -165,7 +177,7 @@ v0.5 - High-Dimensional Tensor Infrastructure Overhaul</h3>
 <li>Optimized memory layout and access patterns for fourth-order tensors, improving cache utilization and computational efficiency.</li>
 <li>Preserved low-dimensional tensor interfaces (2D/3D) via automatic view projection for scenarios requiring legacy dimensionality.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md111"></a>
+<h3><a class="anchor" id="autotoc_md160"></a>
 v0.4 - CUDA Stream Management Enhancement</h3>
 <ul>
 <li>Added CUDA Stream Manager to automatically distribute CUDA operations across multiple streams, enabling asynchronous execution and improved concurrency.</li>
@@ -173,7 +185,7 @@ v0.4 - CUDA Stream Management Enhancement</h3>
 <li>Optimized dependency resolution to intelligently track and synchronize inter-stream operations, minimizing synchronization overhead.</li>
 <li>Preserved explicit stream control for advanced users requiring fine-grained parallelism management (e.g., custom kernel launches).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md112"></a>
+<h3><a class="anchor" id="autotoc_md161"></a>
 v0.3 - Memory Management Upgrade</h3>
 <ul>
 <li>Added MappedTensor class using CUDA zero-copy memory (ideal for frequent host-side data access in non-compute-intensive scenarios).</li>
@@ -181,14 +193,14 @@ v0.3 - Memory Management Upgrade</h3>
 <li>Preserved high-performance Tensor implementation (recommended for compute-intensive workloads).</li>
 <li>Optimized memory mapping mechanisms to reduce host-device transfer overhead.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md113"></a>
+<h3><a class="anchor" id="autotoc_md162"></a>
 v0.2 - Performance Optimization</h3>
 <ul>
 <li>Optimized performance by applying thread bundle shuffling to accumulative kernel functions, resulting in a 13% performance boost on the author's device.</li>
 <li>Integrated Tensor Cores for half-precision fast matrix multiplication, leading to a 20% performance improvement on the author's device.</li>
 <li>Further fine-tuned matrix operations for increased efficiency.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md114"></a>
+<h3><a class="anchor" id="autotoc_md163"></a>
 v0.1 - Initial Release</h3>
 <ul>
 <li>First release of NeuZephyr.</li>

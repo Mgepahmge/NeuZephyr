@@ -122,12 +122,12 @@ Public Member Functions</h2></td></tr>
 <li>The update rule for <a class="el" href="classnz_1_1opt_1_1_r_m_sprop.html" title="RMSprop optimizer for deep learning models.">RMSprop</a> can be expressed as:   <p class="formulaDsp">
 <img class="formulaDsp" alt="\[
          v_t = \beta v_{t-1} + (1 - \beta) g_t^2
-         \]" src="form_0.png"/>
+         \]" src="form_1.png"/>
 </p>
    <p class="formulaDsp">
 <img class="formulaDsp" alt="\[
          \theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{v_t + \epsilon}} g_t
-         \]" src="form_1.png"/>
+         \]" src="form_2.png"/>
 </p>
  where:<ul>
 <li>( v_t ) is the moving average of squared gradients.</li>
@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <li>The <code>epsilon</code> term helps avoid division by zero and ensures numerical stability.</li>
 </ul>
 </dd></dl>
-<h3><a class="anchor" id="autotoc_md71"></a>
+<h3><a class="anchor" id="autotoc_md118"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnz_1_1opt_1_1_r_m_sprop.html">RMSprop</a> optimizer(0.001, 0.9);</div>
 <div class="line">graph.update(&amp;optimizer); <span class="comment">// Suppose &quot;graph&quot; is a computation graph waiting for gradient updates.</span></div>

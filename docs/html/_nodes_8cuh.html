@@ -107,17 +107,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_nodes_8cuh__dep__incl.png" border="0" usemap="#a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_nodes_8cuhdep" alt=""/></div>
 <map name="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_nodes_8cuhdep" id="a_d_1_2_users_2_mgepahmge_2_documents_2_c_01_program_2_neu_zephyr_2include_2_neu_zephyr_2_nodes_8cuhdep">
-<area shape="rect" title="Declaration of the Node class and various derived node classes for neural network operations." alt="" coords="230,5,432,80"/>
-<area shape="rect" href="_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models." alt="" coords="124,128,326,203"/>
-<area shape="poly" title=" " alt="" coords="290,94,259,129,255,126,286,90"/>
-<area shape="rect" href="_nodes_8cu_source.html" title=" " alt="" coords="350,136,522,195"/>
-<area shape="poly" title=" " alt="" coords="375,90,413,134,409,137,371,94"/>
-<area shape="rect" href="_compute_graph_8cuh.html" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="15,251,217,325"/>
-<area shape="poly" title=" " alt="" coords="184,216,151,252,147,248,180,213"/>
-<area shape="rect" href="_optimizer_8cu_source.html" title=" " alt="" coords="241,259,431,317"/>
-<area shape="poly" title=" " alt="" coords="271,213,312,256,308,260,267,216"/>
-<area shape="rect" href="_compute_graph_8cu_source.html" title=" " alt="" coords="5,373,227,432"/>
-<area shape="poly" title=" " alt="" coords="119,341,119,373,113,373,113,341"/>
+<area shape="rect" title="Declaration of the Node class and various derived node classes for neural network operations." alt="" coords="337,5,540,80"/>
+<area shape="rect" href="_optimizer_8cuh.html" title="Definition of optimization algorithms for training deep learning models." alt="" coords="232,128,434,203"/>
+<area shape="poly" title=" " alt="" coords="398,94,367,129,363,126,394,90"/>
+<area shape="rect" href="_nodes_8cu_source.html" title=" " alt="" coords="458,136,630,195"/>
+<area shape="poly" title=" " alt="" coords="483,90,521,134,517,137,479,94"/>
+<area shape="rect" href="_compute_graph_8cuh.html" title="Defines the ComputeGraph class for constructing and managing computational graphs in neural network m..." alt="" coords="123,251,325,325"/>
+<area shape="poly" title=" " alt="" coords="292,216,259,252,255,248,288,213"/>
+<area shape="rect" href="_optimizer_8cu_source.html" title=" " alt="" coords="349,259,538,317"/>
+<area shape="poly" title=" " alt="" coords="379,213,420,256,416,260,375,216"/>
+<area shape="rect" href="_model_8cuh.html" title="Core class for computational graph construction and neural network modeling." alt="" coords="5,373,208,448"/>
+<area shape="poly" title=" " alt="" coords="179,339,144,375,140,371,176,335"/>
+<area shape="rect" href="_compute_graph_8cu_source.html" title=" " alt="" coords="232,381,453,440"/>
+<area shape="poly" title=" " alt="" coords="273,335,316,379,312,383,269,339"/>
+<area shape="rect" href="_model_8cu_source.html" title=" " alt="" coords="22,496,191,555"/>
+<area shape="poly" title=" " alt="" coords="109,463,109,495,104,495,104,463"/>
 </map>
 </div>
 </div>
@@ -181,6 +185,30 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_softmax_node.html">nz::nodes::calc::SoftmaxNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the Softmax activation function as a node in a neural network computational graph.  <a href="classnz_1_1nodes_1_1calc_1_1_softmax_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_reshape_node.html">nz::nodes::calc::ReshapeNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements tensor shape transformation within a neural network computational graph.  <a href="classnz_1_1nodes_1_1calc_1_1_reshape_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_expand_node.html">nz::nodes::calc::ExpandNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands tensors with batch size 1 to arbitrary batch dimensions through data replication.  <a href="classnz_1_1nodes_1_1calc_1_1_expand_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_img2_col_node.html">nz::nodes::calc::Img2ColNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements im2col transformation for efficient convolution operations in neural networks.  <a href="classnz_1_1nodes_1_1calc_1_1_img2_col_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_col2_img_node.html">nz::nodes::calc::Col2ImgNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs spatial tensors from column matrices generated by im2col transformation.  <a href="classnz_1_1nodes_1_1calc_1_1_col2_img_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_average_pooling_node.html">nz::nodes::calc::AveragePoolingNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements average pooling operation for spatial downsampling in neural networks.  <a href="classnz_1_1nodes_1_1calc_1_1_average_pooling_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_global_avg_pool_node.html">nz::nodes::calc::GlobalAvgPoolNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs global average pooling operation across spatial dimensions of input tensor.  <a href="classnz_1_1nodes_1_1calc_1_1_global_avg_pool_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_max_pooling_node.html">nz::nodes::calc::MaxPoolingNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements max pooling operation for spatial downsampling with feature preservation.  <a href="classnz_1_1nodes_1_1calc_1_1_max_pooling_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1calc_1_1_global_max_pool_node.html">nz::nodes::calc::GlobalMaxPoolNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs global max pooling operation across spatial dimensions of input tensor.  <a href="classnz_1_1nodes_1_1calc_1_1_global_max_pool_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html">nz::nodes::loss::MeanSquaredErrorNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the Mean Squared Error (MSE) loss function node in a computational graph.  <a href="classnz_1_1nodes_1_1loss_1_1_mean_squared_error_node.html#details">More...</a><br /></td></tr>

@@ -163,9 +163,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45e6f84ae74111ced9a96bdf204b2294" id="r_a45e6f84ae74111ced9a96bdf204b2294"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45e6f84ae74111ced9a96bdf204b2294">transpose</a> ()</td></tr>
 <tr class="memdesc:a45e6f84ae74111ced9a96bdf204b2294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transposes the tensor by swapping its dimensions and rearranging the data.  <br /></td></tr>
 <tr class="separator:a45e6f84ae74111ced9a96bdf204b2294"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2cee8a54e65497113afd0c4f85dc02c" id="r_ae2cee8a54e65497113afd0c4f85dc02c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">shape_type</a> &amp;position, value_type value) const</td></tr>
-<tr class="memdesc:ae2cee8a54e65497113afd0c4f85dc02c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific element of the tensor's data to a given value.  <br /></td></tr>
-<tr class="separator:ae2cee8a54e65497113afd0c4f85dc02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9be06ac6766a5fa6de3548c722ef43" id="r_a2f9be06ac6766a5fa6de3548c722ef43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f9be06ac6766a5fa6de3548c722ef43">setData</a> (const <a class="el" href="classnz_1_1data_1_1_dimension.html">shape_type</a> &amp;position, value_type value, bool isGrad=false) const</td></tr>
+<tr class="memdesc:a2f9be06ac6766a5fa6de3548c722ef43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of an element in the tensor or its gradient at a specified position.  <br /></td></tr>
+<tr class="separator:a2f9be06ac6766a5fa6de3548c722ef43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Math</div></td></tr>
 <tr class="memitem:a36cd1679c45059de64deeca9152b0288" id="r_a36cd1679c45059de64deeca9152b0288"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36cd1679c45059de64deeca9152b0288">operator+</a> (const <a class="el" href="classnz_1_1data_1_1_tensor.html">Tensor</a> &amp;other) const</td></tr>
 <tr class="memdesc:a36cd1679c45059de64deeca9152b0288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds two tensors element-wise and returns the result.  <br /></td></tr>
@@ -197,6 +197,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a74aa515ba6b83aa1d05a7bb001b297b3" id="r_a74aa515ba6b83aa1d05a7bb001b297b3"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74aa515ba6b83aa1d05a7bb001b297b3">sum</a> (size_type batch, size_type channel) const</td></tr>
 <tr class="memdesc:a74aa515ba6b83aa1d05a7bb001b297b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sum of elements in a specific batch and channel of a <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a>.  <br /></td></tr>
 <tr class="separator:a74aa515ba6b83aa1d05a7bb001b297b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9131832f57339c0de2e7fb7955940a55" id="r_a9131832f57339c0de2e7fb7955940a55"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9131832f57339c0de2e7fb7955940a55">max</a> () const</td></tr>
+<tr class="memdesc:a9131832f57339c0de2e7fb7955940a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the maximum value in the tensor.  <br /></td></tr>
+<tr class="separator:a9131832f57339c0de2e7fb7955940a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90f7c7cde42c58b41f77d1b941da129f" id="r_a90f7c7cde42c58b41f77d1b941da129f"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90f7c7cde42c58b41f77d1b941da129f">max</a> (size_type batch, size_type channel) const</td></tr>
+<tr class="memdesc:a90f7c7cde42c58b41f77d1b941da129f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the maximum value in a specific batch and channel of the tensor.  <br /></td></tr>
+<tr class="separator:a90f7c7cde42c58b41f77d1b941da129f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70caeac6652c0008b7554db438db090c" id="r_a70caeac6652c0008b7554db438db090c"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70caeac6652c0008b7554db438db090c">min</a> () const</td></tr>
+<tr class="memdesc:a70caeac6652c0008b7554db438db090c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the minimum value in the entire tensor.  <br /></td></tr>
+<tr class="separator:a70caeac6652c0008b7554db438db090c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae846233848b4cd26181205a594c083b5" id="r_ae846233848b4cd26181205a594c083b5"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae846233848b4cd26181205a594c083b5">min</a> (size_type batch, size_type channel) const</td></tr>
+<tr class="memdesc:ae846233848b4cd26181205a594c083b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the minimum value in a specific batch and channel of the tensor.  <br /></td></tr>
+<tr class="separator:ae846233848b4cd26181205a594c083b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373a517d4a813c94a820d0a45806693e" id="r_a373a517d4a813c94a820d0a45806693e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_dimension.html">shape_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a373a517d4a813c94a820d0a45806693e">find</a> (value_type value) const</td></tr>
+<tr class="memdesc:a373a517d4a813c94a820d0a45806693e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first occurrence of a given value in the entire tensor and returns its shape indices.  <br /></td></tr>
+<tr class="separator:a373a517d4a813c94a820d0a45806693e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6c6bc33a47e23ec62e6a62e5e25a8ed" id="r_ae6c6bc33a47e23ec62e6a62e5e25a8ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnz_1_1data_1_1_dimension.html">shape_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6c6bc33a47e23ec62e6a62e5e25a8ed">find</a> (value_type value, size_type batch, size_type channel) const</td></tr>
+<tr class="memdesc:ae6c6bc33a47e23ec62e6a62e5e25a8ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first occurrence of a given value in a specific batch and channel of the tensor and returns its shape indices.  <br /></td></tr>
+<tr class="separator:ae6c6bc33a47e23ec62e6a62e5e25a8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1818a10415337403d43aad091a5a4c7" id="r_aa1818a10415337403d43aad091a5a4c7"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1818a10415337403d43aad091a5a4c7">expSum</a> () const</td></tr>
 <tr class="memdesc:aa1818a10415337403d43aad091a5a4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the sum of the exponential values of all elements in the <a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a>.  <br /></td></tr>
 <tr class="separator:aa1818a10415337403d43aad091a5a4c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -232,14 +250,14 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for representing and manipulating multidimensional arrays (tensors) in GPU memory. </p>
 <p>The <code><a class="el" href="classnz_1_1data_1_1_tensor.html" title="A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.">Tensor</a></code> class is designed for high-performance numerical computations in GPU-based environments. It provides a wide range of functionalities, including tensor creation, mathematical operations, memory management, and gradient computation for deep learning tasks.</p>
-<h3><a class="anchor" id="autotoc_md81"></a>
+<h3><a class="anchor" id="autotoc_md128"></a>
 Type Definitions:</h3>
 <ul>
 <li><code>size_type</code>: An alias for <code>unsigned long long</code>, used to represent the size of the tensor. Supports large tensors with up to 64-bit indices.</li>
 <li><code>value_type</code>: An alias for <code>float</code>, representing the data type of the tensor elements. Suitable for most machine learning computations.</li>
 <li><code>shape_type</code>: An alias for <code>std::vector&lt;int&gt;</code>, representing the shape of the tensor (e.g., <code>{2, 3}</code> for a 2x3 matrix).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md82"></a>
+<h3><a class="anchor" id="autotoc_md129"></a>
 Key Features:</h3>
 <ul>
 <li><b>Memory Management</b>: Handles GPU memory allocation and deallocation using CUDA.</li>
@@ -248,7 +266,7 @@ Key Features:</h3>
 <li><b>Gradient Support</b>: Tracks gradients for tensors that require gradient computation (<code>requires_grad</code>) to facilitate backpropagation in neural networks.</li>
 <li><b>Shape Transformation</b>: Supports reshaping and transposing tensors.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md83"></a>
+<h3><a class="anchor" id="autotoc_md130"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacenz_1_1data.html">nz::data</a>;</div>
 <div class="line"> </div>
@@ -268,8 +286,8 @@ Usage Example:</h3>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Multiplication result (2x3 * 3x2 = 2x2):&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">std::cout &lt;&lt; multiplied_result &lt;&lt; std::endl;  <span class="comment">// Print the result of matrix multiplication</span></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html"><div class="ttname"><a href="classnz_1_1data_1_1_tensor.html">nz::data::Tensor</a></div><div class="ttdoc">A class for representing and manipulating multidimensional arrays (tensors) in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cuh_source.html#l00134">Tensor.cuh:134</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad220de56b18c404611f07f2290cd7e9d"><div class="ttname"><a href="#ad220de56b18c404611f07f2290cd7e9d">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value, bool isGrad=false) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00300">Tensor.cu:300</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_adf80894b8e06f260bb2695951e2f539e"><div class="ttname"><a href="#adf80894b8e06f260bb2695951e2f539e">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(value_type *data, bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00276">Tensor.cu:276</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad220de56b18c404611f07f2290cd7e9d"><div class="ttname"><a href="#ad220de56b18c404611f07f2290cd7e9d">nz::data::Tensor::fill</a></div><div class="ttdeci">void fill(value_type value, bool isGrad=false) const</div><div class="ttdoc">Fills the tensor's data with a specified value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00306">Tensor.cu:306</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_adf80894b8e06f260bb2695951e2f539e"><div class="ttname"><a href="#adf80894b8e06f260bb2695951e2f539e">nz::data::Tensor::dataInject</a></div><div class="ttdeci">void dataInject(value_type *data, bool grad=false) const</div><div class="ttdoc">Injects data or gradient data into the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00282">Tensor.cu:282</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html"><div class="ttname"><a href="namespacenz_1_1data.html">nz::data</a></div><div class="ttdoc">Contains data structures and utilities for tensor operations in machine learning workflows.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cuh_source.html#l00009">Dimension.cuh:9</a></div></div>
 <div class="ttc" id="anamespacenz_1_1data_html_a4706224f5e7c9a0cfe4c74983aaef1bd"><div class="ttname"><a href="namespacenz_1_1data.html#a4706224f5e7c9a0cfe4c74983aaef1bd">nz::data::ReLU</a></div><div class="ttdeci">std::enable_if_t&lt; is_valid_tensor_type&lt; T &gt;::value, T &gt; ReLU(T &amp;input)</div><div class="ttdoc">Apply the Rectified Linear Unit (ReLU) activation function element-wise to an input tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_operations_8cuh_source.html#l00050">TensorOperations.cuh:50</a></div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><ul>
@@ -433,8 +451,8 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> tensor(<a class="code hl_function" href="#aade7b0c42622279888d755f4f7989aac">shape</a>, <a class="code hl_function" href="#a38ba233ef49f34620297f96edd962c55">data</a>, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
 <div class="line">```</div>
 <div class="ttc" id="aclassnz_1_1data_1_1_dimension_html"><div class="ttname"><a href="classnz_1_1data_1_1_dimension.html">nz::data::Dimension</a></div><div class="ttdoc">Represents a multi - dimensional shape, typically used in deep learning for tensor dimensions.</div><div class="ttdef"><b>Definition</b> <a href="_dimension_8cuh_source.html#l00057">Dimension.cuh:57</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00420">Tensor.cu:420</a></div></div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aade7b0c42622279888d755f4f7989aac"><div class="ttname"><a href="#aade7b0c42622279888d755f4f7989aac">nz::data::Tensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00219">Tensor.cu:219</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a38ba233ef49f34620297f96edd962c55"><div class="ttname"><a href="#a38ba233ef49f34620297f96edd962c55">nz::data::Tensor::data</a></div><div class="ttdeci">value_type * data() const noexcept</div><div class="ttdoc">Retrieves a pointer to the tensor's data stored in GPU memory.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00432">Tensor.cu:432</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aade7b0c42622279888d755f4f7989aac"><div class="ttname"><a href="#aade7b0c42622279888d755f4f7989aac">nz::data::Tensor::shape</a></div><div class="ttdeci">shape_type shape() const noexcept</div><div class="ttdoc">Retrieves the shape of the tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00225">Tensor.cu:225</a></div></div>
 <div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ad0dda0efff93778cab46fd5aa708b983"><div class="ttname"><a href="#ad0dda0efff93778cab46fd5aa708b983">nz::data::Tensor::Tensor</a></div><div class="ttdeci">Tensor()</div><div class="ttdoc">Default constructor for Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00088">Tensor.cu:88</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00104">104</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
@@ -656,13 +674,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_tensor_a98a8b254d2b6c8b4893d7a286452a9b0_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a98a8b254d2b6c8b4893d7a286452a9b0_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_a98a8b254d2b6c8b4893d7a286452a9b0_cgraph" id="aclassnz_1_1data_1_1_tensor_a98a8b254d2b6c8b4893d7a286452a9b0_cgraph">
-<area shape="rect" title="Destructor for Tensor." alt="" coords="5,39,129,81"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="177,5,362,48"/>
-<area shape="poly" title=" " alt="" coords="129,47,161,42,162,47,130,52"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="177,72,362,115"/>
-<area shape="poly" title=" " alt="" coords="130,68,162,73,161,78,129,73"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="410,5,595,48"/>
-<area shape="poly" title=" " alt="" coords="362,24,394,24,394,29,362,29"/>
+<area shape="rect" title="Destructor for Tensor." alt="" coords="5,72,129,115"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1084057ef6f5b2871c60702209bb4469" title="Asynchronously frees the CUDA device memory pointed to by the given pointer." alt="" coords="177,39,362,81"/>
+<area shape="poly" title=" " alt="" coords="129,81,161,75,162,80,130,86"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="177,105,362,148"/>
+<area shape="poly" title=" " alt="" coords="130,101,162,106,161,111,129,106"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="410,5,595,48"/>
+<area shape="poly" title=" " alt="" coords="362,44,394,39,395,45,363,49"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="410,72,595,115"/>
+<area shape="poly" title=" " alt="" coords="363,71,395,75,394,81,362,76"/>
 </map>
 </div>
 
@@ -695,9 +715,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#afc4e6385b97cf7ceb8bb74748b73b681">clear</a>();         <span class="comment">// Clear the tensor&#39;s data by setting all elements to zero</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00296">Tensor.cu:296</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_afc4e6385b97cf7ceb8bb74748b73b681"><div class="ttname"><a href="#afc4e6385b97cf7ceb8bb74748b73b681">nz::data::Tensor::clear</a></div><div class="ttdeci">void clear() const</div><div class="ttdoc">Clears the tensor's data by setting all elements to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00302">Tensor.cu:302</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00296">296</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00302">302</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -754,7 +774,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Use gpu_data in CUDA kernels or other GPU-based operations</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00420">420</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00432">432</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -808,7 +828,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00235">235</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00241">241</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -966,7 +986,7 @@ template&lt;typename Iterator &gt; </div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00276">276</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00282">282</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1043,37 +1063,38 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
 <div class="line">nz::data::Tensor::value_type exp_sum_result = tensor.<a class="code hl_function" href="#aa1818a10415337403d43aad091a5a4c7">expSum</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aa1818a10415337403d43aad091a5a4c7"><div class="ttname"><a href="#aa1818a10415337403d43aad091a5a4c7">nz::data::Tensor::expSum</a></div><div class="ttdeci">value_type expSum() const</div><div class="ttdoc">Compute the sum of the exponential values of all elements in the Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00594">Tensor.cu:594</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_aa1818a10415337403d43aad091a5a4c7"><div class="ttname"><a href="#aa1818a10415337403d43aad091a5a4c7">nz::data::Tensor::expSum</a></div><div class="ttdeci">value_type expSum() const</div><div class="ttdoc">Compute the sum of the exponential values of all elements in the Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00694">Tensor.cu:694</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00594">594</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00694">694</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_tensor_aa1818a10415337403d43aad091a5a4c7_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_aa1818a10415337403d43aad091a5a4c7_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_aa1818a10415337403d43aad091a5a4c7_cgraph" id="aclassnz_1_1data_1_1_tensor_aa1818a10415337403d43aad091a5a4c7_cgraph">
-<area shape="rect" title="Compute the sum of the exponential values of all elements in the Tensor." alt="" coords="5,139,177,165"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="225,12,410,55"/>
-<area shape="poly" title=" " alt="" coords="115,136,223,76,256,60,258,64,226,81,118,140"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="458,72,643,115"/>
-<area shape="poly" title=" " alt="" coords="159,135,224,124,442,99,443,105,225,129,160,141"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="225,252,410,295"/>
-<area shape="poly" title=" " alt="" coords="118,164,226,223,262,242,259,247,223,228,116,168"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="458,205,643,248"/>
-<area shape="poly" title=" " alt="" coords="163,163,225,175,443,209,442,214,224,180,162,169"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="237,139,398,165"/>
-<area shape="poly" title=" " alt="" coords="177,149,221,149,221,155,177,155"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="458,5,643,48"/>
-<area shape="poly" title=" " alt="" coords="410,28,442,27,443,32,411,33"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="691,205,877,248"/>
-<area shape="poly" title=" " alt="" coords="410,272,522,268,643,257,687,249,688,255,644,263,522,274,410,277"/>
-<area shape="poly" title=" " alt="" coords="644,224,676,224,676,229,644,229"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="691,139,877,181"/>
-<area shape="poly" title=" " alt="" coords="627,202,691,184,693,189,628,207"/>
-<area shape="poly" title=" " alt="" coords="373,136,448,116,449,122,374,141"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="458,139,643,181"/>
-<area shape="poly" title=" " alt="" coords="398,152,443,154,443,159,398,157"/>
-<area shape="poly" title=" " alt="" coords="628,179,693,198,691,203,627,184"/>
-<area shape="poly" title=" " alt="" coords="644,157,676,157,676,163,644,163"/>
+<area shape="rect" title="Compute the sum of the exponential values of all elements in the Tensor." alt="" coords="5,160,177,187"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="225,5,410,48"/>
+<area shape="poly" title=" " alt="" coords="105,157,155,113,223,64,245,53,248,57,226,69,159,118,109,161"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="458,35,643,77"/>
+<area shape="poly" title=" " alt="" coords="115,157,164,132,224,108,336,81,442,64,443,69,337,86,225,113,167,137,118,162"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="458,181,643,224"/>
+<area shape="poly" title=" " alt="" coords="177,176,442,193,442,198,177,181"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="225,123,410,165"/>
+<area shape="poly" title=" " alt="" coords="177,160,209,155,209,161,177,165"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="458,315,643,357"/>
+<area shape="poly" title=" " alt="" coords="107,185,156,231,189,256,226,276,279,296,336,311,443,328,442,333,334,316,278,301,224,281,187,260,153,235,103,189"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="237,240,398,267"/>
+<area shape="poly" title=" " alt="" coords="131,185,226,219,262,232,261,237,224,224,130,190"/>
+<area shape="poly" title=" " alt="" coords="411,36,443,40,442,45,410,41"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="691,248,877,291"/>
+<area shape="poly" title=" " alt="" coords="410,136,464,136,524,140,585,150,644,167,675,181,703,198,751,235,748,240,700,202,672,185,642,172,584,155,523,146,464,141,410,141"/>
+<area shape="poly" title=" " alt="" coords="627,312,691,293,693,298,628,317"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="691,315,877,357"/>
+<area shape="poly" title=" " alt="" coords="644,333,676,333,676,339,644,339"/>
+<area shape="poly" title=" " alt="" coords="382,237,442,224,443,229,383,242"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="458,248,643,291"/>
+<area shape="poly" title=" " alt="" coords="398,256,443,259,442,265,398,261"/>
+<area shape="poly" title=" " alt="" coords="644,267,676,267,676,272,644,272"/>
+<area shape="poly" title=" " alt="" coords="628,289,693,307,691,312,627,294"/>
 </map>
 </div>
 
@@ -1149,37 +1170,38 @@ Here is the call graph for this function:</div>
 <div class="line">Tensor::value_type expSumResult = tensor.<a class="code hl_function" href="#aa1818a10415337403d43aad091a5a4c7">expSum</a>(batch, channel);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00612">612</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00713">713</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_tensor_ac4833838e9a704b6b8d29cbd53c6b3b1_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ac4833838e9a704b6b8d29cbd53c6b3b1_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_ac4833838e9a704b6b8d29cbd53c6b3b1_cgraph" id="aclassnz_1_1data_1_1_tensor_ac4833838e9a704b6b8d29cbd53c6b3b1_cgraph">
-<area shape="rect" title="Computes the sum of exponential values of elements in a specific batch and channel of a Tensor." alt="" coords="5,164,177,191"/>
+<area shape="rect" title="Computes the sum of exponential values of elements in a specific batch and channel of a Tensor." alt="" coords="5,173,177,200"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="225,5,410,48"/>
-<area shape="poly" title=" " alt="" coords="103,162,152,112,186,83,223,58,232,53,235,57,226,62,190,87,156,116,106,165"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="458,131,643,173"/>
-<area shape="poly" title=" " alt="" coords="177,170,442,155,442,161,177,175"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="225,72,410,115"/>
-<area shape="poly" title=" " alt="" coords="128,161,242,118,244,123,130,166"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="458,264,643,307"/>
-<area shape="poly" title=" " alt="" coords="106,189,155,235,189,258,226,276,279,290,335,297,391,299,442,297,442,302,391,304,335,303,278,295,224,281,186,263,152,239,103,193"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="244,240,391,267"/>
-<area shape="poly" title=" " alt="" coords="127,189,226,225,249,233,248,238,224,231,125,194"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="237,189,398,216"/>
-<area shape="poly" title=" " alt="" coords="177,184,221,189,221,195,177,190"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="458,5,643,48"/>
-<area shape="poly" title=" " alt="" coords="410,24,442,24,442,29,410,29"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="691,197,877,240"/>
-<area shape="poly" title=" " alt="" coords="410,85,464,85,524,90,585,99,644,116,675,130,703,147,751,185,748,189,700,152,672,135,642,121,584,105,523,95,464,91,410,90"/>
-<area shape="poly" title=" " alt="" coords="627,261,691,242,693,247,628,266"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="691,264,877,307"/>
-<area shape="poly" title=" " alt="" coords="644,283,676,283,676,288,644,288"/>
-<area shape="poly" title=" " alt="" coords="382,186,442,173,443,178,383,191"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="458,197,643,240"/>
-<area shape="poly" title=" " alt="" coords="398,206,443,209,442,214,398,211"/>
-<area shape="poly" title=" " alt="" coords="644,216,676,216,676,221,644,221"/>
-<area shape="poly" title=" " alt="" coords="628,238,693,257,691,262,627,243"/>
+<area shape="poly" title=" " alt="" coords="103,171,153,121,187,91,223,64,244,53,246,57,226,69,190,95,156,125,107,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="458,19,643,61"/>
+<area shape="poly" title=" " alt="" coords="120,170,224,127,336,91,442,63,444,68,338,96,226,132,122,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="458,99,643,141"/>
+<area shape="poly" title=" " alt="" coords="160,170,224,159,442,129,443,135,225,164,161,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="225,275,410,317"/>
+<area shape="poly" title=" " alt="" coords="119,198,226,254,252,266,250,271,223,258,116,203"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="458,232,643,275"/>
+<area shape="poly" title=" " alt="" coords="161,198,225,209,443,239,442,244,224,215,160,203"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="244,341,391,368"/>
+<area shape="poly" title=" " alt="" coords="103,199,151,261,186,297,226,327,236,332,234,337,223,332,182,301,147,264,99,202"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a51a5ff3c8cc2c3051fddf32de294b467" title="Kernel function to compute the summation of exponentials of each element in the input array." alt="" coords="237,173,398,200"/>
+<area shape="poly" title=" " alt="" coords="177,184,221,184,221,189,177,189"/>
+<area shape="poly" title=" " alt="" coords="411,29,443,31,442,36,410,35"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="691,232,877,275"/>
+<area shape="poly" title=" " alt="" coords="410,296,522,294,643,284,688,276,689,281,644,289,522,299,410,301"/>
+<area shape="poly" title=" " alt="" coords="644,251,676,251,676,256,644,256"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="691,165,877,208"/>
+<area shape="poly" title=" " alt="" coords="627,229,691,210,693,215,628,234"/>
+<area shape="poly" title=" " alt="" coords="366,170,458,144,459,149,368,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="458,165,643,208"/>
+<area shape="poly" title=" " alt="" coords="398,184,443,184,443,189,398,189"/>
+<area shape="poly" title=" " alt="" coords="628,206,693,225,691,230,627,211"/>
+<area shape="poly" title=" " alt="" coords="644,184,676,184,676,189,644,189"/>
 </map>
 </div>
 
@@ -1223,7 +1245,7 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.<a class="code hl_function" href="#ad220de56b18c404611f07f2290cd7e9d">fill</a>(5.0f);      <span class="comment">// Fill the tensor&#39;s data with the value 5.0f</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00300">300</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00306">306</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1326,7 +1348,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00310">310</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00316">316</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1345,6 +1367,166 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="597,77,629,73,630,78,598,83"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="645,105,831,148"/>
 <area shape="poly" title=" " alt="" coords="598,104,630,109,629,114,597,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a373a517d4a813c94a820d0a45806693e" name="a373a517d4a813c94a820d0a45806693e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373a517d4a813c94a820d0a45806693e">&#9670;&#160;</a></span>find() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> nz::data::Tensor::find </td>
+          <td>(</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the first occurrence of a given value in the entire tensor and returns its shape indices. </p>
+<p>This function retrieves the tensor data from the device to the host, then iterates through the data to find the first element equal to the given value. Once found, it calculates the corresponding shape indices (batch, channel, height, width) and returns them.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to search for in the tensor. Memory location: host - to - device (used for comparison).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>Tensor::shape_type</code> object representing the shape indices (batch, channel, height, width) of the first occurrence of the given value in the tensor. Memory flow: device - to - host.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the number of elements in the tensor (<code>_size</code>), due to the linear traversal of the tensor data.</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on <code><a class="el" href="#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector.">hostData()</a></code>.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line">Tensor::value_type targetValue = 5.0;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> indices = tensor.find(targetValue);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The first occurrence of &quot;</span> &lt;&lt; targetValue &lt;&lt; <span class="stringliteral">&quot; is at indices: (&quot;</span></div>
+<div class="line">              &lt;&lt; indices[0] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; indices[1] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; indices[2] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; indices[3] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00660">660</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_a373a517d4a813c94a820d0a45806693e_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a373a517d4a813c94a820d0a45806693e_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_a373a517d4a813c94a820d0a45806693e_cgraph" id="aclassnz_1_1data_1_1_tensor_a373a517d4a813c94a820d0a45806693e_cgraph">
+<area shape="rect" title="Finds the first occurrence of a given value in the entire tensor and returns its shape indices." alt="" coords="5,47,150,73"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="198,47,374,73"/>
+<area shape="poly" title=" " alt="" coords="150,57,182,57,182,63,150,63"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="422,47,601,73"/>
+<area shape="poly" title=" " alt="" coords="374,57,406,57,406,63,374,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="649,5,835,48"/>
+<area shape="poly" title=" " alt="" coords="601,44,633,40,634,45,602,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="649,72,835,115"/>
+<area shape="poly" title=" " alt="" coords="602,70,634,75,633,80,601,76"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae6c6bc33a47e23ec62e6a62e5e25a8ed" name="ae6c6bc33a47e23ec62e6a62e5e25a8ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6c6bc33a47e23ec62e6a62e5e25a8ed">&#9670;&#160;</a></span>find() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> nz::data::Tensor::find </td>
+          <td>(</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the first occurrence of a given value in a specific batch and channel of the tensor and returns its shape indices. </p>
+<p>This function first calculates the offset in the tensor data based on the provided batch and channel indices. It then retrieves the tensor data from the device to the host and iterates through the subset of data in the specified batch and channel to find the first element equal to the given value. Once found, it calculates the height and width indices and returns the complete shape indices (batch, channel, height, width).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to search for in the tensor. Memory location: host - to - device (used for comparison). </td></tr>
+    <tr><td class="paramname">batch</td><td>The batch index. Memory location: host - to - device (used for index calculation). </td></tr>
+    <tr><td class="paramname">channel</td><td>The channel index. Memory location: host - to - device (used for index calculation).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>Tensor::shape_type</code> object representing the shape indices (batch, channel, height, width) of the first occurrence of the given value in the specified batch and channel of the tensor. Memory flow: device - to - host.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the <code>batch</code> or <code>channel</code> index is out of bounds.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m), where m is the number of elements in the specified batch and channel (<code>_shape[2] * _shape[3]</code>), due to the linear traversal of the subset of the tensor data.</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on <code><a class="el" href="#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector.">hostData()</a></code>.</li>
+<li>Ensure that the <code>batch</code> and <code>channel</code> indices are within the valid range of the tensor's shape to avoid unexpected behavior.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line">Tensor::value_type targetValue = 5.0;</div>
+<div class="line">Tensor::size_type batch = 0;</div>
+<div class="line">Tensor::size_type channel = 0;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    <a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> indices = tensor.find(targetValue, batch, channel);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The first occurrence of &quot;</span> &lt;&lt; targetValue &lt;&lt; <span class="stringliteral">&quot; in batch &quot;</span> &lt;&lt; batch &lt;&lt; <span class="stringliteral">&quot; and channel &quot;</span> &lt;&lt; channel</div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot; is at indices: (&quot;</span> &lt;&lt; indices[0] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; indices[1] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; indices[2] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; indices[3] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00676">676</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_ae6c6bc33a47e23ec62e6a62e5e25a8ed_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ae6c6bc33a47e23ec62e6a62e5e25a8ed_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_ae6c6bc33a47e23ec62e6a62e5e25a8ed_cgraph" id="aclassnz_1_1data_1_1_tensor_ae6c6bc33a47e23ec62e6a62e5e25a8ed_cgraph">
+<area shape="rect" title="Finds the first occurrence of a given value in a specific batch and channel of the tensor and returns..." alt="" coords="5,43,150,69"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="217,5,355,48"/>
+<area shape="poly" title=" " alt="" coords="150,43,200,36,201,41,151,48"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="198,72,374,99"/>
+<area shape="poly" title=" " alt="" coords="151,64,183,68,182,73,150,69"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="422,72,601,99"/>
+<area shape="poly" title=" " alt="" coords="374,83,406,83,406,88,374,88"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="649,31,835,73"/>
+<area shape="poly" title=" " alt="" coords="601,70,633,65,634,70,602,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="649,97,835,140"/>
+<area shape="poly" title=" " alt="" coords="602,96,634,100,633,106,601,101"/>
 </map>
 </div>
 
@@ -1397,7 +1579,7 @@ Here is the call graph for this function:</div>
 <div class="line">}</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00433">433</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00445">445</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1459,9 +1641,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
 <div class="line">std::vector&lt;Tensor::value_type&gt; <a class="code hl_function" href="#a615af61999990e2edebacf5afbad0e57">hostData</a> = tensor.<a class="code hl_function" href="#a615af61999990e2edebacf5afbad0e57">hostData</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a615af61999990e2edebacf5afbad0e57"><div class="ttname"><a href="#a615af61999990e2edebacf5afbad0e57">nz::data::Tensor::hostData</a></div><div class="ttdeci">std::vector&lt; value_type &gt; hostData() const noexcept</div><div class="ttdoc">Retrieves the tensor data from the device to the host and returns it as a std::vector.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00424">Tensor.cu:424</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a615af61999990e2edebacf5afbad0e57"><div class="ttname"><a href="#a615af61999990e2edebacf5afbad0e57">nz::data::Tensor::hostData</a></div><div class="ttdeci">std::vector&lt; value_type &gt; hostData() const noexcept</div><div class="ttdoc">Retrieves the tensor data from the device to the host and returns it as a std::vector.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00436">Tensor.cu:436</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00424">424</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00436">436</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1549,9 +1731,9 @@ Here is the call graph for this function:</div>
 <div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
 <div class="line">}</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7fd4badf84f9c5398e08b23a9826dfbc"><div class="ttname"><a href="#a7fd4badf84f9c5398e08b23a9826dfbc">nz::data::Tensor::hostGrad</a></div><div class="ttdeci">std::vector&lt; value_type &gt; hostGrad() const</div><div class="ttdoc">Retrieves the gradient data of the tensor from the device to the host and returns it as a std::vector...</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00440">Tensor.cu:440</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7fd4badf84f9c5398e08b23a9826dfbc"><div class="ttname"><a href="#a7fd4badf84f9c5398e08b23a9826dfbc">nz::data::Tensor::hostGrad</a></div><div class="ttdeci">std::vector&lt; value_type &gt; hostGrad() const</div><div class="ttdoc">Retrieves the gradient data of the tensor from the device to the host and returns it as a std::vector...</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00452">Tensor.cu:452</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00440">440</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00452">452</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1564,6 +1746,306 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="409,44,441,40,442,45,410,50"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="457,72,642,115"/>
 <area shape="poly" title=" " alt="" coords="410,70,442,75,441,80,409,76"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9131832f57339c0de2e7fb7955940a55" name="a9131832f57339c0de2e7fb7955940a55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9131832f57339c0de2e7fb7955940a55">&#9670;&#160;</a></span>max() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tensor::value_type nz::data::Tensor::max </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the maximum value in the tensor. </p>
+<p>This member function retrieves the tensor data from the device to the host and then iterates through it to find the maximum value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum value of type <code>Tensor::value_type</code> in the tensor. Memory flow: device - to - host.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the number of elements in the tensor (<code>_size</code>), due to the linear traversal of the tensor data.</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on <code><a class="el" href="#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector.">hostData()</a></code>.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    Tensor::value_type maxVal = tensor.max();</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The maximum value in the tensor is: &quot;</span> &lt;&lt; maxVal &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00608">608</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_a9131832f57339c0de2e7fb7955940a55_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a9131832f57339c0de2e7fb7955940a55_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_a9131832f57339c0de2e7fb7955940a55_cgraph" id="aclassnz_1_1data_1_1_tensor_a9131832f57339c0de2e7fb7955940a55_cgraph">
+<area shape="rect" title="Finds the maximum value in the tensor." alt="" coords="5,47,154,73"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="202,47,378,73"/>
+<area shape="poly" title=" " alt="" coords="154,57,186,57,186,63,154,63"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="426,47,605,73"/>
+<area shape="poly" title=" " alt="" coords="378,57,410,57,410,63,378,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="653,5,839,48"/>
+<area shape="poly" title=" " alt="" coords="605,44,637,40,638,45,606,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="653,72,839,115"/>
+<area shape="poly" title=" " alt="" coords="606,70,638,75,637,80,605,76"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a90f7c7cde42c58b41f77d1b941da129f" name="a90f7c7cde42c58b41f77d1b941da129f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f7c7cde42c58b41f77d1b941da129f">&#9670;&#160;</a></span>max() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tensor::value_type nz::data::Tensor::max </td>
+          <td>(</td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the maximum value in a specific batch and channel of the tensor. </p>
+<p>This member function first validates the provided batch and channel indices. If they are valid, it calculates the offset in the tensor data and then finds the maximum value within that subset of the tensor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">batch</td><td>The batch index. Memory location: host - to - device (used for index calculation). </td></tr>
+    <tr><td class="paramname">channel</td><td>The channel index. Memory location: host - to - device (used for index calculation).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum value of type <code>Tensor::value_type</code> in the specified batch and channel of the tensor. Memory flow: device - to - host.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the <code>batch</code> or <code>channel</code> index is out of bounds.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m), where m is the number of elements in the specified batch and channel (<code>_shape[2] * _shape[3]</code>), due to the linear traversal of the subset of the tensor data.</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on <code><a class="el" href="#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector.">hostData()</a></code>.</li>
+<li>Ensure that the <code>batch</code> and <code>channel</code> indices are within the valid range of the tensor's shape to avoid exceptions.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line">Tensor::size_type batch = 0;</div>
+<div class="line">Tensor::size_type channel = 0;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    Tensor::value_type maxVal = tensor.max(batch, channel);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The maximum value in batch &quot;</span> &lt;&lt; batch &lt;&lt; <span class="stringliteral">&quot; and channel &quot;</span> &lt;&lt; channel &lt;&lt; <span class="stringliteral">&quot; is: &quot;</span> &lt;&lt; maxVal &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00619">619</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_a90f7c7cde42c58b41f77d1b941da129f_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a90f7c7cde42c58b41f77d1b941da129f_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_a90f7c7cde42c58b41f77d1b941da129f_cgraph" id="aclassnz_1_1data_1_1_tensor_a90f7c7cde42c58b41f77d1b941da129f_cgraph">
+<area shape="rect" title="Finds the maximum value in a specific batch and channel of the tensor." alt="" coords="5,43,154,69"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="221,5,359,48"/>
+<area shape="poly" title=" " alt="" coords="154,43,205,36,206,41,154,48"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="202,72,378,99"/>
+<area shape="poly" title=" " alt="" coords="154,64,186,68,185,73,154,69"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="426,72,605,99"/>
+<area shape="poly" title=" " alt="" coords="378,83,410,83,410,88,378,88"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="653,31,839,73"/>
+<area shape="poly" title=" " alt="" coords="605,70,637,65,638,70,606,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="653,97,839,140"/>
+<area shape="poly" title=" " alt="" coords="606,96,638,100,637,106,605,101"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a70caeac6652c0008b7554db438db090c" name="a70caeac6652c0008b7554db438db090c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70caeac6652c0008b7554db438db090c">&#9670;&#160;</a></span>min() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tensor::value_type nz::data::Tensor::min </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the minimum value in the entire tensor. </p>
+<p>This function retrieves the tensor data from the device to the host and iterates through it to determine the minimum value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The minimum value of type <code>Tensor::value_type</code> in the tensor. Memory flow: device - to - host.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(n), where n is the number of elements in the tensor (<code>_size</code>), due to the linear traversal of the tensor data.</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on <code><a class="el" href="#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector.">hostData()</a></code>.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    Tensor::value_type minVal = tensor.min();</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The minimum value in the tensor is: &quot;</span> &lt;&lt; minVal &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00634">634</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_a70caeac6652c0008b7554db438db090c_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a70caeac6652c0008b7554db438db090c_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_a70caeac6652c0008b7554db438db090c_cgraph" id="aclassnz_1_1data_1_1_tensor_a70caeac6652c0008b7554db438db090c_cgraph">
+<area shape="rect" title="Finds the minimum value in the entire tensor." alt="" coords="5,47,150,73"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="198,47,374,73"/>
+<area shape="poly" title=" " alt="" coords="150,57,182,57,182,63,150,63"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="422,47,601,73"/>
+<area shape="poly" title=" " alt="" coords="374,57,406,57,406,63,374,63"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="649,5,835,48"/>
+<area shape="poly" title=" " alt="" coords="601,44,633,40,634,45,602,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="649,72,835,115"/>
+<area shape="poly" title=" " alt="" coords="602,70,634,75,633,80,601,76"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae846233848b4cd26181205a594c083b5" name="ae846233848b4cd26181205a594c083b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae846233848b4cd26181205a594c083b5">&#9670;&#160;</a></span>min() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tensor::value_type nz::data::Tensor::min </td>
+          <td>(</td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_type</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the minimum value in a specific batch and channel of the tensor. </p>
+<p>This function first validates the provided batch and channel indices. If they are valid, it calculates the offset in the tensor data and then finds the minimum value within that subset of the tensor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">batch</td><td>The batch index. Memory location: host - to - device (used for index calculation). </td></tr>
+    <tr><td class="paramname">channel</td><td>The channel index. Memory location: host - to - device (used for index calculation).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The minimum value of type <code>Tensor::value_type</code> in the specified batch and channel of the tensor. Memory flow: device - to - host.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>When the <code>batch</code> or <code>channel</code> index is out of bounds.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>The time complexity of this function is O(m), where m is the number of elements in the specified batch and channel (<code>_shape[2] * _shape[3]</code>), due to the linear traversal of the subset of the tensor data.</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on <code><a class="el" href="#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector.">hostData()</a></code>.</li>
+<li>Ensure that the <code>batch</code> and <code>channel</code> indices are within the valid range of the tensor's shape to avoid exceptions.</li>
+</ul>
+</dd></dl>
+<div class="fragment"><div class="line">```cpp</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line">Tensor::size_type batch = 0;</div>
+<div class="line">Tensor::size_type channel = 0;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    Tensor::value_type minVal = tensor.min(batch, channel);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The minimum value in batch &quot;</span> &lt;&lt; batch &lt;&lt; <span class="stringliteral">&quot; and channel &quot;</span> &lt;&lt; channel &lt;&lt; <span class="stringliteral">&quot; is: &quot;</span> &lt;&lt; minVal &lt;&lt; std::endl;</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line">```</div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00645">645</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnz_1_1data_1_1_tensor_ae846233848b4cd26181205a594c083b5_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ae846233848b4cd26181205a594c083b5_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_ae846233848b4cd26181205a594c083b5_cgraph" id="aclassnz_1_1data_1_1_tensor_ae846233848b4cd26181205a594c083b5_cgraph">
+<area shape="rect" title="Finds the minimum value in a specific batch and channel of the tensor." alt="" coords="5,43,150,69"/>
+<area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="217,5,355,48"/>
+<area shape="poly" title=" " alt="" coords="150,43,200,36,201,41,151,48"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a615af61999990e2edebacf5afbad0e57" title="Retrieves the tensor data from the device to the host and returns it as a std::vector." alt="" coords="198,72,374,99"/>
+<area shape="poly" title=" " alt="" coords="151,64,183,68,182,73,150,69"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a7aab89d371ff013c5c021a191bd7348e" title="Synchronize the tensor data by waiting for all CUDA stream write operations to complete." alt="" coords="422,72,601,99"/>
+<area shape="poly" title=" " alt="" coords="374,83,406,83,406,88,374,88"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="649,31,835,73"/>
+<area shape="poly" title=" " alt="" coords="601,70,633,65,634,70,602,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="649,97,835,140"/>
+<area shape="poly" title=" " alt="" coords="602,96,634,100,633,106,601,101"/>
 </map>
 </div>
 
@@ -1612,7 +2094,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keywordtype">bool</span> isNotEqual = tensor1 != tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00538">538</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00550">550</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -1659,7 +2141,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> result = tensor1 * tensor2;  <span class="comment">// Multiply the matrices (result will be 2x2)</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00337">337</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00343">343</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1724,7 +2206,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> result = tensor1 + tensor2;  <span class="comment">// Adds the two tensors element-wise</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00325">325</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00331">331</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1775,7 +2257,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = -tensor;  <span class="comment">// Negates all elements of the tensor</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00486">486</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00498">498</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1840,7 +2322,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#ad0dda0efff93778cab46fd5aa708b983">Tensor</a> result = tensor1 - tensor2;  <span class="comment">// Subtracts tensor2 from tensor1 element-wise</span></div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00331">331</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00337">337</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1910,7 +2392,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> result = tensor1 / tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00346">346</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00352">352</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2074,7 +2556,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keywordtype">bool</span> isEqual = tensor1 == tensor2;</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00494">494</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00506">506</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2133,9 +2615,9 @@ Here is the call graph for this function:</div>
 <div class="line">tensor.<a class="code hl_function" href="#a2b2309d5428331f2e6f88037bb123c8f">print</a>(oss);</div>
 <div class="line">std::cout &lt;&lt; oss.str();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b2309d5428331f2e6f88037bb123c8f"><div class="ttname"><a href="#a2b2309d5428331f2e6f88037bb123c8f">nz::data::Tensor::print</a></div><div class="ttdeci">std::ostream &amp; print(std::ostream &amp;os) const</div><div class="ttdoc">Prints the tensor data to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00246">Tensor.cu:246</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a2b2309d5428331f2e6f88037bb123c8f"><div class="ttname"><a href="#a2b2309d5428331f2e6f88037bb123c8f">nz::data::Tensor::print</a></div><div class="ttdeci">std::ostream &amp; print(std::ostream &amp;os) const</div><div class="ttdoc">Prints the tensor data to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00252">Tensor.cu:252</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00246">246</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00252">252</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2209,9 +2691,9 @@ Here is the call graph for this function:</div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Gradient: &quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">tensor.<a class="code hl_function" href="#a4b02ed4d2afec1ce75931201af181e14">printGrad</a>(std::cout);  <span class="comment">// Print the gradient of the tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4b02ed4d2afec1ce75931201af181e14"><div class="ttname"><a href="#a4b02ed4d2afec1ce75931201af181e14">nz::data::Tensor::printGrad</a></div><div class="ttdeci">std::ostream &amp; printGrad(std::ostream &amp;os) const</div><div class="ttdoc">Prints the gradient values of the tensor to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00452">Tensor.cu:452</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4b02ed4d2afec1ce75931201af181e14"><div class="ttname"><a href="#a4b02ed4d2afec1ce75931201af181e14">nz::data::Tensor::printGrad</a></div><div class="ttdeci">std::ostream &amp; printGrad(std::ostream &amp;os) const</div><div class="ttdoc">Prints the gradient values of the tensor to an output stream.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00464">Tensor.cu:464</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00452">452</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00464">464</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2281,9 +2763,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a7a9f1d5fae2989181645e5f59f7666d8">randomize</a>(12345);  <span class="comment">// Randomize tensor&#39;s data with a seed of 12345</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7a9f1d5fae2989181645e5f59f7666d8"><div class="ttname"><a href="#a7a9f1d5fae2989181645e5f59f7666d8">nz::data::Tensor::randomize</a></div><div class="ttdeci">void randomize(unsigned long long seed=0) const</div><div class="ttdoc">Randomizes the tensor's data with a uniform distribution.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00292">Tensor.cu:292</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7a9f1d5fae2989181645e5f59f7666d8"><div class="ttname"><a href="#a7a9f1d5fae2989181645e5f59f7666d8">nz::data::Tensor::randomize</a></div><div class="ttdeci">void randomize(unsigned long long seed=0) const</div><div class="ttdoc">Randomizes the tensor's data with a uniform distribution.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00298">Tensor.cu:298</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00292">292</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00298">298</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2331,9 +2813,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});</div>
 <div class="line">tensor.<a class="code hl_function" href="#a178a2240cd5d441be508490b2613fc55">recip</a>();  <span class="comment">// Computes the reciprocal of each element in the tensor</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a178a2240cd5d441be508490b2613fc55"><div class="ttname"><a href="#a178a2240cd5d441be508490b2613fc55">nz::data::Tensor::recip</a></div><div class="ttdeci">void recip() const</div><div class="ttdoc">Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00542">Tensor.cu:542</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a178a2240cd5d441be508490b2613fc55"><div class="ttname"><a href="#a178a2240cd5d441be508490b2613fc55">nz::data::Tensor::recip</a></div><div class="ttdeci">void recip() const</div><div class="ttdoc">Computes the reciprocal (1/x) of each element in the tensor and updates the tensor in-place.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00554">Tensor.cu:554</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00542">542</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00554">554</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2396,7 +2878,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the tensor requires gradient computation, <code>false</code> otherwise.</dd></dl>
 <p>This function allows you to query whether the tensor is marked for gradient tracking, which is essential for backpropagation in neural networks. By default, tensors do not require gradients unless explicitly specified during construction or via <code>setRequiresGrad</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00218">218</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00224">224</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2438,9 +2920,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a877f9f2704e39100142d81d289ddc3f2">reshape</a>(std::vector&lt;int&gt;({3, 2}));  <span class="comment">// Reshape the tensor to shape 3x2, unused elements will be filled with zeros</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a877f9f2704e39100142d81d289ddc3f2"><div class="ttname"><a href="#a877f9f2704e39100142d81d289ddc3f2">nz::data::Tensor::reshape</a></div><div class="ttdeci">void reshape(const shape_type &amp;shape)</div><div class="ttdoc">Reshapes the tensor to the specified shape.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00352">Tensor.cu:352</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a877f9f2704e39100142d81d289ddc3f2"><div class="ttname"><a href="#a877f9f2704e39100142d81d289ddc3f2">nz::data::Tensor::reshape</a></div><div class="ttdeci">void reshape(const shape_type &amp;shape)</div><div class="ttdoc">Reshapes the tensor to the specified shape.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00358">Tensor.cu:358</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00352">352</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00358">358</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2477,8 +2959,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ae2cee8a54e65497113afd0c4f85dc02c" name="ae2cee8a54e65497113afd0c4f85dc02c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2cee8a54e65497113afd0c4f85dc02c">&#9670;&#160;</a></span>setData()</h2>
+<a id="a2f9be06ac6766a5fa6de3548c722ef43" name="a2f9be06ac6766a5fa6de3548c722ef43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f9be06ac6766a5fa6de3548c722ef43">&#9670;&#160;</a></span>setData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2491,58 +2973,89 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+          <td class="paramtype">value_type</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isGrad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets a specific element of the tensor's data to a given value. </p>
-<p>This function modifies a specific element of the tensor's data stored in GPU memory. The element to be modified is specified by its position in the tensor's shape (given as a 2D index). The function first copies the tensor's data from GPU memory to host memory, modifies the specified element, and then copies the updated data back to the GPU memory.</p>
+<p>Sets the value of an element in the tensor or its gradient at a specified position. </p>
+<p>This member function allows you to set the value of a specific element in the tensor or its gradient. It first validates the position and the gradient setting based on the tensor's requirements.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">position</td><td>A <code>shape_type</code> (alias for <code>std::vector&lt;int&gt;</code>) representing the 2D index (row, column) of the element to modify. </td></tr>
-    <tr><td class="paramname">value</td><td>The value to which the specified element will be set.</td></tr>
+    <tr><td class="paramname">position</td><td>The position in the tensor where the value will be set. Memory location: host - to - device. </td></tr>
+    <tr><td class="paramname">value</td><td>The value to be set at the specified position. Memory location: host - to - device. </td></tr>
+    <tr><td class="paramname">isGrad</td><td>A boolean indicating whether to set the value in the gradient or the tensor data. Memory location: host - to - device.</td></tr>
   </table>
   </dd>
 </dl>
-<p>This function performs the following steps:</p><ol type="1">
-<li>It checks if the provided position is valid within the tensor's shape. If not, an exception is thrown.</li>
-<li>It copies the tensor's data from GPU memory to host memory using <code>cudaMemcpy</code>.</li>
-<li>It modifies the specified element at the given position in the tensor's data.</li>
-<li>It copies the updated data back to the GPU memory.</li>
-</ol>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<p><b>Memory Management Strategy</b>:</p><ul>
+<li>A temporary array <code>data</code> of size <code>_size</code> is allocated on the host using <code>malloc</code>.</li>
+<li>The data from the device (either tensor data or gradient) is copied to the host using <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a>&lt;value_type&gt;::Instance().memcpy</code>.</li>
+<li>After the value is set at the specified position in the host - side data, the updated data is copied back to the device.</li>
+<li>The temporary array <code>data</code> is freed using <code>free</code> to avoid memory leaks.</li>
+</ul>
+<p><b>Exception Handling Mechanism</b>:</p><ul>
+<li>Throws <code>std::invalid_argument</code> if the <code>position</code> is out of bounds of the tensor's shape.</li>
+<li>Throws <code>std::invalid_argument</code> if <code>isGrad</code> is <code>true</code> but the tensor does not require gradients.</li>
+<li>If any of the <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a></code> operations fail, it may lead to undefined behavior as error - checking is not explicitly done in this function.</li>
+</ul>
+<p><b>Relationship with Other Components</b>:</p><ul>
+<li>Depends on <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a>&lt;value_type&gt;::Instance()</code> for memory copying and data synchronization operations.</li>
+<li>Relies on the <code>_shape</code> member variable to validate the position and calculate the index in the data array.</li>
+<li>Uses the <code>_data</code> and <code>_grad</code> member variables to access the tensor data and its gradient.</li>
+</ul>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>If the provided position is out of bounds.</td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>When the position is out of bounds or when trying to set the gradient of a tensor that does not require gradients.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li>This function uses memory copying between host and device, which can introduce performance overhead.</li>
-<li>The tensor's data is modified on the host first and then copied back to the GPU. This approach may not be the most efficient for large tensors or frequent updates.</li>
+<li>The time complexity of this function is O(n) due to the memory copying operations, where n is the number of elements in the tensor (<code>_size</code>).</li>
+<li>Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function.</li>
+<li>Ensure that the <code>position</code> is within the valid range of the tensor's shape to avoid exceptions.</li>
+<li>If setting the gradient, ensure that the tensor requires gradients.</li>
+</ul>
+</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>If any of the <code><a class="el" href="classnz_1_1cu_strm_1_1_stream_manager.html" title="Centralized CUDA stream and resource management system with automatic dependency tracking.">cuStrm::StreamManager</a></code> operations fail, the behavior of this function is undefined.</li>
 </ul>
 </dd></dl>
 <div class="fragment"><div class="line">```cpp</div>
-<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
-<div class="line">tensor.<a class="code hl_function" href="#ae2cee8a54e65497113afd0c4f85dc02c">setData</a>(std::vector&lt;int&gt;({1, 2}), 7.5f);  <span class="comment">// Set the element at position (1, 2) to 7.5f</span></div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
+<div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_dimension.html">Tensor::shape_type</a> position = {0, 0, 0, 0};</div>
+<div class="line">Tensor::value_type value = 1.0;</div>
+<div class="line"><span class="keywordtype">bool</span> isGrad = <span class="keyword">false</span>;</div>
+<div class="line"><span class="keywordflow">try</span> {</div>
+<div class="line">    tensor.setData(position, value, isGrad);</div>
+<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::invalid_argument&amp; e) {</div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_ae2cee8a54e65497113afd0c4f85dc02c"><div class="ttname"><a href="#ae2cee8a54e65497113afd0c4f85dc02c">nz::data::Tensor::setData</a></div><div class="ttdeci">void setData(const shape_type &amp;position, value_type value) const</div><div class="ttdoc">Sets a specific element of the tensor's data to a given value.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00404">Tensor.cu:404</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00404">404</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00410">410</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph" alt=""/></div>
-<map name="aclassnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph" id="aclassnz_1_1data_1_1_tensor_ae2cee8a54e65497113afd0c4f85dc02c_cgraph">
-<area shape="rect" title="Sets a specific element of the tensor&#39;s data to a given value." alt="" coords="5,97,175,124"/>
+<div class="center"><img src="classnz_1_1data_1_1_tensor_a2f9be06ac6766a5fa6de3548c722ef43_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a2f9be06ac6766a5fa6de3548c722ef43_cgraph" alt=""/></div>
+<map name="aclassnz_1_1data_1_1_tensor_a2f9be06ac6766a5fa6de3548c722ef43_cgraph" id="aclassnz_1_1data_1_1_tensor_a2f9be06ac6766a5fa6de3548c722ef43_cgraph">
+<area shape="rect" title="Sets the value of an element in the tensor or its gradient at a specified position." alt="" coords="5,131,175,157"/>
 <area shape="rect" href="classnz_1_1data_1_1_tensor.html#a38ba233ef49f34620297f96edd962c55" title="Retrieves a pointer to the tensor&#39;s data stored in GPU memory." alt="" coords="241,5,390,32"/>
-<area shape="poly" title=" " alt="" coords="114,95,163,68,222,42,241,35,243,40,224,46,165,73,116,99"/>
+<area shape="poly" title=" " alt="" coords="104,128,153,86,186,62,221,42,236,35,238,40,224,46,189,67,157,90,107,132"/>
 <area shape="rect" href="classnz_1_1data_1_1_dimension.html#a4831fea5aaf7dbad3578d3fa8e55aef1" title="Retrieves the stride value at a specified index within the Dimension object." alt="" coords="246,56,384,99"/>
-<area shape="poly" title=" " alt="" coords="174,96,230,87,231,92,175,101"/>
+<area shape="poly" title=" " alt="" coords="137,127,230,100,232,105,139,133"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="223,123,408,165"/>
-<area shape="poly" title=" " alt="" coords="175,121,207,125,207,131,174,126"/>
+<area shape="poly" title=" " alt="" coords="175,141,207,141,207,147,175,147"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="223,189,408,232"/>
-<area shape="poly" title=" " alt="" coords="118,122,224,175,238,181,235,186,222,180,115,127"/>
+<area shape="poly" title=" " alt="" coords="139,155,227,182,225,187,137,161"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="223,256,408,299"/>
+<area shape="poly" title=" " alt="" coords="108,156,158,197,224,242,234,247,232,252,221,246,155,202,105,160"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="456,156,641,199"/>
 <area shape="poly" title=" " alt="" coords="408,195,440,190,441,195,409,200"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="456,223,641,265"/>
@@ -2577,7 +3090,7 @@ Here is the call graph for this function:</div>
 <p>This function allows you to enable or disable gradient tracking for the tensor. If gradient computation is enabled, additional memory may be allocated for storing gradients.</p>
 <dl class="section note"><dt>Note</dt><dd>Modifying this setting does not affect any existing gradient data stored in the tensor. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00223">223</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00229">229</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2626,7 +3139,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>A <code>shape_type</code> (alias for <code>std::vector&lt;int&gt;</code>) representing the dimensions of the tensor.</dd></dl>
 <p>The shape provides information about the size of each dimension in the tensor. For example, a tensor with shape <code>{2, 3}</code> represents a 2x3 matrix. The shape is defined during construction or reshaping of the tensor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00219">219</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00225">225</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2657,7 +3170,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>A <code>size_type</code> (alias for <code>unsigned long long</code>) representing the total number of elements.</dd></dl>
 <p>This function calculates the product of the dimensions in the tensor's shape. For example, a tensor with shape <code>{2, 3}</code> will have a size of 6. This value is useful for memory allocation and tensor operations. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00220">220</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00226">226</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 
 </div>
 </div>
@@ -2714,37 +3227,38 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="comment">// Assume tensor is filled with some values</span></div>
 <div class="line">nz::data::Tensor::value_type sum_result = tensor.<a class="code hl_function" href="#a4a657091dfa6a490d873ab8e95d9bb9e">sum</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4a657091dfa6a490d873ab8e95d9bb9e"><div class="ttname"><a href="#a4a657091dfa6a490d873ab8e95d9bb9e">nz::data::Tensor::sum</a></div><div class="ttdeci">value_type sum() const</div><div class="ttdoc">Compute the sum of all elements in the Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00553">Tensor.cu:553</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a4a657091dfa6a490d873ab8e95d9bb9e"><div class="ttname"><a href="#a4a657091dfa6a490d873ab8e95d9bb9e">nz::data::Tensor::sum</a></div><div class="ttdeci">value_type sum() const</div><div class="ttdoc">Compute the sum of all elements in the Tensor.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00565">Tensor.cu:565</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00553">553</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00565">565</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_tensor_a4a657091dfa6a490d873ab8e95d9bb9e_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a4a657091dfa6a490d873ab8e95d9bb9e_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_a4a657091dfa6a490d873ab8e95d9bb9e_cgraph" id="aclassnz_1_1data_1_1_tensor_a4a657091dfa6a490d873ab8e95d9bb9e_cgraph">
-<area shape="rect" title="Compute the sum of all elements in the Tensor." alt="" coords="5,139,154,165"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="202,12,387,55"/>
-<area shape="poly" title=" " alt="" coords="101,136,200,76,232,60,235,64,203,81,104,140"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="435,72,620,115"/>
-<area shape="poly" title=" " alt="" coords="140,136,201,124,314,109,419,99,420,104,314,115,202,129,141,141"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="202,252,387,295"/>
-<area shape="poly" title=" " alt="" coords="104,164,203,223,238,242,235,247,200,228,101,168"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="435,205,620,248"/>
-<area shape="poly" title=" " alt="" coords="145,163,202,175,420,209,419,215,201,180,144,169"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a1ae846a65c2f5b83cd1b9fc61b877854" title="Kernel function to perform element&#45;wise summation of two arrays." alt="" coords="225,139,364,165"/>
-<area shape="poly" title=" " alt="" coords="154,149,210,149,210,155,154,155"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="435,5,620,48"/>
-<area shape="poly" title=" " alt="" coords="387,28,419,27,420,32,388,33"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="668,205,854,248"/>
-<area shape="poly" title=" " alt="" coords="387,272,499,268,620,257,664,249,665,255,621,263,499,274,387,277"/>
-<area shape="poly" title=" " alt="" coords="621,224,653,224,653,229,621,229"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="668,139,854,181"/>
-<area shape="poly" title=" " alt="" coords="604,202,668,184,670,189,605,207"/>
-<area shape="poly" title=" " alt="" coords="350,136,425,116,426,122,351,141"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="435,139,620,181"/>
-<area shape="poly" title=" " alt="" coords="364,152,419,154,419,159,364,157"/>
-<area shape="poly" title=" " alt="" coords="605,179,670,198,668,203,604,184"/>
-<area shape="poly" title=" " alt="" coords="621,157,653,157,653,163,621,163"/>
+<area shape="rect" title="Compute the sum of all elements in the Tensor." alt="" coords="5,160,154,187"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="202,5,387,48"/>
+<area shape="poly" title=" " alt="" coords="92,157,138,113,200,64,221,53,223,57,203,69,141,117,96,161"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="435,35,620,77"/>
+<area shape="poly" title=" " alt="" coords="101,157,146,132,201,108,256,92,312,80,419,63,420,68,313,85,257,97,203,113,148,137,104,162"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="435,181,620,224"/>
+<area shape="poly" title=" " alt="" coords="154,175,420,193,420,198,154,181"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="202,123,387,165"/>
+<area shape="poly" title=" " alt="" coords="153,161,186,156,187,161,154,166"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="435,315,620,357"/>
+<area shape="poly" title=" " alt="" coords="94,185,139,231,169,256,203,276,256,297,312,312,420,329,419,334,311,318,254,302,200,281,166,260,135,235,90,189"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a1ae846a65c2f5b83cd1b9fc61b877854" title="Kernel function to perform element&#45;wise summation of two arrays." alt="" coords="225,240,364,267"/>
+<area shape="poly" title=" " alt="" coords="116,185,203,219,239,232,237,237,201,224,114,190"/>
+<area shape="poly" title=" " alt="" coords="388,36,420,40,419,45,387,41"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="668,248,854,291"/>
+<area shape="poly" title=" " alt="" coords="387,136,441,136,501,140,562,150,621,167,652,181,680,198,728,235,725,240,677,202,649,185,619,172,561,155,500,146,441,141,387,141"/>
+<area shape="poly" title=" " alt="" coords="604,312,668,293,670,298,605,317"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="668,315,854,357"/>
+<area shape="poly" title=" " alt="" coords="621,333,653,333,653,339,621,339"/>
+<area shape="poly" title=" " alt="" coords="359,237,419,224,420,229,360,242"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="435,248,620,291"/>
+<area shape="poly" title=" " alt="" coords="364,255,420,259,419,265,363,261"/>
+<area shape="poly" title=" " alt="" coords="621,267,653,267,653,272,621,272"/>
+<area shape="poly" title=" " alt="" coords="605,289,670,307,668,312,604,294"/>
 </map>
 </div>
 
@@ -2818,37 +3332,38 @@ Here is the call graph for this function:</div>
 <div class="line">Tensor::value_type sumResult = tensor.<a class="code hl_function" href="#a4a657091dfa6a490d873ab8e95d9bb9e">sum</a>(batch, channel);</div>
 <div class="line">```</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00571">571</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00584">584</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnz_1_1data_1_1_tensor_a74aa515ba6b83aa1d05a7bb001b297b3_cgraph.png" border="0" usemap="#aclassnz_1_1data_1_1_tensor_a74aa515ba6b83aa1d05a7bb001b297b3_cgraph" alt=""/></div>
 <map name="aclassnz_1_1data_1_1_tensor_a74aa515ba6b83aa1d05a7bb001b297b3_cgraph" id="aclassnz_1_1data_1_1_tensor_a74aa515ba6b83aa1d05a7bb001b297b3_cgraph">
-<area shape="rect" title="Computes the sum of elements in a specific batch and channel of a Tensor." alt="" coords="5,164,154,191"/>
+<area shape="rect" title="Computes the sum of elements in a specific batch and channel of a Tensor." alt="" coords="5,173,154,200"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a785cf34395067f425e032d9bd5e1fa20" title="Frees the CUDA device memory pointed to by the given pointer." alt="" coords="202,5,387,48"/>
-<area shape="poly" title=" " alt="" coords="90,162,135,112,166,83,200,58,208,53,211,58,203,62,169,87,138,116,94,165"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="435,131,620,173"/>
-<area shape="poly" title=" " alt="" coords="154,171,420,155,420,161,154,176"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="202,72,387,115"/>
-<area shape="poly" title=" " alt="" coords="115,161,223,118,225,123,117,166"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="435,264,620,307"/>
-<area shape="poly" title=" " alt="" coords="94,189,138,235,168,258,203,276,256,291,312,299,367,300,419,298,419,303,368,306,312,304,255,296,201,281,165,263,134,239,90,193"/>
-<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="221,240,368,267"/>
-<area shape="poly" title=" " alt="" coords="112,189,203,225,225,233,223,238,201,231,110,194"/>
-<area shape="rect" href="namespacenz_1_1krnl.html#a1ae846a65c2f5b83cd1b9fc61b877854" title="Kernel function to perform element&#45;wise summation of two arrays." alt="" coords="225,189,364,216"/>
-<area shape="poly" title=" " alt="" coords="154,183,210,190,209,195,154,189"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="435,5,620,48"/>
-<area shape="poly" title=" " alt="" coords="387,24,419,24,419,29,387,29"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="668,197,854,240"/>
-<area shape="poly" title=" " alt="" coords="387,85,441,85,501,90,562,99,621,116,652,130,680,147,728,185,725,189,677,152,649,135,619,121,561,105,500,95,441,91,387,90"/>
-<area shape="poly" title=" " alt="" coords="604,261,668,242,670,247,605,266"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="668,264,854,307"/>
-<area shape="poly" title=" " alt="" coords="621,283,653,283,653,288,621,288"/>
-<area shape="poly" title=" " alt="" coords="359,186,419,173,420,178,360,191"/>
-<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="435,197,620,240"/>
-<area shape="poly" title=" " alt="" coords="364,205,420,209,419,214,363,210"/>
-<area shape="poly" title=" " alt="" coords="621,216,653,216,653,221,621,221"/>
-<area shape="poly" title=" " alt="" coords="605,238,670,257,668,262,604,243"/>
+<area shape="poly" title=" " alt="" coords="90,171,135,121,166,91,200,64,219,53,222,58,203,69,170,95,139,124,94,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#abe439fa00c0bd369c0b2345b095ed5af" title="Synchronizes host thread with completion events for a specific data object." alt="" coords="435,19,620,61"/>
+<area shape="poly" title=" " alt="" coords="106,170,201,127,313,90,419,62,420,67,314,95,203,132,108,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="435,99,620,141"/>
+<area shape="poly" title=" " alt="" coords="142,170,201,159,419,129,420,134,202,164,143,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a97f78a2d43f6e0508c82d4f3b629de96" title="Asynchronously allocates device memory for type&#45;specific data with stream&#45;ordered dependency tracking..." alt="" coords="202,275,387,317"/>
+<area shape="poly" title=" " alt="" coords="104,198,203,254,228,265,225,270,200,258,102,203"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#afa38d5c6db0e6b48c8f74ce8ad0df2bc" title="Asynchronously copies data between CUDA device and host memory based on the specified memory copy kin..." alt="" coords="435,232,620,275"/>
+<area shape="poly" title=" " alt="" coords="143,198,202,209,420,239,419,245,201,215,142,203"/>
+<area shape="rect" href="classnz_1_1data_1_1_tensor.html#a31a3aa01fa3ccb56503994a99e39e177" title="Retrieves the total number of elements in the tensor." alt="" coords="221,341,368,368"/>
+<area shape="poly" title=" " alt="" coords="91,199,133,261,165,297,203,327,213,332,210,337,200,332,162,301,129,264,86,202"/>
+<area shape="rect" href="namespacenz_1_1krnl.html#a1ae846a65c2f5b83cd1b9fc61b877854" title="Kernel function to perform element&#45;wise summation of two arrays." alt="" coords="225,173,364,200"/>
+<area shape="poly" title=" " alt="" coords="154,184,210,184,210,189,154,189"/>
+<area shape="poly" title=" " alt="" coords="388,29,420,31,419,36,387,35"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="668,232,854,275"/>
+<area shape="poly" title=" " alt="" coords="387,296,499,294,620,284,665,276,666,281,621,289,499,299,387,301"/>
+<area shape="poly" title=" " alt="" coords="621,251,653,251,653,256,621,256"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="668,165,854,208"/>
+<area shape="poly" title=" " alt="" coords="604,229,668,210,670,215,605,234"/>
+<area shape="poly" title=" " alt="" coords="343,170,435,144,436,149,345,175"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="435,165,620,208"/>
+<area shape="poly" title=" " alt="" coords="364,184,419,184,419,189,364,189"/>
+<area shape="poly" title=" " alt="" coords="605,206,670,225,668,230,604,211"/>
+<area shape="poly" title=" " alt="" coords="621,184,653,184,653,189,621,189"/>
 </map>
 </div>
 
@@ -2888,9 +3403,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
 <div class="line">tensor.<a class="code hl_function" href="#a0c150b841f02921eb7826a6e03d0267e">sync</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a0c150b841f02921eb7826a6e03d0267e"><div class="ttname"><a href="#a0c150b841f02921eb7826a6e03d0267e">nz::data::Tensor::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronize both the tensor data and its gradient data.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00645">Tensor.cu:645</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a0c150b841f02921eb7826a6e03d0267e"><div class="ttname"><a href="#a0c150b841f02921eb7826a6e03d0267e">nz::data::Tensor::sync</a></div><div class="ttdeci">void sync() const</div><div class="ttdoc">Synchronize both the tensor data and its gradient data.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00747">Tensor.cu:747</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00645">645</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00747">747</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2946,9 +3461,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
 <div class="line">tensor.<a class="code hl_function" href="#a7aab89d371ff013c5c021a191bd7348e">syncData</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7aab89d371ff013c5c021a191bd7348e"><div class="ttname"><a href="#a7aab89d371ff013c5c021a191bd7348e">nz::data::Tensor::syncData</a></div><div class="ttdeci">void syncData() const</div><div class="ttdoc">Synchronize the tensor data by waiting for all CUDA stream write operations to complete.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00635">Tensor.cu:635</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a7aab89d371ff013c5c021a191bd7348e"><div class="ttname"><a href="#a7aab89d371ff013c5c021a191bd7348e">nz::data::Tensor::syncData</a></div><div class="ttdeci">void syncData() const</div><div class="ttdoc">Synchronize the tensor data by waiting for all CUDA stream write operations to complete.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00737">Tensor.cu:737</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00635">635</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00737">737</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2998,9 +3513,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor;</div>
 <div class="line">tensor.<a class="code hl_function" href="#af28425ddc9bee1f75fd923a0de68c37b">syncGrad</a>();</div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_af28425ddc9bee1f75fd923a0de68c37b"><div class="ttname"><a href="#af28425ddc9bee1f75fd923a0de68c37b">nz::data::Tensor::syncGrad</a></div><div class="ttdeci">void syncGrad() const</div><div class="ttdoc">Synchronize the gradient data of the tensor if gradient computation is required.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00639">Tensor.cu:639</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_af28425ddc9bee1f75fd923a0de68c37b"><div class="ttname"><a href="#af28425ddc9bee1f75fd923a0de68c37b">nz::data::Tensor::syncGrad</a></div><div class="ttdeci">void syncGrad() const</div><div class="ttdoc">Synchronize the gradient data of the tensor if gradient computation is required.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00741">Tensor.cu:741</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00639">639</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00741">741</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3043,9 +3558,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3});  <span class="comment">// Create a tensor with shape 2x3</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a45e6f84ae74111ced9a96bdf204b2294">transpose</a>();     <span class="comment">// Transpose the tensor to shape 3x2</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a45e6f84ae74111ced9a96bdf204b2294"><div class="ttname"><a href="#a45e6f84ae74111ced9a96bdf204b2294">nz::data::Tensor::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transposes the tensor by swapping its dimensions and rearranging the data.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00379">Tensor.cu:379</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a45e6f84ae74111ced9a96bdf204b2294"><div class="ttname"><a href="#a45e6f84ae74111ced9a96bdf204b2294">nz::data::Tensor::transpose</a></div><div class="ttdeci">void transpose()</div><div class="ttdoc">Transposes the tensor by swapping its dimensions and rearranging the data.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00385">Tensor.cu:385</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00379">379</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00385">385</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3101,9 +3616,9 @@ Here is the call graph for this function:</div>
 <div class="line"><a class="code hl_class" href="classnz_1_1data_1_1_tensor.html">Tensor</a> tensor({2, 3}, <span class="keyword">true</span>);  <span class="comment">// Create a tensor with gradient support</span></div>
 <div class="line">tensor.<a class="code hl_function" href="#a6fed8efad540a7621dd6640b2f2466d0">zeroGrad</a>();  <span class="comment">// Reset the gradients to zero</span></div>
 <div class="line">```</div>
-<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a6fed8efad540a7621dd6640b2f2466d0"><div class="ttname"><a href="#a6fed8efad540a7621dd6640b2f2466d0">nz::data::Tensor::zeroGrad</a></div><div class="ttdeci">void zeroGrad() const</div><div class="ttdoc">Resets the gradient data to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00240">Tensor.cu:240</a></div></div>
+<div class="ttc" id="aclassnz_1_1data_1_1_tensor_html_a6fed8efad540a7621dd6640b2f2466d0"><div class="ttname"><a href="#a6fed8efad540a7621dd6640b2f2466d0">nz::data::Tensor::zeroGrad</a></div><div class="ttdeci">void zeroGrad() const</div><div class="ttdoc">Resets the gradient data to zero.</div><div class="ttdef"><b>Definition</b> <a href="_tensor_8cu_source.html#l00246">Tensor.cu:246</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00240">240</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tensor_8cu_source.html#l00246">246</a> of file <a class="el" href="_tensor_8cu_source.html">Tensor.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

@@ -2873,7 +2873,6 @@ TEST(Model, SGDOptimize) {
 
     Tensor expected({n, c, h, w}, true);
     expected.dataInject(expectedData.begin(), expectedData.end());
-    expected.dataInject(input1Gard.begin(), input1Gard.end(), true);
 
     EXPECT_EQ(expected, *model.input1.output);
 }

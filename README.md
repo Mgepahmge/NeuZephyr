@@ -59,33 +59,34 @@ NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, d
 ### C++ Example Code using `NeuZephyr`
 
 ```cpp
-#include <iostream>
-#include <NeuZephyr/ComputeGraph.cuh>
-
+class SegmentationModel : public Model {
+public:
+    InputNode input{{10,3,1024,1024}};  // Batch initialized directly
+    InputNode target;
+ 
+    SegmentationModel() : target({10,1,8,1}) {
+        auto x = Conv2d(&input, 1, 3, 3, 1, 1);
+        x = ReLU(x);
+        x = Conv2d(x, 1, 3, 3, 1, 1);
+        x = AvgPool2d(x, 5, 2);
+        x = Linear(x, 16);
+        x = Softmax(x);
+        BCELoss(x, &target);  // Graph termination
+    }
+};
+ 
 int main() {
-   // Create a compute graph
-   graph::ComputeGraph graph;
-   
-   // Add input nodes
-   graph.addInput({3, 4}, false, "Input");
-   graph.addInput({4, 3}, true, "Weight");
-   graph.addInput({3, 3}, false, "Label");
-   
-   // Add other nodes
-   graph.addNode("MatMul", "Input", "Weight", "MatMul");
-   graph.addNode("ReLU", "MatMul", "", "ReLU");
-   graph.addNode("MeanSquaredError", "ReLU", "Label");
-   
-   graph.randomizeAll();
-   
-   // Perform forward and backward passes
-   graph.forward();
-   graph.backward();
-   std::cout << graph << std::endl; // Print result
-   
-   // Update weights
-   opt::SGD optimizer(0.01); // Create optimizer
-   graph.update(&optimizer); // Update weights
+    SegmentationModel model;
+    model.input = load_tensor(...);
+    model.target = load_labels(...);
+ 
+    opt::Adam optimizer(0.01, 0.9, 0.999);
+    for(int epoch = 0; epoch < 100; ++epoch) {
+        model.forward();
+        model.backward();
+        model.update(&optimizer);
+        std::cout << "Loss: " << model.getLoss() << std::endl;
+    }
 }
 ```
 
@@ -124,6 +125,10 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 ---
 
 ## Changelog
+
+### v0.6 - Model Class & Neural Automation Framework
+- Introduced **`Model` base class** enabling declarative model construction via inheritance, with automatic parameter tracking and gradient graph generation.
+- Added high-level neural components (`Conv2D`, `MaxPool`, `Linear`) with built-in auto-differentiation, eliminating manual computation graph assembly.
 
 ### v0.5 - High-Dimensional Tensor Infrastructure Overhaul
 - Upgraded core tensor infrastructure from 2D to **fourth-order tensor** representation, enabling native support for high-dimensional data structures.

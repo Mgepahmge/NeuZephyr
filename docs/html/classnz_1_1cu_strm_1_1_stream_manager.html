@@ -132,7 +132,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class nz::cuStrm::StreamManager&lt; T &gt;</div><p>Centralized CUDA stream and resource management system with automatic dependency tracking. </p>
-<h3><a class="anchor" id="autotoc_md78"></a>
+<h3><a class="anchor" id="autotoc_md125"></a>
 Core Functionality</h3>
 <ul>
 <li><b>Resource Management</b>:<ul>
@@ -151,7 +151,7 @@ Core Functionality</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md79"></a>
+<h3><a class="anchor" id="autotoc_md126"></a>
 Architecture Integration</h3>
 <ul>
 <li><b><a class="el" href="classnz_1_1cu_strm_1_1_event_pool.html" title="Internal event management system for CUDA stream synchronization (Part of StreamManager)">EventPool</a> Collaboration</b>:<ul>
@@ -165,7 +165,7 @@ Architecture Integration</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md80"></a>
+<h3><a class="anchor" id="autotoc_md127"></a>
 Usage Example:</h3>
 <div class="fragment"><div class="line"><span class="comment">// Get singleton instance</span></div>
 <div class="line"><a class="code hl_class" href="classnz_1_1cu_strm_1_1_stream_manager.html">StreamManager&lt;float&gt;</a>&amp; manager = <a class="code hl_function" href="#ab4b2eb422e0e1ee44bdfdc0eb94457ce">StreamManager&lt;float&gt;::Instance</a>();</div>
@@ -213,7 +213,7 @@ Usage Example:</h3>
 </ul>
 </dd></dl>
 <p>@design </p>
-<h3><a class="anchor" id="autotoc_md75"></a>
+<h3><a class="anchor" id="autotoc_md122"></a>
 1. Stream Scheduling Strategy: Queue-based Least Recently Used (LRU)</h3>
 <p>Implements lightweight load balancing through cyclic stream allocation:</p><ul>
 <li><b>Pool Initialization</b>: Creates <code>maxStream</code> non-blocking CUDA streams at construction</li>
@@ -231,7 +231,7 @@ Usage Example:</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md76"></a>
+<h3><a class="anchor" id="autotoc_md123"></a>
 2. CUDA Operation Orchestration: Managed Execution Pipeline</h3>
 <p>Standardizes all GPU operations through a four-stage protocol:</p><ol type="1">
 <li><b>Stream Acquisition</b>: Obtain execution channel via LRU scheduler</li>
@@ -256,7 +256,7 @@ Usage Example:</h3>
 </ul>
 </li>
 </ol>
-<h3><a class="anchor" id="autotoc_md77"></a>
+<h3><a class="anchor" id="autotoc_md124"></a>
 3. Memory-Centric Synchronization</h3>
 <p>Extends <a class="el" href="classnz_1_1cu_strm_1_1_event_pool.html" title="Internal event management system for CUDA stream synchronization (Part of StreamManager)">EventPool</a>'s data-event binding with type-aware management:</p><ul>
 <li><b>Allocation Tracking</b>: Records events for all allocated memory regions</li>

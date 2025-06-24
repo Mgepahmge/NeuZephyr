@@ -3130,9 +3130,9 @@ namespace nz::nodes {
          * ### Usage Example:
          * ```cpp
          * // Creating a Softmax node in a neural network
-         * InputNode input({1, 5}, true);  // Input node with shape {1, 5}
-         * float logits[] = {2.0f, 1.0f, 0.1f, 3.0f, -1.0f};
-         * input.output->dataInject(logits);
+         * InputNode input({1, 1, 1, 5}, true);  // Input node with shape {1, 1, 1, 5}
+         * std::vector<float> logits{2.0f, 1.0f, 0.1f, 3.0f, -1.0f};
+         * input.output->dataInject(logits.begin(), logits.end());
          *
          * SoftmaxNode softmax(&input);
          * softmax.forward();
@@ -3150,7 +3150,6 @@ namespace nz::nodes {
          * @date 2024/12/5
          */
         class DL_API SoftmaxNode : public Node {
-
         public:
             /**
              * @brief Constructor to initialize a `SoftmaxNode` for applying the Softmax activation function.
@@ -3278,28 +3277,455 @@ namespace nz::nodes {
             void backward() override;
         };
 
+        /**
+         * @class ReshapeNode
+         * @brief Implements tensor shape transformation within a neural network computational graph.
+         *
+         * The `ReshapeNode` class modifies the dimensional structure of input tensors while preserving
+         * their underlying data. This node enables flexible tensor shape adaptation between different
+         * network layers without altering the actual data values.
+         *
+         * @details
+         * Core functionality and behavior:
+         * - **Shape Transformation**: Reorganizes tensor dimensions according to specified new_shape.
+         * - **Data Preservation**: Maintains original data values and memory sharing where possible.
+         * - **Zero-Copy Optimization**: Avoids data duplication when compatible memory layouts allow.
+         * - **Gradient Propagation**: Correctly routes gradients during backward pass by preserving
+         *    original tensor dimensions in gradient computations.
+         * - **Runtime Validation**: Verifies shape compatibility (total element count) during forward pass.
+         *
+         * Implementation specifics:
+         * - **Forward Pass**: Adjusts tensor dimensions immediately without data movement.
+         * - **Backward Pass**: Restores gradient tensor dimensions to match original input shape.
+         * - **Memory Management**: Shares underlying data buffer between input and output tensors.
+         * - **CUDA Support**: Maintains device context (CPU/GPU) during reshape operations.
+         *
+         * Typical applications:
+         * - Bridging fully connected layers with convolutional layers requiring specific tensor shapes.
+         * - Adapting variable-length sequence inputs to fixed-dimension layer requirements.
+         * - Implementing dynamic computational graphs with shape-modifying operations.
+         *
+         * Critical considerations:
+         * - **Element Count Consistency**: Input and new_shape must contain identical total elements.
+         * - **Memory Layout Impact**: Reshape success depends on tensor memory continuity in some frameworks.
+         * - **Gradient Integrity**: Requires maintaining original input shape reference for correct backpropagation.
+         * - **Device Consistency**: Input tensor and new_shape must reside on same computation device.
+         *
+         * @note
+         * - Shape modification doesn't alter tensor data ordering - elements follow memory layout order.
+         * - For discontinuous tensors, reshape may trigger implicit data copy (implementation-dependent).
+         * - Gradient computation requires preserving original input tensor dimensions throughout node lifetime.
+         *
+         * @see Node Base class for computational graph nodes
+         * @see Tensor::reshape() Underlying tensor shape modification method
+         *
+         * ### Usage Demonstration:
+         * ```cpp
+         * // Create input node with 4D tensor
+         * InputNode input({2, 3, 4, 5}, true); // Batch 2, 3x4x5 features
+         *
+         * // Reshape to 2D tensor (batch size, flattened features)
+         * ReshapeNode reshape(&input, {2, 1, 1, 3*4*5});
+         * reshape.forward();
+         *
+         * // Verify new shape
+         * std::cout << "Reshaped tensor dimensions: "
+         *           << reshape.output->shape() << std::endl;
+         *
+         * // Backward pass demonstration
+         * reshape.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/15
+         */
         class DL_API ReshapeNode : public Node {
         public:
             Tensor::shape_type newShape;
 
+            /**
+             * @brief Constructs a ReshapeNode object to reshape the input tensor.
+             *
+             * This constructor initializes a ReshapeNode with an input node and a new shape. It checks if the number of dimensions of the input tensor's shape
+             * matches the number of dimensions of the new shape. If they match, it adds the input node to the list of inputs, creates a new output tensor
+             * with the specified new shape and the same requiresGrad property as the input tensor, and sets the node type to "Reshape".
+             *
+             * @param input A pointer to the input node. Memory location: host - to - device (used to access input tensor information).
+             * @param newShape A reference to the new shape of type `Tensor::shape_type`. Memory location: host - to - device (used to define the new shape).
+             *
+             * @return None
+             *
+             * **Memory Management Strategy**:
+             * - The `inputs` vector stores a pointer to the input node. The memory management of the input node is assumed to be handled by the caller.
+             * - The `output` member variable is a `std::shared_ptr` to a new `Tensor` object. The memory of the `Tensor` will be automatically managed by the `std::shared_ptr`.
+             *
+             * **Exception Handling Mechanism**:
+             * - Throws `std::invalid_argument` if the number of dimensions of the input tensor's shape does not match the number of dimensions of the new shape.
+             *
+             * **Relationship with Other Components**:
+             * - Depends on the `input` node to access its output tensor.
+             * - Creates a new `Tensor` object for the output.
+             *
+             * @throws std::invalid_argument When the number of dimensions of the input tensor's shape and the new shape do not match.
+             *
+             * @note
+             * - Ensure that the input node is valid and points to a non - null `Node` object.
+             * - Ensure that the new shape has the same number of dimensions as the input tensor's shape to avoid exceptions.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node();
+             * Tensor::shape_type newShape = {1, 2, 3, 4};
+             * try {
+             *     ReshapeNode reshapeNode(inputNode, newShape);
+             * } catch (const std::exception& e) {
+             *     std::cerr << e.what() << std::endl;
+             * }
+             * ```
+             * @endcode
+             */
             ReshapeNode(Node* input, const Tensor::shape_type& newShape);
 
+            /**
+             * @brief Performs the forward pass operation of the ReshapeNode.
+             *
+             * This function copies the data from the output tensor of the input node to the output tensor of the ReshapeNode using CUDA memory copy.
+             * It uses the singleton instance of `cuStrm::StreamManager<float>` to manage the CUDA stream for the memory copy operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * **Memory Management Strategy**:
+             * - The function relies on the CUDA memory copy operation (`cudaMemcpyDeviceToDevice`). The source and destination memory are managed by the `Tensor` objects (`inputs[0]->output` and `output`).
+             * - The CUDA memory copy operation is assumed to handle the actual data transfer and memory allocation/deallocation related to the transfer properly.
+             *
+             * **Exception Handling Mechanism**:
+             * - If the CUDA memory copy operation fails, it may return a CUDA error code. However, this function does not handle CUDA errors explicitly.
+             *   Callers should check the CUDA error state after calling this function if necessary.
+             *
+             * **Relationship with Other Components**:
+             * - Depends on the `cuStrm::StreamManager<float>` singleton to manage the CUDA stream for the memory copy.
+             * - Relies on the `inputs[0]->output` tensor for the source data and the `output` tensor for the destination data.
+             *
+             * @throws None explicitly, but CUDA errors may occur during the memory copy operation.
+             *
+             * @note
+             * - Ensure that the CUDA runtime environment is properly initialized before calling this function.
+             * - The CUDA memory copy operation assumes that the source and destination memory regions are valid and have sufficient space.
+             * - The time complexity of this function is mainly determined by the CUDA memory copy operation, which is typically proportional to the size of the data being copied (O(n), where n is the number of elements in the output tensor).
+             *
+             * @code
+             * ```cpp
+             * // Assume ReshapeNode, Node, and Tensor are defined
+             * Node* inputNode = new Node();
+             * Tensor::shape_type newShape = {1, 2, 3, 4};
+             * ReshapeNode reshapeNode(inputNode, newShape);
+             * reshapeNode.forward();
+             * ```
+             * @endcode
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward propagation for the ReshapeNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function is responsible for performing the backward propagation in the ReshapeNode.
+             * If the output of the first input tensor requires gradient computation, it copies the gradient of the output tensor
+             * to the gradient of the first input tensor's output. The memory copy operation is performed using the CUDA stream manager
+             * with a device-to-device memory transfer.
+             *
+             * Memory management strategy: The function does not allocate or free any memory. It only copies existing memory using CUDA's memcpy.
+             * Exception handling mechanism: There is no explicit exception handling in this function. However, CUDA's memcpy operation may
+             * throw errors if there are issues with the memory pointers or the CUDA device.
+             *
+             * @note
+             * - Ensure that the CUDA device is properly initialized before calling this function.
+             * - The sizes of the output tensor and the first input tensor's output must match for the memory copy to be valid.
+             *
+             * @code
+             * ```cpp
+             * ReshapeNode node;
+             * // Assume inputs and output tensors are properly initialized
+             * node.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class ExpandNode
+         * @brief Expands tensors with batch size 1 to arbitrary batch dimensions through data replication.
+         *
+         * The `ExpandNode` class enables batch dimension expansion by replicating single-instance input data
+         * across the batch dimension. This operation is particularly useful for converting single-sample processing
+         * networks into batch-processing configurations without modifying core network architecture.
+         *
+         * @details
+         * Core operational characteristics:
+         * - **Batch Dimension Expansion**: Duplicates input data along batch dimension to create specified batch size.
+         * - **Memory Efficiency**: Shares underlying data storage through tensor views where possible.
+         * - **Gradient Aggregation**: Implements gradient summation across batch dimension during backward pass.
+         * - **Device Consistency**: Maintains computation device context (CPU/GPU) during expansion operations.
+         * - **Input Validation**: Enforces pre-condition of batch_size=1 for input tensors.
+         *
+         * Implementation mechanics:
+         * - **Forward Propagation**: Creates tensor view with expanded batch dimensions through broadcasting.
+         * - **Backward Propagation**: Accumulates gradients across expanded batch dimension via summation.
+         * - **CUDA Optimization**: Leverages CUDA tensor broadcasting for efficient batch replication on GPU.
+         * - **Shape Preservation**: Maintains non-batch dimensions identical to input tensor.
+         *
+         * Common application scenarios:
+         * - Converting single-sample inference networks to batch processing mode.
+         * - Data augmentation through batch-wise replication of prototype samples.
+         * - Model ensemble techniques requiring multiple copies of base input.
+         *
+         * Critical operational constraints:
+         * - **Input Batch Requirement**: Input tensor must have batch_size=1 (first dimension size=1).
+         * - **Memory Considerations**: Creates virtual views rather than physical copies in forward pass.
+         * - **Gradient Scaling**: Backward pass gradients are scaled by batch size due to summation aggregation.
+         * - **Device Compatibility**: Input tensor and expansion operation must reside on same computation device.
+         *
+         * @warning
+         * - Input validation failure occurs if input batch size != 1, throwing runtime_error.
+         * - Physical memory consumption increases proportionally with new_batch in backward pass.
+         *
+         * @note
+         * - Actual data replication occurs lazily during memory access operations.
+         * - For physical data duplication, combine with CopyNode before ExpandNode.
+         * - Gradient computation maintains mathematical equivalence to manual batch duplication.
+         *
+         * @see RepeatNode For non-batch dimension replication operations
+         * @see Tensor::expand() Underlying tensor expansion mechanism
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Create single-sample input node
+         * InputNode input({1, 1, 256, 256}, true); // Batch 1, 256x256 image
+         *
+         * // Expand to batch size 16
+         * ExpandNode expander(&input, 16);
+         * expander.forward();
+         *
+         * // Verify expanded shape
+         * std::cout << "Expanded tensor shape: "
+         *           << expander.output->shape() << std::endl; // [16, 1, 256, 256]
+         *
+         * // Backward pass handling
+         * expander.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/16
+         */
         class DL_API ExpandNode : public Node {
         public:
             Tensor::size_type newBatch;
 
+            /**
+             * @brief Constructs an ExpandNode object.
+             *
+             * @param input A pointer to the input Node. Memory location: host.
+             * @param newBatch The new batch size for the output tensor. Memory location: host.
+             *
+             * @return None
+             *
+             * This function constructs an ExpandNode object. It first checks if the batch size of the input tensor is 1. If not,
+             * it throws an `std::invalid_argument` exception. Then, it adds the input node to the list of inputs, creates a new
+             * output tensor with the specified new batch size and the same dimensions as the input tensor except for the batch size,
+             * and sets the node type to "Expand".
+             *
+             * Memory management strategy: The function allocates memory for the output tensor using `std::make_shared`. The memory
+             * will be automatically managed by the smart pointer and freed when it goes out of scope.
+             * Exception handling mechanism: If the batch size of the input tensor is not 1, the function throws an `std::invalid_argument`
+             * exception with an appropriate error message.
+             *
+             * @throws std::invalid_argument If the input tensor's batch size is not 1.
+             *
+             * @note
+             * - Ensure that the input node pointer is valid and points to a properly initialized node.
+             * - The new batch size should be a valid non - negative value.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node();
+             * Tensor::size_type newBatchSize = 10;
+             * ExpandNode expandNode(inputNode, newBatchSize);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             ExpandNode(Node* input, Tensor::size_type newBatch);
 
+            /**
+             * @brief Performs the forward propagation for the ExpandNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the forward propagation of the ExpandNode. It first calculates the size of a single element
+             * in the input tensor (excluding the batch dimension) and the total number of elements in the output tensor.
+             * Then, it configures the CUDA grid and block dimensions for parallel execution. Finally, it calls the `Expand`
+             * kernel function to perform the actual expansion operation on the device.
+             *
+             * Memory management strategy: The function does not allocate or free any memory directly. It relies on the memory
+             * allocated for the input and output tensors in the constructor.
+             * Exception handling mechanism: There is no explicit exception handling in this function. However, the `Expand`
+             * kernel call may encounter errors related to CUDA operations such as invalid grid/block dimensions or device issues.
+             *
+             * @throws None
+             *
+             * @note
+             * - Ensure that the CUDA device is properly initialized before calling this function.
+             * - The `Expand` kernel function should be implemented correctly to handle the expansion operation.
+             * - The time complexity of the expansion operation depends on the implementation of the `Expand` kernel,
+             *   but in general, it has a linear time complexity O(n), where n is the total number of elements in the output tensor.
+             *
+             * @code
+             * ```cpp
+             * ExpandNode expandNode; // Assume expandNode is properly initialized
+             * expandNode.forward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward propagation for the ExpandNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function performs the backward propagation of the ExpandNode. It first checks if the input tensor requires
+             * gradient computation. If it does, it calculates the size of a single element in the input tensor (excluding the
+             * batch dimension) and the total number of elements in the output tensor. Then, it configures the CUDA grid and
+             * block dimensions for parallel execution. Finally, it calls the `Compress` kernel function to perform the
+             * compression operation on the gradients, which is the reverse operation of the forward expansion.
+             *
+             * Memory management strategy: The function does not allocate or free any memory directly. It relies on the memory
+             * allocated for the input and output gradient tensors.
+             * Exception handling mechanism: There is no explicit exception handling in this function. However, the `Compress`
+             * kernel call may encounter errors related to CUDA operations such as invalid grid/block dimensions or device issues.
+             *
+             * @throws None
+             *
+             * @note
+             * - Ensure that the CUDA device is properly initialized before calling this function.
+             * - The `Compress` kernel function should be implemented correctly to handle the gradient compression operation.
+             * - The time complexity of the compression operation depends on the implementation of the `Compress` kernel,
+             *   but in general, it has a linear time complexity O(n), where n is the total number of elements in the output tensor.
+             *
+             * @code
+             * ```cpp
+             * ExpandNode expandNode; // Assume expandNode is properly initialized
+             * expandNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class Img2ColNode
+         * @brief Implements im2col transformation for efficient convolution operations in neural networks.
+         *
+         * This node converts (N, C, H, W) input tensors into expanded column matrices (N, 1, Hout*Wout, C*K_h*K_w)
+         * following the im2col algorithm, enabling efficient convolution computation through matrix multiplication.
+         *
+         * @details
+         * Core functionality and characteristics:
+         * - **Convolution Optimization**: Unfilters image patches into column matrices for accelerated convolution computation.
+         * - **Parameterized Transformation**: Supports configurable kernel dimensions, stride, and padding.
+         * - **Memory Layout Conversion**: Reorganizes spatial data into channel-patch columns.
+         * - **Gradient Propagation**: Implements inverse col2im operation during backward pass for gradient computation.
+         * - **CUDA Acceleration**: Optimized GPU implementation for both forward and backward operations.
+         * - **Automatic Shape Calculation**: Computes output spatial dimensions based on input parameters.
+         *
+         * Key implementation aspects:
+         * - **Forward Pass**: Applies im2col algorithm with zero-padding and window sliding based on parameters.
+         * - **Backward Pass**: Accumulates gradients using col2im inverse transformation with proper kernel alignment.
+         * - **Memory Access Patterns**: Optimizes for contiguous memory access in transformed column matrices.
+         * - **Parameter Validation**: Verifies kernel dimensions don't exceed padded input size.
+         *
+         * Typical use cases:
+         * - Accelerating convolutional layer computations through matrix multiplication.
+         * - Implementing custom filter operations requiring explicit patch extraction.
+         * - Converting spatial correlations into channel-wise operations.
+         * - Data augmentation through explicit patch sampling.
+         *
+         * Critical considerations:
+         * - **Memory Overhead**: Generates O(K_h*K_w*C*Hout*Wout) intermediate storage - may require substantial memory.
+         * - **Parameter Compatibility**: Requires (H + 2*padding - K_h) divisible by stride (similar for width).
+         * - **Input Constraints**: Strict 4D input tensor requirement (NCHW format).
+         * - **Device Consistency**: Maintains original tensor device context (CPU/GPU).
+         *
+         * @warning
+         * - Excessive kernel sizes or small strides may create prohibitively large intermediate matrices.
+         * - Improper padding/stride combinations may cause dimension calculation errors.
+         *
+         * @note
+         * - Output dimensions follow: Hout = (H + 2*padding - K_h)/stride + 1
+         * - The inverse col2im operation in backward pass sums gradients across overlapping patches.
+         * - For dilated convolutions, consider extending kernel parameters with dilation factors.
+         *
+         * @see ConvolutionNode For typical subsequent operation after im2col transformation
+         * @see Tensor::im2col() Underlying tensor transformation implementation
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Create input node with batch of 32 RGB images (256x256)
+         * InputNode input({32, 3, 256, 256}, true);
+         *
+         * // Configure im2col with 7x7 kernel, stride 2, padding 3
+         * Img2ColNode im2col(&input, 7, 7, 2, 3);
+         * im2col.forward();
+         *
+         * // Resulting shape: (32, 1, 128*128, 3*7*7)
+         * std::cout << "Transformed shape: " << im2col.output->shape() << std::endl;
+         *
+         * // Backward pass through col2im
+         * im2col.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/17
+         */
         class DL_API Img2ColNode : public Node {
         public:
             Tensor::size_type kernelHeight;
@@ -3309,51 +3735,708 @@ namespace nz::nodes {
             Tensor::size_type outputHeight;
             Tensor::size_type outputWidth;
 
+            /**
+             * @brief Constructor for the Img2ColNode class.
+             *
+             * @param input A pointer to the input Node. Memory location: host. This is a pointer to an existing Node object, and the constructor only stores the pointer, not making a copy of the object.
+             * @param kernelHeight The height of the kernel. Memory location: host. It is a value passed by value, and the constructor stores its copy.
+             * @param kernelWidth The width of the kernel. Memory location: host. It is a value passed by value, and the constructor stores its copy.
+             * @param stride The stride value for the convolution operation. Memory location: host. It is a value passed by value, and the constructor stores its copy.
+             * @param padding The padding value for the convolution operation. Memory location: host. It is a value passed by value, and the constructor stores its copy.
+             *
+             * @return None
+             *
+             * This constructor initializes an Img2ColNode object. It stores the input node pointer, sets the kernel height, width, stride, and padding values. It also calculates the output height and width based on the input tensor's shape, kernel size, stride, and padding. Then, it creates a new Tensor object for the output with the appropriate shape and gradient requirement. Finally, it sets the node type to "Img2Col".
+             *
+             * Memory management strategy: The constructor creates a new Tensor object using `std::make_shared`, which manages the memory automatically. The input node pointer is just stored, and no new memory is allocated for it.
+             * Exception handling mechanism: There is no explicit exception handling in this constructor. However, if the `std::make_shared` call fails to allocate memory for the output Tensor, a `std::bad_alloc` exception will be thrown.
+             *
+             * @throws std::bad_alloc If memory allocation for the output Tensor fails.
+             *
+             * @note
+             * - Ensure that the input node pointer is valid and points to a properly initialized Node object.
+             * - The calculation of output height and width assumes valid values for kernel size, stride, and padding. Incorrect values may lead to unexpected results.
+             * - The time complexity of the constructor is O(1) as all operations are constant time operations.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node();
+             * Img2ColNode img2ColNode(inputNode, 3, 3, 1, 1);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             Img2ColNode(Node* input, Tensor::size_type kernelHeight, Tensor::size_type kernelWidth,
                         Tensor::size_type stride, Tensor::size_type padding);
 
+            /**
+             * @brief Performs the forward propagation for the Img2ColNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function executes the forward propagation of the Img2ColNode. It calls the `iImg2col` function, passing in the necessary parameters such as the output data pointer, input data pointer, output height, output width, number of input channels, kernel height, kernel width, stride, padding, input height, input width, and batch size. The `iImg2col` function is responsible for converting the image data into a column - major format, which is useful for performing convolution operations more efficiently.
+             *
+             * Memory management strategy: The function does not allocate or free any memory directly. It relies on the memory already allocated for the input and output tensors. The `iImg2col` function is assumed to write the results directly into the pre - allocated output tensor.
+             * Exception handling mechanism: There is no explicit exception handling in this function. However, if the `iImg2col` function encounters issues such as invalid pointers or incorrect input parameters, it may throw an exception.
+             *
+             * @note
+             * - Ensure that the input and output tensors are properly initialized and have sufficient memory allocated before calling this function.
+             * - The performance of this function depends on the implementation of the `iImg2col` function. In general, the time complexity of the `iImg2col` operation is O(n), where n is the number of elements in the output tensor.
+             *
+             * @code
+             * ```cpp
+             * Img2ColNode img2ColNode; // Assume img2ColNode is properly initialized
+             * img2ColNode.forward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward propagation for the Img2ColNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the backward propagation of the Img2ColNode. It first checks if the output of the input node requires gradient computation. If so, it calls the `iImg2colBackward` function, passing in relevant parameters including the gradient of the input node's output, the gradient of the current node's output, output height, output width, the number of input channels, kernel height, kernel width, stride, padding, input height, input width, and batch size. The `iImg2colBackward` function is responsible for calculating the gradients with respect to the input.
+             *
+             * Memory management strategy: The function does not allocate or free any memory directly. It relies on the pre - allocated memory for the gradients of the input and output tensors. The `iImg2colBackward` function is assumed to write the calculated gradients into the pre - allocated gradient tensors.
+             * Exception handling mechanism: There is no explicit exception handling in this function. However, if the `iImg2colBackward` function encounters problems such as invalid pointers or incorrect input parameters, it may throw an exception.
+             *
+             * @note
+             * - Ensure that the gradient tensors of the input and output are properly initialized and have sufficient memory allocated before calling this function.
+             * - The performance of this function depends on the implementation of the `iImg2colBackward` function. Generally, the time complexity of the `iImg2colBackward` operation is O(n), where n is the number of elements in the input gradient tensor.
+             *
+             * @code
+             * ```cpp
+             * Img2ColNode img2ColNode; // Assume img2ColNode is properly initialized
+             * img2ColNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class Col2ImgNode
+         * @brief Reconstructs spatial tensors from column matrices generated by im2col transformation.
+         *
+         * This node performs the inverse operation of Img2ColNode, converting (N, 1, Hout*Wout, Cout) tensors
+         * back to (N, Cout, Hout, Wout) spatial format. Essential for gradient propagation in convolution
+         * operations and feature map reconstruction.
+         *
+         * @details
+         * Core functionality and characteristics:
+         * - **Spatial Reconstruction**: Transforms column-organized data back to original spatial dimensions.
+         * - **Gradient Handling**: Reconstructs gradients during backpropagation through reverse im2col.
+         * - **Parameter Consistency**: Requires matching kernel/stride/padding with original Img2ColNode.
+         * - **Memory Optimization**: Implements efficient gradient summation for overlapping regions.
+         * - **Shape Restoration**: Recovers original spatial dimensions through inverse indexing.
+         * - **CUDA Support**: GPU-accelerated implementation for both forward and backward passes.
+         *
+         * Key implementation aspects:
+         * - **Forward Pass**: Reshapes column matrix to spatial format using output dimensions.
+         * - **Backward Pass**: Applies im2col transformation to gradients for upstream propagation.
+         * - **Overlap Resolution**: Accumulates gradients from overlapping input regions during backward pass.
+         * - **Shape Validation**: Verifies input tensor conforms to (N, 1, H*W, C) structure.
+         *
+         * Typical use cases:
+         * - Gradient computation for convolution layers using matrix-based implementations.
+         * - Feature map reconstruction after channel-wise operations.
+         * - Custom layer implementations requiring spatial/tensor format conversion.
+         * - Visualization of intermediate column-organized features.
+         *
+         * Critical considerations:
+         * - **Parameter Matching**: Must use identical kernel/stride/padding to corresponding Img2ColNode.
+         * - **Memory Footprint**: Gradient tensors may require significant memory during backward pass.
+         * - **Input Constraints**: Strict 4D input tensor requirement with second dimension = 1.
+         * - **Spatial Resolution**: Output dimensions must match original pre-im2col calculations.
+         *
+         * @warning
+         * - Input tensor shape mismatch will cause runtime errors.
+         * - Incorrect kernel/stride parameters may produce distorted output spatial dimensions.
+         * - Large kernel sizes combined with small strides may create memory pressure during backward pass.
+         *
+         * @note
+         * - Output dimensions should satisfy: Hout = (H - K_h + 2*padding)/stride + 1
+         * - Backward pass internally uses Img2ColNode's logic for gradient propagation.
+         * - For dilated convolutions, ensure parameter compatibility with forward operations.
+         *
+         * @see Img2ColNode For the corresponding forward transformation
+         * @see ConvolutionNode For typical usage context in convolutional networks
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Previous im2col transformation
+         * Img2ColNode im2col(&input, 3, 3, 1, 1);
+         * im2col.forward(); // Output shape: (32, 1, 256*256, 64)
+         *
+         * // Reconstruct original spatial format
+         * Col2ImNode col2im(&im2col, 3, 3, 1, 1);
+         * col2im.forward();
+         *
+         * // Reconstructed shape: (32, 64, 256, 256)
+         * std::cout << "Reconstructed shape: " << col2im.output->shape() << std::endl;
+         *
+         * // Backward pass through inverse transformation
+         * col2im.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/18
+         */
         class DL_API Col2ImgNode : public Node {
         public:
             Tensor::size_type outputHeight;
             Tensor::size_type outputWidth;
             Tensor::size_type outputChannels;
 
+            /**
+             * @brief Constructor for the Col2ImgNode class.
+             *
+             * @param input A pointer to the input Node (host-to-object). This node provides the necessary input data for the Col2ImgNode.
+             * @param outputHeight The height of the output image in size_type (host-to-object).
+             * @param outputWidth The width of the output image in size_type (host-to-object).
+             *
+             * @return None
+             *
+             * This constructor initializes a Col2ImgNode object. It sets the output height, width, and number of channels based on the input node's output shape. It then adds the input node to the list of input nodes. A new Tensor object is created for the output, with its shape determined by the batch size from the input node's output, the number of output channels, the specified output height, and width. The output tensor also inherits the gradient requirement from the input node's output. Finally, the node type is set to "Col2Img".
+             *
+             * Memory management strategy: The constructor uses `std::make_shared` to allocate memory for the output tensor. The memory will be automatically managed by the smart pointer, and it will be released when the last reference to the tensor is removed.
+             * Exception handling mechanism: There is no explicit exception handling in this constructor. However, if memory allocation for the output tensor fails, a `std::bad_alloc` exception may be thrown.
+             *
+             * @throws std::bad_alloc If memory allocation for the output tensor fails.
+             *
+             * @note
+             * - Ensure that the input pointer is valid and points to a properly initialized Node object.
+             * - The performance of this constructor is mainly determined by the memory allocation for the output tensor, which has a time complexity of O(n), where n is the number of elements in the output tensor.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node();
+             * Tensor::size_type outputHeight = 10;
+             * Tensor::size_type outputWidth = 10;
+             * Col2ImgNode col2ImgNode(inputNode, outputHeight, outputWidth);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             Col2ImgNode(Node* input, Tensor::size_type outputHeight, Tensor::size_type outputWidth);
 
+            /**
+             * @brief Performs the forward propagation operation in the Col2ImgNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function executes the forward propagation step for the Col2ImgNode. It calls the `iCol2img` function, passing the output tensor's data, the input node's output tensor's data, the output height, output width, output channels, and the batch size from the input node's output. The `iCol2img` function is responsible for converting the column - formatted data from the input to image - formatted data in the output.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing data pointers of the input and output tensors.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iCol2img` function encounters an error, it may throw an exception, but the nature of the exception depends on the implementation of `iCol2img`.
+             *
+             * @throws [Exception type from iCol2img] If the `iCol2img` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the input node's output tensor and the output tensor of the Col2ImgNode are properly initialized before calling this function.
+             * - The performance of this function depends on the implementation of the `iCol2img` function. If the `iCol2img` function has a time complexity of O(n), where n is the number of elements in the input or output tensors, then this forward propagation step also has a time complexity of O(n).
+             *
+             * @code
+             * ```cpp
+             * Col2ImgNode col2ImgNode(...); // Assume Col2ImgNode is properly initialized
+             * col2ImgNode.forward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward propagation operation in the Col2ImgNode.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the backward propagation step for the Col2ImgNode. It first checks if the output tensor of the input node requires gradient computation. If it does, the function calls `iCol2imgBackward`, passing the gradient tensor of the input node's output, the gradient tensor of the output, the output height, output width, output channels, and the batch size from the input node's output. The `iCol2imgBackward` function is responsible for computing the gradients and propagating them back to the input.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing gradient tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iCol2imgBackward` function encounters an error, it may throw an exception, and the specific type of exception depends on the implementation of `iCol2imgBackward`.
+             *
+             * @throws [Exception type from iCol2imgBackward] If the `iCol2imgBackward` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the gradient tensors of the input node's output and the output tensor of the Col2ImgNode are properly initialized before calling this function.
+             * - The performance of this function depends on the implementation of the `iCol2imgBackward` function. If the `iCol2imgBackward` function has a time complexity of O(n), where n is the number of elements in the input or output gradient tensors, then this backward propagation step also has a time complexity of O(n).
+             *
+             * @code
+             * ```cpp
+             * Col2ImgNode col2ImgNode(...); // Assume Col2ImgNode is properly initialized
+             * col2ImgNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class AveragePoolingNode
+         * @brief Implements average pooling operation for spatial downsampling in neural networks.
+         *
+         * This node performs spatial averaging over sliding windows of (poolSize x poolSize) dimensions,
+         * reducing feature map resolution while maintaining channel depth. Commonly used for dimensionality
+         * reduction and translation invariance in CNNs.
+         *
+         * @details
+         * Core functionality and characteristics:
+         * - **Spatial Aggregation**: Computes mean values over local receptive fields.
+         * - **Dimensionality Reduction**: Reduces H and W dimensions while preserving channel count.
+         * - **Gradient Propagation**: Distributes gradients equally across input positions during backward pass.
+         * - **Parameter Control**: Configurable window size, stride, and padding.
+         * - **CUDA Acceleration**: GPU-optimized implementation for both forward and backward passes.
+         * - **Auto Shape Calculation**: Computes output dimensions using pooling parameters.
+         *
+         * Key implementation aspects:
+         * - **Forward Pass**: Applies sliding window averaging with optional zero-padding.
+         * - **Backward Pass**: Scatters gradients by assigning 1/(K*K) of output gradient to each input position.
+         * - **Border Handling**: Supports padding for controlling output size.
+         * - **Memory Efficiency**: Maintains original channel depth for memory layout consistency.
+         *
+         * Typical use cases:
+         * - Reducing computational complexity in deep networks.
+         * - Creating translation-invariant feature representations.
+         * - Smoothing feature responses in encoder-decoder architectures.
+         * - Regularization through spatial information compression.
+         *
+         * Critical considerations:
+         * - **Information Loss**: Over-aggressive pooling may discard important spatial details.
+         * - **Dimension Calculation**: Output dimensions follow: Hout = (H + 2*padding - poolSize)/stride + 1
+         * - **Parameter Validation**: Requires (H + 2*padding) ≥ poolSize and similar for width.
+         * - **Zero Padding Impact**: Padding values affect border region averages.
+         *
+         * @warning
+         * - Excessive pooling sizes may produce invalid dimensions.
+         * - Small stride values can significantly increase computation cost.
+         * - Non-integer output dimensions will cause runtime errors.
+         *
+         * @note
+         * - Output tensor shape: (N, C, Hout, Wout)
+         * - For variable height/width pooling, use separate parameters (not supported in current implementation)
+         * - Gradient computation requires storing input shape during forward pass
+         *
+         * @see MaxPoolingNode For maximum value-based pooling alternative
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Create input node with batch of 16 256x256 RGB images
+         * InputNode input({16, 3, 256, 256}, true);
+         *
+         * // Configure 4x4 pooling with stride 2 and padding 1
+         * AveragePoolingNode pool(&input, 4, 2, 1);
+         * pool.forward();
+         *
+         * // Output shape becomes (16, 3, 128, 128)
+         * std::cout << "Pooled shape: " << pool.output->shape() << std::endl;
+         *
+         * // Backpropagate through pooling operation
+         * pool.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/19
+         */
         class DL_API AveragePoolingNode : public Node {
         public:
             Tensor::size_type poolSize;
             Tensor::size_type stride;
             Tensor::size_type padding;
 
+            /**
+             * @brief Constructs an AveragePoolingNode object.
+             *
+             * @param input A pointer to the input node. The memory of this pointer is assumed to be managed externally and is used in a read - only manner within this constructor (host - to - host).
+             * @param poolSize The size of the pooling window. It is a value of type Tensor::size_type and is used to determine the dimensions of the pooling operation.
+             * @param stride The stride value for the pooling operation. It is of type Tensor::size_type and controls how the pooling window moves across the input tensor.
+             * @param padding The padding value applied to the input tensor before the pooling operation. It is of type Tensor::size_type.
+             *
+             * @return None
+             *
+             * This constructor initializes an AveragePoolingNode object. It first stores the provided input node pointer in the `inputs` vector. Then, it creates a new shared pointer to a Tensor object for the `output` member. The shape of the output tensor is calculated based on the shape of the input tensor, the `poolSize`, `stride`, and `padding` values using the `OUTPUT_DIM` macro. The `requiresGrad` flag of the output tensor is set to the same value as that of the input tensor's output. Finally, it sets the `type` member of the node to "AveragePooling".
+             *
+             * Memory management strategy: The constructor does not allocate memory for the input node. It only stores a pointer to it. The output tensor is created using `std::make_shared`, which manages the memory automatically.
+             * Exception handling mechanism: There is no explicit exception handling in this constructor. If the `std::make_shared` call fails to allocate memory for the output tensor, it may throw a `std::bad_alloc` exception.
+             *
+             * @throws std::bad_alloc If memory allocation for the output tensor fails.
+             *
+             * @note
+             * - Ensure that the input node pointer is valid and points to a properly initialized node.
+             * - The performance of this constructor is mainly determined by the memory allocation for the output tensor, which has a time complexity of O(1) for the pointer management and O(m) for the tensor data allocation, where m is the number of elements in the output tensor.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node(...);
+             * Tensor::size_type poolSize = 2;
+             * Tensor::size_type stride = 2;
+             * Tensor::size_type padding = 0;
+             * AveragePoolingNode avgPoolingNode(inputNode, poolSize, stride, padding);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             AveragePoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
                                Tensor::size_type padding);
 
+            /**
+             * @brief Performs the backward pass of the average pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the backward pass of the average pooling operation. It first checks if the output tensor of the input node requires gradient computation. If it does, the function calls `iAveragePoolingBackward`, passing the gradient tensor of the input node's output, the gradient tensor of the output, the pooling size, stride, padding, and the dimensions of the input and output tensors. The `iAveragePoolingBackward` function computes the gradients and propagates them back to the input.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing gradient tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iAveragePoolingBackward` function encounters an error, it may throw an exception, and the specific type of exception depends on the implementation of `iAveragePoolingBackward`.
+             *
+             * @throws [Exception type from iAveragePoolingBackward] If the `iAveragePoolingBackward` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the gradient tensors of the input node's output and the output tensor of the AveragePoolingNode are properly initialized before calling this function.
+             * - The performance of this function depends on the implementation of the `iAveragePoolingBackward` function. If the `iAveragePoolingBackward` function has a time complexity of O(n), where n is the number of elements in the input or output gradient tensors, then this backward pass also has a time complexity of O(n).
+             *
+             * @code
+             * ```cpp
+             * AveragePoolingNode avgPoolingNode(...); // Assume AveragePoolingNode is properly initialized
+             * avgPoolingNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward pass of the average pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the backward pass of the average pooling operation. It first checks if the output tensor of the input node requires gradient computation. If it does, the function calls `iAveragePoolingBackward`, passing the gradient tensor of the input node's output, the gradient tensor of the output, the pooling size, stride, padding, and the dimensions of the input and output tensors. The `iAveragePoolingBackward` function computes the gradients and propagates them back to the input.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing gradient tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iAveragePoolingBackward` function encounters an error, it may throw an exception, and the specific type of exception depends on the implementation of `iAveragePoolingBackward`.
+             *
+             * @throws [Exception type from iAveragePoolingBackward] If the `iAveragePoolingBackward` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the gradient tensors of the input node's output and the output tensor of the AveragePoolingNode are properly initialized before calling this function.
+             * - The performance of this function depends on the implementation of the `iAveragePoolingBackward` function. If the `iAveragePoolingBackward` function has a time complexity of O(n), where n is the number of elements in the input or output gradient tensors, then this backward pass also has a time complexity of O(n).
+             *
+             * @code
+             * ```cpp
+             * AveragePoolingNode avgPoolingNode(...); // Assume AveragePoolingNode is properly initialized
+             * avgPoolingNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class GlobalAvgPoolNode
+         * @brief Performs global average pooling operation across spatial dimensions of input tensor.
+         *
+         * This node reduces each channel's spatial dimensions (H, W) to a single average value,
+         * producing output of shape (N, C, 1, 1). Commonly used for final feature aggregation before
+         * fully connected layers in CNN architectures.
+         *
+         * @details
+         * Core functionality and characteristics:
+         * - **Global Aggregation**: Computes channel-wise mean over entire spatial dimensions.
+         * - **Dimensionality Collapse**: Reduces H and W dimensions to 1 while preserving channels.
+         * - **Gradient Distribution**: Evenly distributes gradients across all spatial positions during backward pass.
+         * - **Parameter-Free**: No learnable parameters required for operation.
+         * - **CUDA Support**: Optimized GPU implementation for both forward and backward passes.
+         * - **Input Preservation**: Maintains batch and channel dimensions unchanged.
+         *
+         * Key implementation aspects:
+         * - **Forward Pass**: Computes spatial average for each channel using tensor reduction.
+         * - **Backward Pass**: Scatters gradients by assigning 1/(H*W) of output gradient to each input position.
+         * - **Shape Handling**: Automatically handles varying input sizes through dynamic shape inference.
+         * - **Memory Efficiency**: Significantly reduces memory footprint for downstream operations.
+         *
+         * Typical use cases:
+         * - Final spatial information aggregation before classification layers.
+         * - Network-in-network architectures requiring compact feature representation.
+         * - Squeeze-and-Excitation modules for channel-wise attention.
+         * - Reducing model parameters in transition layers.
+         *
+         * Critical considerations:
+         * - **Irreversible Compression**: Destroys all spatial information in input features.
+         * - **Input Requirements**: Expects 4D input tensor (N, C, H, W).
+         * - **Normalization Factor**: Uses 1/(H*W) for both forward average and backward gradient scaling.
+         *
+         * @warning
+         * - Input tensor must have spatial dimensions (H, W) > 0.
+         * - Not suitable for preserving spatial relationships in features.
+         * - May produce non-sensical gradients if applied to single-element spatial dimensions.
+         *
+         * @note
+         * - Output tensor shape: (N, C, 1, 1)
+         * - Often used as alternative to flattening+fully connected layers
+         * - Particularly effective in combination with convolutional bottlenecks
+         *
+         * @see AveragePoolingNode For local spatial averaging with configurable windows
+         * @see FlattenNode For alternative spatial-to-vector conversion
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Input features from convolutional backbone
+         * InputNode input({16, 512, 7, 7}, true);
+         *
+         * // Apply global average pooling
+         * GlobalAvgPoolNode gap(&input);
+         * gap.forward();
+         *
+         * // Output shape becomes (16, 512, 1, 1)
+         * std::cout << "Pooled shape: " << gap.output->shape() << std::endl;
+         *
+         * // Backpropagate through global averaging
+         * gap.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/20
+         */
         class DL_API GlobalAvgPoolNode : public Node {
         public:
-
+            /**
+             * @brief Constructs a GlobalAvgPoolNode object.
+             *
+             * @param input A pointer to the input node. The memory of this pointer is assumed to be managed externally and is used in a read - only manner within this constructor (host - to - host).
+             *
+             * @return None
+             *
+             * This constructor initializes a GlobalAvgPoolNode object. It first adds the provided input node pointer to the `inputs` vector. Then, it creates a new shared pointer to a Tensor object for the `output` member. The shape of the output tensor is set to have the same batch size and number of channels as the input tensor's output, but with a height and width of 1. The `requiresGrad` flag of the output tensor is set to the same value as that of the input tensor's output. Finally, it sets the `type` member of the node to "GlobalAvgPool".
+             *
+             * Memory management strategy: The constructor does not allocate memory for the input node. It only stores a pointer to it. The output tensor is created using `std::make_shared`, which manages the memory automatically.
+             * Exception handling mechanism: There is no explicit exception handling in this constructor. If the `std::make_shared` call fails to allocate memory for the output tensor, it may throw a `std::bad_alloc` exception.
+             *
+             * @throws std::bad_alloc If memory allocation for the output tensor fails.
+             *
+             * @note
+             * - Ensure that the input node pointer is valid and points to a properly initialized node.
+             * - The performance of this constructor is mainly determined by the memory allocation for the output tensor, which has a time complexity of O(1) for the pointer management and O(m) for the tensor data allocation, where m is the number of elements in the output tensor (equal to the batch size times the number of channels in this case).
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node(...);
+             * GlobalAvgPoolNode globalAvgPoolNode(inputNode);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             GlobalAvgPoolNode(Node* input);
 
+            /**
+             * @brief Performs the forward pass of the global average pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the forward pass of the global average pooling operation. It iterates over each sample in the batch (`i` loop) and each channel (`j` loop) of the input tensor. For each combination of batch and channel, it calculates the sum of all elements in the corresponding 2D matrix of the input tensor using the `sum` method. Then, it divides this sum by the total number of elements in the 2D matrix (which is the product of the height and width of the input tensor). The result is then used to fill the corresponding element in the output tensor using the `fillMatrix` method.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing data tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `sum` or `fillMatrix` methods encounter an error, they may throw exceptions depending on their implementation.
+             *
+             * @throws [Exception type from sum or fillMatrix] If the `sum` or `fillMatrix` methods encounter an error during execution.
+             *
+             * @note
+             * - Ensure that the input and output tensors are properly initialized before calling this function.
+             * - The time complexity of this function is O(b * c * h * w), where b is the batch size, c is the number of channels, h is the height, and w is the width of the input tensor, because it needs to sum all elements in each 2D matrix of the input tensor.
+             *
+             * @code
+             * ```cpp
+             * GlobalAvgPoolNode globalAvgPoolNode(...); // Assume GlobalAvgPoolNode is properly initialized
+             * globalAvgPoolNode.forward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward pass of the global average pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the backward pass of the global average pooling operation. It first checks if the output tensor of the input node requires gradient computation. If it does, the function calls `iGlobalAvgPoolBackward`, passing the gradient tensor of the input node's output, the gradient tensor of the output, and the shape information of the input tensor (batch size, number of channels, height, and width). The `iGlobalAvgPoolBackward` function computes the gradients and propagates them back to the input.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing gradient tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iGlobalAvgPoolBackward` function encounters an error, it may throw an exception, and the specific type of exception depends on the implementation of `iGlobalAvgPoolBackward`.
+             *
+             * @throws [Exception type from iGlobalAvgPoolBackward] If the `iGlobalAvgPoolBackward` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the gradient tensors of the input node's output and the output tensor of the GlobalAvgPoolNode are properly initialized before calling this function.
+             *
+             * @code
+             * ```cpp
+             * GlobalAvgPoolNode globalAvgPoolNode(...); // Assume GlobalAvgPoolNode is properly initialized
+             * globalAvgPoolNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class MaxPoolingNode
+         * @brief Implements max pooling operation for spatial downsampling with feature preservation.
+         *
+         * This node performs spatial max selection over sliding windows of (poolSize x poolSize) dimensions,
+         * maintaining the most prominent features while reducing spatial resolution. Essential for preserving
+         * sharp feature responses in CNNs.
+         *
+         * @details
+         * Core functionality and characteristics:
+         * - **Feature Selection**: Captures maximum activation values within local receptive fields.
+         * - **Position Tracking**: Records max value locations via position tensor for gradient computation.
+         * - **Sparse Gradient Flow**: Propagates gradients only to winning positions during backward pass.
+         * - **Dimensionality Control**: Reduces H/W dimensions while preserving channel structure.
+         * - **Border Handling**: Supports configurable padding for output size management.
+         * - **CUDA Optimization**: Accelerated implementations for both forward and backward operations.
+         * - **Dynamic Shape Adaption**: Automatically calculates output dimensions using pooling parameters.
+         *
+         * Key implementation aspects:
+         * - **Forward Pass**: Computes max values and stores positions using parallelized argmax operations.
+         * - **Backward Pass**: Scatters gradients exclusively to original max positions with 1:1 mapping.
+         * - **Memory Tradeoff**: Stores position indices (poolSize^2 elements per window) for gradient accuracy.
+         * - **Numerical Stability**: Handles multiple equal maxima by selecting first occurrence.
+         *
+         * Typical use cases:
+         * - Dominant feature extraction in early CNN layers
+         * - Downsampling while preserving edge/texture information
+         * - Constructing translation-invariant representations
+         * - Reducing computational load in deep networks
+         *
+         * Critical considerations:
+         * - **Information Discard**: Non-maximal values are irreversibly discarded during forward pass
+         * - **Dimension Constraints**: Output dimensions must satisfy:
+         *   Hout = (H + 2*padding - poolSize)/stride + 1
+         * - **Position Storage**: Requires O(N*C*Hout*Wout) memory for position tracking
+         *
+         * @warning
+         * - Invalid dimension combinations will throw runtime errors
+         * - Overly aggressive pooling (poolSize >> stride) may cause feature loss
+         * - Position tensor initialization must match forward pass execution order
+         *
+         * @note
+         * - Output shape: (N, C, Hout, Wout)
+         * - For variable pooling windows, extend with additional size parameters
+         * - Compared to average pooling, better preserves feature sharpness
+         *
+         * @see AveragePoolingNode For smoothing-based spatial aggregation
+         * @see GlobalAvgPoolNode For complete spatial dimension collapse
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Process 32 samples of 128x128 RGB images
+         * InputNode input({32, 3, 128, 128}, true);
+         *
+         * // Create 3x3 max pooling with stride 2 and padding 1
+         * MaxPoolingNode mpool(&input, 3, 2, 1);
+         * mpool.forward();
+         *
+         * // Resulting shape: (32, 3, 64, 64)
+         * std::cout << "Pooled shape: " << mpool.output->shape() << std::endl;
+         *
+         * // Backpropagate gradients through max positions
+         * mpool.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/21
+         */
         class DL_API MaxPoolingNode : public Node {
         public:
             std::shared_ptr<Tensor> position;
@@ -3361,21 +4444,277 @@ namespace nz::nodes {
             Tensor::size_type stride;
             Tensor::size_type padding;
 
+            /**
+             * @brief Constructs a MaxPoolingNode object.
+             *
+             * @param input A pointer to the input node. Memory of this pointer is assumed to be managed externally and used in a read - only way within the constructor (host - to - host).
+             * @param poolSize The size of the pooling window, of type `Tensor::size_type`. It is passed by value.
+             * @param stride The stride of the pooling operation, of type `Tensor::size_type`. It is passed by value.
+             * @param padding The padding applied to the input tensor, of type `Tensor::size_type`. It is passed by value.
+             *
+             * @return None
+             *
+             * This constructor initializes a MaxPoolingNode object. It first stores the provided `poolSize`, `stride`, and `padding` values. Then, it adds the input node pointer to the `inputs` vector. Next, it creates a new shared pointer to a Tensor object for the `output` member. The shape of the output tensor is calculated based on the input tensor's shape, `poolSize`, `stride`, and `padding` using the `OUTPUT_DIM` macro. The `requiresGrad` flag of the output tensor is set to the same value as that of the input tensor's output. Additionally, it creates a new shared pointer to a Tensor object for the `position` member. The shape of the `position` tensor is the same as that of the output tensor, and its `requiresGrad` flag is set to `false`.
+             *
+             * Memory management strategy: The constructor does not allocate memory for the input node. It only stores a pointer to it. The `output` and `position` tensors are created using `std::make_shared`, which manages their memory automatically.
+             * Exception handling mechanism: There is no explicit exception handling in this constructor. If the `std::make_shared` calls fail to allocate memory for the `output` or `position` tensors, they may throw a `std::bad_alloc` exception.
+             *
+             * @throws std::bad_alloc If memory allocation for the `output` or `position` tensors fails.
+             *
+             * @note
+             * - Ensure that the input node pointer is valid and points to a properly initialized node.
+             * - The performance of this constructor is mainly determined by the memory allocation for the `output` and `position` tensors, which has a time complexity of O(1) for the pointer management and O(m) for the tensor data allocation, where m is the number of elements in the tensors.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node(...); // Assume Node is properly initialized
+             * MaxPoolingNode maxPoolingNode(inputNode, 2, 2, 0);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             MaxPoolingNode(Node* input, Tensor::size_type poolSize, Tensor::size_type stride,
-                               Tensor::size_type padding);
+                           Tensor::size_type padding);
 
+            /**
+             * @brief Performs the forward pass of the max - pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function executes the forward pass of the max - pooling operation. It calls the `iMaxPooling` function, passing the data pointers of the output tensor, the position tensor, and the input tensor's output. It also provides the pooling parameters (`poolSize`, `stride`, `padding`) and the shape information of the input and output tensors. The `iMaxPooling` function is responsible for computing the max - pooling result and storing it in the output tensor, as well as recording the positions of the maximum values in the position tensor.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing data tensors of the input, output, and position.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iMaxPooling` function encounters an error, it may throw an exception depending on its implementation.
+             *
+             * @throws [Exception type from iMaxPooling] If the `iMaxPooling` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the input, output, and position tensors are properly initialized before calling this function.
+             * - The performance of this function depends on the implementation of the `iMaxPooling` function. The time complexity typically depends on the size of the input tensor and the pooling parameters, and may be O(b * c * h * w) in the worst - case scenario, where b is the batch size, c is the number of channels, h is the height, and w is the width of the input tensor.
+             *
+             * @code
+             * ```cpp
+             * MaxPoolingNode maxPoolingNode(...); // Assume MaxPoolingNode is properly initialized
+             * maxPoolingNode.forward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward pass of the max - pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the backward pass of the max - pooling operation. It first checks if the output tensor of the input node requires gradient computation. If it does, it calls the `iMaxPoolingBackward` function, passing the gradient pointer of the input node's output, the data pointer of the position tensor, the gradient pointer of the output tensor, the pooling parameters (`poolSize`, `stride`, `padding`), and the shape information of the input and output tensors. The `iMaxPoolingBackward` function is responsible for computing the gradients and propagating them back to the input tensor.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing gradient tensors of the input and output, as well as the data tensor of the position.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `iMaxPoolingBackward` function encounters an error, it may throw an exception depending on its implementation.
+             *
+             * @throws [Exception type from iMaxPoolingBackward] If the `iMaxPoolingBackward` function encounters an error during execution.
+             *
+             * @note
+             * - Ensure that the input, output, and position tensors' gradient and data are properly initialized before calling this function.
+             * - The performance of this function depends on the implementation of the `iMaxPoolingBackward` function. The time complexity typically depends on the size of the input tensor and the pooling parameters, and may be O(b * c * h * w) in the worst - case scenario, where b is the batch size, c is the number of channels, h is the height, and w is the width of the input tensor.
+             *
+             * @code
+             * ```cpp
+             * MaxPoolingNode maxPoolingNode(...); // Assume MaxPoolingNode is properly initialized
+             * maxPoolingNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
 
+        /**
+         * @class GlobalMaxPoolNode
+         * @brief Performs global max pooling operation across spatial dimensions of input tensor.
+         *
+         * This node reduces each channel's spatial dimensions (H, W) to a single maximum value,
+         * producing output of shape (N, C, 1, 1). Used to extract the most salient spatial features
+         * while maintaining channel-wise information.
+         *
+         * @details
+         * Core functionality and characteristics:
+         * - **Global Feature Selection**: Captures maximum activation per channel across all spatial positions.
+         * - **Position Tracking**: Implicitly records max value locations for gradient routing.
+         * - **Sparse Gradient Flow**: Propagates gradients exclusively to original max positions during backward pass.
+         * - **Dimensionality Collapse**: Reduces H and W dimensions to 1 while preserving channels.
+         * - **Parameter-Free**: No learnable parameters required for operation.
+         * - **CUDA Support**: Optimized GPU implementation for both forward and backward passes.
+         *
+         * Key implementation aspects:
+         * - **Forward Pass**: Computes channel-wise maxima using tensor reduction with argmax tracking.
+         * - **Backward Pass**: Scatters full output gradient to corresponding max positions in input tensor.
+         * - **Efficient Storage**: Requires O(N*C) memory for position indices compared to spatial dimensions.
+         * - **Tie Resolution**: Selects first occurrence of maximum value when multiple maxima exist.
+         *
+         * Typical use cases:
+         * - Highlighting strongest activation patterns in feature maps
+         * - Final feature aggregation for classification tasks
+         * - Networks requiring spatial position invariance
+         * - Attention mechanisms focusing on dominant features
+         *
+         * Critical considerations:
+         * - **Feature Discard**: Discards all non-maximal spatial information
+         * - **Gradient Sparsity**: Only single position per channel receives gradients
+         * - **Input Requirements**: Expects 4D input tensor (N, C, H, W) with H, W > 0
+         *
+         * @warning
+         * - Input tensor must have spatial dimensions (H, W) > 1 to be meaningful
+         * - Not suitable for tasks requiring spatial relationship preservation
+         * - May produce unstable gradients if input contains multiple equal maxima
+         *
+         * @note
+         * - Output tensor shape: (N, C, 1, 1)
+         * - Often used as alternative to global average pooling for sharper feature selection
+         * - Common in architectures emphasizing dominant visual patterns
+         *
+         * @see GlobalAvgPoolNode For smoothed spatial feature aggregation
+         * @see MaxPoolingNode For local window-based max pooling
+         *
+         * ### Usage Example:
+         * ```cpp
+         * // Process batch of 16 samples with 512 channels (7x7 spatial)
+         * InputNode input({16, 512, 7, 7}, true);
+         * 
+         * // Apply global max pooling
+         * GlobalMaxPoolNode gmp(&input);
+         * gmp.forward();
+         * 
+         * // Output shape becomes (16, 512, 1, 1)
+         * std::cout << "Pooled shape: " << gmp.output->shape() << std::endl;
+         *
+         * // Backpropagate through max positions
+         * gmp.backward();
+         * ```
+         *
+         * @author
+         * Mgepahmge (https://github.com/Mgepahmge)
+         *
+         * @date 2023/10/22
+         */
         class DL_API GlobalMaxPoolNode : public Node {
         public:
-
+            /**
+             * @brief Constructs a GlobalMaxPoolNode object.
+             *
+             * @param input A pointer to the input node. This pointer is assumed to be managed externally, and the constructor uses it in a read - only manner (host - to - host).
+             *
+             * @return None
+             *
+             * This constructor initializes a GlobalMaxPoolNode object. It first adds the provided input node pointer to the `inputs` vector. Then, it creates a new shared pointer for the `output` member. The shape of the output tensor is set to have the same batch size and number of channels as the input tensor's output, but with a height and width of 1. The `requiresGrad` flag of the output tensor is set to the same value as that of the input tensor's output. Finally, it sets the `type` member to the string "GlobalMaxPool".
+             *
+             * Memory management strategy: The constructor does not allocate memory for the input node. It only stores a pointer to it. The `output` tensor is created using `std::make_shared`, which manages its memory automatically.
+             * Exception handling mechanism: There is no explicit exception handling in this constructor. If the `std::make_shared` call fails to allocate memory for the `output` tensor, it may throw a `std::bad_alloc` exception.
+             *
+             * @throws std::bad_alloc If memory allocation for the `output` tensor fails.
+             *
+             * @note
+             * - Ensure that the input node pointer is valid and points to a properly initialized node.
+             * - The performance of this constructor is mainly determined by the memory allocation for the `output` tensor, which has a time complexity of O(1) for the pointer management and O(m) for the tensor data allocation, where m is the number of elements in the output tensor.
+             *
+             * @code
+             * ```cpp
+             * Node* inputNode = new Node(...); // Assume Node is properly initialized
+             * GlobalMaxPoolNode globalMaxPoolNode(inputNode);
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             GlobalMaxPoolNode(Node* input);
 
+            /**
+             * @brief Performs the forward pass of the global max - pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function conducts the forward pass of the global max - pooling operation. It iterates over each batch and channel of the input tensor's output. For each combination of batch index `i` and channel index `j`, it computes the maximum value in the corresponding slice of the input tensor using the `max` method. Then, it fills the corresponding position in the output tensor using the `fillMatrix` method.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing data tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `max` or `fillMatrix` methods encounter an error, they may throw an exception depending on their implementation.
+             *
+             * @throws [Exception type from max or fillMatrix] If the `max` or `fillMatrix` methods encounter an error during execution.
+             *
+             * @note
+             * - Ensure that the input and output tensors are properly initialized before calling this function.
+             * - The time complexity of this function is O(b * c), where `b` is the batch size (`inputs[0]->output->shape()[0]`) and `c` is the number of channels (`inputs[0]->output->shape()[1]`).
+             *
+             * @code
+             * ```cpp
+             * GlobalMaxPoolNode globalMaxPoolNode(...); // Assume GlobalMaxPoolNode is properly initialized
+             * globalMaxPoolNode.forward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void forward() override;
 
+            /**
+             * @brief Performs the backward pass of the global max - pooling operation.
+             *
+             * @param None
+             *
+             * @return None
+             *
+             * This function performs the backward pass of the global max - pooling operation. First, it checks if the output tensor of the input node requires gradient computation. If so, it retrieves the host data and gradients of the output tensor. Then, it iterates over each batch and channel of the input tensor's output. For each combination of batch index `i` and channel index `j`, it calculates an index `idx` and uses the `find` method to locate the position of the maximum value in the input tensor corresponding to the output value at `idx`. Finally, it sets the gradient at that position in the input tensor using the `setData` method.
+             *
+             * Memory management strategy: This function does not allocate or deallocate any memory directly. It operates on the existing data and gradient tensors of the input and output.
+             * Exception handling mechanism: There is no explicit exception handling in this function. If the `hostData`, `hostGrad`, `find`, or `setData` methods encounter an error, they may throw an exception depending on their implementation.
+             *
+             * @throws [Exception type from hostData, hostGrad, find, or setData] If the `hostData`, `hostGrad`, `find`, or `setData` methods encounter an error during execution.
+             *
+             * @note
+             * - Ensure that the input and output tensors and their gradients are properly initialized before calling this function.
+             * - The time complexity of this function is O(b * c), where `b` is the batch size (`inputs[0]->output->shape()[0]`) and `c` is the number of channels (`inputs[0]->output->shape()[1]`).
+             *
+             * @code
+             * ```cpp
+             * GlobalMaxPoolNode globalMaxPoolNode(...); // Assume GlobalMaxPoolNode is properly initialized
+             * globalMaxPoolNode.backward();
+             * ```
+             * @endcode
+             *
+             * @author
+             * Mgepahmge(https://github.com/Mgepahmge)
+             *
+             * @date
+             * 2024/07/15
+             */
             void backward() override;
         };
     }

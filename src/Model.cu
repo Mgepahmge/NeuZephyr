@@ -19,6 +19,7 @@ void nz::Model::backward() {
 
 void nz::Model::update(opt::Optimizer* optimizer) const {
     computeGraph.update(optimizer);
+    computeGraph.zeroGrad();
 }
 
 Tensor::value_type nz::Model::getLoss() const {
@@ -332,6 +333,42 @@ void nz::Model::defaultOutput(Node* input) {
     }
 }
 
+/**
+ * @brief Serializes neural network computation graph structure to output stream
+ *
+ * @param os Output stream for graph representation (host-to-device)
+ * @param model Model instance to visualize (device-to-host)
+ *
+ * @return Reference to modified output stream enabling operator chaining
+ *
+ * Implements graph structure serialization by recursively traversing the computation graph.
+ * The formatted output includes:
+ * 1. Node hierarchy in topological order
+ * 2. Layer connectivity information
+ * 3. Tensor shape transformations
+ *
+ * @note
+ * - Output format may change between versions, not suitable for persistent storage
+ * - Not thread-safe - requires external synchronization if used concurrently
+ *
+ * @warning
+ * Modifying model during serialization may cause inconsistent output
+ *
+ * @code
+ * MyModel model;
+ * std::cout << model;  // Prints: [ComputeGraph: 15 nodes]
+ *                     //         ├─ Conv2D(kernel=3x3, stride=1)
+ *                     //         ├─ ReLU()
+ *                     //         └─ BCELoss()
+ * @endcode
+ *
+ * @relates Model
+ * @author
+ * Mgepahmge(https://github.com/Mgepahmge)
+ *
+ * @date
+ * 2023/10/15
+ */
 std::ostream& nz::operator<<(std::ostream& os, Model& model) {
     return os << model.computeGraph;
 }

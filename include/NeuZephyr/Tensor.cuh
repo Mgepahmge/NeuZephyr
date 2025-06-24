@@ -1211,16 +1211,193 @@ namespace nz::data {
          */
         [[nodiscard]] value_type sum(size_type batch, size_type channel) const;
 
+        /**
+         * @brief Finds the maximum value in the tensor.
+         *
+         * This member function retrieves the tensor data from the device to the host and then iterates through it to find the maximum value.
+         *
+         * @param None
+         *
+         * @return The maximum value of type `Tensor::value_type` in the tensor. Memory flow: device - to - host.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the tensor (`_size`), due to the linear traversal of the tensor data.
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on `hostData()`.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * try {
+         *     Tensor::value_type maxVal = tensor.max();
+         *     std::cout << "The maximum value in the tensor is: " << maxVal << std::endl;
+         * } catch (const std::exception& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] value_type max() const;
 
+        /**
+         * @brief Finds the maximum value in a specific batch and channel of the tensor.
+         *
+         * This member function first validates the provided batch and channel indices.
+         * If they are valid, it calculates the offset in the tensor data and then finds the maximum value within that subset of the tensor.
+         *
+         * @param batch The batch index. Memory location: host - to - device (used for index calculation).
+         * @param channel The channel index. Memory location: host - to - device (used for index calculation).
+         *
+         * @return The maximum value of type `Tensor::value_type` in the specified batch and channel of the tensor. Memory flow: device - to - host.
+         *
+         * @throws std::invalid_argument When the `batch` or `channel` index is out of bounds.
+         *
+         * @note
+         * - The time complexity of this function is O(m), where m is the number of elements in the specified batch and channel (`_shape[2] * _shape[3]`), due to the linear traversal of the subset of the tensor data.
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on `hostData()`.
+         * - Ensure that the `batch` and `channel` indices are within the valid range of the tensor's shape to avoid exceptions.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * Tensor::size_type batch = 0;
+         * Tensor::size_type channel = 0;
+         * try {
+         *     Tensor::value_type maxVal = tensor.max(batch, channel);
+         *     std::cout << "The maximum value in batch " << batch << " and channel " << channel << " is: " << maxVal << std::endl;
+         * } catch (const std::exception& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] value_type max(size_type batch, size_type channel) const;
 
+        /**
+         * @brief Finds the minimum value in the entire tensor.
+         *
+         * This function retrieves the tensor data from the device to the host and iterates through it to determine the minimum value.
+         *
+         * @param None
+         *
+         * @return The minimum value of type `Tensor::value_type` in the tensor. Memory flow: device - to - host.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the tensor (`_size`), due to the linear traversal of the tensor data.
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on `hostData()`.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * try {
+         *     Tensor::value_type minVal = tensor.min();
+         *     std::cout << "The minimum value in the tensor is: " << minVal << std::endl;
+         * } catch (const std::exception& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] value_type min() const;
 
+        /**
+         * @brief Finds the minimum value in a specific batch and channel of the tensor.
+         *
+         * This function first validates the provided batch and channel indices. If they are valid, it calculates the offset in the tensor data and then finds the minimum value within that subset of the tensor.
+         *
+         * @param batch The batch index. Memory location: host - to - device (used for index calculation).
+         * @param channel The channel index. Memory location: host - to - device (used for index calculation).
+         *
+         * @return The minimum value of type `Tensor::value_type` in the specified batch and channel of the tensor. Memory flow: device - to - host.
+         *
+         * @throws std::invalid_argument When the `batch` or `channel` index is out of bounds.
+         *
+         * @note
+         * - The time complexity of this function is O(m), where m is the number of elements in the specified batch and channel (`_shape[2] * _shape[3]`), due to the linear traversal of the subset of the tensor data.
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on `hostData()`.
+         * - Ensure that the `batch` and `channel` indices are within the valid range of the tensor's shape to avoid exceptions.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * Tensor::size_type batch = 0;
+         * Tensor::size_type channel = 0;
+         * try {
+         *     Tensor::value_type minVal = tensor.min(batch, channel);
+         *     std::cout << "The minimum value in batch " << batch << " and channel " << channel << " is: " << minVal << std::endl;
+         * } catch (const std::exception& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] value_type min(size_type batch, size_type channel) const;
 
+        /**
+         * @brief Finds the first occurrence of a given value in the entire tensor and returns its shape indices.
+         *
+         * This function retrieves the tensor data from the device to the host, then iterates through the data to find the first element equal to the given value.
+         * Once found, it calculates the corresponding shape indices (batch, channel, height, width) and returns them.
+         *
+         * @param value The value to search for in the tensor. Memory location: host - to - device (used for comparison).
+         *
+         * @return A `Tensor::shape_type` object representing the shape indices (batch, channel, height, width) of the first occurrence of the given value in the tensor. Memory flow: device - to - host.
+         *
+         * @note
+         * - The time complexity of this function is O(n), where n is the number of elements in the tensor (`_size`), due to the linear traversal of the tensor data.
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on `hostData()`.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * Tensor::value_type targetValue = 5.0;
+         * try {
+         *     Tensor::shape_type indices = tensor.find(targetValue);
+         *     std::cout << "The first occurrence of " << targetValue << " is at indices: ("
+         *               << indices[0] << ", " << indices[1] << ", " << indices[2] << ", " << indices[3] << ")" << std::endl;
+         * } catch (const std::exception& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] shape_type find(value_type value) const;
 
+        /**
+         * @brief Finds the first occurrence of a given value in a specific batch and channel of the tensor and returns its shape indices.
+         *
+         * This function first calculates the offset in the tensor data based on the provided batch and channel indices.
+         * It then retrieves the tensor data from the device to the host and iterates through the subset of data in the specified batch and channel to find the first element equal to the given value.
+         * Once found, it calculates the height and width indices and returns the complete shape indices (batch, channel, height, width).
+         *
+         * @param value The value to search for in the tensor. Memory location: host - to - device (used for comparison).
+         * @param batch The batch index. Memory location: host - to - device (used for index calculation).
+         * @param channel The channel index. Memory location: host - to - device (used for index calculation).
+         *
+         * @return A `Tensor::shape_type` object representing the shape indices (batch, channel, height, width) of the first occurrence of the given value in the specified batch and channel of the tensor. Memory flow: device - to - host.
+         *
+         * @throws std::invalid_argument When the `batch` or `channel` index is out of bounds.
+         *
+         * @note
+         * - The time complexity of this function is O(m), where m is the number of elements in the specified batch and channel (`_shape[2] * _shape[3]`), due to the linear traversal of the subset of the tensor data.
+         * - Ensure that the CUDA runtime environment is properly initialized and the device memory is valid before calling this function, as it depends on `hostData()`.
+         * - Ensure that the `batch` and `channel` indices are within the valid range of the tensor's shape to avoid unexpected behavior.
+         *
+         * @code
+         * ```cpp
+         * Tensor tensor;
+         * Tensor::value_type targetValue = 5.0;
+         * Tensor::size_type batch = 0;
+         * Tensor::size_type channel = 0;
+         * try {
+         *     Tensor::shape_type indices = tensor.find(targetValue, batch, channel);
+         *     std::cout << "The first occurrence of " << targetValue << " in batch " << batch << " and channel " << channel
+         *               << " is at indices: (" << indices[0] << ", " << indices[1] << ", " << indices[2] << ", " << indices[3] << ")" << std::endl;
+         * } catch (const std::exception& e) {
+         *     std::cerr << e.what() << std::endl;
+         * }
+         * ```
+         * @endcode
+         */
         [[nodiscard]] shape_type find(value_type value, size_type batch, size_type channel) const;
 
         /**

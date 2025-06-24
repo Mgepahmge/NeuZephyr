@@ -997,54 +997,311 @@ namespace nz::krnl {
     void Summation(dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float* out, float* in,
                    unsigned long long n, size_t offset = 0);
 
+    /**
+     * @brief Copies gradient data from one array to another with specified offsets.
+     *
+     * This kernel function performs a gradient copy operation, transferring data 
+     * from the input array to the output array while applying offsets for both 
+     * the input and output arrays.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the gradient data will be stored.
+     * @param in Pointer to the input array containing the gradient data to be copied.
+     * @param n The number of elements to copy.
+     * @param offset_o A vector of offsets for the output array.
+     * @param offset_i A vector of offsets for the input array.
+     *
+     * @note This function is designed for use in GPU-based gradient operations 
+     *       and assumes that the input and output arrays are properly allocated 
+     *       and accessible on the device.
+     */
     void gradCopy(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
                   const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
 
+    /**
+     * @brief Copies gradient data from one array to another with specified offsets.
+     *
+     * This kernel function performs a gradient copy operation, transferring data
+     * from the input array to the output array while applying offsets for both
+     * the input and output arrays.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the gradient data will be stored.
+     * @param in Pointer to the input array containing the gradient data to be copied.
+     * @param n The number of elements to copy.
+     * @param offset_o A vector of offsets for the output array.
+     * @param offset_i A vector of offsets for the input array.
+     *
+     * @note This function is designed for use in GPU-based gradient operations
+     *       and assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
     void NgradCopy(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
                    const std::vector<size_t>& offset_o, const std::vector<size_t>& offset_i);
 
+    /**
+     * @brief Expands the input array into the output array with a specified total size.
+     *
+     * This kernel function takes an input array and expands it into an output array
+     * by repeating or padding elements to match the specified total size.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the expanded data will be stored.
+     * @param in Pointer to the input array containing the original data.
+     * @param n The number of elements in the input array.
+     * @param total The total number of elements in the output array after expansion.
+     *
+     * @note This function assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
     void Expand(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
                 size_t total);
 
+    /**
+     * @brief Compresses the input array into the output array with a specified total size.
+     *
+     * This kernel function reduces the size of the input array by compressing its elements
+     * into the output array to match the specified total size.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the compressed data will be stored.
+     * @param in Pointer to the input array containing the original data.
+     * @param n The number of elements in the input array.
+     * @param total The total number of elements in the output array after compression.
+     *
+     * @note This function assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
     void Compress(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t n,
                   size_t total);
 
-    void img2col(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
-              const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
-              const size_t pad, const size_t H_in, const size_t W_in, const size_t batch);
+    /**
+     * @brief Rearranges image data into column format for convolution operations.
+     *
+     * This kernel function transforms the input image data into a columnar format
+     * (im2col) to facilitate efficient convolution operations. It extracts patches
+     * from the input image based on the kernel size, stride, and padding, and stores
+     * them in the output array.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the columnar data will be stored.
+     * @param in Pointer to the input image data array.
+     * @param H_out The height of the output feature map.
+     * @param W_out The width of the output feature map.
+     * @param C The number of input channels.
+     * @param K_h The height of the convolution kernel.
+     * @param K_w The width of the convolution kernel.
+     * @param stride The stride of the convolution operation.
+     * @param pad The padding applied to the input image.
+     * @param H_in The height of the input image.
+     * @param W_in The width of the input image.
+     * @param batch The number of images in the batch.
+     *
+     * @note This function assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
+    void img2col(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t H_out,
+                 size_t W_out, size_t C, size_t K_h, size_t K_w, size_t stride,
+                 size_t pad, size_t H_in, size_t W_in, size_t batch);
 
-    void img2colBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
-              const size_t W_out, const size_t C, const size_t K_h, const size_t K_w, const size_t stride,
-              const size_t pad, const size_t H_in, const size_t W_in, const size_t batch);
+    /**
+     * @brief Rearranges columnar data back into image format for backpropagation in convolution operations.
+     *
+     * This kernel function performs the reverse operation of `img2col`, transforming
+     * columnar data back into its original image format. It is used during the
+     * backpropagation phase of convolutional neural networks to reconstruct the
+     * gradient of the input image.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the reconstructed image data will be stored.
+     * @param in Pointer to the input columnar data array.
+     * @param H_out The height of the output feature map.
+     * @param W_out The width of the output feature map.
+     * @param C The number of input channels.
+     * @param K_h The height of the convolution kernel.
+     * @param K_w The width of the convolution kernel.
+     * @param stride The stride of the convolution operation.
+     * @param pad The padding applied to the input image.
+     * @param H_in The height of the input image.
+     * @param W_in The width of the input image.
+     * @param batch The number of images in the batch.
+     *
+     * @note This function assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
+    void img2colBackward(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t H_out,
+                         size_t W_out, size_t C, size_t K_h, size_t K_w, size_t stride,
+                         size_t pad, size_t H_in, size_t W_in, size_t batch);
 
-    void col2img(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
-                 const size_t W_out, const size_t C_out, const size_t batches);
+    /**
+     * @brief Rearranges columnar data back into image format.
+     *
+     * This kernel function transforms columnar data into its original image format.
+     * It is typically used in operations where data needs to be reconstructed
+     * from a columnar representation, such as after convolution operations.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the reconstructed image data will be stored.
+     * @param in Pointer to the input columnar data array.
+     * @param H_out The height of the output image.
+     * @param W_out The width of the output image.
+     * @param C_out The number of output channels.
+     * @param batches The number of images in the batch.
+     *
+     * @note This function assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
+    void col2img(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t H_out,
+                 size_t W_out, size_t C_out, size_t batches);
 
-    void col2imgBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in, const size_t H_out,
-                         const size_t W_out, const size_t C_out, const size_t batches);
+    /**
+     * @brief Rearranges columnar data back into image format for backpropagation.
+     *
+     * This kernel function transforms columnar data back into its original image format.
+     * It is typically used during the backpropagation phase of convolutional neural networks
+     * to reconstruct the gradient of the input image.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the reconstructed image data will be stored.
+     * @param in Pointer to the input columnar data array.
+     * @param H_out The height of the output image.
+     * @param W_out The width of the output image.
+     * @param C_out The number of output channels.
+     * @param batches The number of images in the batch.
+     *
+     * @note This function assumes that the input and output arrays are properly allocated
+     *       and accessible on the device.
+     */
+    void col2imgBackward(dim3 gridDim, dim3 blockDim, float* out, float* in, size_t H_out,
+                         size_t W_out, size_t C_out, size_t batches);
 
-    void AveragePooling(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
-        const size_t pool_size, const size_t stride, const size_t padding,
-        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
-        const size_t H_out, const size_t W_out);
+    /**
+     * @brief Kernel function to perform average pooling on the GPU.
+     *
+     * This function applies average pooling to the input tensor, reducing its spatial dimensions
+     * by computing the average value within each pooling window.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the pooled results will be stored.
+     * @param in Pointer to the input array containing the original data.
+     * @param pool_size The size of the pooling window.
+     * @param stride The stride of the pooling operation.
+     * @param padding The padding applied to the input tensor.
+     * @param batches The number of batches in the input tensor.
+     * @param channels The number of channels in the input tensor.
+     * @param H_in The height of the input tensor.
+     * @param W_in The width of the input tensor.
+     * @param H_out The height of the output tensor.
+     * @param W_out The width of the output tensor.
+     */
+    void AveragePooling(dim3 gridDim, dim3 blockDim, float* out, float* in,
+                        size_t pool_size, size_t stride, size_t padding,
+                        size_t batches, size_t channels, size_t H_in, size_t W_in,
+                        size_t H_out, size_t W_out);
 
-    void AveragePoolingBackward(const dim3 gridDim, const dim3 blockDim, float* out, float* in,
-        const size_t pool_size, const size_t stride, const size_t padding,
-        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
-        const size_t H_out, const size_t W_out);
+    /**
+     * @brief Kernel function to compute the gradient of average pooling during backpropagation.
+     *
+     * This function computes the gradient of the average pooling operation, distributing
+     * the gradient values evenly across the pooling window.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param out Pointer to the output array where the gradient will be stored.
+     * @param in Pointer to the input array containing the gradient from the next layer.
+     * @param pool_size The size of the pooling window.
+     * @param stride The stride of the pooling operation.
+     * @param padding The padding applied to the input tensor.
+     * @param batches The number of batches in the input tensor.
+     * @param channels The number of channels in the input tensor.
+     * @param H_in The height of the input tensor.
+     * @param W_in The width of the input tensor.
+     * @param H_out The height of the output tensor.
+     * @param W_out The width of the output tensor.
+     */
+    void AveragePoolingBackward(dim3 gridDim, dim3 blockDim, float* out, float* in,
+                                size_t pool_size, size_t stride, size_t padding,
+                                size_t batches, size_t channels, size_t H_in, size_t W_in,
+                                size_t H_out, size_t W_out);
 
-    void GlobalAvgPoolBackward(const dim3 gridDim, const dim3 blockDim, float* output, float* in,
-        const size_t batches, const size_t channels, const size_t height, const size_t width);
+    /**
+     * @brief Kernel function to compute the gradient of global average pooling during backpropagation.
+     *
+     * This function computes the gradient of the global average pooling operation, distributing
+     * the gradient values evenly across all spatial dimensions.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param output Pointer to the output array where the gradient will be stored.
+     * @param in Pointer to the input array containing the gradient from the next layer.
+     * @param batches The number of batches in the input tensor.
+     * @param channels The number of channels in the input tensor.
+     * @param height The height of the input tensor.
+     * @param width The width of the input tensor.
+     */
+    void GlobalAvgPoolBackward(dim3 gridDim, dim3 blockDim, float* output, float* in,
+                               size_t batches, size_t channels, size_t height, size_t width);
 
-    void MaxPooling(const dim3 gridDim, const dim3 blockDim, float* output, float* position, float* input,
-        const size_t pool_size, const size_t stride, const size_t padding,
-        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
-        const size_t H_out, const size_t W_out);
+    /**
+     * @brief Kernel function to perform max pooling on the GPU.
+     *
+     * This function applies max pooling to the input tensor, reducing its spatial dimensions
+     * by selecting the maximum value within each pooling window.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param output Pointer to the output array where the pooled results will be stored.
+     * @param position Pointer to the array where the positions of the maximum values will be stored.
+     * @param input Pointer to the input array containing the original data.
+     * @param pool_size The size of the pooling window.
+     * @param stride The stride of the pooling operation.
+     * @param padding The padding applied to the input tensor.
+     * @param batches The number of batches in the input tensor.
+     * @param channels The number of channels in the input tensor.
+     * @param H_in The height of the input tensor.
+     * @param W_in The width of the input tensor.
+     * @param H_out The height of the output tensor.
+     * @param W_out The width of the output tensor.
+     */
+    void MaxPooling(dim3 gridDim, dim3 blockDim, float* output, float* position, float* input,
+                    size_t pool_size, size_t stride, size_t padding,
+                    size_t batches, size_t channels, size_t H_in, size_t W_in,
+                    size_t H_out, size_t W_out);
 
-    void MaxPoolingBackward(const dim3 gridDim, const dim3 blockDim, float* output, float* position, float* input,
-        const size_t pool_size, const size_t stride, const size_t padding,
-        const size_t batches, const size_t channels, const size_t H_in, const size_t W_in,
-        const size_t H_out, const size_t W_out);
+    /**
+     * @brief Kernel function to compute the gradient of max pooling during backpropagation.
+     *
+     * This function computes the gradient of the max pooling operation, propagating
+     * the gradient values only to the positions of the maximum values in the pooling window.
+     *
+     * @param gridDim The grid dimensions for the CUDA kernel launch configuration.
+     * @param blockDim The block dimensions for the CUDA kernel launch configuration.
+     * @param output Pointer to the output array where the gradient will be stored.
+     * @param position Pointer to the array containing the positions of the maximum values.
+     * @param input Pointer to the input array containing the gradient from the next layer.
+     * @param pool_size The size of the pooling window.
+     * @param stride The stride of the pooling operation.
+     * @param padding The padding applied to the input tensor.
+     * @param batches The number of batches in the input tensor.
+     * @param channels The number of channels in the input tensor.
+     * @param H_in The height of the input tensor.
+     * @param W_in The width of the input tensor.
+     * @param H_out The height of the output tensor.
+     * @param W_out The width of the output tensor.
+     */
+    void MaxPoolingBackward(dim3 gridDim, dim3 blockDim, float* output, float* position, float* input,
+                            size_t pool_size, size_t stride, size_t padding,
+                            size_t batches, size_t channels, size_t H_in, size_t W_in,
+                            size_t H_out, size_t W_out);
 #endif
 }
 

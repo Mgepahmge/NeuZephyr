@@ -219,6 +219,45 @@ Functions</h2></td></tr>
 <tr class="memitem:a1ae846a65c2f5b83cd1b9fc61b877854" id="r_a1ae846a65c2f5b83cd1b9fc61b877854"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae846a65c2f5b83cd1b9fc61b877854">Summation</a> (dim3 gridDim, dim3 blockDim, unsigned long long sharedMemSize, float *out, float *in, unsigned long long n, size_t offset=0)</td></tr>
 <tr class="memdesc:a1ae846a65c2f5b83cd1b9fc61b877854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform element-wise summation of two arrays.  <br /></td></tr>
 <tr class="separator:a1ae846a65c2f5b83cd1b9fc61b877854"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ed44a68bfb86a9fd3d6c3b25614713f" id="r_a0ed44a68bfb86a9fd3d6c3b25614713f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ed44a68bfb86a9fd3d6c3b25614713f">gradCopy</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t n, const std::vector&lt; size_t &gt; &amp;offset_o, const std::vector&lt; size_t &gt; &amp;offset_i)</td></tr>
+<tr class="memdesc:a0ed44a68bfb86a9fd3d6c3b25614713f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies gradient data from one array to another with specified offsets.  <br /></td></tr>
+<tr class="separator:a0ed44a68bfb86a9fd3d6c3b25614713f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ac0590fbb5eb7f51b05da574e9845a8" id="r_a9ac0590fbb5eb7f51b05da574e9845a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ac0590fbb5eb7f51b05da574e9845a8">NgradCopy</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t n, const std::vector&lt; size_t &gt; &amp;offset_o, const std::vector&lt; size_t &gt; &amp;offset_i)</td></tr>
+<tr class="memdesc:a9ac0590fbb5eb7f51b05da574e9845a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies gradient data from one array to another with specified offsets.  <br /></td></tr>
+<tr class="separator:a9ac0590fbb5eb7f51b05da574e9845a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae45dbebceb76ddf82fa5e6b9df882e62" id="r_ae45dbebceb76ddf82fa5e6b9df882e62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae45dbebceb76ddf82fa5e6b9df882e62">Expand</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t n, size_t total)</td></tr>
+<tr class="memdesc:ae45dbebceb76ddf82fa5e6b9df882e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expands the input array into the output array with a specified total size.  <br /></td></tr>
+<tr class="separator:ae45dbebceb76ddf82fa5e6b9df882e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a454a28ef0e22014efca1ede4e954db65" id="r_a454a28ef0e22014efca1ede4e954db65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a454a28ef0e22014efca1ede4e954db65">Compress</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t n, size_t total)</td></tr>
+<tr class="memdesc:a454a28ef0e22014efca1ede4e954db65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compresses the input array into the output array with a specified total size.  <br /></td></tr>
+<tr class="separator:a454a28ef0e22014efca1ede4e954db65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a781324400c54c35dd564f3599dca8e" id="r_a3a781324400c54c35dd564f3599dca8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a781324400c54c35dd564f3599dca8e">img2col</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t H_out, size_t W_out, size_t C, size_t K_h, size_t K_w, size_t stride, size_t pad, size_t H_in, size_t W_in, size_t batch)</td></tr>
+<tr class="memdesc:a3a781324400c54c35dd564f3599dca8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rearranges image data into column format for convolution operations.  <br /></td></tr>
+<tr class="separator:a3a781324400c54c35dd564f3599dca8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2b7a6f28d2af22f9a2623c5ae62bff" id="r_a1c2b7a6f28d2af22f9a2623c5ae62bff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c2b7a6f28d2af22f9a2623c5ae62bff">img2colBackward</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t H_out, size_t W_out, size_t C, size_t K_h, size_t K_w, size_t stride, size_t pad, size_t H_in, size_t W_in, size_t batch)</td></tr>
+<tr class="memdesc:a1c2b7a6f28d2af22f9a2623c5ae62bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rearranges columnar data back into image format for backpropagation in convolution operations.  <br /></td></tr>
+<tr class="separator:a1c2b7a6f28d2af22f9a2623c5ae62bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c061f5511c3ab9d36563757bd969ff7" id="r_a7c061f5511c3ab9d36563757bd969ff7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c061f5511c3ab9d36563757bd969ff7">col2img</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t H_out, size_t W_out, size_t C_out, size_t batches)</td></tr>
+<tr class="memdesc:a7c061f5511c3ab9d36563757bd969ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rearranges columnar data back into image format.  <br /></td></tr>
+<tr class="separator:a7c061f5511c3ab9d36563757bd969ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a028970809074d79f28ff94f62b3edaa4" id="r_a028970809074d79f28ff94f62b3edaa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a028970809074d79f28ff94f62b3edaa4">col2imgBackward</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t H_out, size_t W_out, size_t C_out, size_t batches)</td></tr>
+<tr class="memdesc:a028970809074d79f28ff94f62b3edaa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rearranges columnar data back into image format for backpropagation.  <br /></td></tr>
+<tr class="separator:a028970809074d79f28ff94f62b3edaa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addaa377a94d007df2690043b08904e28" id="r_addaa377a94d007df2690043b08904e28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addaa377a94d007df2690043b08904e28">AveragePooling</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t pool_size, size_t stride, size_t padding, size_t batches, size_t channels, size_t H_in, size_t W_in, size_t H_out, size_t W_out)</td></tr>
+<tr class="memdesc:addaa377a94d007df2690043b08904e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform average pooling on the GPU.  <br /></td></tr>
+<tr class="separator:addaa377a94d007df2690043b08904e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a551402f9c55653c9fae63e172a5fb250" id="r_a551402f9c55653c9fae63e172a5fb250"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a551402f9c55653c9fae63e172a5fb250">AveragePoolingBackward</a> (dim3 gridDim, dim3 blockDim, float *out, float *in, size_t pool_size, size_t stride, size_t padding, size_t batches, size_t channels, size_t H_in, size_t W_in, size_t H_out, size_t W_out)</td></tr>
+<tr class="memdesc:a551402f9c55653c9fae63e172a5fb250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of average pooling during backpropagation.  <br /></td></tr>
+<tr class="separator:a551402f9c55653c9fae63e172a5fb250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ceb77688c4008dc350fc87b99875aa" id="r_a73ceb77688c4008dc350fc87b99875aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73ceb77688c4008dc350fc87b99875aa">GlobalAvgPoolBackward</a> (dim3 gridDim, dim3 blockDim, float *output, float *in, size_t batches, size_t channels, size_t height, size_t width)</td></tr>
+<tr class="memdesc:a73ceb77688c4008dc350fc87b99875aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of global average pooling during backpropagation.  <br /></td></tr>
+<tr class="separator:a73ceb77688c4008dc350fc87b99875aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcc632e5a7104c1a28208e94a4ce6e28" id="r_abcc632e5a7104c1a28208e94a4ce6e28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcc632e5a7104c1a28208e94a4ce6e28">MaxPooling</a> (dim3 gridDim, dim3 blockDim, float *output, float *position, float *input, size_t pool_size, size_t stride, size_t padding, size_t batches, size_t channels, size_t H_in, size_t W_in, size_t H_out, size_t W_out)</td></tr>
+<tr class="memdesc:abcc632e5a7104c1a28208e94a4ce6e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to perform max pooling on the GPU.  <br /></td></tr>
+<tr class="separator:abcc632e5a7104c1a28208e94a4ce6e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d5f5f4c9e89a8d914a7f2f802d1caab" id="r_a0d5f5f4c9e89a8d914a7f2f802d1caab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d5f5f4c9e89a8d914a7f2f802d1caab">MaxPoolingBackward</a> (dim3 gridDim, dim3 blockDim, float *output, float *position, float *input, size_t pool_size, size_t stride, size_t padding, size_t batches, size_t channels, size_t H_in, size_t W_in, size_t H_out, size_t W_out)</td></tr>
+<tr class="memdesc:a0d5f5f4c9e89a8d914a7f2f802d1caab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel function to compute the gradient of max pooling during backpropagation.  <br /></td></tr>
+<tr class="separator:a0d5f5f4c9e89a8d914a7f2f802d1caab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-Performance CUDA Kernel Implementations for Tensor Computations. </p>
@@ -358,7 +397,7 @@ Optimization Algorithms</h2>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00813">813</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00815">815</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -437,7 +476,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00729">729</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00731">731</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -540,7 +579,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00766">766</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00768">768</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -549,6 +588,236 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Kernel function to apply Adam optimization." alt="" coords="5,13,112,40"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="160,5,345,48"/>
 <area shape="poly" title=" " alt="" coords="112,24,144,24,144,29,112,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="addaa377a94d007df2690043b08904e28" name="addaa377a94d007df2690043b08904e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addaa377a94d007df2690043b08904e28">&#9670;&#160;</a></span>AveragePooling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::AveragePooling </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pool_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>padding</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channels</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform average pooling on the GPU. </p>
+<p>This function applies average pooling to the input tensor, reducing its spatial dimensions by computing the average value within each pooling window.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the pooled results will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the original data. </td></tr>
+    <tr><td class="paramname">pool_size</td><td>The size of the pooling window. </td></tr>
+    <tr><td class="paramname">stride</td><td>The stride of the pooling operation. </td></tr>
+    <tr><td class="paramname">padding</td><td>The padding applied to the input tensor. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of batches in the input tensor. </td></tr>
+    <tr><td class="paramname">channels</td><td>The number of channels in the input tensor. </td></tr>
+    <tr><td class="paramname">H_in</td><td>The height of the input tensor. </td></tr>
+    <tr><td class="paramname">W_in</td><td>The width of the input tensor. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output tensor. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output tensor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01431">1431</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_addaa377a94d007df2690043b08904e28_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_addaa377a94d007df2690043b08904e28_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_addaa377a94d007df2690043b08904e28_cgraph" id="anamespacenz_1_1krnl_addaa377a94d007df2690043b08904e28_cgraph">
+<area shape="rect" title="Kernel function to perform average pooling on the GPU." alt="" coords="5,47,169,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="217,5,402,48"/>
+<area shape="poly" title=" " alt="" coords="168,45,201,40,202,45,169,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="217,72,402,115"/>
+<area shape="poly" title=" " alt="" coords="169,70,202,75,201,80,168,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="450,39,635,81"/>
+<area shape="poly" title=" " alt="" coords="402,77,434,73,435,78,403,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="450,105,635,148"/>
+<area shape="poly" title=" " alt="" coords="403,104,435,109,434,114,402,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a551402f9c55653c9fae63e172a5fb250" name="a551402f9c55653c9fae63e172a5fb250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a551402f9c55653c9fae63e172a5fb250">&#9670;&#160;</a></span>AveragePoolingBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::AveragePoolingBackward </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pool_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>padding</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channels</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of average pooling during backpropagation. </p>
+<p>This function computes the gradient of the average pooling operation, distributing the gradient values evenly across the pooling window.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the gradient will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the gradient from the next layer. </td></tr>
+    <tr><td class="paramname">pool_size</td><td>The size of the pooling window. </td></tr>
+    <tr><td class="paramname">stride</td><td>The stride of the pooling operation. </td></tr>
+    <tr><td class="paramname">padding</td><td>The padding applied to the input tensor. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of batches in the input tensor. </td></tr>
+    <tr><td class="paramname">channels</td><td>The number of channels in the input tensor. </td></tr>
+    <tr><td class="paramname">H_in</td><td>The height of the input tensor. </td></tr>
+    <tr><td class="paramname">W_in</td><td>The width of the input tensor. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output tensor. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output tensor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01484">1484</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a551402f9c55653c9fae63e172a5fb250_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a551402f9c55653c9fae63e172a5fb250_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a551402f9c55653c9fae63e172a5fb250_cgraph" id="anamespacenz_1_1krnl_a551402f9c55653c9fae63e172a5fb250_cgraph">
+<area shape="rect" title="Kernel function to compute the gradient of average pooling during backpropagation." alt="" coords="5,39,169,81"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="217,5,402,48"/>
+<area shape="poly" title=" " alt="" coords="168,45,201,40,202,45,169,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="217,72,402,115"/>
+<area shape="poly" title=" " alt="" coords="169,70,202,75,201,80,168,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="450,39,635,81"/>
+<area shape="poly" title=" " alt="" coords="402,77,434,73,435,78,403,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="450,105,635,148"/>
+<area shape="poly" title=" " alt="" coords="403,104,435,109,434,114,402,109"/>
 </map>
 </div>
 
@@ -607,7 +876,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00699">699</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00701">701</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -686,7 +955,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00684">684</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00686">686</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -701,6 +970,252 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="428,77,460,73,461,78,429,83"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="476,105,661,148"/>
 <area shape="poly" title=" " alt="" coords="429,104,461,109,460,114,428,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7c061f5511c3ab9d36563757bd969ff7" name="a7c061f5511c3ab9d36563757bd969ff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c061f5511c3ab9d36563757bd969ff7">&#9670;&#160;</a></span>col2img()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::col2img </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>C_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rearranges columnar data back into image format. </p>
+<p>This kernel function transforms columnar data into its original image format. It is typically used in operations where data needs to be reconstructed from a columnar representation, such as after convolution operations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the reconstructed image data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input columnar data array. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output image. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output image. </td></tr>
+    <tr><td class="paramname">C_out</td><td>The number of output channels. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of images in the batch.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01378">1378</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a7c061f5511c3ab9d36563757bd969ff7_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a7c061f5511c3ab9d36563757bd969ff7_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a7c061f5511c3ab9d36563757bd969ff7_cgraph" id="anamespacenz_1_1krnl_a7c061f5511c3ab9d36563757bd969ff7_cgraph">
+<area shape="rect" title="Rearranges columnar data back into image format." alt="" coords="5,47,123,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="171,5,356,48"/>
+<area shape="poly" title=" " alt="" coords="123,48,155,42,156,47,124,53"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="171,72,356,115"/>
+<area shape="poly" title=" " alt="" coords="124,67,156,73,155,78,123,72"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="404,39,589,81"/>
+<area shape="poly" title=" " alt="" coords="356,77,388,73,389,78,357,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="404,105,589,148"/>
+<area shape="poly" title=" " alt="" coords="357,104,389,109,388,114,356,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a028970809074d79f28ff94f62b3edaa4" name="a028970809074d79f28ff94f62b3edaa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a028970809074d79f28ff94f62b3edaa4">&#9670;&#160;</a></span>col2imgBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::col2imgBackward </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>C_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rearranges columnar data back into image format for backpropagation. </p>
+<p>This kernel function transforms columnar data back into its original image format. It is typically used during the backpropagation phase of convolutional neural networks to reconstruct the gradient of the input image.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the reconstructed image data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input columnar data array. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output image. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output image. </td></tr>
+    <tr><td class="paramname">C_out</td><td>The number of output channels. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of images in the batch.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01398">1398</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a028970809074d79f28ff94f62b3edaa4_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a028970809074d79f28ff94f62b3edaa4_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a028970809074d79f28ff94f62b3edaa4_cgraph" id="anamespacenz_1_1krnl_a028970809074d79f28ff94f62b3edaa4_cgraph">
+<area shape="rect" title="Rearranges columnar data back into image format for backpropagation." alt="" coords="5,47,181,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="229,5,414,48"/>
+<area shape="poly" title=" " alt="" coords="181,45,213,40,213,45,181,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="229,72,414,115"/>
+<area shape="poly" title=" " alt="" coords="181,70,213,75,213,80,181,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="462,39,647,81"/>
+<area shape="poly" title=" " alt="" coords="414,77,446,73,447,78,415,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="462,105,647,148"/>
+<area shape="poly" title=" " alt="" coords="415,104,447,109,446,114,414,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a454a28ef0e22014efca1ede4e954db65" name="a454a28ef0e22014efca1ede4e954db65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454a28ef0e22014efca1ede4e954db65">&#9670;&#160;</a></span>Compress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Compress </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>total</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compresses the input array into the output array with a specified total size. </p>
+<p>This kernel function reduces the size of the input array by compressing its elements into the output array to match the specified total size.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the compressed data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the original data. </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input array. </td></tr>
+    <tr><td class="paramname">total</td><td>The total number of elements in the output array after compression.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01303">1303</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a454a28ef0e22014efca1ede4e954db65_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a454a28ef0e22014efca1ede4e954db65_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a454a28ef0e22014efca1ede4e954db65_cgraph" id="anamespacenz_1_1krnl_a454a28ef0e22014efca1ede4e954db65_cgraph">
+<area shape="rect" title="Compresses the input array into the output array with a specified total size." alt="" coords="5,47,138,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="186,5,371,48"/>
+<area shape="poly" title=" " alt="" coords="138,47,170,41,171,47,138,52"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="186,72,371,115"/>
+<area shape="poly" title=" " alt="" coords="138,68,171,73,170,79,138,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="419,39,604,81"/>
+<area shape="poly" title=" " alt="" coords="371,77,403,73,404,78,372,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="419,105,604,148"/>
+<area shape="poly" title=" " alt="" coords="372,104,404,109,403,114,371,109"/>
 </map>
 </div>
 
@@ -778,7 +1293,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise division of two arrays. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01179">1179</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01181">1181</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -872,6 +1387,80 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="395,77,427,73,428,78,396,83"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="443,105,628,148"/>
 <area shape="poly" title=" " alt="" coords="396,104,428,109,427,114,395,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae45dbebceb76ddf82fa5e6b9df882e62" name="ae45dbebceb76ddf82fa5e6b9df882e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae45dbebceb76ddf82fa5e6b9df882e62">&#9670;&#160;</a></span>Expand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::Expand </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>total</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Expands the input array into the output array with a specified total size. </p>
+<p>This kernel function takes an input array and expands it into an output array by repeating or padding elements to match the specified total size.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the expanded data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the original data. </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements in the input array. </td></tr>
+    <tr><td class="paramname">total</td><td>The total number of elements in the output array after expansion.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01290">1290</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_ae45dbebceb76ddf82fa5e6b9df882e62_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_ae45dbebceb76ddf82fa5e6b9df882e62_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_ae45dbebceb76ddf82fa5e6b9df882e62_cgraph" id="anamespacenz_1_1krnl_ae45dbebceb76ddf82fa5e6b9df882e62_cgraph">
+<area shape="rect" title="Expands the input array into the output array with a specified total size." alt="" coords="5,47,122,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="170,5,355,48"/>
+<area shape="poly" title=" " alt="" coords="122,48,154,42,155,47,123,53"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="170,72,355,115"/>
+<area shape="poly" title=" " alt="" coords="123,67,155,73,154,78,122,72"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="403,39,588,81"/>
+<area shape="poly" title=" " alt="" coords="355,77,387,73,388,78,356,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="403,105,588,148"/>
+<area shape="poly" title=" " alt="" coords="356,104,388,109,387,114,355,109"/>
 </map>
 </div>
 
@@ -1004,7 +1593,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for initializing the data array with a given value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01151">1151</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01153">1153</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1224,6 +1813,171 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a73ceb77688c4008dc350fc87b99875aa" name="a73ceb77688c4008dc350fc87b99875aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ceb77688c4008dc350fc87b99875aa">&#9670;&#160;</a></span>GlobalAvgPoolBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::GlobalAvgPoolBackward </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>output</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channels</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of global average pooling during backpropagation. </p>
+<p>This function computes the gradient of the global average pooling operation, distributing the gradient values evenly across all spatial dimensions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">output</td><td>Pointer to the output array where the gradient will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the gradient from the next layer. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of batches in the input tensor. </td></tr>
+    <tr><td class="paramname">channels</td><td>The number of channels in the input tensor. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the input tensor. </td></tr>
+    <tr><td class="paramname">width</td><td>The width of the input tensor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01502">1502</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a73ceb77688c4008dc350fc87b99875aa_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a73ceb77688c4008dc350fc87b99875aa_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a73ceb77688c4008dc350fc87b99875aa_cgraph" id="anamespacenz_1_1krnl_a73ceb77688c4008dc350fc87b99875aa_cgraph">
+<area shape="rect" title="Kernel function to compute the gradient of global average pooling during backpropagation." alt="" coords="5,47,222,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="270,5,455,48"/>
+<area shape="poly" title=" " alt="" coords="218,43,254,38,255,44,219,49"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="270,72,455,115"/>
+<area shape="poly" title=" " alt="" coords="219,71,255,76,254,82,218,77"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="503,39,688,81"/>
+<area shape="poly" title=" " alt="" coords="455,77,487,73,488,78,456,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="503,105,688,148"/>
+<area shape="poly" title=" " alt="" coords="456,104,488,109,487,114,455,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0ed44a68bfb86a9fd3d6c3b25614713f" name="a0ed44a68bfb86a9fd3d6c3b25614713f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ed44a68bfb86a9fd3d6c3b25614713f">&#9670;&#160;</a></span>gradCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::gradCopy </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>offset_o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>offset_i</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies gradient data from one array to another with specified offsets. </p>
+<p>This kernel function performs a gradient copy operation, transferring data from the input array to the output array while applying offsets for both the input and output arrays.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the gradient data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the gradient data to be copied. </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements to copy. </td></tr>
+    <tr><td class="paramname">offset_o</td><td>A vector of offsets for the output array. </td></tr>
+    <tr><td class="paramname">offset_i</td><td>A vector of offsets for the input array.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is designed for use in GPU-based gradient operations and assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01238">1238</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a0ed44a68bfb86a9fd3d6c3b25614713f_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a0ed44a68bfb86a9fd3d6c3b25614713f_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a0ed44a68bfb86a9fd3d6c3b25614713f_cgraph" id="anamespacenz_1_1krnl_a0ed44a68bfb86a9fd3d6c3b25614713f_cgraph">
+<area shape="rect" title="Copies gradient data from one array to another with specified offsets." alt="" coords="5,113,134,140"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="182,5,367,48"/>
+<area shape="poly" title=" " alt="" coords="90,111,131,85,180,58,193,52,195,57,183,62,133,89,92,115"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="182,72,367,115"/>
+<area shape="poly" title=" " alt="" coords="134,114,166,108,167,114,135,119"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd" title="Records write completion event for asynchronous data operations." alt="" coords="182,139,367,181"/>
+<area shape="poly" title=" " alt="" coords="135,134,167,140,166,145,134,140"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="182,205,367,248"/>
+<area shape="poly" title=" " alt="" coords="92,138,133,164,183,191,195,197,193,201,180,196,131,169,90,143"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a8ec4524fdefd3d771c72e77e94281c88" name="a8ec4524fdefd3d771c72e77e94281c88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ec4524fdefd3d771c72e77e94281c88">&#9670;&#160;</a></span>HadamardProduct()</h2>
 
@@ -1278,7 +2032,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise Hadamard product of two arrays. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01163">1163</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01165">1165</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1621,6 +2375,250 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="433,77,465,73,466,78,434,83"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="481,105,666,148"/>
 <area shape="poly" title=" " alt="" coords="434,104,466,109,465,114,433,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3a781324400c54c35dd564f3599dca8e" name="a3a781324400c54c35dd564f3599dca8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a781324400c54c35dd564f3599dca8e">&#9670;&#160;</a></span>img2col()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::img2col </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>C</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>K_h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>K_w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rearranges image data into column format for convolution operations. </p>
+<p>This kernel function transforms the input image data into a columnar format (im2col) to facilitate efficient convolution operations. It extracts patches from the input image based on the kernel size, stride, and padding, and stores them in the output array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the columnar data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input image data array. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output feature map. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output feature map. </td></tr>
+    <tr><td class="paramname">C</td><td>The number of input channels. </td></tr>
+    <tr><td class="paramname">K_h</td><td>The height of the convolution kernel. </td></tr>
+    <tr><td class="paramname">K_w</td><td>The width of the convolution kernel. </td></tr>
+    <tr><td class="paramname">stride</td><td>The stride of the convolution operation. </td></tr>
+    <tr><td class="paramname">pad</td><td>The padding applied to the input image. </td></tr>
+    <tr><td class="paramname">H_in</td><td>The height of the input image. </td></tr>
+    <tr><td class="paramname">W_in</td><td>The width of the input image. </td></tr>
+    <tr><td class="paramname">batch</td><td>The number of images in the batch.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01330">1330</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a3a781324400c54c35dd564f3599dca8e_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a3a781324400c54c35dd564f3599dca8e_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a3a781324400c54c35dd564f3599dca8e_cgraph" id="anamespacenz_1_1krnl_a3a781324400c54c35dd564f3599dca8e_cgraph">
+<area shape="rect" title="Rearranges image data into column format for convolution operations." alt="" coords="5,47,123,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="171,5,356,48"/>
+<area shape="poly" title=" " alt="" coords="123,48,155,42,156,47,124,53"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="171,72,356,115"/>
+<area shape="poly" title=" " alt="" coords="124,67,156,73,155,78,123,72"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="404,39,589,81"/>
+<area shape="poly" title=" " alt="" coords="356,77,388,73,389,78,357,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="404,105,589,148"/>
+<area shape="poly" title=" " alt="" coords="357,104,389,109,388,114,356,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1c2b7a6f28d2af22f9a2623c5ae62bff" name="a1c2b7a6f28d2af22f9a2623c5ae62bff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c2b7a6f28d2af22f9a2623c5ae62bff">&#9670;&#160;</a></span>img2colBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::img2colBackward </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>C</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>K_h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>K_w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batch</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rearranges columnar data back into image format for backpropagation in convolution operations. </p>
+<p>This kernel function performs the reverse operation of <code>img2col</code>, transforming columnar data back into its original image format. It is used during the backpropagation phase of convolutional neural networks to reconstruct the gradient of the input image.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the reconstructed image data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input columnar data array. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output feature map. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output feature map. </td></tr>
+    <tr><td class="paramname">C</td><td>The number of input channels. </td></tr>
+    <tr><td class="paramname">K_h</td><td>The height of the convolution kernel. </td></tr>
+    <tr><td class="paramname">K_w</td><td>The width of the convolution kernel. </td></tr>
+    <tr><td class="paramname">stride</td><td>The stride of the convolution operation. </td></tr>
+    <tr><td class="paramname">pad</td><td>The padding applied to the input image. </td></tr>
+    <tr><td class="paramname">H_in</td><td>The height of the input image. </td></tr>
+    <tr><td class="paramname">W_in</td><td>The width of the input image. </td></tr>
+    <tr><td class="paramname">batch</td><td>The number of images in the batch.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01357">1357</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a1c2b7a6f28d2af22f9a2623c5ae62bff_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a1c2b7a6f28d2af22f9a2623c5ae62bff_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a1c2b7a6f28d2af22f9a2623c5ae62bff_cgraph" id="anamespacenz_1_1krnl_a1c2b7a6f28d2af22f9a2623c5ae62bff_cgraph">
+<area shape="rect" title="Rearranges columnar data back into image format for backpropagation in convolution operations." alt="" coords="5,47,181,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="229,5,414,48"/>
+<area shape="poly" title=" " alt="" coords="181,45,213,40,213,45,181,50"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="229,72,414,115"/>
+<area shape="poly" title=" " alt="" coords="181,70,213,75,213,80,181,75"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="462,39,647,81"/>
+<area shape="poly" title=" " alt="" coords="414,77,446,73,447,78,415,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="462,105,647,148"/>
+<area shape="poly" title=" " alt="" coords="415,104,447,109,446,114,414,109"/>
 </map>
 </div>
 
@@ -2130,6 +3128,242 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="abcc632e5a7104c1a28208e94a4ce6e28" name="abcc632e5a7104c1a28208e94a4ce6e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcc632e5a7104c1a28208e94a4ce6e28">&#9670;&#160;</a></span>MaxPooling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::MaxPooling </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>output</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pool_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>padding</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channels</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to perform max pooling on the GPU. </p>
+<p>This function applies max pooling to the input tensor, reducing its spatial dimensions by selecting the maximum value within each pooling window.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">output</td><td>Pointer to the output array where the pooled results will be stored. </td></tr>
+    <tr><td class="paramname">position</td><td>Pointer to the array where the positions of the maximum values will be stored. </td></tr>
+    <tr><td class="paramname">input</td><td>Pointer to the input array containing the original data. </td></tr>
+    <tr><td class="paramname">pool_size</td><td>The size of the pooling window. </td></tr>
+    <tr><td class="paramname">stride</td><td>The stride of the pooling operation. </td></tr>
+    <tr><td class="paramname">padding</td><td>The padding applied to the input tensor. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of batches in the input tensor. </td></tr>
+    <tr><td class="paramname">channels</td><td>The number of channels in the input tensor. </td></tr>
+    <tr><td class="paramname">H_in</td><td>The height of the input tensor. </td></tr>
+    <tr><td class="paramname">W_in</td><td>The width of the input tensor. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output tensor. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output tensor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01539">1539</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_abcc632e5a7104c1a28208e94a4ce6e28_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_abcc632e5a7104c1a28208e94a4ce6e28_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_abcc632e5a7104c1a28208e94a4ce6e28_cgraph" id="anamespacenz_1_1krnl_abcc632e5a7104c1a28208e94a4ce6e28_cgraph">
+<area shape="rect" title="Kernel function to perform max pooling on the GPU." alt="" coords="5,13,146,40"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="194,5,379,48"/>
+<area shape="poly" title=" " alt="" coords="146,24,178,24,178,29,146,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0d5f5f4c9e89a8d914a7f2f802d1caab" name="a0d5f5f4c9e89a8d914a7f2f802d1caab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d5f5f4c9e89a8d914a7f2f802d1caab">&#9670;&#160;</a></span>MaxPoolingBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::MaxPoolingBackward </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>output</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>pool_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>padding</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batches</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>channels</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>H_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>W_out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kernel function to compute the gradient of max pooling during backpropagation. </p>
+<p>This function computes the gradient of the max pooling operation, propagating the gradient values only to the positions of the maximum values in the pooling window.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">output</td><td>Pointer to the output array where the gradient will be stored. </td></tr>
+    <tr><td class="paramname">position</td><td>Pointer to the array containing the positions of the maximum values. </td></tr>
+    <tr><td class="paramname">input</td><td>Pointer to the input array containing the gradient from the next layer. </td></tr>
+    <tr><td class="paramname">pool_size</td><td>The size of the pooling window. </td></tr>
+    <tr><td class="paramname">stride</td><td>The stride of the pooling operation. </td></tr>
+    <tr><td class="paramname">padding</td><td>The padding applied to the input tensor. </td></tr>
+    <tr><td class="paramname">batches</td><td>The number of batches in the input tensor. </td></tr>
+    <tr><td class="paramname">channels</td><td>The number of channels in the input tensor. </td></tr>
+    <tr><td class="paramname">H_in</td><td>The height of the input tensor. </td></tr>
+    <tr><td class="paramname">W_in</td><td>The width of the input tensor. </td></tr>
+    <tr><td class="paramname">H_out</td><td>The height of the output tensor. </td></tr>
+    <tr><td class="paramname">W_out</td><td>The width of the output tensor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01567">1567</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a0d5f5f4c9e89a8d914a7f2f802d1caab_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a0d5f5f4c9e89a8d914a7f2f802d1caab_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a0d5f5f4c9e89a8d914a7f2f802d1caab_cgraph" id="anamespacenz_1_1krnl_a0d5f5f4c9e89a8d914a7f2f802d1caab_cgraph">
+<area shape="rect" title="Kernel function to compute the gradient of max pooling during backpropagation." alt="" coords="5,47,204,73"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="252,5,437,48"/>
+<area shape="poly" title=" " alt="" coords="204,44,236,39,237,44,204,49"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a46ce59b45de432842454aadf00b93791" title="Asynchronously submits a CUDA kernel with stream&#45;ordered dependency management." alt="" coords="252,72,437,115"/>
+<area shape="poly" title=" " alt="" coords="204,71,237,76,236,81,204,76"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="485,39,670,81"/>
+<area shape="poly" title=" " alt="" coords="437,77,469,73,470,78,438,83"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="485,105,670,148"/>
+<area shape="poly" title=" " alt="" coords="438,104,470,109,469,114,437,109"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="af76ce6a930db4def5ceb51350af72f3c" name="af76ce6a930db4def5ceb51350af72f3c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af76ce6a930db4def5ceb51350af72f3c">&#9670;&#160;</a></span>MeanSquaredError()</h2>
 
@@ -2189,7 +3423,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00613">613</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00615">615</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2268,7 +3502,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00713">713</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00715">715</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2341,7 +3575,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00627">627</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00629">629</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2456,7 +3690,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00791">791</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00793">793</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2532,6 +3766,86 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="363,77,395,73,396,78,364,83"/>
 <area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="411,105,596,148"/>
 <area shape="poly" title=" " alt="" coords="364,104,396,109,395,114,363,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9ac0590fbb5eb7f51b05da574e9845a8" name="a9ac0590fbb5eb7f51b05da574e9845a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ac0590fbb5eb7f51b05da574e9845a8">&#9670;&#160;</a></span>NgradCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nz::krnl::NgradCopy </td>
+          <td>(</td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>gridDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dim3</td>          <td class="paramname"><span class="paramname"><em>blockDim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>offset_o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>offset_i</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies gradient data from one array to another with specified offsets. </p>
+<p>This kernel function performs a gradient copy operation, transferring data from the input array to the output array while applying offsets for both the input and output arrays.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridDim</td><td>The grid dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">blockDim</td><td>The block dimensions for the CUDA kernel launch configuration. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to the output array where the gradient data will be stored. </td></tr>
+    <tr><td class="paramname">in</td><td>Pointer to the input array containing the gradient data to be copied. </td></tr>
+    <tr><td class="paramname">n</td><td>The number of elements to copy. </td></tr>
+    <tr><td class="paramname">offset_o</td><td>A vector of offsets for the output array. </td></tr>
+    <tr><td class="paramname">offset_i</td><td>A vector of offsets for the input array.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is designed for use in GPU-based gradient operations and assumes that the input and output arrays are properly allocated and accessible on the device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01264">1264</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacenz_1_1krnl_a9ac0590fbb5eb7f51b05da574e9845a8_cgraph.png" border="0" usemap="#anamespacenz_1_1krnl_a9ac0590fbb5eb7f51b05da574e9845a8_cgraph" alt=""/></div>
+<map name="anamespacenz_1_1krnl_a9ac0590fbb5eb7f51b05da574e9845a8_cgraph" id="anamespacenz_1_1krnl_a9ac0590fbb5eb7f51b05da574e9845a8_cgraph">
+<area shape="rect" title="Copies gradient data from one array to another with specified offsets." alt="" coords="5,113,144,140"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1de1cf3aadea137faf90a2f9b4b7abe2" title="Acquires CUDA stream from pool using round&#45;robin scheduling." alt="" coords="192,5,377,48"/>
+<area shape="poly" title=" " alt="" coords="96,110,139,85,191,58,203,52,206,57,193,62,142,89,99,115"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#ab4b2eb422e0e1ee44bdfdc0eb94457ce" title="Returns a reference to the singleton instance of the StreamManager." alt="" coords="192,72,377,115"/>
+<area shape="poly" title=" " alt="" coords="144,113,176,108,177,113,145,118"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#a1260d95d0eddf75b72700da07361a4bd" title="Records write completion event for asynchronous data operations." alt="" coords="192,139,377,181"/>
+<area shape="poly" title=" " alt="" coords="145,135,177,140,176,145,144,140"/>
+<area shape="rect" href="classnz_1_1cu_strm_1_1_stream_manager.html#adb1078a67c6e38932d7d58c2adb05ec0" title="Synchronizes CUDA stream execution until data writes complete." alt="" coords="192,205,377,248"/>
+<area shape="poly" title=" " alt="" coords="99,138,142,164,193,191,206,197,203,201,191,196,139,169,96,143"/>
 </map>
 </div>
 
@@ -2815,7 +4129,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00745">745</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00747">747</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3385,7 +4699,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00640">640</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00642">642</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3465,7 +4779,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used for computing the element-wise summation of two arrays. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01223">1223</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l01225">1225</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3904,7 +5218,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The matrices A and B are assumed to be padded to the nearest multiple of 16 for efficient computation. After the computation, the resulting matrix C will be cropped back to the original dimensions (M x N). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00883">883</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_operation_kernels_8cu_source.html#l00885">885</a> of file <a class="el" href="_operation_kernels_8cu_source.html">OperationKernels.cu</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

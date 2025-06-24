@@ -4,11 +4,23 @@
 
 NeuZephyr is a lightweight deep learning library developed in C++ with CUDA C, designed to provide efficient GPU acceleration for deep learning model training and inference. Its goal is to help developers quickly implement deep learning models while maintaining an easy-to-use interface.
 
-If you're new to NeuZephyr and want to get started quickly, **the best place to begin is the documentation for the `nz::graph::ComputeGraph` class**. The `nz::graph::ComputeGraph` class allows you to define and manipulate the structure of your neural network, making it the foundation for both training and inference.
+---
 
-Once you understand how to use the **nz::graph::ComputeGraph**, you'll be able to easily integrate other features like Tensors, Nodes, Optimizers, and more into your models.
+# NeuZephyr Quick Start Guide ✨
 
-For a detailed guide on how to use the `ComputeGraphh` class, please refer to the **`nz::graph::ComputeGraph`** class or its documentation.
+▌ **Core Starting Point**  
+👉  Begin with the foundational `nz::Model` class documentation! This class enables you to:  
+‣ 🧱 **Define** neural network architectures  
+‣ ⚙️ **Manipulate** model structures  
+‣ 🚂 **Unify** training/inference workflows
+
+▌ **Seamless Expansion Path**  
+After mastering `nz::Model`, effortlessly integrate:  
+│  
+├ 🔥 **Tensors** - Data representation  
+├ 🧠 **Nodes** - Computational units  
+├ 🎯 **Optimizers** - Learning strategies  
+└ ...and other advanced features!
 
 ---
 
@@ -136,6 +148,11 @@ See the [LICENSE](https://github.com/Mgepahmge/NeuZephyr/blob/main/LICENSE) file
 ---
 
 ## Changelog
+
+### v0.6 - Model Class & Neural Automation Framework
+- Introduced **`Model` base class** enabling declarative model construction via inheritance, with automatic parameter tracking and gradient graph generation.
+- Added high-level neural components (`Conv2D`, `MaxPool`, `Linear`) with built-in auto-differentiation, eliminating manual computation graph assembly.
+
 
 ### v0.5 - High-Dimensional Tensor Infrastructure Overhaul
 - Upgraded core tensor infrastructure from 2D to **fourth-order tensor** representation, enabling native support for high-dimensional data structures.
